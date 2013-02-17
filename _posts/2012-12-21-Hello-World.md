@@ -12,6 +12,8 @@ tagline  : The first blog.
 
 专心做好一件事，慢慢来，比较快。
 
+See also, My old blog in csdn.[here](http://blog.csdn.net/kerenigma)
+
 ***Hello World***
 
 
