@@ -5,7 +5,8 @@ category : Linux Skill
 tags     : 
 tagline  : Some thing about gdb
 ---
-Debug jni Code
+
+Remote Debug jni Code
 ---------------
 
 1.Start your java application, set the breakpoint in java before call jni function
