@@ -1,6 +1,6 @@
 ---
 layout: home
-title : Sometime we don't lack strength , But lack will.
+title : Home
 tagline: Welcome To Yikun's Blog
 ---
 {% include JB/setup %}
