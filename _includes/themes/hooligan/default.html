@@ -53,6 +53,11 @@
 
           <div class="nav-collapse">
             <ul class="nav">
+
+              {% assign pages_list = site.pages %}
+              {% assign group = 'navigation' %}
+              {% include JB/pages_list %}
+              {% assign pages_list = site.pages %}
               <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Project <b class="caret"></b></a>
                 <ul class="dropdown-menu">
@@ -61,10 +66,6 @@
                 <li><a href="https://github.com/Yikun/Design-On-Fingertips">Design On Fingertips</a></li>
                 </ul>
               </li>
-              {% assign pages_list = site.pages %}
-              {% assign group = 'navigation' %}
-              {% include JB/pages_list %}
-              {% assign pages_list = site.pages %}
               {% assign group = 'about' %}
               {% include JB/pages_list %}
             </ul>
