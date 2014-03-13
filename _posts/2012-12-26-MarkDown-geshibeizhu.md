@@ -252,3 +252,13 @@ Markdown 语法:
 	&lt;p&gt;For example.&lt;/p&gt;
 	&lt;/blockquote&gt;
 	</code></pre>
+
+补一下语法高亮的方法
+
+{% highlight c %}
+#include <stdio.h>
+int main()
+{
+	printf("Hello World");
+}
+{% endhighlight %}
