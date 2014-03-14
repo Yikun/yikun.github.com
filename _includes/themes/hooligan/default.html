@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
   <head>
     <meta charset="utf-8">
     <title>
@@ -15,7 +16,16 @@
     <!--[if lt IE 9]>
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
-
+    <style>
+          #shangxia:hover{background-color: #262626;}
+      #shangxia{position:absolute;top:0%;left:0%;display:block;z-index:1000;background-color: #1a1a1a;border: 1px solid #333333;-webkit-box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);-moz-box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);}
+      #shang{background:url(/assets/nav.png) no-repeat;position:relative;cursor:pointer;height:42px;width:32px;margin:10px 0;}
+      #shang:hover {background: url(assets/nav3.png)}
+      #fellow{background:url(/assets/nav.png) no-repeat center -45px;position:relative;cursor:pointer;height:32px;width:32px;margin:10px 0;}
+      #fellow:hover {background: url(/assets/nav2.png) no-repeat center -45px;position:relative;cursor:pointer;height:32px;width:32px;margin:10px 0;}
+      #xia{background:url(/assets/nav.png) no-repeat center -78px;position:relative;cursor:pointer;height:42px;width:32px;margin:10px 0;}
+      #xia:hover {background: url(/assets/nav3.png) no-repeat center -78px;position:relative;cursor:pointer;height:42px;width:32px;margin:10px 0;}
+    </style>
 
     <script src="{{ ASSET_PATH }}/js/jquery.min.js"></script>
     <script src="{{ ASSET_PATH }}/bootstrap/js/bootstrap.min.js"></script>
@@ -144,4 +154,23 @@
     </div> <!-- /container -->
     {% include JB/analytics %}
   </body>
+
+   <script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
+   <script type="text/javascript">
+
+   jQuery(document).ready(function($){
+   var s= $('#shangxia').offset().top;$(window).scroll(function (){$("#shangxia").animate({top : $(window).scrollTop()    +250+ "px" },{queue:false,duration:500});});
+   $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
+   $('#shang').click(function(){$body.animate({scrollTop: '0px'}, 400);});
+   $('#xia').click(function(){$body.animate({scrollTop:$('#ds-thread').offset().top}, 800);});
+   });
+
+
+</script>
+
+  <div id="shangxia" style="top: 700px;">
+    <div id="shang" title="去顶部"></div>
+    <div id="fellow" title="关注Kero"><a style="display:block;width:30px;height:30px;" href="http://weibo.com/keroenigma" target="_blank"></a></div>
+    <div id="xia" title="有话说"></div>
+  </div>
 </html>
