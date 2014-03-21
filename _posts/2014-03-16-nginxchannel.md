@@ -1,6 +1,6 @@
 --- 
 layout   : post
-title    : nginx中master与worker的进程通信
+title    : nginx中channel机制
 category : nginx源码学习
 tags     : 
 tagline  : 
