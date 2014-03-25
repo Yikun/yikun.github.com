@@ -63,20 +63,18 @@
 
           <div class="nav-collapse">
             <ul class="nav">
-<!--
+            <!--
               {% assign pages_list = site.pages %}
               {% assign group = 'navigation' %}
               {% include JB/pages_list %}
               {% assign pages_list = site.pages %}
--->
+            -->
               <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#"> Archive <b class="caret"></b></a>
                 <ul class="dropdown-menu">
-                <li><a href="/categories.html">分类</a></li>
-                <li><a href="/archive.html">时间</a></li>
-                <li><a href="/tags.html">标记</a></li>
-                <li><a href="/pages.html">页面</a></li>
-
+                {% assign group = 'archdrop' %}
+                {% include JB/pages_list %}
+                {% assign pages_list = site.pages %}
                 </ul>
               </li>
               <li class="dropdown">
