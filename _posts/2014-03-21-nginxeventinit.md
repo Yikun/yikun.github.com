@@ -248,7 +248,7 @@ module_init是在ngx_init_cycle被调用的
             }
         }
     }
-{% endlight %}    
+{% endhighlight %}    
     
 主要就是初始化模块的一些变量。
 ngx_event_process_init则是在worker进程开始时被调用，之后便进入事件循环中，主要包括了负载均衡锁的初始化、定时器的初始化、连接池的初始化，以及在最后调用ngx_add_event将事件添加到监听队列中。
