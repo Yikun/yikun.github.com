@@ -250,7 +250,7 @@ nginx的事件机制最重要的牵扯到几个结构体，当然niginx的事件
 
 ngx_event_module_init是在ngx_init_cycle被调用的，主要就是初始化模块的一些变量。
 
-ngx_event_process_init则是在worker进程开始时被调用，之后便进入事件循环中，主要包括了负载均衡锁的初始化、定时器的初始化、连接池的初始化，以及在最后调用ngx_add_event将事件添加到监听队列中。可以看到
+ngx_event_process_init则是在worker进程开始时被调用，之后便进入事件循环中，主要包括了负载均衡锁的初始化、定时器的初始化、连接池的初始化，以及在最后遍历所有modules来调用modules数组中的ngx_add_event函数，将事件添加到监听队列中。可以看到
 
 {% highlight c %}
     #define ngx_process_changes  ngx_event_actions.process_changes
@@ -266,5 +266,7 @@ ngx_event_process_init则是在worker进程开始时被调用，之后便进入�
 这就是nginx事件模块的精华所在，通过这样的方式，就可以使得ngx_event_actions不同，采用不同的复用机制。可以参照下图，来理解ngx_event_core_module。
 
 ![nginx_channel](/assets/post/2014-03-21-nginxeventinit/nginx_core_module.png)
+
+上面可以看到红色的部分是ngx_event_core_module有用的部分，需要强调的是这个事件模型只是用来初始化类似epoll的模块的，而自己是不做
 
 至此，事件初始化就结束了，可以看到上面都是nginx通用的，不牵扯到具体的复用机制，后面会根据epoll来具体学习一下nginx事件循环。
