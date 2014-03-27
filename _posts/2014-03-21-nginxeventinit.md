@@ -267,6 +267,6 @@ ngx_event_process_init则是在worker进程开始时被调用，之后便进入�
 
 ![nginx_channel](/assets/post/2014-03-21-nginxeventinit/nginx_core_module.png)
 
-上面可以看到红色的部分是ngx_event_core_module有用的部分，需要强调的是这个事件模型只是用来初始化类似epoll的模块的，而自己是不做
+上面可以看到红色的部分是ngx_event_core_module有用的部分，需要强调的是这个事件模型只是用来初始化类似epoll的模块的，而自己是不做一些类似epoll事件循环的具体事件的。
 
 至此，事件初始化就结束了，可以看到上面都是nginx通用的，不牵扯到具体的复用机制，后面会根据epoll来具体学习一下nginx事件循环。
