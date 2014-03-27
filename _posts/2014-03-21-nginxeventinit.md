@@ -246,7 +246,7 @@ nginx的事件机制最重要的牵扯到几个结构体，当然niginx的事件
 
 这两个函数的调用的时机，如下图所示：
 
-![nginx_channel](/assets/post/2014-03-21-nginxeventinit//module_process_init.png.png)
+![nginx_channel](/assets/post/2014-03-21-nginxeventinit/module_process_init.png)
 
 ngx_event_module_init是在ngx_init_cycle被调用的，主要就是初始化模块的一些变量。
 
