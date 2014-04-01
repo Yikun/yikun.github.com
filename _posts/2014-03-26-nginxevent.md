@@ -25,7 +25,8 @@ tagline  :
 
 而对于epoll来说就是调用ngx_epoll_process_events函数。
 
-2.调用ngx_event_process_posted处理事件队列中的事件。
+2. 调用ngx_event_process_posted处理事件队列中的事件。
+
 ngx_event_process_posted(cycle, &ngx_posted_accept_events);
 ngx_event_process_posted(cycle, &ngx_posted_events);
 我们可以看见处理的网络事件主要牵扯到2个队列，一个是ngx_posted_accept_events，另一个是ngx_posted_events。其中，一个队列用于放accept的事件，另一个则是普通的读写事件；
@@ -34,6 +35,6 @@ ngx_event_process_posted会处理事件队列，其实就是调用每个事件�
 
 我么可以看到，每个worker进程先抢锁，抢到锁的worker就获得所有监听的事件，这个worker来“接待”新的"accept"，当接待完ngx_posted_accept_events队列里面的连接后，就解锁。没拿到锁的，会更频繁的拿锁。最终实现了负载均衡。
 
-3.处理定时器事件。
+3. 处理定时器事件。
 
 以上便是整个事件机制的实现。
