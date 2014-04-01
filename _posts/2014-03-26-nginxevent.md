@@ -13,12 +13,12 @@ tagline  :
 
 <h3 id="eventcore">2. 事件主体</h3>
 我们的重点还是放在ngx_worker_process_cycle，处理事件的核心则是ngx_process_events_and_timers，其基本机制如下图所示，
-
-![eventcore](/assets/post/2014-03-21-nginxevent/nginx_epoll.png)
+![eventcore](/assets/post/2014-03-26-nginxevent/nginx_epoll.png)
 
 在ngx_worker_process_cycle最开始的初始化中，epoll模块会调用epoll_creat初始化，之后便进入事件的循环中，然后epoll_wait有事件就加入到队列中，然后集中处理，如果拿到锁了就可以处理accept的事件，然后处理完accept后就解锁，之后再去处理普通读写事件。
 
 事件的主循环主要分为三步
+
 1. 调用ngx_process_events。
 
 	#define ngx_process_events   ngx_event_actions.process_events
