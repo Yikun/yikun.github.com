@@ -10,14 +10,14 @@ tagline  :
 *   [2.事件模块配置的初始化](#events)
 *   [3.ngx_event_core_module](#event_core)
 
-<h3 id="abstract">1. 概述</h3>
+<h3 id="abstract"><a>1. 概述</a></h3>
 因为开始对nginx的模块机制不是很了解，所以开始看事件模块的这部分还是云里来，雾里去的，最后，算是理清了，我觉得应该抓几个核心的数据结构，无论是初始化，还是在事件循环中，都和这些数据结构息息相关。我们需要抓住这两个结构体，搞清楚他们在什么时候初始化，什么时候起作用，这样就可以理清大概的
 
 nginx的事件机制最重要的牵扯到几个结构体，当然niginx的事件的初始化也围绕着这几个模块进行。
 
 ---------
 
-<h3 id="events">2.事件模块配置的初始化</h3>
+<h3 id="events"><a>2.事件模块配置的初始化</a></h3>
 事件模块配置的初始化，主要是所有事件模块的配置创建与初始化的过程，与事件模块息息相关的是ngx_events_module结构体，定义了对`events`的“兴趣”，以及初始化events的回调函数ngx_events_block。
 
 首先，最重要的结构体是
@@ -149,7 +149,7 @@ nginx的事件机制最重要的牵扯到几个结构体，当然niginx的事件
 
 -----------
 
-<h3 id="event_core">3.ngx_event_core_module</h3>
+<h3 id="event_core"><a>3.ngx_event_core_module</a></h3>
 
 其次，是ngx_event_core_module这个模块是一个事件类型(NGX_EVENT_MODULE)的模块
 

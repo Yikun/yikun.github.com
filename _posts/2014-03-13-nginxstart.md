@@ -23,13 +23,13 @@ tagline  :
 
 -------
 
-<h3 id="getopt">1.解析命令参数。</h3>
+<h3 id="getopt"><a>1.解析命令参数。</a></h3>
 
 nginx是由C语言写成的，因此，从main函数开始开启我们的“旅程”，传入参数为argc，还有argv，最开始的任务当然就是解析它们了，以获得用户启动的参数，调用ngx_get_options解析参数，一般情况，Linux的解析命令参数都会调用getopt之类的系统函数，而nginx却没有，应该是考虑到了跨平台性。解析命令参数的代码比较简单，大致的工作就是标记flag，类似ngx_show_version，ngx_show_modules的全局参数可以记录命令参数。
 而后，根据这些flag来做一些事情，例如使用nginx -h，会将ngx_show_version，ngx_show_help置为有效(1)，然后后面回到main后，就是做一些对应的输出。
 
 -------
-<h3 id="init">2.初始化工作。</h3>
+<h3 id="init"><a>2.初始化工作。</a></h3>
 
 
 包括了time、regex、log、ssl等初始化，而后进行一个很重要的结构的初始化ngx_cycle。
@@ -73,7 +73,7 @@ struct ngx_cycle_s {
 ngx_init_cycle的过程的详细情况可以参考[Nginx启动初始化过程(二)](http://www.alidata.org/archives/1148)。因为现在功力不是很深，等以后对nginx有透彻了解后，再仔细分析。这里第一次出现了内存池的操作，后面重点分析一下内存池的实现。
 
 -------
-<h3 id="siginit">3.信号处理的初始化</h3>
+<h3 id="siginit"><a>3.信号处理的初始化</a></h3>
 
 ngx_init_signals会进行信号处理的初始化，signals是一个结构体数组，存储着各种信号的结构体，在初始化的过程中，会利用sigaction函数对每个信号进行设置，如下所示，主要是对signo和handler回调函数进行设置。初始化成功以后，当信号产生以后，便可以调用信号处理函数了，因此可以利用ngx_signal_handler进行信号处理了。
 {% highlight c %}
@@ -100,7 +100,7 @@ ngx_init_signals(ngx_log_t *log)
 {% endhighlight %}
 
 --------
-<h3 id="daemon">4.守护进程</h3>
+<h3 id="daemon"><a>4.守护进程</a></h3>
 
 在启动过程中，会调用ngx_daemon(cycle->log)，这个函数实现的很经典。
 {% highlight c %}
@@ -196,7 +196,7 @@ ngx_daemon(ngx_log_t *log)
 具体的守护进程参考UNP和APUE中的资料。
 
 ---------
-<h3 id="ngx_master_process_cycle">5.ngx_master_process_cycle，mater干的活</h3>
+<h3 id="ngx_master_process_cycle"><a>5.ngx_master_process_cycle，mater干的活</a></h3>
 
 
 在完成main中的初始化后，我们的“初始化”旅程到了结尾，热身结束，开始重点。到调用这个函数的时候，nginx还是只有master进程的，作为master进程的开始工作，最终要的就是启动“work”进程。其实，很多软件都有master，work的概念，诸如Hadoop的jobtracker、tasktracker。master处理和用户的交互，然后work专心的去做业务，这样的话，master可以想象为一个管理者，work则是真正的工人。
@@ -226,7 +226,7 @@ ngx_daemon(ngx_log_t *log)
 最开始的工作就是做一些信号处理的工作，首先将系统信号，nginx自定义的信号加入'sigset_t set;'信号集中，然后调用sigprocmask进行信号的屏蔽，函数为 'sigprocmask(SIG_BLOCK, &set, NULL)' ，第一个参数为SIG_BLOCK意思就是按照set屏蔽信号，也就是说把之前通过 'sigaddset' 的10个信号都屏蔽掉了，以防止在fork Work的过程中发生的意外。
 
 --------
-<h3 id="ngx_master">6.master开始工作</h3>
+<h3 id="ngx_master"><a>6.master开始工作</a></h3>
 
 master进程在屏蔽完信号干扰后，便调用了ngx_start_worker_processes来启动worker进程，这个函数的核心就是一个for循环，调用ccf->worker_processes次ngx_spawn_process函数，fork了ccf->worker_processes个worker。
 
@@ -270,7 +270,7 @@ for ( ;; ) {
 最后，总结一下master的工作，就是先把信号都屏蔽了，然后去fork worker进程，fork完work以后，master就进入信号处理的循环了，利用sigsuspend等信号，等到信号就处理，处理完了再sigsusoend，如此循环，完成伟大的幕后工作。
 
 --------
-<h3 id="ngx_worker">7.ngx_worker_process_cycle，worker开始工作</h3>
+<h3 id="ngx_worker"><a>7.ngx_worker_process_cycle，worker开始工作</a></h3>
 
 
 worker开始工作的真正时候，应该是在master调用ngx_spawn_process之后的，master传入的proc参数就是ngx_worker_process_cycle函数指针，再回到刚才master中那个fork的过程，case 0的时候调用了proc(cycle, data);也就是相当与调用了ngx_worker_process_cycle，这样worker的工作也马不停蹄的开始了。
