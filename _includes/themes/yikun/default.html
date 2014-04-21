@@ -35,75 +35,68 @@
   </head>
 
   <body>
-<nav class="navbar navbar-inverse" role="navigation">
-        <div class="container">  
-        <div class="navbar-header">
-          <button class="navbar-toggle" type="button" data-toggle="collapse" data-target=".bs-navbar-collapse">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a href="{{ HOME_PATH }}" class="navbar-brand">{{ site.title }}</a>
-        </div>
-
-
-
-        <ul class="nav navbar-nav navbar-right">
-        <li><a href="https://www.github.com/yikun" class="zocial github icon" target="_blank"></a></li>
-        <li><a href="http://www.weibo.com/keroenigma" class="zocial weibo icon" target="_blank"></a></li>
-        <li><a href="http://yikun.github.com/atom.xml" class="zocial rss icon" target="_blank"></a></li>
-        </ul>
-        <ul class="nav navbar-nav" role="navigation">
-        <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">Archive<b class="caret"></b></a>
-                <ul class="dropdown-menu" role="menu">
-                <li><a href="/archive.html">Archive</a></li>
-                <li><a href="/tags.html">Tags</a></li> 
-                <li><a href="/pages.html">Pages</a></li>      
-                <li><a href="/categories.html">Categories</a></li>
-                </ul>
-        </li> 
-        <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Project<b class="caret"></b></a>
-              <ul class="dropdown-menu" role="menu">
-                <li><a href="/keroinxidian.html">Kero in Xidian</a></li>
-                <li><a href="https://github.com/Yikun/Luck-Application">Luck Application</a></li>
-                <li><a href="https://github.com/Yikun/Design-On-Fingertips">Design On Fingertips</a></li>
-              </ul>
-        </li>
-        {% assign pages_list = site.pages %}
-        {% assign group = 'nav' %}
-        {% include JB/pages_list %}
-        </ul>
-        </div>
-</nav>
-
+  <div class="navbar navbar-inverse">
     <div class="container">
-      <div class="content">
-        {{ content }}
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target=".navbar-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand hidden-sm" href="/">Yikun's Blog</a>
       </div>
+      <div class="navbar-collapse collapse">
+        <ul class="nav navbar-nav">
+          <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">Archive<b class="caret"></b></a>
+              <ul class="dropdown-menu" role="menu">
+              <li><a href="/archive.html">Archive</a></li>
+              <li><a href="/tags.html">Tags</a></li>
+              <li><a href="/pages.html">Pages</a></li>
+              <li><a href="/categories.html">Categories</a></li>
+        </ul>
+      </li>
+      <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown">Project<b class="caret"></b></a>
+            <ul class="dropdown-menu" role="menu">
+              <li><a href="/keroinxidian.html">Kero in Xidian</a></li>
+              <li><a href="https://github.com/Yikun/Luck-Application">Luck Application</a></li>
+              <li><a href="https://github.com/Yikun/Design-On-Fingertips">Design On Fingertips</a></li>
+            </ul>
+      </li>
+      {% assign pages_list = site.pages %}
+      {% assign group = 'nav' %}
+      {% include JB/pages_list %}
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+      <li>
+      <li><a href="http://yikun.github.com/atom.xml" class="zocial rss icon" target="_blank"></a></li>
+      </li>
+      </ul>
+      </div>
+    </div>
+  </div>
 
-      <footer>
-        <p>&copy; {{ site.author.name }} 
-          with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
-          and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
-        </p>
-      </footer>
-    </div> <!-- /container -->
+  <div class="container">
+    <div class="content">
+      {{ content }}
+    </div>
+
+    <footer>
+      <p>&copy; {{ site.author.name }} 
+        with help from <a href="http://jekyllbootstrap.com" target="_blank" title="The Definitive Jekyll Blogging Framework">Jekyll Bootstrap</a>
+        and <a href="http://github.com/dhulihan/hooligan" target="_blank">The Hooligan Theme</a>
+      </p>
+    </footer>
+  </div> <!-- /container -->
   </body>
-
-   <script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
    <script type="text/javascript">
-
    jQuery(document).ready(function($){
    var s= $('#shangxia').offset().top;$(window).scroll(function (){$("#shangxia").animate({top : $(window).scrollTop()    +s+ "px" },{queue:false,duration:500});});
    $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
    $('#shang').click(function(){$body.animate({scrollTop: '0px'}, 400);});
    $('#xia').click(function(){$body.animate({scrollTop:$('#ds-thread').offset().top}, 800);});
    });
-
-
    </script>
 
   <div id="shangxia" style="top: 250px;">
