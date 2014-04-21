@@ -59,6 +59,9 @@
           </button>
           <a href="{{ HOME_PATH }}" class="navbar-brand">{{ site.title }}</a>
         </div>
+
+
+
         <ul class="nav navbar-nav navbar-right">
         <li><a href="https://www.github.com/yikun" class="zocial github icon" target="_blank"></a></li>
         <li><a href="http://www.weibo.com/keroenigma" class="zocial weibo icon" target="_blank"></a></li>
@@ -82,8 +85,9 @@
                 <li><a href="https://github.com/Yikun/Design-On-Fingertips">Design On Fingertips</a></li>
               </ul>
         </li>
-        <li><a href="/leisure.html">Leisure</a></li>
-        <li><a href="/about.html">About</a></li>
+        {% assign pages_list = site.pages %}
+        {% assign group = 'nav' %}
+        {% include JB/pages_list %}
         </ul>
         </div>
 </nav>
