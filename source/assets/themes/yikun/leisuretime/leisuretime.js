@@ -5,16 +5,15 @@ function addBookListall(leisuretimecontent){
 	}
 }
 function addBook(image, title, content, date){
-	var pic = document.createElement("DIV")
-	pic.setAttribute("class","col-md-2");
-	pic.innerHTML="<img src=\""+ image +"\" width=\"128\" height=\"182\"><br>"
+	var pic = document.createElement("aside");
+	pic.innerHTML="<img src=\""+ image +"\">";
 	
-	var detail = document.createElement("DIV")
-	detail.setAttribute("class","col-md-7");
-	detail.innerHTML="<h3><a>"+ title +"</a></h3><br><h4>"+date+"</h4><br>"+content
+	var detail = document.createElement("section")
+	detail.setAttribute("class","intro");
+	detail.innerHTML="<ul><li>"+ title +"</li><li>"+date+"</li><li>"+content+"</li></ul>"
 	
-	var booklists = document.createElement("DIV")
-	booklists.setAttribute("class","row")
+	var booklists = document.createElement("article")
+	booklists.setAttribute("class","leisure")
 	booklists.appendChild(pic)
 	booklists.appendChild(detail)
 	document.getElementById('booklists').innerHTML+="<hr>"
