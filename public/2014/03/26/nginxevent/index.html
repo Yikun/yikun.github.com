@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>nginx的事件主体分析 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta content="article" property="og:type">
+<meta content="nginx的事件主体分析" property="og:title">
+<meta content="http://yoursite.com/2014/03/26/nginxevent/" property="og:url">
+<meta content="/assets/post/2014-03-26-nginxevent/nginx_epoll.png" property="og:image">
+<meta content="Hexo" property="og:site_name">
+<meta content="1. 概述
+2. 事件主体
+
+1. 概述在上篇文章中，介绍了事件模块的初始化工作，其中ngx_event_process_init会调用module-&gt;actions.init(对应epoll为ngx_epoll_init)，该步调用的是epoll的初始化函数，之后，将rev的回调函数指向ngx_event_accept函数，这样便会accept新的链接。那么，本文将以epoll为例，来学" property="og:description">
+<meta content="summary" name="twitter:card">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-nginxevent" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/03/26/nginxevent/" class="article-date">
+  <time datetime="2014-03-26T00:00:00.000Z" itemprop="datePublished">Mar 26 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/nginx源码学习/">nginx源码学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      nginx的事件主体分析
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a href="#abstract">1. 概述</a></li>
+<li><a href="#eventcore">2. 事件主体</a></li>
+</ul>
+<p><h3 id="abstract"><a>1. 概述</a></h3><br>在上篇文章中，介绍了事件模块的初始化工作，其中ngx_event_process_init会调用module-&gt;actions.init(对应epoll为ngx_epoll_init)，该步调用的是epoll的初始化函数，之后，将rev的回调函数指向ngx_event_accept函数，这样便会accept新的链接。那么，本文将以epoll为例，来学习一下事件机制的主体。<br><a id="more"></a></p>
+<p><h3 id="eventcore"><a>2. 事件主体</a></h3><br>我们的重点还是放在ngx_worker_process_cycle，处理事件的核心则是ngx_process_events_and_timers，其基本机制如下图所示，<br><img src="/assets/post/2014-03-26-nginxevent/nginx_epoll.png" alt="eventcore"></p>
+<p>在ngx_worker_process_cycle最开始的初始化中，epoll模块会调用epoll_creat初始化，之后便进入事件的循环中，然后epoll_wait有事件就加入到队列中，然后集中处理，如果拿到锁了就可以处理accept的事件，然后处理完accept后就解锁，之后再去处理普通读写事件。</p>
+<p>事件的主循环主要分为三步</p>
+<p>1.调用ngx_process_events。</p>
+<pre><code><span class="preprocessor">#<span class="keyword">define</span> ngx_process_events   ngx_event_actions.process_events</span>
+</code></pre><p>而对于epoll来说就是调用ngx_epoll_process_events函数。</p>
+<p>2.调用ngx_event_process_posted处理事件队列中的事件。</p>
+<p>ngx_event_process_posted(cycle, &amp;ngx_posted_accept_events);<br>ngx_event_process_posted(cycle, &amp;ngx_posted_events);<br>我们可以看见处理的网络事件主要牵扯到2个队列，一个是ngx_posted_accept_events，另一个是ngx_posted_events。其中，一个队列用于放accept的事件，另一个则是普通的读写事件；<br>ngx_event_process_posted会处理事件队列，其实就是调用每个事件的回调函数，然后再让这个事件出队。<br>例如，我们在开始的时候，已经把accept事件的回调函数指定为ngx_event_accept，那么当处理accept事件的时候便会调用这个函数。</p>
+<p>我么可以看到，每个worker进程先抢锁，抢到锁的worker就获得所有监听的事件，这个worker来“接待”新的”accept”，当接待完ngx_posted_accept_events队列里面的连接后，就解锁。没拿到锁的，会更频繁的拿锁。最终实现了负载均衡。</p>
+<p>3.处理定时器事件。</p>
+<p>以上便是整个事件机制的实现。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/03/26/nginxevent/" data-id="jzx2dnqqwy6tfd7e" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/04/01/nginxaccept/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          nginx建立连接过程分析
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/03/21/nginxeventinit/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">nginx的事件初始化与框架</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/In XiDian/">In XiDian</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux Skill/">Linux Skill</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Some record/">Some record</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx源码学习/">nginx源码学习</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vim/">vim</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法学习/">算法学习</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/About Blog/">About Blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Minds/">Minds</a><span class="tag-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/About Blog/" style="font-size: 10.00px;">About Blog</a><a href="/tags/Minds/" style="font-size: 20.00px;">Minds</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04">April 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">March 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11">November 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05">May 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07">July 2010</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/04/18/minheap/">最小堆</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/17/nginxconnections/">nginx的连接池</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/01/nginxaccept/">nginx建立连接过程分析</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/26/nginxevent/">nginx的事件主体分析</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/21/nginxeventinit/">nginx的事件初始化与框架</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 John Doe<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script type="text/javascript" src="/js/script.js"></script>
+  </div>
+</body>
+</html>

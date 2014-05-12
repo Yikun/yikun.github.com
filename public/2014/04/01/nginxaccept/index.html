@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>nginx建立连接过程分析 | Hexo</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta content="article" property="og:type">
+<meta content="nginx建立连接过程分析" property="og:title">
+<meta content="http://yoursite.com/2014/04/01/nginxaccept/" property="og:url">
+<meta property="og:image">
+<meta content="Hexo" property="og:site_name">
+<meta content="1. 概述
+2. 建立连接过程
+3. 负载均衡问题
+
+1. 概述本文主要学习了nginx连接accept的步骤，以及nginx的负载均衡的方法。" property="og:description">
+<meta content="summary" name="twitter:card">
+  
+    <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link href="http://fonts.googleapis.com/css?family=Source+Code+Pro" rel="stylesheet" type="text/css">
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <!--[if lt IE 9]><script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  
+</head>
+<body>
+  <div id="container">
+    <div id="wrap">
+      <header id="header">
+  <div id="banner"></div>
+  <div id="header-outer" class="outer">
+    <div id="header-title" class="inner">
+      <h1 id="logo-wrap">
+        <a href="/" id="logo">Hexo</a>
+      </h1>
+      
+    </div>
+    <div id="header-inner" class="inner">
+      <nav id="main-nav">
+        <a id="main-nav-toggle" class="nav-icon"></a>
+        
+          <a class="main-nav-link" href="/">Home</a>
+        
+          <a class="main-nav-link" href="/archives">Archives</a>
+        
+      </nav>
+      <nav id="sub-nav">
+        
+          <a id="nav-rss-link" class="nav-icon" href="/atom.xml" title="RSS Feed"></a>
+        
+        <a id="nav-search-btn" class="nav-icon" title="Search"></a>
+      </nav>
+      <div id="search-form-wrap">
+        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" results="0" class="search-form-input" placeholder="Search"><input type="submit" value="&#xF002;" class="search-form-submit"><input type="hidden" name="q" value="site:http://yoursite.com"></form>
+      </div>
+    </div>
+  </div>
+</header>
+      <div class="outer">
+        <section id="main"><article id="post-nginxaccept" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2014/04/01/nginxaccept/" class="article-date">
+  <time datetime="2014-04-01T00:00:00.000Z" itemprop="datePublished">Apr 1 2014</time>
+</a>
+    
+  <div class="article-category">
+    <a class="article-category-link" href="/categories/nginx源码学习/">nginx源码学习</a>
+  </div>
+
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      nginx建立连接过程分析
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <ul>
+<li><a href="#abstract">1. 概述</a></li>
+<li><a href="#accept">2. 建立连接过程</a></li>
+<li><a href="#balance">3. 负载均衡问题</a></li>
+</ul>
+<p><h3 id="abstract"><a>1. 概述</a></h3><br>本文主要学习了nginx连接accept的步骤，以及nginx的负载均衡的方法。<br><a id="more"></a></p>
+<p><h3 id="accept"><a>2. 建立连接过程</a></h3><br>处理新链接事件的回调函数是ngx_event_accept函数，当处理建立连接事件的时候就调用ngx_event_accept函数。该函数的具体步骤如下所示。</p>
+<p>1.调用accpet方法。</p>
+<pre><code>    <span class="keyword">s</span>=<span class="keyword">accept</span>(<span class="keyword">lc</span>-&gt;fd, (struct sockaddr <span class="variable">*)</span>sa, &amp;socklen)
+</code></pre><p>2.设置负载均衡的阈值。</p>
+<pre><code>    ngx_accept_disabled = ngx_cycle-&gt;connection_n/<span class="number">8</span> - ngx_cycle-&gt;free_connection_n;
+</code></pre><p>3.从连接池获取连接。</p>
+<pre><code>    c <span class="subst">=</span> ngx_get_connection(s, ev<span class="subst">-&gt;</span><span class="keyword">log</span>);
+</code></pre><p>4.给连接分配内存空间。</p>
+<p>5.设置套接字属性，设置非阻塞<br>        ngx_nonblocking(s)</p>
+<p>6.将连接加入事件循环。<br>        ngx_add_conn(c)</p>
+<pre><code>    <span class="preprocessor">#<span class="keyword">define</span> ngx_add_conn         ngx_event_actions.add_conn</span>
+</code></pre><p>7.调用监听对象的回调方法。</p>
+<p><h3 id="balance"><a>3. 负载均衡问题</a></h3><br>在建立连接前需要使用ngx_trylock_accept_mutex()去“抢锁”，抢到锁了之后，才有资格去accept连接。</p>
+<p>代码比较简单，拿出来分析一下</p>
+<pre><code>    ngx_int_t
+    ngx_trylock_accept_mutex(ngx_cycle_t <span class="subst">*</span>cycle)
+    {
+        <span class="comment">//尝试锁，无论取到还是未取到，均立即返回，取到返回1，否则返回0。</span>
+        <span class="keyword">if</span> (ngx_shmtx_trylock(<span class="subst">&amp;</span>ngx_accept_mutex)) {
+
+            ngx_log_debug0(NGX_LOG_DEBUG_EVENT, cycle<span class="subst">-&gt;</span><span class="keyword">log</span>, <span class="number">0</span>,
+                           <span class="string">"accept mutex locked"</span>);
+
+            <span class="keyword">if</span> (ngx_accept_mutex_held
+                <span class="subst">&amp;&amp;</span> ngx_accept_events <span class="subst">==</span> <span class="number">0</span>
+                <span class="subst">&amp;&amp;</span> <span class="subst">!</span>(ngx_event_flags <span class="subst">&amp;</span> NGX_USE_RTSIG_EVENT))
+            {
+                <span class="keyword">return</span> NGX_OK;
+            }
+            <span class="comment">//将所有读事件加入epoll</span>
+            <span class="keyword">if</span> (ngx_enable_accept_events(cycle) <span class="subst">==</span> NGX_ERROR) {
+                ngx_shmtx_unlock(<span class="subst">&amp;</span>ngx_accept_mutex);
+                <span class="keyword">return</span> NGX_ERROR;
+            }
+
+            ngx_accept_events <span class="subst">=</span> <span class="number">0</span>;
+            ngx_accept_mutex_held <span class="subst">=</span> <span class="number">1</span>;
+
+            <span class="keyword">return</span> NGX_OK;
+        }
+
+        ngx_log_debug1(NGX_LOG_DEBUG_EVENT, cycle<span class="subst">-&gt;</span><span class="keyword">log</span>, <span class="number">0</span>,
+                       <span class="string">"accept mutex lock failed: %ui"</span>, ngx_accept_mutex_held);
+        <span class="comment">//未取到锁，ngx_accept_mutex_held还为1，则删除所有监听的读事件</span>
+        <span class="keyword">if</span> (ngx_accept_mutex_held) {
+            <span class="keyword">if</span> (ngx_disable_accept_events(cycle) <span class="subst">==</span> NGX_ERROR) {
+                <span class="keyword">return</span> NGX_ERROR;
+            }
+
+            ngx_accept_mutex_held <span class="subst">=</span> <span class="number">0</span>;
+        }
+
+        <span class="keyword">return</span> NGX_OK;
+    }
+</code></pre><p>总结一下就是说，拿到锁了，就监听事件，拿不到就不能监听。若ngx_accept_mutex_held为1，则拥有了把accept事件加入到自己的ngx_posted_accept_events的权利。</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://yoursite.com/2014/04/01/nginxaccept/" data-id="o5p9vrvbenlsy9lx" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2014/04/17/nginxconnections/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
+        
+          nginx的连接池
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/03/26/nginxevent/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title">nginx的事件主体分析</div>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+</section>
+        
+          <aside id="sidebar">
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Categories</h3>
+    <div class="widget">
+      <ul class="category-list"><li class="category-list-item"><a class="category-list-link" href="/categories/In XiDian/">In XiDian</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Linux Skill/">Linux Skill</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/Some record/">Some record</a><span class="category-list-count">2</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/nginx源码学习/">nginx源码学习</a><span class="category-list-count">6</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/vim/">vim</a><span class="category-list-count">1</span></li><li class="category-list-item"><a class="category-list-link" href="/categories/算法学习/">算法学习</a><span class="category-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tags</h3>
+    <div class="widget">
+      <ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/About Blog/">About Blog</a><span class="tag-list-count">1</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/Minds/">Minds</a><span class="tag-list-count">6</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Tag Cloud</h3>
+    <div class="widget tagcloud">
+      <a href="/tags/About Blog/" style="font-size: 10.00px;">About Blog</a><a href="/tags/Minds/" style="font-size: 20.00px;">Minds</a>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Archives</h3>
+    <div class="widget">
+      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/04">April 2014</a><span class="archive-list-count">3</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2014/03">March 2014</a><span class="archive-list-count">5</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2013/02">February 2013</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/12">December 2012</a><span class="archive-list-count">4</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2012/11">November 2012</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/05">May 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2011/03">March 2011</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/10">October 2010</a><span class="archive-list-count">1</span></li><li class="archive-list-item"><a class="archive-list-link" href="/archives/2010/07">July 2010</a><span class="archive-list-count">1</span></li></ul>
+    </div>
+  </div>
+
+  
+    
+  <div class="widget-wrap">
+    <h3 class="widget-title">Recents</h3>
+    <div class="widget">
+      <ul>
+        
+          <li>
+            <a href="/2014/04/18/minheap/">最小堆</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/17/nginxconnections/">nginx的连接池</a>
+          </li>
+        
+          <li>
+            <a href="/2014/04/01/nginxaccept/">nginx建立连接过程分析</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/26/nginxevent/">nginx的事件主体分析</a>
+          </li>
+        
+          <li>
+            <a href="/2014/03/21/nginxeventinit/">nginx的事件初始化与框架</a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+
+  
+</aside>
+        
+      </div>
+      <footer id="footer">
+  
+  <div class="outer">
+    <div id="footer-info" class="inner">
+      &copy; 2014 John Doe<br>
+      Powered by <a href="http://zespia.tw/hexo/" target="_blank">Hexo</a>
+    </div>
+  </div>
+</footer>
+    </div>
+    <nav id="mobile-nav">
+  
+    <a href="/" class="mobile-nav-link">Home</a>
+  
+    <a href="/archives" class="mobile-nav-link">Archives</a>
+  
+</nav>
+    
+
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+
+
+<link rel="stylesheet" href="/fancybox/jquery.fancybox.css" media="screen" type="text/css">
+<script src="/fancybox/jquery.fancybox.pack.js"></script>
+
+
+<script type="text/javascript" src="/js/script.js"></script>
+  </div>
+</body>
+</html>
