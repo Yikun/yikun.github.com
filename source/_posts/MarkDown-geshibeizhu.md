@@ -250,5 +250,42 @@ Markdown 语法:
 	&lt;/blockquote&gt;
 	</code></pre>
 
-补一下语法高亮的方法
+### 公式 ###
 
+质能方程：
+
+	$E=mc^2$
+
+$E=mc^2$
+
+余弦定理：
+
+	$\cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1$
+
+$\cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1$
+
+插入方程组（注意多行公式结尾\\\需要打成\\\，可能是因为markdown会自动转义第一个\\）：
+
+	\begin{aligned}
+	\dot{x} & = \sigma(y-x) \\\
+	\dot{y} & = \rho x - y - xz \\\
+	\dot{z} & = -\beta z + xy
+	\end{aligned}
+
+\begin{aligned}
+\dot{x} & = \sigma(y-x) \\\
+\dot{y} & = \rho x - y - xz \\\
+\dot{z} & = -\beta z + xy
+\end{aligned}
+
+插入矩阵：
+
+	\begin{bmatrix}
+	1 & 2\\\
+	3 & 4
+	\end{bmatrix}
+
+\begin{bmatrix}
+1 & 2\\\
+3 & 4
+\end{bmatrix}
