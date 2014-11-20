@@ -4,21 +4,14 @@ tags     :
 date     : 2014-03-16
 ---
 
-*   [1.概述](#abstract)
-*   [2.worker进程的创建](#worker)
-*   [3.nginx频道](#siginit)
-*   [4.master写入与worker读取数据](#read) 
-*   [5.nginx中channel指令](#channelcmd)
-<!--more-->
--------
-<h3 id="abstract"><a>1.概述</a></h3>
+### 概述
 由于nginx使用的是多进程的模型，因此，进程间的通信或者同步很重要，为什么要进行进程同步呢？我们知道，nginx有master和worker进程，在上篇文章已经分析过了master具体是怎样创建worker进程的。不过，在创建worker进程的时候，是需要对进程同步的。举个具体的例子，我们假设服务器共有4个worker进程，我们知道nginx有一个全局变量，是ngx_processes数组，他存储着所有进程的信息，在worker1创建的时候，worker2，worker3，worker4进程是没有创建的，因此，这个时候就牵扯到同步，最合理的方式是，在master创建一个进程的时候，就应该通知所有子进程有新的进程被fork了，以及这个进程的基本信息。
 
 这个好比一个集体(由很多processes组成)，当有新的成员加入这个集体的时候，老大应该告诉大伙，有新成员进来了，他的基本信息是balabala。因此，也就引出了本文所要总结的内容，即nginx的进程通信机制。
 
 -------
 
-<h3 id="worker"><a>2.worker进程的创建</a></h3>
+### 2.worker进程的创建
 我们先回顾一下worker进程的创建过程，ngx_master_process_cycle -> ngx_start_worker_processes，在 `ngx_start_worker_processes` 函数中，有下面的代码
 
 
@@ -63,7 +56,7 @@ date     : 2014-03-16
 
 ----------
 
-<h3 id="channel"><a>3.nginx频道</a></h3>
+### nginx频道
 那么具体又是怎么实现通知的呢？我们看到在 `ngx_channel_t` 中有一个 `ngx_fd_t    fd;` 这个文件描述便存储着通信的“接口”，从之前的代码我们看出来， `ch.fd = ngx_processes[ngx_process_slot].channel[0];` 这个channel[0]是真正传输的接口。那么他是什么呢？简单的说，就是master写给每个process的channel[0]一些信息(ngx_channel_t的实际内容)，worker就能在自己的channel[1]中，读取到这些信息。
 
 nginx使用的是 `socketpair` 方法关联套接字，我们看看socketpair的原型：
@@ -85,7 +78,7 @@ channel[0]和channel[0]为一对socketpair。
 socketpair也用来进行父子进程的通信，子进程会继承父进程的资源。
 
 
-<h3 id="read"><a>4.master写入与worker读取数据</a></h3>
+### master写入与worker读取数据
 
 我们具体的来看下nginx写入数据的过程，
 
@@ -144,7 +137,7 @@ socketpair也用来进行父子进程的通信，子进程会继承父进程的�
 
 --------------
 
-<h3 id="channelcmd"><a>5.nginx中channel指令</a></h3>
+### nginx中channel指令
 我们发现，ngx_channel_handler中共有6个指令类型，分别是NGX_CMD_QUIT、NGX_CMD_TERMINATE、NGX_CMD_REOPEN、NGX_CMD_OPEN_CHANNEL、NGX_CMD_CLOSE_CHANNEL、NGX_CMD_PIPE_BROKEN。下面我们分析下，和channel相关的命令。
 
 `NGX_CMD_OPEN_CHANNEL`

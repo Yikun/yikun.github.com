@@ -4,14 +4,10 @@ tags     :
 date     : 2014-04-17
 ---
 
-*   [1. 连接池的初始化](#connectionsinit)
-*   [2. 连接的获取](#connectionget)
-*   [3. 连接的获取](#connectionfree)
-<!--more-->
 最近，有些忙，没看nginx代码，前几天去阿里实习面试了，结果还不错。:)让我激动的是二面面试我的居然是褚霸！面完了以后，还和他握了手。简直是激动得不能再激动啦。面试的时候也有很大收获，至少知道自己的路是对的，也应该加强自己后台开发的相关项目经历。加油吧！
 
 
-<h3 id="connectionsinit"><a>1. 连接池的初始化</a></h3>
+### 连接池的初始化
 
 首先，初始化连接池，
 
@@ -47,7 +43,7 @@ date     : 2014-04-17
 
 现在的结果就是，沿着free-->connection-->connection就连成了一串，然后get的时候直接把free_connection拿出来就可以了，然后free_connection指向原来的那个next。
 
-<h3 id="connectionget"><a>2. 连接的获取</a></h3>
+### 连接的获取
 
     ngx_connection_t *
     ngx_get_connection(ngx_socket_t s, ngx_log_t *log)
@@ -129,7 +125,7 @@ date     : 2014-04-17
 ![connections_get](/assets/post/2014-04-17-nginxconnections/connections_get.png)
 
 
-<h3 id="connectionfree"><a>3. 连接的释放</a></h3>
+### 连接的释放
 
 下面是free_connection的过程，连接释放后，重新加入到连接池的过程很像链表在头指针后插入节点的操作(其实就是)，free之后，可能连接池的整体情况不像开始那样“整齐”，不过，我们把他当做链表来看，free_connection是头指针，通过c->data把指针一个一个串了起来，保证下次get的时候，get头节点的，free的时候，也是free头节点。
 

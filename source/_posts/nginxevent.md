@@ -4,13 +4,10 @@ tags     :
 date     : 2014-03-26
 ---
 
-*   [1. 概述](#abstract)
-*   [2. 事件主体](#eventcore)
-
-<h3 id="abstract"><a>1. 概述</a></h3>
+### 概述
 在上篇文章中，介绍了事件模块的初始化工作，其中ngx_event_process_init会调用module->actions.init(对应epoll为ngx_epoll_init)，该步调用的是epoll的初始化函数，之后，将rev的回调函数指向ngx_event_accept函数，这样便会accept新的链接。那么，本文将以epoll为例，来学习一下事件机制的主体。
 <!--more-->
-<h3 id="eventcore"><a>2. 事件主体</a></h3>
+### 事件主体
 我们的重点还是放在ngx_worker_process_cycle，处理事件的核心则是ngx_process_events_and_timers，其基本机制如下图所示，
 ![eventcore](/assets/post/2014-03-26-nginxevent/nginx_epoll.png)
 
