@@ -289,3 +289,17 @@ $\cos 2\theta = \cos^2 \theta - \sin^2 \theta =  2 \cos^2 \theta - 1$
 1 & 2\\\
 3 & 4
 \end{bmatrix}
+
+对于Markdown有转换冲突的，可以使用`rawblock`将公式扩起来(百分号为`%`)：
+
+	{百分号 rawblock 百分号}
+	$$
+	\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
+	$$
+	{百分号 endrawblock 百分号}
+
+{% rawblock %}
+$$
+\left( \sum_{k=1}^n a_k b_k \right)^2 \leq \left( \sum_{k=1}^n a_k^2 \right) \left( \sum_{k=1}^n b_k^2 \right)
+$$
+{% endrawblock %}
