@@ -19,7 +19,12 @@
           </p>
         <% } %>
       <% } else { %>
-        <%- toc(post.content, {list_number: false}) %>
+        <% if((post.toc !== false)){ %>
+        <div id="toc" class="toc-article">
+          <strong class="toc-title"><%= __('本文目录') %></strong>
+          <%- toc(post.content) %>
+        </div>
+        <% } %>
         <hr>
         <%- post.content %>
       <% } %>
