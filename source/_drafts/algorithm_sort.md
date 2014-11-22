@@ -14,6 +14,8 @@ date     : 2014-11-20
 |快速排序|$nlog(n)$|（小数，枢纽元，大数）。|
 |堆排序|$nlog(n)$||
 
+不稳定的排序：选择排序、快速排序、堆排序、希尔排序；
+(注：稳定性一个形象的比喻，本来有两个并列第三，一排序把原来并列的)
 [参考链接](http://zh.wikipedia.org/wiki/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95)
 
 ### 冒泡排序
@@ -74,6 +76,62 @@ date     : 2014-11-20
 		}
 	}
 ```
+
+### 插入排序
+![](/assets/post/algorithm/sort/Insertion_sort_animation.gif)
+
+每次排序从未排序区取一个“牌”，然后往前插入(包括了两步：大的往后移，把牌放到合适位置)。
+![](/assets/post/algorithm/sort/Insert-sort-animation.gif)
+
+```C
+// 插入排序
+void insert_sort(int a[], int n)
+{
+	int i=0;
+	int j=0;
+	int tmp=0;
+	for (i = 1; i < n; i++)
+	{
+		// 取牌
+		tmp = a[i];
+		// 往前插的起始位置
+		j = i - 1;
+
+		// 大的a[j]都放后面，寻找出j
+		while ((j >= 0) && a[j] > tmp)
+		{
+			// 往后放一个
+			a[j+1] = a[j];
+			j--;
+		}
+
+		// 放到该放的位置
+		a[j+1]=tmp;
+	}
+}
+```
+
+另外还有中思路，把数据后移的过程换成交换的过程
+
+```C
+// 插入排序，选中的牌冒泡向前插入
+void insert_sort_2(int a[], int n)
+{
+	int i=0;
+	int j=0;
+	//通过i选牌
+	for (i=1; i < n; i++)
+	{
+		// 冒泡向前插入(i-1 --> 0)
+		for (j=i-1; j>=0 && a[j] > a[j + 1]; j--)
+		{
+			swap(&a[j], &a[j+1]);
+		}
+	}
+	print_a(a, n);
+}
+````
+
 ### 快速排序
 
 ![](/assets/post/algorithm/sort/quicksort.gif)
