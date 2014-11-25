@@ -3,7 +3,7 @@ category : Hadoop
 tags     : 
 date     : 2014-09-21
 ---
-
+<!--more-->
 WordCount是Hadoop的Hello World，
 
 其实，基于MapReduce的WordCount的过程应该在大家的生活中早已经遇到了。还记得你参与过的班干部选举吗？是不是让我们每一个人写一个纸,然后可能会让大家按宿舍统计好，然后交给班长，然后班长把各个候选人的投票都统计出来，然后公布出来。

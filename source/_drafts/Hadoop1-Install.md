@@ -3,7 +3,7 @@ category : Hadoop
 tags     : 
 date     : 2014-09-21
 ---
-
+<!--more-->
 1. 搭建
 1.1 安装maven
 	

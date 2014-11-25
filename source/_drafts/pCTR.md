@@ -1,3 +1,4 @@
+<!--more-->
 CTR click-through rate
 1. 大数据
 广告的内容  是否吸引人
