@@ -15,13 +15,13 @@
         <%- post.excerpt %>
         <% if (theme.excerpt_link){ %>
           <p class="article-more-link">
-            <a href="<%- config.root %><%- post.path %>#more"><%= theme.excerpt_link %></a>
+            <a href="<%- url_for(post.path) %>#more"><%= theme.excerpt_link %></a>
           </p>
         <% } %>
       <% } else { %>
         <% if((post.toc !== false)){ %>
         <div id="toc" class="toc-article">
-          <strong class="toc-title"><%= __('æœ¬æ–‡ç›®å½•') %></strong>
+          <strong class="toc-title"><%= __('±¾ÎÄÄ¿Â¼') %></strong>
           <%- toc(post.content, {list_number: false}) %>
         </div>
         <% } %>
@@ -29,12 +29,10 @@
         <%- post.content %>
       <% } %>
     </div>
-    <% if (!post.excerpt || !index){ %>
     <footer class="article-footer">
       <%- partial('post/comment') %>
       <%- partial('post/tag') %>
     </footer>
-    <% } %>
   </div>
   <% if (!index){ %>
     <%- partial('post/nav') %>
