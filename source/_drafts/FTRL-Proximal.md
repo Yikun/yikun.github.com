@@ -34,9 +34,9 @@ date     : 2014-11-20
 
 对于在大数据的学习，在线算法对于线性模型(例如逻辑回归)的生成有很多的好处。尽管特征向量可能有数十亿维度，典型的样本可能只有几百个非零值。这一特性使得对通过磁盘或者网络，以数据流方式传输的大数据集的高效训练有了可能，每一个训练样本只需要被考虑一次。
 
-{% rawblock %}
+{% raw %}
 为了正确明了的表示这个算法，我们需要进行一些符号的声明。我们设向量$g_t \in  \mathbb{R}^d$。$t$表示当前训练样本的索引，向量$g_t$的第$i^{th}$项表示为$g_{t,i}$，我们也用$g_{1:t}=\sum\nolimits_{s=1}^tg_s$。
-{% endrawblock %}
+{% endraw %}
 
 
 如果我们希望利用逻辑回归来建立问题的模型，我们可以使用下面的在线框架。在每一个$t$中，我们需要预测被描述为$X_t \in \mathbb{R}^d$特征向量的样本；给一系列模型参数$W_t$，我们预测$p_t=\sigma(W_t\cdot X_t)$，其中$\sigma(a)=1/(1+exp(-a))$是sigma函数。然后，我们需要观察标记$y_t \in \lbrace 0,1 \rbrace$，然后计算LogLoss（对数损失）:
@@ -57,9 +57,9 @@ W_{t+1}=W_t-\eta_tg_t
 $$
 
 其中，$\eta_t$是一个非增学习速率，比如$\eta_t=\frac{1}{\sqrt t}$。FTRL-Proximal算法则更新
-{% rawblock %}
+{% raw %}
 $$
 W_{t+1}=argmin_W(g_{1:t}\cdot W + \frac{1}{2}\sum_{s=1}^t \sigma_s\|W-W_s\|_2^2+\lambda_1\|W\|_1)
 $$
-{% endrawblock %}
+{% endraw %}
 

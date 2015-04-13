@@ -69,37 +69,37 @@ $$
 #### 模型描述
 考虑下房价预测的问题，假设只有面积影响房子的价格，那么我们可以得到以下一个模型：
 
-{% rawblock %}
+{% raw %}
 \begin{aligned}
 & Hypothesis: h_\theta(x) = \theta_0 + \theta_1 x_1 \\\
 & Parameters: \theta_0, \theta_1 \\\
 \end{aligned}
-{% endrawblock %}
+{% endraw %}
 
 那么，思考下应该如何考核我们拟合的结果是否符合数据的需求呢？那么就有一个代价函数(Cost Function)的概念了，例如在本例中代价函数为：
-{% rawblock %}
+{% raw %}
 $$
 J(\theta_0 ,\theta_1) = \frac{1}{2m}\sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})^2
 $$
-{% endrawblock %}
+{% endraw %}
 
 顾名思义，这个函数表征的是一种代价。如果代价越低，说明模型拟合的程度越好，因此，我们需要达成的目标就是要最小化代价函数：
-{% rawblock %}
+{% raw %}
 $$
 \min_{\theta_0, \theta_1} J(\theta_0, \theta_1)
 $$
-{% endrawblock %}
+{% endraw %}
 
 为了方便进一步学习，我们可以将模型化简一下，将$\theta_0$去掉，也就是得到了如下所示的模型与目标：
 
-{% rawblock %}
+{% raw %}
 \begin{aligned}
 & Hypothesis: h_\theta(x) = \theta_1 x_1 \\\
 & Parameters: \theta_1 \\\
 & Cost funcrion: J(\theta_1) = \frac{1}{2m}\sum_{i=1}^m(h_\theta(x^{(i)}) - y^{(i)})^2\\\
 & Goal: \min_{\theta_1} J(\theta_1)
 \end{aligned}
-{% endrawblock %}
+{% endraw %}
 
 #### 代价函数
 
@@ -123,9 +123,9 @@ $$
 因此，可以使用以下代码，对梯度进行计算：
 
 Repeat until convergence {
-{% rawblock %}
+{% raw %}
 	$\theta_j := \theta_j - \alpha * \frac{\partial }{\partial \theta_j}J(\theta_0, ..., \theta_j)$
-{% endrawblock %}
+{% endraw %}
 (注： 每次**同时**更新j个$\theta$) 
 }
 
