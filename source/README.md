@@ -1,16 +1,16 @@
-YikunµÄ²©¿Í
+Yikunçš„åšå®¢
 ------------------
 
 
 
-ÕâÊÇ[Yikun's Blog](http://yikun.github.io)¡£
+è¿™æ˜¯[Yikun's Blog](http://yikun.github.io)ã€‚
 
-[Leisure](http://yikun.github.io/leisure/) ÕâÀï¼ÇÂ¼ÁËÎÒÏĞÊ±¶ÁµÄÒ»Ğ©Êé
+[Leisure](http://yikun.github.io/leisure/) è¿™é‡Œè®°å½•äº†æˆ‘é—²æ—¶è¯»çš„ä¸€äº›ä¹¦
 
-[Project](http://yikun.github.io/project/) ÕâÀï¼ÇÂ¼ÁËÎÒ×ö¹ıµÄÒ»Ğ©Ğ¡¶«Î÷¡£
+[Project](http://yikun.github.io/project/) è¿™é‡Œè®°å½•äº†æˆ‘åšè¿‡çš„ä¸€äº›å°ä¸œè¥¿ã€‚
 
-[Kero in Xidian](http://yikun.github.io/project/keroinxidian.html) ÕâÀïÊÇÎÒ¼ÇÂ¼±¾¿ÆÉú»îµÄÒ»¸öÂş»­¡£
+[Kero in Xidian](http://yikun.github.io/project/keroinxidian.html) è¿™é‡Œæ˜¯æˆ‘è®°å½•æœ¬ç§‘ç”Ÿæ´»çš„ä¸€ä¸ªæ¼«ç”»ã€‚
 
-²»¹ı£¬ÓÉÓÚÓĞÊ±ºòÀÁµÃÕÛÌÚÓÚÊÇË÷ĞÔÄÃ[issue](https://github.com/Yikun/yikun.github.com/issues)Ğ´Ò»Ğ©ÎÄÕÂ»òÕß¼ÇÂ¼ÁË¡£
+ä¸è¿‡ï¼Œç”±äºæœ‰æ—¶å€™æ‡’å¾—æŠ˜è…¾äºæ˜¯ç´¢æ€§æ‹¿[issue](https://github.com/Yikun/yikun.github.com/issues)å†™ä¸€äº›æ–‡ç« æˆ–è€…è®°å½•äº†ã€‚
 
-:), Èç¹ûÄãÏ²»¶£¬StarÒ»¸ö°É£¡
+:), å¦‚æœä½ å–œæ¬¢ï¼ŒStarä¸€ä¸ªå§ï¼
