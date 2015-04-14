@@ -1,6 +1,5 @@
 title    : 很久很久
-category : In XiDian
-tags     : Minds  
+category : 随笔
 date     : 2011-03-22 00:57
 ---
 

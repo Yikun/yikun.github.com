@@ -1,6 +1,5 @@
 title    : 渐变
-category : In XiDian
-tags     : Minds  
+category : 随笔
 date     : 2011-5-18 00:50
 ---
 

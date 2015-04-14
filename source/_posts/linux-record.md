@@ -1,5 +1,4 @@
 title    : Linux Record
-category : Linux Skill
 tags     : 
 date     : 2012-12-06
 ---

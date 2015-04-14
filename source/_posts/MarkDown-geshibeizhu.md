@@ -1,5 +1,4 @@
 title    : MarkDown格式备注
-category : Some record
 date     : 2012-12-26
 ---
 

@@ -1,6 +1,5 @@
 title    : JNI调试方法
-category : Linux Skill
-tags     : 
+tags     : Java
 date     : 2013-02-27
 ---
 

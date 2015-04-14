@@ -1,6 +1,5 @@
 title    : 岁月如梭, 我的2012
-category : In XiDian
-tags     : Minds 
+category : 随笔
 date     : 2012-12-27
 ---
 

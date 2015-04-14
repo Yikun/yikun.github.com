@@ -1,6 +1,5 @@
 title    : 写一篇日志
-category : In XiDian
-tags     : Minds  
+category : 随笔
 date     : 2010-10-05 03:40
 ---
 

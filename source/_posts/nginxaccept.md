@@ -1,6 +1,5 @@
 title    : nginx建立连接过程分析
-category : nginx源码学习
-tags     : 
+tags     : Nginx
 date     : 2014-04-01
 ---
 

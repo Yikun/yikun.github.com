@@ -1,6 +1,5 @@
 title    : 静夕思
-category : In XiDian
-tags     : Minds 
+category : 随笔
 date     : 2010-07-10
 ---
 

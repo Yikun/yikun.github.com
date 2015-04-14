@@ -1,6 +1,5 @@
 title    : nginx的连接池
-category : nginx源码学习
-tags     : 
+tags     : Nginx
 date     : 2014-04-17
 ---
 

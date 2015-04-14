@@ -1,6 +1,5 @@
 title    : nginx的事件初始化与框架
-category : nginx源码学习
-tags     : 
+tags     : Nginx
 date     : 2014-03-21
 ---
 

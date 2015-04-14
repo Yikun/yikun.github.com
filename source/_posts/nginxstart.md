@@ -1,6 +1,5 @@
 title    : nginx启动流程分析
-category : nginx源码学习
-tags     :  
+tags     : Nginx
 date     : 2014-03-13
 ---
 

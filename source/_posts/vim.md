@@ -1,6 +1,5 @@
 title    : 我的vim配置
-category : vim
-tags     : 
+tags     : vim
 date     : 2014-03-19
 ---
 

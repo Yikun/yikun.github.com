@@ -1,9 +1,8 @@
 title    : 排序算法总结
-category : 算法学习
 tags     : 
 date     : 2014-11-20
 ---
-
+<!--more-->
 ### 1. 排序算法汇总
 
 |算法名称|复杂度|实现关键|
@@ -19,7 +18,7 @@ date     : 2014-11-20
 不稳定的排序：选择排序、快速排序、堆排序、希尔排序；
 (注：稳定性一个形象的比喻，本来有两个并列第三，一排序把原来并列的顺序给变了)
 [参考链接](http://zh.wikipedia.org/wiki/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95)
-<!--more-->
+
 ### 2. 冒泡排序
 
 ![](/assets/post/algorithm/sort/Bubble_sort_animation.gif)

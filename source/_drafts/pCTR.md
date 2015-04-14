@@ -1,3 +1,7 @@
+title    : 点击率预估
+tags     : 
+date     : 2014-11-20
+---
 <!--more-->
 CTR click-through rate
 1. 大数据

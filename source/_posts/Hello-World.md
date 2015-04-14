@@ -1,6 +1,5 @@
 title    : Hello World
-category : Some record
-tags     : About Blog
+category : 随笔
 date     : 2012-12-21
 ---
 
