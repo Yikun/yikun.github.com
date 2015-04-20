@@ -1,6 +1,7 @@
 title: "搭建Git服务器"
 date: 2015-02-05 13:11:46
-tags: []
+tags:
+  - Git
 ---
 
 在服务器上安装git
