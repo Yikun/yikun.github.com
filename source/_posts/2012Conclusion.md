@@ -1,5 +1,5 @@
 title    : 岁月如梭, 我的2012
-category : 随笔
+tags     : 随笔
 date     : 2012-12-27
 ---
 

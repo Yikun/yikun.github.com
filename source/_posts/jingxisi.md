@@ -1,5 +1,5 @@
 title    : 静夕思
-category : 随笔
+tags     : 随笔
 date     : 2010-07-10
 ---
 

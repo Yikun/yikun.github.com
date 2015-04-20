@@ -1,5 +1,5 @@
 title    : 很久很久
-category : 随笔
+tags     : 随笔
 date     : 2011-03-22 00:57
 ---
 

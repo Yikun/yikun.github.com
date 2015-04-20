@@ -1,5 +1,5 @@
 title    : Hello World
-category : 随笔
+tags     : 随笔
 date     : 2012-12-21
 ---
 

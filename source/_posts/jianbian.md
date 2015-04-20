@@ -1,5 +1,5 @@
 title    : 渐变
-category : 随笔
+tags     : 随笔
 date     : 2011-5-18 00:50
 ---
 

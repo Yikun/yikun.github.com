@@ -1,5 +1,5 @@
 title    : 从实践中一路走来
-category : 随笔
+tags     : 随笔
 date     : 2012-11-17
 ---
 

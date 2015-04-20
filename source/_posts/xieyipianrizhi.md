@@ -1,5 +1,5 @@
 title    : 写一篇日志
-category : 随笔
+tags     : 随笔
 date     : 2010-10-05 03:40
 ---
 
