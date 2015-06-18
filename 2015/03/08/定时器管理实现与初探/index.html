@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>定时器管理实现与初探 | Yikun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. 背景最近需要实现一个简单的定时器管理，背景是硬件只有一个定时中断器，每100ms给一个时钟中断，我们需要利用它及相关代码实现整个协议中的定时器管理。然后大概看了看Linux的定时器、Nginx的定时器、Tegine的定时器，把一些思路和收获记一下。
+2. 思路思路本身很简单，用硬件时钟计数，每次检查，有定时器该执行就调用就行了。
+具体的来说就是
+
+记录滴答数jiffies。用于记录当前时间；">
+<meta property="og:type" content="article">
+<meta property="og:title" content="定时器管理实现与初探">
+<meta property="og:url" content="http://yikun.github.io/2015/03/08/定时器管理实现与初探/index.html">
+<meta property="og:site_name" content="Yikun">
+<meta property="og:description" content="1. 背景最近需要实现一个简单的定时器管理，背景是硬件只有一个定时中断器，每100ms给一个时钟中断，我们需要利用它及相关代码实现整个协议中的定时器管理。然后大概看了看Linux的定时器、Nginx的定时器、Tegine的定时器，把一些思路和收获记一下。
+2. 思路思路本身很简单，用硬件时钟计数，每次检查，有定时器该执行就调用就行了。
+具体的来说就是
+
+记录滴答数jiffies。用于记录当前时间；">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="定时器管理实现与初探">
+<meta name="twitter:description" content="1. 背景最近需要实现一个简单的定时器管理，背景是硬件只有一个定时中断器，每100ms给一个时钟中断，我们需要利用它及相关代码实现整个协议中的定时器管理。然后大概看了看Linux的定时器、Nginx的定时器、Tegine的定时器，把一些思路和收获记一下。
+2. 思路思路本身很简单，用硬件时钟计数，每次检查，有定时器该执行就调用就行了。
+具体的来说就是
+
+记录滴答数jiffies。用于记录当前时间；">
+  
+    <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="/assets/photo.jpg">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Yikun</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">文章</a></li>
+				        
+							<li><a href="/tags/随笔/">随笔</a></li>
+				        
+							<li><a href="/project">项目</a></li>
+				        
+							<li><a href="/douban">读书</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yikun" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/keroenigma" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/C-C/" style="font-size: 14px;">C/C++</a><a href="/tags/Git/" style="font-size: 12px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 14px;">Linux</a><a href="/tags/Nginx/" style="font-size: 16px;">Nginx</a><a href="/tags/Python/" style="font-size: 10px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 12px;">系统</a><a href="/tags/网络/" style="font-size: 10px;">网络</a><a href="/tags/随笔/" style="font-size: 18px;">随笔</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Yikun</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="/assets/photo.jpg">
+				<hgroup>
+				  <h1 class="header-author">Yikun</h1>
+				</hgroup>
+			</div>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">文章</a></li>
+		        
+					<li><a href="/tags/随笔/">随笔</a></li>
+		        
+					<li><a href="/project">项目</a></li>
+		        
+					<li><a href="/douban">读书</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yikun" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/keroenigma" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-定时器管理实现与初探" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/03/08/定时器管理实现与初探/" class="article-date">
+  	<time datetime="2015-03-08T05:52:10.000Z" itemprop="datePublished">Mar 8 2015</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      定时器管理实现与初探
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统/">系统</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-_背景">1. 背景</h3><p>最近需要实现一个简单的定时器管理，背景是硬件只有一个定时中断器，每100ms给一个时钟中断，我们需要利用它及相关代码实现整个协议中的定时器管理。然后大概看了看Linux的定时器、Nginx的定时器、Tegine的定时器，把一些思路和收获记一下。</p>
+<h3 id="2-_思路">2. 思路</h3><p>思路本身很简单，用硬件时钟计数，每次检查，有定时器该执行就调用就行了。</p>
+<p>具体的来说就是</p>
+<ol>
+<li><strong>记录滴答数jiffies</strong>。用于记录当前时间；</li>
+<li><strong>加入定时器事件</strong>。用户需要启动一个定时器时，我们将该定时器事件(触发时间timeout、回调函数timeout_handler)加入到某种数据结构中;</li>
+<li><strong>检查执行事件</strong>。每次更新当前滴答数N时，去检查这个定时器结构中的每个定时器事件是否应该溢出，如果定时器没到，就啥也不做，时间到了的话(timeout&lt;=jiffies)就触发该定时器事件F。本步大致的代码逻辑是：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (jiffies &lt; timeout)</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// we did not timed out, do noting</span></span><br><span class="line">    nothing();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// we timed out</span></span><br><span class="line">    timeout_handler();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+</li>
+</ol>
+<h3 id="3-_问题">3. 问题</h3><h4 id="1_关于滴答数溢出的问题">1 关于滴答数溢出的问题</h4><p>首先，遇到的第一个问题就是滴答数溢出的问题，在无符号数到达最大值时，会从0开始重新累加。</p>
+<p>例如，我们用<code>unsigned char</code>计数，那么滴答数会从<code>0(0x00)-&gt;1(0x01)-&gt;....-&gt;254(0xFE)-&gt;255(0xFF)-&gt;0(0x00)-&gt;1(0x01)-&gt;...</code>如此循环计数。<br>那么问题出现了，在254时刻出现了一个A事件(+4后执行)，即时间溢出为0x02，那么如果我们做判定时，很显然，在254滴答的时候就把2滴答(实际上我们指的是254+4=258)的事件执行了。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="number">254</span> &lt; <span class="number">2</span>) <span class="comment">//false</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// we suppose</span></span><br><span class="line">    nothing();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// but</span></span><br><span class="line">    timeout_handler();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>其实问题的根本原因是<strong>事件发生滴答和当前时间滴答使用的不是一个参考系</strong>。然而在Linux代码实现中，利用<strong>无符号转有符号</strong>的巧妙方式解决了上面那个问题，<a href="https://github.com/torvalds/linux/blob/4f671fe2f9523a1ea206f63fe60a7c7b3a56d5c7/include/linux/jiffies.h#L101" target="_blank" rel="external">linux/include/linux/jiffies.h</a>：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// time_after(a,b) returns true if the time a is after time b.</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> time_after(a,b)		\</span><br><span class="line">	(typecheck(unsigned long, a) &amp;&amp; \</span><br><span class="line">	 typecheck(unsigned long, b) &amp;&amp; \</span><br><span class="line">	 ((long)(b) - (long)(a) &lt; 0))</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> time_before(a,b)	time_after(b,a)</span></span><br></pre></td></tr></table></figure></p>
+<p>用了这个宏以后，巧妙的一幕发生了<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(<span class="keyword">char</span>(<span class="number">254</span>) &lt; <span class="keyword">char</span>(<span class="number">1</span>)) <span class="comment">//true =&gt; -2 &lt; -1</span></span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// we suppose</span></span><br><span class="line">    nothing();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    timeout_handler();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>然后呢，在Linux 3.12的一个<a href="https://github.com/torvalds/linux/commit/5a581b367b5df0531265311fc681c2abd377e5e6#diff-2610861e923003988c4c2aa213affc7d" target="_blank" rel="external">patch</a>中，又修改了下：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">define</span> time_after(a,b)		\</span><br><span class="line">	(typecheck(unsigned long, a) &amp;&amp; \</span><br><span class="line">	 typecheck(unsigned long, b) &amp;&amp; \</span><br><span class="line">	 ((long)((b) - (a)) &lt; 0))</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> time_before(a,b)	time_after(b,a)</span></span><br><span class="line"><span class="comment">/*</span><br><span class="line">According to the C standard 3.4.3p3, overflow of a signed integer results</span><br><span class="line">in undefined behavior.  This commit therefore changes the definitions</span><br><span class="line">of time_after(), time_after_eq(), time_after64(), and time_after_eq64()</span><br><span class="line">to avoid this undefined behavior.  The trick is that the subtraction</span><br><span class="line">is done using unsigned arithmetic, which according to 6.2.5p9 cannot</span><br><span class="line">overflow because it is defined as modulo arithmetic.  This has the added</span><br><span class="line">(though admittedly quite small) benefit of shortening four lines of code</span><br><span class="line">by four characters each.</span><br><span class="line">*/</span></span><br></pre></td></tr></table></figure></p>
+<p>大致意思就是C语言标准里面，有符号整型的溢出在C语言的标准中是未定义的blabla但是减法不会溢出，所以我这个改法是正确的blabla。哦对了，于是，我们对比时间代码编程了下面：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span>(time_before(jiffies, timeout))</span><br><span class="line">&#123;</span><br><span class="line">    <span class="comment">// we suppose</span></span><br><span class="line">    nothing();</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">else</span></span><br><span class="line">&#123;</span><br><span class="line">    timeout_handler();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>类似的<a href="https://github.com/alibaba/tengine/blob/master/src/event/ngx_event_timer.c#L98" target="_blank" rel="external">Tegine/Nginx</a>也是使用的类似的实现方法，而且有趣的是nginx也出现过类似的<a href="https://github.com/alibaba/tengine/commit/246f4133f6a1048dce36d3e55a5c748228288da1#diff-646868bfaeca38df552b086ec7cbf4e0L70" target="_blank" rel="external">patch</a>。</p>
+<h4 id="2_关于定时器存储结构的问题">2 关于定时器存储结构的问题</h4><p>因为我们的定时器个数比较少，所以用有序链表(按照expire时间)就差不多了。插入、删除都是O(n)，查找O(1)；</p>
+<p>在Linux使用的是双向链表实现的；</p>
+<p>在Nginx的实现中，则使用的是红黑树，类似的每次都要log(n)去查找最小节点；</p>
+<p><a href="tengine.taobao.org/download/programmer-201209-Tengine.pdf">据说</a>Tengine要使用四叉最小堆(4-heap)去改进，在查找的时候能O(1)，其他操作可以O(log(n))，不过我看<a href="https://github.com/alibaba/tengine/blob/tengine-2.1.0/src/event/ngx_event_timer.c" target="_blank" rel="external">tengine -2.1.0</a>的代码中，还是用的红黑树实现的。</p>
+<h3 id="参考资料">参考资料</h3><p><a href="http://stackoverflow.com/questions/8206762/how-does-linux-handle-overflow-in-jiffies" target="_blank" rel="external">How does linux handle overflow in jiffies?</a><br><a href="http://blog.chinaunix.net/uid-23215128-id-2521293.html" target="_blank" rel="external">jiffies溢出与时间先后比较</a><br><a href="http://blog.csdn.net/mrpre/article/details/27890415" target="_blank" rel="external">linux内核计算时间差以及jiffies溢出</a><br><a href="http://www.cnblogs.com/xiaohuo/archive/2012/06/19/2555056.html" target="_blank" rel="external">nginx学习 - timer</a><br><a href="tengine.taobao.org/download/programmer-201209-Tengine.pdf">淘宝 Tengine易运维的高性能Nginx服务器</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/03/31/Java集合框架/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          Java集合框架
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2015/02/08/自增运算符的反汇编/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">自增运算符的反汇编</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="定时器管理实现与初探" data-title="定时器管理实现与初探" data-url="http://yikun.github.io/2015/03/08/定时器管理实现与初探/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"Kero"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Yikun
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>

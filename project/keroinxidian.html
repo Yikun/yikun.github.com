@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en"><!--
+     
+    88888888888 d8b                        888 d8b                888888   d8888b  
+        888     Y8P                        888 Y8P                   88b d88P  Y88b 
+        888                                888                       888 Y88b
+        888     888 88888b d88b     d88b   888 888 88888b     d88b   888   Y888b
+        888     888 888  888  88b d8P  Y8b 888 888 888  88b d8P  Y8b 888      Y88b
+        888     888 888  888  888 88888888 888 888 888  888 88888888 888        888 
+        888     888 888  888  888 Y8b      888 888 888  888 Y8b      88P Y88b  d88P 
+        888     888 888  888  888   Y8888  888 888 888  888   Y8888  888   Y8888P
+                                                                    d88P            
+                                                                  d88P             
+                                                                888P              
+     -->
+  <head>
+    <title>Kero in Xidian</title>
+    <meta charset="utf-8">
+    <meta name="description" content="Kero in Xidian">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-touch-fullscreen" content="yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+
+
+
+    <style>
+      html, body {
+       height:100%;
+       padding: 0px;
+       margin: 0px;
+       background: #262626;
+      }
+      a {
+        color: rgb(76, 180, 232);
+        transition: all 0.3s ease 0s;
+        text-decoration: none;
+      }
+      a:hover {
+        color: rgb(212, 237, 249);
+        text-decoration: none;
+      }
+      footer p {
+        color: rgb(153, 153, 153);
+        text-align: center;
+        padding-bottom: 10px;
+  /* center align it with the container */
+      }
+      #shangxia:hover{background-color: #262626;}
+      #shangxia{position:absolute;top:0%;left:0%;display:block;z-index:1000;background-color: #1a1a1a;border: 1px solid #333333;-webkit-box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);-moz-box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);box-shadow: 1px 1px 0px rgba(0, 0, 0, 0.2);}
+      #shang{background:url(../assets/themes/yikun/images/nav/nav.png) no-repeat;position:relative;cursor:pointer;height:42px;width:32px;margin:10px 0;}
+      #shang:hover {background: url(../assets/themes/yikun/images/nav/nav-hover.png)}
+      #fellow{background:url(../assets/themes/yikun/images/nav/nav.png) no-repeat center -45px;position:relative;cursor:pointer;height:32px;width:32px;margin:10px 0;}
+      #fellow:hover {background: url(../assets/themes/yikun/images/nav/nav-hover.png) no-repeat center -45px;position:relative;cursor:pointer;height:32px;width:32px;margin:10px 0;}
+      #xia{background:url(../assets/themes/yikun/images/nav/nav.png) no-repeat center -78px;position:relative;cursor:pointer;height:42px;width:32px;margin:10px 0;}
+      #xia:hover {background: url(../assets/themes/yikun/images/nav/nav-hover.png) no-repeat center -78px;position:relative;cursor:pointer;height:42px;width:32px;margin:10px 0;}
+    </style>
+    <!--#ds-thread #ds-reset .ds-comment-body         #ds-thread-->
+    <!-- HTML5 shim, for IE6-8 support of HTML elements--><!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script><![endif]-->
+  </head>
+
+<body>
+  <!-- BEGIN Timeline Embed -->
+  <div id="timeline-embed"></div>
+  <script type="text/javascript">
+    var timeline_config = {
+     width: "100%",
+     height: "100%",
+     start_zoom_adjust: '5',
+     start_at_slide: '0',
+     lang: 'zh-ch',
+     source: '../assets/project/KeroinXidian/keroinxidian.jsonp'
+    }
+  </script>
+  <script type="text/javascript" src="../assets/themes/yikun/TimelineJS/js/storyjs-embed.js"></script>
+  <!-- END Timeline Embed-->
+
+
+  <div class="ds-thread"></div>
+  <script type="text/javascript">
+  var duoshuoQuery = {short_name:"kero"};
+  (function() {
+    var ds = document.createElement('script');
+    ds.type = 'text/javascript';ds.async = true;
+    ds.src = 'http://static.duoshuo.com/embed.js';
+    ds.charset = 'UTF-8';
+    (document.getElementsByTagName('head')[0] 
+    || document.getElementsByTagName('body')[0]).appendChild(ds);
+  })();
+  </script>
+<!-- Duoshuo Comment END -->
+   <script type="text/javascript" src="http://lib.sinaapp.com/js/jquery/1.7.2/jquery.min.js"></script>
+   <script type="text/javascript">
+
+   jQuery(document).ready(function($){
+   var s= $('#shangxia').offset().top;$(window).scroll(function (){$("#shangxia").animate({top : $(window).scrollTop()    + s + "px" },{queue:false,duration:500});});
+   $body = (window.opera) ? (document.compatMode == "CSS1Compat" ? $('html') : $('body')) : $('html,body');
+   $('#shang').click(function(){$body.animate({scrollTop: '0px'}, 400);});
+   $('#xia').click(function(){$body.animate({scrollTop:$('#ds-thread').offset().top}, 800);});
+   });
+  </script>
+  <div id="shangxia">
+    <div id="shang" title="去顶部"></div>
+    <div id="fellow" title="关注Kero"><a style="display:block;width:30px;height:30px;" href="http://weibo.com/keroenigma" target="_blank"></a></div>
+    <div id="xia" title="火前留名"></div>
+  </div>
+
+</body>
+<footer>
+    <embed src="http://www.sy-auto.com/shineclub/shine17/ibi.mp3" width="0" height="0" hide="false" border="0" autostart="ture" loop="ture">    <!-- Style-->
+        <p>Coding By <a href="https://github.com/yikun" target="_blank" title="Yikun的Github">Yikun</a> 
+          based on <a href="http://twitter.github.com/bootstrap/" target="_blank" title="Sleek, intuitive, and powerful front-end framework for faster and easier web development.">Bootstrap</a>
+          and <a href="http://timeline.verite.co/" target="_blank" title="Beautifully crafted timelines that are easy, and intuitive to use.">Timelinejs</a>
+        </p>
+
+</footer>
+</html>

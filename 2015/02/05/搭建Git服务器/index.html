@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>搭建Git服务器 | Yikun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="在服务器上安装git1. 安装gitsudo apt-get install git
+2. 增加git用户sudo adduser git
+3. 将用户的公钥添加cat id_rsa.pub &amp;gt;&amp;gt; /home/git/.ssh/authorized_keys
+4. 新建一个库sudo git init —bare sample.gitsudo chown -R git:git samp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建Git服务器">
+<meta property="og:url" content="http://yikun.github.io/2015/02/05/搭建Git服务器/index.html">
+<meta property="og:site_name" content="Yikun">
+<meta property="og:description" content="在服务器上安装git1. 安装gitsudo apt-get install git
+2. 增加git用户sudo adduser git
+3. 将用户的公钥添加cat id_rsa.pub &amp;gt;&amp;gt; /home/git/.ssh/authorized_keys
+4. 新建一个库sudo git init —bare sample.gitsudo chown -R git:git samp">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="搭建Git服务器">
+<meta name="twitter:description" content="在服务器上安装git1. 安装gitsudo apt-get install git
+2. 增加git用户sudo adduser git
+3. 将用户的公钥添加cat id_rsa.pub &amp;gt;&amp;gt; /home/git/.ssh/authorized_keys
+4. 新建一个库sudo git init —bare sample.gitsudo chown -R git:git samp">
+  
+    <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="/assets/photo.jpg">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Yikun</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">文章</a></li>
+				        
+							<li><a href="/tags/随笔/">随笔</a></li>
+				        
+							<li><a href="/project">项目</a></li>
+				        
+							<li><a href="/douban">读书</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yikun" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/keroenigma" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/C-C/" style="font-size: 14px;">C/C++</a><a href="/tags/Git/" style="font-size: 12px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 14px;">Linux</a><a href="/tags/Nginx/" style="font-size: 16px;">Nginx</a><a href="/tags/Python/" style="font-size: 10px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 12px;">系统</a><a href="/tags/网络/" style="font-size: 10px;">网络</a><a href="/tags/随笔/" style="font-size: 18px;">随笔</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Yikun</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="/assets/photo.jpg">
+				<hgroup>
+				  <h1 class="header-author">Yikun</h1>
+				</hgroup>
+			</div>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">文章</a></li>
+		        
+					<li><a href="/tags/随笔/">随笔</a></li>
+		        
+					<li><a href="/project">项目</a></li>
+		        
+					<li><a href="/douban">读书</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yikun" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/keroenigma" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-搭建Git服务器" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/02/05/搭建Git服务器/" class="article-date">
+  	<time datetime="2015-02-05T05:11:46.000Z" itemprop="datePublished">Feb 5 2015</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      搭建Git服务器
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="在服务器上安装git">在服务器上安装git</h1><h3 id="1-_安装git">1. 安装git</h3><p>sudo apt-get install git</p>
+<h3 id="2-_增加git用户">2. 增加git用户</h3><p>sudo adduser git</p>
+<h3 id="3-_将用户的公钥添加">3. 将用户的公钥添加</h3><p>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
+<h3 id="4-_新建一个库">4. 新建一个库</h3><p>sudo git init —bare sample.git<br>sudo chown -R git:git sample.git</p>
+<h3 id="5-_禁止git登陆">5. 禁止git登陆</h3><p>vim /etc/passwd<br>把<code>git:X:1001:1001:,,,:/home/git:/bin/bash</code>换为下面的<br>git:X:1001:1001:,,,:/home/git:/usr/bin/git-shell</p>
+<p>git clone git@server:/srv/sample.git</p>
+<h1 id="在客户端上安装git">在客户端上安装git</h1><h3 id="1-_在windows下安装git">1. 在windows下安装git</h3><p><a href="http://www.git-scm.com/downloads" target="_blank" rel="external">下载地址</a></p>
+<h3 id="2-_安装可视化界面(可选)">2. 安装可视化界面(可选)</h3><p><a href="https://code.google.com/p/tortoisegit/wiki/Download?tm=2" target="_blank" rel="external">下载地址</a><br>鼠标邮件，选择“TortoiseGit”-&gt;“Settings”，在“User Info”输入Name和Email</p>
+<h3 id="3-_生成公钥">3. 生成公钥</h3><p>在命令行和tortoisegit中稍有不同：<br><strong>In shell</strong><br>a. win+r —&gt; Git Bash —&gt;  ssh-keygen.exe<br>b. 一路回车，将生成“c:/Users/XXX/.ssh/id_rsa.pub”<br>c. (公钥)把id_rsa.pub重命名为id_rsa.XXX.pub, 例如id_rsa.jiangyikun.pub<br>d. (私钥)也已经生成到<code>c:/Users/XXX/.ssh/id_rsa</code>了<br>e. 将id_rsa.XXX.pub发送给git管理员</p>
+<p><strong>In tortoisegit</strong><br>a. 打开Puttygen，SSH-2 RSA，点击Generate<br>b. 使用鼠标生成随机key<br>c. (公钥)复制Key到id_rsa.XXX.pub<br>d. (私钥)Save private key为XXX.ppk，并将Load Putty Key设为XXX.ppk<br>e. 将id_rsa.XXX.pub发送给git管理员</p>
+<h3 id="(git管理员操作)_4-添加公钥的服务器">(git管理员操作) 4.添加公钥的服务器</h3><p>以root权限登陆， 注意是“&gt;&gt;”追加<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.XXX.pub &#62;&#62; /home/git/.ssh/authorized_keys&#10;# drwx------. 2 git  git  4096 Apr 15 13:17 .ssh&#10;# -rw-------. 1 git git 1189 Apr 15 13:17 authorized_keys</span><br></pre></td></tr></table></figure></p>
+<p>在客户端测试：ssh git@XXX.XXX.XXX.XXX，不再输入密码即可。</p>
+<h3 id="5-_简单学习">5. 简单学习</h3><p>这是一个用于测试的repo你可以拿他来做做测试</p>
+<p>a. 克隆仓库<br>git clone git@xxx.xxx.xxx.xxx:/yikun/sample.git<br>或者使用tortoisegit，在某个文件夹，右键—&gt;Git Clone…—&gt; URL填写“git@xxx.xxx.xxx.xxx:/yikun/sample.git”—&gt; 输入密码</p>
+<p>b. 修改文件并提交</p>
+<ol>
+<li>在sample目录下简历一个文件比如，XXX.txt</li>
+<li>右键 Git Commit -&gt; “Master”</li>
+<li>填写Commit Message，并选择需要提交的文件，双击可以可视化的查看diff</li>
+</ol>
+<p>c. 点击push， ok</p>
+<h3 id="6-_学习git">6. 学习git</h3><p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">Git教程</a></p>
+<p>Enjoy it! :)</p>
+<h3 id="附：">附：</h3><h4 id="1-_如何将一个现有的本地git库上传到服务器上？">1. 如何将一个现有的本地git库上传到服务器上？</h4><p>从现有repo新建server repo的时候(服务器)</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir newrepo.git&#10;cd newrepo.git&#10;git --bare init&#10;# Initialized empty Git repository in /yikun/newrepo.git/.git/</span><br></pre></td></tr></table></figure>
+<p>在现有的repo中（客户端）<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd newrepo.git  &#10;git remote add origin git@xxx.xxx.xxx.xxx:/yikun/newrepo.git&#10;git push origin master</span><br></pre></td></tr></table></figure></p>
+<h4 id="2-_如何克隆服务器上现有库？">2. 如何克隆服务器上现有库？</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#20174;&#26381;&#21153;&#22120;&#20811;&#38534;&#10;git clone git@xxx.xxx.xxx.xxx:/yikun/newrepo.git&#10;# &#20462;&#25913;&#24182;&#26412;&#22320;&#25552;&#20132;&#10;git commit -am &#34;commitmessage&#34;&#10;# &#19978;&#20256;&#33267;&#26381;&#21153;&#22120;&#10;git push origin master</span><br></pre></td></tr></table></figure>
+<h4 id="3-_常见问题">3. 常见问题</h4><p>1 <strong>权限问题</strong></p>
+<pre><code>Counting objects: <span class="number">179</span>, done.
+Delta compression using up <span class="keyword">to</span> <span class="number">4</span> threads.
+Compressing objects: <span class="number">100</span>% (<span class="number">176</span>/<span class="number">176</span>), done.
+fatal: Unable <span class="keyword">to</span> create temporary <span class="type">file</span>: Permission denied
+fatal: sha1 <span class="type">file</span> '&lt;stdout&gt;' <span class="command">write</span> <span class="keyword">error</span>: Broken pipe
+<span class="keyword">error</span>: failed <span class="keyword">to</span> push <span class="keyword">some</span> refs <span class="keyword">to</span> 'git@xxx.xxx.xxx.xxx:/yikun/newrepo.git'
+git did <span class="keyword">not</span> <span class="keyword">exit</span> cleanly (<span class="keyword">exit</span> code <span class="number">1</span>) (<span class="number">3261</span> ms @ <span class="number">2015</span>/<span class="number">2</span>/<span class="number">5</span> <span class="number">11</span>:<span class="number">17</span>:<span class="number">39</span>)
+</code></pre><p>可以试试：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R git *&#10;chgrp -R git *&#10;```    &#10;&#10;2 **&#25552;&#20132;&#38382;&#39064;**&#10;&#10;    error: refusing to update checked out branch: refs/heads/master&#10;    error: By default, updating the current branch in a non-bare repository&#10;    error: is denied, because it will make the index and work tree inconsistent&#10;    error: with what you pushed, and will require &#39;git reset --hard&#39; to match&#10;    error: the work tree to HEAD.&#10;    error: &#10;    error: You can set &#39;receive.denyCurrentBranch&#39; configuration variable to&#10;    error: &#39;ignore&#39; or &#39;warn&#39; in the remote repository to allow pushing into&#10;    error: its current branch; however, this is not recommended unless you&#10;    error: arranged to update its work tree to match what you pushed in some&#10;    error: other way.&#10;    error: &#10;    error: To squelch this message and still keep the default behaviour, set&#10;    error: &#39;receive.denyCurrentBranch&#39; configuration variable to &#39;refuse&#39;.&#10;    &#10;&#21487;&#20197;&#35797;&#35797;&#65306;&#10;&#10;```shell&#10;git config &#39;receive.denyCurrentBranch&#39; warn</span><br></pre></td></tr></table></figure></p>
+<h3 id="参考">参考</h3><p><a href="http://blog.163.com/clevertanglei900@126/blog/static/111352259201011655837986/" target="_blank" rel="external">小组级git服务器搭建</a><br><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000" target="_blank" rel="external">搭建Git服务器</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2015/02/08/自增运算符的反汇编/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          自增运算符的反汇编
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2014/04/17/nginxconnections/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">nginx的连接池</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="搭建Git服务器" data-title="搭建Git服务器" data-url="http://yikun.github.io/2015/02/05/搭建Git服务器/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"Kero"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Yikun
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>
