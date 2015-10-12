@@ -1,4 +1,4 @@
-title    : Java集合框架
+pytitle    : Java集合框架
 category : JAVA学习
 tags     : 
 date     : 2015-03-30

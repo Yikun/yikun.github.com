@@ -140,3 +140,7 @@ chgrp -R git *
 ```shell
 git config 'receive.denyCurrentBranch' warn
 ```
+
+### 参考
+[小组级git服务器搭建](http://blog.163.com/clevertanglei900@126/blog/static/111352259201011655837986/)
+[搭建Git服务器](http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000)

@@ -5,6 +5,15 @@ tags:
 ---
 
 ### 1. 概述
+
+[关于Java集合的小抄](http://calvin1978.blogcn.com/articles/collection.html)中是这样描述的：
+> 以数组实现。节约空间，但数组有容量限制。超出限制时会增加50%容量，用System.arraycopy()复制到新的数组，因此最好能给出数组大小的预估值。默认第一次插入元素时创建大小为10的数组。
+
+> 按数组下标访问元素--get(i)/set(i,e) 的性能很高，这是数组的基本优势。
+
+> 直接在数组末尾加入元素--add(e)的性能也高，但如果按下标插入、删除元素--add(i,e), remove(i), remove(e)，则要用System.arraycopy()来移动部分受影响的元素，性能就变差了，这是基本劣势。
+
+然后再来学习一下官方文档：
 > **Resizable-array** implementation of the List interface. Implements all optional list operations, and permits all elements, including null. In addition to implementing the List interface, this class provides methods to manipulate the size of the array that is used internally to store the list. (This class is roughly equivalent to Vector, except that it is unsynchronized.)
 
 ArrayList是一个相对来说比较简单的数据结构，最重要的一点就是它的自动扩容，可以认为就是我们常说的“动态数组”。

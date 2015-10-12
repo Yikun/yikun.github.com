@@ -5,6 +5,12 @@ tags:
 ---
 
 ### 1. 概述
+> 以双向链表实现。链表无容量限制，但双向链表本身使用了更多空间，也需要额外的链表指针操作。
+
+> 按下标访问元素--get(i)/set(i,e) 要悲剧的遍历链表将指针移动到位(如果i>数组大小的一半，会从末尾移起)。
+
+> 插入、删除元素时修改前后节点的指针即可，但还是要遍历部分链表的指针才能移动到下标所指的位置，只有在链表两头的操作--add(), addFirst(),removeLast()或用iterator()上的remove()能省掉指针的移动。
+
 LinkedList是一个简单的数据结构，与ArrayList不同的是，他是基于链表实现的。
 
 > Doubly-linked list implementation of the List and Deque interfaces. Implements all optional list operations, and permits all elements (including null).

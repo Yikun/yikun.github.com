@@ -314,6 +314,22 @@ final Node<K,V>[] resize() {
 **5. 如果HashMap的大小超过了负载因子(load factor)定义的容量，怎么办？**
 如果超过了负载因子(默认0.75)，则会重新resize一个原来长度两倍的HashMap，并且重新调用hash方法。
 
+[关于Java集合的小抄](http://calvin1978.blogcn.com/articles/collection.html)中是这样描述的：
+
+> 以Entry[]数组实现的哈希桶数组，用Key的哈希值取模桶数组的大小可得到数组下标。
+
+> 插入元素时，如果两条Key落在同一个桶(比如哈希值1和17取模16后都属于第一个哈希桶)，Entry用一个next属性实现多个Entry以单向链表存放，后入桶的Entry将next指向桶当前的Entry。
+
+> 查找哈希值为17的key时，先定位到第一个哈希桶，然后以链表遍历桶里所有元素，逐个比较其key值。
+
+> 当Entry数量达到桶数量的75%时(很多文章说使用的桶数量达到了75%，但看代码不是)，会成倍扩容桶数组，并重新分配所有原来的Entry，所以这里也最好有个预估值。
+
+> 取模用位运算(hash & (arrayLength-1))会比较快，所以数组的大小永远是2的N次方， 你随便给一个初始值比如17会转为32。默认第一次放入元素时的初始值是16。
+
+> iterator()时顺着哈希桶数组来遍历，看起来是个乱序。
+
+> 在JDK8里，新增默认为8的閥值，当一个桶里的Entry超过閥值，就不以单向链表而以红黑树来存放以加快Key的查找速度。
+
 ### 参考资料
 [HashMap的工作原理](http://www.importnew.com/7099.html)
 [Java 8：HashMap的性能提升](http://www.importnew.com/14417.html)
