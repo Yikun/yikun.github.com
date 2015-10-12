@@ -101,7 +101,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/C-C/" style="font-size: 14px;">C/C++</a><a href="/tags/Git/" style="font-size: 12px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 14px;">Linux</a><a href="/tags/Nginx/" style="font-size: 16px;">Nginx</a><a href="/tags/Python/" style="font-size: 10px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 12px;">系统</a><a href="/tags/网络/" style="font-size: 10px;">网络</a><a href="/tags/随笔/" style="font-size: 18px;">随笔</a>
+						<a href="/tags/C-C/" style="font-size: 14px;">C/C++</a><a href="/tags/Git/" style="font-size: 12px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 14px;">Linux</a><a href="/tags/Nginx/" style="font-size: 16px;">Nginx</a><a href="/tags/OpenStack/" style="font-size: 10px;">OpenStack</a><a href="/tags/Python/" style="font-size: 10px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 12px;">系统</a><a href="/tags/网络/" style="font-size: 10px;">网络</a><a href="/tags/随笔/" style="font-size: 18px;">随笔</a>
 					</div>
 				</section>
 				
@@ -160,6 +160,140 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-Java-EnumMap工作原理及实现" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/24/Java-EnumMap工作原理及实现/" class="article-date">
+  	<time datetime="2015-04-23T16:11:56.000Z" itemprop="datePublished">Apr 24 2015</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/24/Java-EnumMap工作原理及实现/">Java EnumMap工作原理及实现</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-概述">1.概述</h3><blockquote>
+<p>A specialized Map implementation for use with enum type keys. All of the keys in an enum map must come from a single enum type that is specified, explicitly or implicitly, when the map is created. Enum maps are represented internally as arrays. This representation is extremely compact and efficient.</p>
+</blockquote>
+<p>EnumMap是是一种键为枚举类型的特殊的Map实现。所有的Key也必须是一种枚举类型，EnumMap是使用数组来实现的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">EnumMap&lt;Course, String&gt; map = <span class="keyword">new</span> EnumMap&lt;Course, String&gt;(Course.class);</span><br><span class="line">map.put(Course.ONE, <span class="string">"语文"</span>);</span><br><span class="line">map.put(Course.ONE, <span class="string">"政治"</span>);</span><br><span class="line">map.put(Course.TWO, <span class="string">"数学"</span>);</span><br><span class="line">map.put(Course.THREE, <span class="string">"英语"</span>);</span><br><span class="line"><span class="keyword">for</span>(Entry&lt;Course, String&gt; entry : map.entrySet()) &#123;</span><br><span class="line">	System.out.println(entry.getKey() + <span class="string">": "</span> + entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果为：<br><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ONE</span>: <span class="string">政治</span></span><br><span class="line"><span class="attribute">TWO</span>: <span class="string">数学</span></span><br><span class="line"><span class="attribute">THREE</span>: <span class="string">英语</span></span><br></pre></td></tr></table></figure></p>
+<p>其具体实现的结构如下图所示：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7323140/1dc9a734-eadf-11e4-96f8-8df820f64590.png" alt="enummap"></p>
+<h3 id="2-_put和get方法">2. put和get方法</h3><p>put方法通过key的ordinal将值存储到对应的地方，get方法则根据key的ordinal获取对应的值。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 类型检查</span></span><br><span class="line">    typeCheck(key);</span><br><span class="line">    <span class="comment">// 获取key的序号</span></span><br><span class="line">    <span class="keyword">int</span> index = key.ordinal();</span><br><span class="line">    Object oldValue = vals[index];</span><br><span class="line">    <span class="comment">// 赋值</span></span><br><span class="line">    vals[index] = maskNull(value);</span><br><span class="line">    <span class="comment">// 若之前的值为空，则size++</span></span><br><span class="line">    <span class="keyword">if</span> (oldValue == <span class="keyword">null</span>)</span><br><span class="line">        size++;</span><br><span class="line">    <span class="keyword">return</span> unmaskNull(oldValue);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (isValidKey(key) ?</span><br><span class="line">            unmaskNull(vals[((Enum&lt;?&gt;)key).ordinal()]) : <span class="keyword">null</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-_遍历">3. 遍历</h3><p>EnumMapIterator的迭代这样实现的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (index &lt; vals.length &amp;&amp; vals[index] == <span class="keyword">null</span>)</span><br><span class="line">        index++;</span><br><span class="line">    <span class="keyword">return</span> index != vals.length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> Map.Entry&lt;K,V&gt; next() &#123;</span><br><span class="line">    <span class="keyword">if</span> (!hasNext())</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</span><br><span class="line">    lastReturnedEntry = <span class="keyword">new</span> Entry(index++);</span><br><span class="line">    <span class="keyword">return</span> lastReturnedEntry;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过hasNext跳过空的数组，也就是说，保证了遍历顺序与Enum中key的先后顺序一致。</p>
+<h3 id="参考资料">参考资料</h3><p><a href="http://javarevisited.blogspot.jp/2012/09/what-is-enummap-in-java-example-tutorial.html" target="_blank" rel="external">What is EnumMap in Java</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+  
+    <article id="post-C语言中移位操作符优先级的坑" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/18/C语言中移位操作符优先级的坑/" class="article-date">
+  	<time datetime="2015-04-18T09:16:55.000Z" itemprop="datePublished">Apr 18 2015</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/18/C语言中移位操作符优先级的坑/">C语言中移位操作符优先级的坑</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天和tiancai交流他腾讯面试题目的时候，有这么一个题目，大致是这样描述的：</p>
+<blockquote>
+<p>有一个函数f，可以等概率产生0,1，写一个函数g，可以等概率地产生0~7中的数。</p>
+</blockquote>
+<p>于是，我写出了如下一个错误的解法：</p>
+<blockquote>
+<p>f()+f()&lt;&lt;1+f()&lt;&lt;2</p>
+</blockquote>
+<p>而正确的应该是：</p>
+<blockquote>
+<p>f() + (f()&lt;&lt;1) + (f()&lt;&lt;2)</p>
+</blockquote>
+<p>之前一直有误解，而实际情况是是<strong>移位操作符的优先级低于加减法的优先级</strong>。为了验证和加深记忆，又写了一个小测试：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"1&lt;&lt;1+2&lt;&lt;1:     %d\n"</span>, <span class="number">1</span>&lt;&lt;<span class="number">1</span>+<span class="number">2</span>&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"1&lt;&lt;(1+2)&lt;&lt;1:   %d\n"</span>, <span class="number">1</span>&lt;&lt;(<span class="number">1</span>+<span class="number">2</span>)&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"(1&lt;&lt;1)+(2&lt;&lt;1): %d\n"</span>, (<span class="number">1</span>&lt;&lt;<span class="number">1</span>)+(<span class="number">2</span>&lt;&lt;<span class="number">1</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>输出为:<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>&lt;&lt;<span class="number">1</span><span class="number">+2</span>&lt;&lt;<span class="number">1</span>:     <span class="number">16</span></span><br><span class="line"><span class="number">1</span>&lt;&lt;<span class="comment">(1+2)</span>&lt;&lt;<span class="number">1</span>:   <span class="number">16</span></span><br><span class="line"><span class="comment">(1&lt;&lt;1)</span>+<span class="comment">(2&lt;&lt;1)</span>: <span class="number">6</span></span><br></pre></td></tr></table></figure></p>
+<p>其中编译的时候，也有一个友情提示：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">main.<span class="string">c:</span><span class="number">4</span>:<span class="number">36</span>: <span class="string">warning:</span> operator <span class="string">'&lt;&lt;'</span> has lower precedence than <span class="string">'+'</span>; <span class="string">'+'</span> will be</span><br><span class="line">      evaluated first [-Wshift-op-parentheses]</span><br><span class="line">        printf(<span class="string">"1&lt;&lt;1+2&lt;&lt;1:     %d\n"</span>, <span class="number">1</span>&lt;&lt;<span class="number">1</span>+<span class="number">2</span>&lt;&lt;<span class="number">1</span>);</span><br><span class="line">                                       ~~~^~</span><br><span class="line">main.<span class="string">c:</span><span class="number">4</span>:<span class="number">36</span>: <span class="string">note:</span> place parentheses around the <span class="string">'+'</span> expression to silence <span class="keyword">this</span></span><br><span class="line">      warning</span><br><span class="line">        printf(<span class="string">"1&lt;&lt;1+2&lt;&lt;1:     %d\n"</span>, <span class="number">1</span>&lt;&lt;<span class="number">1</span>+<span class="number">2</span>&lt;&lt;<span class="number">1</span>);</span><br><span class="line">                                          ^</span><br><span class="line">                                         (  )</span><br><span class="line"><span class="number">1</span> warning generated.</span><br></pre></td></tr></table></figure></p>
+<p>最后，</p>
+<blockquote>
+<p>希望自己永远保持一颗怀疑的心。</p>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-Java-ArrayDeque工作原理及实现" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -641,146 +775,6 @@
 <p>Removes the element at the specified position in this list. Shifts any subsequent elements to the left (subtracts one from their indices).</p>
 </blockquote>
 <h3 id="参考资料">参考资料</h3><p><a href="http://docs.oracle.com/javase/8/docs/api/java/util/ArrayList.html#add-E-" target="_blank" rel="external">Class ArrayList</a><br><a href="http://www.cnblogs.com/dongying/p/4013271.html" target="_blank" rel="external">ArrayList其实就那么一回事儿之源码浅析</a><br><a href="http://my.oschina.net/tunie/blog/122530" target="_blank" rel="external">关于ArrayList</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-如何设计实现一个LRU-Cache？" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/04/03/如何设计实现一个LRU-Cache？/" class="article-date">
-  	<time datetime="2015-04-03T15:35:02.000Z" itemprop="datePublished">Apr 3 2015</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/03/如何设计实现一个LRU-Cache？/">如何设计实现一个LRU Cache？</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-_什么是LRU_Cache？">1. 什么是LRU Cache？</h3><p>之前，在LeetCode上看到一个LRU Cache实现的题目，题目描述是这样的：</p>
-<blockquote>
-<p>Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: <strong>get</strong> and <strong>set</strong>.<br><strong>get(key)</strong> - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.<br><strong>set(key, value)</strong> - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.</p>
-</blockquote>
-<p>简单的说，就是保证基本的get和set的功能的同时，还要保证最近访问(get或put)的节点保持在限定容量的Cache中，如果超过容量则应该把LRU(近期最少使用)的节点删除掉。</p>
-<p>那么我们思考一个问题：如何设计实现一个LRU Cache？<br>那么，我们可能需要使用类似这样的数据结构去实现这个LRU Cache：<br><img src="https://cloud.githubusercontent.com/assets/1736354/6984935/92033a96-da60-11e4-8754-66135bb0d233.png" alt="lru"><br>这不就是LinkedHashMap吗！<br>这样做的好处是，<code>get</code>和<code>set</code>在不冲突的情况下可以保证O(1)的复杂度，同时，也可以通过双向链表来保证LRU的<code>删除</code>和<code>更新</code>操作也能保证O(1)的复杂度。</p>
-<h3 id="2-实现思路">2.实现思路</h3><p>在学习了HashMap(#7 )和LinkedHashMap(#8 )后，是不是觉得这俩数据结构简直太适合做LRU Cache了！那么动手实现一下：<br><strong>基于HashMap和双向链表的实现</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">    	Node pre;</span><br><span class="line">    	Node next;</span><br><span class="line">    	Integer key;</span><br><span class="line">    	Integer val;</span><br><span class="line">    	</span><br><span class="line">    	Node(Integer k, Integer v) &#123;</span><br><span class="line">    		key = k;</span><br><span class="line">    		val = v;</span><br><span class="line">    	&#125;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    Map&lt;Integer, Node&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, Node&gt;();</span><br><span class="line">    <span class="comment">// The head (eldest) of the doubly linked list.</span></span><br><span class="line">    Node head;</span><br><span class="line">    <span class="comment">// The tail (youngest) of the doubly linked list.</span></span><br><span class="line">    Node tail;</span><br><span class="line">    <span class="keyword">int</span> cap;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        cap = capacity;</span><br><span class="line">        head = <span class="keyword">new</span> Node(<span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">        tail = <span class="keyword">new</span> Node(<span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">        head.next = tail;</span><br><span class="line">        tail.pre = head;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        Node n = map.get(key);</span><br><span class="line">        <span class="keyword">if</span>(n!=<span class="keyword">null</span>) &#123;</span><br><span class="line">        	n.pre.next = n.next;</span><br><span class="line">        	n.next.pre = n.pre;</span><br><span class="line">        	appendTail(n);</span><br><span class="line">        	<span class="keyword">return</span> n.val;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        Node n = map.get(key);</span><br><span class="line">        <span class="comment">// existed</span></span><br><span class="line">        <span class="keyword">if</span>(n!=<span class="keyword">null</span>) &#123;</span><br><span class="line">	        n.val = value;</span><br><span class="line">	        map.put(key, n);</span><br><span class="line">        	n.pre.next = n.next;</span><br><span class="line">        	n.next.pre = n.pre;</span><br><span class="line">        	appendTail(n);</span><br><span class="line">        	<span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// else &#123;</span></span><br><span class="line">        <span class="keyword">if</span>(map.size() == cap) &#123;</span><br><span class="line">        	Node tmp = head.next;</span><br><span class="line">        	head.next = head.next.next;</span><br><span class="line">        	head.next.pre = head;</span><br><span class="line">        	map.remove(tmp.key);</span><br><span class="line">        &#125;</span><br><span class="line">        n = <span class="keyword">new</span> Node(key, value);</span><br><span class="line">        <span class="comment">// youngest node append taill</span></span><br><span class="line">        appendTail(n);</span><br><span class="line">        map.put(key, n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">appendTail</span><span class="params">(Node n)</span> </span>&#123;</span><br><span class="line">    	n.next = tail;</span><br><span class="line">    	n.pre = tail.pre;</span><br><span class="line">    	tail.pre.next = n;</span><br><span class="line">    	tail.pre = n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p><strong>基于LinkedHashMap的实现</strong><br>HashMap+双向链表？这不就是LinkedHashMap吗！<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> capacity;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;Integer, Integer&gt; cache;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.capacity = capacity;</span><br><span class="line">        <span class="keyword">this</span>.cache = <span class="keyword">new</span> java.util.LinkedHashMap&lt;Integer, Integer&gt; (capacity, <span class="number">0.75f</span>, <span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="comment">// 定义put后的移除规则，大于容量就删除eldest</span></span><br><span class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">removeEldestEntry</span><span class="params">(Map.Entry&lt;Integer, Integer&gt; eldest)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> size() &gt; capacity;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (cache.containsKey(key)) &#123;</span><br><span class="line">            <span class="keyword">return</span> cache.get(key);</span><br><span class="line">        &#125; <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        cache.put(key, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统/">系统</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-Java-LinkedHashMap工作原理及实现" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/04/02/Java-LinkedHashMap工作原理及实现/" class="article-date">
-  	<time datetime="2015-04-02T15:01:37.000Z" itemprop="datePublished">Apr 2 2015</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/02/Java-LinkedHashMap工作原理及实现/">Java LinkedHashMap工作原理及实现</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-_概述">1. 概述</h3><p>在理解了#7 介绍的HashMap后，我们来学习LinkedHashMap的工作原理及实现。首先还是类似的，我们写一个简单的LinkedHashMap的程序：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">LinkedHashMap&lt;String, Integer&gt; lmap = <span class="keyword">new</span> LinkedHashMap&lt;String, Integer&gt;();</span><br><span class="line">lmap.put(<span class="string">"语文"</span>, <span class="number">1</span>);</span><br><span class="line">lmap.put(<span class="string">"数学"</span>, <span class="number">2</span>);</span><br><span class="line">lmap.put(<span class="string">"英语"</span>, <span class="number">3</span>);</span><br><span class="line">lmap.put(<span class="string">"历史"</span>, <span class="number">4</span>);</span><br><span class="line">lmap.put(<span class="string">"政治"</span>, <span class="number">5</span>);</span><br><span class="line">lmap.put(<span class="string">"地理"</span>, <span class="number">6</span>);</span><br><span class="line">lmap.put(<span class="string">"生物"</span>, <span class="number">7</span>);</span><br><span class="line">lmap.put(<span class="string">"化学"</span>, <span class="number">8</span>);</span><br><span class="line"><span class="keyword">for</span>(Entry&lt;String, Integer&gt; entry : lmap.entrySet()) &#123;</span><br><span class="line">	System.out.println(entry.getKey() + <span class="string">": "</span> + entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>运行结果是：</p>
-<blockquote>
-<p>语文: 1<br>数学: 2<br>英语: 3<br>历史: 4<br>政治: 5<br>地理: 6<br>生物: 7<br>化学: 8</p>
-</blockquote>
-<p>我们可以观察到，和HashMap的运行结果不同，LinkedHashMap的迭代输出的结果保持了插入顺序。是什么样的结构使得LinkedHashMap具有如此特性呢？我们还是一样的看看LinkedHashMap的内部结构，对它有一个感性的认识：<br><img src="https://cloud.githubusercontent.com/assets/1736354/6981649/03eb9014-da38-11e4-9cbf-03d9c21f05f2.png" alt="linkedhashmap"></p>
-<p>没错，正如官方文档所说：</p>
-<blockquote>
-<p><strong>Hash table</strong> and <strong>linked list</strong> implementation of the Map interface, with predictable iteration order. This implementation differs from HashMap in that it maintains a <strong>doubly-linked list</strong> running through all of its entries. This linked list defines the iteration ordering, which is normally the order in which keys were inserted into the map (<strong>insertion-order</strong>).</p>
-</blockquote>
-<p>LinkedHashMap是Hash表和链表的实现，并且依靠着双向链表保证了迭代顺序是插入的顺序。</p>
-<h3 id="2-_三个重点实现的函数">2. 三个重点实现的函数</h3><p>在HashMap中提到了下面的定义：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// Callbacks to allow LinkedHashMap post-actions</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">afterNodeAccess</span><span class="params">(Node&lt;K,V&gt; p)</span> </span>&#123; &#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">afterNodeInsertion</span><span class="params">(<span class="keyword">boolean</span> evict)</span> </span>&#123; &#125;</span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">afterNodeRemoval</span><span class="params">(Node&lt;K,V&gt; p)</span> </span>&#123; &#125;</span><br></pre></td></tr></table></figure></p>
-<p>LinkedHashMap继承于HashMap，因此也重新实现了这3个函数，顾名思义这三个函数的作用分别是：节点访问后、节点插入后、节点移除后做一些事情。</p>
-<p><strong>afterNodeAccess函数</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">afterNodeAccess</span><span class="params">(Node&lt;K,V&gt; e)</span> </span>&#123; <span class="comment">// move node to last</span></span><br><span class="line">    LinkedHashMap.Entry&lt;K,V&gt; last;</span><br><span class="line">    <span class="comment">// 如果定义了accessOrder，那么就保证最近访问节点放到最后</span></span><br><span class="line">    <span class="keyword">if</span> (accessOrder &amp;&amp; (last = tail) != e) &#123;</span><br><span class="line">        LinkedHashMap.Entry&lt;K,V&gt; p =</span><br><span class="line">            (LinkedHashMap.Entry&lt;K,V&gt;)e, b = p.before, a = p.after;</span><br><span class="line">        p.after = <span class="keyword">null</span>;</span><br><span class="line">        <span class="keyword">if</span> (b == <span class="keyword">null</span>)</span><br><span class="line">            head = a;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            b.after = a;</span><br><span class="line">        <span class="keyword">if</span> (a != <span class="keyword">null</span>)</span><br><span class="line">            a.before = b;</span><br><span class="line">        <span class="keyword">else</span></span><br><span class="line">            last = b;</span><br><span class="line">        <span class="keyword">if</span> (last == <span class="keyword">null</span>)</span><br><span class="line">            head = p;</span><br><span class="line">        <span class="keyword">else</span> &#123;</span><br><span class="line">            p.before = last;</span><br><span class="line">            last.after = p;</span><br><span class="line">        &#125;</span><br><span class="line">        tail = p;</span><br><span class="line">        ++modCount;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>就是说在进行put之后就算是对节点的访问了，那么这个时候就会更新链表，把最近访问的放到最后，保证链表。</p>
-<p><strong>afterNodeInsertion函数</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">afterNodeInsertion</span><span class="params">(<span class="keyword">boolean</span> evict)</span> </span>&#123; <span class="comment">// possibly remove eldest</span></span><br><span class="line">    LinkedHashMap.Entry&lt;K,V&gt; first;</span><br><span class="line">    <span class="comment">// 如果定义了移除规则，则执行相应的溢出</span></span><br><span class="line">    <span class="keyword">if</span> (evict &amp;&amp; (first = head) != <span class="keyword">null</span> &amp;&amp; removeEldestEntry(first)) &#123;</span><br><span class="line">        K key = first.key;</span><br><span class="line">        removeNode(hash(key), key, <span class="keyword">null</span>, <span class="keyword">false</span>, <span class="keyword">true</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>如果用户定义了<code>removeEldestEntry</code>的规则，那么便可以执行相应的移除操作。</p>
-<p><strong>afterNodeRemoval函数</strong><br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">afterNodeRemoval</span><span class="params">(Node&lt;K,V&gt; e)</span> </span>&#123; <span class="comment">// unlink</span></span><br><span class="line">    <span class="comment">// 从链表中移除节点</span></span><br><span class="line">    LinkedHashMap.Entry&lt;K,V&gt; p =</span><br><span class="line">        (LinkedHashMap.Entry&lt;K,V&gt;)e, b = p.before, a = p.after;</span><br><span class="line">    p.before = p.after = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (b == <span class="keyword">null</span>)</span><br><span class="line">        head = a;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        b.after = a;</span><br><span class="line">    <span class="keyword">if</span> (a == <span class="keyword">null</span>)</span><br><span class="line">        tail = b;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        a.before = b;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>这个函数是在移除节点后调用的，就是将节点从双向链表中删除。</p>
-<p>我们从上面3个函数看出来，基本上都是为了<strong>保证双向链表中的节点次序或者双向链表容量</strong>所做的一些额外的事情，目的就是保持双向链表中节点的顺序要从eldest到youngest。</p>
-<h3 id="3-_put和get函数">3. put和get函数</h3><p><code>put</code>函数在LinkedHashMap中未重新实现，只是实现了<code>afterNodeAccess</code>和<code>afterNodeInsertion</code>两个回调函数。<code>get</code>函数则重新实现并加入了<code>afterNodeAccess</code>来保证访问顺序，下面是<code>get</code>函数的具体实现：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">    Node&lt;K,V&gt; e;</span><br><span class="line">    <span class="keyword">if</span> ((e = getNode(hash(key), key)) == <span class="keyword">null</span>)</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">if</span> (accessOrder)</span><br><span class="line">        afterNodeAccess(e);</span><br><span class="line">    <span class="keyword">return</span> e.value;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>值得注意的是，在accessOrder模式下，只要执行get或者put等操作的时候，就会产生<code>structural modification</code>。官方文档是这么描述的：</p>
-<blockquote>
-<p>A structural modification is any operation that adds or deletes one or more mappings or, in the case of access-ordered linked hash maps, affects iteration order. In insertion-ordered linked hash maps, merely changing the value associated with a key that is already contained in the map is not a structural modification. <strong>In access-ordered linked hash maps, merely querying the map with get is a structural modification</strong>.</p>
-</blockquote>
-<p>不要犯了像<a href="http://stackoverflow.com/questions/16180568/concurrentmodificationexception-with-linkedhashmap/16180833" target="_blank" rel="external">ConcurrentModificationException with LinkedHashMap</a>类似的问题。</p>
-<p>总之，LinkedHashMap不愧是HashMap的儿子，和老子太像了，当然，青出于蓝而胜于蓝，LinkedHashMap的其他的操作也基本上都是为了维护好那个具有访问顺序的双向链表。:-)</p>
-<h3 id="参考链接">参考链接</h3><p><a href="http://docs.oracle.com/javase/8/docs/api/java/util/LinkedHashMap.html" target="_blank" rel="external">Class LinkedHashMap</a><br><a href="http://stackoverflow.com/questions/16180568/concurrentmodificationexception-with-linkedhashmap/16180833" target="_blank" rel="external">ConcurrentModificationException with LinkedHashMap</a></p>
 
       
     </div>
