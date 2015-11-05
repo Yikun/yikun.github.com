@@ -1,6 +1,7 @@
 title: "读《OpenStack设计与实现》"
 date: 2015-10-08 21:52:35
-tags: []
+tags:
+  - OpenStack
 ---
 
 ### 初始OpenStack和开发基础

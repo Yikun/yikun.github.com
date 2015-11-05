@@ -4,28 +4,30 @@ date     : 2014-11-20
 ---
 <!--more-->
 ### 1. 排序算法汇总
+### 1. 概述
 
 |算法名称|复杂度|实现关键|
 |-----------|----------------|----------------|  
-|冒泡排序|$O(n^2)$|（无序区，有序区）。从无序区通过交换找出最大元素放到有序区前端。|
-|选择排序|$O(n^2)$|（有序区，无序区）。在无序区里选择一个最小的元素跟在有序区的后面。|
-|插入排序|$O(n^2)$|（有序区，无序区）。把无序区的第一个元素插入到有序区的合适的位置。|
-|希尔排序|$nlog^2(n)$|每一轮按照事先决定的间隔进行插入排序，间隔会依次缩小，最后一次一定要是1(插入)。|
-|快速排序|$nlog(n)$|（小数，枢纽元，大数）。|
-|堆排序|$nlog(n)$||
+|冒泡排序|O(n^2)|（无序区，有序区）。从无序区通过交换找出最大元素放到有序区前端。|
+|选择排序|O(n^2)|（有序区，无序区）。在无序区里选择一个最小的元素跟在有序区的后面。|
+|插入排序|O(n^2)|（有序区，无序区）。把无序区的第一个元素插入到有序区的合适的位置。|
+|希尔排序|nlog^2(n)|每一轮按照事先决定的间隔进行插入排序，间隔会依次缩小，最后一次一定要是1(插入)。|
+|快速排序|nlog(n)|（小数，枢纽元，大数）。|
+|堆排序|nlog(n)||
 |桶排序|O(n)|将值为i的元素放入i号桶，最后依次把桶里的元素倒出来。|
 
-不稳定的排序：选择排序、快速排序、堆排序、希尔排序；
-(注：稳定性一个形象的比喻，本来有两个并列第三，一排序把原来并列的顺序给变了)
+不稳定的排序：
+稳定性一个形象的比喻，本来有两个并列第三，一排序把原来并列的顺序给变了。
+比如：选择排序、快速排序、堆排序、希尔排序；
 [参考链接](http://zh.wikipedia.org/wiki/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95)
-
+<!--more-->
 ### 2. 冒泡排序
 
-![](/assets/post/algorithm/sort/Bubble_sort_animation.gif)
+![](http://yikun.github.io/assets/post/algorithm/sort/Bubble_sort_animation.gif)
 
 每次都把未排序的第一个作为起始点，然后逐渐冒泡上升，之后未排序区越来越少，最终排序完成
 
-![](/assets/post/algorithm/sort/bubble_sort.png)
+![](http://yikun.github.io/assets/post/algorithm/sort/bubble_sort.png)
 
 ```C
 	// 冒泡排序
@@ -50,11 +52,11 @@ date     : 2014-11-20
 
 ### 3. 选择排序
 
-![](/assets/post/algorithm/sort/Selection_sort_animation.gif)
+![](http://yikun.github.io/assets/post/algorithm/sort/Selection_sort_animation.gif)
 
 每一趟从待排序的数据元素中**选出最小（或最大）的一个元素**，顺序放在已排好序的数列的最后，直到全部待排序的数据元素排完。
 
-![](/assets/post/algorithm/sort/select_sort.png)
+![](http://yikun.github.io/assets/post/algorithm/sort/select_sort.png)
 
 ```C
 	// 选择排序
@@ -79,10 +81,10 @@ date     : 2014-11-20
 ```
 
 ### 4. 插入排序
-![](/assets/post/algorithm/sort/Insertion_sort_animation.gif)
+![](http://yikun.github.io/assets/post/algorithm/sort/Insertion_sort_animation.gif)
 
 每次排序从未排序区取一个“牌”，然后往前插入(包括了两步：大的往后移，把牌放到合适位置)。
-![](/assets/post/algorithm/sort/Insert-sort-animation.gif)
+![](http://yikun.github.io/assets/post/algorithm/sort/Insert-sort-animation.gif)
 
 ```C
 // 插入排序
@@ -184,10 +186,10 @@ void shell_sort(int a[], int n)
 
 ### 6. 快速排序
 
-![](/assets/post/algorithm/sort/quicksort.gif)
+![](http://yikun.github.io/assets/post/algorithm/sort/quicksort.gif)
 每次迭代都选出一个基准，左边放小的，右边放大的，最终迭代完成。
 
-![](/assets/post/algorithm/sort/quick_sort.png)
+![](http://yikun.github.io/assets/post/algorithm/sort/quick_sort.png)
 
 
 ```C
