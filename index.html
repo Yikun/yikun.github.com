@@ -101,7 +101,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/C-C/" style="font-size: 13.33px;">C/C++</a><a href="/tags/Git/" style="font-size: 11.67px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a><a href="/tags/Nginx/" style="font-size: 16.67px;">Nginx</a><a href="/tags/Nova/" style="font-size: 13.33px;">Nova</a><a href="/tags/OpenStack/" style="font-size: 15px;">OpenStack</a><a href="/tags/Python/" style="font-size: 10px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 11.67px;">系统</a><a href="/tags/网络/" style="font-size: 10px;">网络</a><a href="/tags/随笔/" style="font-size: 18.33px;">随笔</a>
+						<a href="/tags/C-C/" style="font-size: 14px;">C/C++</a><a href="/tags/Git/" style="font-size: 12px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 14px;">Linux</a><a href="/tags/Nginx/" style="font-size: 16px;">Nginx</a><a href="/tags/Nova/" style="font-size: 14px;">Nova</a><a href="/tags/OpenStack/" style="font-size: 16px;">OpenStack</a><a href="/tags/Python/" style="font-size: 10px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 12px;">系统</a><a href="/tags/网络/" style="font-size: 10px;">网络</a><a href="/tags/随笔/" style="font-size: 18px;">随笔</a>
 					</div>
 				</section>
 				
@@ -160,6 +160,78 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-译-Threading-model" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/11/19/译-Threading-model/" class="article-date">
+  	<time datetime="2015-11-19T13:34:04.000Z" itemprop="datePublished">Nov 19 2015</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/11/19/译-Threading-model/">[译]Threading model</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Threading_model">Threading model</h1><blockquote>
+<p>All OpenStack services use green thread model of threading, implemented through using the Python eventlet and greenlet libraries.</p>
+<p>Green threads use a cooperative model of threading: thread context switches can only occur when specific eventlet or greenlet library calls are made (e.g., sleep, certain I/O calls). From the operating system’s point of view, each OpenStack service runs in a single thread.</p>
+<p>The use of green threads reduces the likelihood of race conditions, but does not completely eliminate them. In some cases, you may need to use the @lockutils.synchronized(…) decorator to avoid races.</p>
+<p>In addition, since there is only one operating system thread, a call that blocks that main thread will block the entire process.</p>
+</blockquote>
+<p>理解：OpenStack的所有服务都使用Green thread，使用eventlet和greenlet库，绿色线程使用协作并发模型，线程的切换只在eventlet或greenlet库调用一些切换时发生。从操作系统角度上来看，每个OpenStack运行在一个单一线程。用Green Thread的好处是能够减少race conditions，当然有些时候我们也必须使用@lockutils.synchronized(…)来完全避免。因为只用一个系统级别的单线程，所以调用一旦阻塞就会阻塞整个进程。</p>
+<p>关于Python中的并发模型，可以参考<a href="http://www.oschina.net/translate/python-concurrency-model" target="_blank" rel="external">Python并发模型</a>一文，把Thread（线程切换耗资源）、MicroThread（依靠解释器调度）、Green thread（协作并发）的特点对比了下。</p>
+<p>还有<a href="http://www.cnblogs.com/sevenyuan/archive/2010/12/08/1900386.html" target="_blank" rel="external">Python几种并发实现方案的性能比较</a>将Python中的集中并发方案进行了对比和说明。</p>
+<h2 id="Yielding_the_thread_in_long-running_tasks">Yielding the thread in long-running tasks</h2><blockquote>
+<p>If a code path takes a long time to execute and does not contain any methods that trigger an eventlet context switch, the long-running thread will block any pending threads.</p>
+<p>This scenario can be avoided by adding calls to the eventlet sleep method in the long-running code path. The sleep call will trigger a context switch if there are pending threads, and using an argument of 0 will avoid introducing delays in the case that there is only a single green thread:</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> eventlet <span class="keyword">import</span> greenthread</span><br><span class="line">...</span><br><span class="line">greenthread.sleep(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>理解：对于那些耗时很长的任务，需要我们添加一些yield方法，来避免在单个的调用中阻塞很久。</p>
+<h2 id="MySQL_access_and_eventlet">MySQL access and eventlet</h2><blockquote>
+<p>Queries to the MySQL database will block the main thread of a service. This is because OpenStack services use an external C library for accessing the MySQL database. Since eventlet cannot use monkey-patching to intercept blocking calls in a C library, the resulting database query blocks the thread.</p>
+<p>The Diablo release contained a thread-pooling implementation that did not block, but this implementation resulted in a bug and was removed.</p>
+</blockquote>
+<p>理解：对于MySQL数据的查询会阻塞服务，因为eventlet对C库的调用是无法去做monkey-patching的。</p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenStack/">OpenStack</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-译-Host-Aggregates" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -654,71 +726,6 @@
       
         <p>最近把awk和sed又系统地学习了下，使用<a href="http://naotu.baidu.com/" target="_blank" rel="external">百度脑图</a>简单地整理了一下大概的思路：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7785009/0d604ea2-01af-11e5-8fdc-b658a02e76bc.png" alt="awk sed"></p>
 <p>参考资料<br><a href="http://book.douban.com/subject/1236944/" target="_blank" rel="external">《sed与awk》</a><br><a href="http://coolshell.cn/articles/9104.html" target="_blank" rel="external">sed 简明教程</a><br><a href="http://coolshell.cn/articles/9070.html" target="_blank" rel="external">awk 简明教程</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-利用Shell进行Web日志分析" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/05/21/利用Shell进行Web日志分析/" class="article-date">
-  	<time datetime="2015-05-20T16:24:48.000Z" itemprop="datePublished">May 21 2015</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/05/21/利用Shell进行Web日志分析/">利用Shell进行Web日志分析</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h4 id="1-Web日志">1.Web日志</h4><p>Web日志由Web服务器产生，比如Nginx、Apache等。例如一条Nginx的日志格式可能是这样的：</p>
-<blockquote>
-<p>222.68.172.190 - - [18/Sep/2013:06:49:57 +0000] “GET /images/my.jpg HTTP/1.1” 200 19939<br> “<a href="http://www.angularjs.cn/A00n" target="_blank" rel="external">http://www.angularjs.cn/A00n</a>“ “Mozilla/5.0 (Windows NT 6.1)<br> AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36”</p>
-</blockquote>
-<p>可以拆解为以下8个变量</p>
-<blockquote>
-<p>remote_addr: 记录客户端的ip地址, 222.68.172.190<br>remote_user: 记录客户端用户名称, –<br>time_local: 记录访问时间与时区, [18/Sep/2013:06:49:57 +0000]<br>request: 记录请求的url与http协议, “GET /images/my.jpg HTTP/1.1″<br>status: 记录请求状态,成功是200, 200<br>body_bytes_sent: 记录发送给客户端文件主体内容大小, 19939<br>http_referer: 用来记录从那个页面链接访问过来的, “<a href="http://www.angularjs.cn/A00n”" target="_blank" rel="external">http://www.angularjs.cn/A00n”</a><br>http_user_agent: 记录客户浏览器的相关信息, “Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36″</p>
-</blockquote>
-<h4 id="提取最近10分钟的日志：">提取最近10分钟的日志：</h4><p>思路一：利用awk提取时间，并做字符串比较<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在OSX环境下，需要安装coreutils保证`date`等指令正常使用</span></span><br><span class="line"><span class="comment"># brew install coreutils</span></span><br><span class="line">tac <span class="built_in">log</span> | </span><br><span class="line">awk <span class="string">'BEGIN&#123;</span><br><span class="line">    # 获取时间至min10</span><br><span class="line">    "date -d \"-10 minute\" +\"%H:%M:%S\"" | getline min10 </span><br><span class="line">&#125; </span><br><span class="line">&#123;</span><br><span class="line">    # 日志时间和当前时间比较</span><br><span class="line">    if (substr($4,14) &gt; min10) </span><br><span class="line">        print ;</span><br><span class="line">    # 若一次不匹配则退出</span><br><span class="line">    else </span><br><span class="line">        exit;</span><br><span class="line">&#125;'</span> |</span><br><span class="line">tac</span><br></pre></td></tr></table></figure></p>
-<p>思路二：利用grep的正则匹配，捕获满足条件的时刻<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat <span class="built_in">log</span> | grep -E <span class="string">"19/Sep/2013:06:2[4-9]|19/Sep/2013:06:3[0-3]"</span></span><br></pre></td></tr></table></figure></p>
-<p>思路三：使用sed的地址(时刻必须出现)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat <span class="built_in">log</span> | sed -n <span class="string">'/19\/Sep\/2013:06:24/,//19\/Sep\/2013:06:33/p'</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="统计某个接口(xxxapi)访问量和QPS">统计某个接口(xxxapi)访问量和QPS</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cat log | grep xxxapi | wc -l</span></span><br><span class="line">query=$(cat <span class="built_in">log</span> | grep -c xxxapi)</span><br><span class="line">t=<span class="number">60</span></span><br><span class="line">qps=$((query/<span class="variable">$time</span>))</span><br></pre></td></tr></table></figure>
-<h4 id="参考资料">参考资料</h4><p><a href="http://blog.fens.me/hadoop-mapreduce-log-kpi/" target="_blank" rel="external">海量Web日志分析 用Hadoop提取KPI统计指标</a><br><a href="https://www.centos.bz/2012/11/shell-scrpit-auto-count-log/" target="_blank" rel="external">shell脚本每天自动统计网站访问日志</a><br><a href="http://www.oschina.net/question/42741_115440" target="_blank" rel="external">如何用Shell截取nginx最近10分钟的日志</a><br><a href="http://bbs.chinaunix.net/thread-4096403-1-1.html" target="_blank" rel="external">如何用awk从日志文件中找到时间范围的数据</a></p>
 
       
     </div>

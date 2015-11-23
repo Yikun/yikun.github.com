@@ -3,17 +3,23 @@
 <head>
   <meta charset="utf-8">
   
-  <title>nginx建立连接过程分析 | Yikun</title>
+  <title>[译]Threading model | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 概述本文主要学习了nginx连接accept的步骤，以及nginx的负载均衡的方法。">
+  <meta name="description" content="Threading model
+All OpenStack services use green thread model of threading, implemented through using the Python eventlet and greenlet libraries.
+Green threads use a cooperative model of threading: th">
 <meta property="og:type" content="article">
-<meta property="og:title" content="nginx建立连接过程分析">
-<meta property="og:url" content="http://yikun.github.io/2014/04/01/nginxaccept/index.html">
+<meta property="og:title" content="[译]Threading model">
+<meta property="og:url" content="http://yikun.github.io/2015/11/19/译-Threading-model/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="1. 概述本文主要学习了nginx连接accept的步骤，以及nginx的负载均衡的方法。">
+<meta property="og:description" content="Threading model
+All OpenStack services use green thread model of threading, implemented through using the Python eventlet and greenlet libraries.
+Green threads use a cooperative model of threading: th">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="nginx建立连接过程分析">
-<meta name="twitter:description" content="1. 概述本文主要学习了nginx连接accept的步骤，以及nginx的负载均衡的方法。">
+<meta name="twitter:title" content="[译]Threading model">
+<meta name="twitter:description" content="Threading model
+All OpenStack services use green thread model of threading, implemented through using the Python eventlet and greenlet libraries.
+Green threads use a cooperative model of threading: th">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -159,11 +165,11 @@
 		</header>				
 	</div>
 </nav>
-      <div class="body-wrap"><article id="post-nginxaccept" class="article article-type-post" itemscope itemprop="blogPost">
+      <div class="body-wrap"><article id="post-译-Threading-model" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
-      <a href="/2014/04/01/nginxaccept/" class="article-date">
-  	<time datetime="2014-03-31T16:00:00.000Z" itemprop="datePublished">Apr 1 2014</time>
+      <a href="/2015/11/19/译-Threading-model/" class="article-date">
+  	<time datetime="2015-11-19T13:34:04.000Z" itemprop="datePublished">Nov 19 2015</time>
 </a>
     </div>
   
@@ -176,7 +182,7 @@
         
   
     <h1 class="article-title" itemprop="name">
-      nginx建立连接过程分析
+      [译]Threading model
     </h1>
   
 
@@ -185,7 +191,7 @@
       <div class="article-info article-info-post">
         
 	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenStack/">OpenStack</a></li></ul>
 	</div>
 
         
@@ -196,62 +202,26 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-_概述">1. 概述</h3><p>本文主要学习了nginx连接accept的步骤，以及nginx的负载均衡的方法。<br><a id="more"></a></p>
-<h3 id="2-_建立连接过程">2. 建立连接过程</h3><p>处理新链接事件的回调函数是ngx_event_accept函数，当处理建立连接事件的时候就调用ngx_event_accept函数。该函数的具体步骤如下所示。</p>
-<p>1.调用accpet方法。</p>
-<pre><code>s=<span class="function"><span class="title">accept</span><span class="params">(lc-&gt;fd, (struct sockaddr *)</span><span class="title">sa</span></span>, &amp;socklen)
-</code></pre><p>2.设置负载均衡的阈值。</p>
-<pre><code>ngx_accept_disabled = ngx_cycle-&gt;connection_n/<span class="number">8</span> - ngx_cycle-&gt;free_connection_n;
-</code></pre><p>3.从连接池获取连接。</p>
-<pre><code>c <span class="subst">=</span> ngx_get_connection(s, ev<span class="subst">-&gt;</span><span class="keyword">log</span>);
-</code></pre><p>4.给连接分配内存空间。</p>
-<p>5.设置套接字属性，设置非阻塞<br>        ngx_nonblocking(s)</p>
-<p>6.将连接加入事件循环。<br>        ngx_add_conn(c)</p>
-<pre><code><span class="hexcolor">#def</span>ine ngx_add_conn         ngx_event_actions.add_conn
-</code></pre><p>7.调用监听对象的回调方法。</p>
-<h3 id="3-_负载均衡问题">3. 负载均衡问题</h3><p>在建立连接前需要使用ngx_trylock_accept_mutex()去“抢锁”，抢到锁了之后，才有资格去accept连接。</p>
-<p>代码比较简单，拿出来分析一下</p>
-<pre><code>ngx_int_t
-ngx_trylock_accept_mutex(ngx_cycle_t <span class="subst">*</span>cycle)
-{
-    <span class="comment">//尝试锁，无论取到还是未取到，均立即返回，取到返回1，否则返回0。</span>
-    <span class="keyword">if</span> (ngx_shmtx_trylock(<span class="subst">&amp;</span>ngx_accept_mutex)) {
-
-        ngx_log_debug0(NGX_LOG_DEBUG_EVENT, cycle<span class="subst">-&gt;</span><span class="keyword">log</span>, <span class="number">0</span>,
-                       <span class="string">"accept mutex locked"</span>);
-
-        <span class="keyword">if</span> (ngx_accept_mutex_held
-            <span class="subst">&amp;&amp;</span> ngx_accept_events <span class="subst">==</span> <span class="number">0</span>
-            <span class="subst">&amp;&amp;</span> <span class="subst">!</span>(ngx_event_flags <span class="subst">&amp;</span> NGX_USE_RTSIG_EVENT))
-        {
-            <span class="keyword">return</span> NGX_OK;
-        }
-        <span class="comment">//将所有读事件加入epoll</span>
-        <span class="keyword">if</span> (ngx_enable_accept_events(cycle) <span class="subst">==</span> NGX_ERROR) {
-            ngx_shmtx_unlock(<span class="subst">&amp;</span>ngx_accept_mutex);
-            <span class="keyword">return</span> NGX_ERROR;
-        }
-
-        ngx_accept_events <span class="subst">=</span> <span class="number">0</span>;
-        ngx_accept_mutex_held <span class="subst">=</span> <span class="number">1</span>;
-
-        <span class="keyword">return</span> NGX_OK;
-    }
-
-    ngx_log_debug1(NGX_LOG_DEBUG_EVENT, cycle<span class="subst">-&gt;</span><span class="keyword">log</span>, <span class="number">0</span>,
-                   <span class="string">"accept mutex lock failed: %ui"</span>, ngx_accept_mutex_held);
-    <span class="comment">//未取到锁，ngx_accept_mutex_held还为1，则删除所有监听的读事件</span>
-    <span class="keyword">if</span> (ngx_accept_mutex_held) {
-        <span class="keyword">if</span> (ngx_disable_accept_events(cycle) <span class="subst">==</span> NGX_ERROR) {
-            <span class="keyword">return</span> NGX_ERROR;
-        }
-
-        ngx_accept_mutex_held <span class="subst">=</span> <span class="number">0</span>;
-    }
-
-    <span class="keyword">return</span> NGX_OK;
-}
-</code></pre><p>总结一下就是说，拿到锁了，就监听事件，拿不到就不能监听。若ngx_accept_mutex_held为1，则拥有了把accept事件加入到自己的ngx_posted_accept_events的权利。</p>
+        <h1 id="Threading_model">Threading model</h1><blockquote>
+<p>All OpenStack services use green thread model of threading, implemented through using the Python eventlet and greenlet libraries.</p>
+<p>Green threads use a cooperative model of threading: thread context switches can only occur when specific eventlet or greenlet library calls are made (e.g., sleep, certain I/O calls). From the operating system’s point of view, each OpenStack service runs in a single thread.</p>
+<p>The use of green threads reduces the likelihood of race conditions, but does not completely eliminate them. In some cases, you may need to use the @lockutils.synchronized(…) decorator to avoid races.</p>
+<p>In addition, since there is only one operating system thread, a call that blocks that main thread will block the entire process.</p>
+</blockquote>
+<p>理解：OpenStack的所有服务都使用Green thread，使用eventlet和greenlet库，绿色线程使用协作并发模型，线程的切换只在eventlet或greenlet库调用一些切换时发生。从操作系统角度上来看，每个OpenStack运行在一个单一线程。用Green Thread的好处是能够减少race conditions，当然有些时候我们也必须使用@lockutils.synchronized(…)来完全避免。因为只用一个系统级别的单线程，所以调用一旦阻塞就会阻塞整个进程。</p>
+<p>关于Python中的并发模型，可以参考<a href="http://www.oschina.net/translate/python-concurrency-model" target="_blank" rel="external">Python并发模型</a>一文，把Thread（线程切换耗资源）、MicroThread（依靠解释器调度）、Green thread（协作并发）的特点对比了下。</p>
+<p>还有<a href="http://www.cnblogs.com/sevenyuan/archive/2010/12/08/1900386.html" target="_blank" rel="external">Python几种并发实现方案的性能比较</a>将Python中的集中并发方案进行了对比和说明。</p>
+<h2 id="Yielding_the_thread_in_long-running_tasks">Yielding the thread in long-running tasks</h2><blockquote>
+<p>If a code path takes a long time to execute and does not contain any methods that trigger an eventlet context switch, the long-running thread will block any pending threads.</p>
+<p>This scenario can be avoided by adding calls to the eventlet sleep method in the long-running code path. The sleep call will trigger a context switch if there are pending threads, and using an argument of 0 will avoid introducing delays in the case that there is only a single green thread:</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> eventlet <span class="keyword">import</span> greenthread</span><br><span class="line">...</span><br><span class="line">greenthread.sleep(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>理解：对于那些耗时很长的任务，需要我们添加一些yield方法，来避免在单个的调用中阻塞很久。</p>
+<h2 id="MySQL_access_and_eventlet">MySQL access and eventlet</h2><blockquote>
+<p>Queries to the MySQL database will block the main thread of a service. This is because OpenStack services use an external C library for accessing the MySQL database. Since eventlet cannot use monkey-patching to intercept blocking calls in a C library, the resulting database query blocks the thread.</p>
+<p>The Diablo release contained a thread-pooling implementation that did not block, but this implementation resulted in a bug and was removed.</p>
+</blockquote>
+<p>理解：对于MySQL数据的查询会阻塞服务，因为eventlet对C库的调用是无法去做monkey-patching的。</p>
 
       
     </div>
@@ -261,18 +231,9 @@ ngx_trylock_accept_mutex(ngx_cycle_t <span class="subst">*</span>cycle)
     
 <nav id="article-nav">
   
-    <a href="/2014/04/17/nginxconnections/" id="article-nav-newer" class="article-nav-link-wrap">
-      <strong class="article-nav-caption"><</strong>
-      <div class="article-nav-title">
-        
-          nginx的连接池
-        
-      </div>
-    </a>
   
-  
-    <a href="/2014/03/26/nginxevent/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">nginx的事件主体分析</div>
+    <a href="/2015/10/17/译-Host-Aggregates/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[译]Host Aggregates</div>
       <strong class="article-nav-caption">></strong>
     </a>
   
@@ -301,7 +262,7 @@ ngx_trylock_accept_mutex(ngx_cycle_t <span class="subst">*</span>cycle)
 
 <div class="duoshuo">
 	<!-- 多说评论框 start -->
-	<div class="ds-thread" data-thread-key="nginxaccept" data-title="nginx建立连接过程分析" data-url="http://yikun.github.io/2014/04/01/nginxaccept/"></div>
+	<div class="ds-thread" data-thread-key="译-Threading-model" data-title="[译]Threading model" data-url="http://yikun.github.io/2015/11/19/译-Threading-model/"></div>
 	<!-- 多说评论框 end -->
 	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
 	<script type="text/javascript">

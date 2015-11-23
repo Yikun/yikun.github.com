@@ -101,7 +101,7 @@
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/C-C/" style="font-size: 13.33px;">C/C++</a><a href="/tags/Git/" style="font-size: 11.67px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a><a href="/tags/Nginx/" style="font-size: 16.67px;">Nginx</a><a href="/tags/Nova/" style="font-size: 13.33px;">Nova</a><a href="/tags/OpenStack/" style="font-size: 15px;">OpenStack</a><a href="/tags/Python/" style="font-size: 10px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 11.67px;">系统</a><a href="/tags/网络/" style="font-size: 10px;">网络</a><a href="/tags/随笔/" style="font-size: 18.33px;">随笔</a>
+						<a href="/tags/C-C/" style="font-size: 14px;">C/C++</a><a href="/tags/Git/" style="font-size: 12px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 14px;">Linux</a><a href="/tags/Nginx/" style="font-size: 16px;">Nginx</a><a href="/tags/Nova/" style="font-size: 14px;">Nova</a><a href="/tags/OpenStack/" style="font-size: 16px;">OpenStack</a><a href="/tags/Python/" style="font-size: 10px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 12px;">系统</a><a href="/tags/网络/" style="font-size: 10px;">网络</a><a href="/tags/随笔/" style="font-size: 18px;">随笔</a>
 					</div>
 				</section>
 				
@@ -160,6 +160,71 @@
 	</div>
 </nav>
       <div class="body-wrap">
+  
+    <article id="post-利用Shell进行Web日志分析" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/05/21/利用Shell进行Web日志分析/" class="article-date">
+  	<time datetime="2015-05-20T16:24:48.000Z" itemprop="datePublished">May 21 2015</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/21/利用Shell进行Web日志分析/">利用Shell进行Web日志分析</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-Web日志">1.Web日志</h4><p>Web日志由Web服务器产生，比如Nginx、Apache等。例如一条Nginx的日志格式可能是这样的：</p>
+<blockquote>
+<p>222.68.172.190 - - [18/Sep/2013:06:49:57 +0000] “GET /images/my.jpg HTTP/1.1” 200 19939<br> “<a href="http://www.angularjs.cn/A00n" target="_blank" rel="external">http://www.angularjs.cn/A00n</a>“ “Mozilla/5.0 (Windows NT 6.1)<br> AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36”</p>
+</blockquote>
+<p>可以拆解为以下8个变量</p>
+<blockquote>
+<p>remote_addr: 记录客户端的ip地址, 222.68.172.190<br>remote_user: 记录客户端用户名称, –<br>time_local: 记录访问时间与时区, [18/Sep/2013:06:49:57 +0000]<br>request: 记录请求的url与http协议, “GET /images/my.jpg HTTP/1.1″<br>status: 记录请求状态,成功是200, 200<br>body_bytes_sent: 记录发送给客户端文件主体内容大小, 19939<br>http_referer: 用来记录从那个页面链接访问过来的, “<a href="http://www.angularjs.cn/A00n”" target="_blank" rel="external">http://www.angularjs.cn/A00n”</a><br>http_user_agent: 记录客户浏览器的相关信息, “Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36″</p>
+</blockquote>
+<h4 id="提取最近10分钟的日志：">提取最近10分钟的日志：</h4><p>思路一：利用awk提取时间，并做字符串比较<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在OSX环境下，需要安装coreutils保证`date`等指令正常使用</span></span><br><span class="line"><span class="comment"># brew install coreutils</span></span><br><span class="line">tac <span class="built_in">log</span> | </span><br><span class="line">awk <span class="string">'BEGIN&#123;</span><br><span class="line">    # 获取时间至min10</span><br><span class="line">    "date -d \"-10 minute\" +\"%H:%M:%S\"" | getline min10 </span><br><span class="line">&#125; </span><br><span class="line">&#123;</span><br><span class="line">    # 日志时间和当前时间比较</span><br><span class="line">    if (substr($4,14) &gt; min10) </span><br><span class="line">        print ;</span><br><span class="line">    # 若一次不匹配则退出</span><br><span class="line">    else </span><br><span class="line">        exit;</span><br><span class="line">&#125;'</span> |</span><br><span class="line">tac</span><br></pre></td></tr></table></figure></p>
+<p>思路二：利用grep的正则匹配，捕获满足条件的时刻<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat <span class="built_in">log</span> | grep -E <span class="string">"19/Sep/2013:06:2[4-9]|19/Sep/2013:06:3[0-3]"</span></span><br></pre></td></tr></table></figure></p>
+<p>思路三：使用sed的地址(时刻必须出现)<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat <span class="built_in">log</span> | sed -n <span class="string">'/19\/Sep\/2013:06:24/,//19\/Sep\/2013:06:33/p'</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="统计某个接口(xxxapi)访问量和QPS">统计某个接口(xxxapi)访问量和QPS</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># cat log | grep xxxapi | wc -l</span></span><br><span class="line">query=$(cat <span class="built_in">log</span> | grep -c xxxapi)</span><br><span class="line">t=<span class="number">60</span></span><br><span class="line">qps=$((query/<span class="variable">$time</span>))</span><br></pre></td></tr></table></figure>
+<h4 id="参考资料">参考资料</h4><p><a href="http://blog.fens.me/hadoop-mapreduce-log-kpi/" target="_blank" rel="external">海量Web日志分析 用Hadoop提取KPI统计指标</a><br><a href="https://www.centos.bz/2012/11/shell-scrpit-auto-count-log/" target="_blank" rel="external">shell脚本每天自动统计网站访问日志</a><br><a href="http://www.oschina.net/question/42741_115440" target="_blank" rel="external">如何用Shell截取nginx最近10分钟的日志</a><br><a href="http://bbs.chinaunix.net/thread-4096403-1-1.html" target="_blank" rel="external">如何用awk从日志文件中找到时间范围的数据</a></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
   
     <article id="post-重新学习Shell" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -727,59 +792,6 @@ $ git clone git@github<span class="class">.com</span>:Yikun/yikun<span class="cl
 <h3 id="2-_基本操作">2. 基本操作</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> map.put(e, PRESENT)==<span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> map.remove(o)==PRESENT;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span> </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> map.containsKey(o);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> map.size();</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>基本操作也非常简单，就是调用HashMap的相关方法，其中value就是之前那个dummy的Object。所以，只要了解#7 HashMap的实现就可以了。</p>
 <h3 id="参考资料">参考资料</h3><p><a href="http://docs.oracle.com/javase/8/docs/api/java/util/HashSet.html" target="_blank" rel="external">HashSet(Java Platform 8)</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-  
-    <article id="post-Java-PriorityQueue工作原理及实现" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/04/07/Java-PriorityQueue工作原理及实现/" class="article-date">
-  	<time datetime="2015-04-07T14:25:48.000Z" itemprop="datePublished">Apr 7 2015</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/07/Java-PriorityQueue工作原理及实现/">Java PriorityQueue工作原理及实现</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="参考资料">参考资料</h3><p><a href="http://www.iteye.com/topic/1061958" target="_blank" rel="external">基于最小堆（小根堆）的topn算法</a><br><a href="http://my.oschina.net/leejun2005/blog/135085" target="_blank" rel="external">基于堆实现的优先级队列：PriorityQueue 解决 Top K 问题</a><br><a href="http://www.importnew.com/6932.html" target="_blank" rel="external">Java优先队列（PriorityQueue）示例</a><br><a href="http://wlh0706-163-com.iteye.com/blog/1850125" target="_blank" rel="external">JDK源码研究PriorityQueue（优先队列）</a><br><a href="http://cuisuqiang.iteye.com/blog/2019157" target="_blank" rel="external">优先级队列：PriorityQueue</a></p>
 
       
     </div>
