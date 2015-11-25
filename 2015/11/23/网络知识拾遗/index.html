@@ -1,0 +1,363 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <title>网络知识拾遗 | Yikun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="本科加上研究生大概有七年时间，一直都是学的通信，不过覆盖面不是很全，一直对一些网络相关的概念和实现有些模糊。最近补了补通信网络中的一些基础知识和盲点，有目的地看了看《云计算网络珠玑》、《图解网络硬件》等和网络相关的书和一些文章，做一下记录总结。主要包括了二层交换、三层路由、Linux网络相关的内容。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="网络知识拾遗">
+<meta property="og:url" content="http://yikun.github.io/2015/11/23/网络知识拾遗/index.html">
+<meta property="og:site_name" content="Yikun">
+<meta property="og:description" content="本科加上研究生大概有七年时间，一直都是学的通信，不过覆盖面不是很全，一直对一些网络相关的概念和实现有些模糊。最近补了补通信网络中的一些基础知识和盲点，有目的地看了看《云计算网络珠玑》、《图解网络硬件》等和网络相关的书和一些文章，做一下记录总结。主要包括了二层交换、三层路由、Linux网络相关的内容。">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11339369/29e0977e-9234-11e5-880f-8c03596d1246.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11361099/a014666e-92c5-11e5-88b6-7aad7ff694f0.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11356544/b0e3196c-9299-11e5-9bac-105198e8c31f.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11361093/8aff2fac-92c5-11e5-851b-d7aa866c73cf.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11362678/3f059748-92d0-11e5-8c13-2dec089260e3.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11388055/783c4f74-936c-11e5-800f-ca51da63f23d.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11388062/8bd8b0b8-936c-11e5-86db-ac0d3db82f25.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11390343/3db29684-9384-11e5-9fb6-8791d5a56535.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11390238/17232688-9383-11e5-9561-6bd69846b06e.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="网络知识拾遗">
+<meta name="twitter:description" content="本科加上研究生大概有七年时间，一直都是学的通信，不过覆盖面不是很全，一直对一些网络相关的概念和实现有些模糊。最近补了补通信网络中的一些基础知识和盲点，有目的地看了看《云计算网络珠玑》、《图解网络硬件》等和网络相关的书和一些文章，做一下记录总结。主要包括了二层交换、三层路由、Linux网络相关的内容。">
+  
+    <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
+</head>
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			<img src="/assets/photo.jpg">
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Yikun</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>标签</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">文章</a></li>
+				        
+							<li><a href="/tags/随笔/">随笔</a></li>
+				        
+							<li><a href="/project">项目</a></li>
+				        
+							<li><a href="/douban">读书</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yikun" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/keroenigma" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/C-C/" style="font-size: 14px;">C/C++</a><a href="/tags/Git/" style="font-size: 12px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 14px;">Linux</a><a href="/tags/Nginx/" style="font-size: 16px;">Nginx</a><a href="/tags/Nova/" style="font-size: 14px;">Nova</a><a href="/tags/OpenStack/" style="font-size: 16px;">OpenStack</a><a href="/tags/Python/" style="font-size: 10px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 12px;">系统</a><a href="/tags/网络/" style="font-size: 12px;">网络</a><a href="/tags/随笔/" style="font-size: 18px;">随笔</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Yikun</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+				<img src="/assets/photo.jpg">
+				<hgroup>
+				  <h1 class="header-author">Yikun</h1>
+				</hgroup>
+			</div>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">文章</a></li>
+		        
+					<li><a href="/tags/随笔/">随笔</a></li>
+		        
+					<li><a href="/project">项目</a></li>
+		        
+					<li><a href="/douban">读书</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yikun" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/keroenigma" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+      <div class="body-wrap"><article id="post-网络知识拾遗" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/11/23/网络知识拾遗/" class="article-date">
+  	<time datetime="2015-11-23T13:19:23.000Z" itemprop="datePublished">Nov 23 2015</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      网络知识拾遗
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/网络/">网络</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本科加上研究生大概有七年时间，一直都是学的通信，不过覆盖面不是很全，一直对一些网络相关的概念和实现有些模糊。最近补了补通信网络中的一些基础知识和盲点，有目的地看了看《云计算网络珠玑》、《图解网络硬件》等和网络相关的书和一些文章，做一下记录总结。主要包括了二层交换、三层路由、Linux网络相关的内容。</p>
+<a id="more"></a>
+<h2 id="二层交换">二层交换</h2><p>二层交换指的是传统的二层交换机实现的功能，主要的功能就是将以太网帧从一个端口接收，并从合适的端口发送出去。</p>
+<h3 id="以太网帧">以太网帧</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/11339369/29e0977e-9234-11e5-880f-8c03596d1246.png" alt="emac"></p>
+<p>以太网帧如上图所示，如此构造主要是为了表达这个帧：到哪去（目的MAC，6字节）、从哪来（源MAC，6字节）、什么帧（长度/类型，2字节）、有什么（数据，40~1500字节）、错没错（FCS，CRC，4字节）。</p>
+<p>用户数据的长度不同，以太网帧的长度也不同，范围为64-1518字节。</p>
+<h3 id="存储转发与地址学习">存储转发与地址学习</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/11361099/a014666e-92c5-11e5-88b6-7aad7ff694f0.png" alt="l2 switch"></p>
+<p><strong>存储转发</strong>：转发时，常用的方式为存储转发方式（store forward），即数据帧先入<strong>存储队列</strong>再根据<strong>转发表</strong>进行转发。使用存储转发，一来可以为多种速率端口的数据进行缓冲，二来也可以将残损、CRC错误等异常帧进行丢弃。小科普：除了存储转发外，还有直通转发（cut through，只读到DA后就转发，无法处理冲突帧、CRC错帧）、碎片隔离（fragment free，读一个slot共64字节，无冲突再转发，无法处理CRC帧）。</p>
+<p><strong>地址学习</strong>：在完成存储转发时，需要查询转发表，从而得知数据帧应该从哪个端口发出，因此，转发表存的就是目的MAC地址与端口的映射，转发表生成的过程就是地址学习。大致过程就是，来一个帧，读他的源MAC，然后把源MAC和接收的端口号存下来。这样，交换机就知道了，从X端口来过MAC地址为Y的数据，当下次Y需要转发时，就可以把他转发到X端口了。从而，完成“从哪来去回哪去”的任务</p>
+<h3 id="广播风暴">广播风暴</h3><p>在几个交换机构成环时，会产生广播风暴，造成广播风暴的根本原因是交换机之间不能感知到互相的存在，导致地址学习时，一个交换将某个MAC的转发端口学习成了另一个交换机的端口。可以通过STP协议进行抑制，从逻辑上“断开”环。</p>
+<h3 id="VLAN">VLAN</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/11356544/b0e3196c-9299-11e5-9bac-105198e8c31f.png" alt="vlan change"></p>
+<p>VLAN可以将广播域分隔为多个逻辑网段。从帧格式上来看，增加了VLAN相关的域，VLAN相关域包括0x8100标志位，然后3bit的优先级，1bit的丢帧优先级，12bit的VLANID。在做转发学习时，通过SA+VLAN来学习转发端口。值得注意的是：当某个DA+VLAN查不到表时，仅在VLAN域广播。</p>
+<p>换一种思想来看，可以认为VLAN是一种网络的虚拟化，将一个端口虚拟化成多个端口。</p>
+<h2 id="三层路由">三层路由</h2><p>路由的主要功能是根据目的IP转发到相应的网络中。和二层中的转发表类似，三层路由也存在一个类似的表，叫做路由表。</p>
+<p>也就是说如果一个LAN希望连接另一个LAN，那么需要借助路由完成。另外，在大型的LAN中，由于连接设备多，导致MAC多，导致广播负担大，因此切分子网来避免这一问题，而子网之间所属不同LAN所以也需要借助路由完成通信。</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1736354/11361093/8aff2fac-92c5-11e5-851b-d7aa866c73cf.png" alt="router"></p>
+<p>在进行路由的时候，路由首先根据<strong>最长匹配原则</strong>在路由表中查找下一跳IP地址，之后，根据ARP表，获取下一跳的MAC信息，便进入ARP流程，最后，根据下一跳MAC地址生成以太网数据帧，并将该数据帧从接口转发至网络。</p>
+<p>路由与三层交换有类似的地方，L3交换虽具有路由功能，但其核心功能主要在于数据交换上，而路由仅具有路由转发功能。</p>
+<h3 id="NAT">NAT</h3><p>Network Adress Translator，网络地址转换。<br><img src="https://cloud.githubusercontent.com/assets/1736354/11362678/3f059748-92d0-11e5-8c13-2dec089260e3.png" alt="nat"></p>
+<p>对于源地址NAT，主要用于内网访问外网，源地址进行转换；<br>对于目的地址NAT，一般用于外网访问内网，目的地址进行转换。</p>
+<h2 id="Linux网络">Linux网络</h2><p>由于目前大部分云计算服务器、网络设备都是运行在Linux上的，因此，学习一些和Linux网络底层相关的实现，有助于我们理解。如<a href="https://www.ibm.com/developerworks/cn/linux/1310_xiawc_networkdevice/" target="_blank" rel="external">Linux 上的基础网络设备详解</a>一文中所述：</p>
+<blockquote>
+<p>Linux 用户想要使用网络功能，不能通过直接操作硬件完成，而需要直接或间接的操作一个 Linux 为我们抽象出来的设备，既通用的 Linux 网络设备来完成。一个常见的情况是，系统里装有一个硬件网卡，Linux 会在系统里为其生成一个网络设备实例，如 eth0，用户需要对 eth0 发出命令以配置或使用它了。</p>
+</blockquote>
+<p>另外，对于Linux网络中的数据流在<a href="http://www.linuxfoundation.org/collaborate/workgroups/networking/kernel_flow" target="_blank" rel="external">kernel  flow</a>中有所描述，文中更有一张<a href="http://www.linuxfoundation.org/images/1/1c/Network_data_flow_through_kernel.png" target="_blank" rel="external">神图</a>。</p>
+<h3 id="网络驱动">网络驱动</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/11388055/783c4f74-936c-11e5-800f-ca51da63f23d.png" alt="linux driver"></p>
+<p>之前，有做过网络驱动，其实回想起来，核心的实现就2个：发送函数和接收函数。</p>
+<p><strong>1. 发送函数（回调）</strong></p>
+<p>核心功能是将上层网络传来的帧，写入到网卡中；</p>
+<p>在网络驱动初始化时，会通过注册的方式对网络驱动进行初始化，<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">struct</span> net_device_ops netdev_ops = &#123;</span><br><span class="line">    .ndo_open         = driver_open,</span><br><span class="line">    .ndo_stop         = driver_close,</span><br><span class="line">    .ndo_start_xmit   = driver_xmit,</span><br><span class="line">    .ndo_get_stats    = get_stats,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>当上层有帧传来时，就会回调driver_xmit函数，因此，在driver_xmit函数中，就应当实现将帧写入到硬件，一般硬件会提供插入帧的接口，完成插入时帧会进入网卡硬件的插入队列中。</p>
+<p><strong>2. 接收函数（中断）</strong><br>核心功能是将网卡中的帧，传送到上层协议栈中。</p>
+<p>对于接收函数，则需要依靠硬件的中断，数据帧到达网卡，硬件以中断的方式告知系统，然后，接收函数回调，回调时，需通过硬件的接口读取数据帧，然后将其上传值上层接口。一般调用<code>netif_rx()</code>进行传输。</p>
+<h3 id="Linux_Bridge">Linux Bridge</h3><p>Linux Bridge名释其意，像一个桥梁一样把网络设备桥接起来。Linux bridge是802.1D的实现，可以参考<a href="http://www.linuxfoundation.org/collaborate/workgroups/networking/bridge" target="_blank" rel="external">链接</a>。</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1736354/11388062/8bd8b0b8-936c-11e5-86db-ac0d3db82f25.png" alt="linux bridge"></p>
+<p>如上图所示是eth0和eth1加入到br0后的实现，可以看出，网桥向上屏蔽了桥下的网卡设备，从上层协议上来看，仅能看到网桥设备br0。</p>
+<p>在<a href="http://book.douban.com/subject/1475839/" target="_blank" rel="external">《Understanding Linux Network Internals》</a>一书中，分析了Linux Bridge的实现：<br><img src="https://cloud.githubusercontent.com/assets/1736354/11390343/3db29684-9384-11e5-9fb6-8791d5a56535.png" alt="linux br"></p>
+<p>在br中有个链表来链net_device，每个net_device也反向链着br。在br中有个hash结构叫做fdb_entry，存储着转发表（forward databse），若某个MAC地址在fdb中，那么就直接发到某个net_device，如果没在的话，就广播给链接到该br的所有设备。</p>
+<h3 id="Linux_VLAN">Linux VLAN</h3><p>交换与隔离是VLAN的两大功能，现实世界中的802.1q交换机存在多个VLAN，每个VLAN拥有多个端口，同一VLAN的端口可数据交换，不同VLAN的端口之间隔离。而Linux VLAN实现的是隔离，需要交换的话，需要在Linux Bridge上attach一个VLAN。即Linux Bridge加VLAN device能在功能层面完整模拟现实世界里的802.1.q交换机。</p>
+<p>在<a href="http://www.kernelchina.org/node/214" target="_blank" rel="external">关于linux 802.1d (bridge) 和 802.1q(vlan) 实现的再思考</a>一文中，举了个例子，觉得很不错，画了个图加深理解：<br><img src="https://cloud.githubusercontent.com/assets/1736354/11390238/17232688-9383-11e5-9561-6bd69846b06e.png" alt="br vlan"></p>
+<blockquote>
+<p>一个盒子有6个物理interface, eth0,eth1,eth2,eth3,eth4,eth5,eth6.<br>bridge0 { eth0, eth1, eth2 }, vlan id 是2<br>bridge1 { eth3, eth4, eth5 }, vlan id 是3<br>eth0,eth1,eth2,eth3,eth4,eth5都在混杂模式，并且没有ip地址，它们是bridge的port.<br>创建vlan interface, bridge0.2, bridge1.3。在bridge0.2和bridge1.3上配置ip地址。vlan 2的机器，把bridge0.2的地址设置为缺省网关；vlan 3的机器，把bridge1.3设置为缺省网关。当有包要从vlan 2发往vlan 3是，它将送到bridge0.2，然后，通过路由，找到bridge1.3，然后由bridge1.3发出去。这个过程中，packet里面的vlan id会发生改变。这个例子里面，要求从bridge port上收到的包都必须是打tag的，在bridge里面，并不能识别和处理tag，只有到三层的vlan interface才能识别并处理这些tag.</p>
+</blockquote>
+<p>另外，Linux VLAN则是802.1Q的实现，可以参考<a href="http://www.candelatech.com/~greear/vlan.html" target="_blank" rel="external">链接</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2015/11/19/译-Threading-model/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[译]Threading model</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到：</span>
+		<a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	<div class="ds-thread" data-thread-key="网络知识拾遗" data-title="网络知识拾遗" data-url="http://yikun.github.io/2015/11/23/网络知识拾遗/"></div>
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"Kero"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2015 Yikun
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
+
+
+<script src="/js/mobile.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+<! -- mathjax config similar to math.stackexchange -->
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+
+  </div>
+</body>
+</html>
