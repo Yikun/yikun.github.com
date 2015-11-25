@@ -21,7 +21,7 @@
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11388055/783c4f74-936c-11e5-800f-ca51da63f23d.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11388062/8bd8b0b8-936c-11e5-86db-ac0d3db82f25.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11390343/3db29684-9384-11e5-9fb6-8791d5a56535.png">
-<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11390238/17232688-9383-11e5-9561-6bd69846b06e.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11397203/a6d78704-93b2-11e5-92dc-dfbd9ae07365.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络知识拾遗">
 <meta name="twitter:description" content="本科加上研究生大概有七年时间，一直都是学的通信，不过覆盖面不是很全，一直对一些网络相关的概念和实现有些模糊。最近补了补通信网络中的一些基础知识和盲点，有目的地看了看《云计算网络珠玑》、《图解网络硬件》等和网络相关的书和一些文章，做一下记录总结。主要包括了二层交换、三层路由、Linux网络相关的内容。
@@ -247,7 +247,7 @@
 <p>在<a href="http://book.douban.com/subject/1475839/" target="_blank" rel="external">《Understanding Linux Network Internals》</a>一书中，分析了Linux Bridge的实现：<br><img src="https://cloud.githubusercontent.com/assets/1736354/11390343/3db29684-9384-11e5-9fb6-8791d5a56535.png" alt="linux br"></p>
 <p>在br中有个链表来链net_device，每个net_device也反向链着br。在br中有个hash结构叫做fdb_entry，存储着转发表（forward databse），若某个MAC地址在fdb中，那么就直接发到某个net_device，如果没在的话，就广播给链接到该br的所有设备。</p>
 <h3 id="3-3_Linux_VLAN">3.3 Linux VLAN</h3><p>交换与隔离是VLAN的两大功能，现实世界中的802.1q交换机存在多个VLAN，每个VLAN拥有多个端口，同一VLAN的端口可数据交换，不同VLAN的端口之间隔离。而Linux VLAN实现的是隔离，需要交换的话，需要在Linux Bridge上attach一个VLAN。即Linux Bridge加VLAN device能在功能层面完整模拟现实世界里的802.1.q交换机。</p>
-<p>在<a href="http://www.kernelchina.org/node/214" target="_blank" rel="external">关于linux 802.1d (bridge) 和 802.1q(vlan) 实现的再思考</a>一文中，举了个例子，觉得很不错，画了个图加深理解：<br><img src="https://cloud.githubusercontent.com/assets/1736354/11390238/17232688-9383-11e5-9561-6bd69846b06e.png" alt="br vlan"></p>
+<p>在<a href="http://www.kernelchina.org/node/214" target="_blank" rel="external">关于linux 802.1d (bridge) 和 802.1q(vlan) 实现的再思考</a>一文中，举了个例子，觉得很不错，画了个图加深理解：<br><img src="https://cloud.githubusercontent.com/assets/1736354/11397203/a6d78704-93b2-11e5-92dc-dfbd9ae07365.png" alt="br vlan"></p>
 <blockquote>
 <p>一个盒子有6个物理interface, eth0,eth1,eth2,eth3,eth4,eth5,eth6.<br>bridge0 { eth0, eth1, eth2 }, vlan id 是2<br>bridge1 { eth3, eth4, eth5 }, vlan id 是3<br>eth0,eth1,eth2,eth3,eth4,eth5都在混杂模式，并且没有ip地址，它们是bridge的port.<br>创建vlan interface, bridge0.2, bridge1.3。在bridge0.2和bridge1.3上配置ip地址。vlan 2的机器，把bridge0.2的地址设置为缺省网关；vlan 3的机器，把bridge1.3设置为缺省网关。当有包要从vlan 2发往vlan 3是，它将送到bridge0.2，然后，通过路由，找到bridge1.3，然后由bridge1.3发出去。这个过程中，packet里面的vlan id会发生改变。这个例子里面，要求从bridge port上收到的包都必须是打tag的，在bridge里面，并不能识别和处理tag，只有到三层的vlan interface才能识别并处理这些tag.</p>
 </blockquote>
