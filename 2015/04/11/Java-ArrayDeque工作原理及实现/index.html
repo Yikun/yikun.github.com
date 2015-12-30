@@ -105,7 +105,7 @@ Resizable-array implementation of the Deque interface. Array deques have no capa
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/C-C/" style="font-size: 14px;">C/C++</a><a href="/tags/Git/" style="font-size: 12px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 14px;">Linux</a><a href="/tags/Nginx/" style="font-size: 16px;">Nginx</a><a href="/tags/Nova/" style="font-size: 14px;">Nova</a><a href="/tags/OpenStack/" style="font-size: 16px;">OpenStack</a><a href="/tags/Python/" style="font-size: 10px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 12px;">系统</a><a href="/tags/网络/" style="font-size: 12px;">网络</a><a href="/tags/随笔/" style="font-size: 18px;">随笔</a>
+						<a href="/tags/C-C/" style="font-size: 13.33px;">C/C++</a><a href="/tags/Git/" style="font-size: 11.67px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 13.33px;">Linux</a><a href="/tags/Nginx/" style="font-size: 16.67px;">Nginx</a><a href="/tags/Nova/" style="font-size: 13.33px;">Nova</a><a href="/tags/OpenStack/" style="font-size: 16.67px;">OpenStack</a><a href="/tags/Python/" style="font-size: 15px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 11.67px;">系统</a><a href="/tags/网络/" style="font-size: 11.67px;">网络</a><a href="/tags/随笔/" style="font-size: 18.33px;">随笔</a>
 					</div>
 				</section>
 				
@@ -204,6 +204,10 @@ Resizable-array implementation of the Deque interface. Array deques have no capa
 <p>Resizable-array implementation of the <strong>Deque interface</strong>. Array deques have no capacity restrictions; they <strong>grow as necessary to support usage</strong>. They are not thread-safe; in the absence of external synchronization, they do not support concurrent access by multiple threads. Null elements are prohibited. This class is likely to be faster than Stack when used as a stack, and faster than LinkedList when used as a queue.</p>
 </blockquote>
 <p><img src="https://cloud.githubusercontent.com/assets/1736354/7120880/13a5b9a4-e243-11e4-8a63-33c4852c268c.png" alt="arrayqueue"></p>
+<blockquote>
+<p>以循环数组实现的双向Queue。大小是2的倍数，默认是16。</p>
+<p>普通数组只能快速在末尾添加元素，为了支持FIFO，从数组头快速取出元素，就需要使用循环数组：有队头队尾两个下标：弹出元素时，队头下标递增；加入元素时，如果已到数组空间的末尾，则将元素循环赋值到数组<a href="如果此时队头下标大于0，说明队头弹出过元素，有空位">0</a>，同时队尾下标指向0，再插入下一个元素则赋值到数组[1]，队尾下标指向1。如果队尾的下标追上队头，说明数组所有空间已用完，进行双倍的数组扩容。</p>
+</blockquote>
 
       
     </div>
