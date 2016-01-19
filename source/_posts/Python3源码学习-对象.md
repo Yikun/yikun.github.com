@@ -6,7 +6,7 @@ tags:
 
 最近开始看Python源码，大致看了看，发现Py2和Py3的部分实现差别挺大，《Python源码剖析》是根据Python 2写的。不过为了能激发主动性，便直接从Python 3（3.5.0）源码看起了，然后也会结合Python 2（2.7.10）的代码看看之前的实现，来对比学习~：）
 
-#### 1. 万物皆对象
+### 1. 万物皆对象
 
 在Python中，万物皆对象，那么对象又是什么结构，如何组织，怎样实现的呢？
 
@@ -19,7 +19,7 @@ tags:
 
 然后，还补充说，Type对象除外，标准的type对象是静态初始化的，Python 2.2把在堆上初始化type对象变成了现实。
 
-#### 2. 对象的结构
+### 2. 对象的结构
 ![object](https://cloud.githubusercontent.com/assets/1736354/11553779/03a14ebe-99cd-11e5-8640-dde569539e9d.png)
 
 Python中的对象，主要分为一般对象和变长对象（list、dict之类），一般的对象就是PyObject，然后变长对象其实就是给PyObject加了个size成为了PyVarObject。

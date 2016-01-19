@@ -1,4 +1,4 @@
-title: Kero in Xidian 2
+title: Kero in Xidian（研究生篇）
 layout: page
 ---
 

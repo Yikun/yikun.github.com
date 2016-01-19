@@ -81,3 +81,19 @@ git tracked的是修改，而不是文件
 ### 标签
     $ git tag 0.1.1
     $ git push origin --tags
+
+### 同步上游
+    // 1. 添加上游
+    git remote add upstream
+    // 2. 切换需要同步的分支
+    git checkout XXX
+    // 3. 更新上游
+    git remote update upstream
+    git rebase upstream/{branch name}
+    // 4. 解决冲突
+    // 手动解决冲突
+    git add .
+    git rebase --continue
+    // 5. push
+    git push
+    

@@ -6,7 +6,7 @@ tags:
 
 在进行源码学习的时候，“实践出真知”。因此，在进行源码学习的过程中，我们首先需要对源码进行编译，然后，对我们感兴趣的点进行log，甚至debug。本篇文章记录了我在进行Python 3.5.0源码编译时的一些过程。
 
-#### 1. 下载
+### 1. 下载
 
 在官网[下载](https://www.python.org/downloads/)最新源码，为了方便跟踪源码的修改，借助git来管理Python源码。
 ```shell
@@ -15,7 +15,7 @@ git add .
 git commit -am "Python 3.5.0 source."
 ```
 
-#### 2. 配置
+### 2. 配置
 在编译前需要使用configure对源码进行配置。
 ```shell
 ./configure
@@ -49,7 +49,7 @@ git add .
 git commit -am "After ./configure ."
 ```
 
-#### 3.编译
+### 3.编译
 编译Python时，使用make进行编译
 ```
 make
@@ -62,7 +62,7 @@ make
 brew install xz
 ```
 
-#### 4.运行
+### 4.运行
 ```shell
 ./python.exe
 ```

@@ -4,7 +4,7 @@ tags:
   - Python
 ---
 
-#### 1. 引入
+### 1. 引入
 我们先看看对整型变量i进行赋值，并对i进行显示的过程：
 ``` Python
 >>> i=1
@@ -45,7 +45,7 @@ Python 3.5.0 (default, Dec 20 2015, 21:24:49)
 ```
 我们发现不论这个数是“大”是“小”，都无差别的显示为“int”了。那么，在Python3中做了哪些变动呢？Python3如何“一统天下”大小，存储整型数据呢？在Python 2中，分别使用intobject和longobject去存储整型，而在Python 3中，则使用longobject统一的表示整型，并且将type也设为“int”，在[PEP 237 -- Unifying Long Integers and Integers](https://www.python.org/dev/peps/pep-0237/)中，详细的阐述了这个改变，下面让我们详细看看Python 3中整型的实现。
 
-#### 2. 整型的实现
+### 2. 整型的实现
 我们先看看longobject.h：
 ```C
 typedef struct _longobject PyLongObject; /* Revealed in longintrepr.h */
@@ -180,7 +180,7 @@ ob_digit[2] = 1
 ```
 我们看到，结果与我们预期的一样，ob_size为3，代表ob_digit的数组大小为3，ob_digit表述的数值为(2^60) x `1` + (2^30) x `2` + (2^0) x `4`。完整代码工程请见[链接](https://github.com/Yikun/Python3/commit/b816507f56ee14b730b7ab52a61eb17f9eb9d815)
 
-#### 参考链接
+### 参考链接
 [PEP 237 -- Unifying Long Integers and Integers](https://www.python.org/dev/peps/pep-0237/)
 [How does Python manage int and long?](http://stackoverflow.com/questions/2104884/how-does-python-manage-int-and-long)
 [How does python represent such large integers?](http://stackoverflow.com/questions/22875067/how-does-python-represent-such-large-integers)
