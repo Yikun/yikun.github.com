@@ -246,32 +246,6 @@ Nova is built on a shared-nothing, messaging-based architecture. All of the majo
 <p>由于所有的服务都被设计为横向扩展的，你只需要更多的计算机就可以了。</p>
 
       
-      
-        <h3 id="Nova系统架构">Nova系统架构</h3><blockquote>
-<p>Nova is built on a <strong>shared-nothing</strong>, <strong>messaging-based</strong> architecture. All of the major nova components can be run on <strong>multiple servers</strong>. This means that most component to component communication must go via <strong>message queue</strong>. In order to <strong>avoid blocking</strong> each component while waiting for a response, we use <strong>deferred objects</strong>, with a <strong>callback</strong> that gets triggered when a response is received.</p>
-</blockquote>
-<p>Nova建立在一个无共享，基于消息的架构。所有的nova主要组件都可以运行在不同的服务器。这就意味着大多数组件之间的通信必须通过消息队列。为了避免每个组件在等待响应时的阻塞，我们是用deferred对象，当一个响应接收时会触发相应的回调。</p>
-<a id="more"></a>
-<blockquote>
-<p>Nova recently moved to using a sql-based central database that is shared by all components in the system. The amount and depth of the data fits into a sql database quite well. For small deployments this seems like an optimal solution. For larger deployments, and especially if security is a concern, nova will be moving towards multiple data stores with some kind of aggregation system.</p>
-</blockquote>
-<p>Nova最近正在迁移到一个基于SQL的中心数据库，系统中所有组件都共享一个数据库。大量的深度的数据非常适合存放在SQL数据库中。对于小型部署，这是一个最佳方案。对于大型部署，特别是非常看重安全的话，nova也将会进一步搬到不同集成系统中的多种数据库。</p>
-<h3 id="组件">组件</h3><p>下面将看到两种不同的架构：<br><img src="https://cloud.githubusercontent.com/assets/1736354/10502572/14066a24-7320-11e5-9552-e230cd8fa5cb.png" alt="qq20151015-0 2x"></p>
-<p><img src="https://cloud.githubusercontent.com/assets/1736354/10502582/2c4de97c-7320-11e5-9b33-2defabd49a7d.png" alt="qq20151015-1 2x"></p>
-<ul>
-<li>DB: 基于SQL的数据存储</li>
-<li>API: 组件接收HTTP请求，可以通过osl.messaging和HTTP来转换指令和通信</li>
-<li>Scheduler: 决定哪个host获得某个instance</li>
-<li>Network: 管理IP转发、网桥、vlans</li>
-<li>Compute: 管理hypervisor和virtual machines的通信</li>
-<li>Conductor: 处理需要调整(build/resize)的请求，作为数据库代理，或者处理对象的转换</li>
-</ul>
-<blockquote>
-<p>While all services are designed to be <strong>horizontally scalable</strong>, you should have significantly more computes then anything else.</p>
-</blockquote>
-<p>由于所有的服务都被设计为横向扩展的，你只需要更多的计算机就可以了。</p>
-
-      
     </div>
     
   </div>

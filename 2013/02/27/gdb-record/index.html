@@ -232,23 +232,6 @@
 <p>Now, you will it will stop in c code where you set breakpoint.</p>
 
       
-      
-        <h2 id="Remote_Debug_jni_Code">Remote Debug jni Code</h2><a id="more"></a>
-<p>1.Start your java application, set the breakpoint in java before call jni function</p>
-<pre><code>java -Xdebug -Xrunjdwp:<span class="variable">transport=</span>dt_socket,<span class="variable">address=</span><span class="number">6666</span>,<span class="variable">server=</span>y,<span class="variable">suspend=</span>y com.kero.test.HelloJNI
-</code></pre><p>2.Look up the pid using top, ps, …</p>
-<pre><code><span class="keyword">ps</span> -ef |<span class="keyword">grep</span> <span class="keyword">com</span>.kero.test.HelloJNI
-</code></pre><p>3.Start gdb with this pid</p>
-<pre><code>gdb -<span class="tag">p</span> pidnum
-</code></pre><p>or<br>    gdb -p $(ps -ef |grep com.kero.test.HelloJNI |grep -v ‘grep’|awk ‘{print $2}’)</p>
-<p>4.Attach your program code</p>
-<pre><code>dir XXX<span class="regexp">/HelloJNI/</span>
-</code></pre><p>5.Debug as usual using gdb</p>
-<pre><code><span class="tag">b</span> function_name_XXX
-</code></pre><p>6.Continue in java</p>
-<p>Now, you will it will stop in c code where you set breakpoint.</p>
-
-      
     </div>
     
   </div>

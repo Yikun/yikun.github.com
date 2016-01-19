@@ -274,65 +274,6 @@ ngx_trylock_accept_mutex(ngx_cycle_t <span class="subst">*</span>cycle)
 </code></pre><p>总结一下就是说，拿到锁了，就监听事件，拿不到就不能监听。若ngx_accept_mutex_held为1，则拥有了把accept事件加入到自己的ngx_posted_accept_events的权利。</p>
 
       
-      
-        <h3 id="1-_概述">1. 概述</h3><p>本文主要学习了nginx连接accept的步骤，以及nginx的负载均衡的方法。<br><a id="more"></a></p>
-<h3 id="2-_建立连接过程">2. 建立连接过程</h3><p>处理新链接事件的回调函数是ngx_event_accept函数，当处理建立连接事件的时候就调用ngx_event_accept函数。该函数的具体步骤如下所示。</p>
-<p>1.调用accpet方法。</p>
-<pre><code>s=<span class="function"><span class="title">accept</span><span class="params">(lc-&gt;fd, (struct sockaddr *)</span><span class="title">sa</span></span>, &amp;socklen)
-</code></pre><p>2.设置负载均衡的阈值。</p>
-<pre><code>ngx_accept_disabled = ngx_cycle-&gt;connection_n/<span class="number">8</span> - ngx_cycle-&gt;free_connection_n;
-</code></pre><p>3.从连接池获取连接。</p>
-<pre><code>c <span class="subst">=</span> ngx_get_connection(s, ev<span class="subst">-&gt;</span><span class="keyword">log</span>);
-</code></pre><p>4.给连接分配内存空间。</p>
-<p>5.设置套接字属性，设置非阻塞<br>        ngx_nonblocking(s)</p>
-<p>6.将连接加入事件循环。<br>        ngx_add_conn(c)</p>
-<pre><code><span class="hexcolor">#def</span>ine ngx_add_conn         ngx_event_actions.add_conn
-</code></pre><p>7.调用监听对象的回调方法。</p>
-<h3 id="3-_负载均衡问题">3. 负载均衡问题</h3><p>在建立连接前需要使用ngx_trylock_accept_mutex()去“抢锁”，抢到锁了之后，才有资格去accept连接。</p>
-<p>代码比较简单，拿出来分析一下</p>
-<pre><code>ngx_int_t
-ngx_trylock_accept_mutex(ngx_cycle_t <span class="subst">*</span>cycle)
-{
-    <span class="comment">//尝试锁，无论取到还是未取到，均立即返回，取到返回1，否则返回0。</span>
-    <span class="keyword">if</span> (ngx_shmtx_trylock(<span class="subst">&amp;</span>ngx_accept_mutex)) {
-
-        ngx_log_debug0(NGX_LOG_DEBUG_EVENT, cycle<span class="subst">-&gt;</span><span class="keyword">log</span>, <span class="number">0</span>,
-                       <span class="string">"accept mutex locked"</span>);
-
-        <span class="keyword">if</span> (ngx_accept_mutex_held
-            <span class="subst">&amp;&amp;</span> ngx_accept_events <span class="subst">==</span> <span class="number">0</span>
-            <span class="subst">&amp;&amp;</span> <span class="subst">!</span>(ngx_event_flags <span class="subst">&amp;</span> NGX_USE_RTSIG_EVENT))
-        {
-            <span class="keyword">return</span> NGX_OK;
-        }
-        <span class="comment">//将所有读事件加入epoll</span>
-        <span class="keyword">if</span> (ngx_enable_accept_events(cycle) <span class="subst">==</span> NGX_ERROR) {
-            ngx_shmtx_unlock(<span class="subst">&amp;</span>ngx_accept_mutex);
-            <span class="keyword">return</span> NGX_ERROR;
-        }
-
-        ngx_accept_events <span class="subst">=</span> <span class="number">0</span>;
-        ngx_accept_mutex_held <span class="subst">=</span> <span class="number">1</span>;
-
-        <span class="keyword">return</span> NGX_OK;
-    }
-
-    ngx_log_debug1(NGX_LOG_DEBUG_EVENT, cycle<span class="subst">-&gt;</span><span class="keyword">log</span>, <span class="number">0</span>,
-                   <span class="string">"accept mutex lock failed: %ui"</span>, ngx_accept_mutex_held);
-    <span class="comment">//未取到锁，ngx_accept_mutex_held还为1，则删除所有监听的读事件</span>
-    <span class="keyword">if</span> (ngx_accept_mutex_held) {
-        <span class="keyword">if</span> (ngx_disable_accept_events(cycle) <span class="subst">==</span> NGX_ERROR) {
-            <span class="keyword">return</span> NGX_ERROR;
-        }
-
-        ngx_accept_mutex_held <span class="subst">=</span> <span class="number">0</span>;
-    }
-
-    <span class="keyword">return</span> NGX_OK;
-}
-</code></pre><p>总结一下就是说，拿到锁了，就监听事件，拿不到就不能监听。若ngx_accept_mutex_held为1，则拥有了把accept事件加入到自己的ngx_posted_accept_events的权利。</p>
-
-      
     </div>
     
   </div>

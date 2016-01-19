@@ -263,28 +263,6 @@ f() + (f()&amp;lt;&amp;lt;1) + (f()&amp;lt;&amp;lt;2)
 </blockquote>
 
       
-      
-        <p>今天和tiancai交流他腾讯面试题目的时候，有这么一个题目，大致是这样描述的：</p>
-<blockquote>
-<p>有一个函数f，可以等概率产生0,1，写一个函数g，可以等概率地产生0~7中的数。</p>
-</blockquote>
-<p>于是，我写出了如下一个错误的解法：</p>
-<blockquote>
-<p>f()+f()&lt;&lt;1+f()&lt;&lt;2</p>
-</blockquote>
-<p>而正确的应该是：</p>
-<blockquote>
-<p>f() + (f()&lt;&lt;1) + (f()&lt;&lt;2)</p>
-</blockquote>
-<p>之前一直有误解，而实际情况是是<strong>移位操作符的优先级低于加减法的优先级</strong>。为了验证和加深记忆，又写了一个小测试：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"1&lt;&lt;1+2&lt;&lt;1:     %d\n"</span>, <span class="number">1</span>&lt;&lt;<span class="number">1</span>+<span class="number">2</span>&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"1&lt;&lt;(1+2)&lt;&lt;1:   %d\n"</span>, <span class="number">1</span>&lt;&lt;(<span class="number">1</span>+<span class="number">2</span>)&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"(1&lt;&lt;1)+(2&lt;&lt;1): %d\n"</span>, (<span class="number">1</span>&lt;&lt;<span class="number">1</span>)+(<span class="number">2</span>&lt;&lt;<span class="number">1</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>输出为:<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>&lt;&lt;<span class="number">1</span><span class="number">+2</span>&lt;&lt;<span class="number">1</span>:     <span class="number">16</span></span><br><span class="line"><span class="number">1</span>&lt;&lt;<span class="comment">(1+2)</span>&lt;&lt;<span class="number">1</span>:   <span class="number">16</span></span><br><span class="line"><span class="comment">(1&lt;&lt;1)</span>+<span class="comment">(2&lt;&lt;1)</span>: <span class="number">6</span></span><br></pre></td></tr></table></figure></p>
-<p>其中编译的时候，也有一个友情提示：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">main.<span class="string">c:</span><span class="number">4</span>:<span class="number">36</span>: <span class="string">warning:</span> operator <span class="string">'&lt;&lt;'</span> has lower precedence than <span class="string">'+'</span>; <span class="string">'+'</span> will be</span><br><span class="line">      evaluated first [-Wshift-op-parentheses]</span><br><span class="line">        printf(<span class="string">"1&lt;&lt;1+2&lt;&lt;1:     %d\n"</span>, <span class="number">1</span>&lt;&lt;<span class="number">1</span>+<span class="number">2</span>&lt;&lt;<span class="number">1</span>);</span><br><span class="line">                                       ~~~^~</span><br><span class="line">main.<span class="string">c:</span><span class="number">4</span>:<span class="number">36</span>: <span class="string">note:</span> place parentheses around the <span class="string">'+'</span> expression to silence <span class="keyword">this</span></span><br><span class="line">      warning</span><br><span class="line">        printf(<span class="string">"1&lt;&lt;1+2&lt;&lt;1:     %d\n"</span>, <span class="number">1</span>&lt;&lt;<span class="number">1</span>+<span class="number">2</span>&lt;&lt;<span class="number">1</span>);</span><br><span class="line">                                          ^</span><br><span class="line">                                         (  )</span><br><span class="line"><span class="number">1</span> warning generated.</span><br></pre></td></tr></table></figure></p>
-<p>最后，</p>
-<blockquote>
-<p>希望自己永远保持一颗怀疑的心。</p>
-</blockquote>
-
-      
     </div>
     
   </div>
