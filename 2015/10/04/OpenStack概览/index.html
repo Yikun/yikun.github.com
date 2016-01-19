@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>OpenStack概览 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="1. 概览
@@ -28,8 +29,8 @@ OpenStack is a cloud operating system that controls large pools of compute, stor
     <link rel="icon" href="/favicon.png">
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 </head>
+
 <body>
   <div id="container">
     <div class="left-col">
@@ -37,7 +38,9 @@ OpenStack is a cloud operating system that controls large pools of compute, stor
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/assets/photo.jpg">
+			
+			<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 		</a>
 
 		<hgroup>
@@ -66,7 +69,7 @@ OpenStack is a cloud operating system that controls large pools of compute, stor
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>标签</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -120,6 +123,7 @@ OpenStack is a cloud operating system that controls large pools of compute, stor
 		</div>
 	</header>				
 </div>
+
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
@@ -130,11 +134,13 @@ OpenStack is a cloud operating system that controls large pools of compute, stor
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/assets/photo.jpg">
-				<hgroup>
-				  <h1 class="header-author">Yikun</h1>
-				</hgroup>
+			
+				<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 			</div>
+			<hgroup>
+			  <h1 class="header-author">Yikun</h1>
+			</hgroup>
 			
 			<nav class="header-menu">
 				<ul>
@@ -166,6 +172,7 @@ OpenStack is a cloud operating system that controls large pools of compute, stor
 		</header>				
 	</div>
 </nav>
+
       <div class="body-wrap"><article id="post-OpenStack概览" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -202,6 +209,49 @@ OpenStack is a cloud operating system that controls large pools of compute, stor
       
     
     <div class="article-entry" itemprop="articleBody">
+      
+        
+           
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_概览"><span class="toc-text">1. 概览</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_核心功能"><span class="toc-text">2. 核心功能</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
+             </div>
+             <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               setTimeout("_article.className += ' article2'",0);
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);
+             </script>
+           
+         
+        <h3 id="1-_概览">1. 概览</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/10267380/3f2d8b74-6ac4-11e5-9372-6bc21c57f11f.png" alt="openstack-software-diagram"></p>
+<blockquote>
+<p>OpenStack is a <strong>cloud operating system</strong> that controls large pools of <strong>compute</strong>, <strong>storage</strong>, and <strong>networking</strong> resources throughout a datacenter, all managed through a <strong>dashboard</strong> that gives administrators control while empowering their users to provision resources through a web interface.</p>
+</blockquote>
+<a id="more"></a>
+<p>正如OpenStack官方定义的那样，OpenStack是一个云操作系统，他管理这大量的计算、存储、网络资源，也提供了一个dashborad让管理员通过Web接口方便的管理资源。目前的版本已经是K版了，在看了<a href="https://www.youtube.com/v/y39CAXJAW3M" target="_blank" rel="external">OpenStack Kilo Overview Demo</a>的视频后，对OpenStack有了最初的了解。</p>
+<h3 id="2-_核心功能">2. 核心功能</h3><p><strong>Compute</strong></p>
+<blockquote>
+<p><strong>Provision and manage large networks of virtual machines.</strong></p>
+<p>The OpenStack cloud operating system enables enterprises and service providers to <strong>offer on-demand computing resources</strong>, by provisioning and managing large networks of virtual machines. Compute resources are accessible via <strong>APIs</strong> for developers building cloud applications and via <strong>web interfaces</strong> for administrators and users. The compute architecture is designed to <strong>scale horizontally</strong> on standard hardware, enabling the cloud economics companies have come to expect.</p>
+</blockquote>
+<p>几个关键信息：按需提供计算资源、提供API给开发者、提供Web接口给用户、横向扩展。然后又专门介绍了OpenStack的灵活的架构，它支持各种不同的硬件，比如普通的计算机可以，高性能计算机也可以；也支持不同的软件，比如支持各种不同的虚拟化技术，比如KVM、XEN、LXC等等。</p>
+<p><strong>Storage</strong></p>
+<blockquote>
+<p>Object and block storage for use with servers and applications.</p>
+<p>In addition to traditional enterprise-class storage technology, many organizations now have a variety of storage needs with varying performance and price requirements. OpenStack has support for both <strong>Object Storage</strong> and <strong>Block Storage</strong>, with many deployment options for each depending on the use case. </p>
+<p>Object Storage is ideal for <strong>cost effective, scale-out</strong> storage. It provides a fully distributed, API-accessible storage platform that can be integrated directly into applications or used for backup, archiving and data retention. Block Storage allows block devices to be exposed and connected to compute instances for <strong>expanded storage, better performance and integration</strong> with enterprise storage platforms, such as NetApp, Nexenta and SolidFire.</p>
+</blockquote>
+<p>几个关键信息，提供了对象存储和块存储，对象存储有高效的成本，横向扩展性，块存储则为了更好的扩容、更好的性能以及和企业其他存储平台的集成。</p>
+<p><strong>Network</strong></p>
+<blockquote>
+<p>Pluggable, scalable, API-driven network and ip management.</p>
+<p>Today’s datacenter networks contain more devices than ever before servers, network equipment, storage systems and security appliances — many of which are further divided into virtual machines and virtual networks. The number of IP addresses, routing configurations and security rules can quickly grow into the millions. Traditional network management techniques fall short of providing a <strong>truly scalable, automated approach to managing these next-generation networks</strong>. At the same time, <strong>users expect more control and flexibility with quicker provisioning</strong>.</p>
+<p>OpenStack Networking is a <strong>pluggable</strong>, <strong>scalable</strong> and <strong>API-driven</strong> system for managing networks and IP addresses. Like other aspects of the cloud operating system, it can be used by administrators and users to increase the value of existing datacenter assets. OpenStack Networking ensures the network will not be the bottleneck or limiting factor in a cloud deployment and gives users real self service, even over their network configurations.</p>
+</blockquote>
+<p>关键信息：现今数据中心的设备越来越多，配置也非常多，需要一个可扩展、自动化的管理下一代网络，同时用户也希望仅通过快速配置，掌控更多，更灵活。所以就有OpenStack Networking了，一个用于管理网络和IP的可插拔、可扩展、API驱动的系统。</p>
+<h3 id="参考资料">参考资料</h3><p><a href="http://www.openstack.org/software/" target="_blank" rel="external">OpenStack官方介绍</a></p>
+
+      
       
         <h3 id="1-_概览">1. 概览</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/10267380/3f2d8b74-6ac4-11e5-9372-6bc21c57f11f.png" alt="openstack-software-diagram"></p>
 <blockquote>
@@ -260,20 +310,26 @@ OpenStack is a cloud operating system that controls large pools of compute, stor
 </article>
 
 
-<div class="share">
+<div class="share_jia">
 	<!-- JiaThis Button BEGIN -->
 	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
 		<a class="jiathis_button_cqq"></a>
 		<a class="jiathis_button_douban"></a>
 		<a class="jiathis_button_weixin"></a>
 		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
 	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
 	<!-- JiaThis Button END -->
 </div>
+
+
+
 
 
 
@@ -298,6 +354,7 @@ OpenStack is a cloud operating system that controls large pools of compute, stor
 
 
 
+
 </div>
       <footer id="footer">
   <div class="outer">
@@ -314,17 +371,28 @@ OpenStack is a cloud operating system that controls large pools of compute, stor
     </div>
     
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<script src="/js/mobile.js" type="text/javascript"></script>
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="/js/main.js" type="text/javascript"></script>
 
 
 
 
 
-<! -- mathjax config similar to math.stackexchange -->
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -345,7 +413,6 @@ MathJax.Hub.Queue(function() {
 
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-
 
 
   </div>

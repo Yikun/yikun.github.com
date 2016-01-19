@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Java CopyOnWriteArrayList工作原理及实现 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="并发优化的ArrayList。用CopyOnWrite策略，在修改时先复制一个快照来修改，改完再让内部指针指向新数组。
@@ -27,8 +28,8 @@
     <link rel="icon" href="/favicon.png">
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 </head>
+
 <body>
   <div id="container">
     <div class="left-col">
@@ -36,7 +37,9 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/assets/photo.jpg">
+			
+			<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 		</a>
 
 		<hgroup>
@@ -65,7 +68,7 @@
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>标签</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -119,6 +122,7 @@
 		</div>
 	</header>				
 </div>
+
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
@@ -129,11 +133,13 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/assets/photo.jpg">
-				<hgroup>
-				  <h1 class="header-author">Yikun</h1>
-				</hgroup>
+			
+				<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 			</div>
+			<hgroup>
+			  <h1 class="header-author">Yikun</h1>
+			</hgroup>
 			
 			<nav class="header-menu">
 				<ul>
@@ -165,6 +171,7 @@
 		</header>				
 	</div>
 </nav>
+
       <div class="body-wrap"><article id="post-Java-CopyOnWriteArrayList工作原理及实现" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -202,6 +209,17 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+        
+           
+         
+        <blockquote>
+<p>并发优化的ArrayList。用CopyOnWrite策略，在修改时先复制一个快照来修改，改完再让内部指针指向新数组。</p>
+<p>因为对快照的修改对读操作来说不可见，所以只有写锁没有读锁，加上复制的昂贵成本，典型的适合读多写少的场景。如果更新频率较高，或数组较大时，还是Collections.synchronizedList(list)，对所有操作用同一把锁来保证线程安全更好。</p>
+<p>增加了addIfAbsent(e)方法，会遍历数组来检查元素是否已存在，性能可想像的不会太好。</p>
+</blockquote>
+
+      
+      
         <blockquote>
 <p>并发优化的ArrayList。用CopyOnWrite策略，在修改时先复制一个快照来修改，改完再让内部指针指向新数组。</p>
 <p>因为对快照的修改对读操作来说不可见，所以只有写锁没有读锁，加上复制的昂贵成本，典型的适合读多写少的场景。如果更新频率较高，或数组较大时，还是Collections.synchronizedList(list)，对所有操作用同一把锁来保证线程安全更好。</p>
@@ -237,20 +255,26 @@
 </article>
 
 
-<div class="share">
+<div class="share_jia">
 	<!-- JiaThis Button BEGIN -->
 	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
 		<a class="jiathis_button_cqq"></a>
 		<a class="jiathis_button_douban"></a>
 		<a class="jiathis_button_weixin"></a>
 		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
 	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
 	<!-- JiaThis Button END -->
 </div>
+
+
+
 
 
 
@@ -275,6 +299,7 @@
 
 
 
+
 </div>
       <footer id="footer">
   <div class="outer">
@@ -291,17 +316,28 @@
     </div>
     
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<script src="/js/mobile.js" type="text/javascript"></script>
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="/js/main.js" type="text/javascript"></script>
 
 
 
 
 
-<! -- mathjax config similar to math.stackexchange -->
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -322,7 +358,6 @@ MathJax.Hub.Queue(function() {
 
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-
 
 
   </div>

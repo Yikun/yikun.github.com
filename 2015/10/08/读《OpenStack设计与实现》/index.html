@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>读《OpenStack设计与实现》 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="初始OpenStack和开发基础
@@ -26,8 +27,8 @@ OpenStack起于RakeSpace和NASA的合作，相关知识涉及到了云计算和�
     <link rel="icon" href="/favicon.png">
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 </head>
+
 <body>
   <div id="container">
     <div class="left-col">
@@ -35,7 +36,9 @@ OpenStack起于RakeSpace和NASA的合作，相关知识涉及到了云计算和�
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/assets/photo.jpg">
+			
+			<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 		</a>
 
 		<hgroup>
@@ -64,7 +67,7 @@ OpenStack起于RakeSpace和NASA的合作，相关知识涉及到了云计算和�
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>标签</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -118,6 +121,7 @@ OpenStack起于RakeSpace和NASA的合作，相关知识涉及到了云计算和�
 		</div>
 	</header>				
 </div>
+
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
@@ -128,11 +132,13 @@ OpenStack起于RakeSpace和NASA的合作，相关知识涉及到了云计算和�
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/assets/photo.jpg">
-				<hgroup>
-				  <h1 class="header-author">Yikun</h1>
-				</hgroup>
+			
+				<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 			</div>
+			<hgroup>
+			  <h1 class="header-author">Yikun</h1>
+			</hgroup>
 			
 			<nav class="header-menu">
 				<ul>
@@ -164,6 +170,7 @@ OpenStack起于RakeSpace和NASA的合作，相关知识涉及到了云计算和�
 		</header>				
 	</div>
 </nav>
+
       <div class="body-wrap"><article id="post-读《OpenStack设计与实现》" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -200,6 +207,54 @@ OpenStack起于RakeSpace和NASA的合作，相关知识涉及到了云计算和�
       
     
     <div class="article-entry" itemprop="articleBody">
+      
+        
+           
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#初始OpenStack和开发基础"><span class="toc-text">初始OpenStack和开发基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#虚拟化"><span class="toc-text">虚拟化</span></a></li></ol>
+             </div>
+             <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               setTimeout("_article.className += ' article2'",0);
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);
+             </script>
+           
+         
+        <h3 id="初始OpenStack和开发基础">初始OpenStack和开发基础</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/10370055/daf455b2-6e0f-11e5-98c3-d3e17ee7d97d.PNG" alt="openstack_ch1ch2"></p>
+<p>OpenStack起于RakeSpace和NASA的合作，相关知识涉及到了云计算和虚拟化，体系结构上来看OpenStack是处于Iaas层，目前来看，还是处于追随AWS的阶段。OpenStack的子项目从新项目、孵化项目最终发展成为核心及集成项目。</p>
+<a id="more"></a>
+<p>作者比较文艺，对于文档的重要性是这么描述的：</p>
+<blockquote>
+<p>每一个项目，每一个模块，甚至每一行代码都有着自己的故事，这些故事都应该被留存在自己的历史档案里，而我们大部分的时间都只是他们的过客而已。</p>
+</blockquote>
+<p>另外，还有一个重要的东西就是Code Review，核心思想：</p>
+<blockquote>
+<p>一旦一个问题被充分地描述了他的细节，那么解决方法也是显而易见的。</p>
+</blockquote>
+<p>OpenStack的代码质量保证体系大概就是以下几点：</p>
+<ul>
+<li>编码规范：编码规范遵循着PEP-8，使用Flake8进行代码静态检测；</li>
+<li>代码评审：使用Gerrit进行代码评审，保证所有代码都Code Review后才能Merge；</li>
+<li>单元测试：位于tests目录，使用tox执行；</li>
+<li>持续集成：使用Jenkins来做自动化测试，测试例则用Tempest框架</li>
+</ul>
+<p>其实，整个过程还是比较清晰的，现在只是大致了解一下过程，后面真正开发的时候亲身体验一下再深入理解。最后，又介绍了一些关于贡献代码、文档、Review之类的一些说明，其中，Feature的贡献，需要先在Blueprint提出来一些想法和设计，然后通过后再在spec里详细描述一些细节。</p>
+<p>对于阅读代码，也给了一个基本的思路，因为代码的脉络比较复杂，所以推荐先阅读setup.cfg，然后从entry point入手，逐个功能、服务去突破。OpenStack牵扯到的背景知识，主要有Python、Linux、网络基础、虚拟化、Git，除了虚拟化外，其他掌握的还行。所以，后面多看看虚拟化方面的内容。</p>
+<h3 id="虚拟化">虚拟化</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/10417118/0f341a10-7063-11e5-8e1d-63e13f5eadb4.png" alt="default"></p>
+<p>对于OpenStack来说，虚拟化相关内容是非常核心的内容，自然本书的第三章独立出来介绍虚拟化的知识。<br>虚拟化的按照实现方式来说，主要分为Hypervisior模型和Hosted模型。</p>
+<ul>
+<li>Hypervisior模型，VMM直接运行在硬件平台上，控制所有硬件并管理客户操作系统。操作系统运行在VMM之上；</li>
+<li>Hosted模型，VMM则是在操作系统之上，就想是操作系统的一个软件层。</li>
+</ul>
+<p>按照平台类型来说，则大致分为完全虚拟化和类虚拟化。</p>
+<ul>
+<li>完全虚拟化，最初是使用二进制翻译实现的，后期硬件支持后，也可以通过硬件辅助支持；</li>
+<li>类虚拟化，通过修改系统内核来实现，通用性较差。<br>虚拟化包括了CPU虚拟化、内存虚拟化、I/O虚拟化、网络虚拟化，引入虚拟化后主要的特性为：动态迁移、快照、克隆，这些新特性对于目前对需要长时间稳定运行的系统来说，有非常重要的意义。</li>
+</ul>
+<p>对于虚拟化相关知识，有参考了一些其他资料：<br><a href="http://book.douban.com/subject/19986436/" target="_blank" rel="external">《虚拟化技术原理与实现》</a><br><a href="http://book.douban.com/subject/3619896/" target="_blank" rel="external">《系统虚拟化原理与实现》</a><br><a href="http://www.vmware.com/files/pdf/VMware_paravirtualization.pdf" target="_blank" rel="external">Understanding Full Virtualization, Paravirtualization, and Hardware Assist</a>(<a href="http://blog.csdn.net/flyforfreedom2008/article/details/45113635" target="_blank" rel="external">翻译</a>)</p>
+
+      
       
         <h3 id="初始OpenStack和开发基础">初始OpenStack和开发基础</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/10370055/daf455b2-6e0f-11e5-98c3-d3e17ee7d97d.PNG" alt="openstack_ch1ch2"></p>
 <p>OpenStack起于RakeSpace和NASA的合作，相关知识涉及到了云计算和虚拟化，体系结构上来看OpenStack是处于Iaas层，目前来看，还是处于追随AWS的阶段。OpenStack的子项目从新项目、孵化项目最终发展成为核心及集成项目。</p>
@@ -263,20 +318,26 @@ OpenStack起于RakeSpace和NASA的合作，相关知识涉及到了云计算和�
 </article>
 
 
-<div class="share">
+<div class="share_jia">
 	<!-- JiaThis Button BEGIN -->
 	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
 		<a class="jiathis_button_cqq"></a>
 		<a class="jiathis_button_douban"></a>
 		<a class="jiathis_button_weixin"></a>
 		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
 	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
 	<!-- JiaThis Button END -->
 </div>
+
+
+
 
 
 
@@ -301,6 +362,7 @@ OpenStack起于RakeSpace和NASA的合作，相关知识涉及到了云计算和�
 
 
 
+
 </div>
       <footer id="footer">
   <div class="outer">
@@ -317,17 +379,28 @@ OpenStack起于RakeSpace和NASA的合作，相关知识涉及到了云计算和�
     </div>
     
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<script src="/js/mobile.js" type="text/javascript"></script>
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="/js/main.js" type="text/javascript"></script>
 
 
 
 
 
-<! -- mathjax config similar to math.stackexchange -->
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -348,7 +421,6 @@ MathJax.Hub.Queue(function() {
 
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-
 
 
   </div>

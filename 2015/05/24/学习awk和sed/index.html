@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>学习awk和sed | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="最近把awk和sed又系统地学习了下，使用百度脑图简单地整理了一下大概的思路：
@@ -25,8 +26,8 @@
     <link rel="icon" href="/favicon.png">
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 </head>
+
 <body>
   <div id="container">
     <div class="left-col">
@@ -34,7 +35,9 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/assets/photo.jpg">
+			
+			<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 		</a>
 
 		<hgroup>
@@ -63,7 +66,7 @@
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>标签</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -117,6 +120,7 @@
 		</div>
 	</header>				
 </div>
+
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
@@ -127,11 +131,13 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/assets/photo.jpg">
-				<hgroup>
-				  <h1 class="header-author">Yikun</h1>
-				</hgroup>
+			
+				<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 			</div>
+			<hgroup>
+			  <h1 class="header-author">Yikun</h1>
+			</hgroup>
 			
 			<nav class="header-menu">
 				<ul>
@@ -163,6 +169,7 @@
 		</header>				
 	</div>
 </nav>
+
       <div class="body-wrap"><article id="post-学习awk和sed" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -200,6 +207,14 @@
     
     <div class="article-entry" itemprop="articleBody">
       
+        
+           
+         
+        <p>最近把awk和sed又系统地学习了下，使用<a href="http://naotu.baidu.com/" target="_blank" rel="external">百度脑图</a>简单地整理了一下大概的思路：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7785009/0d604ea2-01af-11e5-8fdc-b658a02e76bc.png" alt="awk sed"></p>
+<p>参考资料<br><a href="http://book.douban.com/subject/1236944/" target="_blank" rel="external">《sed与awk》</a><br><a href="http://coolshell.cn/articles/9104.html" target="_blank" rel="external">sed 简明教程</a><br><a href="http://coolshell.cn/articles/9070.html" target="_blank" rel="external">awk 简明教程</a></p>
+
+      
+      
         <p>最近把awk和sed又系统地学习了下，使用<a href="http://naotu.baidu.com/" target="_blank" rel="external">百度脑图</a>简单地整理了一下大概的思路：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7785009/0d604ea2-01af-11e5-8fdc-b658a02e76bc.png" alt="awk sed"></p>
 <p>参考资料<br><a href="http://book.douban.com/subject/1236944/" target="_blank" rel="external">《sed与awk》</a><br><a href="http://coolshell.cn/articles/9104.html" target="_blank" rel="external">sed 简明教程</a><br><a href="http://coolshell.cn/articles/9070.html" target="_blank" rel="external">awk 简明教程</a></p>
 
@@ -232,20 +247,26 @@
 </article>
 
 
-<div class="share">
+<div class="share_jia">
 	<!-- JiaThis Button BEGIN -->
 	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
 		<a class="jiathis_button_cqq"></a>
 		<a class="jiathis_button_douban"></a>
 		<a class="jiathis_button_weixin"></a>
 		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
 	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
 	<!-- JiaThis Button END -->
 </div>
+
+
+
 
 
 
@@ -270,6 +291,7 @@
 
 
 
+
 </div>
       <footer id="footer">
   <div class="outer">
@@ -286,17 +308,28 @@
     </div>
     
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<script src="/js/mobile.js" type="text/javascript"></script>
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="/js/main.js" type="text/javascript"></script>
 
 
 
 
 
-<! -- mathjax config similar to math.stackexchange -->
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -317,7 +350,6 @@ MathJax.Hub.Queue(function() {
 
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-
 
 
   </div>

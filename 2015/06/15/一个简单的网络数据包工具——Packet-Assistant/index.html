@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>一个简单的网络数据包工具——Packet Assistant | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="1. 起因最近一段时间，总是有一些发数据包、抓数据包之类的需求，主要是需要定制以太网MAC层的源MAC地址、目的MAC地址、协议类型之类的东西。
@@ -34,8 +35,8 @@ Packet Assist">
     <link rel="icon" href="/favicon.png">
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 </head>
+
 <body>
   <div id="container">
     <div class="left-col">
@@ -43,7 +44,9 @@ Packet Assist">
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/assets/photo.jpg">
+			
+			<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 		</a>
 
 		<hgroup>
@@ -72,7 +75,7 @@ Packet Assist">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>标签</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -126,6 +129,7 @@ Packet Assist">
 		</div>
 	</header>				
 </div>
+
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
@@ -136,11 +140,13 @@ Packet Assist">
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/assets/photo.jpg">
-				<hgroup>
-				  <h1 class="header-author">Yikun</h1>
-				</hgroup>
+			
+				<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 			</div>
+			<hgroup>
+			  <h1 class="header-author">Yikun</h1>
+			</hgroup>
 			
 			<nav class="header-menu">
 				<ul>
@@ -172,6 +178,7 @@ Packet Assist">
 		</header>				
 	</div>
 </nav>
+
       <div class="body-wrap"><article id="post-一个简单的网络数据包工具——Packet-Assistant" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -208,6 +215,39 @@ Packet Assist">
       
     
     <div class="article-entry" itemprop="articleBody">
+      
+        
+           
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_起因"><span class="toc-text">1. 起因</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_依赖"><span class="toc-text">2. 依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_截图"><span class="toc-text">3. 截图</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-_最后"><span class="toc-text">4. 最后</span></a></li></ol>
+             </div>
+             <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               setTimeout("_article.className += ' article2'",0);
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);
+             </script>
+           
+         
+        <h3 id="1-_起因">1. 起因</h3><p>最近一段时间，总是有一些<strong>发数据包、抓数据包</strong>之类的需求，主要是需要定制以太网MAC层的源MAC地址、目的MAC地址、协议类型之类的东西。</p>
+<p>之前实现这些都是用Winpcap实现的，然后用某基础类库去实现界面，实在是受不了“某基础类库”庞大冗余的结构了。这时，看到了PyQt，整个人一下清爽起来。所以，Packet Assistant就诞生了。</p>
+<p>总而言之，言而总之：</p>
+<blockquote>
+<p>Packet Assistant是一个简单的发包、抓包工具。</p>
+</blockquote>
+<a id="more"></a>
+<h3 id="2-_依赖">2. 依赖</h3><ul>
+<li><a href="http://www.riverbankcomputing.com/software/pyqt/download" target="_blank" rel="external">PyQt 4</a></li>
+</ul>
+<p>Python底下其实有很多的GUI库，比如<a href="http://www.zhihu.com/question/27159913" target="_blank" rel="external">这里</a>提到的一些，因为之前对C++的Qt比较熟，所以，比较能够理解Qt的设计思想，用PyQt的时候，也觉得还好，和原生Qt没什么差，主要是考虑了需要一个类似Qt Designer的东西快速搭界面。所以就选了PyQt了。</p>
+<ul>
+<li><a href="https://github.com/CoreSecurity/pcapy/wiki/Compiling-Pcapy-on-Windows-Guide" target="_blank" rel="external">Pcapy</a></li>
+</ul>
+<p>Python网络抓包的库，Winpcap官网的<a href="https://www.winpcap.org/misc/links.htm" target="_blank" rel="external">友情链接</a>提到了这个库，比起<a href="https://github.com/dugsong/pypcap" target="_blank" rel="external">PyPcap</a>，Pcapy的例子、支持感觉更好些。</p>
+<h3 id="3-_截图">3. 截图</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/8158460/d367be9a-138f-11e5-84ae-346611f8aa59.png" alt="packetassist"></p>
+<h3 id="4-_最后">4. 最后</h3><p>Enjoy it! :+1: </p>
+
+      
       
         <h3 id="1-_起因">1. 起因</h3><p>最近一段时间，总是有一些<strong>发数据包、抓数据包</strong>之类的需求，主要是需要定制以太网MAC层的源MAC地址、目的MAC地址、协议类型之类的东西。</p>
 <p>之前实现这些都是用Winpcap实现的，然后用某基础类库去实现界面，实在是受不了“某基础类库”庞大冗余的结构了。这时，看到了PyQt，整个人一下清爽起来。所以，Packet Assistant就诞生了。</p>
@@ -256,20 +296,26 @@ Packet Assist">
 </article>
 
 
-<div class="share">
+<div class="share_jia">
 	<!-- JiaThis Button BEGIN -->
 	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
 		<a class="jiathis_button_cqq"></a>
 		<a class="jiathis_button_douban"></a>
 		<a class="jiathis_button_weixin"></a>
 		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
 	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
 	<!-- JiaThis Button END -->
 </div>
+
+
+
 
 
 
@@ -294,6 +340,7 @@ Packet Assist">
 
 
 
+
 </div>
       <footer id="footer">
   <div class="outer">
@@ -310,17 +357,28 @@ Packet Assist">
     </div>
     
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<script src="/js/mobile.js" type="text/javascript"></script>
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="/js/main.js" type="text/javascript"></script>
 
 
 
 
 
-<! -- mathjax config similar to math.stackexchange -->
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -341,7 +399,6 @@ MathJax.Hub.Queue(function() {
 
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-
 
 
   </div>

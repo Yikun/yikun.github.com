@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Linux Record | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="User Group Password Setuseradd –d /home/youtpath yourname
@@ -33,8 +34,8 @@ if accuont is exist, try to using usermod -d /home/yourpath -U you">
     <link rel="icon" href="/favicon.png">
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 </head>
+
 <body>
   <div id="container">
     <div class="left-col">
@@ -42,7 +43,9 @@ if accuont is exist, try to using usermod -d /home/yourpath -U you">
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/assets/photo.jpg">
+			
+			<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 		</a>
 
 		<hgroup>
@@ -71,7 +74,7 @@ if accuont is exist, try to using usermod -d /home/yourpath -U you">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>标签</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -125,6 +128,7 @@ if accuont is exist, try to using usermod -d /home/yourpath -U you">
 		</div>
 	</header>				
 </div>
+
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
@@ -135,11 +139,13 @@ if accuont is exist, try to using usermod -d /home/yourpath -U you">
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/assets/photo.jpg">
-				<hgroup>
-				  <h1 class="header-author">Yikun</h1>
-				</hgroup>
+			
+				<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 			</div>
+			<hgroup>
+			  <h1 class="header-author">Yikun</h1>
+			</hgroup>
 			
 			<nav class="header-menu">
 				<ul>
@@ -171,6 +177,7 @@ if accuont is exist, try to using usermod -d /home/yourpath -U you">
 		</header>				
 	</div>
 </nav>
+
       <div class="body-wrap"><article id="post-linux-record" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -203,6 +210,105 @@ if accuont is exist, try to using usermod -d /home/yourpath -U you">
       
     
     <div class="article-entry" itemprop="articleBody">
+      
+        
+           
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+               <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#User_Group_Password_Set"><span class="toc-text">User Group Password Set</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IP_set"><span class="toc-text">IP set</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#In_Ubuntu"><span class="toc-text">In Ubuntu</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#In_RedHat"><span class="toc-text">In RedHat</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SSH"><span class="toc-text">SSH</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#find"><span class="toc-text">find</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#du"><span class="toc-text">du</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Virtual_IP"><span class="toc-text">Virtual IP</span></a></li></ol>
+             </div>
+             <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               setTimeout("_article.className += ' article2'",0);
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);
+             </script>
+           
+         
+        <a id="more"></a>
+<h2 id="User_Group_Password_Set">User Group Password Set</h2><pre><code>useradd –d <span class="regexp">/home/</span>youtpath yourname
+passwd  yourname
+groupadd yourgroup
+chown <span class="string">yourname:</span>yourgroup <span class="regexp">/home/</span>yourname
+</code></pre><p>if accuont is exist, try to using <code>usermod -d /home/yourpath -U yourname</code></p>
+<h2 id="IP_set">IP set</h2><h3 id="In_Ubuntu">In Ubuntu</h3><p>(/etc/network/interfaces)</p>
+<pre><code><span class="comment"># Dynamic IP</span>
+<span class="title">auto</span> eth0
+iface eth0 inet dhcp
+
+<span class="comment"># Static IP </span>
+auto eth0
+iface eth0 inet static
+address <span class="number">192.168.33.201</span>
+netmask <span class="number">255.255.255.0</span>
+gateway <span class="number">192.168.33.1</span>
+</code></pre><p>then, in shell(also, need sudo):</p>
+<pre><code>ifconfig eth0 <span class="preprocessor">down</span>
+ifconfig eth0 <span class="preprocessor">up</span>
+</code></pre><p>last, try to <code>ifconfig</code> to check result, perhaps you need using <code>/etc/init.d/networking restart</code> to restart all network services</p>
+<h3 id="In_RedHat">In RedHat</h3><p>you need modify 3 files:</p>
+<pre><code><span class="regexp">/etc/</span>sysconfig/network
+<span class="regexp">/etc/</span>sysconfig<span class="regexp">/network-scripts/</span>ifcfg-eth0
+<span class="regexp">/etc/</span>resolv.conf
+</code></pre><p>1./etc/sysconfig/network</p>
+<pre><code><span class="setting">NETWORKING=<span class="value"><span class="keyword">yes</span></span></span>
+<span class="setting">NETWORKING_IPV6=<span class="value"><span class="keyword">no</span></span></span>
+<span class="setting">HOSTNAME=<span class="value">kero</span></span>
+<span class="setting">GATEWAY=<span class="value"><span class="number">192.168</span>.<span class="number">1.1</span></span></span>
+</code></pre><p>2./etc/sysconfig/network-scripts/ifcfg-eth0</p>
+<pre><code><span class="setting">DEVICE=<span class="value">eth0                                </span></span>
+<span class="setting">NETMASK=<span class="value"><span class="number">255.255</span>.<span class="number">255.0</span>             </span></span>
+<span class="setting">IPADDR=<span class="value"><span class="number">192.168</span>.<span class="number">1.88</span>             </span></span>
+<span class="setting">BOOTPROTO=<span class="value">static                      #【none | static | bootp | dhcp】</span></span>
+<span class="setting">ONBOOT=<span class="value"><span class="keyword">yes</span>                            #【<span class="keyword">yes</span> | <span class="keyword">no</span>】引导时是否激活设备</span></span>
+<span class="setting">DNS1=<span class="value"><span class="number">211.99</span>.<span class="number">25.1</span>                      #域名解析服务器</span></span>
+<span class="setting">PEERDNS=<span class="value"><span class="keyword">yes</span></span></span>
+</code></pre><p>3./etc/resolv.conf</p>
+<pre><code><span class="title">nameserver</span> <span class="number">211.99.25.1</span>          <span class="comment">#DNS配置 同2中的 【DNS1=211.99.25.1 】</span>
+</code></pre><p>4.Resart</p>
+<p>   /sbin/ifdown eth0<br>   /sbin/ifup eth0<br>   /etc/init.d/network restart</p>
+<h2 id="SSH">SSH</h2><pre><code>sudo apt-get <span class="operator"><span class="keyword">install</span> openssh-<span class="keyword">server</span></span>
+</code></pre><h2 id="find">find</h2><pre><code>find ./ -name '<span class="keyword">*</span>.<span class="keyword">*</span>' 
+</code></pre><h2 id="du">du</h2><pre><code>du -h --<span class="built_in">max</span>-<span class="built_in">depth</span>=<span class="number">1</span>
+</code></pre><h2 id="Virtual_IP">Virtual IP</h2><ol>
+<li><p>Using <code>ifconfig</code> check your IP and eth</p>
+<p> eth1      Link encap:Ethernet  HWaddr 08:00:27:71:DA:8C</p>
+<pre><code>inet <span class="string">addr:</span>XXX.XXX.XXX.250  <span class="string">Bcast:</span>XXX.XXX.XXX.255  <span class="string">Mask:</span><span class="number">255.255</span>.255.0
+inet6 <span class="string">addr:</span> <span class="string">fe80:</span>:<span class="string">a00:</span><span class="number">27</span><span class="string">ff:</span><span class="string">fe71:</span>da8c/<span class="number">64</span> <span class="string">Scope:</span>Link
+UP BROADCAST RUNNING MULTICAST  <span class="string">MTU:</span><span class="number">1500</span>  <span class="string">Metric:</span><span class="number">1</span>
+RX <span class="string">packets:</span><span class="number">782</span> <span class="string">errors:</span><span class="number">0</span> <span class="string">dropped:</span><span class="number">0</span> <span class="string">overruns:</span><span class="number">0</span> <span class="string">frame:</span><span class="number">0</span>
+TX <span class="string">packets:</span><span class="number">91</span> <span class="string">errors:</span><span class="number">0</span> <span class="string">dropped:</span><span class="number">0</span> <span class="string">overruns:</span><span class="number">0</span> <span class="string">carrier:</span><span class="number">0</span>
+<span class="string">collisions:</span><span class="number">0</span> <span class="string">txqueuelen:</span><span class="number">1000</span>
+RX <span class="string">bytes:</span><span class="number">77624</span> (<span class="number">75.8</span> KiB)  TX <span class="string">bytes:</span><span class="number">14476</span> (<span class="number">14.1</span> KiB)
+Base <span class="string">address:</span><span class="number">0xd240</span> <span class="string">Memory:</span>f0820000-f0840000
+</code></pre></li>
+<li><p>Set the Virtual IP, </p>
+<p> ifconfig eth1:ha1 XXX.XXX.XXX.252 broadcast XXX.XXX.XXX.255 netmask 255.255.255.0 up</p>
+</li>
+</ol>
+<p><code>eth1:ha1</code>, eth1:XXXX, XXXX is your virtual name, modifiy name what you want.</p>
+<p><code>XXX.XXX.XXX.252</code>,  Virtual IP</p>
+<p><code>XXX.XXX.XXX.255</code>, broadcast (Same as eth1 Bcast)</p>
+<p><code>255.255.255.0</code>, netmask (Same as eth1 Mask)</p>
+<p>Also, you can using <code>ifconfig eth1:ha1 XXX.XXX.XXX.252 broadcast XXX.XXX.XXX.255 netmask 255.255.255.0 down</code> shutdown Virtual IP</p>
+<p>After it, you can using <code>ifconfig</code>, check result</p>
+<pre><code><span class="string">eth1:</span>ha1  Link <span class="string">encap:</span>Ethernet  HWaddr <span class="number">08</span>:<span class="number">00</span>:<span class="number">27</span>:<span class="number">71</span>:<span class="string">DA:</span><span class="number">8</span>C
+          inet <span class="string">addr:</span>XXX.XXX.XXX.252  <span class="string">Bcast:</span>XXX.XXX.XXX.255  <span class="string">Mask:</span><span class="number">255.255</span>.255.0
+          UP BROADCAST RUNNING MULTICAST  <span class="string">MTU:</span><span class="number">1500</span>  <span class="string">Metric:</span><span class="number">1</span>
+          Base <span class="string">address:</span><span class="number">0xd240</span> <span class="string">Memory:</span>f0820000-f0840000
+</code></pre><ol>
+<li>To ensure, Ip is unique, you could using arping to check</li>
+</ol>
+<p><code>arping -c 3 -I eth1 -s XXX.XXX.XXX.250 XXX.XXX.XXX.252</code></p>
+<p><code>-c</code> is count, </p>
+<p><code>-I</code> is your eth interface name, </p>
+<p><code>-s XXX.XXX.XXX.250</code> is your now ip(source ip)</p>
+<p><code>XXX.XXX.XXX.252</code> is the virtual ip you want to check</p>
+<ol>
+<li>If not active, you could using </li>
+</ol>
+<p><code>route add -host XXX.XXX.XXX.252 dev eth1:ha1</code></p>
+
+      
       
         <a id="more"></a>
 <h2 id="User_Group_Password_Set">User Group Password Set</h2><pre><code>useradd –d <span class="regexp">/home/</span>youtpath yourname
@@ -317,20 +423,26 @@ Base <span class="string">address:</span><span class="number">0xd240</span> <spa
 </article>
 
 
-<div class="share">
+<div class="share_jia">
 	<!-- JiaThis Button BEGIN -->
 	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
 		<a class="jiathis_button_cqq"></a>
 		<a class="jiathis_button_douban"></a>
 		<a class="jiathis_button_weixin"></a>
 		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
 	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
 	<!-- JiaThis Button END -->
 </div>
+
+
+
 
 
 
@@ -355,6 +467,7 @@ Base <span class="string">address:</span><span class="number">0xd240</span> <spa
 
 
 
+
 </div>
       <footer id="footer">
   <div class="outer">
@@ -371,17 +484,28 @@ Base <span class="string">address:</span><span class="number">0xd240</span> <spa
     </div>
     
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<script src="/js/mobile.js" type="text/javascript"></script>
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="/js/main.js" type="text/javascript"></script>
 
 
 
 
 
-<! -- mathjax config similar to math.stackexchange -->
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -402,7 +526,6 @@ MathJax.Hub.Queue(function() {
 
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-
 
 
   </div>

@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>[译]Threading model | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Threading model
@@ -27,8 +28,8 @@ Green threads use a cooperative model of threading: th">
     <link rel="icon" href="/favicon.png">
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 </head>
+
 <body>
   <div id="container">
     <div class="left-col">
@@ -36,7 +37,9 @@ Green threads use a cooperative model of threading: th">
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/assets/photo.jpg">
+			
+			<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 		</a>
 
 		<hgroup>
@@ -65,7 +68,7 @@ Green threads use a cooperative model of threading: th">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>标签</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -119,6 +122,7 @@ Green threads use a cooperative model of threading: th">
 		</div>
 	</header>				
 </div>
+
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
@@ -129,11 +133,13 @@ Green threads use a cooperative model of threading: th">
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/assets/photo.jpg">
-				<hgroup>
-				  <h1 class="header-author">Yikun</h1>
-				</hgroup>
+			
+				<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 			</div>
+			<hgroup>
+			  <h1 class="header-author">Yikun</h1>
+			</hgroup>
 			
 			<nav class="header-menu">
 				<ul>
@@ -165,6 +171,7 @@ Green threads use a cooperative model of threading: th">
 		</header>				
 	</div>
 </nav>
+
       <div class="body-wrap"><article id="post-译-Threading-model" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -201,6 +208,42 @@ Green threads use a cooperative model of threading: th">
       
     
     <div class="article-entry" itemprop="articleBody">
+      
+        
+           
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+               <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#Threading_model"><span class="toc-text">Threading model</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#Yielding_the_thread_in_long-running_tasks"><span class="toc-text">Yielding the thread in long-running tasks</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#MySQL_access_and_eventlet"><span class="toc-text">MySQL access and eventlet</span></a></li></ol></li></ol>
+             </div>
+             <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               setTimeout("_article.className += ' article2'",0);
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);
+             </script>
+           
+         
+        <h1 id="Threading_model">Threading model</h1><blockquote>
+<p>All OpenStack services use green thread model of threading, implemented through using the Python eventlet and greenlet libraries.</p>
+<p>Green threads use a cooperative model of threading: thread context switches can only occur when specific eventlet or greenlet library calls are made (e.g., sleep, certain I/O calls). From the operating system’s point of view, each OpenStack service runs in a single thread.</p>
+<p>The use of green threads reduces the likelihood of race conditions, but does not completely eliminate them. In some cases, you may need to use the @lockutils.synchronized(…) decorator to avoid races.</p>
+<p>In addition, since there is only one operating system thread, a call that blocks that main thread will block the entire process.</p>
+</blockquote>
+<p>理解：OpenStack的所有服务都使用Green thread，使用eventlet和greenlet库，绿色线程使用协作并发模型，线程的切换只在eventlet或greenlet库调用一些切换时发生。从操作系统角度上来看，每个OpenStack运行在一个单一线程。用Green Thread的好处是能够减少race conditions，当然有些时候我们也必须使用@lockutils.synchronized(…)来完全避免。因为只用一个系统级别的单线程，所以调用一旦阻塞就会阻塞整个进程。</p>
+<p>关于Python中的并发模型，可以参考<a href="http://www.oschina.net/translate/python-concurrency-model" target="_blank" rel="external">Python并发模型</a>一文，把Thread（线程切换耗资源）、MicroThread（依靠解释器调度）、Green thread（协作并发）的特点对比了下。</p>
+<p>还有<a href="http://www.cnblogs.com/sevenyuan/archive/2010/12/08/1900386.html" target="_blank" rel="external">Python几种并发实现方案的性能比较</a>将Python中的集中并发方案进行了对比和说明。</p>
+<h2 id="Yielding_the_thread_in_long-running_tasks">Yielding the thread in long-running tasks</h2><blockquote>
+<p>If a code path takes a long time to execute and does not contain any methods that trigger an eventlet context switch, the long-running thread will block any pending threads.</p>
+<p>This scenario can be avoided by adding calls to the eventlet sleep method in the long-running code path. The sleep call will trigger a context switch if there are pending threads, and using an argument of 0 will avoid introducing delays in the case that there is only a single green thread:</p>
+</blockquote>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> eventlet <span class="keyword">import</span> greenthread</span><br><span class="line">...</span><br><span class="line">greenthread.sleep(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<p>理解：对于那些耗时很长的任务，需要我们添加一些yield方法，来避免在单个的调用中阻塞很久。</p>
+<h2 id="MySQL_access_and_eventlet">MySQL access and eventlet</h2><blockquote>
+<p>Queries to the MySQL database will block the main thread of a service. This is because OpenStack services use an external C library for accessing the MySQL database. Since eventlet cannot use monkey-patching to intercept blocking calls in a C library, the resulting database query blocks the thread.</p>
+<p>The Diablo release contained a thread-pooling implementation that did not block, but this implementation resulted in a bug and was removed.</p>
+</blockquote>
+<p>理解：对于MySQL数据的查询会阻塞服务，因为eventlet对C库的调用是无法去做monkey-patching的。</p>
+
+      
       
         <h1 id="Threading_model">Threading model</h1><blockquote>
 <p>All OpenStack services use green thread model of threading, implemented through using the Python eventlet and greenlet libraries.</p>
@@ -252,20 +295,26 @@ Green threads use a cooperative model of threading: th">
 </article>
 
 
-<div class="share">
+<div class="share_jia">
 	<!-- JiaThis Button BEGIN -->
 	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
 		<a class="jiathis_button_cqq"></a>
 		<a class="jiathis_button_douban"></a>
 		<a class="jiathis_button_weixin"></a>
 		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
 	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
 	<!-- JiaThis Button END -->
 </div>
+
+
+
 
 
 
@@ -290,6 +339,7 @@ Green threads use a cooperative model of threading: th">
 
 
 
+
 </div>
       <footer id="footer">
   <div class="outer">
@@ -306,17 +356,28 @@ Green threads use a cooperative model of threading: th">
     </div>
     
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<script src="/js/mobile.js" type="text/javascript"></script>
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="/js/main.js" type="text/javascript"></script>
 
 
 
 
 
-<! -- mathjax config similar to math.stackexchange -->
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -337,7 +398,6 @@ MathJax.Hub.Queue(function() {
 
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-
 
 
   </div>

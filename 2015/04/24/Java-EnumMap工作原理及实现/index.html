@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Java EnumMap工作原理及实现 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="1.概述
@@ -25,8 +26,8 @@ A specialized Map implementation for use with enum type keys. All of the keys in
     <link rel="icon" href="/favicon.png">
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 </head>
+
 <body>
   <div id="container">
     <div class="left-col">
@@ -34,7 +35,9 @@ A specialized Map implementation for use with enum type keys. All of the keys in
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/assets/photo.jpg">
+			
+			<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 		</a>
 
 		<hgroup>
@@ -63,7 +66,7 @@ A specialized Map implementation for use with enum type keys. All of the keys in
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>标签</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -117,6 +120,7 @@ A specialized Map implementation for use with enum type keys. All of the keys in
 		</div>
 	</header>				
 </div>
+
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
@@ -127,11 +131,13 @@ A specialized Map implementation for use with enum type keys. All of the keys in
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/assets/photo.jpg">
-				<hgroup>
-				  <h1 class="header-author">Yikun</h1>
-				</hgroup>
+			
+				<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 			</div>
+			<hgroup>
+			  <h1 class="header-author">Yikun</h1>
+			</hgroup>
 			
 			<nav class="header-menu">
 				<ul>
@@ -163,6 +169,7 @@ A specialized Map implementation for use with enum type keys. All of the keys in
 		</header>				
 	</div>
 </nav>
+
       <div class="body-wrap"><article id="post-Java-EnumMap工作原理及实现" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -199,6 +206,33 @@ A specialized Map implementation for use with enum type keys. All of the keys in
       
     
     <div class="article-entry" itemprop="articleBody">
+      
+        
+           
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-概述"><span class="toc-text">1.概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_put和get方法"><span class="toc-text">2. put和get方法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_遍历"><span class="toc-text">3. 遍历</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
+             </div>
+             <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               setTimeout("_article.className += ' article2'",0);
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);
+             </script>
+           
+         
+        <h3 id="1-概述">1.概述</h3><blockquote>
+<p>A specialized Map implementation for use with enum type keys. All of the keys in an enum map must come from a single enum type that is specified, explicitly or implicitly, when the map is created. Enum maps are represented internally as arrays. This representation is extremely compact and efficient.</p>
+</blockquote>
+<p>EnumMap是是一种键为枚举类型的特殊的Map实现。所有的Key也必须是一种枚举类型，EnumMap是使用数组来实现的。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">EnumMap&lt;Course, String&gt; map = <span class="keyword">new</span> EnumMap&lt;Course, String&gt;(Course.class);</span><br><span class="line">map.put(Course.ONE, <span class="string">"语文"</span>);</span><br><span class="line">map.put(Course.ONE, <span class="string">"政治"</span>);</span><br><span class="line">map.put(Course.TWO, <span class="string">"数学"</span>);</span><br><span class="line">map.put(Course.THREE, <span class="string">"英语"</span>);</span><br><span class="line"><span class="keyword">for</span>(Entry&lt;Course, String&gt; entry : map.entrySet()) &#123;</span><br><span class="line">	System.out.println(entry.getKey() + <span class="string">": "</span> + entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>输出结果为：<br><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ONE</span>: <span class="string">政治</span></span><br><span class="line"><span class="attribute">TWO</span>: <span class="string">数学</span></span><br><span class="line"><span class="attribute">THREE</span>: <span class="string">英语</span></span><br></pre></td></tr></table></figure></p>
+<p>其具体实现的结构如下图所示：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7323140/1dc9a734-eadf-11e4-96f8-8df820f64590.png" alt="enummap"></p>
+<h3 id="2-_put和get方法">2. put和get方法</h3><p>put方法通过key的ordinal将值存储到对应的地方，get方法则根据key的ordinal获取对应的值。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 类型检查</span></span><br><span class="line">    typeCheck(key);</span><br><span class="line">    <span class="comment">// 获取key的序号</span></span><br><span class="line">    <span class="keyword">int</span> index = key.ordinal();</span><br><span class="line">    Object oldValue = vals[index];</span><br><span class="line">    <span class="comment">// 赋值</span></span><br><span class="line">    vals[index] = maskNull(value);</span><br><span class="line">    <span class="comment">// 若之前的值为空，则size++</span></span><br><span class="line">    <span class="keyword">if</span> (oldValue == <span class="keyword">null</span>)</span><br><span class="line">        size++;</span><br><span class="line">    <span class="keyword">return</span> unmaskNull(oldValue);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (isValidKey(key) ?</span><br><span class="line">            unmaskNull(vals[((Enum&lt;?&gt;)key).ordinal()]) : <span class="keyword">null</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-_遍历">3. 遍历</h3><p>EnumMapIterator的迭代这样实现的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (index &lt; vals.length &amp;&amp; vals[index] == <span class="keyword">null</span>)</span><br><span class="line">        index++;</span><br><span class="line">    <span class="keyword">return</span> index != vals.length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> Map.Entry&lt;K,V&gt; next() &#123;</span><br><span class="line">    <span class="keyword">if</span> (!hasNext())</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</span><br><span class="line">    lastReturnedEntry = <span class="keyword">new</span> Entry(index++);</span><br><span class="line">    <span class="keyword">return</span> lastReturnedEntry;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过hasNext跳过空的数组，也就是说，保证了遍历顺序与Enum中key的先后顺序一致。</p>
+<h3 id="参考资料">参考资料</h3><p><a href="http://javarevisited.blogspot.jp/2012/09/what-is-enummap-in-java-example-tutorial.html" target="_blank" rel="external">What is EnumMap in Java</a></p>
+
+      
       
         <h3 id="1-概述">1.概述</h3><blockquote>
 <p>A specialized Map implementation for use with enum type keys. All of the keys in an enum map must come from a single enum type that is specified, explicitly or implicitly, when the map is created. Enum maps are represented internally as arrays. This representation is extremely compact and efficient.</p>
@@ -241,20 +275,26 @@ A specialized Map implementation for use with enum type keys. All of the keys in
 </article>
 
 
-<div class="share">
+<div class="share_jia">
 	<!-- JiaThis Button BEGIN -->
 	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
 		<a class="jiathis_button_cqq"></a>
 		<a class="jiathis_button_douban"></a>
 		<a class="jiathis_button_weixin"></a>
 		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
 	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
 	<!-- JiaThis Button END -->
 </div>
+
+
+
 
 
 
@@ -279,6 +319,7 @@ A specialized Map implementation for use with enum type keys. All of the keys in
 
 
 
+
 </div>
       <footer id="footer">
   <div class="outer">
@@ -295,17 +336,28 @@ A specialized Map implementation for use with enum type keys. All of the keys in
     </div>
     
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<script src="/js/mobile.js" type="text/javascript"></script>
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="/js/main.js" type="text/javascript"></script>
 
 
 
 
 
-<! -- mathjax config similar to math.stackexchange -->
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -326,7 +378,6 @@ MathJax.Hub.Queue(function() {
 
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-
 
 
   </div>

@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>nginx启动流程分析 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="最近，开始学习nginx的代码，大致根据阿里数据平台的一些文章，加上Tengine 2.0的代码来看的。这次看代码主要是了解一下nginx的基本框架和主要工作流程。">
@@ -22,8 +23,8 @@
     <link rel="icon" href="/favicon.png">
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 </head>
+
 <body>
   <div id="container">
     <div class="left-col">
@@ -31,7 +32,9 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/assets/photo.jpg">
+			
+			<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 		</a>
 
 		<hgroup>
@@ -60,7 +63,7 @@
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>标签</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -114,6 +117,7 @@
 		</div>
 	</header>				
 </div>
+
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
@@ -124,11 +128,13 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/assets/photo.jpg">
-				<hgroup>
-				  <h1 class="header-author">Yikun</h1>
-				</hgroup>
+			
+				<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 			</div>
+			<hgroup>
+			  <h1 class="header-author">Yikun</h1>
+			</hgroup>
 			
 			<nav class="header-menu">
 				<ul>
@@ -160,6 +166,7 @@
 		</header>				
 	</div>
 </nav>
+
       <div class="body-wrap"><article id="post-nginxstart" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -196,6 +203,225 @@
       
     
     <div class="article-entry" itemprop="articleBody">
+      
+        
+           
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_解析命令参数"><span class="toc-text">1. 解析命令参数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_初始化工作"><span class="toc-text">2. 初始化工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_信号处理的初始化"><span class="toc-text">3. 信号处理的初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-_守护进程"><span class="toc-text">4. 守护进程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-_ngx_master_process_cycle，mater干的活"><span class="toc-text">5. ngx_master_process_cycle，mater干的活</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#6-_master开始工作"><span class="toc-text">6. master开始工作</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#7-_ngx_worker_process_cycle，worker开始工作"><span class="toc-text">7. ngx_worker_process_cycle，worker开始工作</span></a></li></ol>
+             </div>
+             <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               setTimeout("_article.className += ' article2'",0);
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);
+             </script>
+           
+         
+        <hr>
+<p>最近，开始学习nginx的代码，大致根据<a href="http://www.alidata.org/archives/category/%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8" target="_blank" rel="external">阿里数据平台</a>的一些文章，加上Tengine 2.0的代码来看的。这次看代码主要是了解一下nginx的基本框架和主要工作流程。<br><a id="more"></a><br>如下图所示，为总的启动流程分析，后面是我对每个部分的总结和分析<br><img src="/assets/post/2014-03-13-nginxstart/nginx_start.png" alt="启动流程分析"></p>
+<h3 id="1-_解析命令参数">1. 解析命令参数</h3><p>nginx是由C语言写成的，因此，从main函数开始开启我们的“旅程”，传入参数为argc，还有argv，最开始的任务当然就是解析它们了，以获得用户启动的参数，调用ngx_get_options解析参数，一般情况，Linux的解析命令参数都会调用getopt之类的系统函数，而nginx却没有，应该是考虑到了跨平台性。解析命令参数的代码比较简单，大致的工作就是标记flag，类似ngx_show_version，ngx_show_modules的全局参数可以记录命令参数。<br>而后，根据这些flag来做一些事情，例如使用nginx -h，会将ngx_show_version，ngx_show_help置为有效(1)，然后后面回到main后，就是做一些对应的输出。</p>
+<h3 id="2-_初始化工作">2. 初始化工作</h3><p>包括了time、regex、log、ssl等初始化，而后进行一个很重要的结构的初始化ngx_cycle。</p>
+<pre><code><span class="class"><span class="keyword">struct</span> <span class="title">ngx_cycle_s</span> </span>{
+    <span class="keyword">void</span>                  ****conf_ctx;                        <span class="comment">//配置上下文数组(含所有模块)</span>
+    ngx_pool_t               *pool;                        <span class="comment">//内存池</span>
+
+    ngx_log_t                *log;                        <span class="comment">//日志</span>
+    ngx_log_t                 new_log;
+
+    ngx_connection_t        **files;                        <span class="comment">//连接文件</span>
+    ngx_connection_t         *free_connections;                    <span class="comment">//空闲连接</span>
+    ngx_uint_t                free_connection_n;                <span class="comment">//空闲连接个数</span>
+
+    ngx_queue_t               reusable_connections_queue;            <span class="comment">//再利用连接队列</span>
+
+    ngx_array_t               listening;                    <span class="comment">//监听数组</span>
+    ngx_array_t               paths;                        <span class="comment">//路径数组</span>
+    ngx_list_t                open_files;                    <span class="comment">//打开文件链表</span>
+    ngx_list_t                shared_memory;                    <span class="comment">//共享内存链表</span>
+
+    ngx_uint_t                connection_n;                    <span class="comment">//连接个数</span>
+    ngx_uint_t                files_n;                        <span class="comment">//打开文件个数</span>
+
+    ngx_connection_t         *connections;                    <span class="comment">//连接</span>
+    ngx_event_t              *read_events;                    <span class="comment">//读事件</span>
+    ngx_event_t              *write_events;                    <span class="comment">//写事件</span>
+
+    ngx_cycle_t              *old_cycle;                    <span class="comment">//old cycle指针</span>
+
+    ngx_str_t                 conf_file;                    <span class="comment">//配置文件</span>
+    ngx_str_t                 conf_param;                    <span class="comment">//配置参数</span>
+    ngx_str_t                 conf_prefix;                    <span class="comment">//配置前缀</span>
+    ngx_str_t                 prefix;                        <span class="comment">//前缀</span>
+    ngx_str_t                 lock_file;                    <span class="comment">//锁文件</span>
+    ngx_str_t                 hostname;                        <span class="comment">//主机名</span>
+};
+</code></pre><p>ngx_init_cycle的过程的详细情况可以参考<a href="http://www.alidata.org/archives/1148" target="_blank" rel="external">Nginx启动初始化过程(二)</a>。因为现在功力不是很深，等以后对nginx有透彻了解后，再仔细分析。这里第一次出现了内存池的操作，后面重点分析一下内存池的实现。</p>
+<hr>
+<h3 id="3-_信号处理的初始化">3. 信号处理的初始化</h3><p>ngx_init_signals会进行信号处理的初始化，signals是一个结构体数组，存储着各种信号的结构体，在初始化的过程中，会利用sigaction函数对每个信号进行设置，如下所示，主要是对signo和handler回调函数进行设置。初始化成功以后，当信号产生以后，便可以调用信号处理函数了，因此可以利用ngx_signal_handler进行信号处理了。</p>
+<pre><code>ngx_int_t
+ngx_init_signals<span class="list">(<span class="keyword">ngx_log_t</span> <span class="variable">*log)
+{
+    ngx_signal_t      *</span>sig<span class="comment">;</span>
+    struct sigaction   sa<span class="comment">;</span>
+
+    for <span class="list">(<span class="keyword">sig</span> = signals<span class="comment">; sig-&gt;signo != 0; sig++) {</span>
+        ngx_memzero<span class="list">(<span class="keyword">&amp;sa</span>, sizeof<span class="list">(<span class="keyword">struct</span> sigaction)</span>)</span><span class="comment">;</span>
+        sa.sa_handler = sig-&gt;handler<span class="comment">;</span>
+        sigemptyset<span class="list">(<span class="keyword">&amp;sa</span>.sa_mask)</span><span class="comment">;</span>
+        if <span class="list">(<span class="keyword">sigaction</span><span class="list">(<span class="keyword">sig-&gt;signo</span>, <span class="keyword">&amp;sa</span>, NULL)</span> == <span class="number">-1</span>)</span> {
+            ngx_log_error<span class="list">(<span class="keyword">NGX_LOG_EMERG</span>, log, ngx_errno,
+                          <span class="string">"sigaction(%s) failed"</span>, sig-&gt;signame)</span><span class="comment">;</span>
+            return NGX_ERROR<span class="comment">;</span>
+        }
+    }
+
+    return NGX_OK<span class="comment">;</span>
+}</span></span>
+</code></pre><h3 id="4-_守护进程">4. 守护进程</h3><p>在启动过程中，会调用ngx_daemon(cycle-&gt;log)，这个函数实现的很经典。</p>
+<pre><code><span class="function">ngx_int_t
+<span class="title">ngx_daemon</span><span class="params">(ngx_log_t *<span class="built_in">log</span>)</span>
+</span>{
+    <span class="keyword">int</span>  fd;
+    <span class="comment">//父进程fork</span>
+    <span class="keyword">switch</span> (fork()) {
+    <span class="comment">//fork执行完后，master的</span>
+    <span class="keyword">case</span> -<span class="number">1</span>:
+        <span class="comment">//fork出错了</span>
+        ngx_log_error(NGX_LOG_EMERG, <span class="built_in">log</span>, ngx_errno, <span class="string">"fork() failed"</span>);
+        <span class="keyword">return</span> NGX_ERROR;
+    <span class="keyword">case</span> <span class="number">0</span>:
+        <span class="comment">//master daemon(子进程)什么也不做</span>
+        <span class="keyword">break</span>;
+
+    <span class="keyword">default</span>:
+        <span class="comment">//master前台进程(父进程)退出，以给控制终端一个“假象”，这个程序执行完了</span>
+        <span class="built_in">exit</span>(<span class="number">0</span>);
+    }
+    <span class="comment">/*
+    执行到这，说明最开始的“前台”进程已经退出了，这时得刷新下ngx_pid，以便后面ngx_create_pidfile用(用来优雅的重启)
+    当然，有人问为什么main最开始就记录了，ngx_pid呢？那是因为nginx不一定会daemon形式启动，这样开始的进程就是master
+    然而在这里，nginx将原来的前台master exit掉，然后master fork出来的，所以这里的ngx_pid就是就是daemon master的了。
+    */</span>
+    ngx_pid = ngx_getpid();
+    <span class="comment">/*
+    作为daemon只fork还是不够的，需要第二步，setsid，他的作用是让daemon成为真正的daemon
+    1.会话组的老大; 2.进程组的老大; 3.不受任何控制终端控制
+    */</span>
+    <span class="keyword">if</span> (setsid() == -<span class="number">1</span>) {
+        ngx_log_error(NGX_LOG_EMERG, <span class="built_in">log</span>, ngx_errno, <span class="string">"setsid() failed"</span>);
+        <span class="keyword">return</span> NGX_ERROR;
+    }
+    <span class="comment">//umask(0)是为了让读写权限保持原来的状态</span>
+    umask(<span class="number">0</span>);
+
+    <span class="comment">//后面几句就是把STD的输入/输出/错误都输出到/dev/null，也就是什么也不输出</span>
+    fd = open(<span class="string">"/dev/null"</span>, O_RDWR);
+    <span class="keyword">if</span> (fd == -<span class="number">1</span>) {
+        ngx_log_error(NGX_LOG_EMERG, <span class="built_in">log</span>, ngx_errno,
+                      <span class="string">"open(\"/dev/null\") failed"</span>);
+        <span class="keyword">return</span> NGX_ERROR;
+    }
+
+    <span class="keyword">if</span> (dup2(fd, STDIN_FILENO) == -<span class="number">1</span>) {
+        ngx_log_error(NGX_LOG_EMERG, <span class="built_in">log</span>, ngx_errno, <span class="string">"dup2(STDIN) failed"</span>);
+        <span class="keyword">return</span> NGX_ERROR;
+    }
+
+    <span class="keyword">if</span> (dup2(fd, STDOUT_FILENO) == -<span class="number">1</span>) {
+        ngx_log_error(NGX_LOG_EMERG, <span class="built_in">log</span>, ngx_errno, <span class="string">"dup2(STDOUT) failed"</span>);
+        <span class="keyword">return</span> NGX_ERROR;
+    }
+
+<span class="preprocessor">#<span class="keyword">if</span> 0</span>
+    <span class="keyword">if</span> (dup2(fd, STDERR_FILENO) == -<span class="number">1</span>) {
+        ngx_log_error(NGX_LOG_EMERG, <span class="built_in">log</span>, ngx_errno, <span class="string">"dup2(STDERR) failed"</span>);
+        <span class="keyword">return</span> NGX_ERROR;
+    }
+<span class="preprocessor">#<span class="keyword">endif</span></span>
+
+    <span class="keyword">if</span> (fd &gt; STDERR_FILENO) {
+        <span class="keyword">if</span> (close(fd) == -<span class="number">1</span>) {
+            ngx_log_error(NGX_LOG_EMERG, <span class="built_in">log</span>, ngx_errno, <span class="string">"close() failed"</span>);
+            <span class="keyword">return</span> NGX_ERROR;
+        }
+    }
+
+    <span class="keyword">return</span> NGX_OK;
+}
+</code></pre><p>守护进程指的是后台运行不与任何控制终端相联的进程，许多网络服务器都作为守护进程运行。那么，什么样的进程才是守护进程呢？2种方法:</p>
+<pre><code><span class="bullet">1. </span>这个进程是“富二代“，由内核无终端启动;
+<span class="bullet">2. </span>是靠自己后天努力，这个后天努力需要借助setid的帮助，新建一个会话，这样这个进程就成老大了，而且不受任何终端控制。
+</code></pre><p>注释已经写的很详细了，总结一下就是以下几步。</p>
+<pre><code><span class="bullet">1. </span>fork一个daemon进程，退出前台进程。
+<span class="bullet">2. </span>setsid 让daemon彻底脱离控制终端（如果没用这步的话，就会造成终端一退出，进程也就退了）
+<span class="bullet">3. </span>umask(0)
+<span class="bullet">4. </span>不让他输入输出
+<span class="bullet">5. </span>改变目录，避免父进程工作目录的影响（nginx没做）
+<span class="bullet">6. </span>关闭没用的fd
+</code></pre><p>这个是APUE中提到的6步。当然，也有人建议进行第二次fork，二次fork的原因是不让进程重新被终端控制。是这样的，如果一个进程是一个不属于任何一个终端的会话组的首进程，当这个进程打开终端的时候，系统就会为他分配一个终端，这样就惨了，它又要受终端控制了(一个会话组的首进程如果不属于任何终端，则该进程打开终端时会被分配终端，一个会话如果属于某个终端，就会有一个前台进程组)，也就做不成守护进程了。不过要是二次fork的话，daemon A fork 出来 daemon B，这个daemon B不是会话首进程，就不会被分配到终端控制了。但是nginx没做，我觉得可能是因为nginx不会作类似操作吧。<br>注：不过2次fork，要记得Sighnal(SIG_HUP, SIG_IGN)，否则daemon A作为首进程退出的时候，会告诉所有的小弟(包括B了)。</p>
+<p>具体的守护进程参考UNP和APUE中的资料。</p>
+<h3 id="5-_ngx_master_process_cycle，mater干的活">5. ngx_master_process_cycle，mater干的活</h3><p>在完成main中的初始化后，我们的“初始化”旅程到了结尾，热身结束，开始重点。到调用这个函数的时候，nginx还是只有master进程的，作为master进程的开始工作，最终要的就是启动“work”进程。其实，很多软件都有master，work的概念，诸如Hadoop的jobtracker、tasktracker。master处理和用户的交互，然后work专心的去做业务，这样的话，master可以想象为一个管理者，work则是真正的工人。</p>
+<p>屏蔽一下干扰</p>
+<pre><code>sigemptyset(&amp;<span class="operator"><span class="keyword">set</span>);</span>
+sigaddset(&amp;<span class="operator"><span class="keyword">set</span>, SIGCHLD);</span>
+sigaddset(&amp;<span class="operator"><span class="keyword">set</span>, SIGALRM);</span>
+sigaddset(&amp;<span class="operator"><span class="keyword">set</span>, SIGIO);</span>
+sigaddset(&amp;<span class="operator"><span class="keyword">set</span>, SIGINT);</span>
+sigaddset(&amp;<span class="operator"><span class="keyword">set</span>, ngx_signal_value(NGX_RECONFIGURE_SIGNAL));</span>
+sigaddset(&amp;<span class="operator"><span class="keyword">set</span>, ngx_signal_value(NGX_REOPEN_SIGNAL));</span>
+sigaddset(&amp;<span class="operator"><span class="keyword">set</span>, ngx_signal_value(NGX_NOACCEPT_SIGNAL));</span>
+sigaddset(&amp;<span class="operator"><span class="keyword">set</span>, ngx_signal_value(NGX_TERMINATE_SIGNAL));</span>
+sigaddset(&amp;<span class="operator"><span class="keyword">set</span>, ngx_signal_value(NGX_SHUTDOWN_SIGNAL));</span>
+sigaddset(&amp;<span class="operator"><span class="keyword">set</span>, ngx_signal_value(NGX_CHANGEBIN_SIGNAL));</span>
+
+if (sigprocmask(SIG_BLOCK, &amp;<span class="operator"><span class="keyword">set</span>, <span class="literal">NULL</span>) == -<span class="number">1</span>) {
+    ngx_log_error(NGX_LOG_ALERT, cycle-&gt;<span class="keyword">log</span>, ngx_errno,
+                  <span class="string">"sigprocmask() failed"</span>);</span>
+}
+
+sigemptyset(&amp;<span class="operator"><span class="keyword">set</span>);</span>
+</code></pre><p>最开始的工作就是做一些信号处理的工作，首先将系统信号，nginx自定义的信号加入’sigset_t set;’信号集中，然后调用sigprocmask进行信号的屏蔽，函数为 ‘sigprocmask(SIG_BLOCK, &amp;set, NULL)’ ，第一个参数为SIG_BLOCK意思就是按照set屏蔽信号，也就是说把之前通过 ‘sigaddset’ 的10个信号都屏蔽掉了，以防止在fork Work的过程中发生的意外。</p>
+<h3 id="6-_master开始工作">6. master开始工作</h3><p>master进程在屏蔽完信号干扰后，便调用了ngx_start_worker_processes来启动worker进程，这个函数的核心就是一个for循环，调用ccf-&gt;worker_processes次ngx_spawn_process函数，fork了ccf-&gt;worker_processes个worker。</p>
+<p>ngx_spawn_process则是真正fork worker的函数。</p>
+<pre><code>pid = fork();
+
+switch (pid) {
+
+<span class="keyword">case</span> -<span class="number">1</span>:
+    ngx_log_error(<span class="type">NGX_LOG_ALERT</span>, cycle-&gt;log, ngx_errno,
+                  <span class="string">"fork() failed while spawning \"%s\""</span>, name);
+    ngx_close_channel(ngx_processes[s].channel, cycle-&gt;log);
+    <span class="keyword">return</span> <span class="type">NGX_INVALID_PID</span>;
+
+<span class="keyword">case</span> <span class="number">0</span>:
+    ngx_pid = ngx_getpid();
+    <span class="keyword">proc</span>(cycle, data);
+    <span class="keyword">break</span>;
+
+default:
+    <span class="keyword">break</span>;
+}
+</code></pre><p>又是熟悉的fork了，能进入case 0的就是worker进程。而master进程则继续ngx_master_process_cycle，在worker都被master fork出来之后，master就要正常开始他的工作了</p>
+<pre><code><span class="keyword">for</span> ( ;; ) {
+<span class="comment">// ... </span>
+    sigsuspend(&amp;<span class="keyword">set</span>);
+<span class="comment">// ...</span>
+}
+</code></pre><p>这个就是master的工作框架，简单吧？就是休眠，等信号，做事儿，再休眠，等信号，做事儿。sigsuspend(&amp;set);就是让进程休眠，直到有信号的时候，去处理。</p>
+<p>在main开始初始化的时候，就通过’ngx_init_signals’对每个信号的回调函数进行<a href="./#siginit">初始化</a>，也就是说，每次信号来了都会调用 ‘ngx_signal_handler’ 去设全局的flag，如果有信号了，master的 ‘ngx_master_process_cycle’ 就会对这些全局flag进行对应的处理。</p>
+<p>最后，总结一下master的工作，就是先把信号都屏蔽了，然后去fork worker进程，fork完work以后，master就进入信号处理的循环了，利用sigsuspend等信号，等到信号就处理，处理完了再sigsusoend，如此循环，完成伟大的幕后工作。</p>
+<h3 id="7-_ngx_worker_process_cycle，worker开始工作">7. ngx_worker_process_cycle，worker开始工作</h3><p>worker开始工作的真正时候，应该是在master调用ngx_spawn_process之后的，master传入的proc参数就是ngx_worker_process_cycle函数指针，再回到刚才master中那个fork的过程，case 0的时候调用了proc(cycle, data);也就是相当与调用了ngx_worker_process_cycle，这样worker的工作也马不停蹄的开始了。</p>
+<p>首先，惯例，进行初始化，ngx_worker_process_init，这里面就包括了自身的初始化，还有去除一下从master过来的没用的东西，比如sigprocmask一下，把之前master的屏蔽掉信号都开启了。这样，才能对master的信号进行处理，以便完成master和work的进程间的通信。</p>
+<p>然后就开始真正的工作了，也是一个大循环。</p>
+<pre><code><span class="keyword">for</span> ( ;; ) {
+<span class="comment">// ... </span>
+    ngx_process_events_and_timers(cycle)
+<span class="comment">// ...</span>
+}
+</code></pre><p>到此worker的框架也就这样了，然后for循环的底部会有一些对master发来的信号的处理。</p>
+<p>至此，master和worker的初始化工作以及基本的框架算是完了，经过上面的学习以后，发现对nginx的整个流程有了一个大概的认识。学习初始化的过程中，我学到了daemon，多进程，信号处理等基本知识。</p>
+
+      
       
         <hr>
 <p>最近，开始学习nginx的代码，大致根据<a href="http://www.alidata.org/archives/category/%E9%AB%98%E6%80%A7%E8%83%BD%E6%9C%8D%E5%8A%A1%E5%99%A8" target="_blank" rel="external">阿里数据平台</a>的一些文章，加上Tengine 2.0的代码来看的。这次看代码主要是了解一下nginx的基本框架和主要工作流程。<br><a id="more"></a><br>如下图所示，为总的启动流程分析，后面是我对每个部分的总结和分析<br><img src="/assets/post/2014-03-13-nginxstart/nginx_start.png" alt="启动流程分析"></p>
@@ -430,20 +656,26 @@ default:
 </article>
 
 
-<div class="share">
+<div class="share_jia">
 	<!-- JiaThis Button BEGIN -->
 	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
 		<a class="jiathis_button_cqq"></a>
 		<a class="jiathis_button_douban"></a>
 		<a class="jiathis_button_weixin"></a>
 		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
 	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
 	<!-- JiaThis Button END -->
 </div>
+
+
+
 
 
 
@@ -468,6 +700,7 @@ default:
 
 
 
+
 </div>
       <footer id="footer">
   <div class="outer">
@@ -484,17 +717,28 @@ default:
     </div>
     
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<script src="/js/mobile.js" type="text/javascript"></script>
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="/js/main.js" type="text/javascript"></script>
 
 
 
 
 
-<! -- mathjax config similar to math.stackexchange -->
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -515,7 +759,6 @@ MathJax.Hub.Queue(function() {
 
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-
 
 
   </div>

@@ -3,18 +3,19 @@
 <head>
   <meta charset="utf-8">
   
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Python3源码学习-类型 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h：1234567891011121314151617181920typedef struct _typeobject &amp;#123;    PyObject_VAR_HEAD    const char *tp_name; /* For printing, in fo">
+  <meta name="description" content="1. 类型我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h：1234567891011121314151617181920typedef struct _typeobject &amp;#123;    PyObject_VAR_HEAD    const char *tp_name; /* For printing,">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python3源码学习-类型">
 <meta property="og:url" content="http://yikun.github.io/2015/12/20/Python3源码学习-类型/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h：1234567891011121314151617181920typedef struct _typeobject &amp;#123;    PyObject_VAR_HEAD    const char *tp_name; /* For printing, in fo">
+<meta property="og:description" content="1. 类型我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h：1234567891011121314151617181920typedef struct _typeobject &amp;#123;    PyObject_VAR_HEAD    const char *tp_name; /* For printing,">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11918443/66f1c2c6-a76c-11e5-8838-f742ec215af2.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3源码学习-类型">
-<meta name="twitter:description" content="我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h：1234567891011121314151617181920typedef struct _typeobject &amp;#123;    PyObject_VAR_HEAD    const char *tp_name; /* For printing, in fo">
+<meta name="twitter:description" content="1. 类型我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h：1234567891011121314151617181920typedef struct _typeobject &amp;#123;    PyObject_VAR_HEAD    const char *tp_name; /* For printing,">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -22,8 +23,8 @@
     <link rel="icon" href="/favicon.png">
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 </head>
+
 <body>
   <div id="container">
     <div class="left-col">
@@ -31,7 +32,9 @@
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/assets/photo.jpg">
+			
+			<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 		</a>
 
 		<hgroup>
@@ -60,7 +63,7 @@
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>标签</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -114,6 +117,7 @@
 		</div>
 	</header>				
 </div>
+
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
@@ -124,11 +128,13 @@
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/assets/photo.jpg">
-				<hgroup>
-				  <h1 class="header-author">Yikun</h1>
-				</hgroup>
+			
+				<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 			</div>
+			<hgroup>
+			  <h1 class="header-author">Yikun</h1>
+			</hgroup>
 			
 			<nav class="header-menu">
 				<ul>
@@ -160,6 +166,7 @@
 		</header>				
 	</div>
 </nav>
+
       <div class="body-wrap"><article id="post-Python3源码学习-类型" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -197,16 +204,49 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> _typeobject &#123;</span><br><span class="line">    PyObject_VAR_HEAD</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *tp_name; <span class="comment">/* For printing, in format "&lt;module&gt;.&lt;name&gt;" */</span></span><br><span class="line">    Py_ssize_t tp_basicsize, tp_itemsize; <span class="comment">/* For allocation */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Methods to implement standard operations */</span></span><br><span class="line">    destructor tp_dealloc;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//... ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* More standard operations (here for binary compatibility) */</span></span><br><span class="line">    hashfunc tp_hash;</span><br><span class="line">    ternaryfunc tp_call;</span><br><span class="line">    reprfunc tp_str;</span><br><span class="line">    getattrofunc tp_getattro;</span><br><span class="line">    setattrofunc tp_setattro;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//... ...</span></span><br><span class="line"></span><br><span class="line">&#125; PyTypeObject;</span><br></pre></td></tr></table></figure></p>
+        
+           
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_类型"><span class="toc-text">1. 类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_类型的类型"><span class="toc-text">2. 类型的类型</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_对象图示"><span class="toc-text">3. 对象图示</span></a></li></ol>
+             </div>
+             <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               setTimeout("_article.className += ' article2'",0);
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);
+             </script>
+           
+         
+        <h3 id="1-_类型">1. 类型</h3><p>我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> _typeobject &#123;</span><br><span class="line">    PyObject_VAR_HEAD</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *tp_name; <span class="comment">/* For printing, in format "&lt;module&gt;.&lt;name&gt;" */</span></span><br><span class="line">    Py_ssize_t tp_basicsize, tp_itemsize; <span class="comment">/* For allocation */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Methods to implement standard operations */</span></span><br><span class="line">    destructor tp_dealloc;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//... ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* More standard operations (here for binary compatibility) */</span></span><br><span class="line">    hashfunc tp_hash;</span><br><span class="line">    ternaryfunc tp_call;</span><br><span class="line">    reprfunc tp_str;</span><br><span class="line">    getattrofunc tp_getattro;</span><br><span class="line">    setattrofunc tp_setattro;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//... ...</span></span><br><span class="line"></span><br><span class="line">&#125; PyTypeObject;</span><br></pre></td></tr></table></figure></p>
 <p>可以看到，PyTypeObject就是类型对象的定义了。其中，包含了一些和类型相关的重要信息：</p>
 <ul>
 <li><strong>类型名</strong>： <code>const char *tp_name</code>，例如对于整型对象，他的这个name就是“int”。</li>
 <li><strong>开辟空间大小</strong>：<code>tp_basicsize</code>和<code>tp_itemsize</code>包含了创建该类型的对象所需要分配的控件大小。</li>
-<li><strong>一些与对象相关联的操作</strong>：比如<code>tp_dealloc</code>用于销毁对象，<code>tp_hash</code>用于计算hash值，<code>tp_str</code>用于将对象转换为str。<br>另外可以看到，由该类的属性<code>PyObject_VAR_HEAD</code>看出，类型也是一个对象。我们知道每个对象都会有一个类型，那么思考一个问题，类型对象的类型又是什么呢？这个问题在typeobject.c的文件中给出了答案：<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">PyTypeObject PyType_Type = &#123;</span><br><span class="line">    PyVarObject_HEAD_INIT(&amp;PyType_Type, <span class="number">0</span>)</span><br><span class="line">    <span class="string">"type"</span>,                                     <span class="comment">/* tp_name */</span></span><br><span class="line">    <span class="keyword">sizeof</span>(PyHeapTypeObject),                   <span class="comment">/* tp_basicsize */</span></span><br><span class="line">    <span class="keyword">sizeof</span>(PyMemberDef),                        <span class="comment">/* tp_itemsize */</span></span><br><span class="line">    (destructor)type_dealloc,                   <span class="comment">/* tp_dealloc */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_print */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_getattr */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_setattr */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_reserved */</span></span><br><span class="line">    (reprfunc)type_repr,                        <span class="comment">/* tp_repr */</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// ... ...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
-</li>
+<li><strong>一些与对象相关联的操作</strong>：比如<code>tp_dealloc</code>用于销毁对象，<code>tp_hash</code>用于计算hash值，<code>tp_str</code>用于将对象转换为str。</li>
 </ul>
+<h3 id="2-_类型的类型">2. 类型的类型</h3><p>另外可以看到，由该类的属性<code>PyObject_VAR_HEAD</code>看出，类型也是一个对象。我们知道每个对象都会有一个类型，那么思考一个问题，类型对象的类型又是什么呢？这个问题在typeobject.c的文件中给出了答案：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">PyTypeObject PyType_Type = &#123;</span><br><span class="line">    PyVarObject_HEAD_INIT(&amp;PyType_Type, <span class="number">0</span>)</span><br><span class="line">    <span class="string">"type"</span>,                                     <span class="comment">/* tp_name */</span></span><br><span class="line">    <span class="keyword">sizeof</span>(PyHeapTypeObject),                   <span class="comment">/* tp_basicsize */</span></span><br><span class="line">    <span class="keyword">sizeof</span>(PyMemberDef),                        <span class="comment">/* tp_itemsize */</span></span><br><span class="line">    (destructor)type_dealloc,                   <span class="comment">/* tp_dealloc */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_print */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_getattr */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_setattr */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_reserved */</span></span><br><span class="line">    (reprfunc)type_repr,                        <span class="comment">/* tp_repr */</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// ... ...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
 <p>可以看到类型对象的类型就是<code>PyType_Type</code>，而PyType_Type的类型则执行它本身。</p>
-<p><img src="https://cloud.githubusercontent.com/assets/1736354/11918443/66f1c2c6-a76c-11e5-8838-f742ec215af2.png" alt="type object"></p>
+<h3 id="3-_对象图示">3. 对象图示</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/11918443/66f1c2c6-a76c-11e5-8838-f742ec215af2.png" alt="type object"></p>
+<p>如上图所示，是一个简单的整型对象的例子，我们可以看出：</p>
+<ol>
+<li>整型对象的类型是PyLong_Type。</li>
+<li>PyLong_Type是一个类型对象，其类型为PyType_Type。</li>
+<li>PyType_Type也是一个类型对象，其类型为它本身。</li>
+</ol>
+<p>我们也可以看出因为“万物皆对象”，不同的object虽然type不同，但是都有一个类型指针，通过类型指针ob_type即可完成对应方法的访问，Python也正是利用了指针的特性，从而实现了多态。</p>
+
+      
+      
+        <h3 id="1-_类型">1. 类型</h3><p>我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> _typeobject &#123;</span><br><span class="line">    PyObject_VAR_HEAD</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *tp_name; <span class="comment">/* For printing, in format "&lt;module&gt;.&lt;name&gt;" */</span></span><br><span class="line">    Py_ssize_t tp_basicsize, tp_itemsize; <span class="comment">/* For allocation */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Methods to implement standard operations */</span></span><br><span class="line">    destructor tp_dealloc;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//... ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* More standard operations (here for binary compatibility) */</span></span><br><span class="line">    hashfunc tp_hash;</span><br><span class="line">    ternaryfunc tp_call;</span><br><span class="line">    reprfunc tp_str;</span><br><span class="line">    getattrofunc tp_getattro;</span><br><span class="line">    setattrofunc tp_setattro;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//... ...</span></span><br><span class="line"></span><br><span class="line">&#125; PyTypeObject;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到，PyTypeObject就是类型对象的定义了。其中，包含了一些和类型相关的重要信息：</p>
+<ul>
+<li><strong>类型名</strong>： <code>const char *tp_name</code>，例如对于整型对象，他的这个name就是“int”。</li>
+<li><strong>开辟空间大小</strong>：<code>tp_basicsize</code>和<code>tp_itemsize</code>包含了创建该类型的对象所需要分配的控件大小。</li>
+<li><strong>一些与对象相关联的操作</strong>：比如<code>tp_dealloc</code>用于销毁对象，<code>tp_hash</code>用于计算hash值，<code>tp_str</code>用于将对象转换为str。</li>
+</ul>
+<h3 id="2-_类型的类型">2. 类型的类型</h3><p>另外可以看到，由该类的属性<code>PyObject_VAR_HEAD</code>看出，类型也是一个对象。我们知道每个对象都会有一个类型，那么思考一个问题，类型对象的类型又是什么呢？这个问题在typeobject.c的文件中给出了答案：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">PyTypeObject PyType_Type = &#123;</span><br><span class="line">    PyVarObject_HEAD_INIT(&amp;PyType_Type, <span class="number">0</span>)</span><br><span class="line">    <span class="string">"type"</span>,                                     <span class="comment">/* tp_name */</span></span><br><span class="line">    <span class="keyword">sizeof</span>(PyHeapTypeObject),                   <span class="comment">/* tp_basicsize */</span></span><br><span class="line">    <span class="keyword">sizeof</span>(PyMemberDef),                        <span class="comment">/* tp_itemsize */</span></span><br><span class="line">    (destructor)type_dealloc,                   <span class="comment">/* tp_dealloc */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_print */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_getattr */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_setattr */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_reserved */</span></span><br><span class="line">    (reprfunc)type_repr,                        <span class="comment">/* tp_repr */</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// ... ...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>可以看到类型对象的类型就是<code>PyType_Type</code>，而PyType_Type的类型则执行它本身。</p>
+<h3 id="3-_对象图示">3. 对象图示</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/11918443/66f1c2c6-a76c-11e5-8838-f742ec215af2.png" alt="type object"></p>
 <p>如上图所示，是一个简单的整型对象的例子，我们可以看出：</p>
 <ol>
 <li>整型对象的类型是PyLong_Type。</li>
@@ -244,20 +284,26 @@
 </article>
 
 
-<div class="share">
+<div class="share_jia">
 	<!-- JiaThis Button BEGIN -->
 	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
 		<a class="jiathis_button_cqq"></a>
 		<a class="jiathis_button_douban"></a>
 		<a class="jiathis_button_weixin"></a>
 		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
 	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
 	<!-- JiaThis Button END -->
 </div>
+
+
+
 
 
 
@@ -282,6 +328,7 @@
 
 
 
+
 </div>
       <footer id="footer">
   <div class="outer">
@@ -298,17 +345,28 @@
     </div>
     
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<script src="/js/mobile.js" type="text/javascript"></script>
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="/js/main.js" type="text/javascript"></script>
 
 
 
 
 
-<! -- mathjax config similar to math.stackexchange -->
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -329,7 +387,6 @@ MathJax.Hub.Queue(function() {
 
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-
 
 
   </div>

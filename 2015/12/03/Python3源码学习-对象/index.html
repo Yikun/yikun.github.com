@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Python3源码学习-对象 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="最近开始看Python源码，大致看了看，发现Py2和Py3的部分实现差别挺大，《Python源码剖析》是根据Python 2写的。不过为了能激发主动性，便直接从Python 3（3.5.0）源码看起了，然后也会结合Python 2（2.7.10）的代码看看之前的实现，来对比学习~：）
@@ -31,8 +32,8 @@ Objects a">
     <link rel="icon" href="/favicon.png">
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 </head>
+
 <body>
   <div id="container">
     <div class="left-col">
@@ -40,7 +41,9 @@ Objects a">
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/assets/photo.jpg">
+			
+			<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 		</a>
 
 		<hgroup>
@@ -69,7 +72,7 @@ Objects a">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>标签</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -123,6 +126,7 @@ Objects a">
 		</div>
 	</header>				
 </div>
+
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
@@ -133,11 +137,13 @@ Objects a">
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/assets/photo.jpg">
-				<hgroup>
-				  <h1 class="header-author">Yikun</h1>
-				</hgroup>
+			
+				<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 			</div>
+			<hgroup>
+			  <h1 class="header-author">Yikun</h1>
+			</hgroup>
 			
 			<nav class="header-menu">
 				<ul>
@@ -169,6 +175,7 @@ Objects a">
 		</header>				
 	</div>
 </nav>
+
       <div class="body-wrap"><article id="post-Python3源码学习-对象" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -206,8 +213,21 @@ Objects a">
     
     <div class="article-entry" itemprop="articleBody">
       
+        
+           
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_万物皆对象"><span class="toc-text">1. 万物皆对象</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_对象的结构"><span class="toc-text">2. 对象的结构</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol>
+             </div>
+             <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               setTimeout("_article.className += ' article2'",0);
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);
+             </script>
+           
+         
         <p>最近开始看Python源码，大致看了看，发现Py2和Py3的部分实现差别挺大，《Python源码剖析》是根据Python 2写的。不过为了能激发主动性，便直接从Python 3（3.5.0）源码看起了，然后也会结合Python 2（2.7.10）的代码看看之前的实现，来对比学习~：）</p>
-<h4 id="1-_万物皆对象">1. 万物皆对象</h4><p>在Python中，万物皆对象，那么对象又是什么结构，如何组织，怎样实现的呢？</p>
+<h3 id="1-_万物皆对象">1. 万物皆对象</h3><p>在Python中，万物皆对象，那么对象又是什么结构，如何组织，怎样实现的呢？</p>
 <blockquote>
 <p>Objects are structures allocated on the heap.  Special rules apply to the use of objects to ensure they are properly garbage-collected. Objects are never allocated statically or on the stack; they must be accessed through special macros and functions only.(Type objects are exceptions to the first rule; the standard types are represented by statically initialized type objects, although work on type/class unification for Python 2.2 made it possible to have heap-allocated type objects too).</p>
 </blockquote>
@@ -218,7 +238,37 @@ Objects a">
 <li>对象永远不会静态开辟或者在栈上；</li>
 </ul>
 <p>然后，还补充说，Type对象除外，标准的type对象是静态初始化的，Python 2.2把在堆上初始化type对象变成了现实。</p>
-<h4 id="2-_对象的结构">2. 对象的结构</h4><p><img src="https://cloud.githubusercontent.com/assets/1736354/11553779/03a14ebe-99cd-11e5-8640-dde569539e9d.png" alt="object"></p>
+<h3 id="2-_对象的结构">2. 对象的结构</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/11553779/03a14ebe-99cd-11e5-8640-dde569539e9d.png" alt="object"></p>
+<p>Python中的对象，主要分为一般对象和变长对象（list、dict之类），一般的对象就是PyObject，然后变长对象其实就是给PyObject加了个size成为了PyVarObject。</p>
+<p>对于所有对象来说，均有2个重要的元素：</p>
+<ul>
+<li><p>引用计数（reference count），对象中的引用计数用来记录引用对象的数目，会在指针指向或删除对该对象的引用时，相应的增加或者减少，当引用计数达到0，就代表这没有指针指向这个对象了，这个对象便会在堆中移除。从名字就可以看出来，这个域是为了支持垃圾回收而定义的。</p>
+</li>
+<li><p>类型（type），对象的类型表示对象包含数据的类型，每个对象中都有一个指向类型的指针。比较有意思的是，type也是一个对象，type对象的类型是它本身，所以type对象的类型指针就指向它自己了。</p>
+</li>
+</ul>
+<p>对于可变长的对象（比如list，dict），会多一个域：</p>
+<ul>
+<li>大小（size），这个大小表示这个变长变量中元素的个数。注意，是元素的个数，不是字节个数。</li>
+</ul>
+<p>另外头部还有<code>_PyObject_HEAD_EXTRA</code>，这个宏定义了next和prev指针，用来支持用一个双链表把所有堆中的对象串起来。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Define pointers to support a doubly-linked list of all live heap objects. */</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> _PyObject_HEAD_EXTRA            \</span><br><span class="line">    struct _object *_ob_next;           \</span><br><span class="line">    struct _object *_ob_prev;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="参考资料">参考资料</h3><p>Python-3.5.0源码<br><a href="http://www.wklken.me/posts/2014/08/05/python-source-object.html#pyobject_head" target="_blank" rel="external">PYTHON 源码阅读 - 对象</a><br><a href="http://book.douban.com/subject/3117898/" target="_blank" rel="external">Python源码剖析</a></p>
+
+      
+      
+        <p>最近开始看Python源码，大致看了看，发现Py2和Py3的部分实现差别挺大，《Python源码剖析》是根据Python 2写的。不过为了能激发主动性，便直接从Python 3（3.5.0）源码看起了，然后也会结合Python 2（2.7.10）的代码看看之前的实现，来对比学习~：）</p>
+<h3 id="1-_万物皆对象">1. 万物皆对象</h3><p>在Python中，万物皆对象，那么对象又是什么结构，如何组织，怎样实现的呢？</p>
+<blockquote>
+<p>Objects are structures allocated on the heap.  Special rules apply to the use of objects to ensure they are properly garbage-collected. Objects are never allocated statically or on the stack; they must be accessed through special macros and functions only.(Type objects are exceptions to the first rule; the standard types are represented by statically initialized type objects, although work on type/class unification for Python 2.2 made it possible to have heap-allocated type objects too).</p>
+</blockquote>
+<p>从Python的源码注释可以得到以下信息点：</p>
+<ul>
+<li>对象一般就是开辟在堆上的结构体；</li>
+<li>一些特殊的规则运用在对象上，以保证他们被正确的GC；</li>
+<li>对象永远不会静态开辟或者在栈上；</li>
+</ul>
+<p>然后，还补充说，Type对象除外，标准的type对象是静态初始化的，Python 2.2把在堆上初始化type对象变成了现实。</p>
+<h3 id="2-_对象的结构">2. 对象的结构</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/11553779/03a14ebe-99cd-11e5-8640-dde569539e9d.png" alt="object"></p>
 <p>Python中的对象，主要分为一般对象和变长对象（list、dict之类），一般的对象就是PyObject，然后变长对象其实就是给PyObject加了个size成为了PyVarObject。</p>
 <p>对于所有对象来说，均有2个重要的元素：</p>
 <ul>
@@ -263,20 +313,26 @@ Objects a">
 </article>
 
 
-<div class="share">
+<div class="share_jia">
 	<!-- JiaThis Button BEGIN -->
 	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
 		<a class="jiathis_button_cqq"></a>
 		<a class="jiathis_button_douban"></a>
 		<a class="jiathis_button_weixin"></a>
 		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
 	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
 	<!-- JiaThis Button END -->
 </div>
+
+
+
 
 
 
@@ -301,6 +357,7 @@ Objects a">
 
 
 
+
 </div>
       <footer id="footer">
   <div class="outer">
@@ -317,17 +374,28 @@ Objects a">
     </div>
     
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<script src="/js/mobile.js" type="text/javascript"></script>
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="/js/main.js" type="text/javascript"></script>
 
 
 
 
 
-<! -- mathjax config similar to math.stackexchange -->
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -348,7 +416,6 @@ MathJax.Hub.Queue(function() {
 
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-
 
 
   </div>

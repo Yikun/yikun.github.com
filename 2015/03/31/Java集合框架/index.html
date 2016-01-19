@@ -3,6 +3,7 @@
 <head>
   <meta charset="utf-8">
   
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Java集合框架 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="概述什么是集合？这Java官方的入门文档是这样描述集合的：
@@ -37,8 +38,8 @@ Colle">
     <link rel="icon" href="/favicon.png">
   
   <link rel="stylesheet" href="/css/style.css" type="text/css">
-  <script src="http://libs.baidu.com/jquery/1.9.0/jquery.js"></script>
 </head>
+
 <body>
   <div id="container">
     <div class="left-col">
@@ -46,7 +47,9 @@ Colle">
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
-			<img src="/assets/photo.jpg">
+			
+			<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 		</a>
 
 		<hgroup>
@@ -75,7 +78,7 @@ Colle">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>标签</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -129,6 +132,7 @@ Colle">
 		</div>
 	</header>				
 </div>
+
     </div>
     <div class="mid-col">
       <nav id="mobile-nav">
@@ -139,11 +143,13 @@ Colle">
 	<div class="intrude-less">
 		<header id="header" class="inner">
 			<div class="profilepic">
-				<img src="/assets/photo.jpg">
-				<hgroup>
-				  <h1 class="header-author">Yikun</h1>
-				</hgroup>
+			
+				<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
 			</div>
+			<hgroup>
+			  <h1 class="header-author">Yikun</h1>
+			</hgroup>
 			
 			<nav class="header-menu">
 				<ul>
@@ -175,6 +181,7 @@ Colle">
 		</header>				
 	</div>
 </nav>
+
       <div class="body-wrap"><article id="post-Java集合框架" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -211,6 +218,69 @@ Colle">
       
     
     <div class="article-entry" itemprop="articleBody">
+      
+        
+           
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#概述"><span class="toc-text">概述</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是集合？"><span class="toc-text">什么是集合？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#什么是集合框架？"><span class="toc-text">什么是集合框架？</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#使用集合框架有什么好处？"><span class="toc-text">使用集合框架有什么好处？</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#接口"><span class="toc-text">接口</span></a></li></ol>
+             </div>
+             <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               setTimeout("_article.className += ' article2'",0);
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);
+             </script>
+           
+         
+        <h3 id="概述">概述</h3><h4 id="什么是集合？">什么是集合？</h4><p>这Java官方的<a href="https://docs.oracle.com/javase/tutorial/collections/intro/index.html" target="_blank" rel="external">入门文档</a>是这样描述集合的：</p>
+<blockquote>
+<p>Collection(有时候也叫container)是一个简单的对象，它把多个元素组织成一个单元。集合可以用来存储、检索、操作、通信。通常情况下，集合代表了一个自然数据项，比如一组手牌(牌的集合)、邮件文件夹(邮件的集合)、电话目录(姓名到电话的映射)。如果你使用过Java或者其他语言，你应该很熟悉集合。</p>
+</blockquote>
+<h4 id="什么是集合框架？">什么是集合框架？</h4><blockquote>
+<p>Collections Framework是一个用来表示和操作集合的统一的架构。集合的框架包括了：</p>
+<ul>
+<li><strong>Interfaces:</strong><br>这些是表示集合的抽象数据类型，接口允许集合完成操作，独立与其详细的实现。在面向对象的语言中，接口构成了体系架构；</li>
+<li><strong>Implementations:</strong><br>这些是接口的具体实现。本质上，是一些可复用的数据结构；</li>
+<li><strong>Algorithms:</strong><br>这些方法可以对接口实现的对象进行有用的计算，比如搜索、排序。这些算法是具有多态性的：也就是说，同样的方法可以用在合适的接口的不同实现。本质上，是一些可复用的函数。</li>
+</ul>
+<p>除了Java的集合框架，还有一些著名的集合框架的例子：比如C++的STL和Smalltalk的集合架构。从历史上来看，集合框架可能比较复杂，也可能有一些很陡峭的学习曲线。不过我们相信Java的集合框架会突破这样的传统，在这章你就可以自己学会。</p>
+</blockquote>
+<h4 id="使用集合框架有什么好处？">使用集合框架有什么好处？</h4><blockquote>
+<p>Java的集合框架提供了一下优点：</p>
+<ul>
+<li><strong>减少编程的工作量</strong>：通过提供有用的数据结构和算法，集合框架能让你更专注的实现程序的核心功能，而不是去做一个底层的“管道工”。Java框架通过促进无关API的互操作性，使得你不用自己去实现不同API的适配</li>
+<li><strong>提高程序的速度与质量</strong>：集合框架提供了一些有用数据结构和算法的高性能、高质量的实现。每个接口的不同的实现也是可以互换的，所以程序可以通过切换集合来做一些调整。正因为你从实现数据结构的那些苦差事中脱离出来，你才可以有更多的实现去改善你自己程序的性能和质量</li>
+<li><strong>允许无关APIs的互操作</strong>：集合接口是API之间传递集合的一个“方言”，比如我的网络管理API有一个节点名的集合，而GUI工具需要一个列标题的集合，即使是分开实现它们，我们的APIs也可以无缝的接合。</li>
+<li><strong>省力地学习和使用新API</strong>：<br>这是另一个领先的优势，设计者和实现者没必要在每次都重新设计API的时候都“推倒重来”地实现集合，而是直接使用标准的集合接口就好了。</li>
+<li><strong>促进软件的复用</strong>：符合标准集合接口的新数据结构本质上是可以复用的。对于操作这些新数据结构算法也是一样可以复用的。</li>
+</ul>
+</blockquote>
+<p>因此，后面也便从接口、实现、算法几方面结合着代码和官方的文档学习总结一下。</p>
+<h3 id="接口">接口</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/6912860/5a9ea472-d7aa-11e4-9002-8e2c90d0ca58.png" alt="java interface"><br>在Java中所有的核心集合接口都是generic的<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Iterable</span>&lt;<span class="title">E</span>&gt; </span>&#123;&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">List</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; </span>&#123;&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Queue</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; </span>&#123;&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Deque</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Queue</span>&lt;<span class="title">E</span>&gt; </span>&#123;&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Collection</span>&lt;<span class="title">E</span>&gt; </span>&#123;&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SortedSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt; </span>&#123;&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">NavigableSet</span>&lt;<span class="title">E</span>&gt; <span class="keyword">extends</span> <span class="title">SortedSet</span>&lt;<span class="title">E</span>&gt; </span>&#123;&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">SortedMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">Map</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;&#125;</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">NavigableMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; <span class="keyword">extends</span> <span class="title">SortedMap</span>&lt;<span class="title">K</span>,<span class="title">V</span>&gt; </span>&#123;&#125;</span><br></pre></td></tr></table></figure></p>
+<p>也就是说在声明一个Collection的时候，应该指定一种类型。官方是这样解释原因的：</p>
+<blockquote>
+<p>Specifying the type allows the compiler to verify (at compile-time) that the type of object you put into the collection is correct, thus reducing errors at runtime.</p>
+</blockquote>
+<p>下面就来介绍一下几种接口：</p>
+<ul>
+<li><strong>Collection</strong>： 集合层次中的根。一个集合表示一组对象。有些有序，有些无序。有些重复，有些重复。Collection没有直接的实现，而只有它的子接口的对应的实现。</li>
+<li><strong>Set</strong>：<strong>不能包含重复的元素</strong>，比如扑克手牌、学生选课计划、计算机的进程。</li>
+<li><strong>List</strong>：有序的集合，也可以包含重复的元素。用于对每个元素精确的控制，比如插入、用index来索引。</li>
+<li><strong>Queue</strong>：用于多元素有优先级的处理，可以用做FIFO</li>
+<li><strong>Deque</strong>：用于多元素有优先级的处理，double ended queue，可以用作FIFO，LIFO</li>
+<li><strong>Map</strong>：用于keys到values的映射，不能包含重复元素<br>另外还提供了2个带排序的Set和Map。</li>
+<li><strong>SortedSet</strong>：<strong>元素升序</strong></li>
+<li><strong>SortedMap</strong>：<strong>key升序</strong></li>
+</ul>
+<p>在1.6版本开始，还有两种新的接口<strong>NavigableSet</strong>、<strong>NavigableMap</strong>。</p>
+<blockquote>
+<p>A SortedMap/SortedSet extended with navigation methods reporting closest matches for given search targets.</p>
+</blockquote>
+<p>提供诸如：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//返回第一个大于e的元素</span></span><br><span class="line"><span class="function">E <span class="title">higher</span><span class="params">(E e)</span></span>;</span><br></pre></td></tr></table></figure></p>
+<p>之类的“导航性质”的便捷操作。</p>
+<p>以上便是Java集合框架与接口的相关内容。</p>
+
+      
       
         <h3 id="概述">概述</h3><h4 id="什么是集合？">什么是集合？</h4><p>这Java官方的<a href="https://docs.oracle.com/javase/tutorial/collections/intro/index.html" target="_blank" rel="external">入门文档</a>是这样描述集合的：</p>
 <blockquote>
@@ -289,20 +359,26 @@ Colle">
 </article>
 
 
-<div class="share">
+<div class="share_jia">
 	<!-- JiaThis Button BEGIN -->
 	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到：</span>
-		<a class="jiathis_button_tsina"></a>
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
 		<a class="jiathis_button_cqq"></a>
 		<a class="jiathis_button_douban"></a>
 		<a class="jiathis_button_weixin"></a>
 		<a class="jiathis_button_tumblr"></a>
-		<a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
 	</div>
 	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
 	<!-- JiaThis Button END -->
 </div>
+
+
+
 
 
 
@@ -327,6 +403,7 @@ Colle">
 
 
 
+
 </div>
       <footer id="footer">
   <div class="outer">
@@ -343,17 +420,28 @@ Colle">
     </div>
     
   <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
-  <script src="/fancybox/jquery.fancybox.pack.js" type="text/javascript"></script>
 
 
-<script src="/js/mobile.js" type="text/javascript"></script>
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
 <script src="/js/main.js" type="text/javascript"></script>
 
 
 
 
 
-<! -- mathjax config similar to math.stackexchange -->
 
 <script type="text/x-mathjax-config">
 MathJax.Hub.Config({
@@ -374,7 +462,6 @@ MathJax.Hub.Queue(function() {
 
 <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
 </script>
-
 
 
   </div>
