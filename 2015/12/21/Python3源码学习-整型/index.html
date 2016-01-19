@@ -6,19 +6,16 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Python3源码学习-整型 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 引入我们先看看对整型变量i进行赋值，并对i进行显示的过程：123&amp;gt;&amp;gt;&amp;gt; i=1&amp;gt;&amp;gt;&amp;gt; i1
-在之前已经了解到对象是如何存储、组织的了，那么，整型是如何存储的呢？在Python 2中，整型是分Int和Long的，稍小一点的数直接用C语言中的long去存储，稍大一点的数（超过long的承受范围）：12345678910111213Python 2.7.10 (">
+  <meta name="description" content="1. 引入我们先看看对整型变量i进行赋值，并对i进行显示的过程：123&amp;gt;&amp;gt;&amp;gt; i=1&amp;gt;&amp;gt;&amp;gt; i1">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python3源码学习-整型">
 <meta property="og:url" content="http://yikun.github.io/2015/12/21/Python3源码学习-整型/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="1. 引入我们先看看对整型变量i进行赋值，并对i进行显示的过程：123&amp;gt;&amp;gt;&amp;gt; i=1&amp;gt;&amp;gt;&amp;gt; i1
-在之前已经了解到对象是如何存储、组织的了，那么，整型是如何存储的呢？在Python 2中，整型是分Int和Long的，稍小一点的数直接用C语言中的long去存储，稍大一点的数（超过long的承受范围）：12345678910111213Python 2.7.10 (">
+<meta property="og:description" content="1. 引入我们先看看对整型变量i进行赋值，并对i进行显示的过程：123&amp;gt;&amp;gt;&amp;gt; i=1&amp;gt;&amp;gt;&amp;gt; i1">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11933249/af84fe30-a835-11e5-8a09-257bb08b3c12.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3源码学习-整型">
-<meta name="twitter:description" content="1. 引入我们先看看对整型变量i进行赋值，并对i进行显示的过程：123&amp;gt;&amp;gt;&amp;gt; i=1&amp;gt;&amp;gt;&amp;gt; i1
-在之前已经了解到对象是如何存储、组织的了，那么，整型是如何存储的呢？在Python 2中，整型是分Int和Long的，稍小一点的数直接用C语言中的long去存储，稍大一点的数（超过long的承受范围）：12345678910111213Python 2.7.10 (">
+<meta name="twitter:description" content="1. 引入我们先看看对整型变量i进行赋值，并对i进行显示的过程：123&amp;gt;&amp;gt;&amp;gt; i=1&amp;gt;&amp;gt;&amp;gt; i1">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -221,6 +218,7 @@
            
          
         <h3 id="1-_引入">1. 引入</h3><p>我们先看看对整型变量i进行赋值，并对i进行显示的过程：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">&gt;&gt;&gt; </span>i=<span class="number">1</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>i</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<a id="more"></a>
 <p>在之前已经了解到对象是如何存储、组织的了，那么，整型是如何存储的呢？在Python 2中，整型是分Int和Long的，稍小一点的数直接用C语言中的long去存储，稍大一点的数（超过long的承受范围）：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Python <span class="number">2.7</span>.10 (default, Jul <span class="number">14</span> <span class="number">2015</span>, <span class="number">19</span>:<span class="number">46</span>:<span class="number">27</span>)</span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>type(<span class="number">1</span>)</span><br><span class="line">&lt;type <span class="string">'int'</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>sys.maxsize</span><br><span class="line"><span class="comment"># 2**63-1</span></span><br><span class="line"><span class="number">9223372036854775807</span></span><br><span class="line"></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>type(sys.maxsize)</span><br><span class="line">&lt;type <span class="string">'int'</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>type(sys.maxsize+<span class="number">1</span>)</span><br><span class="line">&lt;type <span class="string">'long'</span>&gt;</span><br></pre></td></tr></table></figure></p>
 <p>而在Python 3中，我们进行相同的操作：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Python 3.5.0 (default, Dec 20 2015, 21:24:49)</span><br><span class="line">&gt;&gt;&gt; sys.maxsize</span><br><span class="line"># 2**63-1</span><br><span class="line">9223372036854775807</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; type(1)</span><br><span class="line">&lt;class 'int'&gt;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; type(sys.maxsize)</span><br><span class="line">&lt;class 'int'&gt;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; type(sys.maxsize+1)</span><br><span class="line">&lt;class 'int'&gt;</span><br></pre></td></tr></table></figure></p>
 <p>我们发现不论这个数是“大”是“小”，都无差别的显示为“int”了。那么，在Python3中做了哪些变动呢？Python3如何“一统天下”大小，存储整型数据呢？在Python 2中，分别使用intobject和longobject去存储整型，而在Python 3中，则使用longobject统一的表示整型，并且将type也设为“int”，在<a href="https://www.python.org/dev/peps/pep-0237/" target="_blank" rel="external">PEP 237 — Unifying Long Integers and Integers</a>中，详细的阐述了这个改变，下面让我们详细看看Python 3中整型的实现。</p>

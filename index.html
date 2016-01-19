@@ -254,29 +254,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
         <h3 id="1-_引入">1. 引入</h3><p>我们先看看对整型变量i进行赋值，并对i进行显示的过程：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">&gt;&gt;&gt; </span>i=<span class="number">1</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>i</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure></p>
-<p>在之前已经了解到对象是如何存储、组织的了，那么，整型是如何存储的呢？在Python 2中，整型是分Int和Long的，稍小一点的数直接用C语言中的long去存储，稍大一点的数（超过long的承受范围）：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Python <span class="number">2.7</span>.10 (default, Jul <span class="number">14</span> <span class="number">2015</span>, <span class="number">19</span>:<span class="number">46</span>:<span class="number">27</span>)</span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>type(<span class="number">1</span>)</span><br><span class="line">&lt;type <span class="string">'int'</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>sys.maxsize</span><br><span class="line"><span class="comment"># 2**63-1</span></span><br><span class="line"><span class="number">9223372036854775807</span></span><br><span class="line"></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>type(sys.maxsize)</span><br><span class="line">&lt;type <span class="string">'int'</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>type(sys.maxsize+<span class="number">1</span>)</span><br><span class="line">&lt;type <span class="string">'long'</span>&gt;</span><br></pre></td></tr></table></figure></p>
-<p>而在Python 3中，我们进行相同的操作：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Python 3.5.0 (default, Dec 20 2015, 21:24:49)</span><br><span class="line">&gt;&gt;&gt; sys.maxsize</span><br><span class="line"># 2**63-1</span><br><span class="line">9223372036854775807</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; type(1)</span><br><span class="line">&lt;class 'int'&gt;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; type(sys.maxsize)</span><br><span class="line">&lt;class 'int'&gt;</span><br><span class="line"></span><br><span class="line">&gt;&gt;&gt; type(sys.maxsize+1)</span><br><span class="line">&lt;class 'int'&gt;</span><br></pre></td></tr></table></figure></p>
-<p>我们发现不论这个数是“大”是“小”，都无差别的显示为“int”了。那么，在Python3中做了哪些变动呢？Python3如何“一统天下”大小，存储整型数据呢？在Python 2中，分别使用intobject和longobject去存储整型，而在Python 3中，则使用longobject统一的表示整型，并且将type也设为“int”，在<a href="https://www.python.org/dev/peps/pep-0237/" target="_blank" rel="external">PEP 237 — Unifying Long Integers and Integers</a>中，详细的阐述了这个改变，下面让我们详细看看Python 3中整型的实现。</p>
-<h3 id="2-_整型的实现">2. 整型的实现</h3><p>我们先看看longobject.h：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> _longobject PyLongObject; <span class="comment">/* Revealed in longintrepr.h */</span></span><br></pre></td></tr></table></figure></p>
-<p>按着注释解释，发现了整型的庐山真面目在longintrepr.h中：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Long integer representation.</span><br><span class="line">   The absolute value of a number is equal to</span><br><span class="line">   	SUM(for i=0 through abs(ob_size)-1) ob_digit[i] * 2**(SHIFT*i)</span><br><span class="line">   Negative numbers are represented with ob_size &lt; 0;</span><br><span class="line">   zero is represented by ob_size == 0.</span><br><span class="line">   In a normalized number, ob_digit[abs(ob_size)-1] (the most significant</span><br><span class="line">   digit) is never zero.  Also, in all cases, for all valid i,</span><br><span class="line">   	0 &lt;= ob_digit[i] &lt;= MASK.</span><br><span class="line">   The allocation function takes care of allocating extra memory</span><br><span class="line">   so that ob_digit[0] ... ob_digit[abs(ob_size)-1] are actually available.</span><br><span class="line"></span><br><span class="line">   CAUTION:  Generic code manipulating subtypes of PyVarObject has to</span><br><span class="line">   aware that ints abuse  ob_size's sign bit.</span><br><span class="line">*/</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">struct</span> _longobject &#123;</span><br><span class="line">	PyObject_VAR_HEAD</span><br><span class="line">	digit ob_digit[<span class="number">1</span>];</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>注释非常清楚，我们得到以下信息：</p>
-<ol>
-<li>整数的绝对值为<code>SUM(for i=0 through abs(ob_size)-1) ob_digit[i] * 2**(SHIFT*i)</code>。</li>
-<li>0值用<code>obsize==0</code>来表示。</li>
-<li>对于正常的数，<code>ob_digit[abs(ob_size)-1]</code>非0。</li>
-<li>对于有效的<code>i</code>，<code>ob_digit[i]</code>的范围在<code>[0, MASK]</code>。</li>
-</ol>
-<p>可以看到整型是借助柔性数组来实现的，柔性数组较指针来说，分配内存和释放内存时更为方便，且数组名本身不占用空间（指针需要占用1个int型的控件），柔性数组相关内容可以参考<a href="http://blog.csdn.net/fengbingchun/article/details/24185217" target="_blank" rel="external">链接</a>。</p>
-<p>光看描述可能有点抽象，我们看一个具体的例子，在我的环境中，SHIFT为30，MASK则为2的30次方-1，<code>1152921506754330628</code>这个数字在代码中是这样存储的，ob_size为3，ob_digit为4-2-1，我们来看看具体的表示含义：<br><img src="https://cloud.githubusercontent.com/assets/1736354/11933249/af84fe30-a835-11e5-8a09-257bb08b3c12.png" alt="int"><br>很熟悉吧，其实就是个进制转换过程：2的30次方进制转换为10进制！没错，就是这么简单。</p>
-<h3 id="3-_常用整数的优化">3. 常用整数的优化</h3><p>我们再观察一个现象：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">&gt;&gt;&gt; </span>i=<span class="number">10</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>j=<span class="number">10</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>i <span class="keyword">is</span> j</span><br><span class="line"><span class="keyword">True</span></span><br><span class="line"></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>i=<span class="number">257</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>j=<span class="number">257</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>i <span class="keyword">is</span> j</span><br><span class="line"><span class="keyword">False</span></span><br></pre></td></tr></table></figure></p>
-<p>我们发现对于第一个来说，i和j是一个对象，而第二个例子i和j是不同的对象。<br>可以想象的，如果每个整型都需要使用对象来表示，那么每创建一个整型就需要创建一个对象，这显然是不合理的，因此设计者将[-5, 257)范围内的整型数据进行了特殊处理，即在初始化的时候就将这些对象产生好，以后需要这些对象时直接从对象池取就好。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#ifndef NSMALLPOSINTS</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> NSMALLPOSINTS           257</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br><span class="line"><span class="preprocessor">#ifndef NSMALLNEGINTS</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> NSMALLNEGINTS           5</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br><span class="line"></span><br><span class="line"><span class="comment">// ... ...</span></span><br><span class="line"></span><br><span class="line"><span class="comment">/* Small integers are preallocated in this array so that they</span><br><span class="line">   can be shared.</span><br><span class="line">   The integers that are preallocated are those in the range</span><br><span class="line">   -NSMALLNEGINTS (inclusive) to NSMALLPOSINTS (not inclusive).</span><br><span class="line">*/</span></span><br><span class="line"><span class="keyword">static</span> PyLongObject small_ints[NSMALLNEGINTS + NSMALLPOSINTS];</span><br><span class="line"></span><br><span class="line"><span class="comment">// ... ...</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">static</span> PyObject *</span><br><span class="line">get_small_int(sdigit ival)</span><br><span class="line">&#123;</span><br><span class="line">    PyObject *v;</span><br><span class="line">    assert(-NSMALLNEGINTS &lt;= ival &amp;&amp; ival &lt; NSMALLPOSINTS);</span><br><span class="line">    v = (PyObject *)&amp;small_ints[ival + NSMALLNEGINTS];</span><br><span class="line">    Py_INCREF(v);</span><br><span class="line"><span class="preprocessor">#ifdef COUNT_ALLOCS</span></span><br><span class="line">    <span class="keyword">if</span> (ival &gt;= <span class="number">0</span>)</span><br><span class="line">        quick_int_allocs++;</span><br><span class="line">    <span class="keyword">else</span></span><br><span class="line">        quick_neg_int_allocs++;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">endif</span></span></span><br><span class="line">    <span class="keyword">return</span> v;</span><br><span class="line">&#125;</span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> CHECK_SMALL_INT(ival) \</span><br><span class="line">    do <span class="keyword">if</span> (-NSMALLNEGINTS &lt;= ival &amp;&amp; ival &lt; NSMALLPOSINTS) &#123; \</span><br><span class="line">        return get_small_int((sdigit)ival); \</span><br><span class="line">    &#125; while(0)</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="4-_Hack一下">4. Hack一下</h3><p>为了验证我们对整型实现理解的正确性，我们修改<code>long_to_decimal_string_internal</code>中加入一些代码，打印出整型变量的详情：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span></span><br><span class="line"><span class="title">long_to_decimal_string_internal</span><span class="params">(PyObject *aa,</span><br><span class="line">                                PyObject **p_output,</span><br><span class="line">                                _PyUnicodeWriter *writer)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    PyLongObject *scratch, *a;</span><br><span class="line">    PyObject *str;</span><br><span class="line">    Py_ssize_t size, <span class="built_in">strlen</span>, size_a, i, j;</span><br><span class="line">    digit *pout, *pin, rem, tenpow;</span><br><span class="line">    <span class="keyword">int</span> negative;</span><br><span class="line">    <span class="keyword">enum</span> PyUnicode_Kind kind;</span><br><span class="line"></span><br><span class="line">    a = (PyLongObject *)aa;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"==== Hack Code ====\n"</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"ob_size     = %d\n"</span>, Py_SIZE(a));</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">int</span> ob_i = <span class="number">0</span>; ob_i &lt; Py_SIZE(a); ++ob_i)</span><br><span class="line">    &#123;</span><br><span class="line">        <span class="built_in">printf</span>(<span class="string">"ob_digit[%d] = %d\n"</span>, ob_i, a-&gt;ob_digit[ob_i]);</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"====    End    ====\n"</span>);</span><br><span class="line">    </span><br><span class="line">    <span class="comment">// ... ...</span></span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>修改后，我们看到结果为：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">&gt;&gt;&gt; </span><span class="number">2</span>**<span class="number">60</span>+<span class="number">2</span>*<span class="number">2</span>**<span class="number">30</span>+<span class="number">4</span></span><br><span class="line">==== Hack Code ====</span><br><span class="line">ob_size     = <span class="number">3</span></span><br><span class="line">ob_digit[<span class="number">0</span>] = <span class="number">4</span></span><br><span class="line">ob_digit[<span class="number">1</span>] = <span class="number">2</span></span><br><span class="line">ob_digit[<span class="number">2</span>] = <span class="number">1</span></span><br><span class="line">====    End    ====</span><br><span class="line"><span class="number">1152921506754330628</span></span><br></pre></td></tr></table></figure></p>
-<p>我们看到，结果与我们预期的一样，ob_size为3，代表ob_digit的数组大小为3，ob_digit表述的数值为(2^60) x <code>1</code> + (2^30) x <code>2</code> + (2^0) x <code>4</code>。完整代码工程请见<a href="https://github.com/Yikun/Python3/commit/b816507f56ee14b730b7ab52a61eb17f9eb9d815" target="_blank" rel="external">链接</a></p>
-<h3 id="参考链接">参考链接</h3><p><a href="https://www.python.org/dev/peps/pep-0237/" target="_blank" rel="external">PEP 237 — Unifying Long Integers and Integers</a><br><a href="http://stackoverflow.com/questions/2104884/how-does-python-manage-int-and-long" target="_blank" rel="external">How does Python manage int and long?</a><br><a href="http://stackoverflow.com/questions/22875067/how-does-python-represent-such-large-integers" target="_blank" rel="external">How does python represent such large integers?</a><br><a href="http://www.itsprite.com/pythonhow-does-c-implements-the-python-assignment-of-large-numbers/" target="_blank" rel="external">Python:How does C implements the Python assignment of large numbers</a><br><a href="https://ep2013.europython.eu/conference/talks/hacking-pylongobject-on-python-32" target="_blank" rel="external">HACKING PYLONGOBJECT ON PYTHON 3.2</a><br><a href="https://interma.wordpress.com/2012/10/11/py3_integral/" target="_blank" rel="external">py3源码-2-整数</a><br><a href="http://foofish.net/blog/89/python_int_implement" target="_blank" rel="external">Python 整数对象实现原理</a><br><a href="http://blog.csdn.net/fengbingchun/article/details/24185217" target="_blank" rel="external">结构体中最后一个成员为[0]或[1]长度数组(柔性数组成员)的用法</a></p>
-
       
     </div>
     
@@ -289,6 +267,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2015/12/21/Python3源码学习-整型/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -332,25 +314,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
         <h3 id="1-_类型">1. 类型</h3><p>我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> _typeobject &#123;</span><br><span class="line">    PyObject_VAR_HEAD</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *tp_name; <span class="comment">/* For printing, in format "&lt;module&gt;.&lt;name&gt;" */</span></span><br><span class="line">    Py_ssize_t tp_basicsize, tp_itemsize; <span class="comment">/* For allocation */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Methods to implement standard operations */</span></span><br><span class="line">    destructor tp_dealloc;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//... ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* More standard operations (here for binary compatibility) */</span></span><br><span class="line">    hashfunc tp_hash;</span><br><span class="line">    ternaryfunc tp_call;</span><br><span class="line">    reprfunc tp_str;</span><br><span class="line">    getattrofunc tp_getattro;</span><br><span class="line">    setattrofunc tp_setattro;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//... ...</span></span><br><span class="line"></span><br><span class="line">&#125; PyTypeObject;</span><br></pre></td></tr></table></figure></p>
-<p>可以看到，PyTypeObject就是类型对象的定义了。其中，包含了一些和类型相关的重要信息：</p>
-<ul>
-<li><strong>类型名</strong>： <code>const char *tp_name</code>，例如对于整型对象，他的这个name就是“int”。</li>
-<li><strong>开辟空间大小</strong>：<code>tp_basicsize</code>和<code>tp_itemsize</code>包含了创建该类型的对象所需要分配的控件大小。</li>
-<li><strong>一些与对象相关联的操作</strong>：比如<code>tp_dealloc</code>用于销毁对象，<code>tp_hash</code>用于计算hash值，<code>tp_str</code>用于将对象转换为str。</li>
-</ul>
-<h3 id="2-_类型的类型">2. 类型的类型</h3><p>另外可以看到，由该类的属性<code>PyObject_VAR_HEAD</code>看出，类型也是一个对象。我们知道每个对象都会有一个类型，那么思考一个问题，类型对象的类型又是什么呢？这个问题在typeobject.c的文件中给出了答案：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">PyTypeObject PyType_Type = &#123;</span><br><span class="line">    PyVarObject_HEAD_INIT(&amp;PyType_Type, <span class="number">0</span>)</span><br><span class="line">    <span class="string">"type"</span>,                                     <span class="comment">/* tp_name */</span></span><br><span class="line">    <span class="keyword">sizeof</span>(PyHeapTypeObject),                   <span class="comment">/* tp_basicsize */</span></span><br><span class="line">    <span class="keyword">sizeof</span>(PyMemberDef),                        <span class="comment">/* tp_itemsize */</span></span><br><span class="line">    (destructor)type_dealloc,                   <span class="comment">/* tp_dealloc */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_print */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_getattr */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_setattr */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_reserved */</span></span><br><span class="line">    (reprfunc)type_repr,                        <span class="comment">/* tp_repr */</span></span><br><span class="line">    </span><br><span class="line">    <span class="comment">// ... ...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
-<p>可以看到类型对象的类型就是<code>PyType_Type</code>，而PyType_Type的类型则执行它本身。</p>
-<h3 id="3-_对象图示">3. 对象图示</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/11918443/66f1c2c6-a76c-11e5-8838-f742ec215af2.png" alt="type object"></p>
-<p>如上图所示，是一个简单的整型对象的例子，我们可以看出：</p>
-<ol>
-<li>整型对象的类型是PyLong_Type。</li>
-<li>PyLong_Type是一个类型对象，其类型为PyType_Type。</li>
-<li>PyType_Type也是一个类型对象，其类型为它本身。</li>
-</ol>
-<p>我们也可以看出因为“万物皆对象”，不同的object虽然type不同，但是都有一个类型指针，通过类型指针ob_type即可完成对应方法的访问，Python也正是利用了指针的特性，从而实现了多态。</p>
-
       
     </div>
     
@@ -363,6 +327,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2015/12/20/Python3源码学习-类型/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -406,21 +374,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
-        <p>在进行源码学习的时候，“实践出真知”。因此，在进行源码学习的过程中，我们首先需要对源码进行编译，然后，对我们感兴趣的点进行log，甚至debug。本篇文章记录了我在进行Python 3.5.0源码编译时的一些过程。</p>
-<h3 id="1-_下载">1. 下载</h3><p>在官网<a href="https://www.python.org/downloads/" target="_blank" rel="external">下载</a>最新源码，为了方便跟踪源码的修改，借助git来管理Python源码。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init&#10;git add .&#10;git commit -am &#34;Python 3.5.0 source.&#34;</span><br></pre></td></tr></table></figure></p>
-<h3 id="2-_配置">2. 配置</h3><p>在编译前需要使用configure对源码进行配置。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br></pre></td></tr></table></figure></p>
-<p>配置完源码后，使用git status观察一下变化：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">➜  Python-<span class="number">3.5</span>.<span class="number">0</span> git:(master) ✗ git status</span><br><span class="line">On branch master</span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line"></span><br><span class="line">	Makefile</span><br><span class="line">	Makefile<span class="class">.pre</span></span><br><span class="line">	Misc/python-config<span class="class">.sh</span></span><br><span class="line">	Misc/python<span class="class">.pc</span></span><br><span class="line">	Modules/Setup</span><br><span class="line">	Modules/Setup<span class="class">.config</span></span><br><span class="line">	Modules/Setup<span class="class">.local</span></span><br><span class="line">	Modules/config<span class="class">.c</span></span><br><span class="line">	Modules/ld_so_aix</span><br><span class="line">	config<span class="class">.log</span></span><br><span class="line">	config<span class="class">.status</span></span><br><span class="line">	pyconfig<span class="class">.h</span></span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use <span class="string">"git add"</span> to track)</span><br></pre></td></tr></table></figure></p>
-<p>我们看到产生了一些和make相关的配置文件，用来适配当前的环境。<br>用git提交一下：<br><figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">add</span> .</span><br><span class="line">git commit -<span class="keyword">am</span> <span class="string">"After ./configure ."</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="3-编译">3.编译</h3><p>编译Python时，使用make进行编译<br><figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">make</span></span><br></pre></td></tr></table></figure></p>
-<p>编译完成后，产生了一个python.exe文件，便是我们编译所得的执行文件。</p>
-<blockquote>
-<p>注<br>我是在OSX下进行编译的，在编译过程中遇到了<code>fatal error: &#39;lzma.h&#39; file not found</code>问题，把lzma包安上就可以了：<br><figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">brew <span class="keyword">install</span> xz</span><br></pre></td></tr></table></figure></p>
-</blockquote>
-<h3 id="4-运行">4.运行</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./python.exe</span><br></pre></td></tr></table></figure>
-<p>以上便完成了整个Python源码的编译。以后，在修改完代码以后，只需要<code>make;./python.exe</code>就好~那么，享受Hack python code的乐趣吧。：）</p>
-<p>代码已上传，并根据学习过程不断更新：<a href="https://github.com/Yikun/Python3" target="_blank" rel="external">https://github.com/Yikun/Python3</a></p>
-
+        <p>在进行源码学习的时候，“实践出真知”。因此，在进行源码学习的过程中，我们首先需要对源码进行编译，然后，对我们感兴趣的点进行log，甚至debug。本篇文章记录了我在进行Python 3.5.0源码编译时的一些过程。<br>
       
     </div>
     
@@ -433,6 +387,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2015/12/20/Python3源码学习-编译Python源码/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -476,35 +434,8 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
         <p>最近开始看Python源码，大致看了看，发现Py2和Py3的部分实现差别挺大，《Python源码剖析》是根据Python 2写的。不过为了能激发主动性，便直接从Python 3（3.5.0）源码看起了，然后也会结合Python 2（2.7.10）的代码看看之前的实现，来对比学习~：）</p>
-<h3 id="1-_万物皆对象">1. 万物皆对象</h3><p>在Python中，万物皆对象，那么对象又是什么结构，如何组织，怎样实现的呢？</p>
-<blockquote>
-<p>Objects are structures allocated on the heap.  Special rules apply to the use of objects to ensure they are properly garbage-collected. Objects are never allocated statically or on the stack; they must be accessed through special macros and functions only.(Type objects are exceptions to the first rule; the standard types are represented by statically initialized type objects, although work on type/class unification for Python 2.2 made it possible to have heap-allocated type objects too).</p>
-</blockquote>
-<p>从Python的源码注释可以得到以下信息点：</p>
-<ul>
-<li>对象一般就是开辟在堆上的结构体；</li>
-<li>一些特殊的规则运用在对象上，以保证他们被正确的GC；</li>
-<li>对象永远不会静态开辟或者在栈上；</li>
-</ul>
-<p>然后，还补充说，Type对象除外，标准的type对象是静态初始化的，Python 2.2把在堆上初始化type对象变成了现实。</p>
-<h3 id="2-_对象的结构">2. 对象的结构</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/11553779/03a14ebe-99cd-11e5-8640-dde569539e9d.png" alt="object"></p>
-<p>Python中的对象，主要分为一般对象和变长对象（list、dict之类），一般的对象就是PyObject，然后变长对象其实就是给PyObject加了个size成为了PyVarObject。</p>
-<p>对于所有对象来说，均有2个重要的元素：</p>
-<ul>
-<li><p>引用计数（reference count），对象中的引用计数用来记录引用对象的数目，会在指针指向或删除对该对象的引用时，相应的增加或者减少，当引用计数达到0，就代表这没有指针指向这个对象了，这个对象便会在堆中移除。从名字就可以看出来，这个域是为了支持垃圾回收而定义的。</p>
-</li>
-<li><p>类型（type），对象的类型表示对象包含数据的类型，每个对象中都有一个指向类型的指针。比较有意思的是，type也是一个对象，type对象的类型是它本身，所以type对象的类型指针就指向它自己了。</p>
-</li>
-</ul>
-<p>对于可变长的对象（比如list，dict），会多一个域：</p>
-<ul>
-<li>大小（size），这个大小表示这个变长变量中元素的个数。注意，是元素的个数，不是字节个数。</li>
-</ul>
-<p>另外头部还有<code>_PyObject_HEAD_EXTRA</code>，这个宏定义了next和prev指针，用来支持用一个双链表把所有堆中的对象串起来。<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/* Define pointers to support a doubly-linked list of all live heap objects. */</span></span><br><span class="line"><span class="preprocessor">#<span class="keyword">define</span> _PyObject_HEAD_EXTRA            \</span><br><span class="line">    struct _object *_ob_next;           \</span><br><span class="line">    struct _object *_ob_prev;</span></span><br></pre></td></tr></table></figure></p>
-<h3 id="参考资料">参考资料</h3><p>Python-3.5.0源码<br><a href="http://www.wklken.me/posts/2014/08/05/python-source-object.html#pyobject_head" target="_blank" rel="external">PYTHON 源码阅读 - 对象</a><br><a href="http://book.douban.com/subject/3117898/" target="_blank" rel="external">Python源码剖析</a></p>
-
+<h3 id="1-_万物皆对象">1. 万物皆对象</h3><p>在Python中，万物皆对象，那么对象又是什么结构，如何组织，怎样实现的呢？<br>
       
     </div>
     
@@ -517,6 +448,10 @@
 
       
 
+      
+        <p class="article-more-link">
+          <a  href="/2015/12/03/Python3源码学习-对象/#more">more >></a>
+        </p>
       
       <div class="clearfix"></div>
     </div>
@@ -561,8 +496,6 @@
     <div class="article-entry" itemprop="articleBody">
       
         <p>本科加上研究生大概有七年时间，一直都是学的通信，不过覆盖面不是很全，一直对一些网络相关的概念和实现有些模糊。最近补了补通信网络中的一些基础知识和盲点，有目的地看了看《云计算网络珠玑》、《图解网络硬件》等和网络相关的书和一些文章，做一下记录总结。主要包括了二层交换、三层路由、Linux网络相关的内容。</p>
-<h2 id="1-_二层交换">1. 二层交换</h2><p>二层交换指的是传统的二层交换机实现的功能，主要的功能就是将以太网帧从一个端口接收，并从合适的端口发送出去。</p>
-<h3 id="1-1_以太网帧">1.1 以太网帧</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/11339369/29e0977e-9234-11e5-880f-8c03596d1246.png" alt="emac"></p>
       
     </div>
     

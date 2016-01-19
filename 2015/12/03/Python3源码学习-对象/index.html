@@ -7,24 +7,18 @@
   <title>Python3源码学习-对象 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="最近开始看Python源码，大致看了看，发现Py2和Py3的部分实现差别挺大，《Python源码剖析》是根据Python 2写的。不过为了能激发主动性，便直接从Python 3（3.5.0）源码看起了，然后也会结合Python 2（2.7.10）的代码看看之前的实现，来对比学习~：）
-1. 万物皆对象在Python中，万物皆对象，那么对象又是什么结构，如何组织，怎样实现的呢？
-
-Objects a">
+1. 万物皆对象在Python中，万物皆对象，那么对象又是什么结构，如何组织，怎样实现的呢？">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python3源码学习-对象">
 <meta property="og:url" content="http://yikun.github.io/2015/12/03/Python3源码学习-对象/index.html">
 <meta property="og:site_name" content="Yikun">
 <meta property="og:description" content="最近开始看Python源码，大致看了看，发现Py2和Py3的部分实现差别挺大，《Python源码剖析》是根据Python 2写的。不过为了能激发主动性，便直接从Python 3（3.5.0）源码看起了，然后也会结合Python 2（2.7.10）的代码看看之前的实现，来对比学习~：）
-1. 万物皆对象在Python中，万物皆对象，那么对象又是什么结构，如何组织，怎样实现的呢？
-
-Objects a">
+1. 万物皆对象在Python中，万物皆对象，那么对象又是什么结构，如何组织，怎样实现的呢？">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11553779/03a14ebe-99cd-11e5-8640-dde569539e9d.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3源码学习-对象">
 <meta name="twitter:description" content="最近开始看Python源码，大致看了看，发现Py2和Py3的部分实现差别挺大，《Python源码剖析》是根据Python 2写的。不过为了能激发主动性，便直接从Python 3（3.5.0）源码看起了，然后也会结合Python 2（2.7.10）的代码看看之前的实现，来对比学习~：）
-1. 万物皆对象在Python中，万物皆对象，那么对象又是什么结构，如何组织，怎样实现的呢？
-
-Objects a">
+1. 万物皆对象在Python中，万物皆对象，那么对象又是什么结构，如何组织，怎样实现的呢？">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -227,7 +221,7 @@ Objects a">
            
          
         <p>最近开始看Python源码，大致看了看，发现Py2和Py3的部分实现差别挺大，《Python源码剖析》是根据Python 2写的。不过为了能激发主动性，便直接从Python 3（3.5.0）源码看起了，然后也会结合Python 2（2.7.10）的代码看看之前的实现，来对比学习~：）</p>
-<h3 id="1-_万物皆对象">1. 万物皆对象</h3><p>在Python中，万物皆对象，那么对象又是什么结构，如何组织，怎样实现的呢？</p>
+<h3 id="1-_万物皆对象">1. 万物皆对象</h3><p>在Python中，万物皆对象，那么对象又是什么结构，如何组织，怎样实现的呢？<br><a id="more"></a></p>
 <blockquote>
 <p>Objects are structures allocated on the heap.  Special rules apply to the use of objects to ensure they are properly garbage-collected. Objects are never allocated statically or on the stack; they must be accessed through special macros and functions only.(Type objects are exceptions to the first rule; the standard types are represented by statically initialized type objects, although work on type/class unification for Python 2.2 made it possible to have heap-allocated type objects too).</p>
 </blockquote>

@@ -6,18 +6,15 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>Python3源码学习-编译Python源码 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在进行源码学习的时候，“实践出真知”。因此，在进行源码学习的过程中，我们首先需要对源码进行编译，然后，对我们感兴趣的点进行log，甚至debug。本篇文章记录了我在进行Python 3.5.0源码编译时的一些过程。
-1. 下载在官网下载最新源码，为了方便跟踪源码的修改，借助git来管理Python源码。1git init&amp;#10;git add .&amp;#10;git commit -am &amp;#34;">
+  <meta name="description" content="在进行源码学习的时候，“实践出真知”。因此，在进行源码学习的过程中，我们首先需要对源码进行编译，然后，对我们感兴趣的点进行log，甚至debug。本篇文章记录了我在进行Python 3.5.0源码编译时的一些过程。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python3源码学习-编译Python源码">
 <meta property="og:url" content="http://yikun.github.io/2015/12/20/Python3源码学习-编译Python源码/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="在进行源码学习的时候，“实践出真知”。因此，在进行源码学习的过程中，我们首先需要对源码进行编译，然后，对我们感兴趣的点进行log，甚至debug。本篇文章记录了我在进行Python 3.5.0源码编译时的一些过程。
-1. 下载在官网下载最新源码，为了方便跟踪源码的修改，借助git来管理Python源码。1git init&amp;#10;git add .&amp;#10;git commit -am &amp;#34;">
+<meta property="og:description" content="在进行源码学习的时候，“实践出真知”。因此，在进行源码学习的过程中，我们首先需要对源码进行编译，然后，对我们感兴趣的点进行log，甚至debug。本篇文章记录了我在进行Python 3.5.0源码编译时的一些过程。">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3源码学习-编译Python源码">
-<meta name="twitter:description" content="在进行源码学习的时候，“实践出真知”。因此，在进行源码学习的过程中，我们首先需要对源码进行编译，然后，对我们感兴趣的点进行log，甚至debug。本篇文章记录了我在进行Python 3.5.0源码编译时的一些过程。
-1. 下载在官网下载最新源码，为了方便跟踪源码的修改，借助git来管理Python源码。1git init&amp;#10;git add .&amp;#10;git commit -am &amp;#34;">
+<meta name="twitter:description" content="在进行源码学习的时候，“实践出真知”。因此，在进行源码学习的过程中，我们首先需要对源码进行编译，然后，对我们感兴趣的点进行log，甚至debug。本篇文章记录了我在进行Python 3.5.0源码编译时的一些过程。">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -219,7 +216,7 @@
              </script>
            
          
-        <p>在进行源码学习的时候，“实践出真知”。因此，在进行源码学习的过程中，我们首先需要对源码进行编译，然后，对我们感兴趣的点进行log，甚至debug。本篇文章记录了我在进行Python 3.5.0源码编译时的一些过程。</p>
+        <p>在进行源码学习的时候，“实践出真知”。因此，在进行源码学习的过程中，我们首先需要对源码进行编译，然后，对我们感兴趣的点进行log，甚至debug。本篇文章记录了我在进行Python 3.5.0源码编译时的一些过程。<br><a id="more"></a></p>
 <h3 id="1-_下载">1. 下载</h3><p>在官网<a href="https://www.python.org/downloads/" target="_blank" rel="external">下载</a>最新源码，为了方便跟踪源码的修改，借助git来管理Python源码。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init&#10;git add .&#10;git commit -am &#34;Python 3.5.0 source.&#34;</span><br></pre></td></tr></table></figure></p>
 <h3 id="2-_配置">2. 配置</h3><p>在编译前需要使用configure对源码进行配置。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br></pre></td></tr></table></figure></p>
 <p>配置完源码后，使用git status观察一下变化：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">➜  Python-<span class="number">3.5</span>.<span class="number">0</span> git:(master) ✗ git status</span><br><span class="line">On branch master</span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line"></span><br><span class="line">	Makefile</span><br><span class="line">	Makefile<span class="class">.pre</span></span><br><span class="line">	Misc/python-config<span class="class">.sh</span></span><br><span class="line">	Misc/python<span class="class">.pc</span></span><br><span class="line">	Modules/Setup</span><br><span class="line">	Modules/Setup<span class="class">.config</span></span><br><span class="line">	Modules/Setup<span class="class">.local</span></span><br><span class="line">	Modules/config<span class="class">.c</span></span><br><span class="line">	Modules/ld_so_aix</span><br><span class="line">	config<span class="class">.log</span></span><br><span class="line">	config<span class="class">.status</span></span><br><span class="line">	pyconfig<span class="class">.h</span></span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use <span class="string">"git add"</span> to track)</span><br></pre></td></tr></table></figure></p>
