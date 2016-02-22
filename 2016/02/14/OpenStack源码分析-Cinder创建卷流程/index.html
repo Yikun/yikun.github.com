@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>OpenStack源码分析-Cinder创建卷流程 | Yikun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. Cinder创卷整体流程
+如整体架构图所示，创建卷涉及的答题步骤主要有以下几步：a. Client发送请求，通过RESTFUL接口访问cinder-api。b. Api解析响应请求，api解析由Client发送来的请求，并通过rpc进一步调用cinder-scheduler。c. Scheduler对资源进行调度，scheduler选择合适的节点进行。d. Volume调用Driver创建卷">
+<meta property="og:type" content="article">
+<meta property="og:title" content="OpenStack源码分析-Cinder创建卷流程">
+<meta property="og:url" content="http://yikun.github.io/2016/02/14/OpenStack源码分析-Cinder创建卷流程/index.html">
+<meta property="og:site_name" content="Yikun">
+<meta property="og:description" content="1. Cinder创卷整体流程
+如整体架构图所示，创建卷涉及的答题步骤主要有以下几步：a. Client发送请求，通过RESTFUL接口访问cinder-api。b. Api解析响应请求，api解析由Client发送来的请求，并通过rpc进一步调用cinder-scheduler。c. Scheduler对资源进行调度，scheduler选择合适的节点进行。d. Volume调用Driver创建卷">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/13130372/71de5178-d61e-11e5-8d7c-6b9f0a244e41.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/13033012/82f1e54e-d342-11e5-835c-e8f6d3baff40.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/13130422/b4a5c3b0-d61e-11e5-8781-52c9586b9c7d.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/13130398/8ceff976-d61e-11e5-8ea7-08661eebb7af.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/13130404/93c802e8-d61e-11e5-87e7-a01a64765a3b.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="OpenStack源码分析-Cinder创建卷流程">
+<meta name="twitter:description" content="1. Cinder创卷整体流程
+如整体架构图所示，创建卷涉及的答题步骤主要有以下几步：a. Client发送请求，通过RESTFUL接口访问cinder-api。b. Api解析响应请求，api解析由Client发送来的请求，并通过rpc进一步调用cinder-scheduler。c. Scheduler对资源进行调度，scheduler选择合适的节点进行。d. Volume调用Driver创建卷">
+  
+    <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Yikun</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>標籤</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">文章</a></li>
+				        
+							<li><a href="/tags/随笔/">随笔</a></li>
+				        
+							<li><a href="/project">项目</a></li>
+				        
+							<li><a href="/douban">读书</a></li>
+				        
+							<li><a href="/about">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yikun" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/keroenigma" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/C-C/" style="font-size: 12.86px;">C/C++</a><a href="/tags/Cinder/" style="font-size: 12.86px;">Cinder</a><a href="/tags/Git/" style="font-size: 11.43px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 12.86px;">Linux</a><a href="/tags/Nginx/" style="font-size: 15.71px;">Nginx</a><a href="/tags/Nova/" style="font-size: 14.29px;">Nova</a><a href="/tags/OpenStack/" style="font-size: 18.57px;">OpenStack</a><a href="/tags/Python/" style="font-size: 14.29px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 11.43px;">系统</a><a href="/tags/网络/" style="font-size: 11.43px;">网络</a><a href="/tags/随笔/" style="font-size: 17.14px;">随笔</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Yikun</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Yikun</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">文章</a></li>
+		        
+					<li><a href="/tags/随笔/">随笔</a></li>
+		        
+					<li><a href="/project">项目</a></li>
+		        
+					<li><a href="/douban">读书</a></li>
+		        
+					<li><a href="/about">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yikun" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/keroenigma" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-OpenStack源码分析-Cinder创建卷流程" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/14/OpenStack源码分析-Cinder创建卷流程/" class="article-date">
+  	<time datetime="2016-02-14T09:43:30.000Z" itemprop="datePublished">Feb 14 2016</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      OpenStack源码分析-Cinder创建卷流程
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cinder/">Cinder</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenStack/">OpenStack</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+           
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_Cinder创卷整体流程"><span class="toc-text">1. Cinder创卷整体流程</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_源码详解"><span class="toc-text">2. 源码详解</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#2-1_Cinder_API部分"><span class="toc-text">2.1 Cinder API部分</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-2_Cinder_Scheduler"><span class="toc-text">2.2 Cinder Scheduler</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#2-3_Cinder_Volume"><span class="toc-text">2.3    Cinder Volume</span></a></li></ol></li></ol>
+             </div>
+             <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               setTimeout("_article.className += ' article2'",0);
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);
+             </script>
+           
+         
+        <h3 id="1-_Cinder创卷整体流程">1. Cinder创卷整体流程</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/13130372/71de5178-d61e-11e5-8d7c-6b9f0a244e41.png" alt="create"></p>
+<p>如整体架构图所示，创建卷涉及的答题步骤主要有以下几步：<br>a. Client发送请求，通过RESTFUL接口访问cinder-api。<br>b. Api解析响应请求，api解析由Client发送来的请求，并通过rpc进一步调用cinder-scheduler。<br>c. Scheduler对资源进行调度，scheduler选择合适的节点进行。<br>d. Volume调用Driver创建卷，volume通过指定Driver进行卷的创建。</p>
+<h3 id="2-_源码详解">2. 源码详解</h3><p>代码的整体流程如下所示：<br> <img src="https://cloud.githubusercontent.com/assets/1736354/13033012/82f1e54e-d342-11e5-835c-e8f6d3baff40.png" alt="cinder seq"><br>从上图可以看出，整体处理流程包括三大部分，分别是API、Scheduler、Volume三部分。</p>
+<h4 id="2-1_Cinder_API部分">2.1 Cinder API部分</h4><p><img src="https://cloud.githubusercontent.com/assets/1736354/13130422/b4a5c3b0-d61e-11e5-8781-52c9586b9c7d.png" alt="create_api"></p>
+<p>(1) cinder\api\v2\volumes.py<br>VolumeController. create函数对创建请求进行响应，首先函数对volume_type、metadata、snapshot等信息进行检查，然后调用Volume API的create进行创建。<br>(2) cinder\volume\api.py<br>API.create函数对source_volume、volume_type等参数进行进一步检查，并调用cinder.volume.flows.api.get_flow来创建。<br>(3) cinder\volume\flows\api\create_volume.py<br>get_flow函数检查Quata，最后创建EntryCreateTask及VolumeCastTask等任务，<br>其中EntryCreateTask会将卷的创建过程写入数据库，此时卷的状态为”creating”。<br>VolumeCastTask.excute函数会调用VoumeCastTask._cast_create_volume<br>VolumeCastTask._cast_create_volume函数，如果未传入host，则会经过调度进行创建卷，通过scheduler_rpcapi.create_volume创建卷；如果未传入host则直接交由Volume Manager去创建卷。</p>
+<p>至此为止，Cinder API部分完成了自己的工作。</p>
+<h4 id="2-2_Cinder_Scheduler">2.2 Cinder Scheduler</h4><p><img src="https://cloud.githubusercontent.com/assets/1736354/13130398/8ceff976-d61e-11e5-8ea7-08661eebb7af.png" alt="create_sche"></p>
+<p>(1) cinder\scheduler\rpcapi.py（此步还属于cinder-api）<br>SchedulerAPI.create_volume函数会通过消息异步调用SchedulerManager.create_volume函数。<br>(2) cinder\scheduler\manager.py<br>SchedulerManager.create_volume函数，使用自己的flow来创建volume，其中还传入了Driver。<br>(3) cinder\scheduler\flows\create_volume.py<br>get_flow函数，创建ScheduleCreateVolumeTask<br>ScheduleCreateVolumeTask.execute函数，会调用driver_api.schedule_create_volume<br>(4) cinder\scheduler\filter_scheduler.py<br>FilterScheduler. schedule_create_volume函数，更新数据库，最后通过消息队列请求调用volume_rpcapi.create_volume。</p>
+<h4 id="2-3_Cinder_Volume">2.3    Cinder Volume</h4><p> <img src="https://cloud.githubusercontent.com/assets/1736354/13130404/93c802e8-d61e-11e5-87e7-a01a64765a3b.png" alt="create_volume"><br>(1) /cinder/volume/rpcapi.py（此步还属于cinder-scheduler）<br>VolumeAPI.create_volume会通过消息队列远程调用VolumeManager.create_volume<br>(2) /cinder/volume/manager.py<br>VolumeManager函数也使用flow来创建volume，执行CreateVolumeFromSpecTask这个任务<br>(3) /cinder/volume/flows/manager/create_volume.py<br>CreateVolumeFromSpecTask.excute，这个函数会根据创建的不同类别，去创建卷，例如调用create_raw_volume，最终会调用具体的driver进行卷的创建。<br>在完成创卷后，CreateVolumeOnFinishTask这个任务，启动更新数据库，将卷更新为available状态。</p>
+<p>我们可以看到在创建卷的过程中盘的状态会从“creating”状态变为“available”状态。</p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/02/21/OpenStack源码分析-Cinder删除卷流程/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          OpenStack源码分析-Cinder删除卷流程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/02/10/搭建OpenStack开发环境/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">搭建OpenStack开发环境</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	
+		<div class="ds-thread" data-thread-key="OpenStack源码分析-Cinder创建卷流程" data-title="OpenStack源码分析-Cinder创建卷流程" data-url="http://yikun.github.io/2016/02/14/OpenStack源码分析-Cinder创建卷流程/"></div>
+	
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"Kero"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Yikun
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

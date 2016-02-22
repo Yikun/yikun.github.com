@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>搭建OpenStack开发环境 | Yikun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="前段时间主要了解了一些OpenStack相关的基础性东西，现在希望通过安装使用来增强一下对系统整体的认识，最近也读了一篇文章如何学习开源项目，基本和我的想法很类似，所以基本上也就是按照这个节奏来的。不说废话了，开始。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="搭建OpenStack开发环境">
+<meta property="og:url" content="http://yikun.github.io/2016/02/10/搭建OpenStack开发环境/index.html">
+<meta property="og:site_name" content="Yikun">
+<meta property="og:description" content="前段时间主要了解了一些OpenStack相关的基础性东西，现在希望通过安装使用来增强一下对系统整体的认识，最近也读了一篇文章如何学习开源项目，基本和我的想法很类似，所以基本上也就是按照这个节奏来的。不说废话了，开始。">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="搭建OpenStack开发环境">
+<meta name="twitter:description" content="前段时间主要了解了一些OpenStack相关的基础性东西，现在希望通过安装使用来增强一下对系统整体的认识，最近也读了一篇文章如何学习开源项目，基本和我的想法很类似，所以基本上也就是按照这个节奏来的。不说废话了，开始。">
+  
+    <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Yikun</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>標籤</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">文章</a></li>
+				        
+							<li><a href="/tags/随笔/">随笔</a></li>
+				        
+							<li><a href="/project">项目</a></li>
+				        
+							<li><a href="/douban">读书</a></li>
+				        
+							<li><a href="/about">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yikun" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/keroenigma" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/C-C/" style="font-size: 12.86px;">C/C++</a><a href="/tags/Cinder/" style="font-size: 12.86px;">Cinder</a><a href="/tags/Git/" style="font-size: 11.43px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 12.86px;">Linux</a><a href="/tags/Nginx/" style="font-size: 15.71px;">Nginx</a><a href="/tags/Nova/" style="font-size: 14.29px;">Nova</a><a href="/tags/OpenStack/" style="font-size: 18.57px;">OpenStack</a><a href="/tags/Python/" style="font-size: 14.29px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 11.43px;">系统</a><a href="/tags/网络/" style="font-size: 11.43px;">网络</a><a href="/tags/随笔/" style="font-size: 17.14px;">随笔</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Yikun</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Yikun</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">文章</a></li>
+		        
+					<li><a href="/tags/随笔/">随笔</a></li>
+		        
+					<li><a href="/project">项目</a></li>
+		        
+					<li><a href="/douban">读书</a></li>
+		        
+					<li><a href="/about">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yikun" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/keroenigma" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-搭建OpenStack开发环境" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/10/搭建OpenStack开发环境/" class="article-date">
+  	<time datetime="2016-02-09T16:10:09.000Z" itemprop="datePublished">Feb 10 2016</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      搭建OpenStack开发环境
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenStack/">OpenStack</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+           
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_环境准备"><span class="toc-text">1. 环境准备</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#1-1_安装系统"><span class="toc-text">1.1 安装系统</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-2_基本工具"><span class="toc-text">1.2 基本工具</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-3_加速Python源"><span class="toc-text">1.3 加速Python源</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#1-4_加速Ubuntu源"><span class="toc-text">1.4 加速Ubuntu源</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_下载Devstack"><span class="toc-text">2. 下载Devstack</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_创建Stack用户"><span class="toc-text">3. 创建Stack用户</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#4-_创建local-conf"><span class="toc-text">4. 创建local.conf</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-_开始安装"><span class="toc-text">5. 开始安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#问题解决"><span class="toc-text">问题解决</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考链接"><span class="toc-text">参考链接</span></a></li></ol>
+             </div>
+             <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               setTimeout("_article.className += ' article2'",0);
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);
+             </script>
+           
+         
+        <p>前段时间主要了解了一些OpenStack相关的基础性东西，现在希望通过安装使用来增强一下对系统整体的认识，最近也读了一篇文章<a href="http://www.csdn.net/article/2014-04-10/2819247-how-to-learn-opensouce-project-&amp;-ceph" target="_blank" rel="external">如何学习开源项目</a>，基本和我的想法很类似，所以基本上也就是按照这个节奏来的。不说废话了，开始。<br><a id="more"></a></p>
+<h3 id="1-_环境准备">1. 环境准备</h3><p>整体的环境安装是基于[devstack]来搭建，本来就是一个脚本一个配置文件就可以了，不过因为部分网络环境比较“艰苦”，所以需要做一些优化，所以需要做一些准备工作。</p>
+<h4 id="1-1_安装系统">1.1 安装系统</h4><p>Virtual Box，<a href="https://www.virtualbox.org/" target="_blank" rel="external">下载</a><br>Ubuntu 14.04，<a href="http://www.ubuntu.com/download/desktop/install-ubuntu-desktop" target="_blank" rel="external">下载</a><br>网络的话，我是选择了NAT模式，保证虚拟机能够通过宿主机来上网，然后另设了一个Host Only网卡做SSH访问，最近突然发现还可以用NAT端口转发的方式（把22端口转发到主机）完成类似功能，这样就只需要一个网卡了。</p>
+<h4 id="1-2_基本工具">1.2 基本工具</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#23433;&#35013;Git&#10;sudo apt-get install git</span><br></pre></td></tr></table></figure>
+<h4 id="1-3_加速Python源">1.3 加速Python源</h4><p>为了加速下载速度，对Python源进行优化，这里用豆瓣的源。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vim ~/.pip/pip.conf&#10;[global]&#10;timeout = 6000&#10;trusted-host = pypi.douban.com&#10;index-url = http://pypi.douban.com/simple/</span><br></pre></td></tr></table></figure></p>
+<h4 id="1-4_加速Ubuntu源">1.4 加速Ubuntu源</h4><p>为了加速下载速度，对Ubuntu源进行优化，这里用网易的源。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vim /etc/apt/sources.list&#10;deb http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse&#10;deb http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse&#10;deb http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse&#10;deb http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse&#10;deb http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse&#10;deb-src http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse&#10;deb-src http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse&#10;deb-src http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse&#10;deb-src http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse&#10;deb-src http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse</span><br></pre></td></tr></table></figure></p>
+<h3 id="2-_下载Devstack">2. 下载Devstack</h3><p>使用Git安装脚本切换到自己需要的版本：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#19979;&#36733;devstack&#10;git clone https://git.openstack.org/openstack-dev/devstack&#10;# &#20999;&#25442;&#29256;&#26412;&#10;git checkout stable/liberty</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-_创建Stack用户">3. 创建Stack用户</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">devstack/tools/create-stack-user.sh; su stack</span><br></pre></td></tr></table></figure>
+<h4 id="4-_创建local-conf">4. 创建local.conf</h4><p>创建local.conf文件，并且写入自己的配置，可以参考官方的<a href="http://docs.openstack.org/developer/devstack/configuration.html#minimal-configuration" target="_blank" rel="external">Minimal configuration</a>，我的配置如下所示，参考<a href="http://www.chenshake.com/install-ubuntu-14-04-devstack/" target="_blank" rel="external">链接</a>做的。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># vim ~/devstack/local.conf&#10;[local|localrc]]&#10;GIT_BASE=https://github.com&#10;# Define images to be automatically downloaded during the DevStack built process.&#10;IMAGE_URLS=&#34;http://download.cirros-cloud.net/0.3.4/cirros-0.3.4-x86_64-disk.img&#34;&#10;# Credentials&#10;DATABASE_PASSWORD=1&#10;ADMIN_PASSWORD=1&#10;SERVICE_PASSWORD=1&#10;SERVICE_TOKEN=1&#10;RABBIT_PASSWORD=1&#10;&#10;HOST_IP=192.168.56.102&#10;SERVICE_HOST=192.168.56.102&#10;MYSQL_HOST=192.168.56.102&#10;RABBIT_HOST=192.168.56.102&#10;GLANCE_HOSTPORT=192.168.56.102:9292&#10;&#10;# Work offline(&#19981;&#38656;&#35201;&#26356;&#26032;&#26102;&#25171;&#24320;)&#10;# OFFLINE=True&#10;# Reclone each time(&#38656;&#35201;&#26356;&#26032;&#26102;&#25171;&#24320;)&#10;RECLONE=yes&#10;&#10;# Logging&#10;# -------&#10;# By default ``stack.sh`` output only goes to the terminal where it runs. It can&#10;# be configured to additionally log to a file by setting ``LOGFILE`` to the full&#10;# path of the destination log file. A timestamp will be appended to the given name.&#10;LOGFILE=/opt/stack/logs/stack.sh.log&#10;VERBOSE=True&#10;LOG_COLOR=True&#10;SCREEN_LOGDIR=/opt/stack/logs&#10;&#10;# the number of days by setting ``LOGDAYS``.&#10;LOGDAYS=1&#10;&#10;# Database Backend MySQL&#10;enable_service mysql&#10;&#10;# RPC Backend RabbitMQ&#10;enable_service rabbit&#10;&#10;# Enable Keystone - OpenStack Identity Service&#10;enable_service key&#10;&#10;# Horizon - OpenStack Dashboard Service&#10;enable_service horizon&#10;&#10;# Enable Swift - Object Storage Service without replication.&#10;enable_service s-proxy s-object s-container s-account&#10;SWIFT_HASH=66a3d6b56c1f479c8b4e70ab5c2000f5&#10;SWIFT_REPLICAS=1&#10;&#10;# Enable Glance - OpenStack Image service&#10;enable_service g-api g-reg&#10;&#10;# Enable Cinder - Block Storage service for OpenStack&#10;enable_service cinder c-api c-vol c-sch c-bak&#10;&#10;# Branches&#10;KEYSTONE_BRANCH=stable/liberty&#10;NOVA_BRANCH=stable/liberty&#10;NEUTRON_BRANCH=stable/liberty&#10;SWIFT_BRANCH=stable/liberty&#10;GLANCE_BRANCH=stable/liberty&#10;CINDER_BRANCH=stable/liberty&#10;HEAT_BRANCH=stable/liberty&#10;TROVE_BRANCH=stable/liberty&#10;HORIZON_BRANCH=stable/liberty&#10;SAHARA_BRANCH=stable/liberty&#10;CEILOMETER_BRANCH=stable/liberty&#10;TROVE_BRANCH=stable/liberty</span><br></pre></td></tr></table></figure></p>
+<h3 id="5-_开始安装">5. 开始安装</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd devstack; ./stack.sh</span><br></pre></td></tr></table></figure>
+<p>最终安装完毕：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#... ...</span><br><span class="line">This is your host IP <span class="string">address:</span> <span class="number">192.168</span>.56.102</span><br><span class="line">This is your host IPv6 <span class="string">address:</span> ::<span class="number">1</span></span><br><span class="line">Horizon is now available at <span class="string">http:</span><span class="comment">//192.168.56.102/dashboard</span></span><br><span class="line">Keystone is serving at <span class="string">http:</span><span class="comment">//192.168.56.102:5000/</span></span><br><span class="line">The <span class="keyword">default</span> users <span class="string">are:</span> admin and demo</span><br><span class="line">The <span class="string">password:</span> <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="问题解决">问题解决</h3><p>问题： InsecurePlatformWarning: A true SSLContext object is not available. This prevents urllib3 from configuring SSL appropriately [duplicate] 参考<a href="http://stackoverflow.com/questions/29134512/insecureplatformwarning-a-true-sslcontext-object-is-not-available-this-prevent" target="_blank" rel="external">链接</a>解决的：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get install libffi-dev libssl-dev&#10;sudo pip install requests[security]&#10;sudo pip install --upgrade pyopenssl ndg-httpsclient pyasn1 pip</span><br></pre></td></tr></table></figure></p>
+<p>问题： ERROR: tox version is 2.1.1, required is at least 2.3.1<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#62; sudo pip install &#39;tox==2.3.1&#39;</span><br></pre></td></tr></table></figure></p>
+<h3 id="参考链接">参考链接</h3><p><a href="http://www.chenshake.com/install-ubuntu-14-04-devstack/" target="_blank" rel="external">Ubuntu 14.04 Devstack安装Liberty</a><br><a href="http://bingotree.cn/?p=687" target="_blank" rel="external">使用DEVSTACK搭建OPENSTACK可remote debug的开发测试环境</a><br><a href="http://docs.openstack.org/developer/devstack/" target="_blank" rel="external">DevStack - an OpenStack Community Production</a><br><a href="http://docs.openstack.org/developer/devstack/stack.sh.html" target="_blank" rel="external">stack.sh</a><br><a href="http://docs.openstack.org/developer/devstack/configuration.html#minimal-configuration" target="_blank" rel="external">Minimal Configuration</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/02/14/OpenStack源码分析-Cinder创建卷流程/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          OpenStack源码分析-Cinder创建卷流程
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/02/03/存储知识学习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">存储知识学习</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	
+		<div class="ds-thread" data-thread-key="搭建OpenStack开发环境" data-title="搭建OpenStack开发环境" data-url="http://yikun.github.io/2016/02/10/搭建OpenStack开发环境/"></div>
+	
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"Kero"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Yikun
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

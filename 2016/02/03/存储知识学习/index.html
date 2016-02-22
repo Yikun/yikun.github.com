@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>存储知识学习 | Yikun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="1. 磁盘基本知识磁盘大致由盘片、磁头、步进电机等几部分组成组成。盘面：硬盘一般含有一个或多个盘片，一个盘片包含两个盘面。磁道：每个盘面被划成多个狭窄的同心圆环，这样的圆环叫做磁道。扇区：每个磁道的每段圆弧叫做一个扇区，是读写的最小单位。柱面：所有盘面上的同一磁道，在竖直方向构成一个圆柱，称为柱面。    读写过程：硬盘读取数据时，磁头先移动到读取扇区所在磁道的上方，这个过程耗时叫做磁盘寻道时间，">
+<meta property="og:type" content="article">
+<meta property="og:title" content="存储知识学习">
+<meta property="og:url" content="http://yikun.github.io/2016/02/03/存储知识学习/index.html">
+<meta property="og:site_name" content="Yikun">
+<meta property="og:description" content="1. 磁盘基本知识磁盘大致由盘片、磁头、步进电机等几部分组成组成。盘面：硬盘一般含有一个或多个盘片，一个盘片包含两个盘面。磁道：每个盘面被划成多个狭窄的同心圆环，这样的圆环叫做磁道。扇区：每个磁道的每段圆弧叫做一个扇区，是读写的最小单位。柱面：所有盘面上的同一磁道，在竖直方向构成一个圆柱，称为柱面。    读写过程：硬盘读取数据时，磁头先移动到读取扇区所在磁道的上方，这个过程耗时叫做磁盘寻道时间，">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/12811291/7906961c-cb66-11e5-89da-3f2bc2f00108.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/12811308/9e2cf4e0-cb66-11e5-91e4-5d375b576ae7.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="存储知识学习">
+<meta name="twitter:description" content="1. 磁盘基本知识磁盘大致由盘片、磁头、步进电机等几部分组成组成。盘面：硬盘一般含有一个或多个盘片，一个盘片包含两个盘面。磁道：每个盘面被划成多个狭窄的同心圆环，这样的圆环叫做磁道。扇区：每个磁道的每段圆弧叫做一个扇区，是读写的最小单位。柱面：所有盘面上的同一磁道，在竖直方向构成一个圆柱，称为柱面。    读写过程：硬盘读取数据时，磁头先移动到读取扇区所在磁道的上方，这个过程耗时叫做磁盘寻道时间，">
+  
+    <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Yikun</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>標籤</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">文章</a></li>
+				        
+							<li><a href="/tags/随笔/">随笔</a></li>
+				        
+							<li><a href="/project">项目</a></li>
+				        
+							<li><a href="/douban">读书</a></li>
+				        
+							<li><a href="/about">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yikun" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/keroenigma" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/C-C/" style="font-size: 12.86px;">C/C++</a><a href="/tags/Cinder/" style="font-size: 12.86px;">Cinder</a><a href="/tags/Git/" style="font-size: 11.43px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 12.86px;">Linux</a><a href="/tags/Nginx/" style="font-size: 15.71px;">Nginx</a><a href="/tags/Nova/" style="font-size: 14.29px;">Nova</a><a href="/tags/OpenStack/" style="font-size: 18.57px;">OpenStack</a><a href="/tags/Python/" style="font-size: 14.29px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 11.43px;">系统</a><a href="/tags/网络/" style="font-size: 11.43px;">网络</a><a href="/tags/随笔/" style="font-size: 17.14px;">随笔</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Yikun</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Yikun</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">文章</a></li>
+		        
+					<li><a href="/tags/随笔/">随笔</a></li>
+		        
+					<li><a href="/project">项目</a></li>
+		        
+					<li><a href="/douban">读书</a></li>
+		        
+					<li><a href="/about">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yikun" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/keroenigma" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-存储知识学习" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/02/03/存储知识学习/" class="article-date">
+  	<time datetime="2016-02-03T14:46:58.000Z" itemprop="datePublished">Feb 3 2016</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      存储知识学习
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Cinder/">Cinder</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenStack/">OpenStack</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+           
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+               <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1-_磁盘基本知识"><span class="toc-text">1. 磁盘基本知识</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_RAID基本知识"><span class="toc-text">2. RAID基本知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_存储方式"><span class="toc-text">3. 存储方式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4-_IP_SAN与FC_SAN"><span class="toc-text">4. IP SAN与FC SAN</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-_LVM基本知识"><span class="toc-text">5. LVM基本知识</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考资料"><span class="toc-text">参考资料</span></a></li></ol></li></ol>
+             </div>
+             <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               setTimeout("_article.className += ' article2'",0);
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);
+             </script>
+           
+         
+        <h2 id="1-_磁盘基本知识">1. 磁盘基本知识</h2><p>磁盘大致由盘片、磁头、步进电机等几部分组成组成。<br>盘面：硬盘一般含有一个或多个盘片，一个盘片包含两个盘面。<br>磁道：每个盘面被划成多个狭窄的同心圆环，这样的圆环叫做磁道。<br>扇区：每个磁道的每段圆弧叫做一个扇区，是读写的最小单位。<br>柱面：所有盘面上的同一磁道，在竖直方向构成一个圆柱，称为柱面。<br>    读写过程：硬盘读取数据时，磁头先移动到读取扇区所在磁道的上方，这个过程耗时叫做磁盘寻道时间，平均时间为10ms。之后，通过盘片的旋转，使得扇区转到磁头的下方，这个过程耗时叫做旋转延迟时间，对于7200转/min的硬盘转一周为60*1000/7200=8.33ms，平均旋转延迟为4.17ms（半圈）。</p>
+<h3 id="2-_RAID基本知识">2. RAID基本知识</h3><p>RAID（Redundant Array of Independent Disks），即由独立的磁盘组成的具有冗余特性的阵列。其基本思想就是把多个相对便宜的硬盘组合起来，成为一个硬盘阵列组，使性能达到甚至超过一个价格昂贵、 容量巨大的硬盘。<br>RAID 0，条带化存储，容量增加，并行化，但无冗余，容易单点故障。</p>
+<p>RAID 1，镜像存储，写入速率慢，读取速率快，有冗余备份，优点是高可靠、高可用，缺点是高花费。</p>
+<p>RAID 2，RAID 0的改进版，使用汉明码进行检测和纠错，适用于连续IO、大块IO（如视频流）。</p>
+<p>RAID 3，RAID 3和RAID 2的思路比较相似，使用奇偶校验进行错误检测和纠错，但校验盘单点故障。</p>
+<p>RAID 4，RAID 4和RAID 3思路一样，只不过是使用BLOCK进行存储。</p>
+<p>RAID 5，校验信息交叉的存储在所有数据盘上，高冗余，高数据传输率，实现复杂。</p>
+<p>RAID 6，相比RAID5增加块内的校验，允许同时坏2块硬盘而不丢失数据。</p>
+<p>RAID 01，先做条带（0），再做镜像（1）。读写速度快，数据保护能力强，空间利用率50%。<br>RAID 10，先做镜像（1），再做条带（0）。</p>
+<h3 id="3-_存储方式">3. 存储方式</h3><p>根据网上的资料和理解，用Visio整理了一张图对比了下几种方式：<br><img src="https://cloud.githubusercontent.com/assets/1736354/12811291/7906961c-cb66-11e5-89da-3f2bc2f00108.png" alt="das_nas_san"></p>
+<p>DAS全称为Direct Attached Storage，即服务器直连存储。如图所示，文件系统直接通过RAID完成对硬件访问。优点是操作简便，经济，缺点是分散式存储，不可集中管理。<br>NAS全称为Network Attached Storage，即网络存储服务。如图所示，文件系统通过网络暴露出来给应用服务。优点是结构简单。配置使用管理非常方便，可实现跨平台的数据共享。缺点是需要占用网络资源、应用局限性大。<br>SAN全称为Storage Aera Network，即存储区域网络，如图所示，RAID接口通过网络暴露出来。优点是扩展性强，集中管理，缺点是成本较高，管理维护难度大。</p>
+<h3 id="4-_IP_SAN与FC_SAN">4. IP SAN与FC SAN</h3><p>FC SAN指基于光纤通道（Fiber Channel）的存储区域网，在FC SAN中存在两张网，一张面向应用的网（IP网），另一张中则是存储网（FC网）。而IP SAN的出现则是为了寻求一种新的方式，用与应用网相同的体系架构来构造存储网，使用通用的IP网络及设备。<br>FC SAN性能好，价格高，但与主流的IP网络异构。适用于关键应用的几种存储、备份及容灾。<br>IP SAN则由于以太网MTU（1518字节）的限制，性能稍差，但基于通用的IP协议。适用于异地间的数据交换、备份容灾，非关键应用的集中存储。</p>
+<h3 id="5-_LVM基本知识">5. LVM基本知识</h3><p>LVM的全称是Logical Volume Manager，逻辑卷轴管理，主要解决的问题是，弹性调整文件系统的容量。</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1736354/12811308/9e2cf4e0-cb66-11e5-91e4-5d375b576ae7.png" alt="lvm"></p>
+<p>与传统的磁盘与分区相比，LVM为计算机提供了更高层次的存储，通过在磁盘分区和文件系统之间增加一个逻辑层，提供一个抽象的逻辑盘卷。</p>
+<h3 id="参考资料">参考资料</h3><ol>
+<li>《大话存储》</li>
+<li>RAID技术介绍和总结<a href="http://blog.jobbole.com/83808/" target="_blank" rel="external">http://blog.jobbole.com/83808/</a></li>
+<li>基于OpenStack的NAS服务<a href="https://www.ustack.com/blog/openstack-nas/" target="_blank" rel="external">https://www.ustack.com/blog/openstack-nas/</a></li>
+</ol>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+    <a href="/2016/02/10/搭建OpenStack开发环境/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          搭建OpenStack开发环境
+        
+      </div>
+    </a>
+  
+  
+    <a href="/2016/01/23/译-Internationalization/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">[译]Internationalization</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	
+		<div class="ds-thread" data-thread-key="存储知识学习" data-title="存储知识学习" data-url="http://yikun.github.io/2016/02/03/存储知识学习/"></div>
+	
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"Kero"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Yikun
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>
