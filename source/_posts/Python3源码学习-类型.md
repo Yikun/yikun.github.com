@@ -28,6 +28,7 @@ typedef struct _typeobject {
 
 } PyTypeObject;
 ```
+<!--more-->
 可以看到，PyTypeObject就是类型对象的定义了。其中，包含了一些和类型相关的重要信息：
 * **类型名**： `const char *tp_name`，例如对于整型对象，他的这个name就是“int”。
 * **开辟空间大小**：`tp_basicsize`和`tp_itemsize`包含了创建该类型的对象所需要分配的控件大小。

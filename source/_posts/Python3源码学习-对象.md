@@ -9,7 +9,7 @@ tags:
 ### 1. 万物皆对象
 
 在Python中，万物皆对象，那么对象又是什么结构，如何组织，怎样实现的呢？
-
+<!--more-->
 > Objects are structures allocated on the heap.  Special rules apply to the use of objects to ensure they are properly garbage-collected. Objects are never allocated statically or on the stack; they must be accessed through special macros and functions only.(Type objects are exceptions to the first rule; the standard types are represented by statically initialized type objects, although work on type/class unification for Python 2.2 made it possible to have heap-allocated type objects too).
 
 从Python的源码注释可以得到以下信息点：
