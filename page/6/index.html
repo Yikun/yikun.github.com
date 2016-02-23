@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+  
   <meta charset="utf-8">
   
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
@@ -171,6 +172,66 @@
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-nginxchannel" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/03/16/nginxchannel/" class="article-date">
+  	<time datetime="2014-03-15T16:00:00.000Z" itemprop="datePublished">Mar 16 2014</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/03/16/nginxchannel/">nginx中channel机制</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-_概述">1. 概述</h3><p>由于nginx使用的是多进程的模型，因此，进程间的通信或者同步很重要，为什么要进行进程同步呢？我们知道，nginx有master和worker进程，在上篇文章已经分析过了master具体是怎样创建worker进程的。不过，在创建worker进程的时候，是需要对进程同步的。举个具体的例子，我们假设服务器共有4个worker进程，我们知道nginx有一个全局变量，是ngx_processes数组，他存储着所有进程的信息，在worker1创建的时候，worker2，worker3，worker4进程是没有创建的，因此，这个时候就牵扯到同步，最合理的方式是，在master创建一个进程的时候，就应该通知所有子进程有新的进程被fork了，以及这个进程的基本信息。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nginx/">Nginx</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2014/03/16/nginxchannel/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-nginxstart" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -767,66 +828,6 @@ Base <span class="string">address:</span><span class="number">0xd240</span> <spa
       
         <p class="article-more-link">
           <a  href="/2011/03/22/henjiuhenjiu/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-xieyipianrizhi" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2010/10/05/xieyipianrizhi/" class="article-date">
-  	<time datetime="2010-10-04T19:40:00.000Z" itemprop="datePublished">Oct 5 2010</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2010/10/05/xieyipianrizhi/">写一篇日志</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>今天是十月五日，天气晴朗，星空美丽。<br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2010/10/05/xieyipianrizhi/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
