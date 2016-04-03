@@ -18,15 +18,13 @@ var _hmt = _hmt || [];
   <title>优雅地调试OpenStack | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="恩，题目首先要起的高逼格一些。2333。
-在前面学习代码的过程中，主要通过源码来学习，开始学起来确实有点费劲，因为欠缺对OpenStack的整体的意识，于是搭建OpenStack开发环境对OpenStack的运行环境和使用有了初步认知。也看到了启动OpenStack后的一些相关进程，那么这些进程是如何与源码对应起来的呢？如何去调试OpenStack呢？本篇文章就讲下我的探索。
-1. 初识Pytho">
+在前面学习代码的过程中，主要通过源码来学习，开始学起来确实有点费劲，因为欠缺对OpenStack的整体的意识，于是搭建OpenStack开发环境对OpenStack的运行环境和使用有了初步认知。也看到了启动OpenStack后的一些相关进程，那么这些进程是如何与源码对应起来的呢？如何去调试OpenStack呢？本篇文章就讲下我的探索。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="优雅地调试OpenStack">
 <meta property="og:url" content="http://yikun.github.io/2016/02/23/优雅地调试OpenStack/index.html">
 <meta property="og:site_name" content="Yikun">
 <meta property="og:description" content="恩，题目首先要起的高逼格一些。2333。
-在前面学习代码的过程中，主要通过源码来学习，开始学起来确实有点费劲，因为欠缺对OpenStack的整体的意识，于是搭建OpenStack开发环境对OpenStack的运行环境和使用有了初步认知。也看到了启动OpenStack后的一些相关进程，那么这些进程是如何与源码对应起来的呢？如何去调试OpenStack呢？本篇文章就讲下我的探索。
-1. 初识Pytho">
+在前面学习代码的过程中，主要通过源码来学习，开始学起来确实有点费劲，因为欠缺对OpenStack的整体的意识，于是搭建OpenStack开发环境对OpenStack的运行环境和使用有了初步认知。也看到了启动OpenStack后的一些相关进程，那么这些进程是如何与源码对应起来的呢？如何去调试OpenStack呢？本篇文章就讲下我的探索。">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/13224079/e3309ca4-d9c1-11e5-897a-04ed2b6c8e82.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/13257974/1042affa-da8c-11e5-99a0-882e5b229354.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/13224336/fab25a06-d9c2-11e5-8547-b284fe7df997.png">
@@ -36,8 +34,7 @@ var _hmt = _hmt || [];
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="优雅地调试OpenStack">
 <meta name="twitter:description" content="恩，题目首先要起的高逼格一些。2333。
-在前面学习代码的过程中，主要通过源码来学习，开始学起来确实有点费劲，因为欠缺对OpenStack的整体的意识，于是搭建OpenStack开发环境对OpenStack的运行环境和使用有了初步认知。也看到了启动OpenStack后的一些相关进程，那么这些进程是如何与源码对应起来的呢？如何去调试OpenStack呢？本篇文章就讲下我的探索。
-1. 初识Pytho">
+在前面学习代码的过程中，主要通过源码来学习，开始学起来确实有点费劲，因为欠缺对OpenStack的整体的意识，于是搭建OpenStack开发环境对OpenStack的运行环境和使用有了初步认知。也看到了启动OpenStack后的一些相关进程，那么这些进程是如何与源码对应起来的呢？如何去调试OpenStack呢？本篇文章就讲下我的探索。">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -129,7 +126,7 @@ var _hmt = _hmt || [];
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/C-C/" style="font-size: 12.86px;">C/C++</a><a href="/tags/Cinder/" style="font-size: 12.86px;">Cinder</a><a href="/tags/Git/" style="font-size: 11.43px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 12.86px;">Linux</a><a href="/tags/Nginx/" style="font-size: 15.71px;">Nginx</a><a href="/tags/Nova/" style="font-size: 14.29px;">Nova</a><a href="/tags/OpenStack/" style="font-size: 18.57px;">OpenStack</a><a href="/tags/Python/" style="font-size: 14.29px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 11.43px;">系统</a><a href="/tags/网络/" style="font-size: 11.43px;">网络</a><a href="/tags/随笔/" style="font-size: 17.14px;">随笔</a>
+						<a href="/tags/C-C/" style="font-size: 12.86px;">C/C++</a><a href="/tags/Cinder/" style="font-size: 15.71px;">Cinder</a><a href="/tags/Git/" style="font-size: 11.43px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 12.86px;">Linux</a><a href="/tags/Nginx/" style="font-size: 15.71px;">Nginx</a><a href="/tags/Nova/" style="font-size: 14.29px;">Nova</a><a href="/tags/OpenStack/" style="font-size: 18.57px;">OpenStack</a><a href="/tags/Python/" style="font-size: 14.29px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 12.86px;">系统</a><a href="/tags/网络/" style="font-size: 11.43px;">网络</a><a href="/tags/随笔/" style="font-size: 17.14px;">随笔</a>
 					</div>
 				</section>
 				
@@ -244,7 +241,7 @@ var _hmt = _hmt || [];
            
          
         <p>恩，题目首先要起的高逼格一些。2333。</p>
-<p>在前面学习代码的过程中，主要通过源码来学习，开始学起来确实有点费劲，因为欠缺对OpenStack的整体的意识，于是<a href="http://yikun.github.io/2016/02/10/搭建OpenStack开发环境/" target="_blank" rel="external">搭建OpenStack开发环境</a>对OpenStack的运行环境和使用有了初步认知。也看到了启动OpenStack后的一些相关进程，那么这些进程是如何与源码对应起来的呢？如何去调试OpenStack呢？本篇文章就讲下我的探索。</p>
+<p>在前面学习代码的过程中，主要通过源码来学习，开始学起来确实有点费劲，因为欠缺对OpenStack的整体的意识，于是<a href="http://yikun.github.io/2016/02/10/搭建OpenStack开发环境/" target="_blank" rel="external">搭建OpenStack开发环境</a>对OpenStack的运行环境和使用有了初步认知。也看到了启动OpenStack后的一些相关进程，那么这些进程是如何与源码对应起来的呢？如何去调试OpenStack呢？本篇文章就讲下我的探索。<br><a id="more"></a></p>
 <h3 id="1-_初识Python调试">1. 初识Python调试</h3><p>在<a href="https://www.ibm.com/developerworks/cn/linux/l-cn-pythondebugger/" target="_blank" rel="external">Python 代码调试技巧</a>一文中提到了pdb、PyCharm、PyDev、日志等几种常见的调试方法。具体可以看看这篇文章，写的很详细，不赘述。</p>
 <p>因为PyCharm出色的用户体验（那写代码就是要开心嘛），所以决定使用PyCharm进行调试，但是问题来了，在远端（如虚拟机或者服务器）服务已经启动起来了，我们如何进行调试呢？答案就是Remote Debug。</p>
 <h3 id="2-_启动OpenStack服务">2. 启动OpenStack服务</h3><p>在<a href="http://yikun.github.io/2016/02/10/搭建OpenStack开发环境/" target="_blank" rel="external">搭建OpenStack开发环境</a>一文中，我们介绍了使用devstack启动开发环境，我们通过DevStack启动各个服务后：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># ... ...</span><br><span class="line">This is your host IP <span class="string">address:</span> <span class="number">192.168</span>.56.101</span><br><span class="line">This is your host IPv6 <span class="string">address:</span> ::<span class="number">1</span></span><br><span class="line">Horizon is now available at <span class="string">http:</span><span class="comment">//192.168.56.101/dashboard</span></span><br><span class="line">Keystone is serving at <span class="string">http:</span><span class="comment">//192.168.56.101:5000/</span></span><br><span class="line">The <span class="keyword">default</span> users <span class="string">are:</span> admin and demo</span><br><span class="line">The <span class="string">password:</span> <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
@@ -264,6 +261,15 @@ var _hmt = _hmt || [];
   
     
 <nav id="article-nav">
+  
+    <a href="/2016/03/05/OpenStack源码分析-挂载卷流程/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption"><</strong>
+      <div class="article-nav-title">
+        
+          OpenStack源码分析-挂载卷流程
+        
+      </div>
+    </a>
   
   
     <a href="/2016/02/21/OpenStack源码分析-Cinder删除卷流程/" id="article-nav-older" class="article-nav-link-wrap">

@@ -117,7 +117,7 @@ var _hmt = _hmt || [];
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/C-C/" style="font-size: 12.86px;">C/C++</a><a href="/tags/Cinder/" style="font-size: 12.86px;">Cinder</a><a href="/tags/Git/" style="font-size: 11.43px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 12.86px;">Linux</a><a href="/tags/Nginx/" style="font-size: 15.71px;">Nginx</a><a href="/tags/Nova/" style="font-size: 14.29px;">Nova</a><a href="/tags/OpenStack/" style="font-size: 18.57px;">OpenStack</a><a href="/tags/Python/" style="font-size: 14.29px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 11.43px;">系统</a><a href="/tags/网络/" style="font-size: 11.43px;">网络</a><a href="/tags/随笔/" style="font-size: 17.14px;">随笔</a>
+						<a href="/tags/C-C/" style="font-size: 12.86px;">C/C++</a><a href="/tags/Cinder/" style="font-size: 15.71px;">Cinder</a><a href="/tags/Git/" style="font-size: 11.43px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 12.86px;">Linux</a><a href="/tags/Nginx/" style="font-size: 15.71px;">Nginx</a><a href="/tags/Nova/" style="font-size: 14.29px;">Nova</a><a href="/tags/OpenStack/" style="font-size: 18.57px;">OpenStack</a><a href="/tags/Python/" style="font-size: 14.29px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 12.86px;">系统</a><a href="/tags/网络/" style="font-size: 11.43px;">网络</a><a href="/tags/随笔/" style="font-size: 17.14px;">随笔</a>
 					</div>
 				</section>
 				
@@ -182,6 +182,253 @@ var _hmt = _hmt || [];
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-译-Nova-System-Architecture" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/15/译-Nova-System-Architecture/" class="article-date">
+  	<time datetime="2015-10-15T02:04:44.000Z" itemprop="datePublished">Oct 15 2015</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/15/译-Nova-System-Architecture/">[译]Nova System Architecture</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Nova系统架构">Nova系统架构</h3><blockquote>
+<p>Nova is built on a <strong>shared-nothing</strong>, <strong>messaging-based</strong> architecture. All of the major nova components can be run on <strong>multiple servers</strong>. This means that most component to component communication must go via <strong>message queue</strong>. In order to <strong>avoid blocking</strong> each component while waiting for a response, we use <strong>deferred objects</strong>, with a <strong>callback</strong> that gets triggered when a response is received.</p>
+</blockquote>
+<p>Nova建立在一个无共享，基于消息的架构。所有的nova主要组件都可以运行在不同的服务器。这就意味着大多数组件之间的通信必须通过消息队列。为了避免每个组件在等待响应时的阻塞，我们是用deferred对象，当一个响应接收时会触发相应的回调。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Nova/">Nova</a></li><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenStack/">OpenStack</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/10/15/译-Nova-System-Architecture/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-读《OpenStack设计与实现》" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/08/读《OpenStack设计与实现》/" class="article-date">
+  	<time datetime="2015-10-08T13:52:35.000Z" itemprop="datePublished">Oct 8 2015</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/08/读《OpenStack设计与实现》/">读《OpenStack设计与实现》</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="初始OpenStack和开发基础">初始OpenStack和开发基础</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/10370055/daf455b2-6e0f-11e5-98c3-d3e17ee7d97d.PNG" alt="openstack_ch1ch2"></p>
+<p>OpenStack起于RakeSpace和NASA的合作，相关知识涉及到了云计算和虚拟化，体系结构上来看OpenStack是处于Iaas层，目前来看，还是处于追随AWS的阶段。OpenStack的子项目从新项目、孵化项目最终发展成为核心及集成项目。</p>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenStack/">OpenStack</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/10/08/读《OpenStack设计与实现》/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-OpenStack概览" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/10/04/OpenStack概览/" class="article-date">
+  	<time datetime="2015-10-04T11:33:16.000Z" itemprop="datePublished">Oct 4 2015</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/04/OpenStack概览/">OpenStack概览</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-_概览">1. 概览</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/10267380/3f2d8b74-6ac4-11e5-9372-6bc21c57f11f.png" alt="openstack-software-diagram"></p>
+<blockquote>
+<p>OpenStack is a <strong>cloud operating system</strong> that controls large pools of <strong>compute</strong>, <strong>storage</strong>, and <strong>networking</strong> resources throughout a datacenter, all managed through a <strong>dashboard</strong> that gives administrators control while empowering their users to provision resources through a web interface.</p>
+</blockquote>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/OpenStack/">OpenStack</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/10/04/OpenStack概览/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
+    <article id="post-再见，北京" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/06/18/再见，北京/" class="article-date">
+  	<time datetime="2015-06-18T08:10:00.000Z" itemprop="datePublished">Jun 18 2015</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/06/18/再见，北京/">再见，北京</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="在北大">在北大</h2><p>一年多的时间，基本都在中国第一学府——北京大学。这里有未名湖畔的波光粼粼，也有博雅塔下的春风垂柳；有艺园吃腻很久的炒菜米饭，也有小白房冒菜不限量的芝麻酱和鳕鱼培根夹馍；有农园清淡爽口的菜肴和炸酱面，也有畅春园改善伙食的麻辣香锅。总之一切都还美好，只是有老校医院实验室中永远调不完的bug后，其他的一切又稍显黯淡。<br>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/随笔/">随笔</a></li></ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a  href="/2015/06/18/再见，北京/#more">more >></a>
+        </p>
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-一个简单的网络数据包工具——Packet-Assistant" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -535,339 +782,6 @@ var _hmt = _hmt || [];
 <p>并发优化的ArrayList。用CopyOnWrite策略，在修改时先复制一个快照来修改，改完再让内部指针指向新数组。</p>
 <p>因为对快照的修改对读操作来说不可见，所以只有写锁没有读锁，加上复制的昂贵成本，典型的适合读多写少的场景。如果更新频率较高，或数组较大时，还是Collections.synchronizedList(list)，对所有操作用同一把锁来保证线程安全更好。</p>
 <p>增加了addIfAbsent(e)方法，会遍历数组来检查元素是否已存在，性能可想像的不会太好。</p>
-</blockquote>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Git常用操作总结" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/04/25/Git常用操作总结/" class="article-date">
-  	<time datetime="2015-04-24T17:13:25.000Z" itemprop="datePublished">Apr 25 2015</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/25/Git常用操作总结/">Git常用操作总结</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-        <p>用Git比较久了，之前一直在Win用的TortoiseGit，现在命令行用的比较多，所以把一些指令总结一下，以便回顾和查询。</p>
-<p>理解这些指令，觉得最重要的是理解Git的内部原理，比如Git的分布式版本控制，分清楚工作区、暂存区、版本库，还有就是理解Git跟踪并管理的是修改，而非文件。</p>
-<h3 id="设置">设置</h3><pre><code>$ git config --global user<span class="class">.name</span> <span class="string">"Your Name"</span>
-$ git config --global user<span class="class">.email</span> <span class="string">"email@example.com"</span>
-</code></pre><h3 id="提交">提交</h3><p>git tracked的是修改，而不是文件</p>
-<pre><code><span class="comment">#将“当前修改”移动到暂存区(stage)</span>
-<span class="variable">$ </span>git add somfile.txt
-<span class="comment">#将暂存区修改提交</span>
-<span class="variable">$ </span>git commit -m <span class="string">"Add somfile.txt."</span>
-</code></pre><h3 id="状态">状态</h3><pre><code><span class="variable">$ </span>git status
-<span class="variable">$ </span>git diff
-</code></pre><h3 id="回退">回退</h3><pre><code># 放弃工作区修改
-$ git checkout <span class="comment">-- file.name</span>
-$ git checkout <span class="comment">-- .</span>
-
-# 取消<span class="operator"><span class="keyword">commit</span>(比如需要重写<span class="keyword">commit</span>信息)
-$ git <span class="keyword">reset</span> <span class="comment">--soft HEAD</span>
-
-# 取消<span class="keyword">commit</span>、<span class="keyword">add</span>(重新提交代码和<span class="keyword">commit</span>)
-$ git <span class="keyword">reset</span> HEAD
-$ git <span class="keyword">reset</span> <span class="comment">--mixed HEAD</span>
-
-# 取消<span class="keyword">commit</span>、<span class="keyword">add</span>、工作区修改(需要完全重置)
-$ git <span class="keyword">reset</span> <span class="comment">--hard HEAD</span></span>
-</code></pre><h3 id="记录">记录</h3><pre><code><span class="variable">$ </span>git reflog
-<span class="variable">$ </span>git log
-</code></pre><h3 id="删除">删除</h3><pre><code>$ <span class="keyword">rm</span> <span class="keyword">file</span>.name
-$ git <span class="keyword">rm</span> <span class="keyword">file</span>.name
-$ git commit -<span class="keyword">m</span> <span class="string">"Del"</span>
-</code></pre><h3 id="远程操作">远程操作</h3><pre><code><span class="variable">$ </span>git remote add origin git<span class="variable">@github</span>.<span class="symbol">com:</span>michaelliao/learngit.git
-<span class="comment"># 第一次推送，-u(--set-upstream)指定默认上游</span>
-<span class="variable">$ </span>git push -u origin master
-<span class="variable">$ </span>git push origin master
-</code></pre><h3 id="克隆">克隆</h3><pre><code>$ git clone https:<span class="comment">//github.com/Yikun/yikun.github.com.git path</span>
-$ git clone git@github<span class="class">.com</span>:Yikun/yikun<span class="class">.github</span><span class="class">.com</span><span class="class">.git</span> path
-</code></pre><h3 id="分支操作">分支操作</h3><pre><code><span class="comment"># 产看当前分支</span>
-<span class="variable">$ </span>git branch
-
-<span class="comment"># 创建分支</span>
-<span class="variable">$ </span>git branch dev
-<span class="comment"># 切换分支</span>
-<span class="variable">$ </span>git checkout dev
-
-<span class="comment"># 创建并checkout分支</span>
-<span class="variable">$ </span>git checkout -b dev
-
-
-<span class="comment"># 合并分支</span>
-<span class="variable">$ </span>git merge dev
-
-<span class="comment"># 删除分支</span>
-<span class="variable">$ </span>git branch -d dev
-</code></pre><h3 id="标签">标签</h3><pre><code><span class="variable">$ </span>git tag <span class="number">0</span>.<span class="number">1.1</span>
-<span class="variable">$ </span>git push origin --tags
-</code></pre><h3 id="同步上游">同步上游</h3><pre><code><span class="comment">// 1. 添加上游</span>
-git remote <span class="keyword">add</span> upstream
-<span class="comment">// 2. 切换需要同步的分支</span>
-git checkout XXX
-<span class="comment">// 3. 更新上游</span>
-git remote update upstream
-git rebase upstream/<span class="comment">{branch name}</span>
-<span class="comment">// 4. 解决冲突</span>
-<span class="comment">// 手动解决冲突</span>
-git <span class="keyword">add</span> .
-git rebase --<span class="keyword">continue</span>
-<span class="comment">// 5. push</span>
-git push
-</code></pre>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Git/">Git</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Java-EnumMap工作原理及实现" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/04/24/Java-EnumMap工作原理及实现/" class="article-date">
-  	<time datetime="2015-04-23T16:11:56.000Z" itemprop="datePublished">Apr 24 2015</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/24/Java-EnumMap工作原理及实现/">Java EnumMap工作原理及实现</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-        <h3 id="1-概述">1.概述</h3><blockquote>
-<p>A specialized Map implementation for use with enum type keys. All of the keys in an enum map must come from a single enum type that is specified, explicitly or implicitly, when the map is created. Enum maps are represented internally as arrays. This representation is extremely compact and efficient.</p>
-</blockquote>
-<p>EnumMap是是一种键为枚举类型的特殊的Map实现。所有的Key也必须是一种枚举类型，EnumMap是使用数组来实现的。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">EnumMap&lt;Course, String&gt; map = <span class="keyword">new</span> EnumMap&lt;Course, String&gt;(Course.class);</span><br><span class="line">map.put(Course.ONE, <span class="string">"语文"</span>);</span><br><span class="line">map.put(Course.ONE, <span class="string">"政治"</span>);</span><br><span class="line">map.put(Course.TWO, <span class="string">"数学"</span>);</span><br><span class="line">map.put(Course.THREE, <span class="string">"英语"</span>);</span><br><span class="line"><span class="keyword">for</span>(Entry&lt;Course, String&gt; entry : map.entrySet()) &#123;</span><br><span class="line">	System.out.println(entry.getKey() + <span class="string">": "</span> + entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>输出结果为：<br><figure class="highlight http"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">ONE</span>: <span class="string">政治</span></span><br><span class="line"><span class="attribute">TWO</span>: <span class="string">数学</span></span><br><span class="line"><span class="attribute">THREE</span>: <span class="string">英语</span></span><br></pre></td></tr></table></figure></p>
-<p>其具体实现的结构如下图所示：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7323140/1dc9a734-eadf-11e4-96f8-8df820f64590.png" alt="enummap"></p>
-<h3 id="2-_put和get方法">2. put和get方法</h3><p>put方法通过key的ordinal将值存储到对应的地方，get方法则根据key的ordinal获取对应的值。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// 类型检查</span></span><br><span class="line">    typeCheck(key);</span><br><span class="line">    <span class="comment">// 获取key的序号</span></span><br><span class="line">    <span class="keyword">int</span> index = key.ordinal();</span><br><span class="line">    Object oldValue = vals[index];</span><br><span class="line">    <span class="comment">// 赋值</span></span><br><span class="line">    vals[index] = maskNull(value);</span><br><span class="line">    <span class="comment">// 若之前的值为空，则size++</span></span><br><span class="line">    <span class="keyword">if</span> (oldValue == <span class="keyword">null</span>)</span><br><span class="line">        size++;</span><br><span class="line">    <span class="keyword">return</span> unmaskNull(oldValue);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> (isValidKey(key) ?</span><br><span class="line">            unmaskNull(vals[((Enum&lt;?&gt;)key).ordinal()]) : <span class="keyword">null</span>);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="3-_遍历">3. 遍历</h3><p>EnumMapIterator的迭代这样实现的：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="keyword">while</span> (index &lt; vals.length &amp;&amp; vals[index] == <span class="keyword">null</span>)</span><br><span class="line">        index++;</span><br><span class="line">    <span class="keyword">return</span> index != vals.length;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> Map.Entry&lt;K,V&gt; next() &#123;</span><br><span class="line">    <span class="keyword">if</span> (!hasNext())</span><br><span class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</span><br><span class="line">    lastReturnedEntry = <span class="keyword">new</span> Entry(index++);</span><br><span class="line">    <span class="keyword">return</span> lastReturnedEntry;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>通过hasNext跳过空的数组，也就是说，保证了遍历顺序与Enum中key的先后顺序一致。</p>
-<h3 id="参考资料">参考资料</h3><p><a href="http://javarevisited.blogspot.jp/2012/09/what-is-enummap-in-java-example-tutorial.html" target="_blank" rel="external">What is EnumMap in Java</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-C语言中移位操作符优先级的坑" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/04/18/C语言中移位操作符优先级的坑/" class="article-date">
-  	<time datetime="2015-04-18T09:16:55.000Z" itemprop="datePublished">Apr 18 2015</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/18/C语言中移位操作符优先级的坑/">C语言中移位操作符优先级的坑</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-        <p>今天和tiancai交流他腾讯面试题目的时候，有这么一个题目，大致是这样描述的：</p>
-<blockquote>
-<p>有一个函数f，可以等概率产生0,1，写一个函数g，可以等概率地产生0~7中的数。</p>
-</blockquote>
-<p>于是，我写出了如下一个错误的解法：</p>
-<blockquote>
-<p>f()+f()&lt;&lt;1+f()&lt;&lt;2</p>
-</blockquote>
-<p>而正确的应该是：</p>
-<blockquote>
-<p>f() + (f()&lt;&lt;1) + (f()&lt;&lt;2)</p>
-</blockquote>
-<p>之前一直有误解，而实际情况是是<strong>移位操作符的优先级低于加减法的优先级</strong>。为了验证和加深记忆，又写了一个小测试：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"1&lt;&lt;1+2&lt;&lt;1:     %d\n"</span>, <span class="number">1</span>&lt;&lt;<span class="number">1</span>+<span class="number">2</span>&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"1&lt;&lt;(1+2)&lt;&lt;1:   %d\n"</span>, <span class="number">1</span>&lt;&lt;(<span class="number">1</span>+<span class="number">2</span>)&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"(1&lt;&lt;1)+(2&lt;&lt;1): %d\n"</span>, (<span class="number">1</span>&lt;&lt;<span class="number">1</span>)+(<span class="number">2</span>&lt;&lt;<span class="number">1</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>输出为:<br><figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>&lt;&lt;<span class="number">1</span><span class="number">+2</span>&lt;&lt;<span class="number">1</span>:     <span class="number">16</span></span><br><span class="line"><span class="number">1</span>&lt;&lt;<span class="comment">(1+2)</span>&lt;&lt;<span class="number">1</span>:   <span class="number">16</span></span><br><span class="line"><span class="comment">(1&lt;&lt;1)</span>+<span class="comment">(2&lt;&lt;1)</span>: <span class="number">6</span></span><br></pre></td></tr></table></figure></p>
-<p>其中编译的时候，也有一个友情提示：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">main.<span class="string">c:</span><span class="number">4</span>:<span class="number">36</span>: <span class="string">warning:</span> operator <span class="string">'&lt;&lt;'</span> has lower precedence than <span class="string">'+'</span>; <span class="string">'+'</span> will be</span><br><span class="line">      evaluated first [-Wshift-op-parentheses]</span><br><span class="line">        printf(<span class="string">"1&lt;&lt;1+2&lt;&lt;1:     %d\n"</span>, <span class="number">1</span>&lt;&lt;<span class="number">1</span>+<span class="number">2</span>&lt;&lt;<span class="number">1</span>);</span><br><span class="line">                                       ~~~^~</span><br><span class="line">main.<span class="string">c:</span><span class="number">4</span>:<span class="number">36</span>: <span class="string">note:</span> place parentheses around the <span class="string">'+'</span> expression to silence <span class="keyword">this</span></span><br><span class="line">      warning</span><br><span class="line">        printf(<span class="string">"1&lt;&lt;1+2&lt;&lt;1:     %d\n"</span>, <span class="number">1</span>&lt;&lt;<span class="number">1</span>+<span class="number">2</span>&lt;&lt;<span class="number">1</span>);</span><br><span class="line">                                          ^</span><br><span class="line">                                         (  )</span><br><span class="line"><span class="number">1</span> warning generated.</span><br></pre></td></tr></table></figure></p>
-<p>最后，</p>
-<blockquote>
-<p>希望自己永远保持一颗怀疑的心。</p>
-</blockquote>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/C-C/">C/C++</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Java-ArrayDeque工作原理及实现" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/04/11/Java-ArrayDeque工作原理及实现/" class="article-date">
-  	<time datetime="2015-04-11T10:50:32.000Z" itemprop="datePublished">Apr 11 2015</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/11/Java-ArrayDeque工作原理及实现/">Java ArrayDeque工作原理及实现</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-        <h3 id="1-_概述">1. 概述</h3><blockquote>
-<p>Resizable-array implementation of the <strong>Deque interface</strong>. Array deques have no capacity restrictions; they <strong>grow as necessary to support usage</strong>. They are not thread-safe; in the absence of external synchronization, they do not support concurrent access by multiple threads. Null elements are prohibited. This class is likely to be faster than Stack when used as a stack, and faster than LinkedList when used as a queue.</p>
-</blockquote>
-<p><img src="https://cloud.githubusercontent.com/assets/1736354/7120880/13a5b9a4-e243-11e4-8a63-33c4852c268c.png" alt="arrayqueue"></p>
-<blockquote>
-<p>以循环数组实现的双向Queue。大小是2的倍数，默认是16。</p>
-<p>普通数组只能快速在末尾添加元素，为了支持FIFO，从数组头快速取出元素，就需要使用循环数组：有队头队尾两个下标：弹出元素时，队头下标递增；加入元素时，如果已到数组空间的末尾，则将元素循环赋值到数组<a href="如果此时队头下标大于0，说明队头弹出过元素，有空位">0</a>，同时队尾下标指向0，再插入下一个元素则赋值到数组[1]，队尾下标指向1。如果队尾的下标追上队头，说明数组所有空间已用完，进行双倍的数组扩容。</p>
 </blockquote>
 
       
