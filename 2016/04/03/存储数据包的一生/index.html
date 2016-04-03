@@ -255,7 +255,7 @@ var _hmt = _hmt || [];
 <p>Here is a bit of data. Hold onto it. Give that same bit back to me when I ask for it.</p>
 </blockquote>
 <h3 id="2-_Application视角">2. Application视角</h3><p>每个系统都有会有很多应用程序运行在CPU上，对于这些Application来说，他们觉得自己有很多很多足够的可用内存。</p>
-<h4 id="2-1_CPU和MMU">2.1 CPU和MMU</h4><p>计算机系统中有一个“内存管理单元”（MMU，）的概念，MMU负责与DRAM内存直接通信，并且获得一些可用的“页”<br>多租户：内存被某个进程（比如一个应用）独享，这些内存不能被其他进程重写。<br>地址：将CPU的物理地址翻译成独有的DRAM地址或者是很多行DRAMs<br>有了以后MMU，对于每个进程来说，他们就像是一个人独占了所有的内存一样。</p>
+<h4 id="2-1_CPU和MMU">2.1 CPU和MMU</h4><p>计算机系统中有一个“内存管理单元”（MMU，Memory Management Unit）的概念，MMU负责与DRAM内存直接通信，并且获得一些可用的“页”<br>多租户：内存被某个进程（比如一个应用）独享，这些内存不能被其他进程重写。<br>地址：将CPU的物理地址翻译成独有的DRAM地址或者是很多行DRAMs<br>有了以后MMU，对于每个进程来说，他们就像是一个人独占了所有的内存一样。</p>
 <h4 id="2-2_访问内存">2.2 访问内存</h4><p><img src="https://cloud.githubusercontent.com/assets/1736354/14232849/a28c5010-f9e9-11e5-9d03-ce555d9ca575.png" alt="2"></p>
 <p>Application在他需要访问的时候，获取这些内存，在实际进行访问时，会发生如下事情：</p>
 <ol>
@@ -295,7 +295,7 @@ var _hmt = _hmt || [];
 <p>卷管理：文件系统和设备驱动中间存在着卷管理，卷管理负责抽象出一层“假的”磁盘供操作系统使用.</p>
 <h4 id="3-4_文件系统与驱动">3.4 文件系统与驱动</h4><p><img src="https://cloud.githubusercontent.com/assets/1736354/14232864/d20afa1c-f9e9-11e5-9ce6-2141048f2328.png" alt="8"><br>因此，对于文件系统来说，需要将应用程序所看到的“虚拟地址”翻译到真正的设备地址。例如访问一个文件时，文件系统会先会先在找到对应的逻辑块地址（Logical Block Adress, LBA），然后通过scsi系统进一步访问，对应到磁盘上的物理块地址。</p>
 <h4 id="3-5_Inode">3.5 Inode</h4><p>Inode是文件的原数据，用来记录文件的所述、权限、block信息等。一个Inode会对应一个文件或目录，通过inode就可以将文件与某些block对应起来。</p>
-<p>也就是说通过inode信息，就可以完全的找到一个文件，包括这个文件所对应的data block。<br>对于目录而言，data block仅仅是包含该文件及其对应inode的列表。<br>对于文件而言，data block则包含了文件的实际内容。</p>
+<p>也就是说通过inode信息，就可以完全的找到一个文件，包括这个文件所对应的data block。<br>对于目录而言，data block包含了目录的内容，即该目录下文件及其这些文件对应inode的列表。<br>对于文件而言，data block则包含了文件的实际内容。</p>
 <h4 id="3-3_举个例子">3.3 举个例子</h4><p><img src="https://cloud.githubusercontent.com/assets/1736354/14232879/210e7b70-f9ea-11e5-96aa-5f79cb5a2870.png" alt="9"></p>
 <p>当执行<code>cat /home/foo.txt</code>命令时，会对foo.txt文件进行访问，经历了以下步骤：</p>
 <ol>
@@ -318,7 +318,7 @@ var _hmt = _hmt || [];
 </ol>
 <p>我们可以看到，访问/home/foo.txt有3次磁盘访问：<br>第1次是读取home的inode，获取foo.txt的inode号<br>第2次是读取foo.txt的inode，获取data block号<br>第3次是读取data block，获取真正的内容</p>
 <p>然而，我们对于机械硬盘来说，每次需要磁盘转到正确的地址才能访问到内容，尤其是这些data block若未按顺序存储，就需要“下一圈”的时候再访问，这样会很耗时，也就是说访问磁盘的时间和数据在磁盘上的位置非常相关。所以Flash技术(如flash-based SSD)就腾空出世了，可以做到任意数据的随机访问，就大大减少了数据访问时间。</p>
-<h3 id="4-_Network视角">4. Network视角</h3><p>我们先回顾一下到网络这里都经历了什么：应用、操纵系统、文件系统、缓冲缓存、卷管理、设备驱动、硬件控制、SCSI，一层一层递进访问。</p>
+<h3 id="4-_Network视角">4. Network视角</h3><p>我们先回顾一下到网络这里都经历了什么：应用、操作系统、文件系统、缓冲缓存、卷管理、设备驱动、硬件控制、SCSI，一层一层递进访问。</p>
 <h4 id="4-1_存储网络">4.1 存储网络</h4><p>应用和存储视角已经可以工作了，而在应用和存储之间加一层网络，因此目前的玩法主要包括以下几种形式：<br><img src="https://cloud.githubusercontent.com/assets/1736354/14232884/329592ca-f9ea-11e5-858a-d51abd697d94.png" alt="10"></p>
 <p>这些知识在之前的<a href="http://yikun.github.io/2016/02/03/%E5%AD%98%E5%82%A8%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/" target="_blank" rel="external">存储基础知识学习</a>中有大概的涉及过。</p>
 <p>对于文件存储，常常使用NAS的架构，更灵活；而基于块的存储则常使用SAN的方式，保证性能。</p>
