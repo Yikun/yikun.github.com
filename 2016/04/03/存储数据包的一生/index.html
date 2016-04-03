@@ -260,25 +260,26 @@ var _hmt = _hmt || [];
 <p>Application在他需要访问的时候，获取这些内存，在实际进行访问时，会发生如下事情：</p>
 <ol>
 <li>Application会问操作系统“Hey，我需要一些可用内存”</li>
-<li>操作系统向MMU说，“给我一些可以使用内存页不？”</li>
+<li>操作系统向MMU说，“能给我一些可以使用内存页不？”</li>
 <li>MMU把一些可用的内存页给操作系统</li>
 <li>操作系统把这些可用的内存页给Application。</li>
 </ol>
 <h4 id="2-3_分配内存">2.3 分配内存</h4><p>在2.2中，获取的那些内存，实际是可以分布在内存中的任何地方的（非连续），MMU在把这些内存给应用的时候会进行初始化操作，当然，当应用不再访问这些内存页的时候，也会MMU也会负责回收这些内存。</p>
 <h4 id="2-4_加速访问">2.4 加速访问</h4><p>如果Application对内存的访问，每次都要都要从MMU获取的话，那太慢了，因此有个经验法则是：</p>
 <blockquote>
-<p>Always put storage/memory as close to the CPU as possible<br>可以说在存储中，改善时间的限制是永恒不变的主题，然后访问DRAM的话，需要60-100ns的时间。我们需要更快的访问，甚至达到“0”时间访问。</p>
+<p>Always put storage/memory as close to the CPU as possible</p>
 </blockquote>
+<p>可以说在存储中，改善时间的限制是永恒不变的主题，然后访问DRAM的话，需要60-100ns的时间。我们需要更快的访问，甚至达到“0”时间访问。</p>
 <h4 id="2-5_缓存的魔法">2.5 缓存的魔法</h4><p><img src="https://cloud.githubusercontent.com/assets/1736354/14232850/a8f5c67a-f9e9-11e5-8d4b-bc6f819e546a.png" alt="3"></p>
 <p>于是在CPU中增加了一些缓存，当然缓存也是分级别的，对于L1缓存大概花费1ns以内，L2缓存大概花费3-6ns，没错，这使得每次访问从60-100ns提升了几十倍！</p>
 <h4 id="2-6_更多的空间">2.6 更多的空间</h4><p>如果DRAM中也没有足够的空间时，这是你需要更多的持久化存储，比如说磁盘。当然直接去访问磁盘会非常的昂贵，当然这里指的是时间的花费非常昂贵。<br>在Jeff Dean大神的<a href="http://static.googleusercontent.com/media/research.google.com/en//people/jeff/stanford-295-talk.pdf" target="_blank" rel="external">Software Engineering Advice from Building Large-Scale Distributed Systems</a>给出了数据：<br>L1缓存、L2缓存、主存、硬盘的访问分别是1ns、5ns、100ns、10,000,000ns级别;</p>
-<p>举个比较形象的例子：你需要快递送个包裹，<br>快递一个1公里（L1）、5公里（L2）外的包裹，oops，可能马云爸爸保证当日达；<br>快递100公里（DRAM）的包裹，11点前下单，次日达，不能再快了！；<br>快递1000万公里（Disk）的快递，啊亲，你真的需要快递吗？这可是从地球到月球（38.4万公里）十几个来回的距离啊亲。</p>
+<p>举个比较形象的例子：你需要快递送个包裹，<br>快递一个1公里（L1）、5公里（L2）外的包裹，oops，可能马云爸爸保证当日达；<br>快递100公里（DRAM）的包裹，11点前下单，当日达，不能再快了！；<br>快递1000万公里（Disk）的快递，啊亲，你真的需要快递吗？这可是从地球到月球（38.4万公里）十几个来回的距离啊亲。</p>
 <h4 id="2-7_下一站，使用存储设备">2.7 下一站，使用存储设备</h4><p><img src="https://cloud.githubusercontent.com/assets/1736354/14232851/b26c959e-f9e9-11e5-9ab0-191778aa8f94.png" alt="4"></p>
 <p>存储设备和RAM不太一样，不会和CPU直接进行“对话”，而是有一些其他的部分来帮助他们完成对话，我们在存储视角进一步去讲述。</p>
 <h3 id="3_Storage视角">3 Storage视角</h3><h4 id="3-1块设备的基本概念">3.1块设备的基本概念</h4><p><strong>块存储的IO流</strong><br>CPU和内存通过PCI总线（目前通常是PCIe）与存储进行连接，应用会向存储请求一段数据。系统会将数据转换成地址和位置信息，并转换成某种协议的形式。</p>
 <p><strong>数据总线</strong><br><img src="https://cloud.githubusercontent.com/assets/1736354/14232852/b983a7e6-f9e9-11e5-9343-9d9461fdfbcf.png" alt="5"></p>
 <p>CPU的指令需要转换或者说是进行适配，以便能够与存储设备进行“交流”，比如SCSI、IDE/ATA</p>
-<p><strong>SCSI系统</strong><br>SCSI是一个很普遍、切向后兼容的，通常主要包含的组件有：</p>
+<p><strong>SCSI系统</strong><br>SCSI是一个很普遍、且向后兼容的，通常主要包含的组件有：</p>
 <ul>
 <li>Initiator：一些服务用它发起请求，可以视为登陆或者适配的一部分</li>
 <li>Target：物理存储设备，可以是单个磁盘或者磁阵</li>
@@ -313,8 +314,9 @@ var _hmt = _hmt || [];
 <li>文件系统先检查Unified Buffer Cache中是否存在该文件，如果不存在则去目录中查找“home”文件</li>
 <li><strong>(访问磁盘)</strong>读取”home”目录的内容，并把inode信息放到buffer cache以便下次访问，最后根据目录内容查询到foo.txt的inode</li>
 <li><strong>(访问磁盘)</strong>读取foo.txt的inode，获取到data block号</li>
-<li><strong>(访问磁盘)</strong>文件系统读取data block，最终将数据返回给应用，并且把数据存储在L1、L2、RAM和UBC中，加速下次访问。<br>我们可以看到，访问/home/foo.txt有3次磁盘访问：<br>第1次是读取home的inode，获取foo.txt的inode号<br>第2次是读取foo.txt的inode，获取data block号<br>第3次是读取data block，获取真正的内容</li>
+<li><strong>(访问磁盘)</strong>文件系统读取data block，最终将数据返回给应用，并且把数据存储在L1、L2、RAM和UBC中，加速下次访问。</li>
 </ol>
+<p>我们可以看到，访问/home/foo.txt有3次磁盘访问：<br>第1次是读取home的inode，获取foo.txt的inode号<br>第2次是读取foo.txt的inode，获取data block号<br>第3次是读取data block，获取真正的内容</p>
 <p>然而，我们对于机械硬盘来说，每次需要磁盘转到正确的地址才能访问到内容，尤其是这些data block若未按顺序存储，就需要“下一圈”的时候再访问，这样会很耗时，也就是说访问磁盘的时间和数据在磁盘上的位置非常相关。所以Flash技术(如flash-based SSD)就腾空出世了，可以做到任意数据的随机访问，就大大减少了数据访问时间。</p>
 <h3 id="4-_Network视角">4. Network视角</h3><p>我们先回顾一下到网络这里都经历了什么：应用、操纵系统、文件系统、缓冲缓存、卷管理、设备驱动、硬件控制、SCSI，一层一层递进访问。</p>
 <h4 id="4-1_存储网络">4.1 存储网络</h4><p>应用和存储视角已经可以工作了，而在应用和存储之间加一层网络，因此目前的玩法主要包括以下几种形式：<br><img src="https://cloud.githubusercontent.com/assets/1736354/14232884/329592ca-f9ea-11e5-858a-d51abd697d94.png" alt="10"></p>
@@ -330,7 +332,7 @@ var _hmt = _hmt || [];
 <li><a href="http://www.ruanyifeng.com/blog/2011/12/inode.html" target="_blank" rel="external">理解inode</a></li>
 <li><a href="https://cseweb.ucsd.edu/classes/su09/cse120/lectures/Lecture10.pdf" target="_blank" rel="external">CSE 120: Principles of Computer Operating Systems, Lecture 10-Disks and File Systems</a></li>
 <li><a href="https://www.brighttalk.com/webcast/663/169543" target="_blank" rel="external">“Life of a Storage Packet”</a></li>
-<li><a href="http://www.snia.org/sites/default/files/ESF/Life_of_a_Storage_Packet_(Walk)_Final.pdf" target="_blank" rel="external">http://www.snia.org/sites/default/files/ESF/Life_of_a_Storage_Packet_(Walk)_Final.pdf</a></li>
+<li><a href="http://www.snia.org/sites/default/files/ESF/Life_of_a_Storage_Packet_%28Walk%29_Final.pdf" target="_blank" rel="external">Life of a Storage Packet.ppt</a></li>
 </ul>
 
       
