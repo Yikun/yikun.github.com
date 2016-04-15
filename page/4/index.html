@@ -183,6 +183,68 @@ var _hmt = _hmt || [];
 
       <div class="body-wrap">
   
+    <article id="post-Java-CopyOnWriteArrayList工作原理及实现" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/04/28/Java-CopyOnWriteArrayList工作原理及实现/" class="article-date">
+  	<time datetime="2015-04-28T15:58:01.000Z" itemprop="datePublished">Apr 28 2015</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/04/28/Java-CopyOnWriteArrayList工作原理及实现/">Java CopyOnWriteArrayList工作原理及实现</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+        <blockquote>
+<p>并发优化的ArrayList。用CopyOnWrite策略，在修改时先复制一个快照来修改，改完再让内部指针指向新数组。</p>
+<p>因为对快照的修改对读操作来说不可见，所以只有写锁没有读锁，加上复制的昂贵成本，典型的适合读多写少的场景。如果更新频率较高，或数组较大时，还是Collections.synchronizedList(list)，对所有操作用同一把锁来保证线程安全更好。</p>
+<p>增加了addIfAbsent(e)方法，会遍历数组来检查元素是否已存在，性能可想像的不会太好。</p>
+</blockquote>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
+  
     <article id="post-Git常用操作总结" class="article article-type-post" itemscope itemprop="blogPost">
   
     <div class="article-meta">
@@ -820,78 +882,6 @@ git push
 <p><strong>有右子树的节点</strong>，节点的下一个节点，肯定在右子树中，而右子树中“最左”的那个节点则是右子树中最小的一个，那么当然是<strong>右子树的“最左节点”</strong>，就好像下图所示：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7045283/652d00c4-de2f-11e4-8475-1a2f46afc380.png" alt="treemap1"></p>
 <p><strong>无右子树的节点</strong>，先找到这个节点所在的左子树(右图)，那么这个节点所在的左子树的父节点(绿色节点)，就是下一个节点。<br><img src="https://cloud.githubusercontent.com/assets/1736354/7045284/68279686-de2f-11e4-8310-c9f76b3f52ab.png" alt="treemap2"></p>
 <h3 id="参考资料">参考资料</h3><p><a href="http://docs.oracle.com/javase/8/docs/api/java/util/TreeMap.html" target="_blank" rel="external">TreeMap (Java Platform SE 8)</a><br><a href="http://www.cnblogs.com/yangecnu/p/Introduce-Red-Black-Tree.html" target="_blank" rel="external">浅谈算法和数据结构: 九 平衡查找树之红黑树</a><br><a href="http://blog.csdn.net/chenssy/article/details/26668941" target="_blank" rel="external">Java提高篇（二七）——-TreeMap</a><br><a href="http://dongxicheng.org/structure/red-black-tree/" target="_blank" rel="external">数据结构之红黑树</a><br><a href="http://zh.wikipedia.org/wiki/%E7%BA%A2%E9%BB%91%E6%A0%91" target="_blank" rel="external">wikipedia-红黑树</a><br><a href="http://www.cs.princeton.edu/~rs/talks/LLRB/RedBlack.pdf" target="_blank" rel="external">Red-Black Trees</a><br><a href="http://stackoverflow.com/questions/18063394/how-treemap-searches-successor-for-given-entry" target="_blank" rel="external">How TreeMap searches successor for given Entry?</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Java-LinkedList工作原理及实现" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/04/05/Java-LinkedList工作原理及实现/" class="article-date">
-  	<time datetime="2015-04-05T14:19:28.000Z" itemprop="datePublished">Apr 5 2015</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/05/Java-LinkedList工作原理及实现/">Java LinkedList工作原理及实现</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-        <h3 id="1-_概述">1. 概述</h3><blockquote>
-<p>以双向链表实现。链表无容量限制，但双向链表本身使用了更多空间，也需要额外的链表指针操作。</p>
-<p>按下标访问元素—get(i)/set(i,e) 要悲剧的遍历链表将指针移动到位(如果i&gt;数组大小的一半，会从末尾移起)。</p>
-<p>插入、删除元素时修改前后节点的指针即可，但还是要遍历部分链表的指针才能移动到下标所指的位置，只有在链表两头的操作—add(), addFirst(),removeLast()或用iterator()上的remove()能省掉指针的移动。</p>
-</blockquote>
-<p>LinkedList是一个简单的数据结构，与ArrayList不同的是，他是基于链表实现的。</p>
-<blockquote>
-<p>Doubly-linked list implementation of the List and Deque interfaces. Implements all optional list operations, and permits all elements (including null).</p>
-</blockquote>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">LinkedList&lt;String&gt; list = <span class="keyword">new</span> LinkedList&lt;String&gt;();</span><br><span class="line">list.add(<span class="string">"语文: 1"</span>);</span><br><span class="line">list.add(<span class="string">"数学: 2"</span>);</span><br><span class="line">list.add(<span class="string">"英语: 3"</span>);</span><br></pre></td></tr></table></figure>
-<p>结构也相对简单一些，如下图所示：<br><img src="https://cloud.githubusercontent.com/assets/1736354/6997435/92fab224-dbed-11e4-932a-4c5593a2abb7.png" alt="linkedlist"></p>
-<h3 id="2-_set和get函数">2. set和get函数</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">set</span><span class="params">(<span class="keyword">int</span> index, E element)</span> </span>&#123;</span><br><span class="line">    checkElementIndex(index);</span><br><span class="line">    Node&lt;E&gt; x = node(index);</span><br><span class="line">    E oldVal = x.item;</span><br><span class="line">    x.item = element;</span><br><span class="line">    <span class="keyword">return</span> oldVal;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> E <span class="title">get</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">	checkElementIndex(index);</span><br><span class="line">	<span class="keyword">return</span> node(index).item;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>这两个函数都调用了<code>node</code>函数，该函数会以O(n/2)的性能去获取一个节点，具体实现如下所示：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="function">Node&lt;E&gt; <span class="title">node</span><span class="params">(<span class="keyword">int</span> index)</span> </span>&#123;</span><br><span class="line">    <span class="comment">// assert isElementIndex(index);</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">if</span> (index &lt; (size &gt;&gt; <span class="number">1</span>)) &#123;</span><br><span class="line">        Node&lt;E&gt; x = first;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; index; i++)</span><br><span class="line">            x = x.next;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        Node&lt;E&gt; x = last;</span><br><span class="line">        <span class="keyword">for</span> (<span class="keyword">int</span> i = size - <span class="number">1</span>; i &gt; index; i--)</span><br><span class="line">            x = x.prev;</span><br><span class="line">        <span class="keyword">return</span> x;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>就是判断index是在前半区间还是后半区间，如果在前半区间就从head搜索，而在后半区间就从tail搜索。而不是一直从头到尾的搜索。如此设计，将节点访问的复杂度由O(n)变为O(n/2)。</p>
-<h3 id="参考资料">参考资料</h3><p><a href="http://docs.oracle.com/javase/8/docs/api/java/util/LinkedList.html" target="_blank" rel="external">LinkedList (Java Platform SE 8)</a></p>
 
       
     </div>

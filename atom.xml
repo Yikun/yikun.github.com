@@ -4,7 +4,7 @@
   
   <link href="/atom.xml" rel="self"/>
   <link href="http://yikun.github.io/"/>
-  <updated>2016-04-13T14:03:48.000Z</updated>
+  <updated>2016-04-15T15:53:04.000Z</updated>
   <id>http://yikun.github.io/</id>
   
   <author>
@@ -15,11 +15,54 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title><![CDATA[理解Python中的“with”]]></title>
+    <link href="http://yikun.github.io/2016/04/15/%E7%90%86%E8%A7%A3Python%E4%B8%AD%E7%9A%84%E2%80%9Cwith%E2%80%9D/"/>
+    <id>http://yikun.github.io/2016/04/15/理解Python中的“with”/</id>
+    <published>2016-04-15T15:44:15.000Z</published>
+    <updated>2016-04-15T15:53:04.000Z</updated>
+    <content type="html"><![CDATA[<h3 id="1-_缘起">1. 缘起</h3><p>Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open( <span class="string">"a.txt"</span> ) <span class="keyword">as</span> f :</span><br><span class="line">    <span class="comment"># do something</span></span><br></pre></td></tr></table></figure></p>
+<p>大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，<code>with</code>到底做了什么呢？</p>
+<p>从《Python学习手册》中是这么描述的：</p>
+<blockquote>
+<p>简而言之，with/as语句的设计是作为常见try/finally用法模式的替代方案。就像try/finally语句，with/as语句也是用于定义必须执行的终止或“清理”行为,无论步骤中是否发生异常。不过，和try/finally不同的是，with语句支持更丰富的基于对象的协议，可以为代码块定义支持进入和离开动作。</p>
+</blockquote>
+<p>也就是说对于代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> expression [<span class="keyword">as</span> varible]:</span><br><span class="line">    <span class="keyword">with</span>-block</span><br></pre></td></tr></table></figure></p>
+<p>with语句的实际工作方式：</p>
+<blockquote>
+<p>1.计算表达式，所得到的对象是<strong>环境管理器</strong>，他必须有<strong>enter</strong>，<strong>exit</strong>两个方法。<br>2.环境管理器的<strong>enter</strong>方法会被调用。如果as存在，<strong>enter</strong>的返回值赋值给as后面的变量，否则，被丢弃。<br>3.代码块中嵌套的代码（with-block）会执行。<br>4.如果with代码块会引发异常，<strong>exit</strong>(type,value,traceback)方法就会被调用。这些也是由sys.exec<em>info返回相同的值。如果此方法返回为假，则异常会重新引发。否则，异常会中止。正常情况下异常是应该被重新引发，这样的话传递到with语句外。<br>5.如果with代码块没有引发异常，<em>_exit</em></em>方法依然会调用，其type、value以及traceback参数会以None传递。</p>
+</blockquote>
+<p>with/as语句的设计，是为了让必须在程序代码块周围发生的启动和终止活动一定会发生。和try/finally语句（无论异常是否发生其离开动作都会执行）类似，但是with/as有更丰富的对象协议，可以定义进入和离开的动作。</p>
+<h3 id="2-_设计的初衷">2. 设计的初衷</h3><p>with/as语句的设计的初衷，在<a href="https://www.python.org/dev/peps/pep-0343/" target="_blank" rel="external">PEP343</a>中是这么描述的：</p>
+<blockquote>
+<p>This PEP adds a new statement “with” to the Python language to make it possible to factor out standard uses of try/finally statements.<br>In this PEP, context managers provide <strong>enter</strong>() and <strong>exit</strong>() methods that are invoked on entry to and exit from the body of the with statement.</p>
+</blockquote>
+<p>对于下面的操作：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> EXPR <span class="keyword">as</span> VAR:</span><br><span class="line">            BLOCK</span><br></pre></td></tr></table></figure></p>
+<p>等价于<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mgr = (EXPR)</span><br><span class="line">exit = type(mgr).__exit__  <span class="comment"># Not calling it yet</span></span><br><span class="line">value = type(mgr).__enter__(mgr)</span><br><span class="line">exc = <span class="keyword">True</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># 将__enter__函数调用的返回值返回给VAR</span></span><br><span class="line">        VAR = value  <span class="comment"># Only if "as VAR" is present</span></span><br><span class="line">        <span class="comment"># 执行BLOCK</span></span><br><span class="line">        BLOCK</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="comment"># 异常处理，The exceptional case is handled here</span></span><br><span class="line">        exc = <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> exit(mgr, *sys.exc_info()):</span><br><span class="line">            <span class="keyword">raise</span></span><br><span class="line">        <span class="comment"># The exception is swallowed if exit() returns true</span></span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    <span class="comment"># 清理，The normal and non-local-goto cases are handled here</span></span><br><span class="line">    <span class="keyword">if</span> exc:</span><br><span class="line">        exit(mgr, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>)</span><br></pre></td></tr></table></figure></p>
+<p>我们可以看到上述代码完整的处理了初始化及异常/正常场景的清理操作，这便是<code>with</code>的设计思想，化简了冗余的代码，把那些重复的工作以及异常处理操作交给写“EXPR”源码（比如open操作）的同学。</p>
+<h3 id="3-_更深入的学习">3. 更深入的学习</h3><p>我们继续深入的看下<a href="https://github.com/Yikun/Python3/blob/master/Lib/_pyio.py#L447" target="_blank" rel="external">Python3</a>中<strong>enter</strong>和<strong>exit</strong>的实现：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IOBase</span><span class="params">(metaclass=abc.ABCMeta)</span>:</span></span><br><span class="line">    <span class="comment"># ... ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">### Context manager ###</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__enter__</span><span class="params">(self)</span>:</span>  <span class="comment"># That's a forward reference</span></span><br><span class="line">        <span class="string">"""Context management protocol.  Returns self (an instance of IOBase)."""</span></span><br><span class="line">        self._checkClosed()</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__exit__</span><span class="params">(self, *args)</span>:</span></span><br><span class="line">        <span class="string">"""Context management protocol.  Calls close()"""</span></span><br><span class="line">        self.close()</span><br></pre></td></tr></table></figure></p>
+<p>和我们预期的一致，在<strong>enter</strong>中返回了这个IO对象，然后在<strong>exit</strong>中，进行了清理。</p>
+<h3 id="参考资料">参考资料</h3><ol>
+<li>《Python学习手册》 </li>
+<li><a href="http://effbot.org/zone/python-with-statement.htm" target="_blank" rel="external">Understanding Python’s “with” statement</a></li>
+<li><a href="https://www.python.org/dev/peps/pep-0343/" target="_blank" rel="external">PEP 343 — The “with” Statement</a></li>
+<li><a href="http://stackoverflow.com/questions/713794/catching-an-exception-while-using-a-python-with-statement" target="_blank" rel="external">Catching an exception while using a Python ‘with’ statement</a></li>
+<li><a href="http://zhoutall.com/archives/325" target="_blank" rel="external">理解Python中的with…as…语法</a></li>
+<li><a href="https://www.python.org/dev/peps/pep-3116/" target="_blank" rel="external">PEP 3116 — New I/O</a></li>
+<li><a href="https://github.com/Yikun/Python3/blob/master/Lib/_pyio.py#L447" target="_blank" rel="external">Python 3.5.0 Code</a></li>
+</ol>
+]]></content>
+    <summary type="html">
+    <![CDATA[<h3 id="1-_缘起">1. 缘起</h3><p>Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现：<br><figure class="highlight python"><table><tr><td clas]]>
+    </summary>
+    
+  </entry>
+  
+  <entry>
     <title><![CDATA[存储数据包的一生]]></title>
     <link href="http://yikun.github.io/2016/04/03/%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84%E4%B8%80%E7%94%9F/"/>
     <id>http://yikun.github.io/2016/04/03/存储数据包的一生/</id>
     <published>2016-04-03T14:04:23.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<p>最近认认真真学习了一个叫<a href="https://www.brighttalk.com/webcast/663/169543" target="_blank" rel="external">《Life of a Storage Packet》</a>讲座，借助这个讲座将整个存储的过程理解了下，不放过任何一个有疑问的点。这篇文章算是对讲座的理解和自己收获的总结，同时也为那些对存储系统不够了解又想要了解的初学者，展现一个存储数据包的“生命”。这个演讲主要聚焦在“整体的存储”，强调存储系统中各个基本元素的关系，并且尽可能简单、清楚地用一种不同的方式可视化一些存储的概念。</p>
 <p>先上一张大图，可以说这篇文章目的就是解释这个图：<br><img src="https://cloud.githubusercontent.com/assets/1736354/14232888/3dc0f734-f9ea-11e5-877c-8b37b7addbdd.png" alt="12"><br><a id="more"></a></p>
 <h3 id="1-_整体视角">1. 整体视角</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/14232846/9c75a7a8-f9e9-11e5-8487-415e410372bf.png" alt="1"></p>
@@ -123,7 +166,7 @@
     <link href="http://yikun.github.io/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Cinder%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E6%9C%BA%E5%88%B6/"/>
     <id>http://yikun.github.io/2016/03/05/OpenStack源码分析-Cinder中的调度机制/</id>
     <published>2016-03-04T16:45:44.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<p>整理了一下目前cinder中支持的调度的Filter和Weigher：<br><img src="https://cloud.githubusercontent.com/assets/1736354/14232950/1851e920-f9ec-11e5-985d-3b3445f30b9e.png" alt="image"></p>
 <p>后面结合源码看下实现，留坑~</p>
 ]]></content>
@@ -140,7 +183,7 @@
     <link href="http://yikun.github.io/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Service%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/"/>
     <id>http://yikun.github.io/2016/03/05/OpenStack源码分析-Service启动流程/</id>
     <published>2016-03-04T16:38:21.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<p><img src="https://cloud.githubusercontent.com/assets/1736354/13372372/d42f0c0a-dd7b-11e5-9656-1f2ff817e53a.png" alt="cinder service launcher"><br><a id="more"></a><br>如图所示，主要流程分为两大部分：</p>
 <ol>
 <li>创建Service<br>service.Service.create方法实现了这个过程。在创建服务的过程中，会根据host、binary、manager来创建服务，对于cinder-volume，则为cinder.service。</li>
@@ -164,7 +207,7 @@
     <link href="http://yikun.github.io/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E6%8C%82%E8%BD%BD%E5%8D%B7%E6%B5%81%E7%A8%8B/"/>
     <id>http://yikun.github.io/2016/03/05/OpenStack源码分析-挂载卷流程/</id>
     <published>2016-03-04T16:32:58.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_挂卷流程">1. 挂卷流程</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/13493796/5a1fda3a-e17b-11e5-98be-2bca8a26e0bb.png" alt="volume attach"><br>    当Nova volume-attach server volume执行后，主要经过以下几步：<br>a.    Nova Client解析指令，通过RESTFUL接口访问nova-api；<br>b.    Nova API解析响应请求获取虚拟机的基本信息，然后向cinder-api发出请求保留，并向nova-compute发送RPC异步调用请求卷挂载；<br>c.    Nova-compute向cinder-api初始化信息，并根据初始化连接调用Libvirt的接口完成挂卷流程；<br>d.    进而调用cinder-volume获取连接，获取了连接后，通过RESTFUL请求cinder-api进行数据库更新操作。<br><a id="more"></a></p>
 <h3 id="2-_源码详解">2. 源码详解</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/13482134/b76e1680-e125-11e5-80d6-1e0f925fca48.png" alt="nova volume attach"></p>
 <h4 id="1-_Nova_Client">1. Nova Client</h4><p>(1)    \nova\nova\api\openstack\compute\contrib\volumes.py<br>在Nova Client进程中，由VolumeAttachmentController接受挂载请求</p>
@@ -188,7 +231,7 @@
     <link href="http://yikun.github.io/2016/02/23/%E4%BC%98%E9%9B%85%E5%9C%B0%E8%B0%83%E8%AF%95OpenStack/"/>
     <id>http://yikun.github.io/2016/02/23/优雅地调试OpenStack/</id>
     <published>2016-02-22T16:00:52.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<p>恩，题目首先要起的高逼格一些。2333。</p>
 <p>在前面学习代码的过程中，主要通过源码来学习，开始学起来确实有点费劲，因为欠缺对OpenStack的整体的意识，于是<a href="http://yikun.github.io/2016/02/10/搭建OpenStack开发环境/" target="_blank" rel="external">搭建OpenStack开发环境</a>对OpenStack的运行环境和使用有了初步认知。也看到了启动OpenStack后的一些相关进程，那么这些进程是如何与源码对应起来的呢？如何去调试OpenStack呢？本篇文章就讲下我的探索。<br><a id="more"></a></p>
 <h3 id="1-_初识Python调试">1. 初识Python调试</h3><p>在<a href="https://www.ibm.com/developerworks/cn/linux/l-cn-pythondebugger/" target="_blank" rel="external">Python 代码调试技巧</a>一文中提到了pdb、PyCharm、PyDev、日志等几种常见的调试方法。具体可以看看这篇文章，写的很详细，不赘述。</p>
@@ -218,7 +261,7 @@
     <link href="http://yikun.github.io/2016/02/21/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Cinder%E5%88%A0%E9%99%A4%E5%8D%B7%E6%B5%81%E7%A8%8B/"/>
     <id>http://yikun.github.io/2016/02/21/OpenStack源码分析-Cinder删除卷流程/</id>
     <published>2016-02-21T11:56:59.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_Cinder删除卷整体流程">1. Cinder删除卷整体流程</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/13130440/f8979c4c-d61e-11e5-8665-84b9d2f928f9.png" alt="delete"></p>
 <p>删除卷流程比较简单，主要就是cinder-api解析Cilent的指令，并响应，发送RPC调用cinder-volume的delete操作，详细流程如下：<br>a. Client发送删除指令，通过RESTful接口访问cinder-api；<br>b. Cinder-api解析响应请求，通过RPC调用cinder-volume；<br>c. Cinder-volume通过调用Driver的delete函数进行删除。</p>
 <h3 id="2-_源码详解">2. 源码详解</h3><p> <img src="https://cloud.githubusercontent.com/assets/1736354/13130451/0e77ce74-d61f-11e5-91e9-9b63918beef1.png" alt="cinder delete"></p>
@@ -240,7 +283,7 @@
     <link href="http://yikun.github.io/2016/02/14/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Cinder%E5%88%9B%E5%BB%BA%E5%8D%B7%E6%B5%81%E7%A8%8B/"/>
     <id>http://yikun.github.io/2016/02/14/OpenStack源码分析-Cinder创建卷流程/</id>
     <published>2016-02-14T09:43:30.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_Cinder创卷整体流程">1. Cinder创卷整体流程</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/13130372/71de5178-d61e-11e5-8d7c-6b9f0a244e41.png" alt="create"></p>
 <p>如整体架构图所示，创建卷涉及的答题步骤主要有以下几步：<br>a. Client发送请求，通过RESTFUL接口访问cinder-api。<br>b. Api解析响应请求，api解析由Client发送来的请求，并通过rpc进一步调用cinder-scheduler。<br>c. Scheduler对资源进行调度，scheduler选择合适的节点进行。<br>d. Volume调用Driver创建卷，volume通过指定Driver进行卷的创建。</p>
 <h3 id="2-_源码详解">2. 源码详解</h3><p>代码的整体流程如下所示：<br> <img src="https://cloud.githubusercontent.com/assets/1736354/13033012/82f1e54e-d342-11e5-835c-e8f6d3baff40.png" alt="cinder seq"><br>从上图可以看出，整体处理流程包括三大部分，分别是API、Scheduler、Volume三部分。</p>
@@ -267,7 +310,7 @@
     <link href="http://yikun.github.io/2016/02/10/%E6%90%AD%E5%BB%BAOpenStack%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
     <id>http://yikun.github.io/2016/02/10/搭建OpenStack开发环境/</id>
     <published>2016-02-09T16:10:09.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<p>前段时间主要了解了一些OpenStack相关的基础性东西，现在希望通过安装使用来增强一下对系统整体的认识，最近也读了一篇文章<a href="http://www.csdn.net/article/2014-04-10/2819247-how-to-learn-opensouce-project-&amp;-ceph" target="_blank" rel="external">如何学习开源项目</a>，基本和我的想法很类似，所以基本上也就是按照这个节奏来的。不说废话了，开始。<br><a id="more"></a></p>
 <h3 id="1-_环境准备">1. 环境准备</h3><p>整体的环境安装是基于[devstack]来搭建，本来就是一个脚本一个配置文件就可以了，不过因为部分网络环境比较“艰苦”，所以需要做一些优化，所以需要做一些准备工作。</p>
 <h4 id="1-1_安装系统">1.1 安装系统</h4><p>Virtual Box，<a href="https://www.virtualbox.org/" target="_blank" rel="external">下载</a><br>Ubuntu 14.04，<a href="http://www.ubuntu.com/download/desktop/install-ubuntu-desktop" target="_blank" rel="external">下载</a><br>网络的话，我是选择了NAT模式，保证虚拟机能够通过宿主机来上网，然后另设了一个Host Only网卡做SSH访问，最近突然发现还可以用NAT端口转发的方式（把22端口转发到主机）完成类似功能，这样就只需要一个网卡了。</p>
@@ -297,7 +340,7 @@
     <link href="http://yikun.github.io/2016/02/03/%E5%AD%98%E5%82%A8%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/"/>
     <id>http://yikun.github.io/2016/02/03/存储知识学习/</id>
     <published>2016-02-03T14:46:58.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<h2 id="1-_磁盘基本知识">1. 磁盘基本知识</h2><p>磁盘大致由盘片、磁头、步进电机等几部分组成组成。<br>盘面：硬盘一般含有一个或多个盘片，一个盘片包含两个盘面。<br>磁道：每个盘面被划成多个狭窄的同心圆环，这样的圆环叫做磁道。<br>扇区：每个磁道的每段圆弧叫做一个扇区，是读写的最小单位。<br>柱面：所有盘面上的同一磁道，在竖直方向构成一个圆柱，称为柱面。<br>    读写过程：硬盘读取数据时，磁头先移动到读取扇区所在磁道的上方，这个过程耗时叫做磁盘寻道时间，平均时间为10ms。之后，通过盘片的旋转，使得扇区转到磁头的下方，这个过程耗时叫做旋转延迟时间，对于7200转/min的硬盘转一周为60*1000/7200=8.33ms，平均旋转延迟为4.17ms（半圈）。</p>
 <h3 id="2-_RAID基本知识">2. RAID基本知识</h3><p>RAID（Redundant Array of Independent Disks），即由独立的磁盘组成的具有冗余特性的阵列。其基本思想就是把多个相对便宜的硬盘组合起来，成为一个硬盘阵列组，使性能达到甚至超过一个价格昂贵、 容量巨大的硬盘。<br>RAID 0，条带化存储，容量增加，并行化，但无冗余，容易单点故障。</p>
 <p>RAID 1，镜像存储，写入速率慢，读取速率快，有冗余备份，优点是高可靠、高可用，缺点是高花费。</p>
@@ -334,7 +377,7 @@
     <link href="http://yikun.github.io/2016/01/23/%E8%AF%91-Internationalization/"/>
     <id>http://yikun.github.io/2016/01/23/译-Internationalization/</id>
     <published>2016-01-22T16:43:37.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>Nova uses the <strong>oslo.i18n library</strong> to <strong>support internationalization</strong>. The oslo.i18n library is built on top of <strong>gettext</strong> and provides functions that are used to enable user-facing strings such as log messages to appear in the <strong>appropriate language in different locales</strong>.</p>
 <p>Nova exposes the oslo.i18n library support via the nova/i18n.py integration module. This module provides the functions needed to wrap translatable strings. It provides the _() wrapper for general user-facing messages and specific wrappers for messages used only for logging. DEBUG level messages do not need translation but CRITICAL, ERROR, WARNING and INFO messages should be wrapped with _LC(), _LE(), _LW() or _LI() respectively.</p>
@@ -362,7 +405,7 @@
     <link href="http://yikun.github.io/2016/01/20/%E8%AF%91-Virtual-Machine-States-and-Transitions/"/>
     <id>http://yikun.github.io/2016/01/20/译-Virtual-Machine-States-and-Transitions/</id>
     <published>2016-01-20T15:46:59.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<p>虚拟机的状态及其转移，主要讲了一些虚拟机的状态以及在创建虚拟机时的状态转移情况，目前理解不够深刻，需要在后面看代码时，进一步深入理解。</p>
 <a id="more"></a>
 <h3 id="Allowed_State_Transitions">Allowed State Transitions</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/12451522/ee92a928-bfc4-11e5-89cf-cc39c09a7fea.png" alt="Allowed State Transitions"></p>
@@ -382,7 +425,7 @@
     <link href="http://yikun.github.io/2016/01/02/2015%EF%BC%8C%E5%86%8D%E8%A7%81/"/>
     <id>http://yikun.github.io/2016/01/02/2015，再见/</id>
     <published>2016-01-01T16:05:42.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<p>2015年是很特殊的一年，是长达快20年的学生时代的终结。从年初最开始的时候，就对今年的会发生的事情做好了准备，也基本上按照自己的想法发生了。之前，也有一些计划，基本达到预期，现在想起这些目标都算是一些学生时代的梦想吧，这篇总结也大致的从这些方面展开。</p>
 <a id="more"></a>
 <h3 id="一个实习">一个实习</h3><p>年初的计划是百度，腾讯，阿里的任何一个地方实习。当时心中最想去的是腾讯或者阿里，对百度不感兴趣的原因主要是在北京呆了太久了，新鲜感没了：）。</p>
@@ -421,7 +464,7 @@
     <link href="http://yikun.github.io/2015/12/21/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E6%95%B4%E5%9E%8B/"/>
     <id>http://yikun.github.io/2015/12/21/Python3源码学习-整型/</id>
     <published>2015-12-21T13:48:29.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_引入">1. 引入</h3><p>我们先看看对整型变量i进行赋值，并对i进行显示的过程：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">&gt;&gt;&gt; </span>i=<span class="number">1</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>i</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <p>在之前已经了解到对象是如何存储、组织的了，那么，整型是如何存储的呢？在Python 2中，整型是分Int和Long的，稍小一点的数直接用C语言中的long去存储，稍大一点的数（超过long的承受范围）：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">Python <span class="number">2.7</span>.10 (default, Jul <span class="number">14</span> <span class="number">2015</span>, <span class="number">19</span>:<span class="number">46</span>:<span class="number">27</span>)</span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>type(<span class="number">1</span>)</span><br><span class="line">&lt;type <span class="string">'int'</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>sys.maxsize</span><br><span class="line"><span class="comment"># 2**63-1</span></span><br><span class="line"><span class="number">9223372036854775807</span></span><br><span class="line"></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>type(sys.maxsize)</span><br><span class="line">&lt;type <span class="string">'int'</span>&gt;</span><br><span class="line"></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>type(sys.maxsize+<span class="number">1</span>)</span><br><span class="line">&lt;type <span class="string">'long'</span>&gt;</span><br></pre></td></tr></table></figure></p>
@@ -459,7 +502,7 @@
     <link href="http://yikun.github.io/2015/12/20/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E7%B1%BB%E5%9E%8B/"/>
     <id>http://yikun.github.io/2015/12/20/Python3源码学习-类型/</id>
     <published>2015-12-20T15:03:21.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_类型">1. 类型</h3><p>我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h：<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> _typeobject &#123;</span><br><span class="line">    PyObject_VAR_HEAD</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *tp_name; <span class="comment">/* For printing, in format "&lt;module&gt;.&lt;name&gt;" */</span></span><br><span class="line">    Py_ssize_t tp_basicsize, tp_itemsize; <span class="comment">/* For allocation */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Methods to implement standard operations */</span></span><br><span class="line">    destructor tp_dealloc;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//... ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* More standard operations (here for binary compatibility) */</span></span><br><span class="line">    hashfunc tp_hash;</span><br><span class="line">    ternaryfunc tp_call;</span><br><span class="line">    reprfunc tp_str;</span><br><span class="line">    getattrofunc tp_getattro;</span><br><span class="line">    setattrofunc tp_setattro;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//... ...</span></span><br><span class="line"></span><br><span class="line">&#125; PyTypeObject;</span><br></pre></td></tr></table></figure></p>
 <a id="more"></a>
 <p>可以看到，PyTypeObject就是类型对象的定义了。其中，包含了一些和类型相关的重要信息：</p>
@@ -493,7 +536,7 @@
     <link href="http://yikun.github.io/2015/12/20/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E7%BC%96%E8%AF%91Python%E6%BA%90%E7%A0%81/"/>
     <id>http://yikun.github.io/2015/12/20/Python3源码学习-编译Python源码/</id>
     <published>2015-12-20T12:36:58.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<p>在进行源码学习的时候，“实践出真知”。因此，在进行源码学习的过程中，我们首先需要对源码进行编译，然后，对我们感兴趣的点进行log，甚至debug。本篇文章记录了我在进行Python 3.5.0源码编译时的一些过程。<br><a id="more"></a></p>
 <h3 id="1-_下载">1. 下载</h3><p>在官网<a href="https://www.python.org/downloads/" target="_blank" rel="external">下载</a>最新源码，为了方便跟踪源码的修改，借助git来管理Python源码。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init&#10;git add .&#10;git commit -am &#34;Python 3.5.0 source.&#34;</span><br></pre></td></tr></table></figure></p>
 <h3 id="2-_配置">2. 配置</h3><p>在编译前需要使用configure对源码进行配置。<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br></pre></td></tr></table></figure></p>
@@ -522,7 +565,7 @@
     <link href="http://yikun.github.io/2015/12/03/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E5%AF%B9%E8%B1%A1/"/>
     <id>http://yikun.github.io/2015/12/03/Python3源码学习-对象/</id>
     <published>2015-12-03T07:07:19.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<p>最近开始看Python源码，大致看了看，发现Py2和Py3的部分实现差别挺大，《Python源码剖析》是根据Python 2写的。不过为了能激发主动性，便直接从Python 3（3.5.0）源码看起了，然后也会结合Python 2（2.7.10）的代码看看之前的实现，来对比学习~：）</p>
 <h3 id="1-_万物皆对象">1. 万物皆对象</h3><p>在Python中，万物皆对象，那么对象又是什么结构，如何组织，怎样实现的呢？<br><a id="more"></a></p>
 <blockquote>
@@ -566,7 +609,7 @@
     <link href="http://yikun.github.io/2015/11/23/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/"/>
     <id>http://yikun.github.io/2015/11/23/网络知识拾遗/</id>
     <published>2015-11-23T13:19:23.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<p>本科加上研究生大概有七年时间，一直都是学的通信，不过覆盖面不是很全，一直对一些网络相关的概念和实现有些模糊。最近补了补通信网络中的一些基础知识和盲点，有目的地看了看《云计算网络珠玑》、《图解网络硬件》等和网络相关的书和一些文章，做一下记录总结。主要包括了二层交换、三层路由、Linux网络相关的内容。</p>
 <a id="more"></a>
 <h2 id="1-_二层交换">1. 二层交换</h2><p>二层交换指的是传统的二层交换机实现的功能，主要的功能就是将以太网帧从一个端口接收，并从合适的端口发送出去。</p>
@@ -628,7 +671,7 @@
     <link href="http://yikun.github.io/2015/11/19/%E8%AF%91-Threading-model/"/>
     <id>http://yikun.github.io/2015/11/19/译-Threading-model/</id>
     <published>2015-11-19T13:34:04.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<h1 id="Threading_model">Threading model</h1><blockquote>
 <p>All OpenStack services use green thread model of threading, implemented through using the Python eventlet and greenlet libraries.</p>
 <p>Green threads use a cooperative model of threading: thread context switches can only occur when specific eventlet or greenlet library calls are made (e.g., sleep, certain I/O calls). From the operating system’s point of view, each OpenStack service runs in a single thread.</p>
@@ -664,7 +707,7 @@
     <link href="http://yikun.github.io/2015/10/17/%E8%AF%91-Host-Aggregates/"/>
     <id>http://yikun.github.io/2015/10/17/译-Host-Aggregates/</id>
     <published>2015-10-17T03:15:40.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<p>先上一个自己画的图，非常有助于理解Host Aggregates:<br><img src="https://cloud.githubusercontent.com/assets/1736354/10556767/3a9f3156-74c0-11e5-94f2-1b8befff9aff.png" alt="host aggregates"></p>
 <a id="more"></a>
 <h1 id="Host_Aggregates">Host Aggregates</h1><blockquote>
@@ -715,7 +758,7 @@
     <link href="http://yikun.github.io/2015/10/16/%E8%AF%91-Scope-of-the-Nova-project/"/>
     <id>http://yikun.github.io/2015/10/16/译-Scope-of-the-Nova-project/</id>
     <published>2015-10-16T12:02:54.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<h1 id="Scope_of_the_Nova_project">Scope of the Nova project</h1><blockquote>
 <p>Nova is focusing on doing an awesome job of its core mission. This document aims to clarify that core mission.</p>
 <p>This is a living document to help record where we agree about what Nova should and should not be doing, and why. Please treat this as a discussion of interesting, and hopefully useful, examples. It is not intended to be an exhaustive policy statement.</p>
@@ -862,7 +905,7 @@
     <link href="http://yikun.github.io/2015/10/15/%E8%AF%91-Nova-System-Architecture/"/>
     <id>http://yikun.github.io/2015/10/15/译-Nova-System-Architecture/</id>
     <published>2015-10-15T02:04:44.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<h3 id="Nova系统架构">Nova系统架构</h3><blockquote>
 <p>Nova is built on a <strong>shared-nothing</strong>, <strong>messaging-based</strong> architecture. All of the major nova components can be run on <strong>multiple servers</strong>. This means that most component to component communication must go via <strong>message queue</strong>. In order to <strong>avoid blocking</strong> each component while waiting for a response, we use <strong>deferred objects</strong>, with a <strong>callback</strong> that gets triggered when a response is received.</p>
 </blockquote>
@@ -906,7 +949,7 @@
     <link href="http://yikun.github.io/2015/10/08/%E8%AF%BB%E3%80%8AOpenStack%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B/"/>
     <id>http://yikun.github.io/2015/10/08/读《OpenStack设计与实现》/</id>
     <published>2015-10-08T13:52:35.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<h3 id="初始OpenStack和开发基础">初始OpenStack和开发基础</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/10370055/daf455b2-6e0f-11e5-98c3-d3e17ee7d97d.PNG" alt="openstack_ch1ch2"></p>
 <p>OpenStack起于RakeSpace和NASA的合作，相关知识涉及到了云计算和虚拟化，体系结构上来看OpenStack是处于Iaas层，目前来看，还是处于追随AWS的阶段。OpenStack的子项目从新项目、孵化项目最终发展成为核心及集成项目。</p>
 <a id="more"></a>
@@ -955,7 +998,7 @@
     <link href="http://yikun.github.io/2015/10/04/OpenStack%E6%A6%82%E8%A7%88/"/>
     <id>http://yikun.github.io/2015/10/04/OpenStack概览/</id>
     <published>2015-10-04T11:33:16.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_概览">1. 概览</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/10267380/3f2d8b74-6ac4-11e5-9372-6bc21c57f11f.png" alt="openstack-software-diagram"></p>
 <blockquote>
 <p>OpenStack is a <strong>cloud operating system</strong> that controls large pools of <strong>compute</strong>, <strong>storage</strong>, and <strong>networking</strong> resources throughout a datacenter, all managed through a <strong>dashboard</strong> that gives administrators control while empowering their users to provision resources through a web interface.</p>
@@ -1001,7 +1044,7 @@
     <link href="http://yikun.github.io/2015/06/18/%E5%86%8D%E8%A7%81%EF%BC%8C%E5%8C%97%E4%BA%AC/"/>
     <id>http://yikun.github.io/2015/06/18/再见，北京/</id>
     <published>2015-06-18T08:10:00.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<h2 id="在北大">在北大</h2><p>一年多的时间，基本都在中国第一学府——北京大学。这里有未名湖畔的波光粼粼，也有博雅塔下的春风垂柳；有艺园吃腻很久的炒菜米饭，也有小白房冒菜不限量的芝麻酱和鳕鱼培根夹馍；有农园清淡爽口的菜肴和炸酱面，也有畅春园改善伙食的麻辣香锅。总之一切都还美好，只是有老校医院实验室中永远调不完的bug后，其他的一切又稍显黯淡。<br><a id="more"></a><br><img src="https://cloud.githubusercontent.com/assets/1736354/8226649/080762dc-15d3-11e5-84da-82fbe052541f.jpg" alt="img_20150407_144120"></p>
 <h2 id="在古迹">在古迹</h2><p>周末的闲暇时光，也会去各个古迹去探索一番，从长城的一砖一瓦中，猜得出北京千年的文化的底蕴；故宫里的金瓦红墙，看得到旧朝的兴盛衰亡；圆明园的断壁残垣，见证着过往苍白的历史。这些古迹除了斑驳的历史以外，还有一个共同点，那就是人多。有时候想想也会觉得惊讶，北京的各个景点在任何的时候都充斥着络绎不绝的游客。</p>
 <p>静静地坐落在京西的古刹龙泉寺，却又是以另一种沉静展现出新的世界。听说，行走在寺中的任何一个僧人都可能清华北大拿到全奖留美offer的才俊，也有人戏称这里是清华北大的分校。 一叶一菩提，一沙一世界，在这新的世界里，真的会让人有种沉寂身心，潜学求知的心境。</p>
@@ -1026,7 +1069,7 @@
     <link href="http://yikun.github.io/2015/06/15/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E5%8C%85%E5%B7%A5%E5%85%B7%E2%80%94%E2%80%94Packet-Assistant/"/>
     <id>http://yikun.github.io/2015/06/15/一个简单的网络数据包工具——Packet-Assistant/</id>
     <published>2015-06-15T11:11:00.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_起因">1. 起因</h3><p>最近一段时间，总是有一些<strong>发数据包、抓数据包</strong>之类的需求，主要是需要定制以太网MAC层的源MAC地址、目的MAC地址、协议类型之类的东西。</p>
 <p>之前实现这些都是用Winpcap实现的，然后用某基础类库去实现界面，实在是受不了“某基础类库”庞大冗余的结构了。这时，看到了PyQt，整个人一下清爽起来。所以，Packet Assistant就诞生了。</p>
 <p>总而言之，言而总之：</p>
@@ -1066,7 +1109,7 @@
     <link href="http://yikun.github.io/2015/05/29/Spring-IOC%E6%A0%B8%E5%BF%83%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/"/>
     <id>http://yikun.github.io/2015/05/29/Spring-IOC核心源码学习/</id>
     <published>2015-05-28T16:34:39.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_初始化">1. 初始化</h3><p>大致单步跟了下Spring IOC的初始化过程，整个脉络很庞大，初始化的过程主要就是<strong>读取XML资源，并解析，最终注册到Bean Factory中</strong>：</p>
 <p><img src="https://cloud.githubusercontent.com/assets/1736354/7897341/032179be-070b-11e5-9ecf-d7befc804e9d.png" alt="flow"></p>
 <a id="more"></a>
@@ -1106,7 +1149,7 @@
     <link href="http://yikun.github.io/2015/05/24/%E5%AD%A6%E4%B9%A0awk%E5%92%8Csed/"/>
     <id>http://yikun.github.io/2015/05/24/学习awk和sed/</id>
     <published>2015-05-23T16:52:31.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<p>最近把awk和sed又系统地学习了下，使用<a href="http://naotu.baidu.com/" target="_blank" rel="external">百度脑图</a>简单地整理了一下大概的思路：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7785009/0d604ea2-01af-11e5-8fdc-b658a02e76bc.png" alt="awk sed"></p>
 <p>参考资料<br><a href="http://book.douban.com/subject/1236944/" target="_blank" rel="external">《sed与awk》</a><br><a href="http://coolshell.cn/articles/9104.html" target="_blank" rel="external">sed 简明教程</a><br><a href="http://coolshell.cn/articles/9070.html" target="_blank" rel="external">awk 简明教程</a></p>
 ]]></content>
@@ -1123,7 +1166,7 @@
     <link href="http://yikun.github.io/2015/05/21/%E5%88%A9%E7%94%A8Shell%E8%BF%9B%E8%A1%8CWeb%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/"/>
     <id>http://yikun.github.io/2015/05/21/利用Shell进行Web日志分析/</id>
     <published>2015-05-20T16:24:48.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<h4 id="1-Web日志">1.Web日志</h4><p>Web日志由Web服务器产生，比如Nginx、Apache等。例如一条Nginx的日志格式可能是这样的：</p>
 <blockquote>
 <p>222.68.172.190 - - [18/Sep/2013:06:49:57 +0000] “GET /images/my.jpg HTTP/1.1” 200 19939<br> “<a href="http://www.angularjs.cn/A00n" target="_blank" rel="external">http://www.angularjs.cn/A00n</a>“ “Mozilla/5.0 (Windows NT 6.1)<br> AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36”</p>
@@ -1153,7 +1196,7 @@
     <link href="http://yikun.github.io/2015/05/19/%E9%87%8D%E6%96%B0%E5%AD%A6%E4%B9%A0Shell/"/>
     <id>http://yikun.github.io/2015/05/19/重新学习Shell/</id>
     <published>2015-05-19T04:42:23.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:04.000Z</updated>
     <content type="html"><![CDATA[<p>之前，虽然已经对<code>Shell</code>比较熟悉了，但是遇到一些不太常用，但是却很有用的命令，还得搜个半天。所以，这几天准备把常用的指令重新过一下，然后再把基础的<code>Shell</code>流程控制、<code>awk</code>的操作等常用命令系统地学习一下，一方面作为总结，另一方面也作为一个Cheat Sheet，时不时的补充一下也是极好的，: )。</p>
 <h4 id="基本语法">基本语法</h4><p><strong>传参</strong><br><code>$n</code> - 传递的第n个参数<br><code>$#</code> - 传递的参数个数<br><code>$*</code> - 所有参数<br><code>$@</code> - 所有参数，加引号为字符串数组<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># var.sh arg1 arg2 arg3</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$0</span> <span class="variable">$1</span> <span class="variable">$2</span> <span class="variable">$3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$#</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># arg1 arg2 arg3</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># arg1 arg2 arg3</span></span><br><span class="line"><span class="built_in">echo</span> $*</span><br><span class="line"></span><br><span class="line"><span class="comment"># @:arg1</span></span><br><span class="line"><span class="comment"># @:arg2</span></span><br><span class="line"><span class="comment"># @:arg3</span></span><br><span class="line"><span class="keyword">for</span> arg <span class="keyword">in</span> <span class="string">"<span class="variable">$@</span>"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> @:<span class="string">"<span class="variable">$arg</span>"</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># *:arg1 arg2 arg3</span></span><br><span class="line"><span class="keyword">for</span> arg <span class="keyword">in</span> <span class="string">"$*"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> *:<span class="string">"<span class="variable">$arg</span>"</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
 <p><strong>if条件控制</strong></p>
@@ -1177,7 +1220,7 @@
     <link href="http://yikun.github.io/2015/04/28/Java-CopyOnWriteArrayList%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/28/Java-CopyOnWriteArrayList工作原理及实现/</id>
     <published>2015-04-28T15:58:01.000Z</published>
-    <updated>2016-04-13T14:03:48.000Z</updated>
+    <updated>2016-04-15T15:53:13.000Z</updated>
     <content type="html"><![CDATA[<blockquote>
 <p>并发优化的ArrayList。用CopyOnWrite策略，在修改时先复制一个快照来修改，改完再让内部指针指向新数组。</p>
 <p>因为对快照的修改对读操作来说不可见，所以只有写锁没有读锁，加上复制的昂贵成本，典型的适合读多写少的场景。如果更新频率较高，或数组较大时，还是Collections.synchronizedList(list)，对所有操作用同一把锁来保证线程安全更好。</p>
@@ -1199,7 +1242,7 @@
     <link href="http://yikun.github.io/2015/04/25/Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93/"/>
     <id>http://yikun.github.io/2015/04/25/Git常用操作总结/</id>
     <published>2015-04-24T17:13:25.000Z</published>
-    <updated>2016-04-13T14:03:55.000Z</updated>
+    <updated>2016-04-15T15:53:13.000Z</updated>
     <content type="html"><![CDATA[<p>用Git比较久了，之前一直在Win用的TortoiseGit，现在命令行用的比较多，所以把一些指令总结一下，以便回顾和查询。</p>
 <p>理解这些指令，觉得最重要的是理解Git的内部原理，比如Git的分布式版本控制，分清楚工作区、暂存区、版本库，还有就是理解Git跟踪并管理的是修改，而非文件。</p>
 <h3 id="设置">设置</h3><pre><code>$ git config --global user<span class="class">.name</span> <span class="string">"Your Name"</span>
@@ -1282,7 +1325,7 @@ git push
     <link href="http://yikun.github.io/2015/04/24/Java-EnumMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/24/Java-EnumMap工作原理及实现/</id>
     <published>2015-04-23T16:11:56.000Z</published>
-    <updated>2016-04-13T14:03:55.000Z</updated>
+    <updated>2016-04-15T15:53:13.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-概述">1.概述</h3><blockquote>
 <p>A specialized Map implementation for use with enum type keys. All of the keys in an enum map must come from a single enum type that is specified, explicitly or implicitly, when the map is created. Enum maps are represented internally as arrays. This representation is extremely compact and efficient.</p>
 </blockquote>
@@ -1309,7 +1352,7 @@ git push
     <link href="http://yikun.github.io/2015/04/18/C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%A7%BB%E4%BD%8D%E6%93%8D%E4%BD%9C%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7%E7%9A%84%E5%9D%91/"/>
     <id>http://yikun.github.io/2015/04/18/C语言中移位操作符优先级的坑/</id>
     <published>2015-04-18T09:16:55.000Z</published>
-    <updated>2016-04-13T14:03:55.000Z</updated>
+    <updated>2016-04-15T15:53:13.000Z</updated>
     <content type="html"><![CDATA[<p>今天和tiancai交流他腾讯面试题目的时候，有这么一个题目，大致是这样描述的：</p>
 <blockquote>
 <p>有一个函数f，可以等概率产生0,1，写一个函数g，可以等概率地产生0~7中的数。</p>
@@ -1347,7 +1390,7 @@ git push
     <link href="http://yikun.github.io/2015/04/11/Java-ArrayDeque%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/11/Java-ArrayDeque工作原理及实现/</id>
     <published>2015-04-11T10:50:32.000Z</published>
-    <updated>2016-04-13T14:03:55.000Z</updated>
+    <updated>2016-04-15T15:53:13.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_概述">1. 概述</h3><blockquote>
 <p>Resizable-array implementation of the <strong>Deque interface</strong>. Array deques have no capacity restrictions; they <strong>grow as necessary to support usage</strong>. They are not thread-safe; in the absence of external synchronization, they do not support concurrent access by multiple threads. Null elements are prohibited. This class is likely to be faster than Stack when used as a stack, and faster than LinkedList when used as a queue.</p>
 </blockquote>
@@ -1371,7 +1414,7 @@ git push
     <link href="http://yikun.github.io/2015/04/10/Java-TreeSet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/10/Java-TreeSet工作原理及实现/</id>
     <published>2015-04-10T09:05:12.000Z</published>
-    <updated>2016-04-13T14:03:55.000Z</updated>
+    <updated>2016-04-15T15:53:13.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-概述">1.概述</h3><blockquote>
 <p>A NavigableSet implementation based on a <strong>TreeMap</strong>. The elements are ordered using their natural ordering, or by a Comparator provided at set creation time, depending on which constructor is used.This implementation provides guaranteed <strong>log(n)</strong> time cost for the basic operations (add, remove and contains).</p>
 </blockquote>
@@ -1395,7 +1438,7 @@ git push
     <link href="http://yikun.github.io/2015/04/09/Java-LinkedHashSet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/09/Java-LinkedHashSet工作原理及实现/</id>
     <published>2015-04-09T14:50:16.000Z</published>
-    <updated>2016-04-13T14:03:55.000Z</updated>
+    <updated>2016-04-15T15:53:13.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_概述">1. 概述</h3><blockquote>
 <p><strong>Hash table and linked list implementation of the Set interface</strong>, with predictable iteration order. This implementation differs from HashSet in that it maintains a doubly-linked list running through all of its entries. This linked list defines the iteration ordering, which is the order in which elements were inserted into the set (insertion-order). Note that insertion order is not affected if an element is re-inserted into the set. (An element e is reinserted into a set s if s.add(e) is invoked when s.contains(e) would return true immediately prior to the invocation.)</p>
 </blockquote>
@@ -1420,7 +1463,7 @@ git push
     <link href="http://yikun.github.io/2015/04/08/Java-HashSet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/08/Java-HashSet工作原理及实现/</id>
     <published>2015-04-08T15:31:28.000Z</published>
-    <updated>2016-04-13T14:03:55.000Z</updated>
+    <updated>2016-04-15T15:53:13.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_概述">1. 概述</h3><blockquote>
 <p>This class implements the Set interface, backed by a hash table (actually a <strong>HashMap</strong> instance). It makes no guarantees as to the iteration order of the set; in particular, it does not guarantee that the order will remain constant over time. This class permits the null element.</p>
 </blockquote>
@@ -1446,7 +1489,7 @@ git push
     <link href="http://yikun.github.io/2015/04/07/Java-PriorityQueue%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/07/Java-PriorityQueue工作原理及实现/</id>
     <published>2015-04-07T14:25:48.000Z</published>
-    <updated>2016-04-13T14:03:55.000Z</updated>
+    <updated>2016-04-15T15:53:13.000Z</updated>
     <content type="html"><![CDATA[<h3 id="参考资料">参考资料</h3><p><a href="http://www.iteye.com/topic/1061958" target="_blank" rel="external">基于最小堆（小根堆）的topn算法</a><br><a href="http://my.oschina.net/leejun2005/blog/135085" target="_blank" rel="external">基于堆实现的优先级队列：PriorityQueue 解决 Top K 问题</a><br><a href="http://www.importnew.com/6932.html" target="_blank" rel="external">Java优先队列（PriorityQueue）示例</a><br><a href="http://wlh0706-163-com.iteye.com/blog/1850125" target="_blank" rel="external">JDK源码研究PriorityQueue（优先队列）</a><br><a href="http://cuisuqiang.iteye.com/blog/2019157" target="_blank" rel="external">优先级队列：PriorityQueue</a></p>
 ]]></content>
     <summary type="html">
@@ -1462,7 +1505,7 @@ git push
     <link href="http://yikun.github.io/2015/04/06/Java-TreeMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/06/Java-TreeMap工作原理及实现/</id>
     <published>2015-04-06T15:10:15.000Z</published>
-    <updated>2016-04-13T14:03:55.000Z</updated>
+    <updated>2016-04-15T15:53:13.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_概述">1. 概述</h3><blockquote>
 <p>A <strong>Red-Black tree</strong> based NavigableMap implementation. The map is sorted according to the natural ordering of its keys, or by a Comparator provided at map creation time, depending on which constructor is used.<br>This implementation provides guaranteed <strong>log(n) time cost</strong> for the containsKey, get, put and remove operations. Algorithms are adaptations of those in Cormen, Leiserson, and Rivest’s Introduction to Algorithms.</p>
 </blockquote>
@@ -1499,7 +1542,7 @@ git push
     <link href="http://yikun.github.io/2015/04/05/Java-LinkedList%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/05/Java-LinkedList工作原理及实现/</id>
     <published>2015-04-05T14:19:28.000Z</published>
-    <updated>2016-04-13T14:03:55.000Z</updated>
+    <updated>2016-04-15T15:53:13.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_概述">1. 概述</h3><blockquote>
 <p>以双向链表实现。链表无容量限制，但双向链表本身使用了更多空间，也需要额外的链表指针操作。</p>
 <p>按下标访问元素—get(i)/set(i,e) 要悲剧的遍历链表将指针移动到位(如果i&gt;数组大小的一半，会从末尾移起)。</p>
@@ -1531,7 +1574,7 @@ git push
     <link href="http://yikun.github.io/2015/04/04/Java-ArrayList%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/04/Java-ArrayList工作原理及实现/</id>
     <published>2015-04-04T13:22:27.000Z</published>
-    <updated>2016-04-13T14:03:55.000Z</updated>
+    <updated>2016-04-15T15:53:13.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_概述">1. 概述</h3><p><a href="http://calvin1978.blogcn.com/articles/collection.html" target="_blank" rel="external">关于Java集合的小抄</a>中是这样描述的：</p>
 <blockquote>
 <p>以数组实现。节约空间，但数组有容量限制。超出限制时会增加50%容量，用System.arraycopy()复制到新的数组，因此最好能给出数组大小的预估值。默认第一次插入元素时创建大小为10的数组。</p>
@@ -1568,7 +1611,7 @@ git push
     <link href="http://yikun.github.io/2015/04/03/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AALRU-Cache%EF%BC%9F/"/>
     <id>http://yikun.github.io/2015/04/03/如何设计实现一个LRU-Cache？/</id>
     <published>2015-04-03T15:35:02.000Z</published>
-    <updated>2016-04-13T14:03:55.000Z</updated>
+    <updated>2016-04-15T15:53:13.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_什么是LRU_Cache？">1. 什么是LRU Cache？</h3><p>之前，在LeetCode上看到一个LRU Cache实现的题目，题目描述是这样的：</p>
 <blockquote>
 <p>Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: <strong>get</strong> and <strong>set</strong>.<br><strong>get(key)</strong> - Get the value (will always be positive) of the key if the key exists in the cache, otherwise return -1.<br><strong>set(key, value)</strong> - Set or insert the value if the key is not already present. When the cache reached its capacity, it should invalidate the least recently used item before inserting a new item.</p>
@@ -1593,7 +1636,7 @@ git push
     <link href="http://yikun.github.io/2015/04/02/Java-LinkedHashMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/02/Java-LinkedHashMap工作原理及实现/</id>
     <published>2015-04-02T15:01:37.000Z</published>
-    <updated>2016-04-13T14:03:55.000Z</updated>
+    <updated>2016-04-15T15:53:13.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_概述">1. 概述</h3><p>在理解了#7 介绍的HashMap后，我们来学习LinkedHashMap的工作原理及实现。首先还是类似的，我们写一个简单的LinkedHashMap的程序：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">LinkedHashMap&lt;String, Integer&gt; lmap = <span class="keyword">new</span> LinkedHashMap&lt;String, Integer&gt;();</span><br><span class="line">lmap.put(<span class="string">"语文"</span>, <span class="number">1</span>);</span><br><span class="line">lmap.put(<span class="string">"数学"</span>, <span class="number">2</span>);</span><br><span class="line">lmap.put(<span class="string">"英语"</span>, <span class="number">3</span>);</span><br><span class="line">lmap.put(<span class="string">"历史"</span>, <span class="number">4</span>);</span><br><span class="line">lmap.put(<span class="string">"政治"</span>, <span class="number">5</span>);</span><br><span class="line">lmap.put(<span class="string">"地理"</span>, <span class="number">6</span>);</span><br><span class="line">lmap.put(<span class="string">"生物"</span>, <span class="number">7</span>);</span><br><span class="line">lmap.put(<span class="string">"化学"</span>, <span class="number">8</span>);</span><br><span class="line"><span class="keyword">for</span>(Entry&lt;String, Integer&gt; entry : lmap.entrySet()) &#123;</span><br><span class="line">	System.out.println(entry.getKey() + <span class="string">": "</span> + entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
 <p>运行结果是：</p>
 <blockquote>
@@ -1636,7 +1679,7 @@ git push
     <link href="http://yikun.github.io/2015/04/01/Java-HashMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/01/Java-HashMap工作原理及实现/</id>
     <published>2015-04-01T08:53:14.000Z</published>
-    <updated>2016-04-13T14:03:55.000Z</updated>
+    <updated>2016-04-15T15:53:13.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_概述">1. 概述</h3><p>从本文你可以学习到：</p>
 <blockquote>
 <ol>
@@ -1749,7 +1792,7 @@ git push
     <link href="http://yikun.github.io/2015/03/31/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/"/>
     <id>http://yikun.github.io/2015/03/31/Java集合框架/</id>
     <published>2015-03-31T06:27:13.000Z</published>
-    <updated>2016-04-13T14:03:55.000Z</updated>
+    <updated>2016-04-15T15:53:13.000Z</updated>
     <content type="html"><![CDATA[<h3 id="概述">概述</h3><h4 id="什么是集合？">什么是集合？</h4><p>这Java官方的<a href="https://docs.oracle.com/javase/tutorial/collections/intro/index.html" target="_blank" rel="external">入门文档</a>是这样描述集合的：</p>
 <blockquote>
 <p>Collection(有时候也叫container)是一个简单的对象，它把多个元素组织成一个单元。集合可以用来存储、检索、操作、通信。通常情况下，集合代表了一个自然数据项，比如一组手牌(牌的集合)、邮件文件夹(邮件的集合)、电话目录(姓名到电话的映射)。如果你使用过Java或者其他语言，你应该很熟悉集合。</p>
@@ -1811,7 +1854,7 @@ git push
     <link href="http://yikun.github.io/2015/03/08/%E5%AE%9A%E6%97%B6%E5%99%A8%E7%AE%A1%E7%90%86%E5%AE%9E%E7%8E%B0%E4%B8%8E%E5%88%9D%E6%8E%A2/"/>
     <id>http://yikun.github.io/2015/03/08/定时器管理实现与初探/</id>
     <published>2015-03-08T05:52:10.000Z</published>
-    <updated>2016-04-13T14:03:55.000Z</updated>
+    <updated>2016-04-15T15:53:13.000Z</updated>
     <content type="html"><![CDATA[<h3 id="1-_背景">1. 背景</h3><p>最近需要实现一个简单的定时器管理，背景是硬件只有一个定时中断器，每100ms给一个时钟中断，我们需要利用它及相关代码实现整个协议中的定时器管理。然后大概看了看Linux的定时器、Nginx的定时器、Tegine的定时器，把一些思路和收获记一下。</p>
 <h3 id="2-_思路">2. 思路</h3><p>思路本身很简单，用硬件时钟计数，每次检查，有定时器该执行就调用就行了。</p>
 <p>具体的来说就是</p>
@@ -1849,7 +1892,7 @@ git push
     <link href="http://yikun.github.io/2015/02/08/%E8%87%AA%E5%A2%9E%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E5%8F%8D%E6%B1%87%E7%BC%96/"/>
     <id>http://yikun.github.io/2015/02/08/自增运算符的反汇编/</id>
     <published>2015-02-08T11:19:11.000Z</published>
-    <updated>2016-04-13T14:03:55.000Z</updated>
+    <updated>2016-04-15T15:53:13.000Z</updated>
     <content type="html"><![CDATA[<h3 id="i++">i++</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> j;</span><br><span class="line">j = i++;</span><br></pre></td></tr></table></figure>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mov         eax,dword ptr [i]  &#10;mov         dword ptr [j],eax  ;&#23558;i&#20540;&#36171;&#20540;&#32473;j&#10;mov         ecx,dword ptr [i]  &#10;add         ecx,1                    &#10;mov         dword ptr [i],ecx  ;i&#33258;&#22686;</span><br></pre></td></tr></table></figure>
 <h3 id="++i">++i</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> i=<span class="number">1</span>;</span><br><span class="line"><span class="keyword">int</span> j;</span><br><span class="line">j = ++i;</span><br></pre></td></tr></table></figure>
@@ -1869,7 +1912,7 @@ git push
     <link href="http://yikun.github.io/2015/02/05/%E6%90%AD%E5%BB%BAGit%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     <id>http://yikun.github.io/2015/02/05/搭建Git服务器/</id>
     <published>2015-02-05T05:11:46.000Z</published>
-    <updated>2016-04-13T14:03:55.000Z</updated>
+    <updated>2016-04-15T15:53:13.000Z</updated>
     <content type="html"><![CDATA[<h1 id="在服务器上安装git">在服务器上安装git</h1><h3 id="1-_安装git">1. 安装git</h3><p>sudo apt-get install git</p>
 <h3 id="2-_增加git用户">2. 增加git用户</h3><p>sudo adduser git</p>
 <h3 id="3-_将用户的公钥添加">3. 将用户的公钥添加</h3><p>cat id_rsa.pub &gt;&gt; /home/git/.ssh/authorized_keys</p>
