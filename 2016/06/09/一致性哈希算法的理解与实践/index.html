@@ -1,0 +1,432 @@
+<!DOCTYPE html>
+<html>
+<head>
+  
+<script type="text/javascript">
+var _hmt = _hmt || [];
+(function() {
+  var hm = document.createElement("script");
+  hm.src = "//hm.baidu.com/hm.js?7b1846a92a7410a82d90ed3ea716d2f0";
+  var s = document.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(hm, s);
+})();
+</script>
+
+  <meta charset="utf-8">
+  
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" >
+  <title>一致性哈希算法的理解与实践 | Yikun</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  <meta name="description" content="0. 概述在维基百科中，是这么定义的
+
+一致哈希是一种特殊的哈希算法。在使用一致哈希算法后，哈希表槽位数（大小）的改变平均只需要对 K/n个关键字重新映射，其中K是关键字的数量， n是槽位数量。然而在传统的哈希表中，添加或删除一个槽位的几乎需要对所有关键字进行重新映射。
+
+1. 引出我们在上文中已经介绍了一致性Hash算法的基本优势，我们看到了该算法主要解决的问题是：当slot数发生变化时，能够尽">
+<meta property="og:type" content="article">
+<meta property="og:title" content="一致性哈希算法的理解与实践">
+<meta property="og:url" content="http://yikun.github.io/2016/06/09/一致性哈希算法的理解与实践/index.html">
+<meta property="og:site_name" content="Yikun">
+<meta property="og:description" content="0. 概述在维基百科中，是这么定义的
+
+一致哈希是一种特殊的哈希算法。在使用一致哈希算法后，哈希表槽位数（大小）的改变平均只需要对 K/n个关键字重新映射，其中K是关键字的数量， n是槽位数量。然而在传统的哈希表中，添加或删除一个槽位的几乎需要对所有关键字进行重新映射。
+
+1. 引出我们在上文中已经介绍了一致性Hash算法的基本优势，我们看到了该算法主要解决的问题是：当slot数发生变化时，能够尽">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/16341297/fe155f98-3a5e-11e6-834d-193e6f85afcd.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/16341311/0e8fea32-3a5f-11e6-84b5-ff101495cf49.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/16341426/8c9e6caa-3a5f-11e6-87ad-fdb462b76aef.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/16341445/a0e32fde-3a5f-11e6-969d-085f64220e63.png">
+<meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/16341455/b01139ec-3a5f-11e6-965a-070f5c4c0afa.png">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="一致性哈希算法的理解与实践">
+<meta name="twitter:description" content="0. 概述在维基百科中，是这么定义的
+
+一致哈希是一种特殊的哈希算法。在使用一致哈希算法后，哈希表槽位数（大小）的改变平均只需要对 K/n个关键字重新映射，其中K是关键字的数量， n是槽位数量。然而在传统的哈希表中，添加或删除一个槽位的几乎需要对所有关键字进行重新映射。
+
+1. 引出我们在上文中已经介绍了一致性Hash算法的基本优势，我们看到了该算法主要解决的问题是：当slot数发生变化时，能够尽">
+  
+    <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
+  
+  
+    <link rel="icon" href="/favicon.png">
+  
+  <link rel="stylesheet" href="/css/style.css" type="text/css">
+</head>
+
+<body>
+  <div id="container">
+    <div class="left-col">
+    <div class="overlay"></div>
+<div class="intrude-less">
+	<header id="header" class="inner">
+		<a href="/" class="profilepic">
+			
+			<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
+		</a>
+
+		<hgroup>
+		  <h1 class="header-author"><a href="/">Yikun</a></h1>
+		</hgroup>
+
+		
+
+		
+			<div class="switch-btn">
+				<div class="icon">
+					<div class="icon-ctn">
+						<div class="icon-wrap icon-house" data-idx="0">
+							<div class="birdhouse"></div>
+							<div class="birdhouse_holes"></div>
+						</div>
+						<div class="icon-wrap icon-ribbon hide" data-idx="1">
+							<div class="ribbon"></div>
+						</div>
+						
+						
+					</div>
+					
+				</div>
+				<div class="tips-box hide">
+					<div class="tips-arrow"></div>
+					<ul class="tips-inner">
+						<li>菜单</li>
+						<li>標籤</li>
+						
+						
+					</ul>
+				</div>
+			</div>
+		
+
+		<div class="switch-area">
+			<div class="switch-wrap">
+				<section class="switch-part switch-part1">
+					<nav class="header-menu">
+						<ul>
+						
+							<li><a href="/">主页</a></li>
+				        
+							<li><a href="/archives">文章</a></li>
+				        
+							<li><a href="/tags/随笔/">随笔</a></li>
+				        
+							<li><a href="/project">项目</a></li>
+				        
+							<li><a href="/douban">读书</a></li>
+				        
+							<li><a href="/about">关于我</a></li>
+				        
+						</ul>
+					</nav>
+					<nav class="header-nav">
+						<div class="social">
+							
+								<a class="github" target="_blank" href="https://github.com/Yikun" title="github">github</a>
+					        
+								<a class="weibo" target="_blank" href="http://weibo.com/keroenigma" title="weibo">weibo</a>
+					        
+								<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+					        
+						</div>
+					</nav>
+				</section>
+				
+				
+				<section class="switch-part switch-part2">
+					<div class="widget tagcloud" id="js-tagcloud">
+						<a href="/tags/C-C/" style="font-size: 12.5px;">C/C++</a><a href="/tags/Cinder/" style="font-size: 16.25px;">Cinder</a><a href="/tags/Git/" style="font-size: 11.25px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a><a href="/tags/Nginx/" style="font-size: 16.25px;">Nginx</a><a href="/tags/Nova/" style="font-size: 15px;">Nova</a><a href="/tags/OpenStack/" style="font-size: 18.75px;">OpenStack</a><a href="/tags/Python/" style="font-size: 16.25px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 13.75px;">系统</a><a href="/tags/网络/" style="font-size: 11.25px;">网络</a><a href="/tags/随笔/" style="font-size: 17.5px;">随笔</a>
+					</div>
+				</section>
+				
+				
+				
+
+				
+			</div>
+		</div>
+	</header>				
+</div>
+
+    </div>
+    <div class="mid-col">
+      <nav id="mobile-nav">
+  	<div class="overlay">
+  		<div class="slider-trigger"></div>
+  		<h1 class="header-author js-mobile-header hide">Yikun</h1>
+  	</div>
+	<div class="intrude-less">
+		<header id="header" class="inner">
+			<div class="profilepic">
+			
+				<img lazy-src="/assets/photo.jpg" class="js-avatar">
+			
+			</div>
+			<hgroup>
+			  <h1 class="header-author">Yikun</h1>
+			</hgroup>
+			
+			<nav class="header-menu">
+				<ul>
+				
+					<li><a href="/">主页</a></li>
+		        
+					<li><a href="/archives">文章</a></li>
+		        
+					<li><a href="/tags/随笔/">随笔</a></li>
+		        
+					<li><a href="/project">项目</a></li>
+		        
+					<li><a href="/douban">读书</a></li>
+		        
+					<li><a href="/about">关于我</a></li>
+		        
+		        <div class="clearfix"></div>
+				</ul>
+			</nav>
+			<nav class="header-nav">
+				<div class="social">
+					
+						<a class="github" target="_blank" href="https://github.com/Yikun" title="github">github</a>
+			        
+						<a class="weibo" target="_blank" href="http://weibo.com/keroenigma" title="weibo">weibo</a>
+			        
+						<a class="rss" target="_blank" href="/atom.xml" title="rss">rss</a>
+			        
+				</div>
+			</nav>
+		</header>				
+	</div>
+</nav>
+
+      <div class="body-wrap"><article id="post-一致性哈希算法的理解与实践" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2016/06/09/一致性哈希算法的理解与实践/" class="article-date">
+  	<time datetime="2016-06-09T02:43:54.000Z" itemprop="datePublished">Jun 9 2016</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 class="article-title" itemprop="name">
+      一致性哈希算法的理解与实践
+    </h1>
+  
+
+      </header>
+      
+      <div class="article-info article-info-post">
+        
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/系统/">系统</a></li></ul>
+	</div>
+
+        
+
+        <div class="clearfix"></div>
+      </div>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+           
+             <div id="toc" class="article-toc">
+             <h2>目录</h2>
+               <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#0-_概述"><span class="toc-text">0. 概述</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1-_引出"><span class="toc-text">1. 引出</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2-_登场"><span class="toc-text">2. 登场</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_改进-虚节点"><span class="toc-text">3. 改进-虚节点</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3-_另一种改进"><span class="toc-text">3. 另一种改进</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#参考链接："><span class="toc-text">参考链接：</span></a></li></ol>
+             </div>
+             <script type="text/javascript">
+               var _article = document.getElementsByClassName('article')[0];
+               setTimeout("_article.className += ' article2'",0);
+               setTimeout("document.getElementById('toc').style.right = '15px'", 0);
+             </script>
+           
+         
+        <h3 id="0-_概述">0. 概述</h3><p>在维基百科中，是这么定义的</p>
+<blockquote>
+<p>一致哈希是一种特殊的哈希算法。在使用一致哈希算法后，哈希表槽位数（大小）的改变平均只需要对 K/n个关键字重新映射，其中K是关键字的数量， n是槽位数量。然而在传统的哈希表中，添加或删除一个槽位的几乎需要对所有关键字进行重新映射。</p>
+</blockquote>
+<h3 id="1-_引出">1. 引出</h3><p>我们在上文中已经介绍了一致性Hash算法的基本优势，我们看到了该算法主要解决的问题是：当slot数发生变化时，能够尽量少的移动数据。那么，我们思考一下，普通的Hash算法是如何实现？又存在什么问题呢？<br>那么我们引出一个问题：</p>
+<blockquote>
+<p>假设有1000w个数据项，100个存储节点，请设计一种算法合理地将他们存储在这些节点上。</p>
+</blockquote>
+<p>看一看普通Hash算法的原理：<br><img src="https://cloud.githubusercontent.com/assets/1736354/16341297/fe155f98-3a5e-11e6-834d-193e6f85afcd.png" alt="normal_hash"><br>算法的核心计算如下<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</span><br><span class="line">    k = md5(str(item)).digest()</span><br><span class="line">    h = unpack_from(<span class="string">"&gt;I"</span>, k)[<span class="number">0</span>]</span><br><span class="line">    <span class="comment"># 通过取余的方式进行映射</span></span><br><span class="line">    n = h % NODES</span><br><span class="line">    node_stat[n] += <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>具体的完整实现请参考<a href="https://github.com/Yikun/hashes/blob/master/normal_hash.py" target="_blank" rel="external">normal_hash.py</a>，输出是这样的：</p>
+<blockquote>
+<p>Ave: 100000<br>Max: 100695    (0.69%)<br>Min: 99073    (0.93%)</p>
+</blockquote>
+<p>从上述结果可以发现，普通的Hash算法均匀地将这些数据项打散到了这些节点上，并且分布最少和最多的存储节点数据项数目小于1%。之所以分布均匀，主要是依赖Hash算法（实现使用的MD5算法）能够比较随机的分布。</p>
+<p>然而，我们看看存在一个问题，由于该算法使用节点数取余的方法，强依赖node的数目，因此，当是node数发生变化的时候，item所对应的node发生剧烈变化，而发生变化的成本就是我们需要在node数发生变化的时候，数据需要迁移，这对存储产品来说显然是不能忍的，我们观察一下增加node后，数据项移动的情况：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</span><br><span class="line">    k = md5(str(item)).digest()</span><br><span class="line">    h = unpack_from(<span class="string">"&gt;I"</span>, k)[<span class="number">0</span>]</span><br><span class="line">    <span class="comment"># 原映射结果</span></span><br><span class="line">    n = h % NODES</span><br><span class="line">    <span class="comment"># 现映射结果</span></span><br><span class="line">    n_new = h % NEW_NODES</span><br><span class="line">    <span class="keyword">if</span> n_new != n:</span><br><span class="line">        change += <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>详细实现代码在<a href="https://github.com/Yikun/hashes/blob/master/normal_hash_add.py" target="_blank" rel="external">normal_hash_add.py</a>输出是这样的：</p>
+<blockquote>
+<p>Change: 9900989    (99.01%)</p>
+</blockquote>
+<p>翻译一下就是，<strong>如果有100个item，当增加一个node，之前99%的数据都需要重新移动</strong>。</p>
+<p>这显然是不能忍的，普通哈希算法的问题我们已经发现了，如何对其进行改进呢？没错，我们的一致性哈希算法闪亮登场。</p>
+<h3 id="2-_登场">2. 登场</h3><p>我们上节介绍了普通Hash算法的劣势，即当node数发生变化（增加、移除）后，数据项会被重新“打散”，导致大部分数据项不能落到原来的节点上，从而导致大量数据需要迁移。</p>
+<p>那么，一个亟待解决的问题就变成了：当node数发生变化时，如何保证尽量少引起迁移呢？即<strong>当增加或者删除节点时，对于大多数item，保证原来分配到的某个node，现在仍然应该分配到那个node，将数据迁移量的降到最低</strong>。</p>
+<p>一致性Hash算法的原理是这样的：<br><img src="https://cloud.githubusercontent.com/assets/1736354/16341311/0e8fea32-3a5f-11e6-84b5-ff101495cf49.png" alt="consist_hash"><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> range(NODES):</span><br><span class="line">    h = _hash(n)</span><br><span class="line">    ring.append(h)</span><br><span class="line">    ring.sort()</span><br><span class="line">    hash2node[h] = n</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</span><br><span class="line">    h = _hash(item)</span><br><span class="line">    n = bisect_left(ring, h) % NODES</span><br><span class="line">    node_stat[hash2node[ring[n]]] += <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>我们依然对其进行了实现<a href="https://github.com/Yikun/hashes/blob/master/consist_hash_add.py" target="_blank" rel="external">consist_hash_add.py</a>，并且观察了数据迁移的结果：</p>
+<blockquote>
+<p>Change: 235603    (2.36%)</p>
+</blockquote>
+<p>虽然一致性Hash算法解决了节点变化导致的数据迁移问题，但是，我们回过头来再看看数据项分布的均匀性，进行了一致性Hash算法的实现<a href="https://github.com/Yikun/hashes/blob/master/consist_hash.py" target="_blank" rel="external">consist_hash.py</a>：</p>
+<blockquote>
+<p>Ave: 100000<br>Max: 596413    (496.41%)<br>Min: 103    (99.90%)</p>
+</blockquote>
+<p>这结果简直是简直了，确实非常结果差，分配的很不均匀。我们思考一下，一致性哈希算法分布不均匀的原因是什么？从最初的1000w个数据项经过一般的哈希算法的模拟来看，这些数据项“打散”后，是可以比较均匀分布的。但是引入一致性哈希算法后，为什么就不均匀呢？数据项本身的哈希值并未发生变化，变化的是判断数据项哈希应该落到哪个节点的算法变了。<br><img src="https://cloud.githubusercontent.com/assets/1736354/16341426/8c9e6caa-3a5f-11e6-87ad-fdb462b76aef.png" alt="consist_hash_1"><br>因此，主要是因为这100个节点Hash后，<strong>在环上分布不均匀，导致了每个节点实际占据环上的区间大小不一</strong>造成的。</p>
+<h3 id="3-_改进-虚节点">3. 改进-虚节点</h3><p>当我们将node进行哈希后，这些值并没有均匀地落在环上，因此，最终会导致，这些节点所管辖的范围并不均匀，最终导致了数据分布的不均匀。<br><img src="https://cloud.githubusercontent.com/assets/1736354/16341445/a0e32fde-3a5f-11e6-969d-085f64220e63.png" alt="consist_hash_virtual"></p>
+<p>详细实现请见<a href="https://github.com/Yikun/hashes/blob/master/virtual_consist_hash.py" target="_blank" rel="external">virtual_consist_hash.py</a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> range(NODES):</span><br><span class="line">    <span class="keyword">for</span> v <span class="keyword">in</span> range(VNODES):</span><br><span class="line">        h = _hash(str(n) + str(v))</span><br><span class="line">        <span class="comment"># 构造ring</span></span><br><span class="line">        ring.append(h)</span><br><span class="line">        <span class="comment"># 记录hash所对应节点</span></span><br><span class="line">        hash2node[h] = n</span><br><span class="line">ring.sort()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</span><br><span class="line">    h = _hash(str(item))</span><br><span class="line">    <span class="comment"># 搜索ring上最近的hash</span></span><br><span class="line">    n = bisect_left(ring, h) % (NODES*VNODES)</span><br><span class="line">    node_stat[hash2node[ring[n]]] += <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>输出结果是这样的：</p>
+<blockquote>
+<p>Ave: 100000<br>Max: 116902    (16.90%)<br>Min: 9492    (90.51%)</p>
+</blockquote>
+<p>因此，通过增加虚节点的方法，使得每个节点在环上所“管辖”更加均匀。这样就既保证了在节点变化时，尽可能小的影响数据分布的变化，而同时又保证了数据分布的均匀。也就是靠增加“节点数量”加强管辖区间的均匀。<br>同时，观察增加节点后数据变动情况，详细的代码请见<a href="https://github.com/Yikun/hashes/blob/master/virtual_consist_hash_add.py" target="_blank" rel="external">virtual_consist_hash_add.py</a>：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</span><br><span class="line">    h = _hash(str(item))</span><br><span class="line">    n = bisect_left(ring, h) % (NODES*VNODES)</span><br><span class="line">    n2 = bisect_left(ring2, h) % (NODES2*VNODES)</span><br><span class="line">    <span class="keyword">if</span> hash2node[ring[n]] != hash2node2[ring2[n2]]:</span><br><span class="line">        change += <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>100000<br>101000<br>Change: 104871    (1.05%)</p>
+</blockquote>
+<h3 id="3-_另一种改进">3. 另一种改进</h3><p>然而，虚节点这种靠数量取胜的策略增加了存储这些虚节点信息所需要的空间。在OpenStack的Swift组件中，使用了一种比较特殊的方法来解决分布不均的问题，改进了这些数据分布的算法，将环上的空间均匀的映射到一个线性空间，这样，就保证分布的均匀性。<br><img src="https://cloud.githubusercontent.com/assets/1736354/16341455/b01139ec-3a5f-11e6-965a-070f5c4c0afa.png" alt="consist_hash_ring"><br>代码实现见<a href="https://github.com/Yikun/hashes/blob/master/part_consist_hash.py" target="_blank" rel="external">part_consist_hash.py</a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> part <span class="keyword">in</span> range(<span class="number">2</span> ** LOG_NODE):</span><br><span class="line">    ring.append(part)</span><br><span class="line">    part2node[part] = part % NODES</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</span><br><span class="line">    h = _hash(item) &gt;&gt; PARTITION</span><br><span class="line">    part = bisect_left(ring, h)</span><br><span class="line">    n = part % NODES</span><br><span class="line">    node_stat[n] += <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<blockquote>
+<p>Ave: 100000<br>Max: 157298    (57.30%)<br>Min: 77405    (22.59%)</p>
+</blockquote>
+<p>可以看到，数据分布是比较理想的。如果节点数刚好和分区数相等，理论上是可以均匀分布的。而观察下增加节点后的数据移动比例，代码实现见<a href="https://github.com/Yikun/hashes/blob/master/part_consist_hash.py" target="_blank" rel="external">part_consist_hash.py</a><br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">for</span> part <span class="keyword">in</span> range(<span class="number">2</span> ** LOG_NODE):</span><br><span class="line">    ring.append(part)</span><br><span class="line">    part2node[part] = part % NODES</span><br><span class="line">    part2node2[part] = part % NODES2</span><br><span class="line"></span><br><span class="line">change = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</span><br><span class="line">    h = _hash(item) &gt;&gt; PARTITION</span><br><span class="line">    p = bisect_left(ring, h)</span><br><span class="line">    p2 = bisect_left(ring, h)</span><br><span class="line">    n = part2node[p] % NODES</span><br><span class="line">    n2 = part2node2[p] % NODES2</span><br><span class="line">    <span class="keyword">if</span> n2 != n:</span><br><span class="line">        change += <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
+<p>&gt;<br>Change: 2190208    (21.90%)</p>
+<p>可以看到，移动也是比较理想的。</p>
+<h3 id="参考链接：">参考链接：</h3><p><a href="http://www.cnblogs.com/yuxc/archive/2012/06/22/2558312.html" target="_blank" rel="external">深入云存储系统Swift核心组件：Ring实现原理剖析</a><br><a href="https://github.com/gholt/ring/blob/master/BASIC_HASH_RING.md" target="_blank" rel="external">Basic Hash Ring</a><br><a href="https://github.com/gholt/ring/blob/master/PARTITION_RING_VS_HASH_RING.md" target="_blank" rel="external">Partition Ring vs. Hash Ring</a></p>
+
+      
+    </div>
+    
+  </div>
+  
+    
+<nav id="article-nav">
+  
+  
+    <a href="/2016/04/15/理解Python中的“with”/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">理解Python中的“with”</div>
+      <strong class="article-nav-caption">></strong>
+    </a>
+  
+</nav>
+
+  
+</article>
+
+
+<div class="share_jia">
+	<!-- JiaThis Button BEGIN -->
+	<div class="jiathis_style">
+		<span class="jiathis_txt">分享到: &nbsp; </span>
+		<a class="jiathis_button_facebook"></a> 
+    <a class="jiathis_button_twitter"></a>
+    <a class="jiathis_button_plus"></a> 
+    <a class="jiathis_button_tsina"></a>
+		<a class="jiathis_button_cqq"></a>
+		<a class="jiathis_button_douban"></a>
+		<a class="jiathis_button_weixin"></a>
+		<a class="jiathis_button_tumblr"></a>
+    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
+	</div>
+	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
+	<!-- JiaThis Button END -->
+</div>
+
+
+
+
+
+
+<div class="duoshuo">
+	<!-- 多说评论框 start -->
+	
+		<div class="ds-thread" data-thread-key="一致性哈希算法的理解与实践" data-title="一致性哈希算法的理解与实践" data-url="http://yikun.github.io/2016/06/09/一致性哈希算法的理解与实践/"></div>
+	
+	<!-- 多说评论框 end -->
+	<!-- 多说公共JS代码 start (一个网页只需插入一次) -->
+	<script type="text/javascript">
+	var duoshuoQuery = {short_name:"Kero"};
+	(function() {
+		var ds = document.createElement('script');
+		ds.type = 'text/javascript';ds.async = true;
+		ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+		ds.charset = 'UTF-8';
+		(document.getElementsByTagName('head')[0] 
+		 || document.getElementsByTagName('body')[0]).appendChild(ds);
+	})();
+	</script>
+	<!-- 多说公共JS代码 end -->
+</div>
+
+
+
+
+</div>
+      <footer id="footer">
+  <div class="outer">
+    <div id="footer-info">
+    	<div class="footer-left">
+    		&copy; 2016 Yikun
+    	</div>
+      	<div class="footer-right">
+      		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
+      	</div>
+    </div>
+  </div>
+</footer>
+    </div>
+    
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.css" type="text/css">
+
+
+<script>
+	var yiliaConfig = {
+		fancybox: true,
+		mathjax: true,
+		animate: true,
+		isHome: false,
+		isPost: true,
+		isArchive: false,
+		isTag: false,
+		isCategory: false,
+		open_in_new: false
+	}
+</script>
+<script src="http://7.url.cn/edu/jslib/comb/require-2.1.6,jquery-1.9.1.min.js" type="text/javascript"></script>
+<script src="/js/main.js" type="text/javascript"></script>
+
+
+
+
+
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    tex2jax: {
+        inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    }
+});
+
+MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+        all[i].SourceElement().parentNode.className += ' has-jax';                 
+    }       
+});
+</script>
+
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+
+
+  </div>
+</body>
+</html>

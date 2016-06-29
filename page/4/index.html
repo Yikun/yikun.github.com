@@ -117,7 +117,7 @@ var _hmt = _hmt || [];
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/C-C/" style="font-size: 12.86px;">C/C++</a><a href="/tags/Cinder/" style="font-size: 15.71px;">Cinder</a><a href="/tags/Git/" style="font-size: 11.43px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 12.86px;">Linux</a><a href="/tags/Nginx/" style="font-size: 15.71px;">Nginx</a><a href="/tags/Nova/" style="font-size: 14.29px;">Nova</a><a href="/tags/OpenStack/" style="font-size: 18.57px;">OpenStack</a><a href="/tags/Python/" style="font-size: 14.29px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 12.86px;">系统</a><a href="/tags/网络/" style="font-size: 11.43px;">网络</a><a href="/tags/随笔/" style="font-size: 17.14px;">随笔</a>
+						<a href="/tags/C-C/" style="font-size: 12.5px;">C/C++</a><a href="/tags/Cinder/" style="font-size: 16.25px;">Cinder</a><a href="/tags/Git/" style="font-size: 11.25px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a><a href="/tags/Nginx/" style="font-size: 16.25px;">Nginx</a><a href="/tags/Nova/" style="font-size: 15px;">Nova</a><a href="/tags/OpenStack/" style="font-size: 18.75px;">OpenStack</a><a href="/tags/Python/" style="font-size: 16.25px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 13.75px;">系统</a><a href="/tags/网络/" style="font-size: 11.25px;">网络</a><a href="/tags/随笔/" style="font-size: 17.5px;">随笔</a>
 					</div>
 				</section>
 				
@@ -182,6 +182,72 @@ var _hmt = _hmt || [];
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-重新学习Shell" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2015/05/19/重新学习Shell/" class="article-date">
+  	<time datetime="2015-05-19T04:42:23.000Z" itemprop="datePublished">May 19 2015</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/19/重新学习Shell/">重新学习Shell</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+        <p>之前，虽然已经对<code>Shell</code>比较熟悉了，但是遇到一些不太常用，但是却很有用的命令，还得搜个半天。所以，这几天准备把常用的指令重新过一下，然后再把基础的<code>Shell</code>流程控制、<code>awk</code>的操作等常用命令系统地学习一下，一方面作为总结，另一方面也作为一个Cheat Sheet，时不时的补充一下也是极好的，: )。</p>
+<h4 id="基本语法">基本语法</h4><p><strong>传参</strong><br><code>$n</code> - 传递的第n个参数<br><code>$#</code> - 传递的参数个数<br><code>$*</code> - 所有参数<br><code>$@</code> - 所有参数，加引号为字符串数组<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># var.sh arg1 arg2 arg3</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$0</span> <span class="variable">$1</span> <span class="variable">$2</span> <span class="variable">$3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$#</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># arg1 arg2 arg3</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># arg1 arg2 arg3</span></span><br><span class="line"><span class="built_in">echo</span> $*</span><br><span class="line"></span><br><span class="line"><span class="comment"># @:arg1</span></span><br><span class="line"><span class="comment"># @:arg2</span></span><br><span class="line"><span class="comment"># @:arg3</span></span><br><span class="line"><span class="keyword">for</span> arg <span class="keyword">in</span> <span class="string">"<span class="variable">$@</span>"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> @:<span class="string">"<span class="variable">$arg</span>"</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># *:arg1 arg2 arg3</span></span><br><span class="line"><span class="keyword">for</span> arg <span class="keyword">in</span> <span class="string">"$*"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> *:<span class="string">"<span class="variable">$arg</span>"</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>if条件控制</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">a=<span class="number">10</span></span><br><span class="line">b=<span class="number">20</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$a</span> <span class="operator">-eq</span> <span class="variable">$b</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"a euqals b."</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="variable">$a</span> <span class="operator">-lt</span> <span class="variable">$b</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"a little than b."</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="variable">$a</span> <span class="operator">-gt</span> <span class="variable">$b</span> ]</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"a greater than b."</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">str=<span class="string">"linux"</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$str</span>"</span> == <span class="string">"linux"</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"str is linux."</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># [ -e filename]    判断文件存在</span></span><br><span class="line"><span class="comment"># [ -d pathname] 判断目录存在</span></span><br></pre></td></tr></table></figure>
+<p><strong>循环控制</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr=(<span class="string">"hello"</span> <span class="string">"bash"</span> <span class="string">"shell"</span>)</span><br><span class="line"><span class="keyword">for</span> a <span class="keyword">in</span> <span class="variable">$&#123;arr[*]&#125;</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$a</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="常用指令">常用指令</h4><p><strong><em>head/tail</em></strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 前5行</span></span><br><span class="line">head -<span class="number">5</span></span><br><span class="line">head -n <span class="number">5</span></span><br><span class="line"><span class="comment"># 前n-5行</span></span><br><span class="line">head -n -<span class="number">5</span></span><br><span class="line"><span class="comment"># 后n-5行</span></span><br><span class="line">tail -n +<span class="number">5</span></span><br><span class="line"><span class="comment"># 前5字节</span></span><br><span class="line">head -c <span class="number">5</span></span><br></pre></td></tr></table></figure></p>
+<p><strong><em>sort</em></strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 忽略起始空格(b)数值(n)去重(u)逆序(r)按照:分隔(-t ':')的第二列(-k 2)排序</span></span><br><span class="line">sort -bnur -t <span class="string">':'</span> -k <span class="number">2</span> somefile</span><br></pre></td></tr></table></figure></p>
+<p><strong><em>grep</em></strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在当前文件夹的所有文件递归(-r)搜索main</span></span><br><span class="line">grep -r <span class="string">"main"</span> *</span><br><span class="line"><span class="comment"># 搜索匹配正则(-E)的行数(-c)，（带main或者括弧的）</span></span><br><span class="line">grep -cE <span class="string">"main|\(\)"</span> *</span><br><span class="line"><span class="comment"># 搜索不包含extern的(-v --&gt; invert-match)</span></span><br><span class="line">grep -v <span class="string">"extern"</span></span><br></pre></td></tr></table></figure></p>
+<p><strong><em>wc</em></strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打印所有.c文件的行数</span></span><br><span class="line">grep -r <span class="string">""</span> *.c | wc <span class="operator">-l</span></span><br></pre></td></tr></table></figure></p>
+
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Linux/">Linux</a></li></ul>
+	</div>
+
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-Java-CopyOnWriteArrayList工作原理及实现" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -804,84 +870,6 @@ git push
       
         
         <h3 id="参考资料">参考资料</h3><p><a href="http://www.iteye.com/topic/1061958" target="_blank" rel="external">基于最小堆（小根堆）的topn算法</a><br><a href="http://my.oschina.net/leejun2005/blog/135085" target="_blank" rel="external">基于堆实现的优先级队列：PriorityQueue 解决 Top K 问题</a><br><a href="http://www.importnew.com/6932.html" target="_blank" rel="external">Java优先队列（PriorityQueue）示例</a><br><a href="http://wlh0706-163-com.iteye.com/blog/1850125" target="_blank" rel="external">JDK源码研究PriorityQueue（优先队列）</a><br><a href="http://cuisuqiang.iteye.com/blog/2019157" target="_blank" rel="external">优先级队列：PriorityQueue</a></p>
-
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<ul class="article-tag-list"><li class="article-tag-list-item"><a class="article-tag-list-link" href="/tags/Java/">Java</a></li></ul>
-	</div>
-
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-Java-TreeMap工作原理及实现" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2015/04/06/Java-TreeMap工作原理及实现/" class="article-date">
-  	<time datetime="2015-04-06T15:10:15.000Z" itemprop="datePublished">Apr 6 2015</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/06/Java-TreeMap工作原理及实现/">Java TreeMap工作原理及实现</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-        <h3 id="1-_概述">1. 概述</h3><blockquote>
-<p>A <strong>Red-Black tree</strong> based NavigableMap implementation. The map is sorted according to the natural ordering of its keys, or by a Comparator provided at map creation time, depending on which constructor is used.<br>This implementation provides guaranteed <strong>log(n) time cost</strong> for the containsKey, get, put and remove operations. Algorithms are adaptations of those in Cormen, Leiserson, and Rivest’s Introduction to Algorithms.</p>
-</blockquote>
-<p>之前已经学习过HashMap和LinkedHashMap了，HashMap不保证数据有序，LinkedHashMap保证数据可以保持插入顺序，而如果我们希望Map可以保持key的大小顺序的时候，我们就需要利用TreeMap了。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">TreeMap&lt;Integer, String&gt; tmap = <span class="keyword">new</span> TreeMap&lt;Integer, String&gt;();</span><br><span class="line">tmap.put(<span class="number">1</span>, <span class="string">"语文"</span>);</span><br><span class="line">tmap.put(<span class="number">3</span>, <span class="string">"英语"</span>);</span><br><span class="line">tmap.put(<span class="number">2</span>, <span class="string">"数学"</span>);</span><br><span class="line">tmap.put(<span class="number">4</span>, <span class="string">"政治"</span>);</span><br><span class="line">tmap.put(<span class="number">5</span>, <span class="string">"历史"</span>);</span><br><span class="line">tmap.put(<span class="number">6</span>, <span class="string">"地理"</span>);</span><br><span class="line">tmap.put(<span class="number">7</span>, <span class="string">"生物"</span>);</span><br><span class="line">tmap.put(<span class="number">8</span>, <span class="string">"化学"</span>);</span><br><span class="line"><span class="keyword">for</span>(Entry&lt;Integer, String&gt; entry : tmap.entrySet()) &#123;</span><br><span class="line">	System.out.println(entry.getKey() + <span class="string">": "</span> + entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>其大致的结构如下所示：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7041463/05ee676a-de0c-11e4-9412-4c6964931e43.png" alt="treemap"><br>使用红黑树的好处是能够使得树具有不错的平衡性，这样操作的速度就可以达到log(n)的水平了。具体红黑树的实现不在这里赘述，可以参考<a href="http://dongxicheng.org/structure/red-black-tree/" target="_blank" rel="external">数据结构之红黑树</a>、<a href="http://zh.wikipedia.org/wiki/%E7%BA%A2%E9%BB%91%E6%A0%91" target="_blank" rel="external">wikipedia-红黑树</a>等的实现。</p>
-<h3 id="2-_put函数">2. put函数</h3><blockquote>
-<p>Associates the specified value with the specified key in this map.If the map previously contained a mapping for the key, the old value is replaced.</p>
-</blockquote>
-<p>如果存在的话，old value被替换；如果不存在的话，则新添一个节点，然后对做红黑树的平衡操作。<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</span><br><span class="line">	Entry&lt;K,V&gt; t = root;</span><br><span class="line">	<span class="keyword">if</span> (t == <span class="keyword">null</span>) &#123;</span><br><span class="line">		compare(key, key); <span class="comment">// type (and possibly null) check</span></span><br><span class="line"></span><br><span class="line">		root = <span class="keyword">new</span> Entry&lt;&gt;(key, value, <span class="keyword">null</span>);</span><br><span class="line">		size = <span class="number">1</span>;</span><br><span class="line">		modCount++;</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">int</span> cmp;</span><br><span class="line">	Entry&lt;K,V&gt; parent;</span><br><span class="line">	<span class="comment">// split comparator and comparable paths</span></span><br><span class="line">	Comparator&lt;? <span class="keyword">super</span> K&gt; cpr = comparator;</span><br><span class="line">        <span class="comment">// 如果该节点存在，则替换值直接返回</span></span><br><span class="line">	<span class="keyword">if</span> (cpr != <span class="keyword">null</span>) &#123;</span><br><span class="line">		do &#123;</span><br><span class="line">			parent = t;</span><br><span class="line">			cmp = cpr.compare(key, t.key);</span><br><span class="line">			<span class="keyword">if</span> (cmp &lt; <span class="number">0</span>)</span><br><span class="line">				t = t.left;</span><br><span class="line">			<span class="function"><span class="keyword">else</span> <span class="title">if</span> <span class="params">(cmp &gt; <span class="number">0</span>)</span></span><br><span class="line">				t </span>= t.right;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				<span class="keyword">return</span> t.setValue(value);</span><br><span class="line">		&#125; <span class="keyword">while</span> (t != <span class="keyword">null</span>);</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">else</span> &#123;</span><br><span class="line">		<span class="keyword">if</span> (key == <span class="keyword">null</span>)</span><br><span class="line">			<span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">		<span class="annotation">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">			Comparable&lt;? <span class="keyword">super</span> K&gt; k = (Comparable&lt;? <span class="keyword">super</span> K&gt;) key;</span><br><span class="line">		do &#123;</span><br><span class="line">			parent = t;</span><br><span class="line">			cmp = k.compareTo(t.key);</span><br><span class="line">			<span class="keyword">if</span> (cmp &lt; <span class="number">0</span>)</span><br><span class="line">				t = t.left;</span><br><span class="line">			<span class="function"><span class="keyword">else</span> <span class="title">if</span> <span class="params">(cmp &gt; <span class="number">0</span>)</span></span><br><span class="line">				t </span>= t.right;</span><br><span class="line">			<span class="keyword">else</span></span><br><span class="line">				<span class="keyword">return</span> t.setValue(value);</span><br><span class="line">		&#125; <span class="keyword">while</span> (t != <span class="keyword">null</span>);</span><br><span class="line">	&#125;</span><br><span class="line">        <span class="comment">// 如果该节点未存在，则新建</span></span><br><span class="line">	Entry&lt;K,V&gt; e = <span class="keyword">new</span> Entry&lt;&gt;(key, value, parent);</span><br><span class="line">	<span class="keyword">if</span> (cmp &lt; <span class="number">0</span>)</span><br><span class="line">		parent.left = e;</span><br><span class="line">	<span class="keyword">else</span></span><br><span class="line">		parent.right = e;</span><br><span class="line">        <span class="comment">// 红黑树平衡调整</span></span><br><span class="line">	fixAfterInsertion(e);</span><br><span class="line">	size++;</span><br><span class="line">	modCount++;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="3-_get函数">3. get函数</h3><p>get函数则相对来说比较简单，以log(n)的复杂度进行get<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">final</span> Entry&lt;K,V&gt; getEntry(Object key) &#123;</span><br><span class="line">	<span class="comment">// Offload comparator-based version for sake of performance</span></span><br><span class="line">	<span class="keyword">if</span> (comparator != <span class="keyword">null</span>)</span><br><span class="line">		<span class="keyword">return</span> getEntryUsingComparator(key);</span><br><span class="line">	<span class="keyword">if</span> (key == <span class="keyword">null</span>)</span><br><span class="line">		<span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</span><br><span class="line">	<span class="annotation">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</span><br><span class="line">		Comparable&lt;? <span class="keyword">super</span> K&gt; k = (Comparable&lt;? <span class="keyword">super</span> K&gt;) key;</span><br><span class="line">	Entry&lt;K,V&gt; p = root;</span><br><span class="line">        <span class="comment">// 按照二叉树搜索的方式进行搜索，搜到返回</span></span><br><span class="line">	<span class="keyword">while</span> (p != <span class="keyword">null</span>) &#123;</span><br><span class="line">		<span class="keyword">int</span> cmp = k.compareTo(p.key);</span><br><span class="line">		<span class="keyword">if</span> (cmp &lt; <span class="number">0</span>)</span><br><span class="line">			p = p.left;</span><br><span class="line">		<span class="function"><span class="keyword">else</span> <span class="title">if</span> <span class="params">(cmp &gt; <span class="number">0</span>)</span></span><br><span class="line">			p </span>= p.right;</span><br><span class="line">		<span class="keyword">else</span></span><br><span class="line">			<span class="keyword">return</span> p;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</span><br><span class="line">	Entry&lt;K,V&gt; p = getEntry(key);</span><br><span class="line">	<span class="keyword">return</span> (p==<span class="keyword">null</span> ? <span class="keyword">null</span> : p.value);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<h3 id="4-_successor后继">4. successor后继</h3><p>TreeMap是如何保证其迭代输出是有序的呢？其实从宏观上来讲，就相当于树的中序遍历(LDR)。我们先看一下迭代输出的步骤<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(Entry&lt;Integer, String&gt; entry : tmap.entrySet()) &#123;</span><br><span class="line">	System.out.println(entry.getKey() + <span class="string">": "</span> + entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>根据<a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2" target="_blank" rel="external">The enhanced for statement</a>，for语句会做如下转换为：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span>(Iterator&lt;Map.Entry&lt;String, String&gt;&gt; it = tmap.entrySet().iterator() ; tmap.hasNext(); ) &#123;</span><br><span class="line">	Entry&lt;Integer, String&gt; entry = it.next();</span><br><span class="line">	System.out.println(entry.getKey() + <span class="string">": "</span> + entry.getValue());</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>在<strong>it.next()</strong>的调用中会使用<strong>nextEntry</strong>调用<code>successor</code>这个是过的后继的重点，具体实现如下：<br><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> &lt;K,V&gt; TreeMap.Entry&lt;K,V&gt; successor(Entry&lt;K,V&gt; t) &#123;</span><br><span class="line">	<span class="keyword">if</span> (t == <span class="keyword">null</span>)</span><br><span class="line">		<span class="keyword">return</span> <span class="keyword">null</span>;</span><br><span class="line">	<span class="function"><span class="keyword">else</span> <span class="title">if</span> <span class="params">(t.right != <span class="keyword">null</span>)</span> </span>&#123;</span><br><span class="line">        <span class="comment">// 有右子树的节点，后继节点就是右子树的“最左节点”</span></span><br><span class="line">        <span class="comment">// 因为“最左子树”是右子树的最小节点</span></span><br><span class="line">		Entry&lt;K,V&gt; p = t.right;</span><br><span class="line">		<span class="keyword">while</span> (p.left != <span class="keyword">null</span>)</span><br><span class="line">			p = p.left;</span><br><span class="line">		<span class="keyword">return</span> p;</span><br><span class="line">	&#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// 如果右子树为空，则寻找当前节点所在左子树的第一个祖先节点</span></span><br><span class="line">        <span class="comment">// 因为左子树找完了，根据LDR该D了</span></span><br><span class="line">		Entry&lt;K,V&gt; p = t.parent;</span><br><span class="line">		Entry&lt;K,V&gt; ch = t;</span><br><span class="line">        <span class="comment">// 保证左子树</span></span><br><span class="line">		<span class="keyword">while</span> (p != <span class="keyword">null</span> &amp;&amp; ch == p.right) &#123;</span><br><span class="line">			ch = p;</span><br><span class="line">			p = p.parent;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">return</span> p;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
-<p>怎么理解这个successor呢？只要记住，这个是中序遍历就好了，L-D-R。具体细节如下：</p>
-<blockquote>
-<p><strong>a. 空节点，没有后继</strong><br><strong>b. 有右子树的节点，后继就是右子树的“最左节点”</strong><br><strong>c. 无右子树的节点，后继就是该节点所在左子树的第一个祖先节点</strong></p>
-</blockquote>
-<p>a.好理解，不过b, c，有点像绕口令啊，没关系，上图举个例子就懂了！</p>
-<p><strong>有右子树的节点</strong>，节点的下一个节点，肯定在右子树中，而右子树中“最左”的那个节点则是右子树中最小的一个，那么当然是<strong>右子树的“最左节点”</strong>，就好像下图所示：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7045283/652d00c4-de2f-11e4-8475-1a2f46afc380.png" alt="treemap1"></p>
-<p><strong>无右子树的节点</strong>，先找到这个节点所在的左子树(右图)，那么这个节点所在的左子树的父节点(绿色节点)，就是下一个节点。<br><img src="https://cloud.githubusercontent.com/assets/1736354/7045284/68279686-de2f-11e4-8310-c9f76b3f52ab.png" alt="treemap2"></p>
-<h3 id="参考资料">参考资料</h3><p><a href="http://docs.oracle.com/javase/8/docs/api/java/util/TreeMap.html" target="_blank" rel="external">TreeMap (Java Platform SE 8)</a><br><a href="http://www.cnblogs.com/yangecnu/p/Introduce-Red-Black-Tree.html" target="_blank" rel="external">浅谈算法和数据结构: 九 平衡查找树之红黑树</a><br><a href="http://blog.csdn.net/chenssy/article/details/26668941" target="_blank" rel="external">Java提高篇（二七）——-TreeMap</a><br><a href="http://dongxicheng.org/structure/red-black-tree/" target="_blank" rel="external">数据结构之红黑树</a><br><a href="http://zh.wikipedia.org/wiki/%E7%BA%A2%E9%BB%91%E6%A0%91" target="_blank" rel="external">wikipedia-红黑树</a><br><a href="http://www.cs.princeton.edu/~rs/talks/LLRB/RedBlack.pdf" target="_blank" rel="external">Red-Black Trees</a><br><a href="http://stackoverflow.com/questions/18063394/how-treemap-searches-successor-for-given-entry" target="_blank" rel="external">How TreeMap searches successor for given Entry?</a></p>
 
       
     </div>

@@ -117,7 +117,7 @@ var _hmt = _hmt || [];
 				
 				<section class="switch-part switch-part2">
 					<div class="widget tagcloud" id="js-tagcloud">
-						<a href="/tags/C-C/" style="font-size: 12.86px;">C/C++</a><a href="/tags/Cinder/" style="font-size: 15.71px;">Cinder</a><a href="/tags/Git/" style="font-size: 11.43px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 12.86px;">Linux</a><a href="/tags/Nginx/" style="font-size: 15.71px;">Nginx</a><a href="/tags/Nova/" style="font-size: 14.29px;">Nova</a><a href="/tags/OpenStack/" style="font-size: 18.57px;">OpenStack</a><a href="/tags/Python/" style="font-size: 14.29px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 12.86px;">系统</a><a href="/tags/网络/" style="font-size: 11.43px;">网络</a><a href="/tags/随笔/" style="font-size: 17.14px;">随笔</a>
+						<a href="/tags/C-C/" style="font-size: 12.5px;">C/C++</a><a href="/tags/Cinder/" style="font-size: 16.25px;">Cinder</a><a href="/tags/Git/" style="font-size: 11.25px;">Git</a><a href="/tags/Java/" style="font-size: 20px;">Java</a><a href="/tags/Linux/" style="font-size: 12.5px;">Linux</a><a href="/tags/Nginx/" style="font-size: 16.25px;">Nginx</a><a href="/tags/Nova/" style="font-size: 15px;">Nova</a><a href="/tags/OpenStack/" style="font-size: 18.75px;">OpenStack</a><a href="/tags/Python/" style="font-size: 16.25px;">Python</a><a href="/tags/vim/" style="font-size: 10px;">vim</a><a href="/tags/系统/" style="font-size: 13.75px;">系统</a><a href="/tags/网络/" style="font-size: 11.25px;">网络</a><a href="/tags/随笔/" style="font-size: 17.5px;">随笔</a>
 					</div>
 				</section>
 				
@@ -182,6 +182,127 @@ var _hmt = _hmt || [];
 </nav>
 
       <div class="body-wrap">
+  
+    <article id="post-algorithm_sort" class="article article-type-post" itemscope itemprop="blogPost">
+  
+    <div class="article-meta">
+      <a href="/2014/11/20/algorithm_sort/" class="article-date">
+  	<time datetime="2014-11-19T16:00:00.000Z" itemprop="datePublished">Nov 20 2014</time>
+</a>
+    </div>
+  
+  <div class="article-inner">
+    
+      <input type="hidden" class="isFancy" />
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2014/11/20/algorithm_sort/">排序算法总结</a>
+    </h1>
+  
+
+      </header>
+      
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+        <a id="more"></a>
+<h3 id="1-_排序算法汇总">1. 排序算法汇总</h3><h3 id="1-_概述">1. 概述</h3><table>
+<thead>
+<tr>
+<th>算法名称</th>
+<th>复杂度</th>
+<th>实现关键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>冒泡排序</td>
+<td>O(n^2)</td>
+<td>（无序区，有序区）。从无序区通过交换找出最大元素放到有序区前端。</td>
+</tr>
+<tr>
+<td>选择排序</td>
+<td>O(n^2)</td>
+<td>（有序区，无序区）。在无序区里选择一个最小的元素跟在有序区的后面。</td>
+</tr>
+<tr>
+<td>插入排序</td>
+<td>O(n^2)</td>
+<td>（有序区，无序区）。把无序区的第一个元素插入到有序区的合适的位置。</td>
+</tr>
+<tr>
+<td>希尔排序</td>
+<td>nlog^2(n)</td>
+<td>每一轮按照事先决定的间隔进行插入排序，间隔会依次缩小，最后一次一定要是1(插入)。</td>
+</tr>
+<tr>
+<td>快速排序</td>
+<td>nlog(n)</td>
+<td>（小数，枢纽元，大数）。</td>
+</tr>
+<tr>
+<td>堆排序</td>
+<td>nlog(n)</td>
+<td></td>
+</tr>
+<tr>
+<td>桶排序</td>
+<td>O(n)</td>
+<td>将值为i的元素放入i号桶，最后依次把桶里的元素倒出来。</td>
+</tr>
+</tbody>
+</table>
+<p>不稳定的排序：<br>稳定性一个形象的比喻，本来有两个并列第三，一排序把原来并列的顺序给变了。<br>比如：选择排序、快速排序、堆排序、希尔排序；<br><a href="http://zh.wikipedia.org/wiki/%E6%8E%92%E5%BA%8F%E7%AE%97%E6%B3%95" target="_blank" rel="external">参考链接</a><br><!--more--></p>
+<h3 id="2-_冒泡排序">2. 冒泡排序</h3><p><img src="http://yikun.github.io/assets/post/algorithm/sort/Bubble_sort_animation.gif" alt=""></p>
+<p>每次都把未排序的第一个作为起始点，然后逐渐冒泡上升，之后未排序区越来越少，最终排序完成</p>
+<p><img src="http://yikun.github.io/assets/post/algorithm/sort/bubble_sort.png" alt=""></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 冒泡排序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">bubble_sort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> j = <span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>; i&lt;n-<span class="number">1</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 比较相邻元素，若a[j]比a[j+1]大，则交换</span></span><br><span class="line">		<span class="comment">// a[j]就像一个气泡一样“浮”到合适位置了</span></span><br><span class="line">		<span class="keyword">for</span>(j=<span class="number">0</span>; j&lt;n-<span class="number">1</span>-i; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span>(a[j]&gt;a[j+<span class="number">1</span>])</span><br><span class="line">			&#123;</span><br><span class="line">				swap(&amp;a[j], &amp;a[j+<span class="number">1</span>]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="3-_选择排序">3. 选择排序</h3><p><img src="http://yikun.github.io/assets/post/algorithm/sort/Selection_sort_animation.gif" alt=""></p>
+<p>每一趟从待排序的数据元素中<strong>选出最小（或最大）的一个元素</strong>，顺序放在已排好序的数列的最后，直到全部待排序的数据元素排完。</p>
+<p><img src="http://yikun.github.io/assets/post/algorithm/sort/select_sort.png" alt=""></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 选择排序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">select_sort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>,j=<span class="number">0</span>,min=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">0</span>; i &lt; n-<span class="number">1</span>; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		min = i;</span><br><span class="line">		<span class="comment">// 找到最小值</span></span><br><span class="line">		<span class="keyword">for</span> (j=i+<span class="number">1</span>; j &lt;= n-<span class="number">1</span>; j++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="keyword">if</span> (a[min] &gt; a[j])</span><br><span class="line">				min = j;</span><br><span class="line">		&#125;</span><br><span class="line">		<span class="keyword">if</span>(min != i)</span><br><span class="line">		&#123;</span><br><span class="line">			swap(&amp;a[min], &amp;a[i]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="4-_插入排序">4. 插入排序</h3><p><img src="http://yikun.github.io/assets/post/algorithm/sort/Insertion_sort_animation.gif" alt=""></p>
+<p>每次排序从未排序区取一个“牌”，然后往前插入(包括了两步：大的往后移，把牌放到合适位置)。<br><img src="http://yikun.github.io/assets/post/algorithm/sort/Insert-sort-animation.gif" alt=""></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 插入排序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert_sort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> tmp=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">for</span> (i = <span class="number">1</span>; i &lt; n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 取牌</span></span><br><span class="line">		tmp = a[i];</span><br><span class="line">		<span class="comment">// 往前插的起始位置</span></span><br><span class="line">		j = i - <span class="number">1</span>;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 大的a[j]都放后面，寻找出j</span></span><br><span class="line">		<span class="keyword">while</span> ((j &gt;= <span class="number">0</span>) &amp;&amp; a[j] &gt; tmp)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// 往后放一个</span></span><br><span class="line">			a[j+<span class="number">1</span>] = a[j];</span><br><span class="line">			j--;</span><br><span class="line">		&#125;</span><br><span class="line"></span><br><span class="line">		<span class="comment">// 放到该放的位置</span></span><br><span class="line">		a[j+<span class="number">1</span>]=tmp;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>另外还有种思路，把数据后移的过程换成交换的过程</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 插入排序，选中的牌冒泡向前插入</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">insert_sort_2</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">	<span class="comment">//通过i选牌</span></span><br><span class="line">	<span class="keyword">for</span> (i=<span class="number">1</span>; i &lt; n; i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 冒泡向前插入(i-1 --&gt; 0)</span></span><br><span class="line">		<span class="keyword">for</span> (j=i-<span class="number">1</span>; j&gt;=<span class="number">0</span> &amp;&amp; a[j] &gt; a[j + <span class="number">1</span>]; j--)</span><br><span class="line">		&#123;</span><br><span class="line">			swap(&amp;a[j], &amp;a[j+<span class="number">1</span>]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	print_a(a, n);</span><br><span class="line">&#125;</span><br><span class="line">`</span><br></pre></td></tr></table></figure>
+<h3 id="5-_希尔排序">5. 希尔排序</h3><p>对插入排序再加一个步长的循环就是希尔排序了，例如<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">[ <span class="number">13</span> <span class="number">14</span> <span class="number">94</span> <span class="number">33</span> <span class="number">82</span> <span class="number">25</span> <span class="number">59</span> <span class="number">94</span> <span class="number">65</span> <span class="number">23</span> <span class="number">45</span> <span class="number">27</span> <span class="number">73</span> <span class="number">25</span> <span class="number">39</span> <span class="number">10</span> ]</span><br></pre></td></tr></table></figure></p>
+<p>按照5步长排序，则相当于按列先进行排序(实际是通过下标实现的)<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">13 14 94 33 82</span><br><span class="line">25 59 94 65 23</span><br><span class="line">45 27 73 25 39</span><br><span class="line">10</span><br></pre></td></tr></table></figure></p>
+<p>排序后结果为<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">10 14 73 25 23</span><br><span class="line">13 27 94 33 39</span><br><span class="line">25 59 94 65 82</span><br><span class="line">45</span><br></pre></td></tr></table></figure></p>
+<p>多次循环后，只需要<strong>最终步长为1</strong>即可。</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 希尔排序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">shell_sort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> n)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> tmp=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> gap=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">while</span> (gap &lt;= n)</span><br><span class="line">	&#123;</span><br><span class="line">		gap = gap*<span class="number">3</span> + <span class="number">1</span>;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="keyword">while</span> (gap &gt; <span class="number">0</span>)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 取牌</span></span><br><span class="line">		<span class="keyword">for</span> (i = gap; i &lt; n; i++)</span><br><span class="line">		&#123;</span><br><span class="line">			<span class="comment">// 冒泡向前插入(i-gap : gap : 0), 保证每列ok</span></span><br><span class="line">			<span class="keyword">for</span> (j = i - gap; (j &gt;= <span class="number">0</span>) &amp;&amp; (a[j] &gt; a[j + gap]); j = j - gap)</span><br><span class="line">			&#123;</span><br><span class="line">				swap(&amp;a[j], &amp;a[j+gap]);</span><br><span class="line">			&#125;</span><br><span class="line">		&#125;</span><br><span class="line">		gap = (gap-<span class="number">1</span>) / <span class="number">3</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h3 id="6-_快速排序">6. 快速排序</h3><p><img src="http://yikun.github.io/assets/post/algorithm/sort/quicksort.gif" alt=""><br>每次迭代都选出一个基准，左边放小的，右边放大的，最终迭代完成。</p>
+<p><img src="http://yikun.github.io/assets/post/algorithm/sort/quick_sort.png" alt=""></p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 快速排序分区</span></span><br><span class="line"><span class="function"><span class="keyword">static</span> <span class="keyword">int</span> <span class="title">partition</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> p, <span class="keyword">int</span> r)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> x=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> i=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">	<span class="comment">// x为基准</span></span><br><span class="line">	x = a[r];</span><br><span class="line">	<span class="comment">// i为界限,发现小于x的，就i++，再放到i处</span></span><br><span class="line">	i = p-<span class="number">1</span>;</span><br><span class="line">	<span class="keyword">for</span> (j=p; j&lt;= r-<span class="number">1</span>; j++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span> (a[j]&lt;=x)</span><br><span class="line">		&#123;</span><br><span class="line">			i++;</span><br><span class="line">			swap(&amp;a[i], &amp;a[j]);</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	<span class="comment">// 至此，所有小于x的都到i左边了(a[0]~a[i-1])，a[r]是x，因此交换a[i+1]和a[r]</span></span><br><span class="line">	swap(&amp;a[i+<span class="number">1</span>], &amp;a[r]);</span><br><span class="line">	<span class="keyword">return</span> i+<span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 快速排序</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">quick_sort</span><span class="params">(<span class="keyword">int</span> a[], <span class="keyword">int</span> p, <span class="keyword">int</span> r)</span></span><br><span class="line"></span>&#123;</span><br><span class="line">	<span class="keyword">int</span> q=<span class="number">0</span>;</span><br><span class="line">	<span class="keyword">if</span> (p &lt; r)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="comment">// 在数据集之中，选择一个元素作为"基准"（pivot）</span></span><br><span class="line">		<span class="comment">// 所有小于"基准"的元素，都移到"基准"的左边；所有大于"基准"的元素，都移到"基准"的右边</span></span><br><span class="line">		q = partition(a, p, r);</span><br><span class="line">		<span class="comment">// 对"基准"左边和右边的两个子集，不断重复第一步和第二步，直到所有子集只剩下一个元素为止。</span></span><br><span class="line">		quick_sort(a, p, q-<span class="number">1</span>);</span><br><span class="line">		quick_sort(a, q+<span class="number">1</span>, r);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+    
+  </div>
+  
+</article>
+
+
+
+
+
+
+
+
+
   
     <article id="post-nginxconnections" class="article article-type-post" itemscope itemprop="blogPost">
   
@@ -706,62 +827,6 @@ var _hmt = _hmt || [];
       
         <p class="article-more-link">
           <a  href="/2012/12/27/2012Conclusion/#more">more >></a>
-        </p>
-      
-      <div class="clearfix"></div>
-    </div>
-    
-  </div>
-  
-</article>
-
-
-
-
-
-
-
-
-
-  
-    <article id="post-MarkDown-geshibeizhu" class="article article-type-post" itemscope itemprop="blogPost">
-  
-    <div class="article-meta">
-      <a href="/2012/12/26/MarkDown-geshibeizhu/" class="article-date">
-  	<time datetime="2012-12-25T16:00:00.000Z" itemprop="datePublished">Dec 26 2012</time>
-</a>
-    </div>
-  
-  <div class="article-inner">
-    
-      <input type="hidden" class="isFancy" />
-    
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2012/12/26/MarkDown-geshibeizhu/">MarkDown格式备注</a>
-    </h1>
-  
-
-      </header>
-      
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><strong>声明：</strong> 这份文档派生(fork)于<a href="http://markdown.tw/">繁体中文版</a>，在此基础上进行了繁体转简体工作，并进行了适当的润色。此文档用 Markdown 语法编写，你可以到这里<a href="http://gitcafe.com/riku/Markdown-Syntax-CN/blob/master/basics.md">查看它的源文件</a>。「繁体中文版的原始文件可以<a href="https://github.com/othree/markdown-syntax-zhtw/blob/master/basics.md">查看这里</a>」—By @<a href="http://twitter.com/riku">riku</a><br>
-      
-    </div>
-    
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a  href="/2012/12/26/MarkDown-geshibeizhu/#more">more >></a>
         </p>
       
       <div class="clearfix"></div>
