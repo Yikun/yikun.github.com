@@ -77,7 +77,7 @@ A NavigableSet implementation based on a TreeMap. The elements are ordered using
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>Tags</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -239,7 +239,7 @@ A NavigableSet implementation based on a TreeMap. The elements are ordered using
 <p>A NavigableSet implementation based on a <strong>TreeMap</strong>. The elements are ordered using their natural ordering, or by a Comparator provided at set creation time, depending on which constructor is used.This implementation provides guaranteed <strong>log(n)</strong> time cost for the basic operations (add, remove and contains).</p>
 </blockquote>
 <p>TreeSet是基于TreeMap实现的，也非常简单，同样的只是用key及其操作，然后把value置为dummy的object。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">TreeSet&lt;String&gt; tset = <span class="keyword">new</span> TreeSet&lt;String&gt;();</span><br><span class="line">tset.add(<span class="string">"1语文"</span>);</span><br><span class="line">tset.add(<span class="string">"3英语"</span>);</span><br><span class="line">tset.add(<span class="string">"2数学"</span>);</span><br><span class="line">tset.add(<span class="string">"4政治"</span>);</span><br><span class="line">tset.add(<span class="string">"5历史"</span>);</span><br><span class="line">tset.add(<span class="string">"6地理"</span>);</span><br><span class="line">tset.add(<span class="string">"7生物"</span>);</span><br><span class="line">tset.add(<span class="string">"8化学"</span>);</span><br><span class="line"><span class="keyword">for</span>(String str : tset) &#123;</span><br><span class="line">	System.out.println(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">TreeSet&lt;String&gt; tset = <span class="keyword">new</span> TreeSet&lt;String&gt;();</span><br><span class="line">tset.add(<span class="string">"1语文"</span>);</span><br><span class="line">tset.add(<span class="string">"3英语"</span>);</span><br><span class="line">tset.add(<span class="string">"2数学"</span>);</span><br><span class="line">tset.add(<span class="string">"4政治"</span>);</span><br><span class="line">tset.add(<span class="string">"5历史"</span>);</span><br><span class="line">tset.add(<span class="string">"6地理"</span>);</span><br><span class="line">tset.add(<span class="string">"7生物"</span>);</span><br><span class="line">tset.add(<span class="string">"8化学"</span>);</span><br><span class="line"><span class="keyword">for</span>(String str : tset) &#123;</span><br><span class="line">    System.out.println(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>其具体的结构是：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7085286/d0b1658c-dfa7-11e4-972c-d1d07e5fadfd.png" alt="treeset"></p>
 <p>利用TreeMap的特性，实现了set的有序性(通过红黑树实现)。</p>
 <h3 id="参考资料">参考资料</h3><p><a href="http://docs.oracle.com/javase/8/docs/api/java/util/TreeSet.html" target="_blank" rel="external">TreeSet(Java Platform SE 8)</a></p>
@@ -273,25 +273,6 @@ A NavigableSet implementation based on a TreeMap. The elements are ordered using
 </article>
 
 
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
-
-
 
 
 
@@ -320,12 +301,34 @@ A NavigableSet implementation based on a TreeMap. The elements are ordered using
 
 
 
+
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="/assets/gitment.css">
+<script src="/assets/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: '16',
+  owner: 'Yikun',
+  repo: 'yikun.github.com',
+  oauth: {
+    client_id: '0211a53c46185553a4f2',
+    client_secret: '9c0fc0afbf8ca3500d0e3d0ee1575faef9e314e1',
+  },
+})
+gitment.render('gitmentContainer')
+</script>
+
+
+
+
+
+
 </div>
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 Yikun
+    		&copy; 2017 Yikun
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

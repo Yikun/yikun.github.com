@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>Tags</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -250,7 +250,8 @@ var _hmt = _hmt || [];
 <h3 id="2-_安装可视化界面(可选)">2. 安装可视化界面(可选)</h3><p><a href="https://code.google.com/p/tortoisegit/wiki/Download?tm=2" target="_blank" rel="external">下载地址</a><br>鼠标邮件，选择“TortoiseGit”-&gt;“Settings”，在“User Info”输入Name和Email</p>
 <h3 id="3-_生成公钥">3. 生成公钥</h3><p>在命令行和tortoisegit中稍有不同：<br><strong>In shell</strong><br>a. win+r —&gt; Git Bash —&gt;  ssh-keygen.exe<br>b. 一路回车，将生成“c:/Users/XXX/.ssh/id_rsa.pub”<br>c. (公钥)把id_rsa.pub重命名为id_rsa.XXX.pub, 例如id_rsa.jiangyikun.pub<br>d. (私钥)也已经生成到<code>c:/Users/XXX/.ssh/id_rsa</code>了<br>e. 将id_rsa.XXX.pub发送给git管理员</p>
 <p><strong>In tortoisegit</strong><br>a. 打开Puttygen，SSH-2 RSA，点击Generate<br>b. 使用鼠标生成随机key<br>c. (公钥)复制Key到id_rsa.XXX.pub<br>d. (私钥)Save private key为XXX.ppk，并将Load Putty Key设为XXX.ppk<br>e. 将id_rsa.XXX.pub发送给git管理员</p>
-<h3 id="(git管理员操作)_4-添加公钥的服务器">(git管理员操作) 4.添加公钥的服务器</h3><p>以root权限登陆， 注意是“&gt;&gt;”追加<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.XXX.pub &#62;&#62; /home/git/.ssh/authorized_keys&#10;# drwx------. 2 git  git  4096 Apr 15 13:17 .ssh&#10;# -rw-------. 1 git git 1189 Apr 15 13:17 authorized_keys</span><br></pre></td></tr></table></figure></p>
+<h3 id="(git管理员操作)_4-添加公钥的服务器">(git管理员操作) 4.添加公钥的服务器</h3><p>以root权限登陆， 注意是“&gt;&gt;”追加</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.XXX.pub &#62;&#62; /home/git/.ssh/authorized_keys&#10;# drwx------. 2 git  git  4096 Apr 15 13:17 .ssh&#10;# -rw-------. 1 git git 1189 Apr 15 13:17 authorized_keys</span><br></pre></td></tr></table></figure>
 <p>在客户端测试：ssh git@XXX.XXX.XXX.XXX，不再输入密码即可。</p>
 <h3 id="5-_简单学习">5. 简单学习</h3><p>这是一个用于测试的repo你可以拿他来做做测试</p>
 <p>a. 克隆仓库<br>git clone git@xxx.xxx.xxx.xxx:/yikun/sample.git<br>或者使用tortoisegit，在某个文件夹，右键—&gt;Git Clone…—&gt; URL填写“git@xxx.xxx.xxx.xxx:/yikun/sample.git”—&gt; 输入密码</p>
@@ -265,17 +266,17 @@ var _hmt = _hmt || [];
 <p>Enjoy it! :)</p>
 <h3 id="附：">附：</h3><h4 id="1-_如何将一个现有的本地git库上传到服务器上？">1. 如何将一个现有的本地git库上传到服务器上？</h4><p>从现有repo新建server repo的时候(服务器)</p>
 <figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir newrepo.git&#10;cd newrepo.git&#10;git --bare init&#10;# Initialized empty Git repository in /yikun/newrepo.git/.git/</span><br></pre></td></tr></table></figure>
-<p>在现有的repo中（客户端）<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd newrepo.git  &#10;git remote add origin git@xxx.xxx.xxx.xxx:/yikun/newrepo.git&#10;git push origin master</span><br></pre></td></tr></table></figure></p>
+<p>在现有的repo中（客户端）</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd newrepo.git  &#10;git remote add origin git@xxx.xxx.xxx.xxx:/yikun/newrepo.git&#10;git push origin master</span><br></pre></td></tr></table></figure>
 <h4 id="2-_如何克隆服务器上现有库？">2. 如何克隆服务器上现有库？</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#20174;&#26381;&#21153;&#22120;&#20811;&#38534;&#10;git clone git@xxx.xxx.xxx.xxx:/yikun/newrepo.git&#10;# &#20462;&#25913;&#24182;&#26412;&#22320;&#25552;&#20132;&#10;git commit -am &#34;commitmessage&#34;&#10;# &#19978;&#20256;&#33267;&#26381;&#21153;&#22120;&#10;git push origin master</span><br></pre></td></tr></table></figure>
 <h4 id="3-_常见问题">3. 常见问题</h4><p>1 <strong>权限问题</strong></p>
-<pre><code>Counting objects: <span class="number">179</span>, done.
-Delta compression using up <span class="keyword">to</span> <span class="number">4</span> threads.
-Compressing objects: <span class="number">100</span>% (<span class="number">176</span>/<span class="number">176</span>), done.
-fatal: Unable <span class="keyword">to</span> create temporary <span class="type">file</span>: Permission denied
-fatal: sha1 <span class="type">file</span> '&lt;stdout&gt;' <span class="command">write</span> <span class="keyword">error</span>: Broken pipe
-<span class="keyword">error</span>: failed <span class="keyword">to</span> push <span class="keyword">some</span> refs <span class="keyword">to</span> 'git@xxx.xxx.xxx.xxx:/yikun/newrepo.git'
-git did <span class="keyword">not</span> <span class="keyword">exit</span> cleanly (<span class="keyword">exit</span> code <span class="number">1</span>) (<span class="number">3261</span> ms @ <span class="number">2015</span>/<span class="number">2</span>/<span class="number">5</span> <span class="number">11</span>:<span class="number">17</span>:<span class="number">39</span>)
-</code></pre><p>可以试试：<br><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R git *&#10;chgrp -R git *&#10;```    &#10;&#10;2 **&#25552;&#20132;&#38382;&#39064;**&#10;&#10;    error: refusing to update checked out branch: refs/heads/master&#10;    error: By default, updating the current branch in a non-bare repository&#10;    error: is denied, because it will make the index and work tree inconsistent&#10;    error: with what you pushed, and will require &#39;git reset --hard&#39; to match&#10;    error: the work tree to HEAD.&#10;    error: &#10;    error: You can set &#39;receive.denyCurrentBranch&#39; configuration variable to&#10;    error: &#39;ignore&#39; or &#39;warn&#39; in the remote repository to allow pushing into&#10;    error: its current branch; however, this is not recommended unless you&#10;    error: arranged to update its work tree to match what you pushed in some&#10;    error: other way.&#10;    error: &#10;    error: To squelch this message and still keep the default behaviour, set&#10;    error: &#39;receive.denyCurrentBranch&#39; configuration variable to &#39;refuse&#39;.&#10;    &#10;&#21487;&#20197;&#35797;&#35797;&#65306;&#10;&#10;```shell&#10;git config &#39;receive.denyCurrentBranch&#39; warn</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Counting objects: <span class="number">179</span>, done.</span><br><span class="line">Delta compression using up <span class="keyword">to</span> <span class="number">4</span> threads.</span><br><span class="line">Compressing objects: <span class="number">100</span>% (<span class="number">176</span>/<span class="number">176</span>), done.</span><br><span class="line">fatal: Unable <span class="keyword">to</span> create temporary <span class="type">file</span>: Permission denied</span><br><span class="line">fatal: sha1 <span class="type">file</span> '&lt;stdout&gt;' <span class="command">write</span> <span class="keyword">error</span>: Broken pipe</span><br><span class="line"><span class="keyword">error</span>: failed <span class="keyword">to</span> push <span class="keyword">some</span> refs <span class="keyword">to</span> 'git@xxx.xxx.xxx.xxx:/yikun/newrepo.git'</span><br><span class="line">git did <span class="keyword">not</span> <span class="keyword">exit</span> cleanly (<span class="keyword">exit</span> code <span class="number">1</span>) (<span class="number">3261</span> ms @ <span class="number">2015</span>/<span class="number">2</span>/<span class="number">5</span> <span class="number">11</span>:<span class="number">17</span>:<span class="number">39</span>)</span><br></pre></td></tr></table></figure>
+<p>可以试试：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R git *&#10;chgrp -R git *</span><br></pre></td></tr></table></figure>
+<p>2 <strong>提交问题</strong></p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">error: refusing to <span class="operator"><span class="keyword">update</span> checked out branch: refs/heads/<span class="keyword">master</span></span><br><span class="line">error: <span class="keyword">By</span> <span class="keyword">default</span>, updating the <span class="keyword">current</span> branch <span class="keyword">in</span> a non-bare repository</span><br><span class="line">error: <span class="keyword">is</span> denied, because it will make the <span class="keyword">index</span> <span class="keyword">and</span> <span class="keyword">work</span> tree inconsistent</span><br><span class="line">error: <span class="keyword">with</span> what you pushed, <span class="keyword">and</span> will require <span class="string">'git reset --hard'</span> <span class="keyword">to</span> <span class="keyword">match</span></span><br><span class="line">error: the <span class="keyword">work</span> tree <span class="keyword">to</span> HEAD.</span><br><span class="line">error: </span><br><span class="line">error: You can <span class="keyword">set</span> <span class="string">'receive.denyCurrentBranch'</span> configuration variable <span class="keyword">to</span></span><br><span class="line">error: <span class="string">'ignore'</span> <span class="keyword">or</span> <span class="string">'warn'</span> <span class="keyword">in</span> the remote repository <span class="keyword">to</span> allow pushing <span class="keyword">into</span></span><br><span class="line">error: its <span class="keyword">current</span> branch;</span> however, this is not recommended unless you</span><br><span class="line">error: arranged to <span class="operator"><span class="keyword">update</span> its <span class="keyword">work</span> tree <span class="keyword">to</span> <span class="keyword">match</span> what you pushed <span class="keyword">in</span> <span class="keyword">some</span></span><br><span class="line">error: other way.</span><br><span class="line">error: </span><br><span class="line">error: <span class="keyword">To</span> squelch this message <span class="keyword">and</span> still keep the <span class="keyword">default</span> behaviour, <span class="keyword">set</span></span><br><span class="line">error: <span class="string">'receive.denyCurrentBranch'</span> configuration variable <span class="keyword">to</span> <span class="string">'refuse'</span>.</span></span><br></pre></td></tr></table></figure>
+<p>可以试试：</p>
+<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config &#39;receive.denyCurrentBranch&#39; warn</span><br></pre></td></tr></table></figure>
 <h3 id="参考">参考</h3><p><a href="http://blog.163.com/clevertanglei900@126/blog/static/111352259201011655837986/" target="_blank" rel="external">小组级git服务器搭建</a><br><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000" target="_blank" rel="external">搭建Git服务器</a></p>
 
       
@@ -307,25 +308,6 @@ git did <span class="keyword">not</span> <span class="keyword">exit</span> clean
 </article>
 
 
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
-
-
 
 
 
@@ -354,12 +336,34 @@ git did <span class="keyword">not</span> <span class="keyword">exit</span> clean
 
 
 
+
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="/assets/gitment.css">
+<script src="/assets/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: '3',
+  owner: 'Yikun',
+  repo: 'yikun.github.com',
+  oauth: {
+    client_id: '0211a53c46185553a4f2',
+    client_secret: '9c0fc0afbf8ca3500d0e3d0ee1575faef9e314e1',
+  },
+})
+gitment.render('gitmentContainer')
+</script>
+
+
+
+
+
+
 </div>
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 Yikun
+    		&copy; 2017 Yikun
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

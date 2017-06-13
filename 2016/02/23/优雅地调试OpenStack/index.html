@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>Tags</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -241,13 +241,17 @@ var _hmt = _hmt || [];
            
          
         <p>恩，题目首先要起的高逼格一些。2333。</p>
-<p>在前面学习代码的过程中，主要通过源码来学习，开始学起来确实有点费劲，因为欠缺对OpenStack的整体的意识，于是<a href="http://yikun.github.io/2016/02/10/搭建OpenStack开发环境/" target="_blank" rel="external">搭建OpenStack开发环境</a>对OpenStack的运行环境和使用有了初步认知。也看到了启动OpenStack后的一些相关进程，那么这些进程是如何与源码对应起来的呢？如何去调试OpenStack呢？本篇文章就讲下我的探索。<br><a id="more"></a></p>
+<p>在前面学习代码的过程中，主要通过源码来学习，开始学起来确实有点费劲，因为欠缺对OpenStack的整体的意识，于是<a href="http://yikun.github.io/2016/02/10/搭建OpenStack开发环境/" target="_blank" rel="external">搭建OpenStack开发环境</a>对OpenStack的运行环境和使用有了初步认知。也看到了启动OpenStack后的一些相关进程，那么这些进程是如何与源码对应起来的呢？如何去调试OpenStack呢？本篇文章就讲下我的探索。</p>
+<a id="more"></a>
 <h3 id="1-_初识Python调试">1. 初识Python调试</h3><p>在<a href="https://www.ibm.com/developerworks/cn/linux/l-cn-pythondebugger/" target="_blank" rel="external">Python 代码调试技巧</a>一文中提到了pdb、PyCharm、PyDev、日志等几种常见的调试方法。具体可以看看这篇文章，写的很详细，不赘述。</p>
 <p>因为PyCharm出色的用户体验（那写代码就是要开心嘛），所以决定使用PyCharm进行调试，但是问题来了，在远端（如虚拟机或者服务器）服务已经启动起来了，我们如何进行调试呢？答案就是Remote Debug。</p>
-<h3 id="2-_启动OpenStack服务">2. 启动OpenStack服务</h3><p>在<a href="http://yikun.github.io/2016/02/10/搭建OpenStack开发环境/" target="_blank" rel="external">搭建OpenStack开发环境</a>一文中，我们介绍了使用devstack启动开发环境，我们通过DevStack启动各个服务后：<br><figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># ... ...</span><br><span class="line">This is your host IP <span class="string">address:</span> <span class="number">192.168</span>.56.101</span><br><span class="line">This is your host IPv6 <span class="string">address:</span> ::<span class="number">1</span></span><br><span class="line">Horizon is now available at <span class="string">http:</span><span class="comment">//192.168.56.101/dashboard</span></span><br><span class="line">Keystone is serving at <span class="string">http:</span><span class="comment">//192.168.56.101:5000/</span></span><br><span class="line">The <span class="keyword">default</span> users <span class="string">are:</span> admin and demo</span><br><span class="line">The <span class="string">password:</span> <span class="number">1</span></span><br></pre></td></tr></table></figure></p>
-<p>使用screen来查看：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -x <span class="built_in">stack</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="2-_启动OpenStack服务">2. 启动OpenStack服务</h3><p>在<a href="http://yikun.github.io/2016/02/10/搭建OpenStack开发环境/" target="_blank" rel="external">搭建OpenStack开发环境</a>一文中，我们介绍了使用devstack启动开发环境，我们通过DevStack启动各个服务后：</p>
+<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"># ... ...</span><br><span class="line">This is your host IP <span class="string">address:</span> <span class="number">192.168</span>.56.101</span><br><span class="line">This is your host IPv6 <span class="string">address:</span> ::<span class="number">1</span></span><br><span class="line">Horizon is now available at <span class="string">http:</span><span class="comment">//192.168.56.101/dashboard</span></span><br><span class="line">Keystone is serving at <span class="string">http:</span><span class="comment">//192.168.56.101:5000/</span></span><br><span class="line">The <span class="keyword">default</span> users <span class="string">are:</span> admin and demo</span><br><span class="line">The <span class="string">password:</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<p>使用screen来查看：</p>
+<figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">screen -x <span class="built_in">stack</span></span><br></pre></td></tr></table></figure>
 <p>不得不说screen真是神器，虚拟了多个Terminal的Tab，使用”Ctrl+A+P”和”Ctrl+A+N”可以切换tab，使用”Ctrl+A+D”可以断开连接，在每个tab中可以使用“Ctrl+C”来中断进程：<br><img src="https://cloud.githubusercontent.com/assets/1736354/13224079/e3309ca4-d9c1-11e5-897a-04ed2b6c8e82.png" alt="qq20160223-0 2x"><br>我们看到在图中，有Nova和Cinder相关的进程，并且停在了cinder-api的进程上，每个tab中的进程都在运行着。</p>
-<h3 id="3-_编辑代码">3. 编辑代码</h3><p>因为代码大部分都在远端的运行（比如虚拟机），而开发环境则在近端（比如宿主机），如果在远端和近端都维护一套代码，不可避免的会拷来拷去，有时拷错了还得找半天原因。所以得想办法把远端的代码“共享”到近端。因此，我们使用sshfs共享文件：<br><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">➜  ~  sshfs stack@<span class="number">192.168</span>.<span class="number">56.101</span>:/opt/stack /Users/jiangyikun/development/openstack/<span class="tag">code</span></span><br><span class="line">➜  ~  ls /Users/jiangyikun/development/openstack/<span class="tag">code</span></span><br><span class="line">cinder            heat              logs              noVNC             requirements</span><br><span class="line">data              heat-cfntools     neutron           nova              status</span><br><span class="line">devstack<span class="class">.subunit</span>  heat-templates    neutron-fwaas     os-apply-config   swift</span><br><span class="line">dib-utils         horizon           neutron-lbaas     os-collect-config tempest</span><br><span class="line">glance            keystone          neutron-vpnaas    os-refresh-config</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-_编辑代码">3. 编辑代码</h3><p>因为代码大部分都在远端的运行（比如虚拟机），而开发环境则在近端（比如宿主机），如果在远端和近端都维护一套代码，不可避免的会拷来拷去，有时拷错了还得找半天原因。所以得想办法把远端的代码“共享”到近端。因此，我们使用sshfs共享文件：</p>
+<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">➜  ~  sshfs stack@<span class="number">192.168</span>.<span class="number">56.101</span>:/opt/stack /Users/jiangyikun/development/openstack/<span class="tag">code</span></span><br><span class="line">➜  ~  ls /Users/jiangyikun/development/openstack/<span class="tag">code</span></span><br><span class="line">cinder            heat              logs              noVNC             requirements</span><br><span class="line">data              heat-cfntools     neutron           nova              status</span><br><span class="line">devstack<span class="class">.subunit</span>  heat-templates    neutron-fwaas     os-apply-config   swift</span><br><span class="line">dib-utils         horizon           neutron-lbaas     os-collect-config tempest</span><br><span class="line">glance            keystone          neutron-vpnaas    os-refresh-config</span><br></pre></td></tr></table></figure>
 <p>达到的目的就是，我们编辑<code>/Users/jiangyikun/development/openstack/code</code>的时候，就相当于在远端编辑<code>/opt/stack</code>。在Windows下，也有win-sshfs工具。</p>
 <h3 id="4-_启动调试服务器">4. 启动调试服务器</h3><p>当我们修改好代码后，就可以进行调试了。调试的原理大致是在近端启动一个debug server，然后，在代码中添加连接服务器的动作，这样，当代码运行到那段调试代码时，便会和调试服务器建立连接。在我的实验环境中，调试环境是这样的：<br><img src="https://cloud.githubusercontent.com/assets/1736354/13257974/1042affa-da8c-11e5-99a0-882e5b229354.png" alt="openstack"><br>可以看到在宿主机和虚拟机有2条通路，一条是NAT，作用是让虚拟机通过宿主机的公网IP上网，从而保证Devstack能够顺利启动OpenStack，第二条是Host Only，保证在宿主机内可以对虚拟机进行SSH访问、sshfs文件挂载以及调试。</p>
 <p>因此我们先配置一下远程调试的配置：<br><img src="https://cloud.githubusercontent.com/assets/1736354/13224336/fab25a06-d9c2-11e5-8547-b284fe7df997.png" alt="qq20160223-1 2x"></p>
@@ -283,25 +287,6 @@ var _hmt = _hmt || [];
 </article>
 
 
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
-
-
 
 
 
@@ -330,12 +315,34 @@ var _hmt = _hmt || [];
 
 
 
+
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="/assets/gitment.css">
+<script src="/assets/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: '47',
+  owner: 'Yikun',
+  repo: 'yikun.github.com',
+  oauth: {
+    client_id: '0211a53c46185553a4f2',
+    client_secret: '9c0fc0afbf8ca3500d0e3d0ee1575faef9e314e1',
+  },
+})
+gitment.render('gitmentContainer')
+</script>
+
+
+
+
+
+
 </div>
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 Yikun
+    		&copy; 2017 Yikun
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

@@ -79,7 +79,7 @@ This is a living document to help record where we agree about w">
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>Tags</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -265,9 +265,9 @@ This is a living document to help record where we agree about w">
 <p>理解：</p>
 <ul>
 <li>Magnum项目用来统一容器访问接口。</li>
-<li>Nova API提供统一的抽象层：用同样的方式去按需使用容器。</li>
+<li>Nova API提供统一的抽象层：用同样的方式去按需使用容器。<h3 id="Bare_Metal_Servers">Bare Metal Servers</h3></li>
 </ul>
-<h3 id="Bare_Metal_Servers">Bare Metal Servers</h3><blockquote>
+<blockquote>
 <p>Ironic project has been pioneering the idea of treating physical machines in a similar way to on demand virtual machines.</p>
 <p>Nova’s driver is able to allow a multi-tenant cloud style use of Ironic controlled resources.</p>
 <p>While currently there are operations that are a fundamental part of our virtual machine abstraction that are not currently available in ironic, such as attaching iSCSI volumes, it does not fundamentally change the semantics of our API, and as such is a suitable Nova driver. Moreover, it is expected that gap with shrink over time.</p>
@@ -282,9 +282,9 @@ This is a living document to help record where we agree about w">
 <p>理解：</p>
 <ul>
 <li>Nova API的目标是提供一个一致的抽象来访问那些按需提供的计算资源。</li>
-<li>支持一个驱动就要支持其他驱动，允许性能有差异</li>
+<li>支持一个驱动就要支持其他驱动，允许性能有差异<h2 id="Upgrades">Upgrades</h2></li>
 </ul>
-<h2 id="Upgrades">Upgrades</h2><blockquote>
+<blockquote>
 <p>Nova is widely used in production. As such we need to respect the needs of our existing users. At the same time we need evolve the current code base, including both adding and removing features.</p>
 <p>This section outlines how we expect people to upgrade, and what we do to help existing users that upgrade in the way we expect.</p>
 </blockquote>
@@ -301,18 +301,18 @@ This is a living document to help record where we agree about w">
 <li>支持master版本升级，保证bug和功能快速生效</li>
 <li>同一版本，两个commit之间可以升；跨越版本，就得先升stable。</li>
 <li>不能回退</li>
-<li>影响升级需要打<code>UpgradeImpack</code>的标签</li>
+<li>影响升级需要打<code>UpgradeImpack</code>的标签<h3 id="Don’t_break_existing_users">Don’t break existing users</h3></li>
 </ul>
-<h3 id="Don’t_break_existing_users">Don’t break existing users</h3><p>As a community we are aiming towards a smooth upgrade process, where users must be unaware you have just upgraded your deployment, except that there might be additional feature available and improved stability and performance of some existing features.</p>
+<p>As a community we are aiming towards a smooth upgrade process, where users must be unaware you have just upgraded your deployment, except that there might be additional feature available and improved stability and performance of some existing features.</p>
 <p>We don’t ever want to remove features our users rely on. Sometimes we need to migrate users to a new implementation of that feature, which may require extra steps by the deployer, but the end users must be unaffected by such changes. However there are times when some features become a problem to maintain, and fall into disrepair. We aim to be honest with our users and highlight the issues we have, so we are in a position to find help to fix that situation. Ideally we are able to rework the feature so it can be maintained, but in some rare cases, the feature no longer works, is not tested, and no one is stepping forward to maintain that feature, the best option can be to remove that feature.</p>
 <p>When we remove features, we need warn users by first marking those features as deprecated, before we finally remove the feature. The idea is to get feedback on how important the feature is to our user base. Where a feature is important we work with the whole community to find a path forward for those users.</p>
 <p>理解：</p>
 <ul>
 <li>不要干扰到已有用户的使用</li>
 <li>如果一些功能，实在不能工作，而且确实没人维护了，就删掉它</li>
-<li>删功能的时候，先deprecated，然后最终删除</li>
+<li>删功能的时候，先deprecated，然后最终删除<h2 id="API_Scope">API Scope</h2></li>
 </ul>
-<h2 id="API_Scope">API Scope</h2><blockquote>
+<blockquote>
 <p>Nova aims to provide a highly interoperable and stable REST API for our users to get self-service access to compute resources.</p>
 </blockquote>
 <p>理解：Nova提供一个可操作性强、稳定的REST API</p>
@@ -344,9 +344,9 @@ This is a living document to help record where we agree about w">
 <li>可扩展性在Nova中非常看重，Nova系统要适用小规模和大规模的部署。</li>
 <li>对于Nova的扩展包括：API请求数的扩展或者服务器运行数量，或者两者均有</li>
 <li>目前需求（比如大于10000的hypervisor）是目前的目标，但不是上限</li>
-<li>新增功能要考虑可扩展性</li>
+<li>新增功能要考虑可扩展性<h2 id="IaaS_not_Batch_Processing">IaaS not Batch Processing</h2></li>
 </ul>
-<h2 id="IaaS_not_Batch_Processing">IaaS not Batch Processing</h2><blockquote>
+<blockquote>
 <p>Currently Nova focuses on providing on-demand compute resources in the style of classic Infrastructure-as-a-service clouds. A large pool of compute resources that people can consume in a self-service way.</p>
 <p>Nova is not currently optimized for dealing with a larger number of requests for compute resources compared with the amount of compute resource thats currently available. We generally assume a level of spare capacity is maintained for future requests. This is needed for users that want to quickly scale out, and extra capacity becomes available again as users scale in. While spare capacity is also not required, we are not optimizing for a system that aims to run at 100% capacity at all times. As such our quota system is more focused on limiting the current level of resource usage, rather than ensuring a fair balance of resources between all incoming requests. This doesn’t exclude adding features to support making a better use of spare capacity, such as “spot instances”.</p>
 <p>There have been discussions around how to change Nova to work better for batch job processing. But the current focus is on how to layer such an abstraction on top of the basic primitives Nova currently provides, possibly adding additional APIs where that makes good sense. Should this turn out to be impractical, we may have to revise our approach.</p>
@@ -392,25 +392,6 @@ This is a living document to help record where we agree about w">
 </article>
 
 
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
-
-
 
 
 
@@ -439,12 +420,34 @@ This is a living document to help record where we agree about w">
 
 
 
+
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="/assets/gitment.css">
+<script src="/assets/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: '32',
+  owner: 'Yikun',
+  repo: 'yikun.github.com',
+  oauth: {
+    client_id: '0211a53c46185553a4f2',
+    client_secret: '9c0fc0afbf8ca3500d0e3d0ee1575faef9e314e1',
+  },
+})
+gitment.render('gitmentContainer')
+</script>
+
+
+
+
+
+
 </div>
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 Yikun
+    		&copy; 2017 Yikun
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

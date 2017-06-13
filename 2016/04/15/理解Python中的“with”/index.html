@@ -17,27 +17,30 @@ var _hmt = _hmt || [];
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>理解Python中的“with” | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 缘起Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现：12with open( &quot;a.txt&quot; ) as f :    # do something
+  <meta name="description" content="1. 缘起Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现：
+12with open( &quot;a.txt&quot; ) as f :    # do something
 大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，with到底做了什么呢？
 从《Python学习手册》中是这么描述的：
 
-简而言之，with/as">
+简而言之，with/a">
 <meta property="og:type" content="article">
 <meta property="og:title" content="理解Python中的“with”">
 <meta property="og:url" content="http://yikun.github.io/2016/04/15/理解Python中的“with”/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="1. 缘起Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现：12with open( &quot;a.txt&quot; ) as f :    # do something
+<meta property="og:description" content="1. 缘起Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现：
+12with open( &quot;a.txt&quot; ) as f :    # do something
 大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，with到底做了什么呢？
 从《Python学习手册》中是这么描述的：
 
-简而言之，with/as">
+简而言之，with/a">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解Python中的“with”">
-<meta name="twitter:description" content="1. 缘起Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现：12with open( &quot;a.txt&quot; ) as f :    # do something
+<meta name="twitter:description" content="1. 缘起Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现：
+12with open( &quot;a.txt&quot; ) as f :    # do something
 大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，with到底做了什么呢？
 从《Python学习手册》中是这么描述的：
 
-简而言之，with/as">
+简而言之，with/a">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -85,7 +88,7 @@ var _hmt = _hmt || [];
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>Tags</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -243,26 +246,31 @@ var _hmt = _hmt || [];
              </script>
            
          
-        <h3 id="1-_缘起">1. 缘起</h3><p>Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open( <span class="string">"a.txt"</span> ) <span class="keyword">as</span> f :</span><br><span class="line">    <span class="comment"># do something</span></span><br></pre></td></tr></table></figure></p>
+        <h3 id="1-_缘起">1. 缘起</h3><p>Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open( <span class="string">"a.txt"</span> ) <span class="keyword">as</span> f :</span><br><span class="line">    <span class="comment"># do something</span></span><br></pre></td></tr></table></figure>
 <p>大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，<code>with</code>到底做了什么呢？</p>
 <p>从《Python学习手册》中是这么描述的：</p>
 <blockquote>
 <p>简而言之，with/as语句的设计是作为常见try/finally用法模式的替代方案。就像try/finally语句，with/as语句也是用于定义必须执行的终止或“清理”行为,无论步骤中是否发生异常。不过，和try/finally不同的是，with语句支持更丰富的基于对象的协议，可以为代码块定义支持进入和离开动作。</p>
 </blockquote>
-<p>也就是说对于代码：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> expression [<span class="keyword">as</span> varible]:</span><br><span class="line">    <span class="keyword">with</span>-block</span><br></pre></td></tr></table></figure></p>
+<p>也就是说对于代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> expression [<span class="keyword">as</span> varible]:</span><br><span class="line">    <span class="keyword">with</span>-block</span><br></pre></td></tr></table></figure>
 <p>with语句的实际工作方式：</p>
 <blockquote>
-<p>1.计算表达式，所得到的对象是<strong>环境管理器</strong>，他必须有<strong>enter</strong>，<strong>exit</strong>两个方法。<br>2.环境管理器的<strong>enter</strong>方法会被调用。如果as存在，<strong>enter</strong>的返回值赋值给as后面的变量，否则，被丢弃。<br>3.代码块中嵌套的代码（with-block）会执行。<br>4.如果with代码块会引发异常，<strong>exit</strong>(type,value,traceback)方法就会被调用。这些也是由sys.exec<em>info返回相同的值。如果此方法返回为假，则异常会重新引发。否则，异常会中止。正常情况下异常是应该被重新引发，这样的话传递到with语句外。<br>5.如果with代码块没有引发异常，<em>_exit</em></em>方法依然会调用，其type、value以及traceback参数会以None传递。</p>
+<p>1.计算表达式，所得到的对象是<strong>环境管理器</strong>，他必须有<strong>enter</strong>，<strong>exit</strong>两个方法。<br>2.环境管理器的<strong>enter</strong>方法会被调用。如果as存在，<strong>enter</strong>的返回值赋值给as后面的变量，否则，被丢弃。<br>3.代码块中嵌套的代码（with-block）会执行。<br>4.如果with代码块会引发异常，<strong>exit</strong>(type,value,traceback)方法就会被调用。这些也是由sys.exec_info返回相同的值。如果此方法返回为假，则异常会重新引发。否则，异常会中止。正常情况下异常是应该被重新引发，这样的话传递到with语句外。<br>5.如果with代码块没有引发异常，<strong>exit</strong>方法依然会调用，其type、value以及traceback参数会以None传递。</p>
 </blockquote>
 <p>with/as语句的设计，是为了让必须在程序代码块周围发生的启动和终止活动一定会发生。和try/finally语句（无论异常是否发生其离开动作都会执行）类似，但是with/as有更丰富的对象协议，可以定义进入和离开的动作。</p>
 <h3 id="2-_设计的初衷">2. 设计的初衷</h3><p>with/as语句的设计的初衷，在<a href="https://www.python.org/dev/peps/pep-0343/" target="_blank" rel="external">PEP343</a>中是这么描述的：</p>
 <blockquote>
 <p>This PEP adds a new statement “with” to the Python language to make it possible to factor out standard uses of try/finally statements.<br>In this PEP, context managers provide <strong>enter</strong>() and <strong>exit</strong>() methods that are invoked on entry to and exit from the body of the with statement.</p>
 </blockquote>
-<p>对于下面的操作：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> EXPR <span class="keyword">as</span> VAR:</span><br><span class="line">            BLOCK</span><br></pre></td></tr></table></figure></p>
-<p>等价于<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mgr = (EXPR)</span><br><span class="line">exit = type(mgr).__exit__  <span class="comment"># Not calling it yet</span></span><br><span class="line">value = type(mgr).__enter__(mgr)</span><br><span class="line">exc = <span class="keyword">True</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># 将__enter__函数调用的返回值返回给VAR</span></span><br><span class="line">        VAR = value  <span class="comment"># Only if "as VAR" is present</span></span><br><span class="line">        <span class="comment"># 执行BLOCK</span></span><br><span class="line">        BLOCK</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="comment"># 异常处理，The exceptional case is handled here</span></span><br><span class="line">        exc = <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> exit(mgr, *sys.exc_info()):</span><br><span class="line">            <span class="keyword">raise</span></span><br><span class="line">        <span class="comment"># The exception is swallowed if exit() returns true</span></span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    <span class="comment"># 清理，The normal and non-local-goto cases are handled here</span></span><br><span class="line">    <span class="keyword">if</span> exc:</span><br><span class="line">        exit(mgr, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>)</span><br></pre></td></tr></table></figure></p>
+<p>对于下面的操作：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> EXPR <span class="keyword">as</span> VAR:</span><br><span class="line">            BLOCK</span><br></pre></td></tr></table></figure>
+<p>等价于</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mgr = (EXPR)</span><br><span class="line">exit = type(mgr).__exit__  <span class="comment"># Not calling it yet</span></span><br><span class="line">value = type(mgr).__enter__(mgr)</span><br><span class="line">exc = <span class="keyword">True</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># 将__enter__函数调用的返回值返回给VAR</span></span><br><span class="line">        VAR = value  <span class="comment"># Only if "as VAR" is present</span></span><br><span class="line">        <span class="comment"># 执行BLOCK</span></span><br><span class="line">        BLOCK</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="comment"># 异常处理，The exceptional case is handled here</span></span><br><span class="line">        exc = <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> exit(mgr, *sys.exc_info()):</span><br><span class="line">            <span class="keyword">raise</span></span><br><span class="line">        <span class="comment"># The exception is swallowed if exit() returns true</span></span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    <span class="comment"># 清理，The normal and non-local-goto cases are handled here</span></span><br><span class="line">    <span class="keyword">if</span> exc:</span><br><span class="line">        exit(mgr, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
 <p>我们可以看到上述代码完整的处理了初始化及异常/正常场景的清理操作，这便是<code>with</code>的设计思想，化简了冗余的代码，把那些重复的工作以及异常处理操作交给写“EXPR”源码（比如open操作）的同学。</p>
-<h3 id="3-_更深入的学习">3. 更深入的学习</h3><p>我们继续深入的看下<a href="https://github.com/Yikun/Python3/blob/master/Lib/_pyio.py#L447" target="_blank" rel="external">Python3</a>中<strong>enter</strong>和<strong>exit</strong>的实现：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IOBase</span><span class="params">(metaclass=abc.ABCMeta)</span>:</span></span><br><span class="line">    <span class="comment"># ... ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">### Context manager ###</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__enter__</span><span class="params">(self)</span>:</span>  <span class="comment"># That's a forward reference</span></span><br><span class="line">        <span class="string">"""Context management protocol.  Returns self (an instance of IOBase)."""</span></span><br><span class="line">        self._checkClosed()</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__exit__</span><span class="params">(self, *args)</span>:</span></span><br><span class="line">        <span class="string">"""Context management protocol.  Calls close()"""</span></span><br><span class="line">        self.close()</span><br></pre></td></tr></table></figure></p>
+<h3 id="3-_更深入的学习">3. 更深入的学习</h3><p>我们继续深入的看下<a href="https://github.com/Yikun/Python3/blob/master/Lib/_pyio.py#L447" target="_blank" rel="external">Python3</a>中<strong>enter</strong>和<strong>exit</strong>的实现：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IOBase</span><span class="params">(metaclass=abc.ABCMeta)</span>:</span></span><br><span class="line">    <span class="comment"># ... ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">### Context manager ###</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__enter__</span><span class="params">(self)</span>:</span>  <span class="comment"># That's a forward reference</span></span><br><span class="line">        <span class="string">"""Context management protocol.  Returns self (an instance of IOBase)."""</span></span><br><span class="line">        self._checkClosed()</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__exit__</span><span class="params">(self, *args)</span>:</span></span><br><span class="line">        <span class="string">"""Context management protocol.  Calls close()"""</span></span><br><span class="line">        self.close()</span><br></pre></td></tr></table></figure>
 <p>和我们预期的一致，在<strong>enter</strong>中返回了这个IO对象，然后在<strong>exit</strong>中，进行了清理。</p>
 <h3 id="参考资料">参考资料</h3><ol>
 <li>《Python学习手册》 </li>
@@ -303,25 +311,6 @@ var _hmt = _hmt || [];
 </article>
 
 
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
-
-
 
 
 
@@ -350,12 +339,34 @@ var _hmt = _hmt || [];
 
 
 
+
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="/assets/gitment.css">
+<script src="/assets/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: '52',
+  owner: 'Yikun',
+  repo: 'yikun.github.com',
+  oauth: {
+    client_id: '0211a53c46185553a4f2',
+    client_secret: '9c0fc0afbf8ca3500d0e3d0ee1575faef9e314e1',
+  },
+})
+gitment.render('gitmentContainer')
+</script>
+
+
+
+
+
+
 </div>
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 Yikun
+    		&copy; 2017 Yikun
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

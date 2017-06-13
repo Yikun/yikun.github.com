@@ -17,17 +17,17 @@ var _hmt = _hmt || [];
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <title>OpenStack源码分析-挂载卷流程 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 挂卷流程    当Nova volume-attach server volume执行后，主要经过以下几步：a.    Nova Client解析指令，通过RESTFUL接口访问nova-api；b.    Nova API解析响应请求获取虚拟机的基本信息，然后向cinder-api发出请求保留，并向nova-compute发送RPC异步调用请求卷挂载；c.    Nova-compute向">
+  <meta name="description" content="1. 挂卷流程    当Nova volume-attach server volume执行后，主要经过以下几步：a.  Nova Client解析指令，通过RESTFUL接口访问nova-api；b.  Nova API解析响应请求获取虚拟机的基本信息，然后向cinder-api发出请求保留，并向nova-compute发送RPC异步调用请求卷挂载；c.  Nova-compute向cinder">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenStack源码分析-挂载卷流程">
 <meta property="og:url" content="http://yikun.github.io/2016/03/05/OpenStack源码分析-挂载卷流程/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="1. 挂卷流程    当Nova volume-attach server volume执行后，主要经过以下几步：a.    Nova Client解析指令，通过RESTFUL接口访问nova-api；b.    Nova API解析响应请求获取虚拟机的基本信息，然后向cinder-api发出请求保留，并向nova-compute发送RPC异步调用请求卷挂载；c.    Nova-compute向">
+<meta property="og:description" content="1. 挂卷流程    当Nova volume-attach server volume执行后，主要经过以下几步：a.  Nova Client解析指令，通过RESTFUL接口访问nova-api；b.  Nova API解析响应请求获取虚拟机的基本信息，然后向cinder-api发出请求保留，并向nova-compute发送RPC异步调用请求卷挂载；c.  Nova-compute向cinder">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/13493796/5a1fda3a-e17b-11e5-98be-2bca8a26e0bb.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/13482134/b76e1680-e125-11e5-80d6-1e0f925fca48.png">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenStack源码分析-挂载卷流程">
-<meta name="twitter:description" content="1. 挂卷流程    当Nova volume-attach server volume执行后，主要经过以下几步：a.    Nova Client解析指令，通过RESTFUL接口访问nova-api；b.    Nova API解析响应请求获取虚拟机的基本信息，然后向cinder-api发出请求保留，并向nova-compute发送RPC异步调用请求卷挂载；c.    Nova-compute向">
+<meta name="twitter:description" content="1. 挂卷流程    当Nova volume-attach server volume执行后，主要经过以下几步：a.  Nova Client解析指令，通过RESTFUL接口访问nova-api；b.  Nova API解析响应请求获取虚拟机的基本信息，然后向cinder-api发出请求保留，并向nova-compute发送RPC异步调用请求卷挂载；c.  Nova-compute向cinder">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -75,7 +75,7 @@ var _hmt = _hmt || [];
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>Tags</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -233,12 +233,13 @@ var _hmt = _hmt || [];
              </script>
            
          
-        <h3 id="1-_挂卷流程">1. 挂卷流程</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/13493796/5a1fda3a-e17b-11e5-98be-2bca8a26e0bb.png" alt="volume attach"><br>    当Nova volume-attach server volume执行后，主要经过以下几步：<br>a.    Nova Client解析指令，通过RESTFUL接口访问nova-api；<br>b.    Nova API解析响应请求获取虚拟机的基本信息，然后向cinder-api发出请求保留，并向nova-compute发送RPC异步调用请求卷挂载；<br>c.    Nova-compute向cinder-api初始化信息，并根据初始化连接调用Libvirt的接口完成挂卷流程；<br>d.    进而调用cinder-volume获取连接，获取了连接后，通过RESTFUL请求cinder-api进行数据库更新操作。<br><a id="more"></a></p>
+        <h3 id="1-_挂卷流程">1. 挂卷流程</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/13493796/5a1fda3a-e17b-11e5-98be-2bca8a26e0bb.png" alt="volume attach"><br>    当Nova volume-attach server volume执行后，主要经过以下几步：<br>a.  Nova Client解析指令，通过RESTFUL接口访问nova-api；<br>b.  Nova API解析响应请求获取虚拟机的基本信息，然后向cinder-api发出请求保留，并向nova-compute发送RPC异步调用请求卷挂载；<br>c.  Nova-compute向cinder-api初始化信息，并根据初始化连接调用Libvirt的接口完成挂卷流程；<br>d.  进而调用cinder-volume获取连接，获取了连接后，通过RESTFUL请求cinder-api进行数据库更新操作。</p>
+<a id="more"></a>
 <h3 id="2-_源码详解">2. 源码详解</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/13482134/b76e1680-e125-11e5-80d6-1e0f925fca48.png" alt="nova volume attach"></p>
-<h4 id="1-_Nova_Client">1. Nova Client</h4><p>(1)    \nova\nova\api\openstack\compute\contrib\volumes.py<br>在Nova Client进程中，由VolumeAttachmentController接受挂载请求</p>
-<h4 id="2-_Nova_API">2. Nova API</h4><p>(1)    \nova\nova\compute\api.py<br>VolumeAttachmentController的create函数用于响应卷挂载的请求。<br>(2)    \nova\nova\volume\cinder.py<br>compute.API调用attach_volume函数，分别获取卷信息、检查状态并做保留盘操作<br>(3)    \nova\nova\compute\rpcapi.py<br>通过attach_colume发送rpc调用Compute中的_attach_volume函数</p>
-<h4 id="3-_Nova_Compute">3. Nova Compute</h4><p>(1)    \nova\nova\compute\manager.py<br>ComputeManager进行核心调用，首先获取initiator，然后初始化连接。<br>(2)    \nova\nova\virt\block_device.py<br>DriverVolumeBlockDevice初始化连接后调用connect_volume函数进行卷的挂载<br>(3)    \nova\nova\virt\libvirt\volume.py<br>LibvirtISCSIVolumeDriver的connect_volume是调用最核心流程，分为多路径和单路径两种情况，在单路径的调用中会执行login、检查session、设置自启动等操作，如果一次未连接成功则还会每tries ** 2秒重复调用，直到达到调用的限制。其中牵扯到的指令有：<br>a. 尝试连接<br>iscsiadm -m node -T target_iqn -p target_protal<br>b. 连接失败重新建立连接<br>iscsiadm -m node -T target_iqn -p target_protal -op new<br>iscsiadm -m node -T target_iqn -p target_protal —op update -n node.session.auth.authmethod -v auth_method<br>iscsiadm -m node -T target_iqn -p target_protal —op update -n node.session.auth.username -v auth_username<br>iscsiadm -m node -T target_iqn -p target_protal —op update -n node.session.auth.password -v auth_password<br>c. 检查session，登陆<br>iscsiadm -m session检查是否登录成功<br>iscsiadm –m node –T targetname –p ip —login 登陆建立session<br>d. 设置为随机器启动而启动<br>iscsiadm -m node -T target_iqn -p target_protal —op update -n node.startup -v automatic<br>iscsiadm -m node -T target_iqn -p target_protal –rescan</p>
-<h4 id="4-_Cinder_API">4. Cinder API</h4><p>(1)    \cinder\cinder\volume\api.py<br>volume.API会继续调用VolumeAPI进行挂卷的数据库更新<br>(2)    \cinder\cinder\volume\rpcapi.py<br>VolumeAPI通过rpc调用VolumeManager</p>
+<h4 id="1-_Nova_Client">1. Nova Client</h4><p>(1) \nova\nova\api\openstack\compute\contrib\volumes.py<br>在Nova Client进程中，由VolumeAttachmentController接受挂载请求</p>
+<h4 id="2-_Nova_API">2. Nova API</h4><p>(1) \nova\nova\compute\api.py<br>VolumeAttachmentController的create函数用于响应卷挂载的请求。<br>(2) \nova\nova\volume\cinder.py<br>compute.API调用attach_volume函数，分别获取卷信息、检查状态并做保留盘操作<br>(3) \nova\nova\compute\rpcapi.py<br>通过attach_colume发送rpc调用Compute中的_attach_volume函数</p>
+<h4 id="3-_Nova_Compute">3. Nova Compute</h4><p>(1) \nova\nova\compute\manager.py<br>ComputeManager进行核心调用，首先获取initiator，然后初始化连接。<br>(2) \nova\nova\virt\block_device.py<br>DriverVolumeBlockDevice初始化连接后调用connect_volume函数进行卷的挂载<br>(3) \nova\nova\virt\libvirt\volume.py<br>LibvirtISCSIVolumeDriver的connect_volume是调用最核心流程，分为多路径和单路径两种情况，在单路径的调用中会执行login、检查session、设置自启动等操作，如果一次未连接成功则还会每tries <em>\</em> 2秒重复调用，直到达到调用的限制。其中牵扯到的指令有：<br>a. 尝试连接<br>iscsiadm -m node -T target_iqn -p target_protal<br>b. 连接失败重新建立连接<br>iscsiadm -m node -T target_iqn -p target_protal -op new<br>iscsiadm -m node -T target_iqn -p target_protal —op update -n node.session.auth.authmethod -v auth_method<br>iscsiadm -m node -T target_iqn -p target_protal —op update -n node.session.auth.username -v auth_username<br>iscsiadm -m node -T target_iqn -p target_protal —op update -n node.session.auth.password -v auth_password<br>c. 检查session，登陆<br>iscsiadm -m session检查是否登录成功<br>iscsiadm –m node –T targetname –p ip —login 登陆建立session<br>d. 设置为随机器启动而启动<br>iscsiadm -m node -T target_iqn -p target_protal —op update -n node.startup -v automatic<br>iscsiadm -m node -T target_iqn -p target_protal –rescan</p>
+<h4 id="4-_Cinder_API">4. Cinder API</h4><p>(1) \cinder\cinder\volume\api.py<br>volume.API会继续调用VolumeAPI进行挂卷的数据库更新<br>(2) \cinder\cinder\volume\rpcapi.py<br>VolumeAPI通过rpc调用VolumeManager</p>
 <h4 id="5-_Cinder_Volume">5. Cinder Volume</h4><p>\cinder\cinder\volume\manager.py<br>VolumeManager会完成更新数据库的操作。</p>
 <p><a href="http://aspirer.wang/?p=164" target="_blank" rel="external">http://aspirer.wang/?p=164</a></p>
 
@@ -271,25 +272,6 @@ var _hmt = _hmt || [];
 </article>
 
 
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
-
-
 
 
 
@@ -318,12 +300,34 @@ var _hmt = _hmt || [];
 
 
 
+
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="/assets/gitment.css">
+<script src="/assets/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: '48',
+  owner: 'Yikun',
+  repo: 'yikun.github.com',
+  oauth: {
+    client_id: '0211a53c46185553a4f2',
+    client_secret: '9c0fc0afbf8ca3500d0e3d0ee1575faef9e314e1',
+  },
+})
+gitment.render('gitmentContainer')
+</script>
+
+
+
+
+
+
 </div>
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 Yikun
+    		&copy; 2017 Yikun
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

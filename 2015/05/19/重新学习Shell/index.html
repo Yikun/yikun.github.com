@@ -76,7 +76,7 @@ var _hmt = _hmt || [];
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>Tags</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -235,14 +235,20 @@ var _hmt = _hmt || [];
            
          
         <p>之前，虽然已经对<code>Shell</code>比较熟悉了，但是遇到一些不太常用，但是却很有用的命令，还得搜个半天。所以，这几天准备把常用的指令重新过一下，然后再把基础的<code>Shell</code>流程控制、<code>awk</code>的操作等常用命令系统地学习一下，一方面作为总结，另一方面也作为一个Cheat Sheet，时不时的补充一下也是极好的，: )。</p>
-<h4 id="基本语法">基本语法</h4><p><strong>传参</strong><br><code>$n</code> - 传递的第n个参数<br><code>$#</code> - 传递的参数个数<br><code>$*</code> - 所有参数<br><code>$@</code> - 所有参数，加引号为字符串数组<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># var.sh arg1 arg2 arg3</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$0</span> <span class="variable">$1</span> <span class="variable">$2</span> <span class="variable">$3</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 3</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$#</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># arg1 arg2 arg3</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># arg1 arg2 arg3</span></span><br><span class="line"><span class="built_in">echo</span> $*</span><br><span class="line"></span><br><span class="line"><span class="comment"># @:arg1</span></span><br><span class="line"><span class="comment"># @:arg2</span></span><br><span class="line"><span class="comment"># @:arg3</span></span><br><span class="line"><span class="keyword">for</span> arg <span class="keyword">in</span> <span class="string">"<span class="variable">$@</span>"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> @:<span class="string">"<span class="variable">$arg</span>"</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># *:arg1 arg2 arg3</span></span><br><span class="line"><span class="keyword">for</span> arg <span class="keyword">in</span> <span class="string">"$*"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> *:<span class="string">"<span class="variable">$arg</span>"</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="基本语法">基本语法</h4><p><strong>传参</strong><br><code>$n</code> - 传递的第n个参数<br><code>$#</code> - 传递的参数个数<br><code>$*</code> - 所有参数<br><code>$@</code> - 所有参数，加引号为字符串数组</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># var.sh arg1 arg2 arg3</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$0</span> <span class="variable">$1</span> <span class="variable">$2</span> <span class="variable">$3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#3</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$#</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># arg1 arg2 arg3</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># arg1 arg2 arg3</span></span><br><span class="line"><span class="built_in">echo</span> $*</span><br><span class="line"></span><br><span class="line"><span class="comment"># @:arg1</span></span><br><span class="line"><span class="comment"># @:arg2</span></span><br><span class="line"><span class="comment"># @:arg3</span></span><br><span class="line"><span class="keyword">for</span> arg <span class="keyword">in</span> <span class="string">"<span class="variable">$@</span>"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> @:<span class="string">"<span class="variable">$arg</span>"</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># *:arg1 arg2 arg3</span></span><br><span class="line"><span class="keyword">for</span> arg <span class="keyword">in</span> <span class="string">"$*"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> *:<span class="string">"<span class="variable">$arg</span>"</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
 <p><strong>if条件控制</strong></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">a=<span class="number">10</span></span><br><span class="line">b=<span class="number">20</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$a</span> <span class="operator">-eq</span> <span class="variable">$b</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"a euqals b."</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="variable">$a</span> <span class="operator">-lt</span> <span class="variable">$b</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"a little than b."</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="variable">$a</span> <span class="operator">-gt</span> <span class="variable">$b</span> ]</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"a greater than b."</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">str=<span class="string">"linux"</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$str</span>"</span> == <span class="string">"linux"</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"str is linux."</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># [ -e filename]    判断文件存在</span></span><br><span class="line"><span class="comment"># [ -d pathname] 判断目录存在</span></span><br></pre></td></tr></table></figure>
-<p><strong>循环控制</strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr=(<span class="string">"hello"</span> <span class="string">"bash"</span> <span class="string">"shell"</span>)</span><br><span class="line"><span class="keyword">for</span> a <span class="keyword">in</span> <span class="variable">$&#123;arr[*]&#125;</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$a</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure></p>
-<h4 id="常用指令">常用指令</h4><p><strong><em>head/tail</em></strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 前5行</span></span><br><span class="line">head -<span class="number">5</span></span><br><span class="line">head -n <span class="number">5</span></span><br><span class="line"><span class="comment"># 前n-5行</span></span><br><span class="line">head -n -<span class="number">5</span></span><br><span class="line"><span class="comment"># 后n-5行</span></span><br><span class="line">tail -n +<span class="number">5</span></span><br><span class="line"><span class="comment"># 前5字节</span></span><br><span class="line">head -c <span class="number">5</span></span><br></pre></td></tr></table></figure></p>
-<p><strong><em>sort</em></strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 忽略起始空格(b)数值(n)去重(u)逆序(r)按照:分隔(-t ':')的第二列(-k 2)排序</span></span><br><span class="line">sort -bnur -t <span class="string">':'</span> -k <span class="number">2</span> somefile</span><br></pre></td></tr></table></figure></p>
-<p><strong><em>grep</em></strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在当前文件夹的所有文件递归(-r)搜索main</span></span><br><span class="line">grep -r <span class="string">"main"</span> *</span><br><span class="line"><span class="comment"># 搜索匹配正则(-E)的行数(-c)，（带main或者括弧的）</span></span><br><span class="line">grep -cE <span class="string">"main|\(\)"</span> *</span><br><span class="line"><span class="comment"># 搜索不包含extern的(-v --&gt; invert-match)</span></span><br><span class="line">grep -v <span class="string">"extern"</span></span><br></pre></td></tr></table></figure></p>
-<p><strong><em>wc</em></strong><br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打印所有.c文件的行数</span></span><br><span class="line">grep -r <span class="string">""</span> *.c | wc <span class="operator">-l</span></span><br></pre></td></tr></table></figure></p>
+<p><strong>循环控制</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr=(<span class="string">"hello"</span> <span class="string">"bash"</span> <span class="string">"shell"</span>)</span><br><span class="line"><span class="keyword">for</span> a <span class="keyword">in</span> <span class="variable">$&#123;arr[*]&#125;</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$a</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<h4 id="常用指令">常用指令</h4><p><strong>_head/tail</strong>_</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 前5行</span></span><br><span class="line">head -<span class="number">5</span></span><br><span class="line">head -n <span class="number">5</span></span><br><span class="line"><span class="comment"># 前n-5行</span></span><br><span class="line">head -n -<span class="number">5</span></span><br><span class="line"><span class="comment"># 后n-5行</span></span><br><span class="line">tail -n +<span class="number">5</span></span><br><span class="line"><span class="comment"># 前5字节</span></span><br><span class="line">head -c <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<p><strong>_sort</strong>_</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 忽略起始空格(b)数值(n)去重(u)逆序(r)按照:分隔(-t ':')的第二列(-k 2)排序</span></span><br><span class="line">sort -bnur -t <span class="string">':'</span> -k <span class="number">2</span> somefile</span><br></pre></td></tr></table></figure>
+<p><strong>_grep</strong>_</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在当前文件夹的所有文件递归(-r)搜索main</span></span><br><span class="line">grep -r <span class="string">"main"</span> *</span><br><span class="line"><span class="comment"># 搜索匹配正则(-E)的行数(-c)，（带main或者括弧的）</span></span><br><span class="line">grep -cE <span class="string">"main|\(\)"</span> *</span><br><span class="line"><span class="comment"># 搜索不包含extern的(-v --&gt; invert-match)</span></span><br><span class="line">grep -v <span class="string">"extern"</span></span><br></pre></td></tr></table></figure>
+<p><strong>_wc</strong>_</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打印所有.c文件的行数</span></span><br><span class="line">grep -r <span class="string">""</span> *.c | wc <span class="operator">-l</span></span><br></pre></td></tr></table></figure>
 
       
     </div>
@@ -273,25 +279,6 @@ var _hmt = _hmt || [];
 </article>
 
 
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
-
-
 
 
 
@@ -320,12 +307,34 @@ var _hmt = _hmt || [];
 
 
 
+
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="/assets/gitment.css">
+<script src="/assets/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: '22',
+  owner: 'Yikun',
+  repo: 'yikun.github.com',
+  oauth: {
+    client_id: '0211a53c46185553a4f2',
+    client_secret: '9c0fc0afbf8ca3500d0e3d0ee1575faef9e314e1',
+  },
+})
+gitment.render('gitmentContainer')
+</script>
+
+
+
+
+
+
 </div>
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 Yikun
+    		&copy; 2017 Yikun
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten

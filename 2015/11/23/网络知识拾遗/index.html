@@ -82,7 +82,7 @@ var _hmt = _hmt || [];
 					<div class="tips-arrow"></div>
 					<ul class="tips-inner">
 						<li>菜单</li>
-						<li>Tags</li>
+						<li>標籤</li>
 						
 						
 					</ul>
@@ -270,7 +270,8 @@ var _hmt = _hmt || [];
 <p>之前，有做过网络驱动，其实回想起来，核心的实现就2个：发送函数和接收函数。</p>
 <p><strong>1. 发送函数（回调）</strong></p>
 <p>核心功能是将上层网络传来的帧，写入到网卡中；</p>
-<p>在网络驱动初始化时，会通过注册的方式对网络驱动进行初始化，<br><figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">struct</span> net_device_ops netdev_ops = &#123;</span><br><span class="line">    .ndo_open         = driver_open,</span><br><span class="line">    .ndo_stop         = driver_close,</span><br><span class="line">    .ndo_start_xmit   = driver_xmit,</span><br><span class="line">    .ndo_get_stats    = get_stats,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<p>在网络驱动初始化时，会通过注册的方式对网络驱动进行初始化，</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">struct</span> net_device_ops netdev_ops = &#123;</span><br><span class="line">    .ndo_open         = driver_open,</span><br><span class="line">    .ndo_stop         = driver_close,</span><br><span class="line">    .ndo_start_xmit   = driver_xmit,</span><br><span class="line">    .ndo_get_stats    = get_stats,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
 <p>当上层有帧传来时，就会回调driver_xmit函数，因此，在driver_xmit函数中，就应当实现将帧写入到硬件，一般硬件会提供插入帧的接口，完成插入时帧会进入网卡硬件的插入队列中。</p>
 <p><strong>2. 接收函数（中断）</strong><br>核心功能是将网卡中的帧，传送到上层协议栈中。</p>
 <p>对于接收函数，则需要依靠硬件的中断，数据帧到达网卡，硬件以中断的方式告知系统，然后，接收函数回调，回调时，需通过硬件的接口读取数据帧，然后将其上传值上层接口。一般调用<code>netif_rx()</code>进行传输。</p>
@@ -316,25 +317,6 @@ var _hmt = _hmt || [];
 </article>
 
 
-<div class="share_jia">
-	<!-- JiaThis Button BEGIN -->
-	<div class="jiathis_style">
-		<span class="jiathis_txt">分享到: &nbsp; </span>
-		<a class="jiathis_button_facebook"></a> 
-    <a class="jiathis_button_twitter"></a>
-    <a class="jiathis_button_plus"></a> 
-    <a class="jiathis_button_tsina"></a>
-		<a class="jiathis_button_cqq"></a>
-		<a class="jiathis_button_douban"></a>
-		<a class="jiathis_button_weixin"></a>
-		<a class="jiathis_button_tumblr"></a>
-    <a href="http://www.jiathis.com/share" class="jiathis jiathis_txt jtico jtico_jiathis" target="_blank"></a>
-	</div>
-	<script type="text/javascript" src="http://v3.jiathis.com/code/jia.js?uid=1405949716054953" charset="utf-8"></script>
-	<!-- JiaThis Button END -->
-</div>
-
-
 
 
 
@@ -363,12 +345,34 @@ var _hmt = _hmt || [];
 
 
 
+
+<div id="gitmentContainer"></div>
+<link rel="stylesheet" href="/assets/gitment.css">
+<script src="/assets/gitment.browser.js"></script>
+<script>
+var gitment = new Gitment({
+  id: '35',
+  owner: 'Yikun',
+  repo: 'yikun.github.com',
+  oauth: {
+    client_id: '0211a53c46185553a4f2',
+    client_secret: '9c0fc0afbf8ca3500d0e3d0ee1575faef9e314e1',
+  },
+})
+gitment.render('gitmentContainer')
+</script>
+
+
+
+
+
+
 </div>
       <footer id="footer">
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2016 Yikun
+    		&copy; 2017 Yikun
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
