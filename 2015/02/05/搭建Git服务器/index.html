@@ -8,24 +8,17 @@
   <link rel="dns-prefetch" href="http://yikun.github.io">
   <title>搭建Git服务器 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在服务器上安装git1. 安装gitsudo apt-get install git
-2. 增加git用户sudo adduser git
-3. 将用户的公钥添加cat id_rsa.pub &amp;gt;&amp;gt; /home/git/.ssh/authorized_keys
-4. 新建一个库sudo git init —bare sample.gitsudo chown -R git:git samp">
+  <meta name="description" content="在服务器上安装git1. 安装gitsudo apt-get install git 2. 增加git用户sudo adduser git 3. 将用户的公钥添加cat id_rsa.pub &amp;gt;&amp;gt; /home/git/.ssh/authorized_keys 4. 新建一个库sudo git init —bare sample.gitsudo chown -R git:git samp">
+<meta name="keywords" content="Git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搭建Git服务器">
 <meta property="og:url" content="http://yikun.github.io/2015/02/05/搭建Git服务器/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="在服务器上安装git1. 安装gitsudo apt-get install git
-2. 增加git用户sudo adduser git
-3. 将用户的公钥添加cat id_rsa.pub &amp;gt;&amp;gt; /home/git/.ssh/authorized_keys
-4. 新建一个库sudo git init —bare sample.gitsudo chown -R git:git samp">
+<meta property="og:description" content="在服务器上安装git1. 安装gitsudo apt-get install git 2. 增加git用户sudo adduser git 3. 将用户的公钥添加cat id_rsa.pub &amp;gt;&amp;gt; /home/git/.ssh/authorized_keys 4. 新建一个库sudo git init —bare sample.gitsudo chown -R git:git samp">
+<meta property="og:updated_time" content="2017-06-07T16:01:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建Git服务器">
-<meta name="twitter:description" content="在服务器上安装git1. 安装gitsudo apt-get install git
-2. 增加git用户sudo adduser git
-3. 将用户的公钥添加cat id_rsa.pub &amp;gt;&amp;gt; /home/git/.ssh/authorized_keys
-4. 新建一个库sudo git init —bare sample.gitsudo chown -R git:git samp">
+<meta name="twitter:description" content="在服务器上安装git1. 安装gitsudo apt-get install git 2. 增加git用户sudo adduser git 3. 将用户的公钥添加cat id_rsa.pub &amp;gt;&amp;gt; /home/git/.ssh/authorized_keys 4. 新建一个库sudo git init —bare sample.gitsudo chown -R git:git samp">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -78,8 +71,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/archives">文章</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 				<li><a href="/project">项目</a></li>
 	        
 				<li><a href="/douban">读书</a></li>
@@ -91,7 +82,11 @@ var _hmt = _hmt || [];
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有分类</a>
+    			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -140,8 +135,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -160,17 +153,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">文章</a></li>
+					<li style="width: 20%"><a href="/archives">文章</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 20%"><a href="/project">项目</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/project">项目</a></li>
+					<li style="width: 20%"><a href="/douban">读书</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/douban">读书</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/about">关于我</a></li>
+					<li style="width: 20%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -216,7 +207,7 @@ var _hmt = _hmt || [];
 <h3 id="3-_生成公钥">3. 生成公钥</h3><p>在命令行和tortoisegit中稍有不同：<br><strong>In shell</strong><br>a. win+r —&gt; Git Bash —&gt;  ssh-keygen.exe<br>b. 一路回车，将生成“c:/Users/XXX/.ssh/id_rsa.pub”<br>c. (公钥)把id_rsa.pub重命名为id_rsa.XXX.pub, 例如id_rsa.jiangyikun.pub<br>d. (私钥)也已经生成到<code>c:/Users/XXX/.ssh/id_rsa</code>了<br>e. 将id_rsa.XXX.pub发送给git管理员</p>
 <p><strong>In tortoisegit</strong><br>a. 打开Puttygen，SSH-2 RSA，点击Generate<br>b. 使用鼠标生成随机key<br>c. (公钥)复制Key到id_rsa.XXX.pub<br>d. (私钥)Save private key为XXX.ppk，并将Load Putty Key设为XXX.ppk<br>e. 将id_rsa.XXX.pub发送给git管理员</p>
 <h3 id="(git管理员操作)_4-添加公钥的服务器">(git管理员操作) 4.添加公钥的服务器</h3><p>以root权限登陆， 注意是“&gt;&gt;”追加</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cat id_rsa.XXX.pub &#62;&#62; /home/git/.ssh/authorized_keys&#10;# drwx------. 2 git  git  4096 Apr 15 13:17 .ssh&#10;# -rw-------. 1 git git 1189 Apr 15 13:17 authorized_keys</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cat id_rsa.XXX.pub &gt;&gt; /home/git/.ssh/authorized_keys</div><div class="line"><span class="meta">#</span><span class="bash"> drwx------. 2 git  git  4096 Apr 15 13:17 .ssh</span></div><div class="line"><span class="meta">#</span><span class="bash"> -rw-------. 1 git git 1189 Apr 15 13:17 authorized_keys</span></div></pre></td></tr></table></figure>
 <p>在客户端测试：ssh git@XXX.XXX.XXX.XXX，不再输入密码即可。</p>
 <h3 id="5-_简单学习">5. 简单学习</h3><p>这是一个用于测试的repo你可以拿他来做做测试</p>
 <p>a. 克隆仓库<br>git clone git@xxx.xxx.xxx.xxx:/yikun/sample.git<br>或者使用tortoisegit，在某个文件夹，右键—&gt;Git Clone…—&gt; URL填写“git@xxx.xxx.xxx.xxx:/yikun/sample.git”—&gt; 输入密码</p>
@@ -230,18 +221,18 @@ var _hmt = _hmt || [];
 <h3 id="6-_学习git">6. 学习git</h3><p><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000" target="_blank" rel="external">Git教程</a></p>
 <p>Enjoy it! :)</p>
 <h3 id="附：">附：</h3><h4 id="1-_如何将一个现有的本地git库上传到服务器上？">1. 如何将一个现有的本地git库上传到服务器上？</h4><p>从现有repo新建server repo的时候(服务器)</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">mkdir newrepo.git&#10;cd newrepo.git&#10;git --bare init&#10;# Initialized empty Git repository in /yikun/newrepo.git/.git/</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">mkdir newrepo.git</div><div class="line">cd newrepo.git</div><div class="line">git --bare init</div><div class="line"><span class="meta">#</span><span class="bash"> Initialized empty Git repository <span class="keyword">in</span> /yikun/newrepo.git/.git/</span></div></pre></td></tr></table></figure>
 <p>在现有的repo中（客户端）</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">cd newrepo.git  &#10;git remote add origin git@xxx.xxx.xxx.xxx:/yikun/newrepo.git&#10;git push origin master</span><br></pre></td></tr></table></figure>
-<h4 id="2-_如何克隆服务器上现有库？">2. 如何克隆服务器上现有库？</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#20174;&#26381;&#21153;&#22120;&#20811;&#38534;&#10;git clone git@xxx.xxx.xxx.xxx:/yikun/newrepo.git&#10;# &#20462;&#25913;&#24182;&#26412;&#22320;&#25552;&#20132;&#10;git commit -am &#34;commitmessage&#34;&#10;# &#19978;&#20256;&#33267;&#26381;&#21153;&#22120;&#10;git push origin master</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">cd newrepo.git  </div><div class="line">git remote add origin git@xxx.xxx.xxx.xxx:/yikun/newrepo.git</div><div class="line">git push origin master</div></pre></td></tr></table></figure>
+<h4 id="2-_如何克隆服务器上现有库？">2. 如何克隆服务器上现有库？</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 从服务器克隆</span></div><div class="line">git clone git@xxx.xxx.xxx.xxx:/yikun/newrepo.git</div><div class="line"><span class="meta">#</span><span class="bash"> 修改并本地提交</span></div><div class="line">git commit -am "commitmessage"</div><div class="line"><span class="meta">#</span><span class="bash"> 上传至服务器</span></div><div class="line">git push origin master</div></pre></td></tr></table></figure>
 <h4 id="3-_常见问题">3. 常见问题</h4><p>1 <strong>权限问题</strong></p>
-<figure class="highlight applescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">Counting objects: <span class="number">179</span>, done.</span><br><span class="line">Delta compression using up <span class="keyword">to</span> <span class="number">4</span> threads.</span><br><span class="line">Compressing objects: <span class="number">100</span>% (<span class="number">176</span>/<span class="number">176</span>), done.</span><br><span class="line">fatal: Unable <span class="keyword">to</span> create temporary <span class="type">file</span>: Permission denied</span><br><span class="line">fatal: sha1 <span class="type">file</span> '&lt;stdout&gt;' <span class="command">write</span> <span class="keyword">error</span>: Broken pipe</span><br><span class="line"><span class="keyword">error</span>: failed <span class="keyword">to</span> push <span class="keyword">some</span> refs <span class="keyword">to</span> 'git@xxx.xxx.xxx.xxx:/yikun/newrepo.git'</span><br><span class="line">git did <span class="keyword">not</span> <span class="keyword">exit</span> cleanly (<span class="keyword">exit</span> code <span class="number">1</span>) (<span class="number">3261</span> ms @ <span class="number">2015</span>/<span class="number">2</span>/<span class="number">5</span> <span class="number">11</span>:<span class="number">17</span>:<span class="number">39</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">Counting objects: 179, done.</div><div class="line">Delta compression using up to 4 threads.</div><div class="line">Compressing objects: 100% (176/176), done.</div><div class="line">fatal: Unable to create temporary file: Permission denied</div><div class="line">fatal: sha1 file &apos;&lt;stdout&gt;&apos; write error: Broken pipe</div><div class="line">error: failed to push some refs to &apos;git@xxx.xxx.xxx.xxx:/yikun/newrepo.git&apos;</div><div class="line">git did not exit cleanly (exit code 1) (3261 ms @ 2015/2/5 11:17:39)</div></pre></td></tr></table></figure>
 <p>可以试试：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">chown -R git *&#10;chgrp -R git *</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">chown -R git *</div><div class="line">chgrp -R git *</div></pre></td></tr></table></figure>
 <p>2 <strong>提交问题</strong></p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">error: refusing to <span class="operator"><span class="keyword">update</span> checked out branch: refs/heads/<span class="keyword">master</span></span><br><span class="line">error: <span class="keyword">By</span> <span class="keyword">default</span>, updating the <span class="keyword">current</span> branch <span class="keyword">in</span> a non-bare repository</span><br><span class="line">error: <span class="keyword">is</span> denied, because it will make the <span class="keyword">index</span> <span class="keyword">and</span> <span class="keyword">work</span> tree inconsistent</span><br><span class="line">error: <span class="keyword">with</span> what you pushed, <span class="keyword">and</span> will require <span class="string">'git reset --hard'</span> <span class="keyword">to</span> <span class="keyword">match</span></span><br><span class="line">error: the <span class="keyword">work</span> tree <span class="keyword">to</span> HEAD.</span><br><span class="line">error: </span><br><span class="line">error: You can <span class="keyword">set</span> <span class="string">'receive.denyCurrentBranch'</span> configuration variable <span class="keyword">to</span></span><br><span class="line">error: <span class="string">'ignore'</span> <span class="keyword">or</span> <span class="string">'warn'</span> <span class="keyword">in</span> the remote repository <span class="keyword">to</span> allow pushing <span class="keyword">into</span></span><br><span class="line">error: its <span class="keyword">current</span> branch;</span> however, this is not recommended unless you</span><br><span class="line">error: arranged to <span class="operator"><span class="keyword">update</span> its <span class="keyword">work</span> tree <span class="keyword">to</span> <span class="keyword">match</span> what you pushed <span class="keyword">in</span> <span class="keyword">some</span></span><br><span class="line">error: other way.</span><br><span class="line">error: </span><br><span class="line">error: <span class="keyword">To</span> squelch this message <span class="keyword">and</span> still keep the <span class="keyword">default</span> behaviour, <span class="keyword">set</span></span><br><span class="line">error: <span class="string">'receive.denyCurrentBranch'</span> configuration variable <span class="keyword">to</span> <span class="string">'refuse'</span>.</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">error: refusing to update checked out branch: refs/heads/master</div><div class="line">error: By default, updating the current branch in a non-bare repository</div><div class="line">error: is denied, because it will make the index and work tree inconsistent</div><div class="line">error: with what you pushed, and will require &apos;git reset --hard&apos; to match</div><div class="line">error: the work tree to HEAD.</div><div class="line">error: </div><div class="line">error: You can set &apos;receive.denyCurrentBranch&apos; configuration variable to</div><div class="line">error: &apos;ignore&apos; or &apos;warn&apos; in the remote repository to allow pushing into</div><div class="line">error: its current branch; however, this is not recommended unless you</div><div class="line">error: arranged to update its work tree to match what you pushed in some</div><div class="line">error: other way.</div><div class="line">error: </div><div class="line">error: To squelch this message and still keep the default behaviour, set</div><div class="line">error: &apos;receive.denyCurrentBranch&apos; configuration variable to &apos;refuse&apos;.</div></pre></td></tr></table></figure>
 <p>可以试试：</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git config &#39;receive.denyCurrentBranch&#39; warn</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">git config 'receive.denyCurrentBranch' warn</div></pre></td></tr></table></figure>
 <h3 id="参考">参考</h3><p><a href="http://blog.163.com/clevertanglei900@126/blog/static/111352259201011655837986/" target="_blank" rel="external">小组级git服务器搭建</a><br><a href="http://www.liaoxuefeng.com/wiki/0013739516305929606dd18361248578c67b8067c8c017b000/00137583770360579bc4b458f044ce7afed3df579123eca000" target="_blank" rel="external">搭建Git服务器</a></p>
 
       
@@ -343,7 +334,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yikun.github.io/2015/02/05/搭建Git服务器/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMUlEQVR42u3awXKDMAxFUf7/p+lMtynkPsnJFPl6xSQp5rB4tSUfBx7n73i9vvr26vfny7j/fPGQIUPGYxnn7SC/IXe4fx21eWXIkLEbg4csj9f7WTiD3E2GDBkyyAQ8fGuhLEOGDBkpg293yWPJkCFDBmGQiOSLPBLK9xWzD+7FZciQ8UBGpzHw6esv9TdkyJDxjxnnonEfpmmrMp5dhgwZoxnpNKTExgv997PEm2EZMmQMZXSCr7Nw7BTXLqNWhgwZQxlpQb+zWAxK/PhvZciQsQOjE4ILmo6rCn8yZMgYzeBfp8U1vhHl90ERLEOGjHGMWlGsthysNSxRTMuQIWMDRu1UAz8ilhbs4oCWIUPGNozO5rNfgOPNhj+QMmTIGM2IG4ThspIsCnn4vuHJkCFjKKNW6lpbkqs1Uw9yOxkyZIxj1DaZ/ToYiWN02EKGDBlDGbzg1W9e1hZ/fEkqQ4aM2YxaQ5FHMw/i9AUdnTchQ4aMhzDSTSy/NV/w1ba4l8fCZMiQMY4RZzOO2vSQWRroMmTI2IfRCdxaRPLwDba+MmTIGM3oNA77ryAt/aPNtgwZMsYxznCkD1ErvaUNCRkyZMxm8EEyu/NA5HrBkCFDxmMZJGTTT9IjGgsCV4YMGRswOkcratGZ/k94s2CVIUOGjLBwlhbdSLPhg4ErQ4aMQYzaIi9tdhZ34TJkyNiAwbegtc87jQf0KmXIkDGaUQvlznGxWmlvQSNThgwZz2P8ALklPOJmS01ZAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -431,8 +422,8 @@ gitment.render('gitmentContainer')
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -448,7 +439,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      
+      
     
+      
+      
       
     
       
@@ -459,7 +454,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有分类</a></li>
+      
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -468,7 +467,118 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+    	</section>
     
 
     

@@ -8,23 +8,23 @@
   <link rel="dns-prefetch" href="http://yikun.github.io">
   <title>OpenStack源码分析-Cinder创建卷流程 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. Cinder创卷整体流程
-如整体架构图所示，创建卷涉及的答题步骤主要有以下几步：a. Client发送请求，通过RESTFUL接口访问cinder-api。b. Api解析响应请求，api解析由Client发送来的请求，并通过rpc进一步调用cinder-scheduler。c. Scheduler对资源进行调度，scheduler选择合适的节点进行。d. Volume调用Driver创建卷">
+  <meta name="description" content="1. Cinder创卷整体流程 如整体架构图所示，创建卷涉及的答题步骤主要有以下几步：a. Client发送请求，通过RESTFUL接口访问cinder-api。b. Api解析响应请求，api解析由Client发送来的请求，并通过rpc进一步调用cinder-scheduler。c. Scheduler对资源进行调度，scheduler选择合适的节点进行。d. Volume调用Driver创建卷">
+<meta name="keywords" content="OpenStack,Cinder">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenStack源码分析-Cinder创建卷流程">
 <meta property="og:url" content="http://yikun.github.io/2016/02/14/OpenStack源码分析-Cinder创建卷流程/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="1. Cinder创卷整体流程
-如整体架构图所示，创建卷涉及的答题步骤主要有以下几步：a. Client发送请求，通过RESTFUL接口访问cinder-api。b. Api解析响应请求，api解析由Client发送来的请求，并通过rpc进一步调用cinder-scheduler。c. Scheduler对资源进行调度，scheduler选择合适的节点进行。d. Volume调用Driver创建卷">
+<meta property="og:description" content="1. Cinder创卷整体流程 如整体架构图所示，创建卷涉及的答题步骤主要有以下几步：a. Client发送请求，通过RESTFUL接口访问cinder-api。b. Api解析响应请求，api解析由Client发送来的请求，并通过rpc进一步调用cinder-scheduler。c. Scheduler对资源进行调度，scheduler选择合适的节点进行。d. Volume调用Driver创建卷">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/13130372/71de5178-d61e-11e5-8d7c-6b9f0a244e41.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/13033012/82f1e54e-d342-11e5-835c-e8f6d3baff40.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/13130422/b4a5c3b0-d61e-11e5-8781-52c9586b9c7d.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/13130398/8ceff976-d61e-11e5-8ea7-08661eebb7af.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/13130404/93c802e8-d61e-11e5-87e7-a01a64765a3b.png">
+<meta property="og:updated_time" content="2017-06-07T16:01:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenStack源码分析-Cinder创建卷流程">
-<meta name="twitter:description" content="1. Cinder创卷整体流程
-如整体架构图所示，创建卷涉及的答题步骤主要有以下几步：a. Client发送请求，通过RESTFUL接口访问cinder-api。b. Api解析响应请求，api解析由Client发送来的请求，并通过rpc进一步调用cinder-scheduler。c. Scheduler对资源进行调度，scheduler选择合适的节点进行。d. Volume调用Driver创建卷">
+<meta name="twitter:description" content="1. Cinder创卷整体流程 如整体架构图所示，创建卷涉及的答题步骤主要有以下几步：a. Client发送请求，通过RESTFUL接口访问cinder-api。b. Api解析响应请求，api解析由Client发送来的请求，并通过rpc进一步调用cinder-scheduler。c. Scheduler对资源进行调度，scheduler选择合适的节点进行。d. Volume调用Driver创建卷">
+<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/1736354/13130372/71de5178-d61e-11e5-8d7c-6b9f0a244e41.png">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -77,8 +77,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/archives">文章</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 				<li><a href="/project">项目</a></li>
 	        
 				<li><a href="/douban">读书</a></li>
@@ -90,7 +88,11 @@ var _hmt = _hmt || [];
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有分类</a>
+    			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -139,8 +141,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -159,17 +159,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">文章</a></li>
+					<li style="width: 20%"><a href="/archives">文章</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 20%"><a href="/project">项目</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/project">项目</a></li>
+					<li style="width: 20%"><a href="/douban">读书</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/douban">读书</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/about">关于我</a></li>
+					<li style="width: 20%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -258,11 +256,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
         		</li>
       		
 		</ul>
@@ -318,7 +316,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yikun.github.io/2016/02/14/OpenStack源码分析-Cinder创建卷流程/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACwUlEQVR42u3a0WrcQAwF0P7/T7fQp0Kwc680k6Rw9inYju0zCyOtpF+/4s/vv5+nv/898vH4x7NPV76ffb/P6oOHh4c3evWnzzvv6UiyEMlTkrOfLAEeHh7eNV4bDN6vf9/Wky3+fRHzd8DDw8P7Xl4SHvLjm8QdDw8P73/hzTCz+58KTnh4eHj3eEkxYlakSMq+eQ32Yq0FDw8PL+btG2Bf//eX9vfw8PDw4pAwa4y1SXY+WFC/IR4eHt6tza9Oc0+1qdrla4sdeHh4eDd47z/jZ2NYs3ZXnhsX74aHh4d3gZc/rOW1/5uXYt+v+SRI4OHh4a15eYvrPXi0qXa+3eel5E+CAR4eHt4hXj3ANBqHygcI2qVcJdN4eHh4R3lJgtuWfdvq8gb/mFjj4eHhrXnt1j8r6bbNsJb6eBwPDw/vAm/W4G837nZDz1txeHh4eF/Pa19x9lqbLX4TlvDw8PBu8NrbreLP+ontIAIeHh7ePV5+i00AmDHaQYHH7w0PDw/vEG+WzkZdtZKan8XDw8P7Xl7e2s+3/rYMkY9zrSap8PDw8A7x8h/2+TX5WNVsaYqCMh4eHt41XvKDPyndtsXZfABrmPrj4eHhXeC1l7YJd94G25Q8DvT38PDw8BYp9awB1g4HbEJI8TXg4eHhXeDlfaLNQiTLMQsG9ReAh4eHd5S3T21nRd52OGC4iHh4eHhHeUkpIUl58+N522y/iHh4eHj3eHkYmL3KqQJHkprj4eHh3ePNAkA+UJWDTwWexyo1Hh4e3iHebIQ0aWIlj2lftC3s4uHh4d3j7QsE7UDAfvmKZcXDw8O7xssfmZch8sS6Tdbzu+Hh4eH9BN6p9LotAeelYTw8PLyfw2sLB3kyvR/JOhAY8PDw8C7UOTdDBkmqnTylrk/j4eHhXeC1DbC8iZUn3Mk924XGw8PDu8D7A1SeSt/CVsr2AAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -406,8 +404,8 @@ gitment.render('gitmentContainer')
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -423,7 +421,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      
+      
     
+      
+      
       
     
       
@@ -434,7 +436,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有分类</a></li>
+      
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -443,7 +449,118 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+    	</section>
     
 
     

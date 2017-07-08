@@ -8,15 +8,12 @@
   <link rel="dns-prefetch" href="http://yikun.github.io">
   <title>Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="Yikun">
 <meta property="og:url" content="http://yikun.github.io/page/2/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Yikun">
-<meta name="twitter:description">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -69,8 +66,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/archives">文章</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 				<li><a href="/project">项目</a></li>
 	        
 				<li><a href="/douban">读书</a></li>
@@ -82,7 +77,11 @@ var _hmt = _hmt || [];
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有分类</a>
+    			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -131,8 +130,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -151,17 +148,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">文章</a></li>
+					<li style="width: 20%"><a href="/archives">文章</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 20%"><a href="/project">项目</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/project">项目</a></li>
+					<li style="width: 20%"><a href="/douban">读书</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/douban">读书</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/about">关于我</a></li>
+					<li style="width: 20%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -231,11 +226,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
         		</li>
       		
 		</ul>
@@ -286,14 +281,14 @@ var _hmt = _hmt || [];
 </blockquote>
 <p>理解：Nova是通过oslo.i18n来支持国际化的，oslo.i18n是基于getnext做的，这个库可以把面向用户的字符（比如日志）翻译成指定的语言。其中DEBUG信息不翻译，其他的信息会被翻译。</p>
 <p>比如：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># debug log</span></span><br><span class="line">LOG.debug(<span class="string">"block_device_mapping %(mapping)s"</span>,</span><br><span class="line">          &#123;<span class="string">'mapping'</span>: block_device_mapping&#125;)</span><br><span class="line"><span class="comment"># warn log</span></span><br><span class="line">LOG.warn(_LW(<span class="string">'Unknown base file %(img)s'</span>), &#123;<span class="string">'img'</span>: img&#125;)</span><br><span class="line"><span class="comment"># not log</span></span><br><span class="line"><span class="keyword">raise</span> nova.SomeException(_(<span class="string">'Invalid service catalogue'</span>))</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># debug log</span></div><div class="line">LOG.debug(<span class="string">"block_device_mapping %(mapping)s"</span>,</div><div class="line">          &#123;<span class="string">'mapping'</span>: block_device_mapping&#125;)</div><div class="line"><span class="comment"># warn log</span></div><div class="line">LOG.warn(_LW(<span class="string">'Unknown base file %(img)s'</span>), &#123;<span class="string">'img'</span>: img&#125;)</div><div class="line"><span class="comment"># not log</span></div><div class="line"><span class="keyword">raise</span> nova.SomeException(_(<span class="string">'Invalid service catalogue'</span>))</div></pre></td></tr></table></figure>
 <blockquote>
 <p>Do not use locals() for formatting messages because: 1. It is not as clear as using explicit dicts. 2. It could produce hidden errors during refactoring. 3. Changing the name of a variable causes a change in the message. 4. It creates a lot of otherwise unused variables.</p>
 <p>If you do not follow the project conventions, your code may cause hacking checks to fail.</p>
 </blockquote>
 <p>另外，文中提到了不要使用<code>locals()</code>去格式化消息主要4点原因：1.不清楚是否有关键字. 2.重构时会有潜在的出错可能. 3.变量名变了消息就变. 4.创建很多无用的变量。</p>
 <p>这些函数_(), _LC(), _LE(), _LW() and _LI()可以通过以下方法导入：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> nova.i18n <span class="keyword">import</span> _</span><br><span class="line"><span class="keyword">from</span> nova.i18n <span class="keyword">import</span> _LC</span><br><span class="line"><span class="keyword">from</span> nova.i18n <span class="keyword">import</span> _LE</span><br><span class="line"><span class="keyword">from</span> nova.i18n <span class="keyword">import</span> _LW</span><br><span class="line"><span class="keyword">from</span> nova.i18n <span class="keyword">import</span> _LI</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> nova.i18n <span class="keyword">import</span> _</div><div class="line"><span class="keyword">from</span> nova.i18n <span class="keyword">import</span> _LC</div><div class="line"><span class="keyword">from</span> nova.i18n <span class="keyword">import</span> _LE</div><div class="line"><span class="keyword">from</span> nova.i18n <span class="keyword">import</span> _LW</div><div class="line"><span class="keyword">from</span> nova.i18n <span class="keyword">import</span> _LI</div></pre></td></tr></table></figure>
 
       
 
@@ -475,7 +470,7 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="1-_引入">1. 引入</h3><p>我们先看看对整型变量i进行赋值，并对i进行显示的过程：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="prompt">&gt;&gt;&gt; </span>i=<span class="number">1</span></span><br><span class="line"><span class="prompt">&gt;&gt;&gt; </span>i</span><br><span class="line"><span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>i=<span class="number">1</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>i</div><div class="line"><span class="number">1</span></div></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2015/12/21/Python3源码学习-整型/#more">more >></a>
         
@@ -537,7 +532,7 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="1-_类型">1. 类型</h3><p>我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> _typeobject &#123;</span><br><span class="line">    PyObject_VAR_HEAD</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *tp_name; <span class="comment">/* For printing, in format "&lt;module&gt;.&lt;name&gt;" */</span></span><br><span class="line">    Py_ssize_t tp_basicsize, tp_itemsize; <span class="comment">/* For allocation */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Methods to implement standard operations */</span></span><br><span class="line">    destructor tp_dealloc;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//... ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* More standard operations (here for binary compatibility) */</span></span><br><span class="line">    hashfunc tp_hash;</span><br><span class="line">    ternaryfunc tp_call;</span><br><span class="line">    reprfunc tp_str;</span><br><span class="line">    getattrofunc tp_getattro;</span><br><span class="line">    setattrofunc tp_setattro;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//... ...</span></span><br><span class="line"></span><br><span class="line">&#125; PyTypeObject;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">typeobject</span> &#123;</span></div><div class="line">    PyObject_VAR_HEAD</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *tp_name; <span class="comment">/* For printing, in format "&lt;module&gt;.&lt;name&gt;" */</span></div><div class="line">    Py_ssize_t tp_basicsize, tp_itemsize; <span class="comment">/* For allocation */</span></div><div class="line"></div><div class="line">    <span class="comment">/* Methods to implement standard operations */</span></div><div class="line">    destructor tp_dealloc;</div><div class="line"></div><div class="line">    <span class="comment">//... ...</span></div><div class="line"></div><div class="line">    <span class="comment">/* More standard operations (here for binary compatibility) */</span></div><div class="line">    hashfunc tp_hash;</div><div class="line">    ternaryfunc tp_call;</div><div class="line">    reprfunc tp_str;</div><div class="line">    getattrofunc tp_getattro;</div><div class="line">    setattrofunc tp_setattro;</div><div class="line"></div><div class="line">    <span class="comment">//... ...</span></div><div class="line"></div><div class="line">&#125; PyTypeObject;</div></pre></td></tr></table></figure>
         
           <a class="article-more-a" href="/2015/12/20/Python3源码学习-类型/#more">more >></a>
         
@@ -795,7 +790,7 @@ var _hmt = _hmt || [];
 <p>If a code path takes a long time to execute and does not contain any methods that trigger an eventlet context switch, the long-running thread will block any pending threads.</p>
 <p>This scenario can be avoided by adding calls to the eventlet sleep method in the long-running code path. The sleep call will trigger a context switch if there are pending threads, and using an argument of 0 will avoid introducing delays in the case that there is only a single green thread:</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> eventlet <span class="keyword">import</span> greenthread</span><br><span class="line">...</span><br><span class="line">greenthread.sleep(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> eventlet <span class="keyword">import</span> greenthread</div><div class="line">...</div><div class="line">greenthread.sleep(<span class="number">0</span>)</div></pre></td></tr></table></figure>
 <p>理解：对于那些耗时很长的任务，需要我们添加一些yield方法，来避免在单个的调用中阻塞很久。</p>
 <h2 id="MySQL_access_and_eventlet">MySQL access and eventlet</h2><blockquote>
 <p>Queries to the MySQL database will block the main thread of a service. This is because OpenStack services use an external C library for accessing the MySQL database. Since eventlet cannot use monkey-patching to intercept blocking calls in a C library, the resulting database query blocks the thread.</p>
@@ -873,8 +868,8 @@ var _hmt = _hmt || [];
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -890,7 +885,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      
+      
     
+      
+      
       
     
       
@@ -901,7 +900,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有分类</a></li>
+      
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -910,7 +913,118 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+    	</section>
     
 
     

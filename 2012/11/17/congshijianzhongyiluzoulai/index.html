@@ -9,11 +9,13 @@
   <title>从实践中一路走来 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="又是一样的开学，又是一样的军训，仿佛我们入学的那天刚刚逝去，仿佛礼仪广场上的标语——“你们是中国电子信息科技未来的栋梁” 是为我们写的一样。可是，标语前面的称呼早已变成“ 2012级新同学”。">
+<meta name="keywords" content="随笔">
 <meta property="og:type" content="article">
 <meta property="og:title" content="从实践中一路走来">
 <meta property="og:url" content="http://yikun.github.io/2012/11/17/congshijianzhongyiluzoulai/index.html">
 <meta property="og:site_name" content="Yikun">
 <meta property="og:description" content="又是一样的开学，又是一样的军训，仿佛我们入学的那天刚刚逝去，仿佛礼仪广场上的标语——“你们是中国电子信息科技未来的栋梁” 是为我们写的一样。可是，标语前面的称呼早已变成“ 2012级新同学”。">
+<meta property="og:updated_time" content="2016-02-23T17:03:48.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="从实践中一路走来">
 <meta name="twitter:description" content="又是一样的开学，又是一样的军训，仿佛我们入学的那天刚刚逝去，仿佛礼仪广场上的标语——“你们是中国电子信息科技未来的栋梁” 是为我们写的一样。可是，标语前面的称呼早已变成“ 2012级新同学”。">
@@ -69,8 +71,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/archives">文章</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 				<li><a href="/project">项目</a></li>
 	        
 				<li><a href="/douban">读书</a></li>
@@ -82,7 +82,11 @@ var _hmt = _hmt || [];
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有分类</a>
+    			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -131,8 +135,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -151,17 +153,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">文章</a></li>
+					<li style="width: 20%"><a href="/archives">文章</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 20%"><a href="/project">项目</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/project">项目</a></li>
+					<li style="width: 20%"><a href="/douban">读书</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/douban">读书</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/about">关于我</a></li>
+					<li style="width: 20%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -312,7 +312,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yikun.github.io/2012/11/17/congshijianzhongyiluzoulai/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACHUlEQVR42u3awU7sMAwFUP7/pwfpbXmUe+0BqenJCok2yenCY8f5+IjH699on79+6+szyVurgYGBcVvG63J8ZbSb2/w32RsGBsZzGNdB9ho2ezdfN/oBwMDAwLicug3TGBgYGH8TcFtekgJiYGBgXDOSIjbfUH5wlpDeXItjYGDckNE2Bv7y71/sb2BgYNyE8SrHbIZZKlnsCgMD42jG9XTtlYs2ybveet2QwMDAOJTRlq/twdzm4kV+zIeBgXE2413Xudp52vZDsRMMDIxHMvaNyX17sqBiYGA8hpFvdAPYJ4VFQYuBgXFzxrtaAkn7MyG1Vz0wMDCewNgfcs0ub+UXLPLQj4GBcTZj3wvN25NtqYyBgfFkRnvglZeUs+A7C/EYGBhnM5IlZ8Vtvt1fTAoxMDCOYMyuVuRpXNtCyFuexe8GBgbGzRltaGsvT7SkTfzEwMB4AqNtPSaFa77Kpo2KgYHxHEayoVc52jI1WfGHOTEwMI5jzC5gJQniLIwOPwcGBsYDGLN0bZ/kzY7t/vMMBgbG0YwkXuWXtPKmwuzg7Ie3MDAwDmVsitI21dsXrt82GzAwMI5mbPqAeWq4aT/kxTMGBsbZjE3BmS/cwupvj4GB8QBGW8S2h27DSJ9f/sDAwMBYJHmzefJSFgMDA2PTJJgdruUzrAIuBgbGDRl5M2CWOLYfom0YYGBgnM3YNwZydsvLPysGBsahjE8FCtE/cQiQowAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -400,8 +400,8 @@ gitment.render('gitmentContainer')
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -417,7 +417,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      
+      
     
+      
+      
       
     
       
@@ -428,7 +432,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有分类</a></li>
+      
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -437,7 +445,118 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+    	</section>
     
 
     

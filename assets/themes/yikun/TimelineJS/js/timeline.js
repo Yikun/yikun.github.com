@@ -240,27 +240,7 @@ if (typeof VMM == 'undefined') {
 		if (tag != null && tag != "") {
 			
 			// TAG
-			ce += "<" + tag;
-			if (cName != null && cName != "") {
-				ce += " class='" + cName + "'";
-			};
-			
-			if (attrs != null && attrs != "") {
-				ce += " " + attrs;
-			};
-			
-			if (styles != null && styles != "") {
-				ce += " style='" + styles + "'";
-			};
-			
-			ce += ">";
-			
-			if (value != null && value != "") {
-				ce += value;
-			}
-			
-			// CLOSE TAG
-			ce = ce + "</" + tag + ">";
+			ce += "<" +="" tag;="" if="" (cname="" !="null" &&="" cname="" )="" {="" ce="" "'";="" };="" (attrs="" attrs="" attrs;="" (styles="" styles="" ;="" (value="" value="" }="" close="" tag="" "<="" "="">";
 		}
 		
 		return ce;
@@ -273,13 +253,13 @@ if (typeof VMM == 'undefined') {
 		
 		var _valid = false;
 		
-		ce += "<div class='media'>";
+		ce += "<div class="media">";
 		
 		if (media != null && media != "") {
 			
 			valid = true;
 			
-			ce += "<img src='" + media + "'>";
+			ce += "<img src="" + media + "">";
 			
 			// CREDIT
 			if (credit != null && credit != "") {
@@ -1052,174 +1032,9 @@ if(typeof VMM != 'undefined' && typeof VMM.Browser == 'undefined') {
 			return device;
 		},
 		searchString: function (data) {
-			for (var i=0;i<data.length;i++)	{
-				var dataString	= data[i].string,
-					dataProp	= data[i].prop;
-					
-				this.versionSearchString = data[i].versionSearch || data[i].identity;
-				
-				if (dataString) {
-					if (dataString.indexOf(data[i].subString) != -1) {
-						return data[i].identity;
-					}
-				} else if (dataProp) {
-					return data[i].identity;
-				}
-			}
-		},
-		searchVersion: function (dataString) {
-			var index = dataString.indexOf(this.versionSearchString);
-			if (index == -1) return;
-			return parseFloat(dataString.substring(index+this.versionSearchString.length+1));
-		},
-		dataBrowser: [
-			{
-				string: navigator.userAgent,
-				subString: "Chrome",
-				identity: "Chrome"
-			},
-			{ 	string: navigator.userAgent,
-				subString: "OmniWeb",
-				versionSearch: "OmniWeb/",
-				identity: "OmniWeb"
-			},
-			{
-				string: navigator.vendor,
-				subString: "Apple",
-				identity: "Safari",
-				versionSearch: "Version"
-			},
-			{
-				prop: window.opera,
-				identity: "Opera",
-				versionSearch: "Version"
-			},
-			{
-				string: navigator.vendor,
-				subString: "iCab",
-				identity: "iCab"
-			},
-			{
-				string: navigator.vendor,
-				subString: "KDE",
-				identity: "Konqueror"
-			},
-			{
-				string: navigator.userAgent,
-				subString: "Firefox",
-				identity: "Firefox"
-			},
-			{
-				string: navigator.vendor,
-				subString: "Camino",
-				identity: "Camino"
-			},
-			{		// for newer Netscapes (6+)
-				string: navigator.userAgent,
-				subString: "Netscape",
-				identity: "Netscape"
-			},
-			{
-				string: navigator.userAgent,
-				subString: "MSIE",
-				identity: "Explorer",
-				versionSearch: "MSIE"
-			},
-			{
-				string: navigator.userAgent,
-				subString: "Gecko",
-				identity: "Mozilla",
-				versionSearch: "rv"
-			},
-			{ 		// for older Netscapes (4-)
-				string: navigator.userAgent,
-				subString: "Mozilla",
-				identity: "Netscape",
-				versionSearch: "Mozilla"
-			}
-		],
-		dataOS : [
-			{
-				string: navigator.platform,
-				subString: "Win",
-				identity: "Windows"
-			},
-			{
-				string: navigator.platform,
-				subString: "Mac",
-				identity: "Mac"
-			},
-			{
-				string: navigator.userAgent,
-				subString: "iPhone",
-				identity: "iPhone/iPod"
-		    },
-			{
-				string: navigator.userAgent,
-				subString: "iPad",
-				identity: "iPad"
-		    },
-			{
-				string: navigator.platform,
-				subString: "Linux",
-				identity: "Linux"
-			}
-		]
-
-	}
-	VMM.Browser.init();
-}
-
-/* **********************************************
-     Begin VMM.FileExtention.js
-********************************************** */
-
-/*	* File Extention
-================================================== */
-if(typeof VMM != 'undefined' && typeof VMM.FileExtention == 'undefined') {
-	VMM.FileExtention = {
-		googleDocType: function(url) {
-			var fileName			= url.replace(/\s\s*$/, ''),
-				fileExtension		= "",
-				validFileExtensions = ["DOC","DOCX","XLS","XLSX","PPT","PPTX","PDF","PAGES","AI","PSD","TIFF","DXF","SVG","EPS","PS","TTF","XPS","ZIP","RAR"],
-				flag				= false;
-				
-			fileExtension = fileName.substr(fileName.length - 5, 5);
-			
-			for (var i = 0; i < validFileExtensions.length; i++) {
-				if (fileExtension.toLowerCase().match(validFileExtensions[i].toString().toLowerCase()) || fileName.match("docs.google.com") ) {
-					flag = true;
-				}
-			}
-			return flag;
-		}
-	}
-}
-
-/* **********************************************
-     Begin VMM.Date.js
-********************************************** */
-
-/*	* Utilities and Useful Functions
-================================================== */
-if(typeof VMM != 'undefined' && typeof VMM.Date == 'undefined') {
-	
-	VMM.Date = ({
-		
-		init: function() {
-			return this;
-		},
-		
-		dateformats: {
-			year: "yyyy",
-			month_short: "mmm",
-			month: "mmmm yyyy",
-			full_short: "mmm d",
-			full: "mmmm d',' yyyy",
-			time_no_seconds_short: "h:MM TT",
-			time_no_seconds_small_date: "h:MM TT'<br/><small>'mmmm d',' yyyy'</small>'",
+			for (var i=0;i<data.length;i++) {="" var="" datastring="data[i].string," dataprop="data[i].prop;" this.versionsearchstring="data[i].versionSearch" ||="" data[i].identity;="" if="" (datastring)="" (datastring.indexof(data[i].substring)="" !="-1)" return="" }="" else="" (dataprop)="" },="" searchversion:="" function="" index="dataString.indexOf(this.versionSearchString);" (index="=" -1)="" return;="" parsefloat(datastring.substring(index+this.versionsearchstring.length+1));="" databrowser:="" [="" string:="" navigator.useragent,="" substring:="" "chrome",="" identity:="" "chrome"="" "omniweb",="" versionsearch:="" "omniweb="" ",="" "omniweb"="" navigator.vendor,="" "apple",="" "safari",="" "version"="" prop:="" window.opera,="" "opera",="" "icab",="" "icab"="" "kde",="" "konqueror"="" "firefox",="" "firefox"="" "camino",="" "camino"="" for="" newer="" netscapes="" (6+)="" "netscape",="" "netscape"="" "msie",="" "explorer",="" "msie"="" "gecko",="" "mozilla",="" "rv"="" older="" (4-)="" "mozilla"="" ],="" dataos="" :="" navigator.platform,="" "win",="" "windows"="" "mac",="" "mac"="" "iphone",="" "iphone="" ipod"="" "ipad",="" "ipad"="" "linux",="" "linux"="" ]="" vmm.browser.init();="" *="" **********************************************="" begin="" vmm.fileextention.js="" file="" extention="=================================================" if(typeof="" vmm="" &&="" typeof="" vmm.fileextention="=" 'undefined')="" googledoctype:="" function(url)="" filename="url.replace(/\s\s*$/," ''),="" fileextension="" ,="" validfileextensions="["DOC","DOCX","XLS","XLSX","PPT","PPTX","PDF","PAGES","AI","PSD","TIFF","DXF","SVG","EPS","PS","TTF","XPS","ZIP","RAR"]," flag="false;" -="" 5,="" 5);="" (var="" i="0;" <="" validfileextensions.length;="" i++)="" (fileextension.tolowercase().match(validfileextensions[i].tostring().tolowercase())="" filename.match("docs.google.com")="" )="" flag;="" vmm.date.js="" utilities="" and="" useful="" functions="=================================================" vmm.date="=" init:="" function()="" this;="" dateformats:="" year:="" "yyyy",="" month_short:="" "mmm",="" month:="" "mmmm="" yyyy",="" full_short:="" "mmm="" d",="" full:="" d','="" time_no_seconds_short:="" "h:mm="" tt",="" time_no_seconds_small_date:="" tt'<br=""><small>'mmmm d',' yyyy'</small>'",
 			full_long: "mmm d',' yyyy 'at' hh:MM TT",
-			full_long_small_date: "hh:MM TT'<br/><small>mmm d',' yyyy'</small>'"
+			full_long_small_date: "hh:MM TT'<br><small>mmm d',' yyyy'</small>'"
 		},
 			
 		month: ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"],
@@ -1237,9 +1052,9 @@ if(typeof VMM != 'undefined' && typeof VMM.Date == 'undefined') {
 			full_short: "mmm d",
 			full: "mmmm d',' yyyy",
 			time_no_seconds_short: "h:MM TT",
-			time_no_seconds_small_date: "dddd', 'h:MM TT'<br/><small>'mmmm d',' yyyy'</small>'",
+			time_no_seconds_small_date: "dddd', 'h:MM TT'<br><small>'mmmm d',' yyyy'</small>'",
 			full_long: "dddd',' mmm d',' yyyy 'at' hh:MM TT",
-			full_long_small_date: "hh:MM TT'<br/><small>'dddd',' mmm d',' yyyy'</small>'"
+			full_long_small_date: "hh:MM TT'<br><small>'dddd',' mmm d',' yyyy'</small>'"
 		},
 			
 		setLanguage: function(lang) {
@@ -1391,22 +1206,7 @@ if(typeof VMM != 'undefined' && typeof VMM.Date == 'undefined') {
 						p.second = true;
 						p.millisecond = true;
 					}
-				} else if (d.length <= 5) {
-					p.year = true;
-					date.setFullYear(parseInt(d, 10));
-					date.setMonth(0);
-					date.setDate(1);
-					date.setHours(0);
-					date.setMinutes(0);
-					date.setSeconds(0);
-					date.setMilliseconds(0);
-				} else if (d.match("T")) {
-					if (navigator.userAgent.match(/MSIE\s(?!9.0)/)) {
-					    // IE 8 < Won't accept dates with a "-" in them.
-						time_parse = d.split("T");
-						if (d.match(":")) {
-							time_array = _time_parse[1].split(":");
-							if (time_array[0] >= 1) {
+				} else if (d.length <= 8="" 5)="" {="" p.year="true;" date.setfullyear(parseint(d,="" 10));="" date.setmonth(0);="" date.setdate(1);="" date.sethours(0);="" date.setminutes(0);="" date.setseconds(0);="" date.setmilliseconds(0);="" }="" else="" if="" (d.match("t"))="" (navigator.useragent.match(="" msie\s(?!9.0)="" ))="" ie="" <="" won't="" accept="" dates="" with="" a="" "-"="" in="" them.="" time_parse="d.split("T");" (d.match(":"))="" time_array="_time_parse[1].split(":");" (time_array[0]="">= 1) {
 								date.setHours(time_array[0]);
 								p.hour = true;
 							}
@@ -1529,89 +1329,11 @@ if(typeof VMM != 'undefined' && typeof VMM.Date == 'undefined') {
 					if (d.getMonth() === 0 && d.getDate() == 1 && d.getHours() === 0 && d.getMinutes() === 0 ) {
 						// YEAR ONLY
 						format = VMM.Date.dateformats.year;
-					} else if (d.getDate() <= 1 && d.getHours() === 0 && d.getMinutes() === 0) {
-						// YEAR MONTH
-						if (is_abbr) {
-							format = VMM.Date.dateformats.month_short;
-						} else {
-							format = VMM.Date.dateformats.month;
-						}
-					} else if (d.getHours() === 0 && d.getMinutes() === 0) {
-						// YEAR MONTH DAY
-						if (is_abbr) {
-							format = VMM.Date.dateformats.full_short;
-						} else {
-							format = VMM.Date.dateformats.full;
-						}
-					} else  if (d.getMinutes() === 0) {
-						// YEAR MONTH DAY HOUR
-						if (is_abbr) {
-							format = VMM.Date.dateformats.time_no_seconds_short;
-						} else {
-							format = VMM.Date.dateformats.time_no_seconds_small_date;
-						}
-					} else {
-						// YEAR MONTH DAY HOUR MINUTE
-						if (is_abbr){
-							format = VMM.Date.dateformats.time_no_seconds_short; 
-						} else {
-							format = VMM.Date.dateformats.full_long; 
-						}
-					}
-				}
-				
-				_date = dateFormat(d, format, false);
-				//_date = "Jan"
-				bc_check = _date.split(" ");
-					
-				// BC TIME SUPPORT
-				for(var i = 0; i < bc_check.length; i++) {
-					if ( parseInt(bc_check[i], 10) < 0 ) {
-						trace("YEAR IS BC");
-						bc_original	= bc_check[i];
-						bc_number	= Math.abs( parseInt(bc_check[i], 10) );
-						bc_string	= bc_number.toString() + " B.C.";
-						_date		= _date.replace(bc_original, bc_string);
-					}
-				}
-					
-					
-				if (is_pair) {
-					_date2 = dateFormat(d2, format, false);
-					bc_check = _date2.split(" ");
-					// BC TIME SUPPORT
-					for(var j = 0; j < bc_check.length; j++) {
-						if ( parseInt(bc_check[j], 10) < 0 ) {
-							trace("YEAR IS BC");
-							bc_original	= bc_check[j];
-							bc_number	= Math.abs( parseInt(bc_check[j], 10) );
-							bc_string	= bc_number.toString() + " B.C.";
-							_date2			= _date2.replace(bc_original, bc_string);
-						}
-					}
-						
-				}
-			} else {
-				trace("NOT A VALID DATE?");
-				trace(d);
-			}
-				
-			if (is_pair) {
-				return _date + " &mdash; " + _date2;
-			} else {
-				return _date;
-			}
-		}
-		
-	}).init();
-	
-	/*
-	 * Date Format 1.2.3
-	 * (c) 2007-2009 Steven Levithan <stevenlevithan.com>
+					} else if (d.getDate() <= 0="" 1="" &&="" d.gethours()="==" d.getminutes()="==" 0)="" {="" year="" month="" if="" (is_abbr)="" format="VMM.Date.dateformats.month_short;" }="" else="" (d.gethours()="==" day="" (d.getminutes()="==" hour="" minute="" (is_abbr){="" _date="dateFormat(d," format,="" false);="" bc_check="_date.split("" ");="" bc="" time="" support="" for(var="" i="0;" <="" bc_check.length;="" i++)="" (="" parseint(bc_check[i],="" 10)="" )="" trace("year="" is="" bc");="" bc_original="bc_check[i];" bc_number="Math.abs(" );="" bc_string="bc_number.toString()" +="" "="" b.c.";="" bc_string);="" (is_pair)="" _date2="dateFormat(d2," j="0;" j++)="" parseint(bc_check[j],="" trace("not="" a="" valid="" date?");="" trace(d);="" return="" &mdash;="" _date2;="" _date;="" }).init();="" *="" date="" 1.2.3="" (c)="" 2007-2009="" steven="" levithan="" <stevenlevithan.com="">
 	 * MIT license
 	 *
 	 * Includes enhancements by Scott Trenda <scott.trenda.net>
-	 * and Kris Kowal <cixar.com/~kris.kowal/>
+	 * and Kris Kowal <cixar.com ~kris.kowal="">
 	 *
 	 * Accepts a date, a mask, or a date and a mask.
 	 * Returns a formatted version of the given date.
@@ -1839,54 +1561,7 @@ if(typeof VMM != 'undefined' && typeof VMM.Util == 'undefined') {
 				out=[],
 				obj={};
 
-			for (i=0;i<len;i++) {
-				obj[arr[i]]=0;
-			}
-			for (i in obj) {
-				out.push(i);
-			}
-			return out;
-		},
-		
-		/*	* Given an int or decimal, turn that into string in $xxx,xxx.xx format.
-		================================================== */
-		number2money: function(n, symbol, padding) {
-			var symbol = (symbol !== null) ? symbol : true; // add $
-			var padding = (padding !== null) ? padding : false; //pad with .00
-			var number = VMM.Math2.floatPrecision(n,2); // rounded correctly to two digits, if decimals passed
-			var formatted = this.niceNumber(number);
-			// no decimal and padding is enabled
-			if (!formatted.split(/\./g)[1] && padding) formatted = formatted + ".00";
-			// add money sign
-			if (symbol) formatted = "$"+formatted;
-			return formatted;
-		},
-		
-		/*	* Returns a word count number
-		================================================== */
-		wordCount: function(s) {
-			var fullStr = s + " ";
-			var initial_whitespace_rExp = /^[^A-Za-z0-9\'\-]+/gi;
-			var left_trimmedStr = fullStr.replace(initial_whitespace_rExp, "");
-			var non_alphanumerics_rExp = /[^A-Za-z0-9\'\-]+/gi;
-			var cleanedStr = left_trimmedStr.replace(non_alphanumerics_rExp, " ");
-			var splitString = cleanedStr.split(" ");
-			var word_count = splitString.length -1;
-			if (fullStr.length <2) {
-				word_count = 0;
-			}
-			return word_count;
-		},
-		
-		ratio: {
-			fit: function(w, h, ratio_w, ratio_h) {
-				//VMM.Util.ratio.fit(w, h, ratio_w, ratio_h).width;
-				var _fit = {width:0,height:0};
-				// TRY WIDTH FIRST
-				_fit.width = w;
-				//_fit.height = Math.round((h / ratio_h) * ratio_w);
-				_fit.height = Math.round((w / ratio_w) * ratio_h);
-				if (_fit.height > h) {
+			for (i=0;i<len;i++) {="" obj[arr[i]]="0;" }="" for="" (i="" in="" obj)="" out.push(i);="" return="" out;="" },="" *="" given="" an="" int="" or="" decimal,="" turn="" that="" into="" string="" $xxx,xxx.xx="" format.="=================================================" number2money:="" function(n,="" symbol,="" padding)="" var="" symbol="(symbol" !="=" null)="" ?="" :="" true;="" add="" $="" padding="(padding" false;="" pad="" with="" .00="" number="VMM.Math2.floatPrecision(n,2);" rounded="" correctly="" to="" two="" digits,="" if="" decimals="" passed="" formatted="this.niceNumber(number);" no="" decimal="" and="" is="" enabled="" (!formatted.split(="" \.="" g)[1]="" &&="" +="" ".00";="" money="" sign="" (symbol)="" +formatted;="" formatted;="" returns="" a="" word="" count="" wordcount:="" function(s)="" fullstr="s" "="" ";="" initial_whitespace_rexp="/^[^A-Za-z0-9\'\-]+/gi;" left_trimmedstr="fullStr.replace(initial_whitespace_rExp," "");="" non_alphanumerics_rexp="/[^A-Za-z0-9\'\-]+/gi;" cleanedstr="left_trimmedStr.replace(non_alphanumerics_rExp," ");="" splitstring="cleanedStr.split("" word_count="splitString.length" -1;="" (fullstr.length="" <2)="" word_count;="" ratio:="" fit:="" function(w,="" h,="" ratio_w,="" ratio_h)="" vmm.util.ratio.fit(w,="" ratio_h).width;="" _fit="{width:0,height:0};" try="" width="" first="" _fit.width="w;" _fit.height="Math.round((h" ratio_w);="" ratio_w)="" ratio_h);="" (_fit.height=""> h) {
 					_fit.height = h;
 					//_fit.width = Math.round((w / ratio_w) * ratio_h);
 					_fit.width = Math.round((h / ratio_h) * ratio_w);
@@ -1936,55 +1611,23 @@ if(typeof VMM != 'undefined' && typeof VMM.Util == 'undefined') {
 			min = Math.min(words.length, min);
 			max = Math.min(words.length, max);
 			
-			for (var i = 0; i<min; i++) {
-				result.push(words[i]);
-			}		
-			
-			for (var j = min; i<max; i++) {
-				var word = words[i];
-				
-				result.push(word);
-				
-				if (word.charAt(word.length-1) == '.') {
-					break;
-				}
-			}		
-			
-			return (result.join(' '));
-		},
-		
-		/*	* Turns plain text links into real links
-		================================================== */
-		linkify: function(text,targets,is_touch) {
-			
-			// http://, https://, ftp://
-			var urlPattern = /\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
-
-			// www. sans http:// or https://
-			var pseudoUrlPattern = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
-
-			// Email addresses
-			var emailAddressPattern = /(([a-zA-Z0-9_\-\.]+)@[a-zA-Z_]+?(?:\.[a-zA-Z]{2,6}))+/gim;
-			
-
-			return text
-				.replace(urlPattern, "<a target='_blank' href='$&' onclick='void(0)'>$&</a>")
-				.replace(pseudoUrlPattern, "$1<a target='_blank' onclick='void(0)' href='http://$2'>$2</a>")
-				.replace(emailAddressPattern, "<a target='_blank' onclick='void(0)' href='mailto:$1'>$1</a>");
+			for (var i = 0; i<min; i++)="" {="" result.push(words[i]);="" }="" for="" (var="" j="min;" i<max;="" var="" word="words[i];" result.push(word);="" if="" (word.charat(word.length-1)="=" '.')="" break;="" return="" (result.join('="" '));="" },="" *="" turns="" plain="" text="" links="" into="" real="" linkify:="" function(text,targets,is_touch)="" http:="" ,="" https:="" ftp:="" urlpattern="/\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;" www.="" sans="" or="" pseudourlpattern="/(^|[^\/])(www\.[\S]+(\b|$))/gim;" email="" addresses="" emailaddresspattern="/(([a-zA-Z0-9_\-\.]+)@[a-zA-Z_]+?(?:\.[a-zA-Z]{2,6}))+/gim;" .replace(urlpattern,="" "<a="" target="_blank" href="$&" onclick="void(0)">$&")
+				.replace(pseudoUrlPattern, "$1<a target="_blank" onclick="void(0)" href="http://$2">$2</a>")
+				.replace(emailAddressPattern, "<a target="_blank" onclick="void(0)" href="mailto:$1">$1</a>");
 		},
 		
 		linkify_with_twitter: function(text,targets,is_touch) {
 			
 			// http://, https://, ftp://
 			var urlPattern = /\b(?:https?|ftp):\/\/[a-z0-9-+&@#\/%?=~_|!:,.;]*[a-z0-9-+&@#\/%=~_|]/gim;
-			var url_pattern = /(\()((?:ht|f)tps?:\/\/[a-z0-9\-._~!$&'()*+,;=:\/?#[\]@%]+)(\))|(\[)((?:ht|f)tps?:\/\/[a-z0-9\-._~!$&'()*+,;=:\/?#[\]@%]+)(\])|(\{)((?:ht|f)tps?:\/\/[a-z0-9\-._~!$&'()*+,;=:\/?#[\]@%]+)(\})|(<|&(?:lt|#60|#x3c);)((?:ht|f)tps?:\/\/[a-z0-9\-._~!$&'()*+,;=:\/?#[\]@%]+)(>|&(?:gt|#62|#x3e);)|((?:^|[^=\s'"\]])\s*['"]?|[^=\s]\s+)(\b(?:ht|f)tps?:\/\/[a-z0-9\-._~!$'()*+,;=:\/?#[\]@%]+(?:(?!&(?:gt|#0*62|#x0*3e);|&(?:amp|apos|quot|#0*3[49]|#x0*2[27]);[.!&',:?;]?(?:[^a-z0-9\-._~!$&'()*+,;=:\/?#[\]@%]|$))&[a-z0-9\-._~!$'()*+,;=:\/?#[\]@%]*)*[a-z0-9\-_~$()*+=\/#[\]@%])/img;
+			var url_pattern = /(\()((?:ht|f)tps?:\/\/[a-z0-9\-._~!$&'()*+,;=:\/?#[\]@%]+)(\))|(\[)((?:ht|f)tps?:\/\/[a-z0-9\-._~!$&'()*+,;=:\/?#[\]@%]+)(\])|(\{)((?:ht|f)tps?:\/\/[a-z0-9\-._~!$&'()*+,;=:\/?#[\]@%]+)(\})|(<|&(?:lt|#60|#x3c);)((?:ht|f)tps?:\ \="" [a-z0-9\-._~!$&'()*+,;=":\/?#[\]@%]+)(">|&(?:gt|#62|#x3e);)|((?:^|[^=\s'"\]])\s*['"]?|[^=\s]\s+)(\b(?:ht|f)tps?:\/\/[a-z0-9\-._~!$'()*+,;=:\/?#[\]@%]+(?:(?!&(?:gt|#0*62|#x0*3e);|&(?:amp|apos|quot|#0*3[49]|#x0*2[27]);[.!&',:?;]?(?:[^a-z0-9\-._~!$&'()*+,;=:\/?#[\]@%]|$))&[a-z0-9\-._~!$'()*+,;=:\/?#[\]@%]*)*[a-z0-9\-_~$()*+=\/#[\]@%])/img;
 			var url_replace = '$1$4$7$10$13<a href="$2$5$8$11$14" class="hyphenate">$2$5$8$11$14</a>$3$6$9$12';
 			
 			// www. sans http:// or https://
 			var pseudoUrlPattern = /(^|[^\/])(www\.[\S]+(\b|$))/gim;
 			function replaceURLWithHTMLLinks(text) {
 			    var exp = /(\b(https?|ftp|file):\/\/([-A-Z0-9+&@#%?=~_|!:,.;]*)([-A-Z0-9+&@#%?\/=~_|!:,.;]*)[-A-Z0-9+&@#\/%=~_|])/ig;
-			    return text.replace(exp, "<a href='$1' target='_blank'>$3</a>");
+			    return text.replace(exp, "<a href="$1" target="_blank">$3</a>");
 			}
 			// Email addresses
 			var emailAddressPattern = /(([a-zA-Z0-9_\-\.]+)@[a-zA-Z_]+?(?:\.[a-zA-Z]{2,6}))+/gim;
@@ -1994,23 +1637,23 @@ if(typeof VMM != 'undefined' && typeof VMM.Util == 'undefined') {
 			var twitterSearchPattern = /(#([\w]+))/g;
 
 			return text
-				//.replace(urlPattern, "<a target='_blank' href='$&' onclick='void(0)'>$&</a>")
+				//.replace(urlPattern, "<a target="_blank" href="$&" onclick="void(0)">$&</a>")
 				.replace(url_pattern, url_replace)
-				.replace(pseudoUrlPattern, "$1<a target='_blank' class='hyphenate' onclick='void(0)' href='http://$2'>$2</a>")
-				.replace(emailAddressPattern, "<a target='_blank' onclick='void(0)' href='mailto:$1'>$1</a>")
-				.replace(twitterHandlePattern, "<a href='http://twitter.com/$1' target='_blank' onclick='void(0)'>@$1</a>")
-				.replace(twitterSearchPattern, "<a href='http://twitter.com/#search?q=%23$2' target='_blank' 'void(0)'>$1</a>");
+				.replace(pseudoUrlPattern, "$1<a target="_blank" class="hyphenate" onclick="void(0)" href="http://$2">$2</a>")
+				.replace(emailAddressPattern, "<a target="_blank" onclick="void(0)" href="mailto:$1">$1</a>")
+				.replace(twitterHandlePattern, "<a href="http://twitter.com/$1" target="_blank" onclick="void(0)">@$1</a>")
+				.replace(twitterSearchPattern, "<a href="http://twitter.com/#search?q=%23$2" target="_blank" 'void(0)'="">$1</a>");
 		},
 		
 		linkify_wikipedia: function(text) {
 			
-			var urlPattern = /<i[^>]*>(.*?)<\/i>/gim;
+			var urlPattern = /<i[^>]*>(.*?)<\ i="">/gim;
 			return text
-				.replace(urlPattern, "<a target='_blank' href='http://en.wikipedia.org/wiki/$&' onclick='void(0)'>$&</a>")
+				.replace(urlPattern, "<a target="_blank" href="http://en.wikipedia.org/wiki/$&" onclick="void(0)">$&</a>")
 				.replace(/<i\b[^>]*>/gim, "")
-				.replace(/<\/i>/gim, "")
+				.replace(/<\ i="">/gim, "")
 				.replace(/<b\b[^>]*>/gim, "")
-				.replace(/<\/b>/gim, "");
+				.replace(/<\ b="">/gim, "");
 		},
 		
 		/*	* Turns plain text links into real links
@@ -2019,7 +1662,7 @@ if(typeof VMM != 'undefined' && typeof VMM.Util == 'undefined') {
 		unlinkify: function(text) {
 			if(!text) return text;
 			text = text.replace(/<a\b[^>]*>/i,"");
-			text = text.replace(/<\/a>/i, "");
+			text = text.replace(/<\ a="">/i, "");
 			return text;
 		},
 		
@@ -2034,7 +1677,7 @@ if(typeof VMM != 'undefined' && typeof VMM.Util == 'undefined') {
 		/*	* TK
 		================================================== */
 		nl2br: function(text) {
-			return text.replace(/(\r\n|[\r\n]|\\n|\\r)/g,"<br/>");
+			return text.replace(/(\r\n|[\r\n]|\\n|\\r)/g,"<br>");
 		},
 		
 		/*	* Generate a Unique ID
@@ -2112,26 +1755,7 @@ if(typeof VMM != 'undefined' && typeof VMM.Util == 'undefined') {
 			
 			var sps = ((forceLowerCase) ? s.toLowerCase() : s).split(" ");
 			
-			for(var i=0; i<sps.length; i++) {
-				
-				sps[i] = sps[i].substr(0,1).toUpperCase() + sps[i].substr(1);
-			}
-			
-			return sps.join(" ");
-		},
-		
-		/*	* Replaces dumb quote marks with smart ones
-		================================================== */
-		properQuotes: function(str) {
-			return str.replace(/\"([^\"]*)\"/gi,"&#8220;$1&#8221;");
-		},
-		/*	* Add Commas to numbers
-		================================================== */
-		niceNumber: function(nStr){
-			nStr += '';
-			x = nStr.split('.');
-			x1 = x[0];
-			x2 = x.length > 1 ? '.' + x[1] : '';
+			for(var i=0; i<sps.length; i++)="" {="" sps[i]="sps[i].substr(0,1).toUpperCase()" +="" sps[i].substr(1);="" }="" return="" sps.join("="" ");="" },="" *="" replaces="" dumb="" quote="" marks="" with="" smart="" ones="=================================================" properquotes:="" function(str)="" str.replace(="" \"([^\"]*)\"="" gi,"&#8220;$1&#8221;");="" add="" commas="" to="" numbers="=================================================" nicenumber:="" function(nstr){="" nstr="" ;="" x="nStr.split('.');" x1="x[0];" x2="x.length"> 1 ? '.' + x[1] : '';
 			var rgx = /(\d+)(\d{3})/;
 			while (rgx.test(x1)) {
 				x1 = x1.replace(rgx, '$1' + ',' + '$2');
@@ -9880,4 +9504,4 @@ if (typeof VMM.Timeline !== 'undefined' && typeof VMM.Timeline.DataObj == 'undef
 	
 	};
 	
-}
+}</style></head></ryan@wonko.com></sps.length;></\s*\w.*?></\></a\b[^></\></b\b[^></\></i\b[^></\></i[^></|&(?:lt|#60|#x3c);)((?:ht|f)tps?:\></min;></len;i++)></cixar.com></scott.trenda.net></=></=></data.length;i++)></div></">

@@ -8,21 +8,17 @@
   <link rel="dns-prefetch" href="http://yikun.github.io">
   <title>Git常用操作总结 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="用Git比较久了，之前一直在Win用的TortoiseGit，现在命令行用的比较多，所以把一些指令总结一下，以便回顾和查询。
-理解这些指令，觉得最重要的是理解Git的内部原理，比如Git的分布式版本控制，分清楚工作区、暂存区、版本库，还有就是理解Git跟踪并管理的是修改，而非文件。
-设置12$ git config --global user.name &quot;Your Name&quot;$ git confi">
+  <meta name="description" content="用Git比较久了，之前一直在Win用的TortoiseGit，现在命令行用的比较多，所以把一些指令总结一下，以便回顾和查询。 理解这些指令，觉得最重要的是理解Git的内部原理，比如Git的分布式版本控制，分清楚工作区、暂存区、版本库，还有就是理解Git跟踪并管理的是修改，而非文件。 设置12$ git config --global user.name &amp;quot;Your Name&amp;quot;$">
+<meta name="keywords" content="Git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Git常用操作总结">
 <meta property="og:url" content="http://yikun.github.io/2015/04/25/Git常用操作总结/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="用Git比较久了，之前一直在Win用的TortoiseGit，现在命令行用的比较多，所以把一些指令总结一下，以便回顾和查询。
-理解这些指令，觉得最重要的是理解Git的内部原理，比如Git的分布式版本控制，分清楚工作区、暂存区、版本库，还有就是理解Git跟踪并管理的是修改，而非文件。
-设置12$ git config --global user.name &quot;Your Name&quot;$ git confi">
+<meta property="og:description" content="用Git比较久了，之前一直在Win用的TortoiseGit，现在命令行用的比较多，所以把一些指令总结一下，以便回顾和查询。 理解这些指令，觉得最重要的是理解Git的内部原理，比如Git的分布式版本控制，分清楚工作区、暂存区、版本库，还有就是理解Git跟踪并管理的是修改，而非文件。 设置12$ git config --global user.name &amp;quot;Your Name&amp;quot;$">
+<meta property="og:updated_time" content="2017-06-07T16:01:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Git常用操作总结">
-<meta name="twitter:description" content="用Git比较久了，之前一直在Win用的TortoiseGit，现在命令行用的比较多，所以把一些指令总结一下，以便回顾和查询。
-理解这些指令，觉得最重要的是理解Git的内部原理，比如Git的分布式版本控制，分清楚工作区、暂存区、版本库，还有就是理解Git跟踪并管理的是修改，而非文件。
-设置12$ git config --global user.name &quot;Your Name&quot;$ git confi">
+<meta name="twitter:description" content="用Git比较久了，之前一直在Win用的TortoiseGit，现在命令行用的比较多，所以把一些指令总结一下，以便回顾和查询。 理解这些指令，觉得最重要的是理解Git的内部原理，比如Git的分布式版本控制，分清楚工作区、暂存区、版本库，还有就是理解Git跟踪并管理的是修改，而非文件。 设置12$ git config --global user.name &amp;quot;Your Name&amp;quot;$">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -75,8 +71,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/archives">文章</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 				<li><a href="/project">项目</a></li>
 	        
 				<li><a href="/douban">读书</a></li>
@@ -88,7 +82,11 @@ var _hmt = _hmt || [];
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有分类</a>
+    			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -137,8 +135,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -157,17 +153,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">文章</a></li>
+					<li style="width: 20%"><a href="/archives">文章</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 20%"><a href="/project">项目</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/project">项目</a></li>
+					<li style="width: 20%"><a href="/douban">读书</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/douban">读书</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/about">关于我</a></li>
+					<li style="width: 20%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -204,18 +198,18 @@ var _hmt = _hmt || [];
       
         <p>用Git比较久了，之前一直在Win用的TortoiseGit，现在命令行用的比较多，所以把一些指令总结一下，以便回顾和查询。</p>
 <p>理解这些指令，觉得最重要的是理解Git的内部原理，比如Git的分布式版本控制，分清楚工作区、暂存区、版本库，还有就是理解Git跟踪并管理的是修改，而非文件。</p>
-<h3 id="设置">设置</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global user<span class="class">.name</span> <span class="string">"Your Name"</span></span><br><span class="line">$ git config --global user<span class="class">.email</span> <span class="string">"email@example.com"</span></span><br></pre></td></tr></table></figure>
+<h3 id="设置">设置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;Your Name&quot;</div><div class="line">$ git config --global user.email &quot;email@example.com&quot;</div></pre></td></tr></table></figure>
 <h3 id="提交">提交</h3><p>git tracked的是修改，而不是文件</p>
-<figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">#将“当前修改”移动到暂存区(stage)</span></span><br><span class="line"><span class="variable">$ </span>git add somfile.txt</span><br><span class="line"><span class="comment">#将暂存区修改提交</span></span><br><span class="line"><span class="variable">$ </span>git commit -m <span class="string">"Add somfile.txt."</span></span><br></pre></td></tr></table></figure>
-<h3 id="状态">状态</h3><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git status</span><br><span class="line"><span class="variable">$ </span>git diff</span><br></pre></td></tr></table></figure>
-<h3 id="回退">回退</h3><figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"># 放弃工作区修改</span><br><span class="line">$ git checkout <span class="comment">-- file.name</span></span><br><span class="line">$ git checkout <span class="comment">-- .</span></span><br><span class="line"></span><br><span class="line"># 取消<span class="operator"><span class="keyword">commit</span>(比如需要重写<span class="keyword">commit</span>信息)</span><br><span class="line">$ git <span class="keyword">reset</span> <span class="comment">--soft HEAD</span></span><br><span class="line"></span><br><span class="line"># 取消<span class="keyword">commit</span>、<span class="keyword">add</span>(重新提交代码和<span class="keyword">commit</span>)</span><br><span class="line">$ git <span class="keyword">reset</span> HEAD</span><br><span class="line">$ git <span class="keyword">reset</span> <span class="comment">--mixed HEAD</span></span><br><span class="line"></span><br><span class="line"># 取消<span class="keyword">commit</span>、<span class="keyword">add</span>、工作区修改(需要完全重置)</span><br><span class="line">$ git <span class="keyword">reset</span> <span class="comment">--hard HEAD</span></span></span><br></pre></td></tr></table></figure>
-<h3 id="记录">记录</h3><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git reflog</span><br><span class="line"><span class="variable">$ </span>git log</span><br></pre></td></tr></table></figure>
-<h3 id="删除">删除</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ <span class="keyword">rm</span> <span class="keyword">file</span>.name</span><br><span class="line">$ git <span class="keyword">rm</span> <span class="keyword">file</span>.name</span><br><span class="line">$ git commit -<span class="keyword">m</span> <span class="string">"Del"</span></span><br></pre></td></tr></table></figure>
-<h3 id="远程操作">远程操作</h3><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git remote add origin git<span class="variable">@github</span>.<span class="symbol">com:</span>michaelliao/learngit.git</span><br><span class="line"><span class="comment"># 第一次推送，-u(--set-upstream)指定默认上游</span></span><br><span class="line"><span class="variable">$ </span>git push -u origin master</span><br><span class="line"><span class="variable">$ </span>git push origin master</span><br></pre></td></tr></table></figure>
-<h3 id="克隆">克隆</h3><figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git clone https:<span class="comment">//github.com/Yikun/yikun.github.com.git path</span></span><br><span class="line">$ git clone git@github<span class="class">.com</span>:Yikun/yikun<span class="class">.github</span><span class="class">.com</span><span class="class">.git</span> path</span><br></pre></td></tr></table></figure>
-<h3 id="分支操作">分支操作</h3><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 产看当前分支</span></span><br><span class="line"><span class="variable">$ </span>git branch</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建分支</span></span><br><span class="line"><span class="variable">$ </span>git branch dev</span><br><span class="line"><span class="comment"># 切换分支</span></span><br><span class="line"><span class="variable">$ </span>git checkout dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 创建并checkout分支</span></span><br><span class="line"><span class="variable">$ </span>git checkout -b dev</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 合并分支</span></span><br><span class="line"><span class="variable">$ </span>git merge dev</span><br><span class="line"></span><br><span class="line"><span class="comment"># 删除分支</span></span><br><span class="line"><span class="variable">$ </span>git branch -d dev</span><br></pre></td></tr></table></figure>
-<h3 id="标签">标签</h3><figure class="highlight elixir"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="variable">$ </span>git tag <span class="number">0</span>.<span class="number">1.1</span></span><br><span class="line"><span class="variable">$ </span>git push origin --tags</span><br></pre></td></tr></table></figure>
-<h3 id="同步上游">同步上游</h3><figure class="highlight oxygene"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 1. 添加上游</span></span><br><span class="line">git remote <span class="keyword">add</span> upstream</span><br><span class="line"><span class="comment">// 2. 切换需要同步的分支</span></span><br><span class="line">git checkout XXX</span><br><span class="line"><span class="comment">// 3. 更新上游</span></span><br><span class="line">git remote update upstream</span><br><span class="line">git rebase upstream/<span class="comment">&#123;branch name&#125;</span></span><br><span class="line"><span class="comment">// 4. 解决冲突</span></span><br><span class="line"><span class="comment">// 手动解决冲突</span></span><br><span class="line">git <span class="keyword">add</span> .</span><br><span class="line">git rebase --<span class="keyword">continue</span></span><br><span class="line"><span class="comment">// 5. push</span></span><br><span class="line">git push</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#将“当前修改”移动到暂存区(stage)</div><div class="line">$ git add somfile.txt</div><div class="line">#将暂存区修改提交</div><div class="line">$ git commit -m &quot;Add somfile.txt.&quot;</div></pre></td></tr></table></figure>
+<h3 id="状态">状态</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git status</div><div class="line">$ git diff</div></pre></td></tr></table></figure>
+<h3 id="回退">回退</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># 放弃工作区修改</div><div class="line">$ git checkout -- file.name</div><div class="line">$ git checkout -- .</div><div class="line"></div><div class="line"># 取消commit(比如需要重写commit信息)</div><div class="line">$ git reset --soft HEAD</div><div class="line"></div><div class="line"># 取消commit、add(重新提交代码和commit)</div><div class="line">$ git reset HEAD</div><div class="line">$ git reset --mixed HEAD</div><div class="line"></div><div class="line"># 取消commit、add、工作区修改(需要完全重置)</div><div class="line">$ git reset --hard HEAD</div></pre></td></tr></table></figure>
+<h3 id="记录">记录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git reflog</div><div class="line">$ git log</div></pre></td></tr></table></figure>
+<h3 id="删除">删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ rm file.name</div><div class="line">$ git rm file.name</div><div class="line">$ git commit -m &quot;Del&quot;</div></pre></td></tr></table></figure>
+<h3 id="远程操作">远程操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git remote add origin git@github.com:michaelliao/learngit.git</div><div class="line"># 第一次推送，-u(--set-upstream)指定默认上游</div><div class="line">$ git push -u origin master</div><div class="line">$ git push origin master</div></pre></td></tr></table></figure>
+<h3 id="克隆">克隆</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git clone https://github.com/Yikun/yikun.github.com.git path</div><div class="line">$ git clone git@github.com:Yikun/yikun.github.com.git path</div></pre></td></tr></table></figure>
+<h3 id="分支操作">分支操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"># 产看当前分支</div><div class="line">$ git branch</div><div class="line"></div><div class="line"># 创建分支</div><div class="line">$ git branch dev</div><div class="line"># 切换分支</div><div class="line">$ git checkout dev</div><div class="line"></div><div class="line"># 创建并checkout分支</div><div class="line">$ git checkout -b dev</div><div class="line"></div><div class="line"></div><div class="line"># 合并分支</div><div class="line">$ git merge dev</div><div class="line"></div><div class="line"># 删除分支</div><div class="line">$ git branch -d dev</div></pre></td></tr></table></figure>
+<h3 id="标签">标签</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git tag 0.1.1</div><div class="line">$ git push origin --tags</div></pre></td></tr></table></figure>
+<h3 id="同步上游">同步上游</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// 1. 添加上游</div><div class="line">git remote add upstream</div><div class="line">// 2. 切换需要同步的分支</div><div class="line">git checkout XXX</div><div class="line">// 3. 更新上游</div><div class="line">git remote update upstream</div><div class="line">git rebase upstream/&#123;branch name&#125;</div><div class="line">// 4. 解决冲突</div><div class="line">// 手动解决冲突</div><div class="line">git add .</div><div class="line">git rebase --continue</div><div class="line">// 5. push</div><div class="line">git push</div></pre></td></tr></table></figure>
 
       
 
@@ -316,7 +310,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yikun.github.io/2015/04/25/Git常用操作总结/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLUlEQVR42u3azW6EMAxFYd7/panUVRdDONdmVOGcrCpmCvmo5Ponx4HX+bvS638XuTP5fmvJkCHjtYxzua4eRrZydZ/1ncndPlBlyJCxAYOHwitGJ8jyTy+vy5AhQwZI13hKlwZcGTJkyOgEXLIhEqBlyJAhgzBqxSfZ6Prx/1CLy5Ah44WMfjL3vZ+/ON+QIUPGSxhnuDoBulbKol3JkCFjNIOka+mokuP7I8+DZ50yZMh4OSMtU9fIdJBZ+87N30SGDBnjGGlrjFyvvQ7yClDXUIYMGYMYpOwMYnYp6UyPelzW4jJkyBjNqDXli02x9nG0D5/KkCFjNCNt2deOgnXKVL4TGTJkTGWkrbTOUIGUqbVwL0OGjB0YaZjjQ00+MEhbbzJkyNiH8dRhC76VdGoR8GTIkLElo3bYixS96YGMYBIrQ4aMcYwg8XqoECVPXLfzUC0uQ4aMQYx+Soce0D6QgXYlQ4aMDRg8pUsPW/Cx6PopN69AhgwZoxm81OwngrXwzUeqMmTImMdI22QkReNb74TvYlUtQ4aM1zJqvFp6V2ylrV+uDBkyRjN4w4uka2myyO9JXq4MGTKmMs5wdVr5nUYe+r8hQ4aMoQy+OkVp7eAFB8uQIWMHRmcAWRtz1rpkN+9ehgwZGzDSINtJ+L5ygEyGDBkyHh1Jks3FwVqGDBky2owUzKkyZMjYh8EPe5GCNi2V+69GhgwZsxn9ApIjSeis/ZYMGTKGMn4ARWGodjeR6sYAAAAASUVORK5CYII=" alt="微信分享二维码">
     </div>
 </div>
 
@@ -404,8 +398,8 @@ gitment.render('gitmentContainer')
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -421,7 +415,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      
+      
     
+      
+      
       
     
       
@@ -432,7 +430,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有分类</a></li>
+      
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -441,7 +443,118 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+    	</section>
     
 
     

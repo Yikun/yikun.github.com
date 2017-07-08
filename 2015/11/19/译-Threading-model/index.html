@@ -8,21 +8,17 @@
   <link rel="dns-prefetch" href="http://yikun.github.io">
   <title>[译]Threading model | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Threading model
-All OpenStack services use green thread model of threading, implemented through using the Python eventlet and greenlet libraries.
-Green threads use a cooperative model of threading: th">
+  <meta name="description" content="Threading model All OpenStack services use green thread model of threading, implemented through using the Python eventlet and greenlet libraries. Green threads use a cooperative model of threading: th">
+<meta name="keywords" content="OpenStack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[译]Threading model">
 <meta property="og:url" content="http://yikun.github.io/2015/11/19/译-Threading-model/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="Threading model
-All OpenStack services use green thread model of threading, implemented through using the Python eventlet and greenlet libraries.
-Green threads use a cooperative model of threading: th">
+<meta property="og:description" content="Threading model All OpenStack services use green thread model of threading, implemented through using the Python eventlet and greenlet libraries. Green threads use a cooperative model of threading: th">
+<meta property="og:updated_time" content="2017-06-07T16:01:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[译]Threading model">
-<meta name="twitter:description" content="Threading model
-All OpenStack services use green thread model of threading, implemented through using the Python eventlet and greenlet libraries.
-Green threads use a cooperative model of threading: th">
+<meta name="twitter:description" content="Threading model All OpenStack services use green thread model of threading, implemented through using the Python eventlet and greenlet libraries. Green threads use a cooperative model of threading: th">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -75,8 +71,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/archives">文章</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 				<li><a href="/project">项目</a></li>
 	        
 				<li><a href="/douban">读书</a></li>
@@ -88,7 +82,11 @@ var _hmt = _hmt || [];
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有分类</a>
+    			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -137,8 +135,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -157,17 +153,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">文章</a></li>
+					<li style="width: 20%"><a href="/archives">文章</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 20%"><a href="/project">项目</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/project">项目</a></li>
+					<li style="width: 20%"><a href="/douban">读书</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/douban">读书</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/about">关于我</a></li>
+					<li style="width: 20%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -215,7 +209,7 @@ var _hmt = _hmt || [];
 <p>If a code path takes a long time to execute and does not contain any methods that trigger an eventlet context switch, the long-running thread will block any pending threads.</p>
 <p>This scenario can be avoided by adding calls to the eventlet sleep method in the long-running code path. The sleep call will trigger a context switch if there are pending threads, and using an argument of 0 will avoid introducing delays in the case that there is only a single green thread:</p>
 </blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> eventlet <span class="keyword">import</span> greenthread</span><br><span class="line">...</span><br><span class="line">greenthread.sleep(<span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> eventlet <span class="keyword">import</span> greenthread</div><div class="line">...</div><div class="line">greenthread.sleep(<span class="number">0</span>)</div></pre></td></tr></table></figure>
 <p>理解：对于那些耗时很长的任务，需要我们添加一些yield方法，来避免在单个的调用中阻塞很久。</p>
 <h2 id="MySQL_access_and_eventlet">MySQL access and eventlet</h2><blockquote>
 <p>Queries to the MySQL database will block the main thread of a service. This is because OpenStack services use an external C library for accessing the MySQL database. Since eventlet cannot use monkey-patching to intercept blocking calls in a C library, the resulting database query blocks the thread.</p>
@@ -322,7 +316,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yikun.github.io/2015/11/19/译-Threading-model/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACMUlEQVR42u3aS47CQAxF0ex/00HqEROS++wCdVw3I4QIqUNLbv+OA1/n3/X++v2dT59PP0Pual0yZMh4LOO8vK4Z6VHSe8nZZMiQsQ+DB1l+RH646+den02GDBkyPn2GvFNLHGXIkCHj2wE3TQFJGipDhgwZvIjtp32dsnZZLS5DhowHMmqDgd+8/vp8Q4YMGf+ecYZXJx3stO1uTiVDhozRjLRxlqZuPLymqedB6loZMmQMYnBSZwlj1eoYwsiQIWMQI13n6vDIr5i252TIkLED4/qI/TZ9bTyZppIyZMjYh0GySJ7G8aYb/zYUcGXIkDGUQVppnaPz0jc9CfqbyJAhYwRj1eixth1RW7C4SQ1lyJAxiMGDWq3QTRcsis+VIUPGBox+OpiuYtQGqDcBV4YMGUMZaROtE1LXwtAIU4YMGYMY6XCxX3byH4I36WTIkDGVQRrutYSvOJ1I00H+ABkyZDyW0UkQeUDkaxy1tTMZMmTswCBJW7/dRiIkCbXov4cMGTIGMXg4q612kWCarmIEGa4MGTIGMWoAnsx1WmmoCShDhozRjHQMQAaKtW9bcJcMGTKGMs7w4g2ytQH9puiVIUPGaEa6KpGGYP5DpMMGGTJk7MbohM60HE1TwLiIlSFDxmhGmsDVDhFHehD0ZciQISMldQI3D9OtQaYMGTK2YdQOwYteEvoXBFwZMmQ8ipEuTNQK3dqhUcUqQ4aM0YxaAbmq08XDMRlwypAhYxzjBcmK0T/hhfLyAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -410,8 +404,8 @@ gitment.render('gitmentContainer')
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -427,7 +421,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      
+      
     
+      
+      
       
     
       
@@ -438,7 +436,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有分类</a></li>
+      
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -447,7 +449,118 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+    	</section>
     
 
     

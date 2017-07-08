@@ -8,22 +8,19 @@
   <link rel="dns-prefetch" href="http://yikun.github.io">
   <title>如何设计实现一个LRU Cache？ | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 什么是LRU Cache？之前，在LeetCode上看到一个LRU Cache实现的题目，题目描述是这样的：
-
-Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.get(key) -">
+  <meta name="description" content="1. 什么是LRU Cache？之前，在LeetCode上看到一个LRU Cache实现的题目，题目描述是这样的：  Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.get(key) -">
+<meta name="keywords" content="系统">
 <meta property="og:type" content="article">
 <meta property="og:title" content="如何设计实现一个LRU Cache？">
 <meta property="og:url" content="http://yikun.github.io/2015/04/03/如何设计实现一个LRU-Cache？/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="1. 什么是LRU Cache？之前，在LeetCode上看到一个LRU Cache实现的题目，题目描述是这样的：
-
-Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.get(key) -">
+<meta property="og:description" content="1. 什么是LRU Cache？之前，在LeetCode上看到一个LRU Cache实现的题目，题目描述是这样的：  Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.get(key) -">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/6984935/92033a96-da60-11e4-8754-66135bb0d233.png">
+<meta property="og:updated_time" content="2017-06-07T16:01:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="如何设计实现一个LRU Cache？">
-<meta name="twitter:description" content="1. 什么是LRU Cache？之前，在LeetCode上看到一个LRU Cache实现的题目，题目描述是这样的：
-
-Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.get(key) -">
+<meta name="twitter:description" content="1. 什么是LRU Cache？之前，在LeetCode上看到一个LRU Cache实现的题目，题目描述是这样的：  Design and implement a data structure for Least Recently Used (LRU) cache. It should support the following operations: get and set.get(key) -">
+<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/1736354/6984935/92033a96-da60-11e4-8754-66135bb0d233.png">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -76,8 +73,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/archives">文章</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 				<li><a href="/project">项目</a></li>
 	        
 				<li><a href="/douban">读书</a></li>
@@ -89,7 +84,11 @@ var _hmt = _hmt || [];
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有分类</a>
+    			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -138,8 +137,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -158,17 +155,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">文章</a></li>
+					<li style="width: 20%"><a href="/archives">文章</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 20%"><a href="/project">项目</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/project">项目</a></li>
+					<li style="width: 20%"><a href="/douban">读书</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/douban">读书</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/about">关于我</a></li>
+					<li style="width: 20%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -210,9 +205,9 @@ var _hmt = _hmt || [];
 <p>简单的说，就是保证基本的get和set的功能的同时，还要保证最近访问(get或put)的节点保持在限定容量的Cache中，如果超过容量则应该把LRU(近期最少使用)的节点删除掉。</p>
 <p>那么我们思考一个问题：如何设计实现一个LRU Cache？<br>那么，我们可能需要使用类似这样的数据结构去实现这个LRU Cache：<br><img src="https://cloud.githubusercontent.com/assets/1736354/6984935/92033a96-da60-11e4-8754-66135bb0d233.png" alt="lru"><br>这不就是LinkedHashMap吗！<br>这样做的好处是，<code>get</code>和<code>set</code>在不冲突的情况下可以保证O(1)的复杂度，同时，也可以通过双向链表来保证LRU的<code>删除</code>和<code>更新</code>操作也能保证O(1)的复杂度。</p>
 <h3 id="2-实现思路">2.实现思路</h3><p>在学习了HashMap(#7 )和LinkedHashMap(#8 )后，是不是觉得这俩数据结构简直太适合做LRU Cache了！那么动手实现一下：<br><strong>基于HashMap和双向链表的实现</strong></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</span><br><span class="line">        Node pre;</span><br><span class="line">        Node next;</span><br><span class="line">        Integer key;</span><br><span class="line">        Integer val;</span><br><span class="line"></span><br><span class="line">        Node(Integer k, Integer v) &#123;</span><br><span class="line">            key = k;</span><br><span class="line">            val = v;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    Map&lt;Integer, Node&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, Node&gt;();</span><br><span class="line">    <span class="comment">// The head (eldest) of the doubly linked list.</span></span><br><span class="line">    Node head;</span><br><span class="line">    <span class="comment">// The tail (youngest) of the doubly linked list.</span></span><br><span class="line">    Node tail;</span><br><span class="line">    <span class="keyword">int</span> cap;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        cap = capacity;</span><br><span class="line">        head = <span class="keyword">new</span> Node(<span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">        tail = <span class="keyword">new</span> Node(<span class="keyword">null</span>, <span class="keyword">null</span>);</span><br><span class="line">        head.next = tail;</span><br><span class="line">        tail.pre = head;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        Node n = map.get(key);</span><br><span class="line">        <span class="keyword">if</span>(n!=<span class="keyword">null</span>) &#123;</span><br><span class="line">            n.pre.next = n.next;</span><br><span class="line">            n.next.pre = n.pre;</span><br><span class="line">            appendTail(n);</span><br><span class="line">            <span class="keyword">return</span> n.val;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        Node n = map.get(key);</span><br><span class="line">        <span class="comment">// existed</span></span><br><span class="line">        <span class="keyword">if</span>(n!=<span class="keyword">null</span>) &#123;</span><br><span class="line">            n.val = value;</span><br><span class="line">            map.put(key, n);</span><br><span class="line">            n.pre.next = n.next;</span><br><span class="line">            n.next.pre = n.pre;</span><br><span class="line">            appendTail(n);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="comment">// else &#123;</span></span><br><span class="line">        <span class="keyword">if</span>(map.size() == cap) &#123;</span><br><span class="line">            Node tmp = head.next;</span><br><span class="line">            head.next = head.next.next;</span><br><span class="line">            head.next.pre = head;</span><br><span class="line">            map.remove(tmp.key);</span><br><span class="line">        &#125;</span><br><span class="line">        n = <span class="keyword">new</span> Node(key, value);</span><br><span class="line">        <span class="comment">// youngest node append taill</span></span><br><span class="line">        appendTail(n);</span><br><span class="line">        map.put(key, n);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">appendTail</span><span class="params">(Node n)</span> </span>&#123;</span><br><span class="line">        n.next = tail;</span><br><span class="line">        n.pre = tail.pre;</span><br><span class="line">        tail.pre.next = n;</span><br><span class="line">        tail.pre = n;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</div><div class="line">    <span class="class"><span class="keyword">class</span> <span class="title">Node</span> </span>&#123;</div><div class="line">        Node pre;</div><div class="line">        Node next;</div><div class="line">        Integer key;</div><div class="line">        Integer val;</div><div class="line"></div><div class="line">        Node(Integer k, Integer v) &#123;</div><div class="line">            key = k;</div><div class="line">            val = v;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    Map&lt;Integer, Node&gt; map = <span class="keyword">new</span> HashMap&lt;Integer, Node&gt;();</div><div class="line">    <span class="comment">// The head (eldest) of the doubly linked list.</span></div><div class="line">    Node head;</div><div class="line">    <span class="comment">// The tail (youngest) of the doubly linked list.</span></div><div class="line">    Node tail;</div><div class="line">    <span class="keyword">int</span> cap;</div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</div><div class="line">        cap = capacity;</div><div class="line">        head = <span class="keyword">new</span> Node(<span class="keyword">null</span>, <span class="keyword">null</span>);</div><div class="line">        tail = <span class="keyword">new</span> Node(<span class="keyword">null</span>, <span class="keyword">null</span>);</div><div class="line">        head.next = tail;</div><div class="line">        tail.pre = head;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</div><div class="line">        Node n = map.get(key);</div><div class="line">        <span class="keyword">if</span>(n!=<span class="keyword">null</span>) &#123;</div><div class="line">            n.pre.next = n.next;</div><div class="line">            n.next.pre = n.pre;</div><div class="line">            appendTail(n);</div><div class="line">            <span class="keyword">return</span> n.val;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</div><div class="line">        Node n = map.get(key);</div><div class="line">        <span class="comment">// existed</span></div><div class="line">        <span class="keyword">if</span>(n!=<span class="keyword">null</span>) &#123;</div><div class="line">            n.val = value;</div><div class="line">            map.put(key, n);</div><div class="line">            n.pre.next = n.next;</div><div class="line">            n.next.pre = n.pre;</div><div class="line">            appendTail(n);</div><div class="line">            <span class="keyword">return</span>;</div><div class="line">        &#125;</div><div class="line">        <span class="comment">// else &#123;</span></div><div class="line">        <span class="keyword">if</span>(map.size() == cap) &#123;</div><div class="line">            Node tmp = head.next;</div><div class="line">            head.next = head.next.next;</div><div class="line">            head.next.pre = head;</div><div class="line">            map.remove(tmp.key);</div><div class="line">        &#125;</div><div class="line">        n = <span class="keyword">new</span> Node(key, value);</div><div class="line">        <span class="comment">// youngest node append taill</span></div><div class="line">        appendTail(n);</div><div class="line">        map.put(key, n);</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">private</span> <span class="keyword">void</span> <span class="title">appendTail</span><span class="params">(Node n)</span> </span>&#123;</div><div class="line">        n.next = tail;</div><div class="line">        n.pre = tail.pre;</div><div class="line">        tail.pre.next = n;</div><div class="line">        tail.pre = n;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p><strong>基于LinkedHashMap的实现</strong><br>HashMap+双向链表？这不就是LinkedHashMap吗！</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">private</span> <span class="keyword">int</span> capacity;</span><br><span class="line">    <span class="keyword">private</span> Map&lt;Integer, Integer&gt; cache;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">this</span>.capacity = capacity;</span><br><span class="line">        <span class="keyword">this</span>.cache = <span class="keyword">new</span> java.util.LinkedHashMap&lt;Integer, Integer&gt; (capacity, <span class="number">0.75f</span>, <span class="keyword">true</span>) &#123;</span><br><span class="line">            <span class="comment">// 定义put后的移除规则，大于容量就删除eldest</span></span><br><span class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">removeEldestEntry</span><span class="params">(Map.Entry&lt;Integer, Integer&gt; eldest)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> size() &gt; capacity;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span> (cache.containsKey(key)) &#123;</span><br><span class="line">            <span class="keyword">return</span> cache.get(key);</span><br><span class="line">        &#125; <span class="keyword">else</span></span><br><span class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</span><br><span class="line">        cache.put(key, value);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LRUCache</span> </span>&#123;</div><div class="line"></div><div class="line">    <span class="keyword">private</span> <span class="keyword">int</span> capacity;</div><div class="line">    <span class="keyword">private</span> Map&lt;Integer, Integer&gt; cache;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="title">LRUCache</span><span class="params">(<span class="keyword">int</span> capacity)</span> </span>&#123;</div><div class="line">        <span class="keyword">this</span>.capacity = capacity;</div><div class="line">        <span class="keyword">this</span>.cache = <span class="keyword">new</span> java.util.LinkedHashMap&lt;Integer, Integer&gt; (capacity, <span class="number">0.75f</span>, <span class="keyword">true</span>) &#123;</div><div class="line">            <span class="comment">// 定义put后的移除规则，大于容量就删除eldest</span></div><div class="line">            <span class="function"><span class="keyword">protected</span> <span class="keyword">boolean</span> <span class="title">removeEldestEntry</span><span class="params">(Map.Entry&lt;Integer, Integer&gt; eldest)</span> </span>&#123;</div><div class="line">                <span class="keyword">return</span> size() &gt; capacity;</div><div class="line">            &#125;</div><div class="line">        &#125;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">get</span><span class="params">(<span class="keyword">int</span> key)</span> </span>&#123;</div><div class="line">        <span class="keyword">if</span> (cache.containsKey(key)) &#123;</div><div class="line">            <span class="keyword">return</span> cache.get(key);</div><div class="line">        &#125; <span class="keyword">else</span></div><div class="line">            <span class="keyword">return</span> -<span class="number">1</span>;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">set</span><span class="params">(<span class="keyword">int</span> key, <span class="keyword">int</span> value)</span> </span>&#123;</div><div class="line">        cache.put(key, value);</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 
       
 
@@ -313,7 +308,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yikun.github.io/2015/04/03/如何设计实现一个LRU-Cache？/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuElEQVR42u3aQXLjMAwEQP//096qrb1txAwAIvGhdXLFscTmAaSGeL3i6/33evqcXE93+/8+T09/+vbChYeHh9ca+nlYT5/P9zkPMXnKeTzJVOLh4eHt8eaLwd3SP5liPDw8vM/hnZHJpCT73vzpeHh4eJ/POxf9anBQHS4eHh7ep/Hyl/8zo7fVTiZrPWvBw8PDi3nzA7Cf//yj53t4eHh48ZKQH4lVY9/tEf57Ch4eHt4Cb97SVA0dJmFENdLFw8PD2+DlL/nVuHYScCTg6Ld4eHh4a7xbZXreajBpWfjibnh4eHgLvF4pT5aQapRQLf3lVwI8PDy8q7w8t6gOsRoozIPjx84IPDw8vGVedVObb3DzsDhfML75Fg8PD2+Zl0e01d9Wt+bVSX/8Ox4eHt4Cr/mDVnNVvmXPt+DlGBcPDw9vzOuV5rsLRrXo5yEFHh4e3l1eL2DNg4PqQpJPYrJBx8PDw9vgVaPVJHjttRfkB1rVQzI8PDy8u7xqS1OyYDSPqRbCETw8PLwNXqF1abCEnEt/PtHNxgI8PDy8q7z8Rvlxfl7Eq0PPv8XDw8Pb403Ozd7BlU9WdSoLjQt4eHh4C7xqGNF7TB7IFjrF8uM3PDw8vKu8fMvbC17z0j/ZQEdZCx4eHt5VXu+oKR9u3oY1D0fw8PDwtnn5YVW1ZFcHmocazWM5PDw8vEu86qv+pAmgGlvMN+h4eHh4e7xkGcibsaqNra9L12M+jYeHh3eJ9y5eeeG+tTxU//OLnjI8PDy8q7xewU0Ci7whoBd/zKMQPDw8vAmvuhj0MDns8sKAh4eHt8bbONTPJ+tuDIGHh4f3abxeQT8X9/xu5aAZDw8P71d5+Tb3VgtCDv7mfA8PDw9vgZdsgnsFegKbLB54eHh4e7xer9Ykrk2KezVEHsUceHh4eCnvD4osc6ieKgSoAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -401,8 +396,8 @@ gitment.render('gitmentContainer')
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -418,7 +413,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      
+      
     
+      
+      
       
     
       
@@ -429,7 +428,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有分类</a></li>
+      
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -438,7 +441,118 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+    	</section>
     
 
     

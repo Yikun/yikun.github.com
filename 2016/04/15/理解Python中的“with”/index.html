@@ -8,30 +8,17 @@
   <link rel="dns-prefetch" href="http://yikun.github.io">
   <title>理解Python中的“with” | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 缘起Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现：
-12with open( &quot;a.txt&quot; ) as f :    # do something
-大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，with到底做了什么呢？
-从《Python学习手册》中是这么描述的：
-
-简而言之，with/a">
+  <meta name="description" content="1. 缘起Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现： 12with open( &quot;a.txt&quot; ) as f :    # do something 大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，with到底做了什么呢？ 从《Python学习手册》中是这么描述的：  简而言之，with/a">
+<meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="理解Python中的“with”">
 <meta property="og:url" content="http://yikun.github.io/2016/04/15/理解Python中的“with”/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="1. 缘起Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现：
-12with open( &quot;a.txt&quot; ) as f :    # do something
-大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，with到底做了什么呢？
-从《Python学习手册》中是这么描述的：
-
-简而言之，with/a">
+<meta property="og:description" content="1. 缘起Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现： 12with open( &quot;a.txt&quot; ) as f :    # do something 大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，with到底做了什么呢？ 从《Python学习手册》中是这么描述的：  简而言之，with/a">
+<meta property="og:updated_time" content="2017-06-07T16:01:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解Python中的“with”">
-<meta name="twitter:description" content="1. 缘起Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现：
-12with open( &quot;a.txt&quot; ) as f :    # do something
-大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，with到底做了什么呢？
-从《Python学习手册》中是这么描述的：
-
-简而言之，with/a">
+<meta name="twitter:description" content="1. 缘起Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现： 12with open( &quot;a.txt&quot; ) as f :    # do something 大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，with到底做了什么呢？ 从《Python学习手册》中是这么描述的：  简而言之，with/a">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -84,8 +71,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/archives">文章</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 				<li><a href="/project">项目</a></li>
 	        
 				<li><a href="/douban">读书</a></li>
@@ -97,7 +82,11 @@ var _hmt = _hmt || [];
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有分类</a>
+    			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -146,8 +135,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -166,17 +153,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">文章</a></li>
+					<li style="width: 20%"><a href="/archives">文章</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 20%"><a href="/project">项目</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/project">项目</a></li>
+					<li style="width: 20%"><a href="/douban">读书</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/douban">读书</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/about">关于我</a></li>
+					<li style="width: 20%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -212,14 +197,14 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="1-_缘起">1. 缘起</h3><p>Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open( <span class="string">"a.txt"</span> ) <span class="keyword">as</span> f :</span><br><span class="line">    <span class="comment"># do something</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> open( <span class="string">"a.txt"</span> ) <span class="keyword">as</span> f :</div><div class="line">    <span class="comment"># do something</span></div></pre></td></tr></table></figure>
 <p>大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，<code>with</code>到底做了什么呢？</p>
 <p>从《Python学习手册》中是这么描述的：</p>
 <blockquote>
 <p>简而言之，with/as语句的设计是作为常见try/finally用法模式的替代方案。就像try/finally语句，with/as语句也是用于定义必须执行的终止或“清理”行为,无论步骤中是否发生异常。不过，和try/finally不同的是，with语句支持更丰富的基于对象的协议，可以为代码块定义支持进入和离开动作。</p>
 </blockquote>
 <p>也就是说对于代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> expression [<span class="keyword">as</span> varible]:</span><br><span class="line">    <span class="keyword">with</span>-block</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> expression [<span class="keyword">as</span> varible]:</div><div class="line">    <span class="keyword">with</span>-block</div></pre></td></tr></table></figure>
 <p>with语句的实际工作方式：</p>
 <blockquote>
 <p>1.计算表达式，所得到的对象是<strong>环境管理器</strong>，他必须有<strong>enter</strong>，<strong>exit</strong>两个方法。<br>2.环境管理器的<strong>enter</strong>方法会被调用。如果as存在，<strong>enter</strong>的返回值赋值给as后面的变量，否则，被丢弃。<br>3.代码块中嵌套的代码（with-block）会执行。<br>4.如果with代码块会引发异常，<strong>exit</strong>(type,value,traceback)方法就会被调用。这些也是由sys.exec_info返回相同的值。如果此方法返回为假，则异常会重新引发。否则，异常会中止。正常情况下异常是应该被重新引发，这样的话传递到with语句外。<br>5.如果with代码块没有引发异常，<strong>exit</strong>方法依然会调用，其type、value以及traceback参数会以None传递。</p>
@@ -230,12 +215,12 @@ var _hmt = _hmt || [];
 <p>This PEP adds a new statement “with” to the Python language to make it possible to factor out standard uses of try/finally statements.<br>In this PEP, context managers provide <strong>enter</strong>() and <strong>exit</strong>() methods that are invoked on entry to and exit from the body of the with statement.</p>
 </blockquote>
 <p>对于下面的操作：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> EXPR <span class="keyword">as</span> VAR:</span><br><span class="line">            BLOCK</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> EXPR <span class="keyword">as</span> VAR:</div><div class="line">            BLOCK</div></pre></td></tr></table></figure>
 <p>等价于</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mgr = (EXPR)</span><br><span class="line">exit = type(mgr).__exit__  <span class="comment"># Not calling it yet</span></span><br><span class="line">value = type(mgr).__enter__(mgr)</span><br><span class="line">exc = <span class="keyword">True</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># 将__enter__函数调用的返回值返回给VAR</span></span><br><span class="line">        VAR = value  <span class="comment"># Only if "as VAR" is present</span></span><br><span class="line">        <span class="comment"># 执行BLOCK</span></span><br><span class="line">        BLOCK</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="comment"># 异常处理，The exceptional case is handled here</span></span><br><span class="line">        exc = <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> exit(mgr, *sys.exc_info()):</span><br><span class="line">            <span class="keyword">raise</span></span><br><span class="line">        <span class="comment"># The exception is swallowed if exit() returns true</span></span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    <span class="comment"># 清理，The normal and non-local-goto cases are handled here</span></span><br><span class="line">    <span class="keyword">if</span> exc:</span><br><span class="line">        exit(mgr, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">mgr = (EXPR)</div><div class="line">exit = type(mgr).__exit__  <span class="comment"># Not calling it yet</span></div><div class="line">value = type(mgr).__enter__(mgr)</div><div class="line">exc = <span class="keyword">True</span></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        <span class="comment"># 将__enter__函数调用的返回值返回给VAR</span></div><div class="line">        VAR = value  <span class="comment"># Only if "as VAR" is present</span></div><div class="line">        <span class="comment"># 执行BLOCK</span></div><div class="line">        BLOCK</div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        <span class="comment"># 异常处理，The exceptional case is handled here</span></div><div class="line">        exc = <span class="keyword">False</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> exit(mgr, *sys.exc_info()):</div><div class="line">            <span class="keyword">raise</span></div><div class="line">        <span class="comment"># The exception is swallowed if exit() returns true</span></div><div class="line"><span class="keyword">finally</span>:</div><div class="line">    <span class="comment"># 清理，The normal and non-local-goto cases are handled here</span></div><div class="line">    <span class="keyword">if</span> exc:</div><div class="line">        exit(mgr, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>)</div></pre></td></tr></table></figure>
 <p>我们可以看到上述代码完整的处理了初始化及异常/正常场景的清理操作，这便是<code>with</code>的设计思想，化简了冗余的代码，把那些重复的工作以及异常处理操作交给写“EXPR”源码（比如open操作）的同学。</p>
 <h3 id="3-_更深入的学习">3. 更深入的学习</h3><p>我们继续深入的看下<a href="https://github.com/Yikun/Python3/blob/master/Lib/_pyio.py#L447" target="_blank" rel="external">Python3</a>中<strong>enter</strong>和<strong>exit</strong>的实现：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IOBase</span><span class="params">(metaclass=abc.ABCMeta)</span>:</span></span><br><span class="line">    <span class="comment"># ... ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">### Context manager ###</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__enter__</span><span class="params">(self)</span>:</span>  <span class="comment"># That's a forward reference</span></span><br><span class="line">        <span class="string">"""Context management protocol.  Returns self (an instance of IOBase)."""</span></span><br><span class="line">        self._checkClosed()</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__exit__</span><span class="params">(self, *args)</span>:</span></span><br><span class="line">        <span class="string">"""Context management protocol.  Calls close()"""</span></span><br><span class="line">        self.close()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">IOBase</span><span class="params">(metaclass=abc.ABCMeta)</span>:</span></div><div class="line">    <span class="comment"># ... ...</span></div><div class="line"></div><div class="line">    <span class="comment">### Context manager ###</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__enter__</span><span class="params">(self)</span>:</span>  <span class="comment"># That's a forward reference</span></div><div class="line">        <span class="string">"""Context management protocol.  Returns self (an instance of IOBase)."""</span></div><div class="line">        self._checkClosed()</div><div class="line">        <span class="keyword">return</span> self</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__exit__</span><span class="params">(self, *args)</span>:</span></div><div class="line">        <span class="string">"""Context management protocol.  Calls close()"""</span></div><div class="line">        self.close()</div></pre></td></tr></table></figure>
 <p>和我们预期的一致，在<strong>enter</strong>中返回了这个IO对象，然后在<strong>exit</strong>中，进行了清理。</p>
 <h3 id="参考资料">参考资料</h3><ol>
 <li>《Python学习手册》 </li>
@@ -346,7 +331,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yikun.github.io/2016/04/15/理解Python中的“with”/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACtUlEQVR42u3aQY7jMAwEwPn/p7PXXcza7halwIfyKTASS6UAIk3q5ye+Pr+uv+8nv/p9v33C/TdHFx4eHt546veMq2GSiSYj3n8znzMeHh7eaV4yoclmfT/K1fPbcIKHh4f3fl4SYNaS77Wn4eHh4b2Nlw+fL0QLxsPDw3sP71xRoJ1W/pzNtRY8PDy8mNeWEt7w+Uh/Dw8PD2/cVU/S5aSwmz9nMrf/jIKHh4d3gDdJi5NtelR+Ldtml7/Cw8PDO8BrM9K9B6ry6SZlZTw8PLzTvEnjanIU4H4Tb0e/nAkeHh7eMV4yTI5piwttK65YFDw8PLxjvLa02ibibdjIA8BD4MHDw8M7wPtOSFgrPbRF4YcGGB4eHt5W3lpjqf3OthJDOR88PDy8c7ykV5Z31dpW2VpIyF8G8PDw8Hbx8uZTm9TmBdwkLW6X+5+jA3h4eHjHePnmu6vNvyv5vgw/eHh4eAd481f9vEG1K0G/X7gIhoeHhzfmrR2Tyo9Ptc2ztpH2YMHDw8PbyvsE11r6u7Z8oxT5qhiBh4eHt5U3KR/kza0ii48T8TxNx8PDw/sOL9981w6qJsuxK/zg4eHhneCtlWInJdcWP2qM4eHh4W3lTV7y56Xb5FftIS08PDy807xkyKTI2xYm6inGpZDL/xAPDw/vAG+eBLcBYHJEoCgx4+Hh4X2d16a8bSurvdM27fDw8PBO89YaV/mQuxYuX0Q8PDy8vbxPea0dgcqnngeJaA54eHh4B3j5tdaIysu+OW/SfsPDw8PbxcuDwa421eRzW7DAw8PDO8ebtP+T0kCeEC+mxVdUPDw8vNfwigHKIJSXLTY3wPDw8PCO8dY267WFy4PTQzECDw8P7wCvLUa0Rwfy0vDa0avLvwoPDw/vAG9tc8+DR7tM7SJu6+/h4eHhPfP+AMq9CBRG+ZsjAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -434,8 +419,8 @@ gitment.render('gitmentContainer')
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -451,7 +436,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      
+      
     
+      
+      
       
     
       
@@ -462,7 +451,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有分类</a></li>
+      
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -471,7 +464,118 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+    	</section>
     
 
     

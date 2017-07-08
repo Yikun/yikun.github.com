@@ -9,11 +9,13 @@
   <title>Python3源码学习-编译Python源码 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="在进行源码学习的时候，“实践出真知”。因此，在进行源码学习的过程中，我们首先需要对源码进行编译，然后，对我们感兴趣的点进行log，甚至debug。本篇文章记录了我在进行Python 3.5.0源码编译时的一些过程。">
+<meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python3源码学习-编译Python源码">
 <meta property="og:url" content="http://yikun.github.io/2015/12/20/Python3源码学习-编译Python源码/index.html">
 <meta property="og:site_name" content="Yikun">
 <meta property="og:description" content="在进行源码学习的时候，“实践出真知”。因此，在进行源码学习的过程中，我们首先需要对源码进行编译，然后，对我们感兴趣的点进行log，甚至debug。本篇文章记录了我在进行Python 3.5.0源码编译时的一些过程。">
+<meta property="og:updated_time" content="2017-06-07T16:01:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3源码学习-编译Python源码">
 <meta name="twitter:description" content="在进行源码学习的时候，“实践出真知”。因此，在进行源码学习的过程中，我们首先需要对源码进行编译，然后，对我们感兴趣的点进行log，甚至debug。本篇文章记录了我在进行Python 3.5.0源码编译时的一些过程。">
@@ -69,8 +71,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/archives">文章</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 				<li><a href="/project">项目</a></li>
 	        
 				<li><a href="/douban">读书</a></li>
@@ -82,7 +82,11 @@ var _hmt = _hmt || [];
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有分类</a>
+    			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -131,8 +135,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -151,17 +153,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">文章</a></li>
+					<li style="width: 20%"><a href="/archives">文章</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 20%"><a href="/project">项目</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/project">项目</a></li>
+					<li style="width: 20%"><a href="/douban">读书</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/douban">读书</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/about">关于我</a></li>
+					<li style="width: 20%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -199,21 +199,21 @@ var _hmt = _hmt || [];
         <p>在进行源码学习的时候，“实践出真知”。因此，在进行源码学习的过程中，我们首先需要对源码进行编译，然后，对我们感兴趣的点进行log，甚至debug。本篇文章记录了我在进行Python 3.5.0源码编译时的一些过程。</p>
 <a id="more"></a>
 <h3 id="1-_下载">1. 下载</h3><p>在官网<a href="https://www.python.org/downloads/" target="_blank" rel="external">下载</a>最新源码，为了方便跟踪源码的修改，借助git来管理Python源码。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git init&#10;git add .&#10;git commit -am &#34;Python 3.5.0 source.&#34;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">git init</div><div class="line">git add .</div><div class="line">git commit -am "Python 3.5.0 source."</div></pre></td></tr></table></figure>
 <h3 id="2-_配置">2. 配置</h3><p>在编译前需要使用configure对源码进行配置。</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./configure</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./configure</div></pre></td></tr></table></figure>
 <p>配置完源码后，使用git status观察一下变化：</p>
-<figure class="highlight stylus"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">➜  Python-<span class="number">3.5</span>.<span class="number">0</span> git:(master) ✗ git status</span><br><span class="line">On branch master</span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line"></span><br><span class="line">    Makefile</span><br><span class="line">    Makefile<span class="class">.pre</span></span><br><span class="line">    Misc/python-config<span class="class">.sh</span></span><br><span class="line">    Misc/python<span class="class">.pc</span></span><br><span class="line">    Modules/Setup</span><br><span class="line">    Modules/Setup<span class="class">.config</span></span><br><span class="line">    Modules/Setup<span class="class">.local</span></span><br><span class="line">    Modules/config<span class="class">.c</span></span><br><span class="line">    Modules/ld_so_aix</span><br><span class="line">    config<span class="class">.log</span></span><br><span class="line">    config<span class="class">.status</span></span><br><span class="line">    pyconfig<span class="class">.h</span></span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use <span class="string">"git add"</span> to track)</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line">➜  Python-3.5.0 git:(master) ✗ git status</div><div class="line">On branch master</div><div class="line">Untracked files:</div><div class="line">  (use &quot;git add &lt;file&gt;...&quot; to include in what will be committed)</div><div class="line"></div><div class="line">    Makefile</div><div class="line">    Makefile.pre</div><div class="line">    Misc/python-config.sh</div><div class="line">    Misc/python.pc</div><div class="line">    Modules/Setup</div><div class="line">    Modules/Setup.config</div><div class="line">    Modules/Setup.local</div><div class="line">    Modules/config.c</div><div class="line">    Modules/ld_so_aix</div><div class="line">    config.log</div><div class="line">    config.status</div><div class="line">    pyconfig.h</div><div class="line"></div><div class="line">nothing added to commit but untracked files present (use &quot;git add&quot; to track)</div></pre></td></tr></table></figure>
 <p>我们看到产生了一些和make相关的配置文件，用来适配当前的环境。<br>用git提交一下：</p>
-<figure class="highlight vim"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">add</span> .</span><br><span class="line">git commit -<span class="keyword">am</span> <span class="string">"After ./configure ."</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">git add .</div><div class="line">git commit -am &quot;After ./configure .&quot;</div></pre></td></tr></table></figure>
 <h3 id="3-编译">3.编译</h3><p>编译Python时，使用make进行编译</p>
-<figure class="highlight go"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">make</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">make</div></pre></td></tr></table></figure>
 <p>编译完成后，产生了一个python.exe文件，便是我们编译所得的执行文件。</p>
 <blockquote>
 <p>注<br>我是在OSX下进行编译的，在编译过程中遇到了<code>fatal error: &#39;lzma.h&#39; file not found</code>问题，把lzma包安上就可以了：</p>
-<figure class="highlight cmake"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">&gt; brew <span class="keyword">install</span> xz</span><br><span class="line">&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">&gt; brew install xz</div><div class="line">&gt;</div></pre></td></tr></table></figure>
 </blockquote>
-<h3 id="4-运行">4.运行</h3><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">./python.exe</span><br></pre></td></tr></table></figure>
+<h3 id="4-运行">4.运行</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">./python.exe</div></pre></td></tr></table></figure>
 <p>以上便完成了整个Python源码的编译。以后，在修改完代码以后，只需要<code>make;./python.exe</code>就好~那么，享受Hack python code的乐趣吧。：）</p>
 <p>代码已上传，并根据学习过程不断更新：<a href="https://github.com/Yikun/Python3" target="_blank" rel="external">https://github.com/Yikun/Python3</a></p>
 
@@ -316,7 +316,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yikun.github.io/2015/12/20/Python3源码学习-编译Python源码/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACsElEQVR42u3aW27DQAgF0Ox/0+0CoiT3gsdNpeOvqA/bh0oDBR6P+Pp5up6/+/w5uc/7uyVfv+DCw8PDW7/684NzUnKf9z+fhDV5Zzw8PLzTvPcHcQJOqK/uljylfToeHh7e9/Dyw3pfUuPh4eH9d15bUr9PA3mLYZaW8PDw8E7z2ibCrIyeldqzRIWHh4d3jpdPkb7n85H5Hh4eHt56qp5ceRHcPnf/nnh4eHgneO2hfGKxoG3R5usIeHh4eCd4+XF8bbF7Yuj1MiXg4eHhHeDlA6c2BHliyAdyycIBHh4e3jne5phuB1F5CJIQFwHCw8PDO8BrH7k57mfLAXkjeFjF4+Hh4S14ydG/afLmpXlbXuPh4eHdz0uO482crQ1QzqgbE3h4eHgX8WYNiFmTYtZW2LSS8fDw8K7i5f/8z9LD5lhvg/JhdQAPDw/vFl5SBM8aGbMivh2Y4eHh4d3Dy1uobXrIW7F5sD6EBg8PD+9GXj5YykdfeciS9BC1MPDw8PAO8NqzNC+X83I8L6OTcnyVKvDw8PBK3qYhG7UG4qdsFhHw8PDwTvPaGOTpYfNa+yUGPDw8vPt5bZGd3Ge/2pV8/ZHX9Xh4eHgjXj5YapcM2rZC27QtUhoeHh7epbx2qN8uEMzGZu1K1oe8h4eHh3cpbzOamr1iPZFbpBY8PDy8E7x83LVfh2oZ7ajsZRsXDw8P71Lefr1pdkpf+1sf/iR4eHh4l/J+ymtWmm9aG8mawstw4OHh4R3gtQd08op506FtBG/Ch4eHh3ctL18daJF5+kmO9Ty11F1nPDw8vBGvHYzNiuAZpm2U4OHh4X0PbzMMm5XaCePDHfDw8PD+lJePqfLSvE08dTcFDw8P7xhv34SdfW5DVocbDw8P7wDvRPJoB/8zzGqmh4eHhzfh/QIKwSIWeahYYwAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -404,8 +404,8 @@ gitment.render('gitmentContainer')
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -421,7 +421,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      
+      
     
+      
+      
       
     
       
@@ -432,7 +436,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有分类</a></li>
+      
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -441,7 +449,118 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+    	</section>
     
 
     

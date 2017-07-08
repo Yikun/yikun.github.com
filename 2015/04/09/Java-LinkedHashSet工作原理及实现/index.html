@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yikun.github.io">
   <title>Java LinkedHashSet工作原理及实现 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 概述
-Hash table and linked list implementation of the Set interface, with predictable iteration order. This implementation differs from HashSet in that it maintains a doubly-linked list running throu">
+  <meta name="description" content="1. 概述 Hash table and linked list implementation of the Set interface, with predictable iteration order. This implementation differs from HashSet in that it maintains a doubly-linked list running throu">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java LinkedHashSet工作原理及实现">
 <meta property="og:url" content="http://yikun.github.io/2015/04/09/Java-LinkedHashSet工作原理及实现/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="1. 概述
-Hash table and linked list implementation of the Set interface, with predictable iteration order. This implementation differs from HashSet in that it maintains a doubly-linked list running throu">
+<meta property="og:description" content="1. 概述 Hash table and linked list implementation of the Set interface, with predictable iteration order. This implementation differs from HashSet in that it maintains a doubly-linked list running throu">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/7082382/14d44b8e-df86-11e4-8e50-1e925f430b6e.png">
+<meta property="og:updated_time" content="2017-06-07T16:01:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java LinkedHashSet工作原理及实现">
-<meta name="twitter:description" content="1. 概述
-Hash table and linked list implementation of the Set interface, with predictable iteration order. This implementation differs from HashSet in that it maintains a doubly-linked list running throu">
+<meta name="twitter:description" content="1. 概述 Hash table and linked list implementation of the Set interface, with predictable iteration order. This implementation differs from HashSet in that it maintains a doubly-linked list running throu">
+<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/1736354/7082382/14d44b8e-df86-11e4-8e50-1e925f430b6e.png">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -73,8 +73,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/archives">文章</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 				<li><a href="/project">项目</a></li>
 	        
 				<li><a href="/douban">读书</a></li>
@@ -86,7 +84,11 @@ var _hmt = _hmt || [];
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有分类</a>
+    			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -135,8 +137,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -155,17 +155,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">文章</a></li>
+					<li style="width: 20%"><a href="/archives">文章</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 20%"><a href="/project">项目</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/project">项目</a></li>
+					<li style="width: 20%"><a href="/douban">读书</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/douban">读书</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/about">关于我</a></li>
+					<li style="width: 20%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -204,11 +202,11 @@ var _hmt = _hmt || [];
 <p><strong>Hash table and linked list implementation of the Set interface</strong>, with predictable iteration order. This implementation differs from HashSet in that it maintains a doubly-linked list running through all of its entries. This linked list defines the iteration ordering, which is the order in which elements were inserted into the set (insertion-order). Note that insertion order is not affected if an element is re-inserted into the set. (An element e is reinserted into a set s if s.add(e) is invoked when s.contains(e) would return true immediately prior to the invocation.)</p>
 </blockquote>
 <p>LinkedHashSet是基于HashMap和双向链表的实现。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">LinkedHashSet&lt;String&gt; lset = <span class="keyword">new</span> LinkedHashSet&lt;String&gt;();</span><br><span class="line">lset.add(<span class="string">"语文"</span>);</span><br><span class="line">lset.add(<span class="string">"数学"</span>);</span><br><span class="line">lset.add(<span class="string">"英语"</span>);</span><br><span class="line">lset.add(<span class="string">"历史"</span>);</span><br><span class="line">lset.add(<span class="string">"政治"</span>);</span><br><span class="line">lset.add(<span class="string">"地理"</span>);</span><br><span class="line">lset.add(<span class="string">"生物"</span>);</span><br><span class="line">lset.add(<span class="string">"化学"</span>);</span><br><span class="line"><span class="keyword">for</span>(String str : lset) &#123;</span><br><span class="line">    System.out.println(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">LinkedHashSet&lt;String&gt; lset = <span class="keyword">new</span> LinkedHashSet&lt;String&gt;();</div><div class="line">lset.add(<span class="string">"语文"</span>);</div><div class="line">lset.add(<span class="string">"数学"</span>);</div><div class="line">lset.add(<span class="string">"英语"</span>);</div><div class="line">lset.add(<span class="string">"历史"</span>);</div><div class="line">lset.add(<span class="string">"政治"</span>);</div><div class="line">lset.add(<span class="string">"地理"</span>);</div><div class="line">lset.add(<span class="string">"生物"</span>);</div><div class="line">lset.add(<span class="string">"化学"</span>);</div><div class="line"><span class="keyword">for</span>(String str : lset) &#123;</div><div class="line">    System.out.println(str);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>利用链表来记录，保证了迭代输出的有序性。其具体结构如下所示：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7082382/14d44b8e-df86-11e4-8e50-1e925f430b6e.png" alt="hashset"><br>可以看出，其实现基本和LinkedHashMap一样。</p>
-<h3 id="2-_关键实现">2. 关键实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedHashSet</span>&lt;<span class="title">E</span>&gt;</span><br><span class="line">    <span class="keyword">extends</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt;</span><br><span class="line">    <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></span></span><br></pre></td></tr></table></figure>
+<h3 id="2-_关键实现">2. 关键实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedHashSet</span>&lt;<span class="title">E</span>&gt;</span></div><div class="line">    <span class="keyword">extends</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt;</div><div class="line">    <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div></pre></td></tr></table></figure>
 <p>从继承关系来看就知道LinkedHashMap的实现非常简单，就是集成HashSet的接口，并且在构造时调用的是：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">HashSet(<span class="keyword">int</span> initialCapacity, <span class="keyword">float</span> loadFactor, <span class="keyword">boolean</span> dummy) &#123;</span><br><span class="line">    map = <span class="keyword">new</span> LinkedHashMap&lt;&gt;(initialCapacity, loadFactor);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">HashSet(<span class="keyword">int</span> initialCapacity, <span class="keyword">float</span> loadFactor, <span class="keyword">boolean</span> dummy) &#123;</div><div class="line">    map = <span class="keyword">new</span> LinkedHashMap&lt;&gt;(initialCapacity, loadFactor);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>因此，结构也便是如HashSet于HashMap一样，LinkedHashSet也便如LinkedHashMap一样，只是将Value做了一个dummy的object。</p>
 <h3 id="参考资料">参考资料</h3><p><a href="http://docs.oracle.com/javase/7/docs/api/java/util/LinkedHashSet.html" target="_blank" rel="external">LinkedHashSet</a></p>
 
@@ -311,7 +309,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yikun.github.io/2015/04/09/Java-LinkedHashSet工作原理及实现/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACq0lEQVR42u3aQW7jMBAEQP3/0851c5C2e0gKDlA6GYlNsXggiZ65rvj5BE/yq2T82QhLDx4eHt7Wqf/7necJtYBnUv7b/ywBHh4e3jHe3YTyqT//dmXh8vng4eHhfT/vM3qSZXo+QvDw8PD+Ci+5Fg8nEQQQeHh4eN/GSy6+7Xfy8GL2eXPWgoeHhze5016zy+77n4/U9/Dw8PA2NQTkB0AbXpyY4a/x8fDw8A7wZq0DLSy/oOeNVsl/8fDw8M7x2q25LfO3EW3elJC3MuDh4eHt5SVD5C1Q7etnB0bxXjw8PLytvDZiSK62eVHq+ZiZNWndHgl4eHh4W3n5tTi/Up9rTShmiIeHh/cKL9ma3wkU8kPodlZ4eHh4x3htyrvCy4OGlVawq11vPDw8vJiXT3pvPNHW5TYsBx4eHt5W3iyGOLdYbbtVdCTg4eHhHeDNGlXzxoL2LbPFKsJcPDw8vE289gq7EmesTL2YDx4eHt5WXr6hz2KIfGnadoFoOfDw8PAO8NoyUhITzEKHWbwbzRAPDw9vKy95ZbLR5+Br9ORNq3h4eHjv8JINug1226MiH6c4PPDw8PCO8ZIyVXtItJfglcPjduHw8PDwDvBmF+K8FSD/S97eWjdy4eHh4b3Oy5ulZgX+HDZbaDw8PLxzvLYMNot026LXhtHw8PDwjvHyzb3d1vPoNo82ir/j4eHhHeYl1FmcOguIZ0EwHh4e3jnep3xW2gLabb2NffHw8PDe4a2U59dbARLA+pLh4eHhneC1rQBtYawta+XlrijSxcPDwzvGmw2dbNPJhr7tBFvpKcPDw8N7hbc3zmjbtqLGBTw8PLwv4M2aolYCi/zqXzdd4eHh4S3w8jCiLTvNNvf2Yr0txsXDw8PbWgBrW6xWIt32SMDDw8N7hfcD6+Vuu6dUIAQAAAAASUVORK5CYII=" alt="微信分享二维码">
     </div>
 </div>
 
@@ -399,8 +397,8 @@ gitment.render('gitmentContainer')
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -416,7 +414,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      
+      
     
+      
+      
       
     
       
@@ -427,7 +429,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有分类</a></li>
+      
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -436,7 +442,118 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+    	</section>
     
 
     

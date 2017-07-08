@@ -8,18 +8,17 @@
   <link rel="dns-prefetch" href="http://yikun.github.io">
   <title>重新学习Shell | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="之前，虽然已经对Shell比较熟悉了，但是遇到一些不太常用，但是却很有用的命令，还得搜个半天。所以，这几天准备把常用的指令重新过一下，然后再把基础的Shell流程控制、awk的操作等常用命令系统地学习一下，一方面作为总结，另一方面也作为一个Cheat Sheet，时不时的补充一下也是极好的，: )。
-基本语法传参$n - 传递的第n个参数$# - 传递的参数个数$* - 所有参数$@ - 所有参数">
+  <meta name="description" content="之前，虽然已经对Shell比较熟悉了，但是遇到一些不太常用，但是却很有用的命令，还得搜个半天。所以，这几天准备把常用的指令重新过一下，然后再把基础的Shell流程控制、awk的操作等常用命令系统地学习一下，一方面作为总结，另一方面也作为一个Cheat Sheet，时不时的补充一下也是极好的，: )。 基本语法传参$n - 传递的第n个参数$# - 传递的参数个数$* - 所有参数$@ - 所有参数">
+<meta name="keywords" content="Linux">
 <meta property="og:type" content="article">
 <meta property="og:title" content="重新学习Shell">
 <meta property="og:url" content="http://yikun.github.io/2015/05/19/重新学习Shell/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="之前，虽然已经对Shell比较熟悉了，但是遇到一些不太常用，但是却很有用的命令，还得搜个半天。所以，这几天准备把常用的指令重新过一下，然后再把基础的Shell流程控制、awk的操作等常用命令系统地学习一下，一方面作为总结，另一方面也作为一个Cheat Sheet，时不时的补充一下也是极好的，: )。
-基本语法传参$n - 传递的第n个参数$# - 传递的参数个数$* - 所有参数$@ - 所有参数">
+<meta property="og:description" content="之前，虽然已经对Shell比较熟悉了，但是遇到一些不太常用，但是却很有用的命令，还得搜个半天。所以，这几天准备把常用的指令重新过一下，然后再把基础的Shell流程控制、awk的操作等常用命令系统地学习一下，一方面作为总结，另一方面也作为一个Cheat Sheet，时不时的补充一下也是极好的，: )。 基本语法传参$n - 传递的第n个参数$# - 传递的参数个数$* - 所有参数$@ - 所有参数">
+<meta property="og:updated_time" content="2017-06-07T16:01:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="重新学习Shell">
-<meta name="twitter:description" content="之前，虽然已经对Shell比较熟悉了，但是遇到一些不太常用，但是却很有用的命令，还得搜个半天。所以，这几天准备把常用的指令重新过一下，然后再把基础的Shell流程控制、awk的操作等常用命令系统地学习一下，一方面作为总结，另一方面也作为一个Cheat Sheet，时不时的补充一下也是极好的，: )。
-基本语法传参$n - 传递的第n个参数$# - 传递的参数个数$* - 所有参数$@ - 所有参数">
+<meta name="twitter:description" content="之前，虽然已经对Shell比较熟悉了，但是遇到一些不太常用，但是却很有用的命令，还得搜个半天。所以，这几天准备把常用的指令重新过一下，然后再把基础的Shell流程控制、awk的操作等常用命令系统地学习一下，一方面作为总结，另一方面也作为一个Cheat Sheet，时不时的补充一下也是极好的，: )。 基本语法传参$n - 传递的第n个参数$# - 传递的参数个数$* - 所有参数$@ - 所有参数">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -72,8 +71,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/archives">文章</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 				<li><a href="/project">项目</a></li>
 	        
 				<li><a href="/douban">读书</a></li>
@@ -85,7 +82,11 @@ var _hmt = _hmt || [];
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有分类</a>
+    			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -134,8 +135,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -154,17 +153,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">文章</a></li>
+					<li style="width: 20%"><a href="/archives">文章</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 20%"><a href="/project">项目</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/project">项目</a></li>
+					<li style="width: 20%"><a href="/douban">读书</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/douban">读书</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/about">关于我</a></li>
+					<li style="width: 20%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -201,19 +198,19 @@ var _hmt = _hmt || [];
       
         <p>之前，虽然已经对<code>Shell</code>比较熟悉了，但是遇到一些不太常用，但是却很有用的命令，还得搜个半天。所以，这几天准备把常用的指令重新过一下，然后再把基础的<code>Shell</code>流程控制、<code>awk</code>的操作等常用命令系统地学习一下，一方面作为总结，另一方面也作为一个Cheat Sheet，时不时的补充一下也是极好的，: )。</p>
 <h4 id="基本语法">基本语法</h4><p><strong>传参</strong><br><code>$n</code> - 传递的第n个参数<br><code>$#</code> - 传递的参数个数<br><code>$*</code> - 所有参数<br><code>$@</code> - 所有参数，加引号为字符串数组</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># var.sh arg1 arg2 arg3</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$0</span> <span class="variable">$1</span> <span class="variable">$2</span> <span class="variable">$3</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#3</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$#</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># arg1 arg2 arg3</span></span><br><span class="line"><span class="built_in">echo</span> <span class="variable">$@</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># arg1 arg2 arg3</span></span><br><span class="line"><span class="built_in">echo</span> $*</span><br><span class="line"></span><br><span class="line"><span class="comment"># @:arg1</span></span><br><span class="line"><span class="comment"># @:arg2</span></span><br><span class="line"><span class="comment"># @:arg3</span></span><br><span class="line"><span class="keyword">for</span> arg <span class="keyword">in</span> <span class="string">"<span class="variable">$@</span>"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> @:<span class="string">"<span class="variable">$arg</span>"</span></span><br><span class="line"><span class="keyword">done</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># *:arg1 arg2 arg3</span></span><br><span class="line"><span class="keyword">for</span> arg <span class="keyword">in</span> <span class="string">"$*"</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> *:<span class="string">"<span class="variable">$arg</span>"</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># var.sh arg1 arg2 arg3</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$0</span> <span class="variable">$1</span> <span class="variable">$2</span> <span class="variable">$3</span></div><div class="line"></div><div class="line"><span class="comment">#3</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$#</span></div><div class="line"></div><div class="line"><span class="comment"># arg1 arg2 arg3</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$@</span></div><div class="line"></div><div class="line"><span class="comment"># arg1 arg2 arg3</span></div><div class="line"><span class="built_in">echo</span> $*</div><div class="line"></div><div class="line"><span class="comment"># @:arg1</span></div><div class="line"><span class="comment"># @:arg2</span></div><div class="line"><span class="comment"># @:arg3</span></div><div class="line"><span class="keyword">for</span> arg <span class="keyword">in</span> <span class="string">"<span class="variable">$@</span>"</span></div><div class="line"><span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> @:<span class="string">"<span class="variable">$arg</span>"</span></div><div class="line"><span class="keyword">done</span></div><div class="line"></div><div class="line"><span class="comment"># *:arg1 arg2 arg3</span></div><div class="line"><span class="keyword">for</span> arg <span class="keyword">in</span> <span class="string">"$*"</span></div><div class="line"><span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> *:<span class="string">"<span class="variable">$arg</span>"</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
 <p><strong>if条件控制</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">a=<span class="number">10</span></span><br><span class="line">b=<span class="number">20</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="variable">$a</span> <span class="operator">-eq</span> <span class="variable">$b</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"a euqals b."</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="variable">$a</span> <span class="operator">-lt</span> <span class="variable">$b</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"a little than b."</span></span><br><span class="line"><span class="keyword">elif</span> [ <span class="variable">$a</span> <span class="operator">-gt</span> <span class="variable">$b</span> ]</span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"a greater than b."</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line">str=<span class="string">"linux"</span></span><br><span class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$str</span>"</span> == <span class="string">"linux"</span> ]</span><br><span class="line"><span class="keyword">then</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="string">"str is linux."</span></span><br><span class="line"><span class="keyword">fi</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># [ -e filename]    判断文件存在</span></span><br><span class="line"><span class="comment"># [ -d pathname] 判断目录存在</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">a=10</div><div class="line">b=20</div><div class="line"><span class="keyword">if</span> [ <span class="variable">$a</span> -eq <span class="variable">$b</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"a euqals b."</span></div><div class="line"><span class="keyword">elif</span> [ <span class="variable">$a</span> -lt <span class="variable">$b</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"a little than b."</span></div><div class="line"><span class="keyword">elif</span> [ <span class="variable">$a</span> -gt <span class="variable">$b</span> ]</div><div class="line">    <span class="built_in">echo</span> <span class="string">"a greater than b."</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line">str=<span class="string">"linux"</span></div><div class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$str</span>"</span> == <span class="string">"linux"</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"str is linux."</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="comment"># [ -e filename]    判断文件存在</span></div><div class="line"><span class="comment"># [ -d pathname] 判断目录存在</span></div></pre></td></tr></table></figure>
 <p><strong>循环控制</strong></p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">arr=(<span class="string">"hello"</span> <span class="string">"bash"</span> <span class="string">"shell"</span>)</span><br><span class="line"><span class="keyword">for</span> a <span class="keyword">in</span> <span class="variable">$&#123;arr[*]&#125;</span></span><br><span class="line"><span class="keyword">do</span></span><br><span class="line">    <span class="built_in">echo</span> <span class="variable">$a</span></span><br><span class="line"><span class="keyword">done</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">arr=(<span class="string">"hello"</span> <span class="string">"bash"</span> <span class="string">"shell"</span>)</div><div class="line"><span class="keyword">for</span> a <span class="keyword">in</span> <span class="variable">$&#123;arr[*]&#125;</span></div><div class="line"><span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> <span class="variable">$a</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
 <h4 id="常用指令">常用指令</h4><p><strong>_head/tail</strong>_</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 前5行</span></span><br><span class="line">head -<span class="number">5</span></span><br><span class="line">head -n <span class="number">5</span></span><br><span class="line"><span class="comment"># 前n-5行</span></span><br><span class="line">head -n -<span class="number">5</span></span><br><span class="line"><span class="comment"># 后n-5行</span></span><br><span class="line">tail -n +<span class="number">5</span></span><br><span class="line"><span class="comment"># 前5字节</span></span><br><span class="line">head -c <span class="number">5</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 前5行</span></div><div class="line">head -5</div><div class="line">head -n 5</div><div class="line"><span class="comment"># 前n-5行</span></div><div class="line">head -n -5</div><div class="line"><span class="comment"># 后n-5行</span></div><div class="line">tail -n +5</div><div class="line"><span class="comment"># 前5字节</span></div><div class="line">head -c 5</div></pre></td></tr></table></figure>
 <p><strong>_sort</strong>_</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 忽略起始空格(b)数值(n)去重(u)逆序(r)按照:分隔(-t ':')的第二列(-k 2)排序</span></span><br><span class="line">sort -bnur -t <span class="string">':'</span> -k <span class="number">2</span> somefile</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 忽略起始空格(b)数值(n)去重(u)逆序(r)按照:分隔(-t ':')的第二列(-k 2)排序</span></div><div class="line">sort -bnur -t <span class="string">':'</span> -k 2 somefile</div></pre></td></tr></table></figure>
 <p><strong>_grep</strong>_</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 在当前文件夹的所有文件递归(-r)搜索main</span></span><br><span class="line">grep -r <span class="string">"main"</span> *</span><br><span class="line"><span class="comment"># 搜索匹配正则(-E)的行数(-c)，（带main或者括弧的）</span></span><br><span class="line">grep -cE <span class="string">"main|\(\)"</span> *</span><br><span class="line"><span class="comment"># 搜索不包含extern的(-v --&gt; invert-match)</span></span><br><span class="line">grep -v <span class="string">"extern"</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 在当前文件夹的所有文件递归(-r)搜索main</span></div><div class="line">grep -r <span class="string">"main"</span> *</div><div class="line"><span class="comment"># 搜索匹配正则(-E)的行数(-c)，（带main或者括弧的）</span></div><div class="line">grep -cE <span class="string">"main|\(\)"</span> *</div><div class="line"><span class="comment"># 搜索不包含extern的(-v --&gt; invert-match)</span></div><div class="line">grep -v <span class="string">"extern"</span></div></pre></td></tr></table></figure>
 <p><strong>_wc</strong>_</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 打印所有.c文件的行数</span></span><br><span class="line">grep -r <span class="string">""</span> *.c | wc <span class="operator">-l</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 打印所有.c文件的行数</span></div><div class="line">grep -r <span class="string">""</span> *.c | wc -l</div></pre></td></tr></table></figure>
 
       
 
@@ -314,7 +311,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yikun.github.io/2015/05/19/重新学习Shell/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACKElEQVR42u3azWrEMAxF4bz/S6fbwlDnXCkdsHy8KiWZ+PNC6MfXhdf9sX7/f/08+U3+VmvJkCFjW8a9XGsGway3uD4asjcZMmScwyCbSEMwf4uQHvYsQ4YMGbUgCFLAdVCWIUOGjE7A5dutPSNDhgwZtSKWMDrIL9XiMmTI2JDBu+7f//tf5hsyZMjYinGHKw2CPETejSVDhozZjFqB+lYS2Qm4MmTIOIeRlqa1EExCbXDqn2/JkCHjAEY/1eOXxsjYkgflIMOVIUPG5gz+AZ7SkY1y5EOwliFDxmhGWmS+0BQLN8cDtAwZMk5gkOQsPg+8ubeudMiQIWMqIy0pa402PkhIw7EMGTJmM9aFZefDvBnXH0LIkCHjBAa/9JA+SY4pPZo/b4vIkCFjNKMf+NIwzXnF+luGDBnjGLVRZfrJ/lAhuDMiQ4aMQYx0eMnHCWlzn48/gyGBDBkyxjHSMjJN7NIWXpoHypAh4wRGpwFXTOBKTT101UOGDBnjGGkiyFtsPCi/kJjKkCHjMEatfCW/ULtwho5MhgwZBzPSdn9aiF54PZTZMmTIGMqojRI7A8taey6YZsiQIWMcIw12JMkjyWKn3dYJ2TJkyNiX0RkxtsrOUlkbzDZlyJAxjtEJlDz5e+uyhQwZMmSklx5qY8v0YkfRJ0OGjCMZ5DM8sKbpIxphypAhYyiDFLG1gUHnskUAliFDxmhGmneRD3fSzdoIQYYMGUMZP6Yt+giWXaelAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -402,8 +399,8 @@ gitment.render('gitmentContainer')
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -419,7 +416,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      
+      
     
+      
+      
       
     
       
@@ -430,7 +431,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有分类</a></li>
+      
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -439,7 +444,118 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+    	</section>
     
 
     

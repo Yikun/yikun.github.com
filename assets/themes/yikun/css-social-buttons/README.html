@@ -6,18 +6,18 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="http://yikun.github.io">
-  <title>Linux Record | Yikun</title>
+  <title>Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="User Group Password Setuseradd –d /home/youtpath yourname passwd  yourname groupadd yourgroup chown yourname:yourgroup /home/yourname if accuont is exist, try to using usermod -d /home/yourpath -U yo">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Linux Record">
-<meta property="og:url" content="http://yikun.github.io/2012/12/06/linux-record/index.html">
+  <meta name="description" content="Zocial CSS social buttonsI basically rewrote this entire set so they are full vector buttons, meaning:  @font-face icons custom font file for all social icons icon font use private unicode spaces for">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Yikun">
+<meta property="og:url" content="http://yikun.github.io/assets/themes/yikun/css-social-buttons/README.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="User Group Password Setuseradd –d /home/youtpath yourname passwd  yourname groupadd yourgroup chown yourname:yourgroup /home/yourname if accuont is exist, try to using usermod -d /home/yourpath -U yo">
+<meta property="og:description" content="Zocial CSS social buttonsI basically rewrote this entire set so they are full vector buttons, meaning:  @font-face icons custom font file for all social icons icon font use private unicode spaces for">
 <meta property="og:updated_time" content="2016-02-23T17:03:48.000Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Linux Record">
-<meta name="twitter:description" content="User Group Password Setuseradd –d /home/youtpath yourname passwd  yourname groupadd yourgroup chown yourname:yourgroup /home/yourname if accuont is exist, try to using usermod -d /home/yourpath -U yo">
+<meta name="twitter:title" content="Yikun">
+<meta name="twitter:description" content="Zocial CSS social buttonsI basically rewrote this entire set so they are full vector buttons, meaning:  @font-face icons custom font file for all social icons icon font use private unicode spaces for">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -175,109 +175,35 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-linux-record" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="page-undefined" class="article article-type-page " itemscope itemprop="blogPost">
   <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 class="article-title" itemprop="name">
-      Linux Record
-    </h1>
-  
-
-        
-        <a href="/2012/12/06/linux-record/" class="archive-article-date">
-  	<time datetime="2012-12-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Dec 6 2012</time>
-</a>
-        
-      </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <a id="more"></a>
-<h2 id="User_Group_Password_Set">User Group Password Set</h2><pre><code>useradd –d <span class="regexp">/home/</span>youtpath yourname
-passwd  yourname
-groupadd yourgroup
-chown <span class="string">yourname:</span>yourgroup <span class="regexp">/home/</span>yourname
-</code></pre><p>if accuont is exist, try to using <code>usermod -d /home/yourpath -U yourname</code></p>
-<h2 id="IP_set">IP set</h2><h3 id="In_Ubuntu">In Ubuntu</h3><p>(/etc/network/interfaces)</p>
-<pre><code><span class="comment"># Dynamic IP</span>
-<span class="title">auto</span> eth0
-iface eth0 inet dhcp
-
-<span class="comment"># Static IP </span>
-auto eth0
-iface eth0 inet static
-address <span class="number">192.168.33.201</span>
-netmask <span class="number">255.255.255.0</span>
-gateway <span class="number">192.168.33.1</span>
-</code></pre><p>then, in shell(also, need sudo):</p>
-<pre><code>ifconfig eth0 <span class="preprocessor">down</span>
-ifconfig eth0 <span class="preprocessor">up</span>
-</code></pre><p>last, try to <code>ifconfig</code> to check result, perhaps you need using <code>/etc/init.d/networking restart</code> to restart all network services</p>
-<h3 id="In_RedHat">In RedHat</h3><p>you need modify 3 files:</p>
-<pre><code><span class="regexp">/etc/</span>sysconfig/network
-<span class="regexp">/etc/</span>sysconfig<span class="regexp">/network-scripts/</span>ifcfg-eth0
-<span class="regexp">/etc/</span>resolv.conf
-</code></pre><p>1./etc/sysconfig/network</p>
-<pre><code><span class="setting">NETWORKING=<span class="value"><span class="keyword">yes</span></span></span>
-<span class="setting">NETWORKING_IPV6=<span class="value"><span class="keyword">no</span></span></span>
-<span class="setting">HOSTNAME=<span class="value">kero</span></span>
-<span class="setting">GATEWAY=<span class="value"><span class="number">192.168</span>.<span class="number">1.1</span></span></span>
-</code></pre><p>2./etc/sysconfig/network-scripts/ifcfg-eth0</p>
-<pre><code><span class="setting">DEVICE=<span class="value">eth0                                </span></span>
-<span class="setting">NETMASK=<span class="value"><span class="number">255.255</span>.<span class="number">255.0</span>             </span></span>
-<span class="setting">IPADDR=<span class="value"><span class="number">192.168</span>.<span class="number">1.88</span>             </span></span>
-<span class="setting">BOOTPROTO=<span class="value">static                      #【none | static | bootp | dhcp】</span></span>
-<span class="setting">ONBOOT=<span class="value"><span class="keyword">yes</span>                            #【<span class="keyword">yes</span> | <span class="keyword">no</span>】引导时是否激活设备</span></span>
-<span class="setting">DNS1=<span class="value"><span class="number">211.99</span>.<span class="number">25.1</span>                      #域名解析服务器</span></span>
-<span class="setting">PEERDNS=<span class="value"><span class="keyword">yes</span></span></span>
-</code></pre><p>3./etc/resolv.conf</p>
-<pre><code><span class="title">nameserver</span> <span class="number">211.99.25.1</span>          <span class="comment">#DNS配置 同2中的 【DNS1=211.99.25.1 】</span>
-</code></pre><p>4.Resart</p>
-<p>   /sbin/ifdown eth0<br>   /sbin/ifup eth0<br>   /etc/init.d/network restart</p>
-<h2 id="SSH">SSH</h2><pre><code>sudo apt-get <span class="operator"><span class="keyword">install</span> openssh-<span class="keyword">server</span></span>
-</code></pre><h2 id="find">find</h2><pre><code>find ./ -name '<span class="keyword">*</span>.<span class="keyword">*</span>' 
-</code></pre><h2 id="du">du</h2><pre><code>du -h --<span class="built_in">max</span>-<span class="built_in">depth</span>=<span class="number">1</span>
-</code></pre><h2 id="Virtual_IP">Virtual IP</h2><ol>
-<li><p>Using <code>ifconfig</code> check your IP and eth</p>
-<p> eth1      Link encap:Ethernet  HWaddr 08:00:27:71:DA:8C</p>
-<pre><code>inet <span class="string">addr:</span>XXX.XXX.XXX.250  <span class="string">Bcast:</span>XXX.XXX.XXX.255  <span class="string">Mask:</span><span class="number">255.255</span>.255.0
-inet6 <span class="string">addr:</span> <span class="string">fe80:</span>:<span class="string">a00:</span><span class="number">27</span><span class="string">ff:</span><span class="string">fe71:</span>da8c/<span class="number">64</span> <span class="string">Scope:</span>Link
-UP BROADCAST RUNNING MULTICAST  <span class="string">MTU:</span><span class="number">1500</span>  <span class="string">Metric:</span><span class="number">1</span>
-RX <span class="string">packets:</span><span class="number">782</span> <span class="string">errors:</span><span class="number">0</span> <span class="string">dropped:</span><span class="number">0</span> <span class="string">overruns:</span><span class="number">0</span> <span class="string">frame:</span><span class="number">0</span>
-TX <span class="string">packets:</span><span class="number">91</span> <span class="string">errors:</span><span class="number">0</span> <span class="string">dropped:</span><span class="number">0</span> <span class="string">overruns:</span><span class="number">0</span> <span class="string">carrier:</span><span class="number">0</span>
-<span class="string">collisions:</span><span class="number">0</span> <span class="string">txqueuelen:</span><span class="number">1000</span>
-RX <span class="string">bytes:</span><span class="number">77624</span> (<span class="number">75.8</span> KiB)  TX <span class="string">bytes:</span><span class="number">14476</span> (<span class="number">14.1</span> KiB)
-Base <span class="string">address:</span><span class="number">0xd240</span> <span class="string">Memory:</span>f0820000-f0840000
-</code></pre></li>
-<li><p>Set the Virtual IP, </p>
-<p> ifconfig eth1:ha1 XXX.XXX.XXX.252 broadcast XXX.XXX.XXX.255 netmask 255.255.255.0 up</p>
-</li>
-</ol>
-<p><code>eth1:ha1</code>, eth1:XXXX, XXXX is your virtual name, modifiy name what you want.</p>
-<p><code>XXX.XXX.XXX.252</code>,  Virtual IP</p>
-<p><code>XXX.XXX.XXX.255</code>, broadcast (Same as eth1 Bcast)</p>
-<p><code>255.255.255.0</code>, netmask (Same as eth1 Mask)</p>
-<p>Also, you can using <code>ifconfig eth1:ha1 XXX.XXX.XXX.252 broadcast XXX.XXX.XXX.255 netmask 255.255.255.0 down</code> shutdown Virtual IP</p>
-<p>After it, you can using <code>ifconfig</code>, check result</p>
-<pre><code><span class="string">eth1:</span>ha1  Link <span class="string">encap:</span>Ethernet  HWaddr <span class="number">08</span>:<span class="number">00</span>:<span class="number">27</span>:<span class="number">71</span>:<span class="string">DA:</span><span class="number">8</span>C
-          inet <span class="string">addr:</span>XXX.XXX.XXX.252  <span class="string">Bcast:</span>XXX.XXX.XXX.255  <span class="string">Mask:</span><span class="number">255.255</span>.255.0
-          UP BROADCAST RUNNING MULTICAST  <span class="string">MTU:</span><span class="number">1500</span>  <span class="string">Metric:</span><span class="number">1</span>
-          Base <span class="string">address:</span><span class="number">0xd240</span> <span class="string">Memory:</span>f0820000-f0840000
-</code></pre><ol>
-<li>To ensure, Ip is unique, you could using arping to check</li>
-</ol>
-<p><code>arping -c 3 -I eth1 -s XXX.XXX.XXX.250 XXX.XXX.XXX.252</code></p>
-<p><code>-c</code> is count, </p>
-<p><code>-I</code> is your eth interface name, </p>
-<p><code>-s XXX.XXX.XXX.250</code> is your now ip(source ip)</p>
-<p><code>XXX.XXX.XXX.252</code> is the virtual ip you want to check</p>
-<ol>
-<li>If not active, you could using </li>
-</ol>
-<p><code>route add -host XXX.XXX.XXX.252 dev eth1:ha1</code></p>
+        <h1 id="Zocial_CSS_social_buttons">Zocial CSS social buttons</h1><p>I basically rewrote this entire set so they are full vector buttons, meaning:</p>
+<ul>
+<li>@font-face icons</li>
+<li>custom font file for all social icons</li>
+<li>icon font use private unicode spaces for accessibility</li>
+<li>em sizing based on button font-size</li>
+<li>support for about 83 different services</li>
+<li>buttons and icons supported</li>
+<li>no raster images (sweet)</li>
+<li>works splendidly on any browser supporting @font-face</li>
+<li>CSS3 degrades gracefully in IE8 and below etc.</li>
+<li>also includes generic icon-less primary and secondary buttons</li>
+</ul>
+<h2 id="How_to_use_these_buttons">How to use these buttons</h2><pre><code>&lt;<span class="tag">button</span> class=<span class="string">'zocial facebook'</span>&gt;Button <span class="tag">label</span> here&lt;/button&gt;
+</code></pre><p>or</p>
+<pre><code><span class="variable">&lt;a class="zocial twitter'&gt;</span>Button <span class="keyword">label</span><span class="variable">&lt;/a&gt;</span>
+</code></pre><ul>
+<li>Can be any element e.g. <code>a</code>, <code>div</code>, <code>button</code> etc.</li>
+<li>Add class of <code>.zocial</code></li>
+<li>Add class for name of service e.g. <code>.dropbox</code>, <code>.twitter</code>, <code>.github</code></li>
+<li>Done :-)</li>
+</ul>
+<p>Check out <a href="http://zocial.smcllns.com" target="_blank" rel="external">zocial.smcllns.com</a> for demo and code examples.</p>
+<p>Problems, questions or requests to <a href="http://twitter.com/smcllns" target="_blank" rel="external">@smcllns</a></p>
 
       
 
@@ -367,7 +293,7 @@ Base <span class="string">address:</span><span class="number">0xd240</span> <spa
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACM0lEQVR42u3ay27DMAxEUf//T7tAt6mVGY5UWNTVKkid2KcLhq/rks/9ez5fP135dM3TX++Pc604MGDA2JZxD49yjftZ5e76s8GAAeMcRi3IPj2WcqUScI1vgwEDBoxhuNSDsk6CAQMGjBUMBTb+1CsCLgwYMF7McEPkuoRyeS0OAwaMDRnJYGD163+ab8CAAePFjKTdr7T1aw04+3lgwIDRmqGXnbU22TjFVMaW43fs28OAAWNzhh5M9XJXb7HljT8YMGB0ZSih8Mv/QA6deYJYrLBhwICxOSNJB/P3lUA/floYMGCcwNDLSCVku8FXTwqlRhsMGDBaM/RGvxKU3TRRCfFGhgsDBox2jGTxwm3o5201u6yFAQNGI0at0e/uaLkFszv4hAEDRldGkqLpPLf/Z98XBgwYBzCSEKksT8xaL5MWwmDAgNGOkZSaeU2sDw+iZQsYMGBsznCHlLWFDGWdovadf2S4MGDAaMpIFsKM1M0MxErzTvoFgAEDRjtGss7ljhby5TMYMGCcwMjLTiXs6ilg7VMwYMDozbjN4z6Kjq8lpjBgwDiB4QZWt5TVU8la0JcGBjBgwNickQfcWQuv+kh1ye8GDBgwXsxImvVuUpi08K5ZBwYMGNsyZo0H3HcmB1wYMGAcwHDLVLdllofUL4sXMGDAgGEykjFDsTyGAQMGjFk3C+4oTTNgwIDRmlErU2vf6RbMUjIKAwaM1ozaYECB6Y/iFsDFuQcMGDD2Y/wAWjplqyqEfocAAAAASUVORK5CYII=" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACqUlEQVR42u3awW7DQAgFwPz/T6fXXuw8YHGjanyKIsfZ8QEQ8HrF1/vXldxzdf/VN/fX1W+PXXh4eHiDo98/+uqb+0Mkv01eSv4EPDw8vGd4VxE1/1z+40FSSc6Mh4eH9528+yPePy0puPHw8PD+H6+XPHJA7xXj4eHhPcOrtlB7QTxJKlX8sV4LHh4eXqcn8Joc98nPK/M9PDw8vPFUPR9KjQZU49bw5b/g4eHhLfDygHtqlJUsH1Rbtx9Kczw8PLyjvF4CqIb+agq5b+MWim88PDy8ZV41EOfh/iwsWUF4TWZoeHh4eAGvWoNX2wHz5FEdhuHh4eH9La9XzlaROaaQwPDw8PAWeNWwmy9g5d/kT66W2nh4eHgbvKTMnRyo18w9lh7w8PDwFnjJoxNkXqZXlwnylYJLKh4eHt5RXhLEk+DeI5WbCPH4rZCj8PDw8Ma8vGydr0lV27vNpSs8PDy8Nd6kEdDbdMrbIkm6KmQPPDw8vAVer1zuHbr3oqMyHQ8PD2+Z1xtf9VoM86Wr6Ml4eHh4C7xnJmzV4jtfaIiSGR4eHt4Cb9K0rbYtehu1k5eFh4eHt8erBuJTSwbzBBPdiYeHh3eUNzlK3raYNIirqQIPDw/vSV51kD9hz9vEhTEYHh4e3gKvudgUt1Nz3mSZoHA4PDw8vDEvD9b5CtQ8JfSKbzw8PLxneKfSQAIuNxSKQ7vLkhoPDw9vzHsXr2QM1ivKq8O2pOWBh4eHt8HLr7yF2it8qyO3pLmMh4eHt8erJoOkpK4mg40RGh4eHt42b285IBrwz3PX/dIVHh4e3p/yqoVynhh6rdsPJ8HDw8P7Al4e4qvl+GTYVngTeHh4eId4SVuh14Sthv5qsvnwfDw8PLwFXrWEzQN0r/l7YBUADw8Pb4v3A7sODQH5hwfCAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -379,25 +305,6 @@ Base <span class="string">address:</span><span class="number">0xd240</span> <spa
 </article>
 
   
-<nav id="article-nav">
-  
-    <a href="/2012/12/21/Hello-World/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Hello World
-        
-      </div>
-    </a>
-  
-  
-    <a href="/2012/11/17/congshijianzhongyiluzoulai/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">从实践中一路走来</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
 
 
 
@@ -449,7 +356,7 @@ gitment.render('gitmentContainer')
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
+		isPost: false,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yikun.github.io">
   <title>Python3源码学习-类型 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 类型我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h：
-1234567891011121314151617181920typedef struct _typeobject &amp;#123;    PyObject_VAR_HEAD    const char *tp_name; /* For printing,">
+  <meta name="description" content="1. 类型我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h： 1234567891011121314151617181920typedef struct _typeobject &amp;#123;    PyObject_VAR_HEAD    const char *tp_name; /* For printing,">
+<meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Python3源码学习-类型">
 <meta property="og:url" content="http://yikun.github.io/2015/12/20/Python3源码学习-类型/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="1. 类型我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h：
-1234567891011121314151617181920typedef struct _typeobject &amp;#123;    PyObject_VAR_HEAD    const char *tp_name; /* For printing,">
+<meta property="og:description" content="1. 类型我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h： 1234567891011121314151617181920typedef struct _typeobject &amp;#123;    PyObject_VAR_HEAD    const char *tp_name; /* For printing,">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11918443/66f1c2c6-a76c-11e5-8838-f742ec215af2.png">
+<meta property="og:updated_time" content="2017-06-07T16:01:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Python3源码学习-类型">
-<meta name="twitter:description" content="1. 类型我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h：
-1234567891011121314151617181920typedef struct _typeobject &amp;#123;    PyObject_VAR_HEAD    const char *tp_name; /* For printing,">
+<meta name="twitter:description" content="1. 类型我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h： 1234567891011121314151617181920typedef struct _typeobject &amp;#123;    PyObject_VAR_HEAD    const char *tp_name; /* For printing,">
+<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/1736354/11918443/66f1c2c6-a76c-11e5-8838-f742ec215af2.png">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -73,8 +73,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/archives">文章</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 				<li><a href="/project">项目</a></li>
 	        
 				<li><a href="/douban">读书</a></li>
@@ -86,7 +84,11 @@ var _hmt = _hmt || [];
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有分类</a>
+    			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -135,8 +137,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -155,17 +155,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">文章</a></li>
+					<li style="width: 20%"><a href="/archives">文章</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 20%"><a href="/project">项目</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/project">项目</a></li>
+					<li style="width: 20%"><a href="/douban">读书</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/douban">读书</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/about">关于我</a></li>
+					<li style="width: 20%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -201,7 +199,7 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="1-_类型">1. 类型</h3><p>我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">struct</span> _typeobject &#123;</span><br><span class="line">    PyObject_VAR_HEAD</span><br><span class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *tp_name; <span class="comment">/* For printing, in format "&lt;module&gt;.&lt;name&gt;" */</span></span><br><span class="line">    Py_ssize_t tp_basicsize, tp_itemsize; <span class="comment">/* For allocation */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* Methods to implement standard operations */</span></span><br><span class="line">    destructor tp_dealloc;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//... ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">/* More standard operations (here for binary compatibility) */</span></span><br><span class="line">    hashfunc tp_hash;</span><br><span class="line">    ternaryfunc tp_call;</span><br><span class="line">    reprfunc tp_str;</span><br><span class="line">    getattrofunc tp_getattro;</span><br><span class="line">    setattrofunc tp_setattro;</span><br><span class="line"></span><br><span class="line">    <span class="comment">//... ...</span></span><br><span class="line"></span><br><span class="line">&#125; PyTypeObject;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">typeobject</span> &#123;</span></div><div class="line">    PyObject_VAR_HEAD</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *tp_name; <span class="comment">/* For printing, in format "&lt;module&gt;.&lt;name&gt;" */</span></div><div class="line">    Py_ssize_t tp_basicsize, tp_itemsize; <span class="comment">/* For allocation */</span></div><div class="line"></div><div class="line">    <span class="comment">/* Methods to implement standard operations */</span></div><div class="line">    destructor tp_dealloc;</div><div class="line"></div><div class="line">    <span class="comment">//... ...</span></div><div class="line"></div><div class="line">    <span class="comment">/* More standard operations (here for binary compatibility) */</span></div><div class="line">    hashfunc tp_hash;</div><div class="line">    ternaryfunc tp_call;</div><div class="line">    reprfunc tp_str;</div><div class="line">    getattrofunc tp_getattro;</div><div class="line">    setattrofunc tp_setattro;</div><div class="line"></div><div class="line">    <span class="comment">//... ...</span></div><div class="line"></div><div class="line">&#125; PyTypeObject;</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <p>可以看到，PyTypeObject就是类型对象的定义了。其中，包含了一些和类型相关的重要信息：</p>
 <ul>
@@ -210,7 +208,7 @@ var _hmt = _hmt || [];
 <li><strong>一些与对象相关联的操作</strong>：比如<code>tp_dealloc</code>用于销毁对象，<code>tp_hash</code>用于计算hash值，<code>tp_str</code>用于将对象转换为str。<h3 id="2-_类型的类型">2. 类型的类型</h3></li>
 </ul>
 <p>另外可以看到，由该类的属性<code>PyObject_VAR_HEAD</code>看出，类型也是一个对象。我们知道每个对象都会有一个类型，那么思考一个问题，类型对象的类型又是什么呢？这个问题在typeobject.c的文件中给出了答案：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">PyTypeObject PyType_Type = &#123;</span><br><span class="line">    PyVarObject_HEAD_INIT(&amp;PyType_Type, <span class="number">0</span>)</span><br><span class="line">    <span class="string">"type"</span>,                                     <span class="comment">/* tp_name */</span></span><br><span class="line">    <span class="keyword">sizeof</span>(PyHeapTypeObject),                   <span class="comment">/* tp_basicsize */</span></span><br><span class="line">    <span class="keyword">sizeof</span>(PyMemberDef),                        <span class="comment">/* tp_itemsize */</span></span><br><span class="line">    (destructor)type_dealloc,                   <span class="comment">/* tp_dealloc */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_print */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_getattr */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_setattr */</span></span><br><span class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_reserved */</span></span><br><span class="line">    (reprfunc)type_repr,                        <span class="comment">/* tp_repr */</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">// ... ...</span></span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">PyTypeObject PyType_Type = &#123;</div><div class="line">    PyVarObject_HEAD_INIT(&amp;PyType_Type, <span class="number">0</span>)</div><div class="line">    <span class="string">"type"</span>,                                     <span class="comment">/* tp_name */</span></div><div class="line">    <span class="keyword">sizeof</span>(PyHeapTypeObject),                   <span class="comment">/* tp_basicsize */</span></div><div class="line">    <span class="keyword">sizeof</span>(PyMemberDef),                        <span class="comment">/* tp_itemsize */</span></div><div class="line">    (destructor)type_dealloc,                   <span class="comment">/* tp_dealloc */</span></div><div class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_print */</span></div><div class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_getattr */</span></div><div class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_setattr */</span></div><div class="line">    <span class="number">0</span>,                                          <span class="comment">/* tp_reserved */</span></div><div class="line">    (reprfunc)type_repr,                        <span class="comment">/* tp_repr */</span></div><div class="line"></div><div class="line">    <span class="comment">// ... ...</span></div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>可以看到类型对象的类型就是<code>PyType_Type</code>，而PyType_Type的类型则执行它本身。</p>
 <h3 id="3-_对象图示">3. 对象图示</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/11918443/66f1c2c6-a76c-11e5-8838-f742ec215af2.png" alt="type object"></p>
 <p>如上图所示，是一个简单的整型对象的例子，我们可以看出：</p>
@@ -320,7 +318,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yikun.github.io/2015/12/20/Python3源码学习-类型/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACJElEQVR42u3aQY7jMAwEwPz/05nrDIx4u0VnAculk5E4kUoHQhT5esXj/Wv8/uT4fHz/+O3xzU+zXDwwMDBuy3ifjjXG+ULb5/O1YWBgPIcxmf7TX59vR/7++dowMDAw8vDaLuIcg4GBgTFh5Inr2gZhYGBgTJLY/NYr+TxHXpyLY2Bg3JDRLu5/Pn+lvoGBgXErxrsca2Hx2/+GgYGxNyMPcG2CmhQ1JwEXAwPjOYx2We0S8wUVu378FQYGxmMYbdBcC69Jw1ldQsDAwNia0V7K50XHtuS5VjzAwMB4JqNtpLi2bWLeUoaBgfEERnH8Koud7WGx3Q4MDIxdGW1YbFu+1lorkgLnn2cMDIytGe0FWZtkrpUKJgUDDAyMvRnJcufXYW0ptP4WAwNjU0beTroWEOcH0Dr/xsDAeBgjmWzSLpYfPf8xIwYGxqaMtsF03kCWbERb+MTAwHgCo23PSq7h5mG3aLbAwMDYmjEJju2RMS9/5uzXPMZjYGDchNEe7PKgfNWlf3QNh4GB8QBG20yfH+nyRY+CNQYGxmMYk2JAHrgXT6znb2JgYGzKeJejDYVrSWxNxcDA2JqRj4Q0T26Tw2JbOsXAwNiDMU9f26Q0LzAUW4CBgfEARh748iieX89dlotjYGBgDJ6TNHgtxGNgYGBM2iPy37ZF0I9JLAYGxtaM7xUD1to12pIqBgbG3ow2dTzn5RO0DWRrZQYMDIybM34AUqzuzVQoZuAAAAAASUVORK5CYII=" alt="微信分享二维码">
     </div>
 </div>
 
@@ -408,8 +406,8 @@ gitment.render('gitmentContainer')
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -425,7 +423,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      
+      
     
+      
+      
       
     
       
@@ -436,7 +438,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有分类</a></li>
+      
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -445,7 +451,118 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+    	</section>
     
 
     

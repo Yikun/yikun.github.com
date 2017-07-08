@@ -9,6 +9,7 @@
   <title>网络知识拾遗 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="本科加上研究生大概有七年时间，一直都是学的通信，不过覆盖面不是很全，一直对一些网络相关的概念和实现有些模糊。最近补了补通信网络中的一些基础知识和盲点，有目的地看了看《云计算网络珠玑》、《图解网络硬件》等和网络相关的书和一些文章，做一下记录总结。主要包括了二层交换、三层路由、Linux网络相关的内容。">
+<meta name="keywords" content="网络">
 <meta property="og:type" content="article">
 <meta property="og:title" content="网络知识拾遗">
 <meta property="og:url" content="http://yikun.github.io/2015/11/23/网络知识拾遗/index.html">
@@ -23,9 +24,11 @@
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11388062/8bd8b0b8-936c-11e5-86db-ac0d3db82f25.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11390343/3db29684-9384-11e5-9fb6-8791d5a56535.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/11397203/a6d78704-93b2-11e5-92dc-dfbd9ae07365.png">
+<meta property="og:updated_time" content="2017-06-07T16:01:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="网络知识拾遗">
 <meta name="twitter:description" content="本科加上研究生大概有七年时间，一直都是学的通信，不过覆盖面不是很全，一直对一些网络相关的概念和实现有些模糊。最近补了补通信网络中的一些基础知识和盲点，有目的地看了看《云计算网络珠玑》、《图解网络硬件》等和网络相关的书和一些文章，做一下记录总结。主要包括了二层交换、三层路由、Linux网络相关的内容。">
+<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/1736354/11339369/29e0977e-9234-11e5-880f-8c03596d1246.png">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -78,8 +81,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/archives">文章</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 				<li><a href="/project">项目</a></li>
 	        
 				<li><a href="/douban">读书</a></li>
@@ -91,7 +92,11 @@ var _hmt = _hmt || [];
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有分类</a>
+    			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -140,8 +145,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -160,17 +163,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">文章</a></li>
+					<li style="width: 20%"><a href="/archives">文章</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 20%"><a href="/project">项目</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/project">项目</a></li>
+					<li style="width: 20%"><a href="/douban">读书</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/douban">读书</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/about">关于我</a></li>
+					<li style="width: 20%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -236,7 +237,7 @@ var _hmt = _hmt || [];
 <p><strong>1. 发送函数（回调）</strong></p>
 <p>核心功能是将上层网络传来的帧，写入到网卡中；</p>
 <p>在网络驱动初始化时，会通过注册的方式对网络驱动进行初始化，</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="keyword">struct</span> net_device_ops netdev_ops = &#123;</span><br><span class="line">    .ndo_open         = driver_open,</span><br><span class="line">    .ndo_stop         = driver_close,</span><br><span class="line">    .ndo_start_xmit   = driver_xmit,</span><br><span class="line">    .ndo_get_stats    = get_stats,</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> <span class="keyword">const</span> <span class="class"><span class="keyword">struct</span> <span class="title">net_device_ops</span> <span class="title">netdev_ops</span> = &#123;</span></div><div class="line">    .ndo_open         = driver_open,</div><div class="line">    .ndo_stop         = driver_close,</div><div class="line">    .ndo_start_xmit   = driver_xmit,</div><div class="line">    .ndo_get_stats    = get_stats,</div><div class="line">&#125;;</div></pre></td></tr></table></figure>
 <p>当上层有帧传来时，就会回调driver_xmit函数，因此，在driver_xmit函数中，就应当实现将帧写入到硬件，一般硬件会提供插入帧的接口，完成插入时帧会进入网卡硬件的插入队列中。</p>
 <p><strong>2. 接收函数（中断）</strong><br>核心功能是将网卡中的帧，传送到上层协议栈中。</p>
 <p>对于接收函数，则需要依靠硬件的中断，数据帧到达网卡，硬件以中断的方式告知系统，然后，接收函数回调，回调时，需通过硬件的接口读取数据帧，然后将其上传值上层接口。一般调用<code>netif_rx()</code>进行传输。</p>
@@ -352,7 +353,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yikun.github.io/2015/11/23/网络知识拾遗/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACI0lEQVR42u3aS3KDQAwFQN//0s42rgrwNJosrGlWFMFBzUKlD69XfLx/Hclf7+/v/Kp1YGBgfC3jfXtc3bOLmpzfx4aBgXEO4+rBV/ckifIdHDn1IWYMDAyMuMjLefkLwsDAwOgn3ISKgYGB0WckTWxe8CXJN399m3txDAyML2R0UuR/n//LfgMDA+OrGP3UWR3u56+pEBUGBsZoRp7gktCri8xCg5qsSzEwMEYzkpay0+LmRWce7uWvMDAwxjF2PX4tZfcb3Y8KFwMDYyijOmjLA1or7zprUQwMjKmMajPZSZR5iHmT/MfUEAMDYygjH80no7dqENVF5sOIDQMDYyij3zR2xmprL+LjHAMD4wBGdQFQLfKSz0/X0joGBsY5jE5J12mDq4O2hw/CMDAwhjLyByTXc2qSoBe3HBgYGEMZi0Oupfa1U3Q+3I+BgTGUkYy6qi3oWoPaKjoxMDCOZ1QTYv9KuYTFwMAYzchvrZZuax9Y9EtVDAyMqYzqxxb5PYVpXzFBRwUiBgbGAYy1lFqd9u16iRgYGCcw7pPj2sgs/2/VpIyBgXEOY++Afq1ZzdcMl2wMDIzRjLX2srBcLDaoa8UiBgbGCYwkyebB3ZPWFglRwsXAwDiAUeh64yvVArTaxGJgYGDkLWjSju5NxxgYGBj95WI13Pzjs4cmFgMDYzQjaWLzgKrL0Rx/CcbAwBjNaLWOcUmXrz93RYWBgTGC8QM59SLgjA8tPQAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -440,8 +441,8 @@ gitment.render('gitmentContainer')
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -457,7 +458,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      
+      
     
+      
+      
       
     
       
@@ -468,7 +473,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有分类</a></li>
+      
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -477,7 +486,118 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+    	</section>
     
 
     

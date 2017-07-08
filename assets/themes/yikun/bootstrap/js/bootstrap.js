@@ -663,7 +663,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     if (!isActive) {
       if ('ontouchstart' in document.documentElement && !$parent.closest('.navbar-nav').length) {
         // if mobile we use a backdrop because click events don't delegate
-        $('<div class="dropdown-backdrop"/>').insertAfter($(this)).on('click', clearMenus)
+        $('<div class="dropdown-backdrop">').insertAfter($(this)).on('click', clearMenus)
       }
 
       var relatedTarget = { relatedTarget: this }
@@ -931,7 +931,7 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     if (this.isShown && this.options.backdrop) {
       var doAnimate = $.support.transition && animate
 
-      this.$backdrop = $('<div class="modal-backdrop ' + animate + '" />')
+      this.$backdrop = $('<div class="modal-backdrop ' + animate + '">')
         .appendTo(document.body)
 
       this.$element.on('click.dismiss.bs.modal', $.proxy(function (e) {
@@ -1609,136 +1609,8 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
       return activeTarget != (i = targets.last()[0]) && this.activate(i)
     }
 
-    if (activeTarget && scrollTop <= offsets[0]) {
-      return activeTarget != (i = targets[0]) && this.activate(i)
-    }
-
-    for (i = offsets.length; i--;) {
-      activeTarget != targets[i]
-        && scrollTop >= offsets[i]
-        && (!offsets[i + 1] || scrollTop <= offsets[i + 1])
-        && this.activate( targets[i] )
-    }
-  }
-
-  ScrollSpy.prototype.activate = function (target) {
-    this.activeTarget = target
-
-    $(this.selector)
-      .parentsUntil(this.options.target, '.active')
-      .removeClass('active')
-
-    var selector = this.selector +
-        '[data-target="' + target + '"],' +
-        this.selector + '[href="' + target + '"]'
-
-    var active = $(selector)
-      .parents('li')
-      .addClass('active')
-
-    if (active.parent('.dropdown-menu').length) {
-      active = active
-        .closest('li.dropdown')
-        .addClass('active')
-    }
-
-    active.trigger('activate.bs.scrollspy')
-  }
-
-
-  // SCROLLSPY PLUGIN DEFINITION
-  // ===========================
-
-  var old = $.fn.scrollspy
-
-  $.fn.scrollspy = function (option) {
-    return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.scrollspy')
-      var options = typeof option == 'object' && option
-
-      if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
-      if (typeof option == 'string') data[option]()
-    })
-  }
-
-  $.fn.scrollspy.Constructor = ScrollSpy
-
-
-  // SCROLLSPY NO CONFLICT
-  // =====================
-
-  $.fn.scrollspy.noConflict = function () {
-    $.fn.scrollspy = old
-    return this
-  }
-
-
-  // SCROLLSPY DATA-API
-  // ==================
-
-  $(window).on('load', function () {
-    $('[data-spy="scroll"]').each(function () {
-      var $spy = $(this)
-      $spy.scrollspy($spy.data())
-    })
-  })
-
-}(jQuery);
-
-/* ========================================================================
- * Bootstrap: tab.js v3.1.1
- * http://getbootstrap.com/javascript/#tabs
- * ========================================================================
- * Copyright 2011-2014 Twitter, Inc.
- * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
- * ======================================================================== */
-
-
-+function ($) {
-  'use strict';
-
-  // TAB CLASS DEFINITION
-  // ====================
-
-  var Tab = function (element) {
-    this.element = $(element)
-  }
-
-  Tab.prototype.show = function () {
-    var $this    = this.element
-    var $ul      = $this.closest('ul:not(.dropdown-menu)')
-    var selector = $this.data('target')
-
-    if (!selector) {
-      selector = $this.attr('href')
-      selector = selector && selector.replace(/.*(?=#[^\s]*$)/, '') //strip for ie7
-    }
-
-    if ($this.parent('li').hasClass('active')) return
-
-    var previous = $ul.find('.active:last a')[0]
-    var e        = $.Event('show.bs.tab', {
-      relatedTarget: previous
-    })
-
-    $this.trigger(e)
-
-    if (e.isDefaultPrevented()) return
-
-    var $target = $(selector)
-
-    this.activate($this.parent('li'), $ul)
-    this.activate($target, $target.parent(), function () {
-      $this.trigger({
-        type: 'shown.bs.tab',
-        relatedTarget: previous
-      })
-    })
-  }
-
-  Tab.prototype.activate = function (element, container, callback) {
-    var $active    = container.find('> .active')
+    if (activeTarget && scrollTop <= offsets[0])="" {="" return="" activetarget="" !="(i" =="" targets[0])="" &&="" this.activate(i)="" }="" for="" (i="offsets.length;" i--;)="" scrolltop="">= offsets[i]
+        && (!offsets[i + 1] || scrollTop <= offsets[i="" +="" 1])="" &&="" this.activate(="" targets[i]="" )="" }="" scrollspy.prototype.activate="function" (target)="" {="" this.activetarget="target" $(this.selector)="" .parentsuntil(this.options.target,="" '.active')="" .removeclass('active')="" var="" selector="this.selector" '[data-target="' + target + '" ],'="" this.selector="" '[href="' + target + '" ]'="" active="$(selector)" .parents('li')="" .addclass('active')="" if="" (active.parent('.dropdown-menu').length)="" .closest('li.dropdown')="" active.trigger('activate.bs.scrollspy')="" scrollspy="" plugin="" definition="" =="=========================" old="$.fn.scrollspy" $.fn.scrollspy="function" (option)="" return="" this.each(function="" ()="" $this="$(this)" data="$this.data('bs.scrollspy')" options="typeof" option="=" 'object'="" (!data)="" $this.data('bs.scrollspy',="" (data="new" scrollspy(this,="" options)))="" (typeof="" 'string')="" data[option]()="" })="" $.fn.scrollspy.constructor="ScrollSpy" no="" conflict="" $.fn.scrollspy.noconflict="function" this="" data-api="" $(window).on('load',="" function="" $('[data-spy="scroll" ]').each(function="" $spy="$(this)" $spy.scrollspy($spy.data())="" }(jquery);="" *="=======================================================================" bootstrap:="" tab.js="" v3.1.1="" http:="" getbootstrap.com="" javascript="" #tabs="" copyright="" 2011-2014="" twitter,="" inc.="" licensed="" under="" mit="" (https:="" github.com="" twbs="" bootstrap="" blob="" master="" license)="" +function="" ($)="" 'use="" strict';="" tab="" class="" (element)="" this.element="$(element)" tab.prototype.show="function" $ul="$this.closest('ul:not(.dropdown-menu)')" (!selector)="" selector.replace(="" .*(?="#[^\s]*$)/," '')="" strip="" for="" ie7="" ($this.parent('li').hasclass('active'))="" previous="$ul.find('.active:last" a')[0]="" e="$.Event('show.bs.tab'," relatedtarget:="" $this.trigger(e)="" (e.isdefaultprevented())="" $target="$(selector)" this.activate($this.parent('li'),="" $ul)="" this.activate($target,="" $target.parent(),="" $this.trigger({="" type:="" 'shown.bs.tab',="" tab.prototype.activate="function" (element,="" container,="" callback)="" $active="container.find('"> .active')
     var transition = callback
       && $.support.transition
       && $active.hasClass('fade')
@@ -1875,77 +1747,5 @@ if (typeof jQuery === 'undefined') { throw new Error('Bootstrap\'s JavaScript re
     if (typeof offsetTop == 'function')    offsetTop    = offset.top(this.$element)
     if (typeof offsetBottom == 'function') offsetBottom = offset.bottom(this.$element)
 
-    var affix = this.unpin   != null && (scrollTop + this.unpin <= position.top) ? false :
-                offsetBottom != null && (position.top + this.$element.height() >= scrollHeight - offsetBottom) ? 'bottom' :
-                offsetTop    != null && (scrollTop <= offsetTop) ? 'top' : false
-
-    if (this.affixed === affix) return
-    if (this.unpin) this.$element.css('top', '')
-
-    var affixType = 'affix' + (affix ? '-' + affix : '')
-    var e         = $.Event(affixType + '.bs.affix')
-
-    this.$element.trigger(e)
-
-    if (e.isDefaultPrevented()) return
-
-    this.affixed = affix
-    this.unpin = affix == 'bottom' ? this.getPinnedOffset() : null
-
-    this.$element
-      .removeClass(Affix.RESET)
-      .addClass(affixType)
-      .trigger($.Event(affixType.replace('affix', 'affixed')))
-
-    if (affix == 'bottom') {
-      this.$element.offset({ top: scrollHeight - offsetBottom - this.$element.height() })
-    }
-  }
-
-
-  // AFFIX PLUGIN DEFINITION
-  // =======================
-
-  var old = $.fn.affix
-
-  $.fn.affix = function (option) {
-    return this.each(function () {
-      var $this   = $(this)
-      var data    = $this.data('bs.affix')
-      var options = typeof option == 'object' && option
-
-      if (!data) $this.data('bs.affix', (data = new Affix(this, options)))
-      if (typeof option == 'string') data[option]()
-    })
-  }
-
-  $.fn.affix.Constructor = Affix
-
-
-  // AFFIX NO CONFLICT
-  // =================
-
-  $.fn.affix.noConflict = function () {
-    $.fn.affix = old
-    return this
-  }
-
-
-  // AFFIX DATA-API
-  // ==============
-
-  $(window).on('load', function () {
-    $('[data-spy="affix"]').each(function () {
-      var $spy = $(this)
-      var data = $spy.data()
-
-      data.offset = data.offset || {}
-
-      if (data.offsetBottom) data.offset.bottom = data.offsetBottom
-      if (data.offsetTop)    data.offset.top    = data.offsetTop
-
-      $spy.affix(data)
-    })
-  })
-
-}(jQuery);
+    var affix = this.unpin   != null && (scrollTop + this.unpin <= position.top)="" ?="" false="" :="" offsetbottom="" !="null" &&="" (position.top="" +="" this.$element.height()="">= scrollHeight - offsetBottom) ? 'bottom' :
+                offsetTop    != null && (scrollTop </=></=></=></div></div>

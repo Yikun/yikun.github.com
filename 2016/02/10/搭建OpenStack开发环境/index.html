@@ -9,11 +9,13 @@
   <title>搭建OpenStack开发环境 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="前段时间主要了解了一些OpenStack相关的基础性东西，现在希望通过安装使用来增强一下对系统整体的认识，最近也读了一篇文章如何学习开源项目，基本和我的想法很类似，所以基本上也就是按照这个节奏来的。不说废话了，开始。">
+<meta name="keywords" content="OpenStack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="搭建OpenStack开发环境">
 <meta property="og:url" content="http://yikun.github.io/2016/02/10/搭建OpenStack开发环境/index.html">
 <meta property="og:site_name" content="Yikun">
 <meta property="og:description" content="前段时间主要了解了一些OpenStack相关的基础性东西，现在希望通过安装使用来增强一下对系统整体的认识，最近也读了一篇文章如何学习开源项目，基本和我的想法很类似，所以基本上也就是按照这个节奏来的。不说废话了，开始。">
+<meta property="og:updated_time" content="2017-06-07T16:01:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="搭建OpenStack开发环境">
 <meta name="twitter:description" content="前段时间主要了解了一些OpenStack相关的基础性东西，现在希望通过安装使用来增强一下对系统整体的认识，最近也读了一篇文章如何学习开源项目，基本和我的想法很类似，所以基本上也就是按照这个节奏来的。不说废话了，开始。">
@@ -69,8 +71,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/archives">文章</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 				<li><a href="/project">项目</a></li>
 	        
 				<li><a href="/douban">读书</a></li>
@@ -82,7 +82,11 @@ var _hmt = _hmt || [];
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有分类</a>
+    			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -131,8 +135,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -151,17 +153,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">文章</a></li>
+					<li style="width: 20%"><a href="/archives">文章</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 20%"><a href="/project">项目</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/project">项目</a></li>
+					<li style="width: 20%"><a href="/douban">读书</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/douban">读书</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/about">关于我</a></li>
+					<li style="width: 20%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -200,23 +200,23 @@ var _hmt = _hmt || [];
 <a id="more"></a>
 <h3 id="1-_环境准备">1. 环境准备</h3><p>整体的环境安装是基于[devstack]来搭建，本来就是一个脚本一个配置文件就可以了，不过因为部分网络环境比较“艰苦”，所以需要做一些优化，所以需要做一些准备工作。</p>
 <h4 id="1-1_安装系统">1.1 安装系统</h4><p>Virtual Box，<a href="https://www.virtualbox.org/" target="_blank" rel="external">下载</a><br>Ubuntu 14.04，<a href="http://www.ubuntu.com/download/desktop/install-ubuntu-desktop" target="_blank" rel="external">下载</a><br>网络的话，我是选择了NAT模式，保证虚拟机能够通过宿主机来上网，然后另设了一个Host Only网卡做SSH访问，最近突然发现还可以用NAT端口转发的方式（把22端口转发到主机）完成类似功能，这样就只需要一个网卡了。</p>
-<h4 id="1-2_基本工具">1.2 基本工具</h4><figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"># &#23433;&#35013;Git&#10;sudo apt-get install git</span><br></pre></td></tr></table></figure>
+<h4 id="1-2_基本工具">1.2 基本工具</h4><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#</span><span class="bash"> 安装Git</span></div><div class="line">sudo apt-get install git</div></pre></td></tr></table></figure>
 <h4 id="1-3_加速Python源">1.3 加速Python源</h4><p>为了加速下载速度，对Python源进行优化，这里用豆瓣的源。</p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vim ~/.pip/pip.conf</span></span><br><span class="line">[global]</span><br><span class="line"><span class="variable">timeout =</span> <span class="number">6000</span></span><br><span class="line"><span class="variable">trusted-host =</span> pypi.douban.com</span><br><span class="line"><span class="variable">index-url =</span> http://pypi.douban.com/simple/</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"># vim ~/.pip/pip.conf</div><div class="line">[global]</div><div class="line">timeout = 6000</div><div class="line">trusted-host = pypi.douban.com</div><div class="line">index-url = http://pypi.douban.com/simple/</div></pre></td></tr></table></figure>
 <h4 id="1-4_加速Ubuntu源">1.4 加速Ubuntu源</h4><p>为了加速下载速度，对Ubuntu源进行优化，这里用网易的源。</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"># vim <span class="regexp">/etc/</span>apt/sources.list</span><br><span class="line">deb <span class="string">http:</span><span class="comment">//mirrors.163.com/ubuntu/ trusty main restricted universe multiverse</span></span><br><span class="line">deb <span class="string">http:</span><span class="comment">//mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse</span></span><br><span class="line">deb <span class="string">http:</span><span class="comment">//mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse</span></span><br><span class="line">deb <span class="string">http:</span><span class="comment">//mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse</span></span><br><span class="line">deb <span class="string">http:</span><span class="comment">//mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse</span></span><br><span class="line">deb-src <span class="string">http:</span><span class="comment">//mirrors.163.com/ubuntu/ trusty main restricted universe multiverse</span></span><br><span class="line">deb-src <span class="string">http:</span><span class="comment">//mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse</span></span><br><span class="line">deb-src <span class="string">http:</span><span class="comment">//mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse</span></span><br><span class="line">deb-src <span class="string">http:</span><span class="comment">//mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse</span></span><br><span class="line">deb-src <span class="string">http:</span><span class="comment">//mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line"># vim /etc/apt/sources.list</div><div class="line">deb http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse</div><div class="line">deb http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse</div><div class="line">deb http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse</div><div class="line">deb http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse</div><div class="line">deb http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse</div><div class="line">deb-src http://mirrors.163.com/ubuntu/ trusty main restricted universe multiverse</div><div class="line">deb-src http://mirrors.163.com/ubuntu/ trusty-security main restricted universe multiverse</div><div class="line">deb-src http://mirrors.163.com/ubuntu/ trusty-updates main restricted universe multiverse</div><div class="line">deb-src http://mirrors.163.com/ubuntu/ trusty-proposed main restricted universe multiverse</div><div class="line">deb-src http://mirrors.163.com/ubuntu/ trusty-backports main restricted universe multiverse</div></pre></td></tr></table></figure>
 <h3 id="2-_下载Devstack">2. 下载Devstack</h3><p>使用Git安装脚本切换到自己需要的版本：</p>
-<figure class="highlight vala"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor"># 下载devstack</span></span><br><span class="line">git clone https:<span class="comment">//git.openstack.org/openstack-dev/devstack</span></span><br><span class="line"><span class="preprocessor"># 切换版本</span></span><br><span class="line">git checkout stable/liberty</span><br></pre></td></tr></table></figure>
-<h3 id="3-_创建Stack用户">3. 创建Stack用户</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">devstack/tools/create-<span class="keyword">stack</span>-user.<span class="keyword">sh</span>; <span class="keyword">su</span> <span class="keyword">stack</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"># 下载devstack</div><div class="line">git clone https://git.openstack.org/openstack-dev/devstack</div><div class="line"># 切换版本</div><div class="line">git checkout stable/liberty</div></pre></td></tr></table></figure>
+<h3 id="3-_创建Stack用户">3. 创建Stack用户</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">devstack/tools/create-stack-user.sh; su stack</div></pre></td></tr></table></figure>
 <h4 id="4-_创建local-conf">4. 创建local.conf</h4><p>创建local.conf文件，并且写入自己的配置，可以参考官方的<a href="http://docs.openstack.org/developer/devstack/configuration.html#minimal-configuration" target="_blank" rel="external">Minimal configuration</a>，我的配置如下所示，参考<a href="http://www.chenshake.com/install-ubuntu-14-04-devstack/" target="_blank" rel="external">链接</a>做的。</p>
-<figure class="highlight nix"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># vim ~/devstack/local.conf</span></span><br><span class="line">[local|localrc]]</span><br><span class="line"><span class="variable">GIT_BASE=</span>https://github.com</span><br><span class="line"><span class="comment"># Define images to be automatically downloaded during the DevStack built process.</span></span><br><span class="line"><span class="variable">IMAGE_URLS=</span><span class="string">"http://download.cirros-cloud.net/0.3.4/cirros-0.3.4-x86_64-disk.img"</span></span><br><span class="line"><span class="comment"># Credentials</span></span><br><span class="line"><span class="variable">DATABASE_PASSWORD=</span><span class="number">1</span></span><br><span class="line"><span class="variable">ADMIN_PASSWORD=</span><span class="number">1</span></span><br><span class="line"><span class="variable">SERVICE_PASSWORD=</span><span class="number">1</span></span><br><span class="line"><span class="variable">SERVICE_TOKEN=</span><span class="number">1</span></span><br><span class="line"><span class="variable">RABBIT_PASSWORD=</span><span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="variable">HOST_IP=</span><span class="number">192.168</span>.<span class="number">56.102</span></span><br><span class="line"><span class="variable">SERVICE_HOST=</span><span class="number">192.168</span>.<span class="number">56.102</span></span><br><span class="line"><span class="variable">MYSQL_HOST=</span><span class="number">192.168</span>.<span class="number">56.102</span></span><br><span class="line"><span class="variable">RABBIT_HOST=</span><span class="number">192.168</span>.<span class="number">56.102</span></span><br><span class="line"><span class="variable">GLANCE_HOSTPORT=</span><span class="number">192.168</span>.<span class="number">56.102</span>:<span class="number">9292</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Work offline(不需要更新时打开)</span></span><br><span class="line"><span class="comment"># OFFLINE=True</span></span><br><span class="line"><span class="comment"># Reclone each time(需要更新时打开)</span></span><br><span class="line"><span class="variable">RECLONE=</span>yes</span><br><span class="line"></span><br><span class="line"><span class="comment"># Logging</span></span><br><span class="line"><span class="comment"># -------</span></span><br><span class="line"><span class="comment"># By default ``stack.sh`` output only goes to the terminal where it runs. It can</span></span><br><span class="line"><span class="comment"># be configured to additionally log to a file by setting ``LOGFILE`` to the full</span></span><br><span class="line"><span class="comment"># path of the destination log file. A timestamp will be appended to the given name.</span></span><br><span class="line"><span class="variable">LOGFILE=</span>/opt/stack/logs/stack.sh.log</span><br><span class="line"><span class="variable">VERBOSE=</span>True</span><br><span class="line"><span class="variable">LOG_COLOR=</span>True</span><br><span class="line"><span class="variable">SCREEN_LOGDIR=</span>/opt/stack/logs</span><br><span class="line"></span><br><span class="line"><span class="comment"># the number of days by setting ``LOGDAYS``.</span></span><br><span class="line"><span class="variable">LOGDAYS=</span><span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Database Backend MySQL</span></span><br><span class="line">enable_service mysql</span><br><span class="line"></span><br><span class="line"><span class="comment"># RPC Backend RabbitMQ</span></span><br><span class="line">enable_service rabbit</span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable Keystone - OpenStack Identity Service</span></span><br><span class="line">enable_service key</span><br><span class="line"></span><br><span class="line"><span class="comment"># Horizon - OpenStack Dashboard Service</span></span><br><span class="line">enable_service horizon</span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable Swift - Object Storage Service without replication.</span></span><br><span class="line">enable_service s-proxy s-object s-container s-account</span><br><span class="line"><span class="variable">SWIFT_HASH=</span><span class="number">66</span>a3d6b56c1f479c8b4e70ab5c2000f5</span><br><span class="line"><span class="variable">SWIFT_REPLICAS=</span><span class="number">1</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable Glance - OpenStack Image service</span></span><br><span class="line">enable_service g-api g-reg</span><br><span class="line"></span><br><span class="line"><span class="comment"># Enable Cinder - Block Storage service for OpenStack</span></span><br><span class="line">enable_service cinder c-api c-vol c-sch c-bak</span><br><span class="line"></span><br><span class="line"><span class="comment"># Branches</span></span><br><span class="line"><span class="variable">KEYSTONE_BRANCH=</span>stable/liberty</span><br><span class="line"><span class="variable">NOVA_BRANCH=</span>stable/liberty</span><br><span class="line"><span class="variable">NEUTRON_BRANCH=</span>stable/liberty</span><br><span class="line"><span class="variable">SWIFT_BRANCH=</span>stable/liberty</span><br><span class="line"><span class="variable">GLANCE_BRANCH=</span>stable/liberty</span><br><span class="line"><span class="variable">CINDER_BRANCH=</span>stable/liberty</span><br><span class="line"><span class="variable">HEAT_BRANCH=</span>stable/liberty</span><br><span class="line"><span class="variable">TROVE_BRANCH=</span>stable/liberty</span><br><span class="line"><span class="variable">HORIZON_BRANCH=</span>stable/liberty</span><br><span class="line"><span class="variable">SAHARA_BRANCH=</span>stable/liberty</span><br><span class="line"><span class="variable">CEILOMETER_BRANCH=</span>stable/liberty</span><br><span class="line"><span class="variable">TROVE_BRANCH=</span>stable/liberty</span><br></pre></td></tr></table></figure>
-<h3 id="5-_开始安装">5. 开始安装</h3><figure class="highlight stata"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">cd</span> devstack; ./<span class="keyword">stack</span>.<span class="keyword">sh</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div><div class="line">64</div><div class="line">65</div><div class="line">66</div><div class="line">67</div><div class="line">68</div><div class="line">69</div><div class="line">70</div><div class="line">71</div><div class="line">72</div></pre></td><td class="code"><pre><div class="line"># vim ~/devstack/local.conf</div><div class="line">[local|localrc]]</div><div class="line">GIT_BASE=https://github.com</div><div class="line"># Define images to be automatically downloaded during the DevStack built process.</div><div class="line">IMAGE_URLS=&quot;http://download.cirros-cloud.net/0.3.4/cirros-0.3.4-x86_64-disk.img&quot;</div><div class="line"># Credentials</div><div class="line">DATABASE_PASSWORD=1</div><div class="line">ADMIN_PASSWORD=1</div><div class="line">SERVICE_PASSWORD=1</div><div class="line">SERVICE_TOKEN=1</div><div class="line">RABBIT_PASSWORD=1</div><div class="line"></div><div class="line">HOST_IP=192.168.56.102</div><div class="line">SERVICE_HOST=192.168.56.102</div><div class="line">MYSQL_HOST=192.168.56.102</div><div class="line">RABBIT_HOST=192.168.56.102</div><div class="line">GLANCE_HOSTPORT=192.168.56.102:9292</div><div class="line"></div><div class="line"># Work offline(不需要更新时打开)</div><div class="line"># OFFLINE=True</div><div class="line"># Reclone each time(需要更新时打开)</div><div class="line">RECLONE=yes</div><div class="line"></div><div class="line"># Logging</div><div class="line"># -------</div><div class="line"># By default ``stack.sh`` output only goes to the terminal where it runs. It can</div><div class="line"># be configured to additionally log to a file by setting ``LOGFILE`` to the full</div><div class="line"># path of the destination log file. A timestamp will be appended to the given name.</div><div class="line">LOGFILE=/opt/stack/logs/stack.sh.log</div><div class="line">VERBOSE=True</div><div class="line">LOG_COLOR=True</div><div class="line">SCREEN_LOGDIR=/opt/stack/logs</div><div class="line"></div><div class="line"># the number of days by setting ``LOGDAYS``.</div><div class="line">LOGDAYS=1</div><div class="line"></div><div class="line"># Database Backend MySQL</div><div class="line">enable_service mysql</div><div class="line"></div><div class="line"># RPC Backend RabbitMQ</div><div class="line">enable_service rabbit</div><div class="line"></div><div class="line"># Enable Keystone - OpenStack Identity Service</div><div class="line">enable_service key</div><div class="line"></div><div class="line"># Horizon - OpenStack Dashboard Service</div><div class="line">enable_service horizon</div><div class="line"></div><div class="line"># Enable Swift - Object Storage Service without replication.</div><div class="line">enable_service s-proxy s-object s-container s-account</div><div class="line">SWIFT_HASH=66a3d6b56c1f479c8b4e70ab5c2000f5</div><div class="line">SWIFT_REPLICAS=1</div><div class="line"></div><div class="line"># Enable Glance - OpenStack Image service</div><div class="line">enable_service g-api g-reg</div><div class="line"></div><div class="line"># Enable Cinder - Block Storage service for OpenStack</div><div class="line">enable_service cinder c-api c-vol c-sch c-bak</div><div class="line"></div><div class="line"># Branches</div><div class="line">KEYSTONE_BRANCH=stable/liberty</div><div class="line">NOVA_BRANCH=stable/liberty</div><div class="line">NEUTRON_BRANCH=stable/liberty</div><div class="line">SWIFT_BRANCH=stable/liberty</div><div class="line">GLANCE_BRANCH=stable/liberty</div><div class="line">CINDER_BRANCH=stable/liberty</div><div class="line">HEAT_BRANCH=stable/liberty</div><div class="line">TROVE_BRANCH=stable/liberty</div><div class="line">HORIZON_BRANCH=stable/liberty</div><div class="line">SAHARA_BRANCH=stable/liberty</div><div class="line">CEILOMETER_BRANCH=stable/liberty</div><div class="line">TROVE_BRANCH=stable/liberty</div></pre></td></tr></table></figure>
+<h3 id="5-_开始安装">5. 开始安装</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cd devstack; ./stack.sh</div></pre></td></tr></table></figure>
 <p>最终安装完毕：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">#... ...</span><br><span class="line">This is your host IP <span class="string">address:</span> <span class="number">192.168</span>.56.102</span><br><span class="line">This is your host IPv6 <span class="string">address:</span> ::<span class="number">1</span></span><br><span class="line">Horizon is now available at <span class="string">http:</span><span class="comment">//192.168.56.102/dashboard</span></span><br><span class="line">Keystone is serving at <span class="string">http:</span><span class="comment">//192.168.56.102:5000/</span></span><br><span class="line">The <span class="keyword">default</span> users <span class="string">are:</span> admin and demo</span><br><span class="line">The <span class="string">password:</span> <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line">#... ...</div><div class="line">This is your host IP address: 192.168.56.102</div><div class="line">This is your host IPv6 address: ::1</div><div class="line">Horizon is now available at http://192.168.56.102/dashboard</div><div class="line">Keystone is serving at http://192.168.56.102:5000/</div><div class="line">The default users are: admin and demo</div><div class="line">The password: 1</div></pre></td></tr></table></figure>
 <h3 id="问题解决">问题解决</h3><p>问题： InsecurePlatformWarning: A true SSLContext object is not available. This prevents urllib3 from configuring SSL appropriately [duplicate] 参考<a href="http://stackoverflow.com/questions/29134512/insecureplatformwarning-a-true-sslcontext-object-is-not-available-this-prevent" target="_blank" rel="external">链接</a>解决的：</p>
-<figure class="highlight sql"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">sudo apt-get <span class="operator"><span class="keyword">install</span> libffi-dev libssl-dev</span><br><span class="line">sudo pip <span class="keyword">install</span> requests[security]</span><br><span class="line">sudo pip <span class="keyword">install</span> <span class="comment">--upgrade pyopenssl ndg-httpsclient pyasn1 pip</span></span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">sudo apt-get install libffi-dev libssl-dev</div><div class="line">sudo pip install requests[security]</div><div class="line">sudo pip install --upgrade pyopenssl ndg-httpsclient pyasn1 pip</div></pre></td></tr></table></figure>
 <p>问题： ERROR: tox version is 2.1.1, required is at least 2.3.1</p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&#62; sudo pip install &#39;tox==2.3.1&#39;</span><br></pre></td></tr></table></figure>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;</span><span class="bash"> sudo pip install <span class="string">'tox==2.3.1'</span></span></div></pre></td></tr></table></figure>
 <h3 id="参考链接">参考链接</h3><p><a href="http://www.chenshake.com/install-ubuntu-14-04-devstack/" target="_blank" rel="external">Ubuntu 14.04 Devstack安装Liberty</a><br><a href="http://bingotree.cn/?p=687" target="_blank" rel="external">使用DEVSTACK搭建OPENSTACK可remote debug的开发测试环境</a><br><a href="http://docs.openstack.org/developer/devstack/" target="_blank" rel="external">DevStack - an OpenStack Community Production</a><br><a href="http://docs.openstack.org/developer/devstack/stack.sh.html" target="_blank" rel="external">stack.sh</a><br><a href="http://docs.openstack.org/developer/devstack/configuration.html#minimal-configuration" target="_blank" rel="external">Minimal Configuration</a></p>
 
       
@@ -318,7 +318,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yikun.github.io/2016/02/10/搭建OpenStack开发环境/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACIElEQVR42u3aQXLCMAwFUO5/6fQAbcKXBJ2J8rxiGOP4ZSEsS69XPI6T8XvO2fzrlX//6vWNgYGBcVvGcTmuH3A2M8Fff5/vDQMD4zmMJBTmgF4ITtY8/R4DAwPjMvjmMyfhGwMDA6MacKu8agaKgYGB0Utic3yemuYh+2O5OAYGxg0ZeUD8/89fqW9gYGDcinEUx6fWyYN1tA4GBsZqRh7g8gNZFVxd4XQ/GBgYqxnXS+TNE/lGe+wCFQMDYykj39w8RCYvq1ccxcDA2MfI2x0+2yKWF0qjBjIMDIzVjHmS2btcq65fPnpiYGAsYlQbJnr1xElLR3QMxcDAWM2oPmByZV9t/EoOnX/UNzAwMJYy8g0lgbJ3Jq0+q/BngIGBcXNGr/FrQppcz71pCMPAwFjKmP8sT4N7vMIREAMDYymjl6z2ygZ54G42W2BgYDySkS+dvIheopu8UAwMjCczykXEVvCdNIRhYGA8gZEHtW+0dlXLmc3OEQwMjEWMeUCcN5P1WjEwMDCew6heh1WvxhJ8r2iKgYHxHMY8pcyPjNVrtULMxsDAWMc4imPSqJGno2UqBgbGasY8puUPmBc7qwUMDAyMTYxqgjrZRBVceFkYGBgPYEzKkHlInR/73pxzMTAwMII51fR13iiGgYGBkR/yJld11/OjBBgDA+MBjCSJrT4mCZ35AfENGAMDYzWjmjpWL/fL6eigKQQDA2Md4wcJ/5NhO3mBOAAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -406,8 +406,8 @@ gitment.render('gitmentContainer')
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -423,7 +423,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      
+      
     
+      
+      
       
     
       
@@ -434,7 +438,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有分类</a></li>
+      
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -443,7 +451,118 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+    	</section>
     
 
     

@@ -9,6 +9,7 @@
   <title>[译]Virtual Machine States and Transitions | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="虚拟机的状态及其转移，主要讲了一些虚拟机的状态以及在创建虚拟机时的状态转移情况，目前理解不够深刻，需要在后面看代码时，进一步深入理解。">
+<meta name="keywords" content="Nova">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[译]Virtual Machine States and Transitions">
 <meta property="og:url" content="http://yikun.github.io/2016/01/20/译-Virtual-Machine-States-and-Transitions/index.html">
@@ -16,9 +17,11 @@
 <meta property="og:description" content="虚拟机的状态及其转移，主要讲了一些虚拟机的状态以及在创建虚拟机时的状态转移情况，目前理解不够深刻，需要在后面看代码时，进一步深入理解。">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/12451522/ee92a928-bfc4-11e5-89cf-cc39c09a7fea.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/12451543/0a1f8fc6-bfc5-11e5-8f30-c893782b278e.png">
+<meta property="og:updated_time" content="2017-06-07T16:01:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[译]Virtual Machine States and Transitions">
 <meta name="twitter:description" content="虚拟机的状态及其转移，主要讲了一些虚拟机的状态以及在创建虚拟机时的状态转移情况，目前理解不够深刻，需要在后面看代码时，进一步深入理解。">
+<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/1736354/12451522/ee92a928-bfc4-11e5-89cf-cc39c09a7fea.png">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -71,8 +74,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/archives">文章</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 				<li><a href="/project">项目</a></li>
 	        
 				<li><a href="/douban">读书</a></li>
@@ -84,7 +85,11 @@ var _hmt = _hmt || [];
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有分类</a>
+    			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -133,8 +138,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -153,17 +156,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">文章</a></li>
+					<li style="width: 20%"><a href="/archives">文章</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 20%"><a href="/project">项目</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/project">项目</a></li>
+					<li style="width: 20%"><a href="/douban">读书</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/douban">读书</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/about">关于我</a></li>
+					<li style="width: 20%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -302,7 +303,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yikun.github.io/2016/01/20/译-Virtual-Machine-States-and-Transitions/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACuUlEQVR42u3awW4iMRAE0Pz/T2evK0UMVd12wuHNCQEazzOS3ZT76yu+vn9cP9///52fr1/d89UoyfvHLjw8PLz1oz8/9DPjGf+MfPXN52l99cx4eHh4t3nJwM8D5OzZuPlE4OHh4X0mLymOk9J5w8bDw8P7fN5muU8K5TykwMPDw/sEXhJG5NvDPshoS+0DWQseHh5ezMsX8c95feV8Dw8PD299qj5bfNstJA876ifEw8PDu8CbNQG0pe2pg7RZ4xceHh7ePd4mtN1sFfnoyT3fZC14eHh4R3mzI/+k4N4HELNWAzw8PLwbvGSxzsvotmhug+P6+A0PDw/vAm8WB8xatWZtVW2wW1T0eHh4eGtee4scn0e9ebmMh4eH9zm8NpiYJQCnQt5jWQseHh7eiNcWtXmJPNsS8hbVN5sEHh4e3lFevrjPDrc2x2Pt9vPyd8PDw8M7yss3hvb4an+HNsaNesrw8PDwDvHaaCBZxPMGglnx3U40Hh4e3llevgTnYcSxEHY/Ch4eHt413uwQax9AzNbzVeKCh4eHt+btB9gv4nlJnW85eHh4eL/PywPZPPzNW69mGwMeHh7e7/DaGCLfKtpWgORu+QTh4eHh3eC1kUE9c+V0zI7T6p4IPDw8vDWvvXVearcL/WbcYzOHh4eHV/5bb8OCtozeMPKfBw8PD+8eb9Zgmse+s0/zYPfNd/Dw8PAu8Npj+Fn5u5mOWXsWHh4e3j3ed3k9F9Cb5bsNkaPpwMPDw7vAaxfuWaNVG9rm4fKpbQkPDw+v5c3+9uftBW3JnscTCR4PDw/vHi9fiPNVN98w2qOv4pt4eHh4f8prQ4S8JattXyh+DDw8PLw/5c0K37OtWnWygoeHh3eNN2tv2kxEvg3kIfKxrAUPDw8vzVGjzSMPavNIYt9udeB8Dw8PD+897x+zXpxxgzUNHwAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -390,8 +391,8 @@ gitment.render('gitmentContainer')
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -407,7 +408,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      
+      
     
+      
+      
       
     
       
@@ -418,7 +423,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有分类</a></li>
+      
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -427,7 +436,118 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+    	</section>
     
 
     

@@ -9,6 +9,7 @@
   <title>存储知识学习 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="1. 磁盘基本知识磁盘大致由盘片、磁头、步进电机等几部分组成组成。盘面：硬盘一般含有一个或多个盘片，一个盘片包含两个盘面。磁道：每个盘面被划成多个狭窄的同心圆环，这样的圆环叫做磁道。扇区：每个磁道的每段圆弧叫做一个扇区，是读写的最小单位。柱面：所有盘面上的同一磁道，在竖直方向构成一个圆柱，称为柱面。    读写过程：硬盘读取数据时，磁头先移动到读取扇区所在磁道的上方，这个过程耗时叫做磁盘寻道时间，">
+<meta name="keywords" content="OpenStack,Cinder">
 <meta property="og:type" content="article">
 <meta property="og:title" content="存储知识学习">
 <meta property="og:url" content="http://yikun.github.io/2016/02/03/存储知识学习/index.html">
@@ -16,9 +17,11 @@
 <meta property="og:description" content="1. 磁盘基本知识磁盘大致由盘片、磁头、步进电机等几部分组成组成。盘面：硬盘一般含有一个或多个盘片，一个盘片包含两个盘面。磁道：每个盘面被划成多个狭窄的同心圆环，这样的圆环叫做磁道。扇区：每个磁道的每段圆弧叫做一个扇区，是读写的最小单位。柱面：所有盘面上的同一磁道，在竖直方向构成一个圆柱，称为柱面。    读写过程：硬盘读取数据时，磁头先移动到读取扇区所在磁道的上方，这个过程耗时叫做磁盘寻道时间，">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/12811291/7906961c-cb66-11e5-89da-3f2bc2f00108.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/12811308/9e2cf4e0-cb66-11e5-91e4-5d375b576ae7.png">
+<meta property="og:updated_time" content="2017-06-07T16:01:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="存储知识学习">
 <meta name="twitter:description" content="1. 磁盘基本知识磁盘大致由盘片、磁头、步进电机等几部分组成组成。盘面：硬盘一般含有一个或多个盘片，一个盘片包含两个盘面。磁道：每个盘面被划成多个狭窄的同心圆环，这样的圆环叫做磁道。扇区：每个磁道的每段圆弧叫做一个扇区，是读写的最小单位。柱面：所有盘面上的同一磁道，在竖直方向构成一个圆柱，称为柱面。    读写过程：硬盘读取数据时，磁头先移动到读取扇区所在磁道的上方，这个过程耗时叫做磁盘寻道时间，">
+<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/1736354/12811291/7906961c-cb66-11e5-89da-3f2bc2f00108.png">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -71,8 +74,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/archives">文章</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 				<li><a href="/project">项目</a></li>
 	        
 				<li><a href="/douban">读书</a></li>
@@ -84,7 +85,11 @@ var _hmt = _hmt || [];
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有分类</a>
+    			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -133,8 +138,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -153,17 +156,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">文章</a></li>
+					<li style="width: 20%"><a href="/archives">文章</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 20%"><a href="/project">项目</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/project">项目</a></li>
+					<li style="width: 20%"><a href="/douban">读书</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/douban">读书</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/about">关于我</a></li>
+					<li style="width: 20%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -262,11 +263,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
         		</li>
       		
 		</ul>
@@ -322,7 +323,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yikun.github.io/2016/02/03/存储知识学习/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMYAAADGCAAAAACs8KCBAAACLUlEQVR42u3ay4rDMBBE0fz/TzuQVcCxXNUlB9S6Wg3BsXwc0PTr9ZLX8VnnT77X+fPzd5VvnfeatmDAgLEs4xiuMUO55xXm6m5j3iUVBgwYGzDGh6xyjUtyD+ubfWHAgAFDDvjyVwADBgwYcw/c8cH6RBAJAwaMnRlKEqskk0phLinPTcjFYcCAsSDDbQz88+8H+xswYMBYhHHEy90lbwb8eAYYMGC0Zoy3mTXtoFzpJrfG24IBA8biDL2tqCSoNbASjN7cAQYMGNswaqlsrdw2uYUJAwaM1oxxEKYnkPoQhh5W2sc6DBgwmjLc4MwdQlValbWDGwYMGPsw9Ed0U1n34dzQU/plYMCA0YJRC+P0NoB7/2JKDAMGjG0YeS9UH55wW543ASIMGDBaM/TKlR7q6VvWxjskNgwYMNox3MJZLfhzGw96OxMGDBi9GU+0G2sHqB5QwoABY2dGchDroxJu6Gm/CRgwYLRjJKRak1I/amtXwoABozcj3yBpcLoNiWLkCwMGjGUZykPr5bC8MakPmdnvHgYMGC0YbnFtvFkyrmq3CmDAgNGa4SaHylHolthqg7PGfw8YMGAsyzjMVUs19QO0FobCgAGjNyMfiXDTYCX3zIt9MGDA6MeYPA87tegPAwYMGMkwhNsAKJb79VcAAwYMGMGoRPKIxsuCAQMGjKCI705EFDNvGDBgbMDQB7Pmfp4MZMCAAWMfRtIYSI5It12aB6AwYMBYkPEGZSx+TFIckgoAAAAASUVORK5CYII=" alt="微信分享二维码">
     </div>
 </div>
 
@@ -410,8 +411,8 @@ gitment.render('gitmentContainer')
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -427,7 +428,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      
+      
     
+      
+      
       
     
       
@@ -438,7 +443,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有分类</a></li>
+      
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -447,7 +456,118 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+    	</section>
     
 
     

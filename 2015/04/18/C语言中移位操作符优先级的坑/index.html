@@ -8,51 +8,17 @@
   <link rel="dns-prefetch" href="http://yikun.github.io">
   <title>C语言中移位操作符优先级的坑 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="今天和tiancai交流他腾讯面试题目的时候，有这么一个题目，大致是这样描述的：
-
-有一个函数f，可以等概率产生0,1，写一个函数g，可以等概率地产生0~7中的数。
-
-于是，我写出了如下一个错误的解法：
-
-f()+f()&amp;lt;&amp;lt;1+f()&amp;lt;&amp;lt;2
-
-而正确的应该是：
-
-f() + (f()&amp;lt;&amp;lt;1) + (f()&amp;lt;&amp;lt;2)
-
-之前一直有误解，而实际情况是是移位">
+  <meta name="description" content="今天和tiancai交流他腾讯面试题目的时候，有这么一个题目，大致是这样描述的：  有一个函数f，可以等概率产生0,1，写一个函数g，可以等概率地产生0~7中的数。  于是，我写出了如下一个错误的解法：  f()+f()&amp;lt;&amp;lt;1+f()&amp;lt;&amp;lt;2  而正确的应该是：  f() + (f()&amp;lt;&amp;lt;1) + (f()&amp;lt;&amp;lt;2)  之前一直有误解，而实际情况是是移位">
+<meta name="keywords" content="C&#x2F;C++">
 <meta property="og:type" content="article">
 <meta property="og:title" content="C语言中移位操作符优先级的坑">
 <meta property="og:url" content="http://yikun.github.io/2015/04/18/C语言中移位操作符优先级的坑/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="今天和tiancai交流他腾讯面试题目的时候，有这么一个题目，大致是这样描述的：
-
-有一个函数f，可以等概率产生0,1，写一个函数g，可以等概率地产生0~7中的数。
-
-于是，我写出了如下一个错误的解法：
-
-f()+f()&amp;lt;&amp;lt;1+f()&amp;lt;&amp;lt;2
-
-而正确的应该是：
-
-f() + (f()&amp;lt;&amp;lt;1) + (f()&amp;lt;&amp;lt;2)
-
-之前一直有误解，而实际情况是是移位">
+<meta property="og:description" content="今天和tiancai交流他腾讯面试题目的时候，有这么一个题目，大致是这样描述的：  有一个函数f，可以等概率产生0,1，写一个函数g，可以等概率地产生0~7中的数。  于是，我写出了如下一个错误的解法：  f()+f()&amp;lt;&amp;lt;1+f()&amp;lt;&amp;lt;2  而正确的应该是：  f() + (f()&amp;lt;&amp;lt;1) + (f()&amp;lt;&amp;lt;2)  之前一直有误解，而实际情况是是移位">
+<meta property="og:updated_time" content="2017-06-07T16:01:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="C语言中移位操作符优先级的坑">
-<meta name="twitter:description" content="今天和tiancai交流他腾讯面试题目的时候，有这么一个题目，大致是这样描述的：
-
-有一个函数f，可以等概率产生0,1，写一个函数g，可以等概率地产生0~7中的数。
-
-于是，我写出了如下一个错误的解法：
-
-f()+f()&amp;lt;&amp;lt;1+f()&amp;lt;&amp;lt;2
-
-而正确的应该是：
-
-f() + (f()&amp;lt;&amp;lt;1) + (f()&amp;lt;&amp;lt;2)
-
-之前一直有误解，而实际情况是是移位">
+<meta name="twitter:description" content="今天和tiancai交流他腾讯面试题目的时候，有这么一个题目，大致是这样描述的：  有一个函数f，可以等概率产生0,1，写一个函数g，可以等概率地产生0~7中的数。  于是，我写出了如下一个错误的解法：  f()+f()&amp;lt;&amp;lt;1+f()&amp;lt;&amp;lt;2  而正确的应该是：  f() + (f()&amp;lt;&amp;lt;1) + (f()&amp;lt;&amp;lt;2)  之前一直有误解，而实际情况是是移位">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -105,8 +71,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/archives">文章</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 				<li><a href="/project">项目</a></li>
 	        
 				<li><a href="/douban">读书</a></li>
@@ -118,7 +82,11 @@ var _hmt = _hmt || [];
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有分类</a>
+    			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -167,8 +135,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -187,17 +153,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">文章</a></li>
+					<li style="width: 20%"><a href="/archives">文章</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 20%"><a href="/project">项目</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/project">项目</a></li>
+					<li style="width: 20%"><a href="/douban">读书</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/douban">读书</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/about">关于我</a></li>
+					<li style="width: 20%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -245,11 +209,11 @@ var _hmt = _hmt || [];
 <p>f() + (f()&lt;&lt;1) + (f()&lt;&lt;2)</p>
 </blockquote>
 <p>之前一直有误解，而实际情况是是<strong>移位操作符的优先级低于加减法的优先级</strong>。为了验证和加深记忆，又写了一个小测试：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="preprocessor">#<span class="keyword">include</span> &lt;stdio.h&gt;</span></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span><br><span class="line"></span>&#123;</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"1&lt;&lt;1+2&lt;&lt;1:     %d\n"</span>, <span class="number">1</span>&lt;&lt;<span class="number">1</span>+<span class="number">2</span>&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"1&lt;&lt;(1+2)&lt;&lt;1:   %d\n"</span>, <span class="number">1</span>&lt;&lt;(<span class="number">1</span>+<span class="number">2</span>)&lt;&lt;<span class="number">1</span>);</span><br><span class="line">    <span class="built_in">printf</span>(<span class="string">"(1&lt;&lt;1)+(2&lt;&lt;1): %d\n"</span>, (<span class="number">1</span>&lt;&lt;<span class="number">1</span>)+(<span class="number">2</span>&lt;&lt;<span class="number">1</span>));</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"1&lt;&lt;1+2&lt;&lt;1:     %d\n"</span>, <span class="number">1</span>&lt;&lt;<span class="number">1</span>+<span class="number">2</span>&lt;&lt;<span class="number">1</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"1&lt;&lt;(1+2)&lt;&lt;1:   %d\n"</span>, <span class="number">1</span>&lt;&lt;(<span class="number">1</span>+<span class="number">2</span>)&lt;&lt;<span class="number">1</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"(1&lt;&lt;1)+(2&lt;&lt;1): %d\n"</span>, (<span class="number">1</span>&lt;&lt;<span class="number">1</span>)+(<span class="number">2</span>&lt;&lt;<span class="number">1</span>));</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>输出为:</p>
-<figure class="highlight gcode"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="number">1</span>&lt;&lt;<span class="number">1</span><span class="number">+2</span>&lt;&lt;<span class="number">1</span>:     <span class="number">16</span></span><br><span class="line"><span class="number">1</span>&lt;&lt;<span class="comment">(1+2)</span>&lt;&lt;<span class="number">1</span>:   <span class="number">16</span></span><br><span class="line"><span class="comment">(1&lt;&lt;1)</span>+<span class="comment">(2&lt;&lt;1)</span>: <span class="number">6</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1&lt;&lt;1+2&lt;&lt;1:     16</div><div class="line">1&lt;&lt;(1+2)&lt;&lt;1:   16</div><div class="line">(1&lt;&lt;1)+(2&lt;&lt;1): 6</div></pre></td></tr></table></figure>
 <p>其中编译的时候，也有一个友情提示：</p>
-<figure class="highlight groovy"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">main.<span class="string">c:</span><span class="number">4</span>:<span class="number">36</span>: <span class="string">warning:</span> operator <span class="string">'&lt;&lt;'</span> has lower precedence than <span class="string">'+'</span>; <span class="string">'+'</span> will be</span><br><span class="line">      evaluated first [-Wshift-op-parentheses]</span><br><span class="line">        printf(<span class="string">"1&lt;&lt;1+2&lt;&lt;1:     %d\n"</span>, <span class="number">1</span>&lt;&lt;<span class="number">1</span>+<span class="number">2</span>&lt;&lt;<span class="number">1</span>);</span><br><span class="line">                                       ~~~^~</span><br><span class="line">main.<span class="string">c:</span><span class="number">4</span>:<span class="number">36</span>: <span class="string">note:</span> place parentheses around the <span class="string">'+'</span> expression to silence <span class="keyword">this</span></span><br><span class="line">      warning</span><br><span class="line">        printf(<span class="string">"1&lt;&lt;1+2&lt;&lt;1:     %d\n"</span>, <span class="number">1</span>&lt;&lt;<span class="number">1</span>+<span class="number">2</span>&lt;&lt;<span class="number">1</span>);</span><br><span class="line">                                          ^</span><br><span class="line">                                         (  )</span><br><span class="line"><span class="number">1</span> warning generated.</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">main.c:4:36: warning: operator &apos;&lt;&lt;&apos; has lower precedence than &apos;+&apos;; &apos;+&apos; will be</div><div class="line">      evaluated first [-Wshift-op-parentheses]</div><div class="line">        printf(&quot;1&lt;&lt;1+2&lt;&lt;1:     %d\n&quot;, 1&lt;&lt;1+2&lt;&lt;1);</div><div class="line">                                       ~~~^~</div><div class="line">main.c:4:36: note: place parentheses around the &apos;+&apos; expression to silence this</div><div class="line">      warning</div><div class="line">        printf(&quot;1&lt;&lt;1+2&lt;&lt;1:     %d\n&quot;, 1&lt;&lt;1+2&lt;&lt;1);</div><div class="line">                                          ^</div><div class="line">                                         (  )</div><div class="line">1 warning generated.</div></pre></td></tr></table></figure>
 <p>最后，</p>
 <blockquote>
 <p>希望自己永远保持一颗怀疑的心。</p>
@@ -354,7 +318,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yikun.github.io/2015/04/18/C语言中移位操作符优先级的坑/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACrUlEQVR42u3aS24bMRAFQN//0gmQVQBb49c/OQFKK0EjzbBogKRf98dH/Pr15/X3+1effL766m7JN189cfmFh4eH1xr68xDzQfcmZWtCv7gbHh4e3hkvf8Az4/me1dX7mZdMMR4eHt7P8pKhJ8fl6nDx8PDw/ndecqhNpqa3eeDh4eH9O7zqEEeLdev4fp614OHh4cW8yaL8U+/P63t4eHh4rap6EqrmRazJQbw5Wjw8PLwD3vyIvBu/Vn/1HA3j4eHh3fF2o4HkavL5XYkODw8Pb4uXH2eTW+cNW3lEO/k+Hh4e3havdyCuNl3l319uSsDDw8M74PVi2XzRz4/mhVi2GkDg4eHhvYXX2x7ybSBJRJICWHQVDw8P75jXKzhVI91JjJuEJtFuhoeHhzfgTaKE3a7RXjNBIS7Bw8PDW+VVt4fq8t1rHciRy7sfHh4eXsxLlvLdkv/kan7UxsPDw9vi9doCtpqxJkt/9GfAw8PDO+PtLt/VgOOwtIaHh4d3xquWmqqkagNBsj1EE4GHh4d3wJs3XVWLW9VGgWTivglB8PDw8N7Iy2+9tdz3Pi93LuDh4eGNedUGqaT0lT8rmY7q/cs9ZXh4eHgD3nwoo+NvcSTVEAQPDw/vjjeJHqoRQ7WlIGm9wsPDw7vj9Vqdtgpmz9tDlfdN0xUeHh7eAW8S1CaDqxbA8rAjKn3h4eHhLfF6/+RXo4ceZhKUfHEHPDw8vCXebtBQbaiqUsubDR4eHt4Bb1J2mhy+58fxBRIeHh7egDcpNVUnIh9iM3T4/Fs8PDy8M96kuPX8yGrcUG3JKvRB4OHh4b2dVw0seozqRDTzaTw8PLw38qqAXtiRBMTR53h4eHhnvHyh7z0yB+fbT/QUPDw8vAPepACWDLFXEsvbCD7mLzw8PLyU9xvlMXOog8ZJEgAAAABJRU5ErkJggg==" alt="微信分享二维码">
     </div>
 </div>
 
@@ -442,8 +406,8 @@ gitment.render('gitmentContainer')
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -459,7 +423,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      
+      
     
+      
+      
       
     
       
@@ -470,7 +438,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有分类</a></li>
+      
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -479,7 +451,118 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+    	</section>
     
 
     

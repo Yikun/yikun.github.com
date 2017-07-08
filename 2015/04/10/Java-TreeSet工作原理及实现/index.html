@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yikun.github.io">
   <title>Java TreeSet工作原理及实现 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.概述
-A NavigableSet implementation based on a TreeMap. The elements are ordered using their natural ordering, or by a Comparator provided at set creation time, depending on which constructor is used.T">
+  <meta name="description" content="1.概述 A NavigableSet implementation based on a TreeMap. The elements are ordered using their natural ordering, or by a Comparator provided at set creation time, depending on which constructor is used.T">
+<meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java TreeSet工作原理及实现">
 <meta property="og:url" content="http://yikun.github.io/2015/04/10/Java-TreeSet工作原理及实现/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="1.概述
-A NavigableSet implementation based on a TreeMap. The elements are ordered using their natural ordering, or by a Comparator provided at set creation time, depending on which constructor is used.T">
+<meta property="og:description" content="1.概述 A NavigableSet implementation based on a TreeMap. The elements are ordered using their natural ordering, or by a Comparator provided at set creation time, depending on which constructor is used.T">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/7085286/d0b1658c-dfa7-11e4-972c-d1d07e5fadfd.png">
+<meta property="og:updated_time" content="2017-06-07T16:01:31.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java TreeSet工作原理及实现">
-<meta name="twitter:description" content="1.概述
-A NavigableSet implementation based on a TreeMap. The elements are ordered using their natural ordering, or by a Comparator provided at set creation time, depending on which constructor is used.T">
+<meta name="twitter:description" content="1.概述 A NavigableSet implementation based on a TreeMap. The elements are ordered using their natural ordering, or by a Comparator provided at set creation time, depending on which constructor is used.T">
+<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/1736354/7085286/d0b1658c-dfa7-11e4-972c-d1d07e5fadfd.png">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -73,8 +73,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/archives">文章</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 				<li><a href="/project">项目</a></li>
 	        
 				<li><a href="/douban">读书</a></li>
@@ -86,7 +84,11 @@ var _hmt = _hmt || [];
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有分类</a>
+    			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -135,8 +137,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -155,17 +155,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">文章</a></li>
+					<li style="width: 20%"><a href="/archives">文章</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 20%"><a href="/project">项目</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/project">项目</a></li>
+					<li style="width: 20%"><a href="/douban">读书</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/douban">读书</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/about">关于我</a></li>
+					<li style="width: 20%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -204,7 +202,7 @@ var _hmt = _hmt || [];
 <p>A NavigableSet implementation based on a <strong>TreeMap</strong>. The elements are ordered using their natural ordering, or by a Comparator provided at set creation time, depending on which constructor is used.This implementation provides guaranteed <strong>log(n)</strong> time cost for the basic operations (add, remove and contains).</p>
 </blockquote>
 <p>TreeSet是基于TreeMap实现的，也非常简单，同样的只是用key及其操作，然后把value置为dummy的object。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">TreeSet&lt;String&gt; tset = <span class="keyword">new</span> TreeSet&lt;String&gt;();</span><br><span class="line">tset.add(<span class="string">"1语文"</span>);</span><br><span class="line">tset.add(<span class="string">"3英语"</span>);</span><br><span class="line">tset.add(<span class="string">"2数学"</span>);</span><br><span class="line">tset.add(<span class="string">"4政治"</span>);</span><br><span class="line">tset.add(<span class="string">"5历史"</span>);</span><br><span class="line">tset.add(<span class="string">"6地理"</span>);</span><br><span class="line">tset.add(<span class="string">"7生物"</span>);</span><br><span class="line">tset.add(<span class="string">"8化学"</span>);</span><br><span class="line"><span class="keyword">for</span>(String str : tset) &#123;</span><br><span class="line">    System.out.println(str);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">TreeSet&lt;String&gt; tset = <span class="keyword">new</span> TreeSet&lt;String&gt;();</div><div class="line">tset.add(<span class="string">"1语文"</span>);</div><div class="line">tset.add(<span class="string">"3英语"</span>);</div><div class="line">tset.add(<span class="string">"2数学"</span>);</div><div class="line">tset.add(<span class="string">"4政治"</span>);</div><div class="line">tset.add(<span class="string">"5历史"</span>);</div><div class="line">tset.add(<span class="string">"6地理"</span>);</div><div class="line">tset.add(<span class="string">"7生物"</span>);</div><div class="line">tset.add(<span class="string">"8化学"</span>);</div><div class="line"><span class="keyword">for</span>(String str : tset) &#123;</div><div class="line">    System.out.println(str);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 <p>其具体的结构是：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7085286/d0b1658c-dfa7-11e4-972c-d1d07e5fadfd.png" alt="treeset"></p>
 <p>利用TreeMap的特性，实现了set的有序性(通过红黑树实现)。</p>
 <h3 id="参考资料">参考资料</h3><p><a href="http://docs.oracle.com/javase/8/docs/api/java/util/TreeSet.html" target="_blank" rel="external">TreeSet(Java Platform SE 8)</a></p>
@@ -308,7 +306,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yikun.github.io/2015/04/10/Java-TreeSet工作原理及实现/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAN4AAADeCAAAAAB3DOFrAAACu0lEQVR42u3awW4iMRAE0Pz/T2elPWW1Aqq6bZJIb06IwIyfI7lNuT8+4uvz7/Xonf//+vX9r1d+//YOqwsPDw9vNPRH13NeMqxH0/F86I8+n48ZDw8P7zbv+WKdlIF8WX+OSaYgGTMeHh7eT+Ali/hsW5wv/Xh4eHi/i9cGBwlp/xoPDw/vu3jJQpwv7pslPnnulawFDw8Pr1uliwOwn/D64vkeHh4e3uJUfVMwzrYLDEeIh4eHd4GXD2UW0W4aEZJ7RgUDDw8P7wJvsyPNWwHyUKO9T/4tPDw8vFO8zcH87J18oW+LyouUGg8PD2/Ny4+UZmHEqZR1FePi4eHhvYXXTsSGkbQX5CUhKgx4eHh4C177tdkyvSkY+8gYDw8P7ywvP/hPwoI2M44O/jdlCQ8PD+8aL//9vmmuatuwNs/9pzDg4eHhHeW1W95kOvIcoN12zyYXDw8P7yxvE8K2gUJ+nzx0ePFcPDw8vAu82eBmIWwbLszi4yhcxsPDw1vwEkD7mNk2erOxxsPDw3snbxO2JjFEHlXM2guK8ePh4eEd5bXRwL7hoNjd7++Dh4eHd5TXLs0zUt722m6jX/wkwMPDw7vG2zSntiFsfrQ2a7HCw8PDez8vD23bSLcdYlsMosKAh4eHt+a1B13J7fLPtH0NyVa+Tqnx8PDwDvFmx1r7YGIzicM+Mjw8PLwRL19k23i3PeZvC8mqJODh4eGteXkzwab5oF3ckzG8+Afg4eHhHeV9llf++E1o2x6qPSxLeHh4eBd4+TWLYvOt8Cza2BQzPDw8vA2vbR1oYTPGpjDg4eHhvYfXLvHtprltCGgrGB4eHt5v4eWL+6bY5JMbpdR4eHh4b+TlG9l8WDNAMU14eHh413j54dM+ksgLyaZI4OHh4d3jtT/12y3ybHHPp+nw+R4eHh7es2/9AbIpu2AmRKyRAAAAAElFTkSuQmCC" alt="微信分享二维码">
     </div>
 </div>
 
@@ -396,8 +394,8 @@ gitment.render('gitmentContainer')
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -413,7 +411,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      
+      
     
+      
+      
       
     
       
@@ -424,7 +426,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有分类</a></li>
+      
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -433,7 +439,118 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+    	</section>
     
 
     

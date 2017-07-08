@@ -8,15 +8,12 @@
   <link rel="dns-prefetch" href="http://yikun.github.io">
   <title>Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description">
-<meta property="og:type" content="website">
+  <meta property="og:type" content="website">
 <meta property="og:title" content="Yikun">
 <meta property="og:url" content="http://yikun.github.io/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Yikun">
-<meta name="twitter:description">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -69,8 +66,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/archives">文章</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 				<li><a href="/project">项目</a></li>
 	        
 				<li><a href="/douban">读书</a></li>
@@ -82,7 +77,11 @@ var _hmt = _hmt || [];
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有分类</a>
+    			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -131,8 +130,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -151,17 +148,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">文章</a></li>
+					<li style="width: 20%"><a href="/archives">文章</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 20%"><a href="/project">项目</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/project">项目</a></li>
+					<li style="width: 20%"><a href="/douban">读书</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/douban">读书</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/about">关于我</a></li>
+					<li style="width: 20%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -207,14 +202,14 @@ var _hmt = _hmt || [];
 <p>假设有1000w个数据项，100个存储节点，请设计一种算法合理地将他们存储在这些节点上。</p>
 </blockquote>
 <p>看一看普通Hash算法的原理：<br><img src="https://cloud.githubusercontent.com/assets/1736354/16341297/fe155f98-3a5e-11e6-834d-193e6f85afcd.png" alt="normal_hash"><br>算法的核心计算如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</span><br><span class="line">    k = md5(str(item)).digest()</span><br><span class="line">    h = unpack_from(<span class="string">"&gt;I"</span>, k)[<span class="number">0</span>]</span><br><span class="line">    <span class="comment"># 通过取余的方式进行映射</span></span><br><span class="line">    n = h % NODES</span><br><span class="line">    node_stat[n] += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</div><div class="line">    k = md5(str(item)).digest()</div><div class="line">    h = unpack_from(<span class="string">"&gt;I"</span>, k)[<span class="number">0</span>]</div><div class="line">    <span class="comment"># 通过取余的方式进行映射</span></div><div class="line">    n = h % NODES</div><div class="line">    node_stat[n] += <span class="number">1</span></div></pre></td></tr></table></figure>
 <p>具体的完整实现请参考<a href="https://github.com/Yikun/hashes/blob/master/normal_hash.py" target="_blank" rel="external">normal_hash.py</a>，输出是这样的：</p>
 <blockquote>
 <p>Ave: 100000<br>Max: 100695 (0.69%)<br>Min: 99073  (0.93%)</p>
 </blockquote>
 <p>从上述结果可以发现，普通的Hash算法均匀地将这些数据项打散到了这些节点上，并且分布最少和最多的存储节点数据项数目小于1%。之所以分布均匀，主要是依赖Hash算法（实现使用的MD5算法）能够比较随机的分布。</p>
 <p>然而，我们看看存在一个问题，由于该算法使用节点数取余的方法，强依赖node的数目，因此，当是node数发生变化的时候，item所对应的node发生剧烈变化，而发生变化的成本就是我们需要在node数发生变化的时候，数据需要迁移，这对存储产品来说显然是不能忍的，我们观察一下增加node后，数据项移动的情况：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</span><br><span class="line">    k = md5(str(item)).digest()</span><br><span class="line">    h = unpack_from(<span class="string">"&gt;I"</span>, k)[<span class="number">0</span>]</span><br><span class="line">    <span class="comment"># 原映射结果</span></span><br><span class="line">    n = h % NODES</span><br><span class="line">    <span class="comment"># 现映射结果</span></span><br><span class="line">    n_new = h % NEW_NODES</span><br><span class="line">    <span class="keyword">if</span> n_new != n:</span><br><span class="line">        change += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</div><div class="line">    k = md5(str(item)).digest()</div><div class="line">    h = unpack_from(<span class="string">"&gt;I"</span>, k)[<span class="number">0</span>]</div><div class="line">    <span class="comment"># 原映射结果</span></div><div class="line">    n = h % NODES</div><div class="line">    <span class="comment"># 现映射结果</span></div><div class="line">    n_new = h % NEW_NODES</div><div class="line">    <span class="keyword">if</span> n_new != n:</div><div class="line">        change += <span class="number">1</span></div></pre></td></tr></table></figure>
 <p>详细实现代码在<a href="https://github.com/Yikun/hashes/blob/master/normal_hash_add.py" target="_blank" rel="external">normal_hash_add.py</a>输出是这样的：</p>
 <blockquote>
 <p>Change: 9900989   (99.01%)</p>
@@ -224,7 +219,7 @@ var _hmt = _hmt || [];
 <h3 id="2-_登场">2. 登场</h3><p>我们上节介绍了普通Hash算法的劣势，即当node数发生变化（增加、移除）后，数据项会被重新“打散”，导致大部分数据项不能落到原来的节点上，从而导致大量数据需要迁移。</p>
 <p>那么，一个亟待解决的问题就变成了：当node数发生变化时，如何保证尽量少引起迁移呢？即<strong>当增加或者删除节点时，对于大多数item，保证原来分配到的某个node，现在仍然应该分配到那个node，将数据迁移量的降到最低</strong>。</p>
 <p>一致性Hash算法的原理是这样的：<br><img src="https://cloud.githubusercontent.com/assets/1736354/16341311/0e8fea32-3a5f-11e6-84b5-ff101495cf49.png" alt="consist_hash"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> range(NODES):</span><br><span class="line">    h = _hash(n)</span><br><span class="line">    ring.append(h)</span><br><span class="line">    ring.sort()</span><br><span class="line">    hash2node[h] = n</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</span><br><span class="line">    h = _hash(item)</span><br><span class="line">    n = bisect_left(ring, h) % NODES</span><br><span class="line">    node_stat[hash2node[ring[n]]] += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> n <span class="keyword">in</span> range(NODES):</div><div class="line">    h = _hash(n)</div><div class="line">    ring.append(h)</div><div class="line">    ring.sort()</div><div class="line">    hash2node[h] = n</div><div class="line"></div><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</div><div class="line">    h = _hash(item)</div><div class="line">    n = bisect_left(ring, h) % NODES</div><div class="line">    node_stat[hash2node[ring[n]]] += <span class="number">1</span></div></pre></td></tr></table></figure>
 <p>我们依然对其进行了实现<a href="https://github.com/Yikun/hashes/blob/master/consist_hash_add.py" target="_blank" rel="external">consist_hash_add.py</a>，并且观察了数据迁移的结果：</p>
 <blockquote>
 <p>Change: 235603    (2.36%)</p>
@@ -236,23 +231,23 @@ var _hmt = _hmt || [];
 <p>这结果简直是简直了，确实非常结果差，分配的很不均匀。我们思考一下，一致性哈希算法分布不均匀的原因是什么？从最初的1000w个数据项经过一般的哈希算法的模拟来看，这些数据项“打散”后，是可以比较均匀分布的。但是引入一致性哈希算法后，为什么就不均匀呢？数据项本身的哈希值并未发生变化，变化的是判断数据项哈希应该落到哪个节点的算法变了。<br><img src="https://cloud.githubusercontent.com/assets/1736354/16341426/8c9e6caa-3a5f-11e6-87ad-fdb462b76aef.png" alt="consist_hash_1"><br>因此，主要是因为这100个节点Hash后，<strong>在环上分布不均匀，导致了每个节点实际占据环上的区间大小不一</strong>造成的。</p>
 <h3 id="3-_改进-虚节点">3. 改进-虚节点</h3><p>当我们将node进行哈希后，这些值并没有均匀地落在环上，因此，最终会导致，这些节点所管辖的范围并不均匀，最终导致了数据分布的不均匀。<br><img src="https://cloud.githubusercontent.com/assets/1736354/16341445/a0e32fde-3a5f-11e6-969d-085f64220e63.png" alt="consist_hash_virtual"></p>
 <p>详细实现请见<a href="https://github.com/Yikun/hashes/blob/master/virtual_consist_hash.py" target="_blank" rel="external">virtual_consist_hash.py</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> n <span class="keyword">in</span> range(NODES):</span><br><span class="line">    <span class="keyword">for</span> v <span class="keyword">in</span> range(VNODES):</span><br><span class="line">        h = _hash(str(n) + str(v))</span><br><span class="line">        <span class="comment"># 构造ring</span></span><br><span class="line">        ring.append(h)</span><br><span class="line">        <span class="comment"># 记录hash所对应节点</span></span><br><span class="line">        hash2node[h] = n</span><br><span class="line">ring.sort()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</span><br><span class="line">    h = _hash(str(item))</span><br><span class="line">    <span class="comment"># 搜索ring上最近的hash</span></span><br><span class="line">    n = bisect_left(ring, h) % (NODES*VNODES)</span><br><span class="line">    node_stat[hash2node[ring[n]]] += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> n <span class="keyword">in</span> range(NODES):</div><div class="line">    <span class="keyword">for</span> v <span class="keyword">in</span> range(VNODES):</div><div class="line">        h = _hash(str(n) + str(v))</div><div class="line">        <span class="comment"># 构造ring</span></div><div class="line">        ring.append(h)</div><div class="line">        <span class="comment"># 记录hash所对应节点</span></div><div class="line">        hash2node[h] = n</div><div class="line">ring.sort()</div><div class="line"></div><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</div><div class="line">    h = _hash(str(item))</div><div class="line">    <span class="comment"># 搜索ring上最近的hash</span></div><div class="line">    n = bisect_left(ring, h) % (NODES*VNODES)</div><div class="line">    node_stat[hash2node[ring[n]]] += <span class="number">1</span></div></pre></td></tr></table></figure>
 <p>输出结果是这样的：</p>
 <blockquote>
 <p>Ave: 100000<br>Max: 116902 (16.90%)<br>Min: 9492   (90.51%)</p>
 </blockquote>
 <p>因此，通过增加虚节点的方法，使得每个节点在环上所“管辖”更加均匀。这样就既保证了在节点变化时，尽可能小的影响数据分布的变化，而同时又保证了数据分布的均匀。也就是靠增加“节点数量”加强管辖区间的均匀。<br>同时，观察增加节点后数据变动情况，详细的代码请见<a href="https://github.com/Yikun/hashes/blob/master/virtual_consist_hash_add.py" target="_blank" rel="external">virtual_consist_hash_add.py</a>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</span><br><span class="line">    h = _hash(str(item))</span><br><span class="line">    n = bisect_left(ring, h) % (NODES*VNODES)</span><br><span class="line">    n2 = bisect_left(ring2, h) % (NODES2*VNODES)</span><br><span class="line">    <span class="keyword">if</span> hash2node[ring[n]] != hash2node2[ring2[n2]]:</span><br><span class="line">        change += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</div><div class="line">    h = _hash(str(item))</div><div class="line">    n = bisect_left(ring, h) % (NODES*VNODES)</div><div class="line">    n2 = bisect_left(ring2, h) % (NODES2*VNODES)</div><div class="line">    <span class="keyword">if</span> hash2node[ring[n]] != hash2node2[ring2[n2]]:</div><div class="line">        change += <span class="number">1</span></div></pre></td></tr></table></figure>
 <blockquote>
 <p>100000<br>101000<br>Change: 104871  (1.05%)</p>
 <h3 id="3-_另一种改进">3. 另一种改进</h3></blockquote>
 <p>然而，虚节点这种靠数量取胜的策略增加了存储这些虚节点信息所需要的空间。在OpenStack的Swift组件中，使用了一种比较特殊的方法来解决分布不均的问题，改进了这些数据分布的算法，将环上的空间均匀的映射到一个线性空间，这样，就保证分布的均匀性。<br><img src="https://cloud.githubusercontent.com/assets/1736354/16341455/b01139ec-3a5f-11e6-965a-070f5c4c0afa.png" alt="consist_hash_ring"><br>代码实现见<a href="https://github.com/Yikun/hashes/blob/master/part_consist_hash.py" target="_blank" rel="external">part_consist_hash.py</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">for</span> part <span class="keyword">in</span> range(<span class="number">2</span> ** LOG_NODE):</span><br><span class="line">    ring.append(part)</span><br><span class="line">    part2node[part] = part % NODES</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</span><br><span class="line">    h = _hash(item) &gt;&gt; PARTITION</span><br><span class="line">    part = bisect_left(ring, h)</span><br><span class="line">    n = part % NODES</span><br><span class="line">    node_stat[n] += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> part <span class="keyword">in</span> range(<span class="number">2</span> ** LOG_NODE):</div><div class="line">    ring.append(part)</div><div class="line">    part2node[part] = part % NODES</div><div class="line"></div><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</div><div class="line">    h = _hash(item) &gt;&gt; PARTITION</div><div class="line">    part = bisect_left(ring, h)</div><div class="line">    n = part % NODES</div><div class="line">    node_stat[n] += <span class="number">1</span></div></pre></td></tr></table></figure>
 <blockquote>
 <p>Ave: 100000<br>Max: 157298 (57.30%)<br>Min: 77405  (22.59%)</p>
 </blockquote>
 <p>可以看到，数据分布是比较理想的。如果节点数刚好和分区数相等，理论上是可以均匀分布的。而观察下增加节点后的数据移动比例，代码实现见<a href="https://github.com/Yikun/hashes/blob/master/part_consist_hash.py" target="_blank" rel="external">part_consist_hash.py</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">for</span> part <span class="keyword">in</span> range(<span class="number">2</span> ** LOG_NODE):</span><br><span class="line">    ring.append(part)</span><br><span class="line">    part2node[part] = part % NODES</span><br><span class="line">    part2node2[part] = part % NODES2</span><br><span class="line"></span><br><span class="line">change = <span class="number">0</span></span><br><span class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</span><br><span class="line">    h = _hash(item) &gt;&gt; PARTITION</span><br><span class="line">    p = bisect_left(ring, h)</span><br><span class="line">    p2 = bisect_left(ring, h)</span><br><span class="line">    n = part2node[p] % NODES</span><br><span class="line">    n2 = part2node2[p] % NODES2</span><br><span class="line">    <span class="keyword">if</span> n2 != n:</span><br><span class="line">        change += <span class="number">1</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">for</span> part <span class="keyword">in</span> range(<span class="number">2</span> ** LOG_NODE):</div><div class="line">    ring.append(part)</div><div class="line">    part2node[part] = part % NODES</div><div class="line">    part2node2[part] = part % NODES2</div><div class="line"></div><div class="line">change = <span class="number">0</span></div><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</div><div class="line">    h = _hash(item) &gt;&gt; PARTITION</div><div class="line">    p = bisect_left(ring, h)</div><div class="line">    p2 = bisect_left(ring, h)</div><div class="line">    n = part2node[p] % NODES</div><div class="line">    n2 = part2node2[p] % NODES2</div><div class="line">    <span class="keyword">if</span> n2 != n:</div><div class="line">        change += <span class="number">1</span></div></pre></td></tr></table></figure>
 <p>结果如下所示：</p>
 <blockquote>
 <p>Change: 2190208 (21.90%)</p>
@@ -318,14 +313,14 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="1-_缘起">1. 缘起</h3><p>Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> open( <span class="string">"a.txt"</span> ) <span class="keyword">as</span> f :</span><br><span class="line">    <span class="comment"># do something</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> open( <span class="string">"a.txt"</span> ) <span class="keyword">as</span> f :</div><div class="line">    <span class="comment"># do something</span></div></pre></td></tr></table></figure>
 <p>大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，<code>with</code>到底做了什么呢？</p>
 <p>从《Python学习手册》中是这么描述的：</p>
 <blockquote>
 <p>简而言之，with/as语句的设计是作为常见try/finally用法模式的替代方案。就像try/finally语句，with/as语句也是用于定义必须执行的终止或“清理”行为,无论步骤中是否发生异常。不过，和try/finally不同的是，with语句支持更丰富的基于对象的协议，可以为代码块定义支持进入和离开动作。</p>
 </blockquote>
 <p>也就是说对于代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> expression [<span class="keyword">as</span> varible]:</span><br><span class="line">    <span class="keyword">with</span>-block</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> expression [<span class="keyword">as</span> varible]:</div><div class="line">    <span class="keyword">with</span>-block</div></pre></td></tr></table></figure>
 <p>with语句的实际工作方式：</p>
 <blockquote>
 <p>1.计算表达式，所得到的对象是<strong>环境管理器</strong>，他必须有<strong>enter</strong>，<strong>exit</strong>两个方法。<br>2.环境管理器的<strong>enter</strong>方法会被调用。如果as存在，<strong>enter</strong>的返回值赋值给as后面的变量，否则，被丢弃。<br>3.代码块中嵌套的代码（with-block）会执行。<br>4.如果with代码块会引发异常，<strong>exit</strong>(type,value,traceback)方法就会被调用。这些也是由sys.exec_info返回相同的值。如果此方法返回为假，则异常会重新引发。否则，异常会中止。正常情况下异常是应该被重新引发，这样的话传递到with语句外。<br>5.如果with代码块没有引发异常，<strong>exit</strong>方法依然会调用，其type、value以及traceback参数会以None传递。</p>
@@ -336,12 +331,12 @@ var _hmt = _hmt || [];
 <p>This PEP adds a new statement “with” to the Python language to make it possible to factor out standard uses of try/finally statements.<br>In this PEP, context managers provide <strong>enter</strong>() and <strong>exit</strong>() methods that are invoked on entry to and exit from the body of the with statement.</p>
 </blockquote>
 <p>对于下面的操作：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">with</span> EXPR <span class="keyword">as</span> VAR:</span><br><span class="line">            BLOCK</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> EXPR <span class="keyword">as</span> VAR:</div><div class="line">            BLOCK</div></pre></td></tr></table></figure>
 <p>等价于</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">mgr = (EXPR)</span><br><span class="line">exit = type(mgr).__exit__  <span class="comment"># Not calling it yet</span></span><br><span class="line">value = type(mgr).__enter__(mgr)</span><br><span class="line">exc = <span class="keyword">True</span></span><br><span class="line"><span class="keyword">try</span>:</span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        <span class="comment"># 将__enter__函数调用的返回值返回给VAR</span></span><br><span class="line">        VAR = value  <span class="comment"># Only if "as VAR" is present</span></span><br><span class="line">        <span class="comment"># 执行BLOCK</span></span><br><span class="line">        BLOCK</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="comment"># 异常处理，The exceptional case is handled here</span></span><br><span class="line">        exc = <span class="keyword">False</span></span><br><span class="line">        <span class="keyword">if</span> <span class="keyword">not</span> exit(mgr, *sys.exc_info()):</span><br><span class="line">            <span class="keyword">raise</span></span><br><span class="line">        <span class="comment"># The exception is swallowed if exit() returns true</span></span><br><span class="line"><span class="keyword">finally</span>:</span><br><span class="line">    <span class="comment"># 清理，The normal and non-local-goto cases are handled here</span></span><br><span class="line">    <span class="keyword">if</span> exc:</span><br><span class="line">        exit(mgr, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>)</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">mgr = (EXPR)</div><div class="line">exit = type(mgr).__exit__  <span class="comment"># Not calling it yet</span></div><div class="line">value = type(mgr).__enter__(mgr)</div><div class="line">exc = <span class="keyword">True</span></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        <span class="comment"># 将__enter__函数调用的返回值返回给VAR</span></div><div class="line">        VAR = value  <span class="comment"># Only if "as VAR" is present</span></div><div class="line">        <span class="comment"># 执行BLOCK</span></div><div class="line">        BLOCK</div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        <span class="comment"># 异常处理，The exceptional case is handled here</span></div><div class="line">        exc = <span class="keyword">False</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> exit(mgr, *sys.exc_info()):</div><div class="line">            <span class="keyword">raise</span></div><div class="line">        <span class="comment"># The exception is swallowed if exit() returns true</span></div><div class="line"><span class="keyword">finally</span>:</div><div class="line">    <span class="comment"># 清理，The normal and non-local-goto cases are handled here</span></div><div class="line">    <span class="keyword">if</span> exc:</div><div class="line">        exit(mgr, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>)</div></pre></td></tr></table></figure>
 <p>我们可以看到上述代码完整的处理了初始化及异常/正常场景的清理操作，这便是<code>with</code>的设计思想，化简了冗余的代码，把那些重复的工作以及异常处理操作交给写“EXPR”源码（比如open操作）的同学。</p>
 <h3 id="3-_更深入的学习">3. 更深入的学习</h3><p>我们继续深入的看下<a href="https://github.com/Yikun/Python3/blob/master/Lib/_pyio.py#L447" target="_blank" rel="external">Python3</a>中<strong>enter</strong>和<strong>exit</strong>的实现：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">IOBase</span><span class="params">(metaclass=abc.ABCMeta)</span>:</span></span><br><span class="line">    <span class="comment"># ... ...</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">### Context manager ###</span></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__enter__</span><span class="params">(self)</span>:</span>  <span class="comment"># That's a forward reference</span></span><br><span class="line">        <span class="string">"""Context management protocol.  Returns self (an instance of IOBase)."""</span></span><br><span class="line">        self._checkClosed()</span><br><span class="line">        <span class="keyword">return</span> self</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__exit__</span><span class="params">(self, *args)</span>:</span></span><br><span class="line">        <span class="string">"""Context management protocol.  Calls close()"""</span></span><br><span class="line">        self.close()</span><br></pre></td></tr></table></figure>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">IOBase</span><span class="params">(metaclass=abc.ABCMeta)</span>:</span></div><div class="line">    <span class="comment"># ... ...</span></div><div class="line"></div><div class="line">    <span class="comment">### Context manager ###</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__enter__</span><span class="params">(self)</span>:</span>  <span class="comment"># That's a forward reference</span></div><div class="line">        <span class="string">"""Context management protocol.  Returns self (an instance of IOBase)."""</span></div><div class="line">        self._checkClosed()</div><div class="line">        <span class="keyword">return</span> self</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__exit__</span><span class="params">(self, *args)</span>:</span></div><div class="line">        <span class="string">"""Context management protocol.  Calls close()"""</span></div><div class="line">        self.close()</div></pre></td></tr></table></figure>
 <p>和我们预期的一致，在<strong>enter</strong>中返回了这个IO对象，然后在<strong>exit</strong>中，进行了清理。</p>
 <h3 id="参考资料">参考资料</h3><ol>
 <li>《Python学习手册》 </li>
@@ -410,7 +405,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近认认真真学习了一个叫<a href="https://www.brighttalk.com/webcast/663/169543">《Life of a Storage Packet》</a>讲座，借助这个讲座将整个存储的过程理解了下，不放过任何一个有疑问的点。这篇文章算是对讲座的理解和自己收获的总结，同时也为那些对存储系统不够了解又想要了解的初学者，展现一个存储数据包的“生命”。这个演讲主要聚焦在“整体的存储”，强调存储系统中各个基本元素的关系，并且尽可能简单、清楚地用一种不同的方式可视化一些存储的概念。</p>
+        <p>最近认认真真学习了一个叫<a href="https://www.brighttalk.com/webcast/663/169543" target="_blank" rel="external">《Life of a Storage Packet》</a>讲座，借助这个讲座将整个存储的过程理解了下，不放过任何一个有疑问的点。这篇文章算是对讲座的理解和自己收获的总结，同时也为那些对存储系统不够了解又想要了解的初学者，展现一个存储数据包的“生命”。这个演讲主要聚焦在“整体的存储”，强调存储系统中各个基本元素的关系，并且尽可能简单、清楚地用一种不同的方式可视化一些存储的概念。</p>
 <p>先上一张大图，可以说这篇文章目的就是解释这个图：<br><img src="https://cloud.githubusercontent.com/assets/1736354/14232888/3dc0f734-f9ea-11e5-877c-8b37b7addbdd.png" alt="12"></p>
         
           <a class="article-more-a" href="/2016/04/03/存储数据包的一生/#more">more >></a>
@@ -547,11 +542,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
         		</li>
       		
 		</ul>
@@ -737,11 +732,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
         		</li>
       		
 		</ul>
@@ -809,11 +804,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
         		</li>
       		
 		</ul>
@@ -858,7 +853,7 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前段时间主要了解了一些OpenStack相关的基础性东西，现在希望通过安装使用来增强一下对系统整体的认识，最近也读了一篇文章<a href="http://www.csdn.net/article/2014-04-10/2819247-how-to-learn-opensouce-project-&amp;-ceph">如何学习开源项目</a>，基本和我的想法很类似，所以基本上也就是按照这个节奏来的。不说废话了，开始。</p>
+        <p>前段时间主要了解了一些OpenStack相关的基础性东西，现在希望通过安装使用来增强一下对系统整体的认识，最近也读了一篇文章<a href="http://www.csdn.net/article/2014-04-10/2819247-how-to-learn-opensouce-project-&amp;-ceph" target="_blank" rel="external">如何学习开源项目</a>，基本和我的想法很类似，所以基本上也就是按照这个节奏来的。不说废话了，开始。</p>
         
           <a class="article-more-a" href="/2016/02/10/搭建OpenStack开发环境/#more">more >></a>
         
@@ -932,8 +927,8 @@ var _hmt = _hmt || [];
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -949,7 +944,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      
+      
     
+      
+      
       
     
       
@@ -960,7 +959,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有分类</a></li>
+      
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -969,7 +972,118 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+    	</section>
     
 
     

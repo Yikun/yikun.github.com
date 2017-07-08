@@ -8,28 +8,19 @@
   <link rel="dns-prefetch" href="http://yikun.github.io">
   <title>一个简单的网络数据包工具——Packet Assistant | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 起因最近一段时间，总是有一些发数据包、抓数据包之类的需求，主要是需要定制以太网MAC层的源MAC地址、目的MAC地址、协议类型之类的东西。
-之前实现这些都是用Winpcap实现的，然后用某基础类库去实现界面，实在是受不了“某基础类库”庞大冗余的结构了。这时，看到了PyQt，整个人一下清爽起来。所以，Packet Assistant就诞生了。
-总而言之，言而总之：
-
-Packet Assist">
+  <meta name="description" content="1. 起因最近一段时间，总是有一些发数据包、抓数据包之类的需求，主要是需要定制以太网MAC层的源MAC地址、目的MAC地址、协议类型之类的东西。 之前实现这些都是用Winpcap实现的，然后用某基础类库去实现界面，实在是受不了“某基础类库”庞大冗余的结构了。这时，看到了PyQt，整个人一下清爽起来。所以，Packet Assistant就诞生了。 总而言之，言而总之：  Packet Assist">
+<meta name="keywords" content="网络,Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一个简单的网络数据包工具——Packet Assistant">
 <meta property="og:url" content="http://yikun.github.io/2015/06/15/一个简单的网络数据包工具——Packet-Assistant/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="1. 起因最近一段时间，总是有一些发数据包、抓数据包之类的需求，主要是需要定制以太网MAC层的源MAC地址、目的MAC地址、协议类型之类的东西。
-之前实现这些都是用Winpcap实现的，然后用某基础类库去实现界面，实在是受不了“某基础类库”庞大冗余的结构了。这时，看到了PyQt，整个人一下清爽起来。所以，Packet Assistant就诞生了。
-总而言之，言而总之：
-
-Packet Assist">
+<meta property="og:description" content="1. 起因最近一段时间，总是有一些发数据包、抓数据包之类的需求，主要是需要定制以太网MAC层的源MAC地址、目的MAC地址、协议类型之类的东西。 之前实现这些都是用Winpcap实现的，然后用某基础类库去实现界面，实在是受不了“某基础类库”庞大冗余的结构了。这时，看到了PyQt，整个人一下清爽起来。所以，Packet Assistant就诞生了。 总而言之，言而总之：  Packet Assist">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/8158460/d367be9a-138f-11e5-84ae-346611f8aa59.png">
+<meta property="og:updated_time" content="2017-06-07T16:01:26.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一个简单的网络数据包工具——Packet Assistant">
-<meta name="twitter:description" content="1. 起因最近一段时间，总是有一些发数据包、抓数据包之类的需求，主要是需要定制以太网MAC层的源MAC地址、目的MAC地址、协议类型之类的东西。
-之前实现这些都是用Winpcap实现的，然后用某基础类库去实现界面，实在是受不了“某基础类库”庞大冗余的结构了。这时，看到了PyQt，整个人一下清爽起来。所以，Packet Assistant就诞生了。
-总而言之，言而总之：
-
-Packet Assist">
+<meta name="twitter:description" content="1. 起因最近一段时间，总是有一些发数据包、抓数据包之类的需求，主要是需要定制以太网MAC层的源MAC地址、目的MAC地址、协议类型之类的东西。 之前实现这些都是用Winpcap实现的，然后用某基础类库去实现界面，实在是受不了“某基础类库”庞大冗余的结构了。这时，看到了PyQt，整个人一下清爽起来。所以，Packet Assistant就诞生了。 总而言之，言而总之：  Packet Assist">
+<meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/1736354/8158460/d367be9a-138f-11e5-84ae-346611f8aa59.png">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -82,8 +73,6 @@ var _hmt = _hmt || [];
 	        
 				<li><a href="/archives">文章</a></li>
 	        
-				<li><a href="/tags/随笔/">随笔</a></li>
-	        
 				<li><a href="/project">项目</a></li>
 	        
 				<li><a href="/douban">读书</a></li>
@@ -95,7 +84,11 @@ var _hmt = _hmt || [];
 		<nav class="header-smart-menu">
     		
     			
+    			<a q-on="click: openSlider(e, 'innerArchive')" href="javascript:void(0)">所有分类</a>
+    			
             
+    			
+    			<a q-on="click: openSlider(e, 'friends')" href="javascript:void(0)">友情链接</a>
     			
             
     			
@@ -144,8 +137,6 @@ var _hmt = _hmt || [];
 			
 				
 			
-				
-			
 			
 			
 			<nav class="header-nav">
@@ -164,17 +155,15 @@ var _hmt = _hmt || [];
 				<ul style="width: 70%">
 				
 				
-					<li style="width: 16.666666666666668%"><a href="/">主页</a></li>
+					<li style="width: 20%"><a href="/">主页</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/archives">文章</a></li>
+					<li style="width: 20%"><a href="/archives">文章</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/tags/随笔/">随笔</a></li>
+					<li style="width: 20%"><a href="/project">项目</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/project">项目</a></li>
+					<li style="width: 20%"><a href="/douban">读书</a></li>
 		        
-					<li style="width: 16.666666666666668%"><a href="/douban">读书</a></li>
-		        
-					<li style="width: 16.666666666666668%"><a href="/about">关于我</a></li>
+					<li style="width: 20%"><a href="/about">关于我</a></li>
 		        
 				</ul>
 			</nav>
@@ -270,11 +259,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
         		</li>
       		
 		</ul>
@@ -330,7 +319,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://s.jiathis.com/qrcode.php?url=http://yikun.github.io/2015/06/15/一个简单的网络数据包工具——Packet-Assistant/" alt="微信分享二维码">
+      <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAPYAAAD2CAAAAADAeSUUAAADJklEQVR42u3aQY7jMAwEwPn/p7MPWMTpphQglsunxawnUmkODNn6+4uf15vn3f/+lc//v/VulV0rYmNjY5/Efl0+18tcb+56lev3r6nJOx+OBhsbG/s4drLk+mLJ1vMVk32+/Tk2Njb2g9kJaXYQbYnCxsbGxt5VwFZK0crAqG2EsLGxsc9mJ0Ol2aB/ZdNtY/OVWRo2Njb2z7NbzC//+yv5NjY2NvYPs1/l0zYebTsxK0i1AhsbG/sgdl4A8iOYxcNtu9K2GdjY2NhPYM++6M+OIImQV4ZB0VAMGxsb+wh222a0oe9K8VsJEj4cIjY2NvZB7HbTSTuRF8L8Qmd+lEVUjI2NjX00+7oY7Gon2u3uLW/Y2NjYZ7NnX/Hb8LX9tPY6ETY2NvbT2NelIh/TJy1H+wn5cKrYLTY2NvZB7Lz9mJWQtpi1wcPsD4mNjY19Evu6MRgWhjJIyI+pHXLVm8PGxsa+Fbv9Wp+MhPK4d2XMtK33wsbGxr45e1dxmgXGu67jzMJpbGxs7JPY7eWbWcHLh1bJftrY4EO+jY2NjX1zdj6Uaa8/rlBnjU0ddWBjY2PfnD27tthGwl8pPCthMDY2Nvah7HyxlUigPYicnX8aNjY29qnsdhNJu5KP+JOrQttGWtjY2NjHsRPY7NJMDkjAeSAdRbzY2NjYR7CTNiMpLSubWC9v7UUfbGxs7LPZ9aujwDUPJ9qWZnZk2NjY2Pdl54P+lRKSbDSPEGZB74cODBsbG/vm7HaZ2bf6vIwl461t9RkbGxv75uy88MyKVt5ytPhZ0IuNjY19Nns29MnB6yHE3sYJGxsb+wnsdjTfHk3dPGwdcmFjY2Ofx84vX640Le2hrIfQRTaCjY2NfUP2q3z2NhUrcW8+PKr/ztjY2Ni3Yi/VvfL92ehq5epPXhSxsbGx785uL8qsnOJKJJxHAtfvYGNjY5/K3pWEzmLaJFSe1d63n4yNjY2NPbrQM7ua05bVYqKGjY2N/Uh2UkLyEtWO/mcFDBsbG/sJ7JWGYeVQogFQMDzKI2FsbGzs89jtaGY2ytk1SJpdDxpe3MHGxsb+dfY/I5vOSqcpxN8AAAAASUVORK5CYII=" alt="微信分享二维码">
     </div>
 </div>
 
@@ -418,8 +407,8 @@ gitment.render('gitmentContainer')
 		isCategory: false,
 		open_in_new: false,
 		root: "/",
-		innerArchive: false,
-		showTags: false
+		innerArchive: true,
+		showTags: true
 	}
 </script>
 
@@ -435,7 +424,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      
+      
     
+      
+      
       
     
       
@@ -446,7 +439,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
     
     
       
+      <li style="width: 50%" q-on="click: openSlider(e, 'innerArchive')"><a href="javascript:void(0)" q-class="active:innerArchive">所有分类</a></li>
+      
         
+      
+      <li style="width: 50%" q-on="click: openSlider(e, 'friends')"><a href="javascript:void(0)" q-class="active:friends">友情链接</a></li>
       
         
       
@@ -455,7 +452,118 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
   </div>
   <div class="tools-wrap">
     
+    	<section class="tools-section tools-section-all" q-show="innerArchive">
+        <div class="search-wrap">
+          <input class="search-ipt" q-model="search" type="text" placeholder="find something…">
+          <i class="icon-search icon" q-show="search|isEmptyStr"></i>
+          <i class="icon-close icon" q-show="search|isNotEmptyStr" q-on="click:clearChose(e)"></i>
+        </div>
+        <div class="widget tagcloud search-tag">
+          <p class="search-tag-wording">tag:</p>
+          <label class="search-switch">
+            <input type="checkbox" q-on="click:toggleTag(e)" q-attr="checked:showTags">
+          </label>
+          <ul class="article-tag-list" q-show="showTags">
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+            
+            <div class="clearfix"></div>
+          </ul>
+        </div>
+        <ul class="search-ul">
+          <p q-show="jsonFail" style="padding: 20px; font-size: 12px;">
+            缺失模块。<br/>1、请确保node版本大于6.2<br/>2、在博客根目录（注意不是yilia根目录）执行以下命令：<br/> npm i hexo-generator-json-content --save<br/><br/>
+            3、在根目录_config.yml里添加配置：
+<pre style="font-size: 12px;" q-show="jsonFail">
+  jsonContent:
+    meta: false
+    pages: false
+    posts:
+      title: true
+      date: true
+      path: true
+      text: false
+      raw: false
+      content: false
+      slug: false
+      updated: false
+      comments: false
+      link: false
+      permalink: false
+      excerpt: false
+      categories: false
+      tags: true
+</pre>
+          </p>
+          <li class="search-li" q-repeat="items" q-show="isShow">
+            <a q-attr="href:path|urlformat" class="search-title"><i class="icon-quo-left icon"></i><span q-text="title"></span></a>
+            <p class="search-time">
+              <i class="icon-calendar icon"></i>
+              <span q-text="date|dateformat"></span>
+            </p>
+            <p class="search-tag">
+              <i class="icon-price-tags icon"></i>
+              <span q-repeat="tags" q-on="click:choseTag(e, name)" q-text="name|tagformat"></span>
+            </p>
+          </li>
+        </ul>
+    	</section>
+    
 
+    
+    	<section class="tools-section tools-section-friends" q-show="friends">
+  		
+    	</section>
     
 
     
