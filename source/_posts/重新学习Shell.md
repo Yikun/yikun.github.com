@@ -2,21 +2,23 @@ title: "重新学习Shell"
 date: 2015-05-19 12:42:23
 tags:
   - Linux
+number: 22
 ---
 
 之前，虽然已经对`Shell`比较熟悉了，但是遇到一些不太常用，但是却很有用的命令，还得搜个半天。所以，这几天准备把常用的指令重新过一下，然后再把基础的`Shell`流程控制、`awk`的操作等常用命令系统地学习一下，一方面作为总结，另一方面也作为一个Cheat Sheet，时不时的补充一下也是极好的，: )。
-
 #### 基本语法
+
 **传参**
 `$n` - 传递的第n个参数
 `$#` - 传递的参数个数
 `$*` - 所有参数
 `$@` - 所有参数，加引号为字符串数组
-```Bash
+
+``` Bash
 # var.sh arg1 arg2 arg3
 echo $0 $1 $2 $3
 
-# 3
+#3
 echo $#
 
 # arg1 arg2 arg3
@@ -40,9 +42,10 @@ do
 done
 
 ```
+
 **if条件控制**
 
-```Bash
+``` Bash
 a=10
 b=20
 if [ $a -eq $b ]
@@ -66,7 +69,8 @@ fi
 ```
 
 **循环控制**
-```bash
+
+``` bash
 arr=("hello" "bash" "shell")
 for a in ${arr[*]}
 do
@@ -74,8 +78,10 @@ do
 done
 ```
 #### 常用指令
-***head/tail***
-```bash
+
+**_head/tail**_
+
+``` bash
 # 前5行
 head -5
 head -n 5
@@ -87,13 +93,17 @@ tail -n +5
 head -c 5
 
 ```
-***sort***
-```bash
+
+**_sort**_
+
+``` bash
 # 忽略起始空格(b)数值(n)去重(u)逆序(r)按照:分隔(-t ':')的第二列(-k 2)排序
 sort -bnur -t ':' -k 2 somefile
 ```
-***grep***
-```bash
+
+**_grep**_
+
+``` bash
 # 在当前文件夹的所有文件递归(-r)搜索main
 grep -r "main" *
 # 搜索匹配正则(-E)的行数(-c)，（带main或者括弧的）
@@ -101,8 +111,10 @@ grep -cE "main|\(\)" *
 # 搜索不包含extern的(-v --> invert-match)
 grep -v "extern"
 ```
-***wc***
-```bash
+
+**_wc**_
+
+``` bash
 # 打印所有.c文件的行数
 grep -r "" *.c | wc -l
 ```

@@ -2,18 +2,21 @@ title: "Java HashMap工作原理及实现"
 date: 2015-04-01 16:53:14
 tags:
   - Java
+number: 7
 ---
 
 ### 1. 概述
+
 从本文你可以学习到：
 
 > 1. 什么时候会使用HashMap？他有什么特点？
-2. 你知道HashMap的工作原理吗？
-3. 你知道get和put的原理吗？equals()和hashCode()的都有什么作用？
-4. 你知道hash的实现吗？为什么要这样实现？
-5. 如果HashMap的大小超过了负载因子(load factor)定义的容量，怎么办？
+> 2. 你知道HashMap的工作原理吗？
+> 3. 你知道get和put的原理吗？equals()和hashCode()的都有什么作用？
+> 4. 你知道hash的实现吗？为什么要这样实现？
+> 5. 如果HashMap的大小超过了负载因子(load factor)定义的容量，怎么办？
 
 当我们执行下面的操作时：
+
 ``` Java
 HashMap<String, Integer> map = new HashMap<String, Integer>();
 map.put("语文", 1);
@@ -24,37 +27,40 @@ map.put("政治", 5);
 map.put("地理", 6);
 map.put("生物", 7);
 map.put("化学", 8);
-for(Entry<String, Integer> entry : lmap.entrySet()) {
-	System.out.println(entry.getKey() + ": " + entry.getValue());
+for(Entry<String, Integer> entry : map.entrySet()) {
+    System.out.println(entry.getKey() + ": " + entry.getValue());
 }
 ```
+
 运行结果是
+
 > 政治: 5
-生物: 7
-历史: 4
-数学: 2
-化学: 8
-语文: 1
-英语: 3
-地理: 6
+> 生物: 7
+> 历史: 4
+> 数学: 2
+> 化学: 8
+> 语文: 1
+> 英语: 3
+> 地理: 6
 
 发生了什么呢？下面是一个大致的结构，希望我们对HashMap的结构有一个感性的认识：
 ![hashmap](https://cloud.githubusercontent.com/assets/1736354/6957741/0c039b1c-d933-11e4-8c1e-7558a8766272.png)
 
 在官方文档中是这样描述HashMap的：
+
 > Hash table based **implementation of the Map interface**. This implementation provides all of the optional map operations, and permits null values and the null key. (The HashMap class is roughly equivalent to Hashtable, except that it is **unsynchronized** and **permits nulls**.) This class makes no guarantees as to the order of the map; in particular, it does not guarantee that the order will remain constant over time.
 
 几个关键的信息：基于Map接口实现、允许null键/值、非同步、不保证有序(比如插入的顺序)、也不保证序不随时间变化。
-
 ### 2. 两个重要的参数
+
 在HashMap中有两个很重要的参数，容量(Capacity)和负载因子(Load factor)
 
-> * **Initial capacity** The capacity is **the number of buckets** in the hash table, The initial capacity is simply the capacity at the time the hash table is created.
-> * **Load factor** The load factor is **a measure of how full the hash table is allowed to get** before its capacity is automatically increased.
+> - **Initial capacity** The capacity is **the number of buckets** in the hash table, The initial capacity is simply the capacity at the time the hash table is created.
+> - **Load factor** The load factor is **a measure of how full the hash table is allowed to get** before its capacity is automatically increased.
 
 简单的说，Capacity就是bucket的大小，Load factor就是bucket填满程度的最大比例。如果对迭代性能要求很高的话不要把`capacity`设置过大，也不要把`load factor`设置过小。当bucket中的entries的数目大于`capacity*load factor`时就需要调整bucket的大小为当前的2倍。
-
 ### 3. put函数的实现
+
 put函数大致的思路为：
 1. 对key的hashCode()做hash，然后再计算index;
 2. 如果没碰撞直接放到bucket里；
@@ -64,6 +70,7 @@ put函数大致的思路为：
 6. 如果bucket满了(超过load factor*current capacity)，就要resize。
 
 具体代码的实现如下：
+
 ``` java
 
 public V put(K key, V value) {
@@ -122,6 +129,7 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
 }
 ```
 ### 4. get函数的实现
+
 在理解了put之后，get就很简单了。大致思路如下：
 1. bucket里的第一个节点，直接命中；
 2. 如果有冲突，则通过key.equals(k)去查找对应的entry
@@ -129,6 +137,7 @@ final V putVal(int hash, K key, V value, boolean onlyIfAbsent,
 若为链表，则在链表中通过key.equals(k)查找，O(n)。
 
 具体代码的实现如下：
+
 ``` java
 public V get(Object key) {
     Node<K,V> e;
@@ -159,30 +168,36 @@ final Node<K,V> getNode(int hash, Object key) {
     return null;
 }   
 ```
-
 ### 5. hash函数的实现
+
 在get和put的过程中，计算下标时，先对hashCode进行hash操作，然后再通过hash值进一步计算下标，如下图所示：
 ![hash](https://cloud.githubusercontent.com/assets/1736354/6957712/293b52fc-d932-11e4-854d-cb47be67949a.png)
 
 在对hashCode()计算hash时具体实现是这样的：
+
 ``` java
 static final int hash(Object key) {
     int h;
     return (key == null) ? 0 : (h = key.hashCode()) ^ (h >>> 16);
 }
 ```
+
 可以看到这个函数大概的作用就是：高16bit不变，低16bit和高16bit做了一个异或。其中代码注释是这样写的：
+
 > Computes key.hashCode() and spreads (XORs) higher bits of hash to lower.  Because the table uses power-of-two masking, sets of hashes that vary only in bits above the current mask will always collide. (Among known examples are sets of Float keys holding consecutive whole numbers in small tables.)  So we apply a transform that spreads the impact of higher bits downward. There is a tradeoff between **speed, utility, and quality** of bit-spreading. Because many common sets of hashes are already **reasonably distributed** (so don't benefit from spreading), and because **we use trees to handle large sets of collisions in bins**, we just XOR some shifted bits in the cheapest possible way to reduce systematic lossage, as well as to incorporate impact of the highest bits that would otherwise never be used in index calculations because of table bounds.
 
 在设计hash函数时，因为目前的table长度n为2的幂，而计算下标的时候，是这样实现的(使用`&`位操作，而非`%`求余)：
 
-    (n - 1) & hash
+```
+(n - 1) & hash
+```
 
 设计者认为这方法很容易发生碰撞。为什么这么说呢？不妨思考一下，在n - 1为15(0x1111)时，其实散列真正生效的只是低4bit的有效位，当然容易碰撞了。
 
 因此，设计者想了一个顾全大局的方法(综合考虑了速度、作用、质量)，就是把高16bit和低16bit异或了一下。设计者还解释到因为现在大多数的hashCode的分布已经很不错了，就算是发生了碰撞也用`O(logn)`的tree去做了。仅仅异或一下，既减少了系统的开销，也不会造成的因为高位没有参与下标的计算(table长度比较小时)，从而引起的碰撞。
 
 如果还是产生了频繁的碰撞，会发生什么问题呢？作者注释说，他们使用树来处理频繁的碰撞(we use trees to handle large sets of collisions in bins)，在[JEP-180](http://openjdk.java.net/jeps/180)中，描述了这个问题：
+
 > Improve the performance of java.util.HashMap under high hash-collision conditions by **using balanced trees rather than linked lists to store map entries**. Implement the same improvement in the LinkedHashMap class.
 
 之前已经提过，在获取HashMap的元素时，基本分两步：
@@ -192,9 +207,10 @@ static final int hash(Object key) {
 在Java 8之前的实现中是用链表解决冲突的，在产生碰撞的情况下，进行get时，两步的时间复杂度是O(1)+O(n)。因此，当碰撞很厉害的时候n很大，O(n)的速度显然是影响速度的。
 
 因此在Java 8中，利用红黑树替换链表，这样复杂度就变成了O(1)+O(logn)了，这样在n很大的时候，能够比较理想的解决这个问题，在[Java 8：HashMap的性能提升](http://www.importnew.com/14417.html)一文中有性能测试的结果。
-
 #### 6. resize的实现
+
 当put时，如果发现目前的bucket占用程度已经超过了Load Factor所希望的比例，那么就会发生resize。在resize的过程，简单的说就是把bucket扩充为2倍，之后重新计算index，把节点再放到新的bucket中。resize的注释是这样描述的：
+
 > Initializes or doubles table size.  If null, allocates in accord with initial capacity target held in field threshold. Otherwise, because we are using power-of-two expansion, the elements from each bin must either **stay at same index**, or **move with a power of two offset** in the new table.
 
 大致意思就是说，当超过限制的时候会resize，然而又因为我们使用的是2次幂的扩展(指长度扩为原来2倍)，所以，元素的位置要么是在原位置，要么是在原位置再移动2次幂的位置。
@@ -211,6 +227,7 @@ static final int hash(Object key) {
 这个设计确实非常的巧妙，既省去了重新计算hash值的时间，而且同时，由于新增的1bit是0还是1可以认为是随机的，因此resize的过程，均匀的把之前的冲突的节点分散到新的bucket了。
 
 下面是代码的具体实现：
+
 ``` java
 final Node<K,V>[] resize() {
     Node<K,V>[] oldTab = table;
@@ -295,8 +312,8 @@ final Node<K,V>[] resize() {
     return newTab;
 }
 ```
-
 ### 7. 总结
+
 我们现在可以回答开始的几个问题，加深对HashMap的理解：
 
 **1. 什么时候会使用HashMap？他有什么特点？**
@@ -317,20 +334,20 @@ final Node<K,V>[] resize() {
 [关于Java集合的小抄](http://calvin1978.blogcn.com/articles/collection.html)中是这样描述的：
 
 > 以Entry[]数组实现的哈希桶数组，用Key的哈希值取模桶数组的大小可得到数组下标。
-
+> 
 > 插入元素时，如果两条Key落在同一个桶(比如哈希值1和17取模16后都属于第一个哈希桶)，Entry用一个next属性实现多个Entry以单向链表存放，后入桶的Entry将next指向桶当前的Entry。
-
+> 
 > 查找哈希值为17的key时，先定位到第一个哈希桶，然后以链表遍历桶里所有元素，逐个比较其key值。
-
+> 
 > 当Entry数量达到桶数量的75%时(很多文章说使用的桶数量达到了75%，但看代码不是)，会成倍扩容桶数组，并重新分配所有原来的Entry，所以这里也最好有个预估值。
-
+> 
 > 取模用位运算(hash & (arrayLength-1))会比较快，所以数组的大小永远是2的N次方， 你随便给一个初始值比如17会转为32。默认第一次放入元素时的初始值是16。
-
+> 
 > iterator()时顺着哈希桶数组来遍历，看起来是个乱序。
-
+> 
 > 在JDK8里，新增默认为8的閥值，当一个桶里的Entry超过閥值，就不以单向链表而以红黑树来存放以加快Key的查找速度。
-
 ### 参考资料
+
 [HashMap的工作原理](http://www.importnew.com/7099.html)
 [Java 8：HashMap的性能提升](http://www.importnew.com/14417.html)
 [JEP 180: Handle Frequent HashMap Collisions with Balanced Trees](http://openjdk.java.net/jeps/180)

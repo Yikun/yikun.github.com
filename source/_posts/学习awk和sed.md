@@ -2,6 +2,7 @@ title: "学习awk和sed"
 date: 2015-05-24 00:52:31
 tags:
   - Linux
+number: 24
 ---
 
 最近把awk和sed又系统地学习了下，使用[百度脑图](http://naotu.baidu.com/)简单地整理了一下大概的思路：

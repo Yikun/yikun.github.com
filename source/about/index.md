@@ -1,6 +1,7 @@
 title: About
 layout: post
 toc: false
+number: 1
 ---
 
 姜逸坤 = Yikun(码农) + Kero(漫画) + 小困(自媒) 
