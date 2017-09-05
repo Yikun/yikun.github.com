@@ -173,6 +173,139 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-OpenStack源码分析-Cinder创建卷流程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/14/OpenStack源码分析-Cinder创建卷流程/">OpenStack源码分析-Cinder创建卷流程</a>
+    </h1>
+  
+
+        
+        <a href="/2016/02/14/OpenStack源码分析-Cinder创建卷流程/" class="archive-article-date">
+  	<time datetime="2016-02-14T09:43:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Feb 14 2016</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-_Cinder创卷整体流程">1. Cinder创卷整体流程</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/13130372/71de5178-d61e-11e5-8d7c-6b9f0a244e41.png" alt="create"></p>
+<p>如整体架构图所示，创建卷涉及的答题步骤主要有以下几步：<br>a. Client发送请求，通过RESTFUL接口访问cinder-api。<br>b. Api解析响应请求，api解析由Client发送来的请求，并通过rpc进一步调用cinder-scheduler。<br>c. Scheduler对资源进行调度，scheduler选择合适的节点进行。<br>d. Volume调用Driver创建卷，volume通过指定Driver进行卷的创建。</p>
+<h3 id="2-_源码详解">2. 源码详解</h3><p>代码的整体流程如下所示：<br> <img src="https://cloud.githubusercontent.com/assets/1736354/13033012/82f1e54e-d342-11e5-835c-e8f6d3baff40.png" alt="cinder seq"><br>从上图可以看出，整体处理流程包括三大部分，分别是API、Scheduler、Volume三部分。</p>
+<h4 id="2-1_Cinder_API部分">2.1 Cinder API部分</h4><p><img src="https://cloud.githubusercontent.com/assets/1736354/13130422/b4a5c3b0-d61e-11e5-8781-52c9586b9c7d.png" alt="create_api"></p>
+<p>(1) cinder\api\v2\volumes.py<br>VolumeController. create函数对创建请求进行响应，首先函数对volume_type、metadata、snapshot等信息进行检查，然后调用Volume API的create进行创建。<br>(2) cinder\volume\api.py<br>API.create函数对source_volume、volume_type等参数进行进一步检查，并调用cinder.volume.flows.api.get_flow来创建。<br>(3) cinder\volume\flows\api\create_volume.py<br>get_flow函数检查Quata，最后创建EntryCreateTask及VolumeCastTask等任务，<br>其中EntryCreateTask会将卷的创建过程写入数据库，此时卷的状态为”creating”。<br>VolumeCastTask.excute函数会调用VoumeCastTask._cast_create_volume<br>VolumeCastTask._cast_create_volume函数，如果未传入host，则会经过调度进行创建卷，通过scheduler_rpcapi.create_volume创建卷；如果未传入host则直接交由Volume Manager去创建卷。</p>
+<p>至此为止，Cinder API部分完成了自己的工作。</p>
+<h4 id="2-2_Cinder_Scheduler">2.2 Cinder Scheduler</h4><p><img src="https://cloud.githubusercontent.com/assets/1736354/13130398/8ceff976-d61e-11e5-8ea7-08661eebb7af.png" alt="create_sche"></p>
+<p>(1) cinder\scheduler\rpcapi.py（此步还属于cinder-api）<br>SchedulerAPI.create_volume函数会通过消息异步调用SchedulerManager.create_volume函数。<br>(2) cinder\scheduler\manager.py<br>SchedulerManager.create_volume函数，使用自己的flow来创建volume，其中还传入了Driver。<br>(3) cinder\scheduler\flows\create_volume.py<br>get_flow函数，创建ScheduleCreateVolumeTask<br>ScheduleCreateVolumeTask.execute函数，会调用driver_api.schedule_create_volume<br>(4) cinder\scheduler\filter_scheduler.py<br>FilterScheduler. schedule_create_volume函数，更新数据库，最后通过消息队列请求调用volume_rpcapi.create_volume。</p>
+<h4 id="2-3_Cinder_Volume">2.3    Cinder Volume</h4><p> <img src="https://cloud.githubusercontent.com/assets/1736354/13130404/93c802e8-d61e-11e5-87e7-a01a64765a3b.png" alt="create_volume"><br>(1) /cinder/volume/rpcapi.py（此步还属于cinder-scheduler）<br>VolumeAPI.create_volume会通过消息队列远程调用VolumeManager.create_volume<br>(2) /cinder/volume/manager.py<br>VolumeManager函数也使用flow来创建volume，执行CreateVolumeFromSpecTask这个任务<br>(3) /cinder/volume/flows/manager/create_volume.py<br>CreateVolumeFromSpecTask.excute，这个函数会根据创建的不同类别，去创建卷，例如调用create_raw_volume，最终会调用具体的driver进行卷的创建。<br>在完成创卷后，CreateVolumeOnFinishTask这个任务，启动更新数据库，将卷更新为available状态。</p>
+<p>我们可以看到在创建卷的过程中盘的状态会从“creating”状态变为“available”状态。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/02/14/OpenStack源码分析-Cinder创建卷流程/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-搭建OpenStack开发环境" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/02/10/搭建OpenStack开发环境/">搭建OpenStack开发环境</a>
+    </h1>
+  
+
+        
+        <a href="/2016/02/10/搭建OpenStack开发环境/" class="archive-article-date">
+  	<time datetime="2016-02-09T16:10:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Feb 10 2016</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>前段时间主要了解了一些OpenStack相关的基础性东西，现在希望通过安装使用来增强一下对系统整体的认识，最近也读了一篇文章<a href="http://www.csdn.net/article/2014-04-10/2819247-how-to-learn-opensouce-project-&amp;-ceph" target="_blank" rel="external">如何学习开源项目</a>，基本和我的想法很类似，所以基本上也就是按照这个节奏来的。不说废话了，开始。</p>
+        
+          <a class="article-more-a" href="/2016/02/10/搭建OpenStack开发环境/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/02/10/搭建OpenStack开发环境/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-存储知识学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -696,145 +829,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-网络知识拾遗" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/23/网络知识拾遗/">网络知识拾遗</a>
-    </h1>
-  
-
-        
-        <a href="/2015/11/23/网络知识拾遗/" class="archive-article-date">
-  	<time datetime="2015-11-23T13:19:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Nov 23 2015</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>本科加上研究生大概有七年时间，一直都是学的通信，不过覆盖面不是很全，一直对一些网络相关的概念和实现有些模糊。最近补了补通信网络中的一些基础知识和盲点，有目的地看了看《云计算网络珠玑》、《图解网络硬件》等和网络相关的书和一些文章，做一下记录总结。主要包括了二层交换、三层路由、Linux网络相关的内容。</p>
-        
-          <a class="article-more-a" href="/2015/11/23/网络知识拾遗/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/11/23/网络知识拾遗/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-译-Threading-model" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/11/19/译-Threading-model/">[译]Threading model</a>
-    </h1>
-  
-
-        
-        <a href="/2015/11/19/译-Threading-model/" class="archive-article-date">
-  	<time datetime="2015-11-19T13:34:04.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Nov 19 2015</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Threading_model">Threading model</h1><blockquote>
-<p>All OpenStack services use green thread model of threading, implemented through using the Python eventlet and greenlet libraries.</p>
-<p>Green threads use a cooperative model of threading: thread context switches can only occur when specific eventlet or greenlet library calls are made (e.g., sleep, certain I/O calls). From the operating system’s point of view, each OpenStack service runs in a single thread.</p>
-<p>The use of green threads reduces the likelihood of race conditions, but does not completely eliminate them. In some cases, you may need to use the @lockutils.synchronized(…) decorator to avoid races.</p>
-<p>In addition, since there is only one operating system thread, a call that blocks that main thread will block the entire process.</p>
-</blockquote>
-<p>理解：OpenStack的所有服务都使用Green thread，使用eventlet和greenlet库，绿色线程使用协作并发模型，线程的切换只在eventlet或greenlet库调用一些切换时发生。从操作系统角度上来看，每个OpenStack运行在一个单一线程。用Green Thread的好处是能够减少race conditions，当然有些时候我们也必须使用@lockutils.synchronized(…)来完全避免。因为只用一个系统级别的单线程，所以调用一旦阻塞就会阻塞整个进程。</p>
-<p>关于Python中的并发模型，可以参考<a href="http://www.oschina.net/translate/python-concurrency-model" target="_blank" rel="external">Python并发模型</a>一文，把Thread（线程切换耗资源）、MicroThread（依靠解释器调度）、Green thread（协作并发）的特点对比了下。</p>
-<p>还有<a href="http://www.cnblogs.com/sevenyuan/archive/2010/12/08/1900386.html" target="_blank" rel="external">Python几种并发实现方案的性能比较</a>将Python中的集中并发方案进行了对比和说明。</p>
-<h2 id="Yielding_the_thread_in_long-running_tasks">Yielding the thread in long-running tasks</h2><blockquote>
-<p>If a code path takes a long time to execute and does not contain any methods that trigger an eventlet context switch, the long-running thread will block any pending threads.</p>
-<p>This scenario can be avoided by adding calls to the eventlet sleep method in the long-running code path. The sleep call will trigger a context switch if there are pending threads, and using an argument of 0 will avoid introducing delays in the case that there is only a single green thread:</p>
-</blockquote>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> eventlet <span class="keyword">import</span> greenthread</div><div class="line">...</div><div class="line">greenthread.sleep(<span class="number">0</span>)</div></pre></td></tr></table></figure>
-<p>理解：对于那些耗时很长的任务，需要我们添加一些yield方法，来避免在单个的调用中阻塞很久。</p>
-<h2 id="MySQL_access_and_eventlet">MySQL access and eventlet</h2><blockquote>
-<p>Queries to the MySQL database will block the main thread of a service. This is because OpenStack services use an external C library for accessing the MySQL database. Since eventlet cannot use monkey-patching to intercept blocking calls in a C library, the resulting database query blocks the thread.</p>
-<p>The Diablo release contained a thread-pooling implementation that did not block, but this implementation resulted in a bug and was removed.</p>
-</blockquote>
-<p>理解：对于MySQL数据的查询会阻塞服务，因为eventlet对C库的调用是无法去做monkey-patching的。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/11/19/译-Threading-model/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -927,15 +921,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -943,19 +929,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -963,11 +945,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -975,7 +953,23 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
               </li>
             
             <div class="clearfix"></div>

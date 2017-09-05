@@ -173,6 +173,140 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-学习awk和sed" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/24/学习awk和sed/">学习awk和sed</a>
+    </h1>
+  
+
+        
+        <a href="/2015/05/24/学习awk和sed/" class="archive-article-date">
+  	<time datetime="2015-05-23T16:52:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>May 24 2015</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近把awk和sed又系统地学习了下，使用<a href="http://naotu.baidu.com/" target="_blank" rel="external">百度脑图</a>简单地整理了一下大概的思路：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7785009/0d604ea2-01af-11e5-8fdc-b658a02e76bc.png" alt="awk sed"></p>
+<p>参考资料<br><a href="http://book.douban.com/subject/1236944/" target="_blank" rel="external">《sed与awk》</a><br><a href="http://coolshell.cn/articles/9104.html" target="_blank" rel="external">sed 简明教程</a><br><a href="http://coolshell.cn/articles/9070.html" target="_blank" rel="external">awk 简明教程</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/05/24/学习awk和sed/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-利用Shell进行Web日志分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/21/利用Shell进行Web日志分析/">利用Shell进行Web日志分析</a>
+    </h1>
+  
+
+        
+        <a href="/2015/05/21/利用Shell进行Web日志分析/" class="archive-article-date">
+  	<time datetime="2015-05-20T16:24:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>May 21 2015</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-Web日志">1.Web日志</h4><p>Web日志由Web服务器产生，比如Nginx、Apache等。例如一条Nginx的日志格式可能是这样的：</p>
+<blockquote>
+<p>222.68.172.190 - - [18/Sep/2013:06:49:57 +0000] “GET /images/my.jpg HTTP/1.1” 200 19939<br> “<a href="http://www.angularjs.cn/A00n" target="_blank" rel="external">http://www.angularjs.cn/A00n</a>“ “Mozilla/5.0 (Windows NT 6.1)<br> AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36”</p>
+</blockquote>
+<p>可以拆解为以下8个变量</p>
+<blockquote>
+<p>remote_addr: 记录客户端的ip地址, 222.68.172.190<br>remote_user: 记录客户端用户名称, –<br>time_local: 记录访问时间与时区, [18/Sep/2013:06:49:57 +0000]<br>request: 记录请求的url与http协议, “GET /images/my.jpg HTTP/1.1″<br>status: 记录请求状态,成功是200, 200<br>body_bytes_sent: 记录发送给客户端文件主体内容大小, 19939<br>http_referer: 用来记录从那个页面链接访问过来的, “<a href="http://www.angularjs.cn/A00n”" target="_blank" rel="external">http://www.angularjs.cn/A00n”</a><br>http_user_agent: 记录客户浏览器的相关信息, “Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36″</p>
+<h4 id="提取最近10分钟的日志：">提取最近10分钟的日志：</h4></blockquote>
+<p>思路一：利用awk提取时间，并做字符串比较</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 在OSX环境下，需要安装coreutils保证`date`等指令正常使用</span></div><div class="line"><span class="comment"># brew install coreutils</span></div><div class="line">tac <span class="built_in">log</span> | </div><div class="line">awk <span class="string">'BEGIN&#123;</span></div><div class="line">    # 获取时间至min10</div><div class="line">    "date -d \"-10 minute\" +\"%H:%M:%S\"" | getline min10 </div><div class="line">&#125; </div><div class="line">&#123;</div><div class="line">    # 日志时间和当前时间比较</div><div class="line">    if (substr($4,14) &gt; min10) </div><div class="line">        print ;</div><div class="line">    # 若一次不匹配则退出</div><div class="line">    else </div><div class="line">        exit;</div><div class="line">&#125;' |</div><div class="line">tac</div></pre></td></tr></table></figure>
+<p>思路二：利用grep的正则匹配，捕获满足条件的时刻</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat <span class="built_in">log</span> | grep -E <span class="string">"19/Sep/2013:06:2[4-9]|19/Sep/2013:06:3[0-3]"</span></div></pre></td></tr></table></figure>
+<p>思路三：使用sed的地址(时刻必须出现)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat <span class="built_in">log</span> | sed -n <span class="string">'/19\/Sep\/2013:06:24/,//19\/Sep\/2013:06:33/p'</span></div></pre></td></tr></table></figure>
+<h4 id="统计某个接口(xxxapi)访问量和QPS">统计某个接口(xxxapi)访问量和QPS</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># cat log | grep xxxapi | wc -l</span></div><div class="line">query=$(cat <span class="built_in">log</span> | grep -c xxxapi)</div><div class="line">t=60</div><div class="line">qps=$((query/<span class="variable">$time</span>))</div></pre></td></tr></table></figure>
+<h4 id="参考资料">参考资料</h4><p><a href="http://blog.fens.me/hadoop-mapreduce-log-kpi/" target="_blank" rel="external">海量Web日志分析 用Hadoop提取KPI统计指标</a><br><a href="https://www.centos.bz/2012/11/shell-scrpit-auto-count-log/" target="_blank" rel="external">shell脚本每天自动统计网站访问日志</a><br><a href="http://www.oschina.net/question/42741_115440" target="_blank" rel="external">如何用Shell截取nginx最近10分钟的日志</a><br><a href="http://bbs.chinaunix.net/thread-4096403-1-1.html" target="_blank" rel="external">如何用awk从日志文件中找到时间范围的数据</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/05/21/利用Shell进行Web日志分析/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-重新学习Shell" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -734,134 +868,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Java-HashSet工作原理及实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/08/Java-HashSet工作原理及实现/">Java HashSet工作原理及实现</a>
-    </h1>
-  
-
-        
-        <a href="/2015/04/08/Java-HashSet工作原理及实现/" class="archive-article-date">
-  	<time datetime="2015-04-08T15:31:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Apr 8 2015</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-_概述">1. 概述</h3><blockquote>
-<p>This class implements the Set interface, backed by a hash table (actually a <strong>HashMap</strong> instance). It makes no guarantees as to the iteration order of the set; in particular, it does not guarantee that the order will remain constant over time. This class permits the null element.</p>
-</blockquote>
-<p>HashSet是基于HashMap来实现的，操作很简单，更像是对HashMap做了一次“封装”，而且只使用了HashMap的key来实现各种特性，我们先来感性的认识一下这个结构：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">HashSet&lt;String&gt; set = <span class="keyword">new</span> HashSet&lt;String&gt;();</div><div class="line">set.add(<span class="string">"语文"</span>);</div><div class="line">set.add(<span class="string">"数学"</span>);</div><div class="line">set.add(<span class="string">"英语"</span>);</div><div class="line">set.add(<span class="string">"历史"</span>);</div><div class="line">set.add(<span class="string">"政治"</span>);</div><div class="line">set.add(<span class="string">"地理"</span>);</div><div class="line">set.add(<span class="string">"生物"</span>);</div><div class="line">set.add(<span class="string">"化学"</span>);</div></pre></td></tr></table></figure>
-<p>其大致的结构是这样的：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7060522/0bcfd890-deb5-11e4-97b3-d4e811766893.png" alt="hashset"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">transient</span> HashMap&lt;E,Object&gt; map;</div><div class="line"><span class="comment">// Dummy value to associate with an Object in the backing Map</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object PRESENT = <span class="keyword">new</span> Object();</div></pre></td></tr></table></figure>
-<p><code>map</code>是整个HashSet的核心，而<code>PRESENT</code>则是用来造一个假的value来用的。</p>
-<h3 id="2-_基本操作">2. 基本操作</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> map.put(e, PRESENT)==<span class="keyword">null</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> map.remove(o)==PRESENT;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> map.containsKey(o);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> map.size();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>基本操作也非常简单，就是调用HashMap的相关方法，其中value就是之前那个dummy的Object。所以，只要了解#7 HashMap的实现就可以了。</p>
-<h3 id="参考资料">参考资料</h3><p><a href="http://docs.oracle.com/javase/8/docs/api/java/util/HashSet.html" target="_blank" rel="external">HashSet(Java Platform 8)</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/04/08/Java-HashSet工作原理及实现/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-Java-PriorityQueue工作原理及实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/07/Java-PriorityQueue工作原理及实现/">Java PriorityQueue工作原理及实现</a>
-    </h1>
-  
-
-        
-        <a href="/2015/04/07/Java-PriorityQueue工作原理及实现/" class="archive-article-date">
-  	<time datetime="2015-04-07T14:25:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Apr 7 2015</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="参考资料">参考资料</h3><p><a href="http://www.iteye.com/topic/1061958" target="_blank" rel="external">基于最小堆（小根堆）的topn算法</a><br><a href="http://my.oschina.net/leejun2005/blog/135085" target="_blank" rel="external">基于堆实现的优先级队列：PriorityQueue 解决 Top K 问题</a><br><a href="http://www.importnew.com/6932.html" target="_blank" rel="external">Java优先队列（PriorityQueue）示例</a><br><a href="http://wlh0706-163-com.iteye.com/blog/1850125" target="_blank" rel="external">JDK源码研究PriorityQueue（优先队列）</a><br><a href="http://cuisuqiang.iteye.com/blog/2019157" target="_blank" rel="external">优先级队列：PriorityQueue</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/04/07/Java-PriorityQueue工作原理及实现/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
@@ -954,15 +960,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -970,19 +968,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Python</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -990,11 +984,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1002,7 +992,23 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
               </li>
             
             <div class="clearfix"></div>
