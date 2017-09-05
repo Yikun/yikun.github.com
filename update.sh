@@ -1,7 +1,7 @@
 source ~/git/nvm/nvm.sh
-nvm use 0.12.2
+nvm use 6.2.2
 #nvm use 5.6.0
-hexo migrate github-issue Yikun/yikun.github.com
+#hexo migrate github-issue Yikun/yikun.github.com
 hexo g
 cd public
 git add .

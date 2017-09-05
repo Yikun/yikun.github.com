@@ -1,9 +1,9 @@
-title: "OpenStack源码分析-Cinder删除卷流程"
-date: 2016-02-21 19:56:59
+title: OpenStack源码分析-Cinder删除卷流程
 tags:
   - Cinder
   - OpenStack
 number: 46
+date: 2016-02-21 19:56:59
 ---
 
 ### 1. Cinder删除卷整体流程

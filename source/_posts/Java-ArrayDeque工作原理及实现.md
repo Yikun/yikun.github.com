@@ -1,8 +1,8 @@
-title: "Java ArrayDeque工作原理及实现"
-date: 2015-04-11 18:50:32
+title: Java ArrayDeque工作原理及实现
 tags:
   - Java
 number: 17
+date: 2015-04-11 18:50:32
 ---
 
 ### 1. 概述

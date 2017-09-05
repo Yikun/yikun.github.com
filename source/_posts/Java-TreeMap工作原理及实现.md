@@ -1,8 +1,8 @@
-title: "Java TreeMap工作原理及实现"
-date: 2015-04-06 23:10:15
+title: Java TreeMap工作原理及实现
 tags:
   - Java
 number: 12
+date: 2015-04-06 23:10:15
 ---
 
 ### 1. 概述

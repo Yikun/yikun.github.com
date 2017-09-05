@@ -1,9 +1,9 @@
-title: "OpenStack源码分析-Service启动流程"
-date: 2016-03-05 00:38:21
+title: OpenStack源码分析-Service启动流程
 tags:
   - Cinder
   - OpenStack
 number: 49
+date: 2016-03-05 00:38:21
 ---
 
 ![cinder service launcher](https://cloud.githubusercontent.com/assets/1736354/13372372/d42f0c0a-dd7b-11e5-9656-1f2ff817e53a.png)

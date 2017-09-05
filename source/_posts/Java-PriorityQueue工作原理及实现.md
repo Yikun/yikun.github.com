@@ -1,8 +1,8 @@
-title: "Java PriorityQueue工作原理及实现"
-date: 2015-04-07 22:25:48
+title: Java PriorityQueue工作原理及实现
 tags:
   - Java
 number: 13
+date: 2015-04-07 22:25:48
 ---
 
 ### 参考资料

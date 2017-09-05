@@ -1,8 +1,8 @@
-title: "Java LinkedList工作原理及实现"
-date: 2015-04-05 22:19:28
+title: Java LinkedList工作原理及实现
 tags:
   - Java
 number: 11
+date: 2015-04-05 22:19:28
 ---
 
 ### 1. 概述

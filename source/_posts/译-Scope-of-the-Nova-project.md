@@ -1,9 +1,9 @@
-title: "[译]Scope of the Nova project"
-date: 2015-10-16 20:02:54
+title: '[译]Scope of the Nova project'
 tags:
   - Nova
   - OpenStack
 number: 32
+date: 2015-10-16 20:02:54
 ---
 
 # Scope of the Nova project

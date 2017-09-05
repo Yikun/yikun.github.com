@@ -1,8 +1,8 @@
-title: "[译]Threading model"
-date: 2015-11-19 21:34:04
+title: '[译]Threading model'
 tags:
   - OpenStack
 number: 34
+date: 2015-11-19 21:34:04
 ---
 
 # Threading model

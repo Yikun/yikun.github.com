@@ -1,8 +1,8 @@
-title: "优雅地调试OpenStack"
-date: 2016-02-23 00:00:52
+title: 优雅地调试OpenStack
 tags:
   - OpenStack
 number: 47
+date: 2016-02-23 00:00:52
 ---
 
 恩，题目首先要起的高逼格一些。2333。

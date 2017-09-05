@@ -1,8 +1,8 @@
-title: "[译]Virtual Machine States and Transitions"
-date: 2016-01-20 23:46:59
+title: '[译]Virtual Machine States and Transitions'
 tags:
   - Nova
 number: 41
+date: 2016-01-20 23:46:59
 ---
 
 虚拟机的状态及其转移，主要讲了一些虚拟机的状态以及在创建虚拟机时的状态转移情况，目前理解不够深刻，需要在后面看代码时，进一步深入理解。

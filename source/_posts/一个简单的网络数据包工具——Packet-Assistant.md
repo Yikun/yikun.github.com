@@ -1,9 +1,9 @@
-title: "一个简单的网络数据包工具——Packet Assistant"
-date: 2015-06-15 19:11:00
+title: 一个简单的网络数据包工具——Packet Assistant
 tags:
   - Python
   - 网络
 number: 27
+date: 2015-06-15 19:11:00
 ---
 
 ### 1. 起因

@@ -1,8 +1,8 @@
-title: "OpenStack源码分析-Cinder中的调度机制"
-date: 2016-03-05 00:45:44
+title: OpenStack源码分析-Cinder中的调度机制
 tags:
   - Cinder
 number: 50
+date: 2016-03-05 00:45:44
 ---
 
 整理了一下目前cinder中支持的调度的Filter和Weigher：

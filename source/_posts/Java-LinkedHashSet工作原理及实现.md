@@ -1,8 +1,8 @@
-title: "Java LinkedHashSet工作原理及实现"
-date: 2015-04-09 22:50:16
+title: Java LinkedHashSet工作原理及实现
 tags:
   - Java
 number: 15
+date: 2015-04-09 22:50:16
 ---
 
 ### 1. 概述

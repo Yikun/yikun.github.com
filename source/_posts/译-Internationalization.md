@@ -1,8 +1,8 @@
-title: "[译]Internationalization"
-date: 2016-01-23 00:43:37
+title: '[译]Internationalization'
 tags:
   - Nova
 number: 42
+date: 2016-01-23 00:43:37
 ---
 
 > Nova uses the **oslo.i18n library** to **support internationalization**. The oslo.i18n library is built on top of **gettext** and provides functions that are used to enable user-facing strings such as log messages to appear in the **appropriate language in different locales**.

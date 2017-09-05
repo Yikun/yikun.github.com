@@ -1,8 +1,8 @@
-title: "搭建Git服务器"
-date: 2015-02-05 13:11:46
+title: 搭建Git服务器
 tags:
   - Git
 number: 3
+date: 2015-02-05 13:11:46
 ---
 
 # 在服务器上安装git

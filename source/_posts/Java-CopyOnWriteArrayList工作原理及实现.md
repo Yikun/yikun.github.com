@@ -1,8 +1,8 @@
-title: "Java CopyOnWriteArrayList工作原理及实现"
-date: 2015-04-28 23:58:01
+title: Java CopyOnWriteArrayList工作原理及实现
 tags:
   - Java
 number: 21
+date: 2015-04-28 23:58:01
 ---
 
 > 并发优化的ArrayList。用CopyOnWrite策略，在修改时先复制一个快照来修改，改完再让内部指针指向新数组。

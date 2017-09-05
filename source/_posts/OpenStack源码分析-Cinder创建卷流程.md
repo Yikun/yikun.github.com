@@ -1,9 +1,9 @@
-title: "OpenStack源码分析-Cinder创建卷流程"
-date: 2016-02-14 17:43:30
+title: OpenStack源码分析-Cinder创建卷流程
 tags:
   - Cinder
   - OpenStack
 number: 45
+date: 2016-02-14 17:43:30
 ---
 
 ### 1. Cinder创卷整体流程

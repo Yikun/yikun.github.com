@@ -1,8 +1,8 @@
-title: "Git常用操作总结"
-date: 2015-04-25 01:13:25
+title: Git常用操作总结
 tags:
   - Git
 number: 20
+date: 2015-04-25 01:13:25
 ---
 
 用Git比较久了，之前一直在Win用的TortoiseGit，现在命令行用的比较多，所以把一些指令总结一下，以便回顾和查询。

@@ -1,8 +1,8 @@
-title: "如何设计实现一个LRU Cache？"
-date: 2015-04-03 23:35:02
+title: 如何设计实现一个LRU Cache？
 tags:
   - 系统
 number: 9
+date: 2015-04-03 23:35:02
 ---
 
 ### 1. 什么是LRU Cache？

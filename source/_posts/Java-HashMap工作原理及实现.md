@@ -1,8 +1,8 @@
-title: "Java HashMap工作原理及实现"
-date: 2015-04-01 16:53:14
+title: Java HashMap工作原理及实现
 tags:
   - Java
 number: 7
+date: 2015-04-01 16:53:14
 ---
 
 ### 1. 概述

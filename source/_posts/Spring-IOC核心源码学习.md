@@ -1,8 +1,8 @@
-title: "Spring IOC核心源码学习"
-date: 2015-05-29 00:34:39
+title: Spring IOC核心源码学习
 tags:
   - Java
 number: 26
+date: 2015-05-29 00:34:39
 ---
 
 ### 1. 初始化

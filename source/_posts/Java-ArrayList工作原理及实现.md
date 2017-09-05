@@ -1,8 +1,8 @@
-title: "Java ArrayList工作原理及实现"
-date: 2015-04-04 21:22:27
+title: Java ArrayList工作原理及实现
 tags:
   - Java
 number: 10
+date: 2015-04-04 21:22:27
 ---
 
 ### 1. 概述

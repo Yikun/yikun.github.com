@@ -1,8 +1,8 @@
-title: "Java LinkedHashMap工作原理及实现"
-date: 2015-04-02 23:01:37
+title: Java LinkedHashMap工作原理及实现
 tags:
   - Java
 number: 8
+date: 2015-04-02 23:01:37
 ---
 
 ### 1. 概述

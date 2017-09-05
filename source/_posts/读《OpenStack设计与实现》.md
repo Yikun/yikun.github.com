@@ -1,8 +1,8 @@
-title: "读《OpenStack设计与实现》"
-date: 2015-10-08 21:52:35
+title: 读《OpenStack设计与实现》
 tags:
   - OpenStack
 number: 30
+date: 2015-10-08 21:52:35
 ---
 
 ### 初始OpenStack和开发基础

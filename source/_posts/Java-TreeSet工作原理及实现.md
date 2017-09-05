@@ -1,8 +1,8 @@
-title: "Java TreeSet工作原理及实现"
-date: 2015-04-10 17:05:12
+title: Java TreeSet工作原理及实现
 tags:
   - Java
 number: 16
+date: 2015-04-10 17:05:12
 ---
 
 ### 1.概述

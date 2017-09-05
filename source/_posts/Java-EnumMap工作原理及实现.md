@@ -1,8 +1,8 @@
-title: "Java EnumMap工作原理及实现"
-date: 2015-04-24 00:11:56
+title: Java EnumMap工作原理及实现
 tags:
   - Java
 number: 19
+date: 2015-04-24 00:11:56
 ---
 
 ### 1.概述

@@ -1,8 +1,8 @@
-title: "搭建OpenStack开发环境"
-date: 2016-02-10 00:10:09
+title: 搭建OpenStack开发环境
 tags:
   - OpenStack
 number: 44
+date: 2016-02-10 00:10:09
 ---
 
 前段时间主要了解了一些OpenStack相关的基础性东西，现在希望通过安装使用来增强一下对系统整体的认识，最近也读了一篇文章[如何学习开源项目](http://www.csdn.net/article/2014-04-10/2819247-how-to-learn-opensouce-project-&-ceph)，基本和我的想法很类似，所以基本上也就是按照这个节奏来的。不说废话了，开始。

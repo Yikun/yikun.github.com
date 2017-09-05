@@ -1,8 +1,8 @@
-title: "Python3源码学习-整型"
-date: 2015-12-21 21:48:29
+title: Python3源码学习-整型
 tags:
   - Python
 number: 39
+date: 2015-12-21 21:48:29
 ---
 
 ### 1. 引入

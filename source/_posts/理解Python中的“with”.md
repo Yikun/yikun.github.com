@@ -1,8 +1,8 @@
-title: "理解Python中的“with”"
-date: 2016-04-15 23:44:15
+title: 理解Python中的“with”
 tags:
   - Python
 number: 52
+date: 2016-04-15 23:44:15
 ---
 
 ### 1. 缘起

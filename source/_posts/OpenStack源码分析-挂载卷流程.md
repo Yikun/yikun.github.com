@@ -1,8 +1,8 @@
-title: "OpenStack源码分析-挂载卷流程"
-date: 2016-03-05 00:32:58
+title: OpenStack源码分析-挂载卷流程
 tags:
   - Cinder
 number: 48
+date: 2016-03-05 00:32:58
 ---
 
 ### 1. 挂卷流程

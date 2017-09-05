@@ -1,8 +1,8 @@
-title: "Python3源码学习-类型"
-date: 2015-12-20 23:03:21
+title: Python3源码学习-类型
 tags:
   - Python
 number: 38
+date: 2015-12-20 23:03:21
 ---
 
 ### 1. 类型

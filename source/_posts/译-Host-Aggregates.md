@@ -1,9 +1,9 @@
-title: "[译]Host Aggregates"
-date: 2015-10-17 11:15:40
+title: '[译]Host Aggregates'
 tags:
   - Nova
   - OpenStack
 number: 33
+date: 2015-10-17 11:15:40
 ---
 
 先上一个自己画的图，非常有助于理解Host Aggregates:

@@ -1,8 +1,8 @@
-title: "Java HashSet工作原理及实现"
-date: 2015-04-08 23:31:28
+title: Java HashSet工作原理及实现
 tags:
   - Java
 number: 14
+date: 2015-04-08 23:31:28
 ---
 
 ### 1. 概述

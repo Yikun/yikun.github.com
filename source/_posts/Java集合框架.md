@@ -1,8 +1,8 @@
-title: "Java集合框架"
-date: 2015-03-31 14:27:13
+title: Java集合框架
 tags:
   - Java
 number: 6
+date: 2015-03-31 14:27:13
 ---
 
 ### 概述

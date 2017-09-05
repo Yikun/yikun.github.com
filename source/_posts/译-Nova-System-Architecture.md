@@ -1,9 +1,9 @@
-title: "[译]Nova System Architecture"
-date: 2015-10-15 10:04:44
+title: '[译]Nova System Architecture'
 tags:
   - Nova
   - OpenStack
 number: 31
+date: 2015-10-15 10:04:44
 ---
 
 ### Nova系统架构

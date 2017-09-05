@@ -1,8 +1,8 @@
-title: "OpenStack概览"
-date: 2015-10-04 19:33:16
+title: OpenStack概览
 tags:
   - OpenStack
 number: 29
+date: 2015-10-04 19:33:16
 ---
 
 ### 1. 概览
