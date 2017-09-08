@@ -9,7 +9,7 @@
   <title>OpenStack源码分析-Cinder创建卷流程 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="1. Cinder创卷整体流程 如整体架构图所示，创建卷涉及的答题步骤主要有以下几步：a. Client发送请求，通过RESTFUL接口访问cinder-api。b. Api解析响应请求，api解析由Client发送来的请求，并通过rpc进一步调用cinder-scheduler。c. Scheduler对资源进行调度，scheduler选择合适的节点进行。d. Volume调用Driver创建卷">
-<meta name="keywords" content="OpenStack,Cinder">
+<meta name="keywords" content="Cinder,OpenStack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenStack源码分析-Cinder创建卷流程">
 <meta property="og:url" content="http://yikun.github.io/2016/02/14/OpenStack源码分析-Cinder创建卷流程/index.html">
@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/13130422/b4a5c3b0-d61e-11e5-8781-52c9586b9c7d.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/13130398/8ceff976-d61e-11e5-8ea7-08661eebb7af.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/13130404/93c802e8-d61e-11e5-87e7-a01a64765a3b.png">
-<meta property="og:updated_time" content="2017-09-08T12:09:12.000Z">
+<meta property="og:updated_time" content="2017-09-08T12:13:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenStack源码分析-Cinder创建卷流程">
 <meta name="twitter:description" content="1. Cinder创卷整体流程 如整体架构图所示，创建卷涉及的答题步骤主要有以下几步：a. Client发送请求，通过RESTFUL接口访问cinder-api。b. Api解析响应请求，api解析由Client发送来的请求，并通过rpc进一步调用cinder-scheduler。c. Scheduler对资源进行调度，scheduler选择合适的节点进行。d. Volume调用Driver创建卷">
@@ -256,11 +256,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
         		</li>
       		
 		</ul>
@@ -479,11 +479,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -495,19 +495,19 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">

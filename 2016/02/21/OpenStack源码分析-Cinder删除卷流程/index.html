@@ -9,7 +9,7 @@
   <title>OpenStack源码分析-Cinder删除卷流程 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="1. Cinder删除卷整体流程 删除卷流程比较简单，主要就是cinder-api解析Cilent的指令，并响应，发送RPC调用cinder-volume的delete操作，详细流程如下：a. Client发送删除指令，通过RESTful接口访问cinder-api；b. Cinder-api解析响应请求，通过RPC调用cinder-volume；c. Cinder-volume通过调用Drive">
-<meta name="keywords" content="OpenStack,Cinder">
+<meta name="keywords" content="Cinder,OpenStack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenStack源码分析-Cinder删除卷流程">
 <meta property="og:url" content="http://yikun.github.io/2016/02/21/OpenStack源码分析-Cinder删除卷流程/index.html">
@@ -17,7 +17,7 @@
 <meta property="og:description" content="1. Cinder删除卷整体流程 删除卷流程比较简单，主要就是cinder-api解析Cilent的指令，并响应，发送RPC调用cinder-volume的delete操作，详细流程如下：a. Client发送删除指令，通过RESTful接口访问cinder-api；b. Cinder-api解析响应请求，通过RPC调用cinder-volume；c. Cinder-volume通过调用Drive">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/13130440/f8979c4c-d61e-11e5-8665-84b9d2f928f9.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/13130451/0e77ce74-d61f-11e5-91e9-9b63918beef1.png">
-<meta property="og:updated_time" content="2017-09-08T12:09:12.000Z">
+<meta property="og:updated_time" content="2017-09-08T12:13:14.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenStack源码分析-Cinder删除卷流程">
 <meta name="twitter:description" content="1. Cinder删除卷整体流程 删除卷流程比较简单，主要就是cinder-api解析Cilent的指令，并响应，发送RPC调用cinder-volume的delete操作，详细流程如下：a. Client发送删除指令，通过RESTful接口访问cinder-api；b. Cinder-api解析响应请求，通过RPC调用cinder-volume；c. Cinder-volume通过调用Drive">
@@ -248,11 +248,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
         		</li>
       		
 		</ul>
@@ -471,11 +471,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -487,19 +487,19 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">系统</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">网络</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">系统</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Linux</a>
               </li>
              
               <li class="article-tag-list-item">
