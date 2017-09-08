@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yikun.github.io">
   <title>理解Python中的“with” | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 缘起Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现： 12with open( &quot;a.txt&quot; ) as f :    # do something 大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，with到底做了什么呢？ 从《Python学习手册》中是这么描述的：  简而言之，with/a">
+  <meta name="description" content="1. 缘起Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现： 12with open( &quot;a.txt&quot; ) as f :    # do something 大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，with到底做了什么呢？">
 <meta name="keywords" content="Python">
 <meta property="og:type" content="article">
 <meta property="og:title" content="理解Python中的“with”">
 <meta property="og:url" content="http://yikun.github.io/2016/04/15/理解Python中的“with”/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="1. 缘起Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现： 12with open( &quot;a.txt&quot; ) as f :    # do something 大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，with到底做了什么呢？ 从《Python学习手册》中是这么描述的：  简而言之，with/a">
-<meta property="og:updated_time" content="2017-09-05T15:44:58.000Z">
+<meta property="og:description" content="1. 缘起Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现： 12with open( &quot;a.txt&quot; ) as f :    # do something 大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，with到底做了什么呢？">
+<meta property="og:updated_time" content="2017-09-08T12:09:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="理解Python中的“with”">
-<meta name="twitter:description" content="1. 缘起Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现： 12with open( &quot;a.txt&quot; ) as f :    # do something 大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，with到底做了什么呢？ 从《Python学习手册》中是这么描述的：  简而言之，with/a">
+<meta name="twitter:description" content="1. 缘起Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现： 12with open( &quot;a.txt&quot; ) as f :    # do something 大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，with到底做了什么呢？">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -199,6 +199,7 @@ var _hmt = _hmt || [];
         <h3 id="1-_缘起">1. 缘起</h3><p>Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> open( <span class="string">"a.txt"</span> ) <span class="keyword">as</span> f :</div><div class="line">    <span class="comment"># do something</span></div></pre></td></tr></table></figure>
 <p>大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，<code>with</code>到底做了什么呢？</p>
+<a id="more"></a>
 <p>从《Python学习手册》中是这么描述的：</p>
 <blockquote>
 <p>简而言之，with/as语句的设计是作为常见try/finally用法模式的替代方案。就像try/finally语句，with/as语句也是用于定义必须执行的终止或“清理”行为,无论步骤中是否发生异常。不过，和try/finally不同的是，with语句支持更丰富的基于对象的协议，可以为代码块定义支持进入和离开动作。</p>

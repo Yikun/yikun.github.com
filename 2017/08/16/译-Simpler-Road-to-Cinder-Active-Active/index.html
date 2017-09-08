@@ -15,7 +15,7 @@
 <meta property="og:url" content="http://yikun.github.io/2017/08/16/译-Simpler-Road-to-Cinder-Active-Active/index.html">
 <meta property="og:site_name" content="Yikun">
 <meta property="og:description" content="译注：本篇文章为作者介绍Cinder AA方案的文章，作者是gorka，是实现cinder AA BP的core，文章介绍了这哥们实现AA时的记录，算是对方案的一种解释以及设计思路的总结，核心思想为以下几点：  每个volume node都增加一个cluster的配置项，作为集群，标记这个节点属于某个集群； 通过cluster@backend作为消息队列的topic，并且启动cluster@ba">
-<meta property="og:updated_time" content="2017-09-05T15:44:58.000Z">
+<meta property="og:updated_time" content="2017-09-08T12:09:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[译] Simpler Road to Cinder Active-Active">
 <meta name="twitter:description" content="译注：本篇文章为作者介绍Cinder AA方案的文章，作者是gorka，是实现cinder AA BP的core，文章介绍了这哥们实现AA时的记录，算是对方案的一种解释以及设计思路的总结，核心思想为以下几点：  每个volume node都增加一个cluster的配置项，作为集群，标记这个节点属于某个集群； 通过cluster@backend作为消息队列的topic，并且启动cluster@ba">
@@ -206,6 +206,7 @@ var _hmt = _hmt || [];
 </ol>
 </blockquote>
 <p>原文链接：<a href="https://gorka.eguileor.com/simpler-road-to-cinder-active-active/" target="_blank" rel="external">Simpler Road to Cinder Active-Active</a></p>
+<a id="more"></a>
 <p>上一周，我发了一篇文，来介绍Cinder AA配置方案，可是，让我很受伤的是，觉得那个方案有点太复杂了，所以呢，这一波又搞了个简单的方案。</p>
 <h2 id="变更初心">变更初心</h2><p>我确实很喜欢我上周发布的允许Cinder使用AA HA配置的方案，不过想起来，确实有些复杂了，没必要为了一点点的益处，就把那么复杂的机制加到组件里。（比如恢复排队任务）</p>
 <p>这个方案从决绝到接受，没有花费我太多时间，毕竟上个方案确实留下了一些复杂，所以必须要一个更简单的方案，所以呢，我相信这一波方案是一个合理的选择。</p>

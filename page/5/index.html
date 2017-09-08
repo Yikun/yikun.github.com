@@ -753,7 +753,7 @@ var _hmt = _hmt || [];
 <li><strong>Load factor</strong> The load factor is <strong>a measure of how full the hash table is allowed to get</strong> before its capacity is automatically increased.</li>
 </ul>
 </blockquote>
-<p>简单的说，Capacity就是bucket的大小，Load factor就是bucket填满程度的最大比例。如果对迭代性能要求很高的话不要把<code>capacity</code>设置过大，也不要把<code>load factor</code>设置过小。当bucket中的entries的数目大于<code>capacity*load factor</code>时就需要调整bucket的大小为当前的2倍。</p>
+<p>简单的说，Capacity就是buckets的数目，Load factor就是buckets填满程度的最大比例。如果对迭代性能要求很高的话不要把<code>capacity</code>设置过大，也不要把<code>load factor</code>设置过小。当buckets的数目（即hashmap中元素的个数）大于<code>capacity*load factor</code>时就需要调整buckets的数目为当前的2倍。</p>
 <h3 id="3-_put函数的实现">3. put函数的实现</h3><p>put函数大致的思路为：</p>
 <ol>
 <li>对key的hashCode()做hash，然后再计算index;</li>

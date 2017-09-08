@@ -203,43 +203,9 @@ var _hmt = _hmt || [];
 </ol>
 </blockquote>
 <p>原文链接：<a href="https://gorka.eguileor.com/simpler-road-to-cinder-active-active/" target="_blank" rel="external">Simpler Road to Cinder Active-Active</a></p>
-<p>上一周，我发了一篇文，来介绍Cinder AA配置方案，可是，让我很受伤的是，觉得那个方案有点太复杂了，所以呢，这一波又搞了个简单的方案。</p>
-<h2 id="变更初心">变更初心</h2><p>我确实很喜欢我上周发布的允许Cinder使用AA HA配置的方案，不过想起来，确实有些复杂了，没必要为了一点点的益处，就把那么复杂的机制加到组件里。（比如恢复排队任务）</p>
-<p>这个方案从决绝到接受，没有花费我太多时间，毕竟上个方案确实留下了一些复杂，所以必须要一个更简单的方案，所以呢，我相信这一波方案是一个合理的选择。</p>
-<p>我准备用上篇博客同样的格式，来对同样的问题给出解决方案，这样对于读上篇博客的人来说看起来比较熟悉。尽管在这我没有太多的时间来搞patch和流程图，我会在Cinder Midcycle Sprint的时候把他们准备好。</p>
-<h2 id="任务调度">任务调度</h2><p>我们应该如何在一个cluster中的不同node去做任务调度呢？</p>
-<p>在任务调度的时候，我们仍然不想让API或者Scheduler节点太多的考虑有多少volume节点或者说操心具体集群中哪一个节点时可用的。我们将还是用原来的方法——主题队列，唯一的不同在于，我们改变了这些队列的主题，从原来的host@backend变为了cluster@backend。</p>
-<p>cluster将成为一个新的配置——同一集群中的所有节点都使用相同的配置。如果没有配置的话，默认会使用host作为值。同时，在cinder部署时，任何一个节点的host应该是唯一的。</p>
-<p>将host的值作为cluster的默认值有很多好处，非AA配置可以将服务视为之前的host@backend，如果一个节点或者说原来的主备配置的节点，想要变为AA模式，只需要把后面加进来的节点，把cluster都改成和第一个host的值就行了，这样就可以保证服务可以不挂掉。这样做虽然不是那么干脆利落，但这个可以帮助管理员在可以down机的时候，再去做整改。</p>
-<h2 id="清理资源">清理资源</h2><p>为了进行清理，我们需要在所有的资源表（如卷、备份、快照等）增加一个新的字段。我们称其为“worker”，它可以有3个不同的值：</p>
-<ol>
-<li>空值：资源无节点操作</li>
-<li>cluster@backend：资源正在排队等待worker操作</li>
-<li>host@backned：资源已经被一个worker选择</li>
-</ol>
-<p>或许，我们不需要cluester@backend这个值也可以工作的很好，不过我还是觉得应该记录现在处于什么状态了<br>我们也用到了“previous_status”这个字段，就像我们对in-used卷做备份操作那样。<br>对于已经存在的资源，正常的工作流程像下面一样：</p>
-<ol>
-<li>API接受请求，在RPC调用投递到指定的volume topic队列之前，需要修改status和pre_vious_status以及worker字段来匹配资源的host字段（cluster@backend）</li>
-<li>当volume节点接受这个job，将会在DB把worker字段更改为host@backend</li>
-<li>当完成这个操作后，将置空worker字段，然后将status恢复为previous_status字段。</li>
-</ol>
-<p>看起来不错，但我们如何去做清理呢？其实和目前的实现差不多，仅有一点小小的改动。<br>当节点启动时，搜寻所有worker为自己所属的host@backend的资源，然后对这个worker filed做compare-and-swap置空，确保没有其他节点来操作这个资源，也保证仅做了我们需要的改动。<br>然后对于一些资源的操作（比如deleting）我们设置worker字段为cluser@backend，然后RPC调用。这样，我们在所有集群的节点做了分发。<br>还是看起来不错吧？但是我们如何处理那些没有恢复如初，或者那些无法failover的备节点呢？这个case会通过Scheduler来处理，我们会在后面介绍。<br>另外的选择是，我们不用在每个资源表里都增加一个新的字段，我们可以为资源创建一个特殊的表来记录work。如果我们使用了这个方案，我们需在wokrer里面存储resource id，来记录这个ID那个资源的。这个方案修改量比较小，我们想知道谁操作某个特定的资源有点困难，但我们只需要访问一个表，就可以很简单的获取所有某个节点操作的所有资源。</p>
-<h2 id="API_Nodes">API Nodes</h2><p>接下来，我们需要移除race，就像我上篇文章介绍的那样。但是我们也需要额外的变化依赖于我们如何处理资源的互斥。</p>
-<h2 id="Volume_Nodes">Volume Nodes</h2><p>我并不想再赘述我们如何如何的需要改变目前的本地锁机制，这已经在上篇文章介绍过了。<br>在社区有一个分歧，一部分人认为应该使用DLM解决资源锁，另一部分人认为应该避免让云管理员去部署和配置更多的软件（比如，redis、zookeeper等）<br>我个人理解是使用DLM去实现AA是一个中间方案，直到我们完全的实现AA。因为我们使用Tooz可以很轻松的实现，这也是为什么我更偏向这个选择。我们可以先快速实现它，然后后面的版本再把锁从Manager和driver中移除。</p>
-<p>附注一点，一些driver可以移除锁只要我们移除了API竞争，然后添加一些缺失的锁。<br>DLM这种方案，仅会影响AA的部署，而对初始的没有其他影响。</p>
-<p>但是，通常思考另一种选择是好事情，这仅仅是我喜欢的而不是说是最好的，那么另外一种选择就是使用资源的状态。</p>
-<h2 id="Service_state_reporting">Service state reporting</h2><p>为了探测节点有没有挂掉，也为了对那些还没有就位的节点（或者还得一段时间才能恢复的节点）进行清理，每一个集群节点都会进行report，分别占用DB不同的行。</p>
-<p>我们可以用现在的host字段，上报时使用“cluster@backend@hostend”或者使用一个新的字段backend或者cluster里面包含cluster@backend段，然后host还是放在host字段不变。</p>
-<p>其实，这一点倒不那么重要，这只是实现细节而已。在任何一个scheduler节点，都会有个周期任务检查数据库的内容，然后创建创建一个key为cluster@backend的字典，并存在value里，如果他是不同节点的信息以及是否我们对这个节点完成了清理。节点起来后，将会把cleanup_done设置为False。</p>
-<p>如果cluster中的任何一个节点up，那么这个服务就up。</p>
-<p>对于那些已经down的节点，我们将进行cleanup操作，就像我们在voluem node启动时做的那样，然后把cleanup_done字段设置为True。所以我们在下一次这个task启动时不会检查这个任务。</p>
-<p>如果多个scheduler尝试同时对一个node进行清理，或者scheduler和之前的备节点现在active了，并且同时对资源进行修复。由于我们在数据库做的是使用compare and<br>swap的原子变更，跳过失败即可，确保只有一个完成资源的清理。</p>
-<h2 id="Capabilities_reporting">Capabilities reporting</h2><p>我们上报容量使用cluser@backend作为host即可，我们不需要作任何变动。</p>
-<h2 id="Prevent_data_corruption">Prevent data corruption</h2><p>与上周的方案不同，组织数据出错更简单，这也是这个方案简单的一个主要原因。</p>
-<p>我们不需要关心我们是否和后端失去连接，也不用关心我们与消息队列失去连接</p>
-<p>如果我们与数据库失去连接我们需要停掉一切正在进行的操作，最简单的就是在心跳周期方案做这个事情。我们可以停掉backend的一切操作。</p>
-<p>当我们使用DLM，我们应该检查连接，连接丢失要停掉所有操作，并且停止发送心跳，因为我们做不了任何事。</p>
-
+        
+          <a class="article-more-a" href="/2017/08/16/译-Simpler-Road-to-Cinder-Active-Active/#more">more >></a>
+        
       
 
       
@@ -297,20 +263,10 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="0-_背景介绍">0. 背景介绍</h3><p>目前OpenStack对外提供的北向接口是以REST接口提供的，也就是说通过HTTP（HTTPS）接口进行请求，进行虚拟机或者卷等相关的操作。OpenStack提供I层基本的能力，比如创建、查询、删除虚拟机或者卷等操作，以OpenStack作为平台，对上提供用户接口，对下操作下层Driver完成对设备的操作，其大致的架构基本如下所示：<br><img src="https://cloud.githubusercontent.com/assets/1736354/17061504/6b7cb7e4-5061-11e6-9adb-0337558ccc90.png" alt="openstackrest"></p>
-<p>整个OpenStack提供的接口也都是无状态的，对外接口也非常简单，例如获取卷的详情可以通过volumes的接口，最终可以得到卷的详情信息：<br><img src="https://cloud.githubusercontent.com/assets/1736354/17061512/70953ac6-5061-11e6-82ed-47017c82ace2.png" alt="cinder show"></p>
-<p>一般调用这些接口的上层主要是一些编排性或者提高用户体验的应用，达到“点一个按钮”完成对资源创建或者查询的应用。</p>
-<h3 id="1-_问题出现">1. 问题出现</h3><p>问题的现象是，上层对资源进行操作、查询的时候非常慢，而实际在上层应用的服务器节点通过curl命令去调OpenStack接口的时候，发现整体时延均在秒级以上，甚至一个非常简单的卷查询指令也耗费了1秒以上的时间，而通过ping指令去测OpenStack响应时，保持在200ms左右，那么中间的时间耗在了哪？</p>
-<h3 id="2-_定位结论">2. 定位结论</h3><p>好吧，我承认这篇文章写了一年了。。。不装逼了，直接说结论吧。当时遇到一个非常奇葩的问题，就是任何请求都耗时非常久，最后发现原来是https搞得鬼。</p>
-<p>对于正常的http请求来说，请求本身耗时大致是一个RTT（TCP的三次握手），而对于https，中间增加了SSL握手的时间，大概算下来是3倍+的时延。</p>
-<p>重点呢就是想记录一下这个指令：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -w "TCP handshake: %&#123;time_connect&#125;, SSL handshake: %&#123;time_appconnect&#125;\n" -so /dev/null https://www.baidu.com</div></pre></td></tr></table></figure></p>
-<p>可以得到类似的结果，也告诉了用户大致请求中间的耗时花费在哪了，结果就像这样：</p>
-<blockquote>
-<p>TCP handshake: 0.049, SSL handshake: 0.163</p>
-</blockquote>
-<p>好了，就酱紫，底下参考链接是当时看的一些资料。</p>
-<h3 id="参考链接">参考链接</h3><p><a href="http://www.semicomplete.com/blog/geekery/ssl-latency.html" target="_blank" rel="external">SSL handshake latency and HTTPS optimizations.</a><br><a href="http://blog.jobbole.com/86664/" target="_blank" rel="external">大型网站的 HTTPS 实践（2）：HTTPS 对性能的影响</a><br><a href="http://www.zhihu.com/question/21518760" target="_blank" rel="external">HTTPS 要比 HTTP 多用多少服务器资源？</a><br><a href="http://blog.jobbole.com/48369/" target="_blank" rel="external">HTTPS连接的前几毫秒发生了什么</a><br><a href="http://www.jianshu.com/p/544c0a2d47f4" target="_blank" rel="external"></a><br><a href="http://www.ruanyifeng.com/blog/2014/09/illustration-ssl.html" target="_blank" rel="external">图解SSL/TLS协议</a><br><a href="http://www.ruanyifeng.com/blog/2014/02/ssl_tls.html" target="_blank" rel="external">SSL/TLS协议运行机制的概述</a><br><a href="https://blog.josephscott.org/2011/10/14/timing-details-with-curl/" target="_blank" rel="external"></a><br><a href="http://www.ruanyifeng.com/blog/2014/09/ssl-latency.html" target="_blank" rel="external">SSL延迟有多大？</a><br><a href="http://www.jianshu.com/p/a766bbf31417" target="_blank" rel="external">HTTPS研究（2）—分解HTTPS连接建立过程</a></p>
-
+        <h3 id="0-_背景介绍">0. 背景介绍</h3><p>目前OpenStack对外提供的北向接口是以REST接口提供的，也就是说通过HTTP（HTTPS）接口进行请求，进行虚拟机或者卷等相关的操作。OpenStack提供I层基本的能力，比如创建、查询、删除虚拟机或者卷等操作，以OpenStack作为平台，对上提供用户接口，对下操作下层Driver完成对设备的操作，其大致的架构基本如下所示：</p>
+        
+          <a class="article-more-a" href="/2016/07/22/一次有关OpenStack请求的性能问题分析/#more">more >></a>
+        
       
 
       
@@ -376,60 +332,10 @@ var _hmt = _hmt || [];
 <blockquote>
 <p>假设有1000w个数据项，100个存储节点，请设计一种算法合理地将他们存储在这些节点上。</p>
 </blockquote>
-<p>看一看普通Hash算法的原理：<br><img src="https://cloud.githubusercontent.com/assets/1736354/16341297/fe155f98-3a5e-11e6-834d-193e6f85afcd.png" alt="normal_hash"><br>算法的核心计算如下</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</div><div class="line">    k = md5(str(item)).digest()</div><div class="line">    h = unpack_from(<span class="string">"&gt;I"</span>, k)[<span class="number">0</span>]</div><div class="line">    <span class="comment"># 通过取余的方式进行映射</span></div><div class="line">    n = h % NODES</div><div class="line">    node_stat[n] += <span class="number">1</span></div></pre></td></tr></table></figure>
-<p>具体的完整实现请参考<a href="https://github.com/Yikun/hashes/blob/master/normal_hash.py" target="_blank" rel="external">normal_hash.py</a>，输出是这样的：</p>
-<blockquote>
-<p>Ave: 100000<br>Max: 100695 (0.69%)<br>Min: 99073  (0.93%)</p>
-</blockquote>
-<p>从上述结果可以发现，普通的Hash算法均匀地将这些数据项打散到了这些节点上，并且分布最少和最多的存储节点数据项数目小于1%。之所以分布均匀，主要是依赖Hash算法（实现使用的MD5算法）能够比较随机的分布。</p>
-<p>然而，我们看看存在一个问题，由于该算法使用节点数取余的方法，强依赖node的数目，因此，当是node数发生变化的时候，item所对应的node发生剧烈变化，而发生变化的成本就是我们需要在node数发生变化的时候，数据需要迁移，这对存储产品来说显然是不能忍的，我们观察一下增加node后，数据项移动的情况：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</div><div class="line">    k = md5(str(item)).digest()</div><div class="line">    h = unpack_from(<span class="string">"&gt;I"</span>, k)[<span class="number">0</span>]</div><div class="line">    <span class="comment"># 原映射结果</span></div><div class="line">    n = h % NODES</div><div class="line">    <span class="comment"># 现映射结果</span></div><div class="line">    n_new = h % NEW_NODES</div><div class="line">    <span class="keyword">if</span> n_new != n:</div><div class="line">        change += <span class="number">1</span></div></pre></td></tr></table></figure>
-<p>详细实现代码在<a href="https://github.com/Yikun/hashes/blob/master/normal_hash_add.py" target="_blank" rel="external">normal_hash_add.py</a>输出是这样的：</p>
-<blockquote>
-<p>Change: 9900989   (99.01%)</p>
-</blockquote>
-<p>翻译一下就是，<strong>如果有100个item，当增加一个node，之前99%的数据都需要重新移动</strong>。</p>
-<p>这显然是不能忍的，普通哈希算法的问题我们已经发现了，如何对其进行改进呢？没错，我们的一致性哈希算法闪亮登场。</p>
-<h3 id="2-_登场">2. 登场</h3><p>我们上节介绍了普通Hash算法的劣势，即当node数发生变化（增加、移除）后，数据项会被重新“打散”，导致大部分数据项不能落到原来的节点上，从而导致大量数据需要迁移。</p>
-<p>那么，一个亟待解决的问题就变成了：当node数发生变化时，如何保证尽量少引起迁移呢？即<strong>当增加或者删除节点时，对于大多数item，保证原来分配到的某个node，现在仍然应该分配到那个node，将数据迁移量的降到最低</strong>。</p>
-<p>一致性Hash算法的原理是这样的：<br><img src="https://cloud.githubusercontent.com/assets/1736354/16341311/0e8fea32-3a5f-11e6-84b5-ff101495cf49.png" alt="consist_hash"></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> n <span class="keyword">in</span> range(NODES):</div><div class="line">    h = _hash(n)</div><div class="line">    ring.append(h)</div><div class="line">    ring.sort()</div><div class="line">    hash2node[h] = n</div><div class="line"></div><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</div><div class="line">    h = _hash(item)</div><div class="line">    n = bisect_left(ring, h) % NODES</div><div class="line">    node_stat[hash2node[ring[n]]] += <span class="number">1</span></div></pre></td></tr></table></figure>
-<p>我们依然对其进行了实现<a href="https://github.com/Yikun/hashes/blob/master/consist_hash_add.py" target="_blank" rel="external">consist_hash_add.py</a>，并且观察了数据迁移的结果：</p>
-<blockquote>
-<p>Change: 235603    (2.36%)</p>
-</blockquote>
-<p>虽然一致性Hash算法解决了节点变化导致的数据迁移问题，但是，我们回过头来再看看数据项分布的均匀性，进行了一致性Hash算法的实现<a href="https://github.com/Yikun/hashes/blob/master/consist_hash.py" target="_blank" rel="external">consist_hash.py</a>：</p>
-<blockquote>
-<p>Ave: 100000<br>Max: 596413 (496.41%)<br>Min: 103    (99.90%)</p>
-</blockquote>
-<p>这结果简直是简直了，确实非常结果差，分配的很不均匀。我们思考一下，一致性哈希算法分布不均匀的原因是什么？从最初的1000w个数据项经过一般的哈希算法的模拟来看，这些数据项“打散”后，是可以比较均匀分布的。但是引入一致性哈希算法后，为什么就不均匀呢？数据项本身的哈希值并未发生变化，变化的是判断数据项哈希应该落到哪个节点的算法变了。<br><img src="https://cloud.githubusercontent.com/assets/1736354/16341426/8c9e6caa-3a5f-11e6-87ad-fdb462b76aef.png" alt="consist_hash_1"><br>因此，主要是因为这100个节点Hash后，<strong>在环上分布不均匀，导致了每个节点实际占据环上的区间大小不一</strong>造成的。</p>
-<h3 id="3-_改进-虚节点">3. 改进-虚节点</h3><p>当我们将node进行哈希后，这些值并没有均匀地落在环上，因此，最终会导致，这些节点所管辖的范围并不均匀，最终导致了数据分布的不均匀。<br><img src="https://cloud.githubusercontent.com/assets/1736354/16341445/a0e32fde-3a5f-11e6-969d-085f64220e63.png" alt="consist_hash_virtual"></p>
-<p>详细实现请见<a href="https://github.com/Yikun/hashes/blob/master/virtual_consist_hash.py" target="_blank" rel="external">virtual_consist_hash.py</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> n <span class="keyword">in</span> range(NODES):</div><div class="line">    <span class="keyword">for</span> v <span class="keyword">in</span> range(VNODES):</div><div class="line">        h = _hash(str(n) + str(v))</div><div class="line">        <span class="comment"># 构造ring</span></div><div class="line">        ring.append(h)</div><div class="line">        <span class="comment"># 记录hash所对应节点</span></div><div class="line">        hash2node[h] = n</div><div class="line">ring.sort()</div><div class="line"></div><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</div><div class="line">    h = _hash(str(item))</div><div class="line">    <span class="comment"># 搜索ring上最近的hash</span></div><div class="line">    n = bisect_left(ring, h) % (NODES*VNODES)</div><div class="line">    node_stat[hash2node[ring[n]]] += <span class="number">1</span></div></pre></td></tr></table></figure>
-<p>输出结果是这样的：</p>
-<blockquote>
-<p>Ave: 100000<br>Max: 116902 (16.90%)<br>Min: 9492   (90.51%)</p>
-</blockquote>
-<p>因此，通过增加虚节点的方法，使得每个节点在环上所“管辖”更加均匀。这样就既保证了在节点变化时，尽可能小的影响数据分布的变化，而同时又保证了数据分布的均匀。也就是靠增加“节点数量”加强管辖区间的均匀。<br>同时，观察增加节点后数据变动情况，详细的代码请见<a href="https://github.com/Yikun/hashes/blob/master/virtual_consist_hash_add.py" target="_blank" rel="external">virtual_consist_hash_add.py</a>：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</div><div class="line">    h = _hash(str(item))</div><div class="line">    n = bisect_left(ring, h) % (NODES*VNODES)</div><div class="line">    n2 = bisect_left(ring2, h) % (NODES2*VNODES)</div><div class="line">    <span class="keyword">if</span> hash2node[ring[n]] != hash2node2[ring2[n2]]:</div><div class="line">        change += <span class="number">1</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>100000<br>101000<br>Change: 104871  (1.05%)</p>
-<h3 id="3-_另一种改进">3. 另一种改进</h3></blockquote>
-<p>然而，虚节点这种靠数量取胜的策略增加了存储这些虚节点信息所需要的空间。在OpenStack的Swift组件中，使用了一种比较特殊的方法来解决分布不均的问题，改进了这些数据分布的算法，将环上的空间均匀的映射到一个线性空间，这样，就保证分布的均匀性。<br><img src="https://cloud.githubusercontent.com/assets/1736354/16341455/b01139ec-3a5f-11e6-965a-070f5c4c0afa.png" alt="consist_hash_ring"><br>代码实现见<a href="https://github.com/Yikun/hashes/blob/master/part_consist_hash.py" target="_blank" rel="external">part_consist_hash.py</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> part <span class="keyword">in</span> range(<span class="number">2</span> ** LOG_NODE):</div><div class="line">    ring.append(part)</div><div class="line">    part2node[part] = part % NODES</div><div class="line"></div><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</div><div class="line">    h = _hash(item) &gt;&gt; PARTITION</div><div class="line">    part = bisect_left(ring, h)</div><div class="line">    n = part % NODES</div><div class="line">    node_stat[n] += <span class="number">1</span></div></pre></td></tr></table></figure>
-<blockquote>
-<p>Ave: 100000<br>Max: 157298 (57.30%)<br>Min: 77405  (22.59%)</p>
-</blockquote>
-<p>可以看到，数据分布是比较理想的。如果节点数刚好和分区数相等，理论上是可以均匀分布的。而观察下增加节点后的数据移动比例，代码实现见<a href="https://github.com/Yikun/hashes/blob/master/part_consist_hash.py" target="_blank" rel="external">part_consist_hash.py</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">for</span> part <span class="keyword">in</span> range(<span class="number">2</span> ** LOG_NODE):</div><div class="line">    ring.append(part)</div><div class="line">    part2node[part] = part % NODES</div><div class="line">    part2node2[part] = part % NODES2</div><div class="line"></div><div class="line">change = <span class="number">0</span></div><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</div><div class="line">    h = _hash(item) &gt;&gt; PARTITION</div><div class="line">    p = bisect_left(ring, h)</div><div class="line">    p2 = bisect_left(ring, h)</div><div class="line">    n = part2node[p] % NODES</div><div class="line">    n2 = part2node2[p] % NODES2</div><div class="line">    <span class="keyword">if</span> n2 != n:</div><div class="line">        change += <span class="number">1</span></div></pre></td></tr></table></figure>
-<p>结果如下所示：</p>
-<blockquote>
-<p>Change: 2190208 (21.90%)</p>
-</blockquote>
-<p>可以看到，移动也是比较理想的。</p>
-<h3 id="参考链接：">参考链接：</h3><p><a href="http://www.cnblogs.com/yuxc/archive/2012/06/22/2558312.html" target="_blank" rel="external">深入云存储系统Swift核心组件：Ring实现原理剖析</a><br><a href="https://github.com/gholt/ring/blob/master/BASIC_HASH_RING.md" target="_blank" rel="external">Basic Hash Ring</a><br><a href="https://github.com/gholt/ring/blob/master/PARTITION_RING_VS_HASH_RING.md" target="_blank" rel="external">Partition Ring vs. Hash Ring</a></p>
-
+<p>看一看普通Hash算法的原理：<br><img src="https://cloud.githubusercontent.com/assets/1736354/16341297/fe155f98-3a5e-11e6-834d-193e6f85afcd.png" alt="normal_hash"></p>
+        
+          <a class="article-more-a" href="/2016/06/09/一致性哈希算法的理解与实践/#more">more >></a>
+        
       
 
       
@@ -490,39 +396,9 @@ var _hmt = _hmt || [];
         <h3 id="1-_缘起">1. 缘起</h3><p>Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> open( <span class="string">"a.txt"</span> ) <span class="keyword">as</span> f :</div><div class="line">    <span class="comment"># do something</span></div></pre></td></tr></table></figure>
 <p>大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，<code>with</code>到底做了什么呢？</p>
-<p>从《Python学习手册》中是这么描述的：</p>
-<blockquote>
-<p>简而言之，with/as语句的设计是作为常见try/finally用法模式的替代方案。就像try/finally语句，with/as语句也是用于定义必须执行的终止或“清理”行为,无论步骤中是否发生异常。不过，和try/finally不同的是，with语句支持更丰富的基于对象的协议，可以为代码块定义支持进入和离开动作。</p>
-</blockquote>
-<p>也就是说对于代码：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> expression [<span class="keyword">as</span> varible]:</div><div class="line">    <span class="keyword">with</span>-block</div></pre></td></tr></table></figure>
-<p>with语句的实际工作方式：</p>
-<blockquote>
-<p>1.计算表达式，所得到的对象是<strong>环境管理器</strong>，他必须有<strong>enter</strong>，<strong>exit</strong>两个方法。<br>2.环境管理器的<strong>enter</strong>方法会被调用。如果as存在，<strong>enter</strong>的返回值赋值给as后面的变量，否则，被丢弃。<br>3.代码块中嵌套的代码（with-block）会执行。<br>4.如果with代码块会引发异常，<strong>exit</strong>(type,value,traceback)方法就会被调用。这些也是由sys.exec_info返回相同的值。如果此方法返回为假，则异常会重新引发。否则，异常会中止。正常情况下异常是应该被重新引发，这样的话传递到with语句外。<br>5.如果with代码块没有引发异常，<strong>exit</strong>方法依然会调用，其type、value以及traceback参数会以None传递。</p>
-</blockquote>
-<p>with/as语句的设计，是为了让必须在程序代码块周围发生的启动和终止活动一定会发生。和try/finally语句（无论异常是否发生其离开动作都会执行）类似，但是with/as有更丰富的对象协议，可以定义进入和离开的动作。</p>
-<h3 id="2-_设计的初衷">2. 设计的初衷</h3><p>with/as语句的设计的初衷，在<a href="https://www.python.org/dev/peps/pep-0343/" target="_blank" rel="external">PEP343</a>中是这么描述的：</p>
-<blockquote>
-<p>This PEP adds a new statement “with” to the Python language to make it possible to factor out standard uses of try/finally statements.<br>In this PEP, context managers provide <strong>enter</strong>() and <strong>exit</strong>() methods that are invoked on entry to and exit from the body of the with statement.</p>
-</blockquote>
-<p>对于下面的操作：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> EXPR <span class="keyword">as</span> VAR:</div><div class="line">            BLOCK</div></pre></td></tr></table></figure>
-<p>等价于</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">mgr = (EXPR)</div><div class="line">exit = type(mgr).__exit__  <span class="comment"># Not calling it yet</span></div><div class="line">value = type(mgr).__enter__(mgr)</div><div class="line">exc = <span class="keyword">True</span></div><div class="line"><span class="keyword">try</span>:</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        <span class="comment"># 将__enter__函数调用的返回值返回给VAR</span></div><div class="line">        VAR = value  <span class="comment"># Only if "as VAR" is present</span></div><div class="line">        <span class="comment"># 执行BLOCK</span></div><div class="line">        BLOCK</div><div class="line">    <span class="keyword">except</span>:</div><div class="line">        <span class="comment"># 异常处理，The exceptional case is handled here</span></div><div class="line">        exc = <span class="keyword">False</span></div><div class="line">        <span class="keyword">if</span> <span class="keyword">not</span> exit(mgr, *sys.exc_info()):</div><div class="line">            <span class="keyword">raise</span></div><div class="line">        <span class="comment"># The exception is swallowed if exit() returns true</span></div><div class="line"><span class="keyword">finally</span>:</div><div class="line">    <span class="comment"># 清理，The normal and non-local-goto cases are handled here</span></div><div class="line">    <span class="keyword">if</span> exc:</div><div class="line">        exit(mgr, <span class="keyword">None</span>, <span class="keyword">None</span>, <span class="keyword">None</span>)</div></pre></td></tr></table></figure>
-<p>我们可以看到上述代码完整的处理了初始化及异常/正常场景的清理操作，这便是<code>with</code>的设计思想，化简了冗余的代码，把那些重复的工作以及异常处理操作交给写“EXPR”源码（比如open操作）的同学。</p>
-<h3 id="3-_更深入的学习">3. 更深入的学习</h3><p>我们继续深入的看下<a href="https://github.com/Yikun/Python3/blob/master/Lib/_pyio.py#L447" target="_blank" rel="external">Python3</a>中<strong>enter</strong>和<strong>exit</strong>的实现：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">IOBase</span><span class="params">(metaclass=abc.ABCMeta)</span>:</span></div><div class="line">    <span class="comment"># ... ...</span></div><div class="line"></div><div class="line">    <span class="comment">### Context manager ###</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__enter__</span><span class="params">(self)</span>:</span>  <span class="comment"># That's a forward reference</span></div><div class="line">        <span class="string">"""Context management protocol.  Returns self (an instance of IOBase)."""</span></div><div class="line">        self._checkClosed()</div><div class="line">        <span class="keyword">return</span> self</div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__exit__</span><span class="params">(self, *args)</span>:</span></div><div class="line">        <span class="string">"""Context management protocol.  Calls close()"""</span></div><div class="line">        self.close()</div></pre></td></tr></table></figure>
-<p>和我们预期的一致，在<strong>enter</strong>中返回了这个IO对象，然后在<strong>exit</strong>中，进行了清理。</p>
-<h3 id="参考资料">参考资料</h3><ol>
-<li>《Python学习手册》 </li>
-<li><a href="http://effbot.org/zone/python-with-statement.htm" target="_blank" rel="external">Understanding Python’s “with” statement</a></li>
-<li><a href="https://www.python.org/dev/peps/pep-0343/" target="_blank" rel="external">PEP 343 — The “with” Statement</a></li>
-<li><a href="http://stackoverflow.com/questions/713794/catching-an-exception-while-using-a-python-with-statement" target="_blank" rel="external">Catching an exception while using a Python ‘with’ statement</a></li>
-<li><a href="http://zhoutall.com/archives/325" target="_blank" rel="external">理解Python中的with…as…语法</a></li>
-<li><a href="https://www.python.org/dev/peps/pep-3116/" target="_blank" rel="external">PEP 3116 — New I/O</a></li>
-<li><a href="https://github.com/Yikun/Python3/blob/master/Lib/_pyio.py#L447" target="_blank" rel="external">Python 3.5.0 Code</a></li>
-</ol>
-
+        
+          <a class="article-more-a" href="/2016/04/15/理解Python中的“with”/#more">more >></a>
+        
       
 
       

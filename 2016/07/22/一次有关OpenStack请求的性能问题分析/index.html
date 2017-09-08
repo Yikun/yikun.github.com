@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yikun.github.io">
   <title>一次有关OpenStack请求的性能问题分析 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="0. 背景介绍目前OpenStack对外提供的北向接口是以REST接口提供的，也就是说通过HTTP（HTTPS）接口进行请求，进行虚拟机或者卷等相关的操作。OpenStack提供I层基本的能力，比如创建、查询、删除虚拟机或者卷等操作，以OpenStack作为平台，对上提供用户接口，对下操作下层Driver完成对设备的操作，其大致的架构基本如下所示： 整个OpenStack提供的接口也都是无状态的，">
+  <meta name="description" content="0. 背景介绍目前OpenStack对外提供的北向接口是以REST接口提供的，也就是说通过HTTP（HTTPS）接口进行请求，进行虚拟机或者卷等相关的操作。OpenStack提供I层基本的能力，比如创建、查询、删除虚拟机或者卷等操作，以OpenStack作为平台，对上提供用户接口，对下操作下层Driver完成对设备的操作，其大致的架构基本如下所示：">
 <meta name="keywords" content="OpenStack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="一次有关OpenStack请求的性能问题分析">
 <meta property="og:url" content="http://yikun.github.io/2016/07/22/一次有关OpenStack请求的性能问题分析/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="0. 背景介绍目前OpenStack对外提供的北向接口是以REST接口提供的，也就是说通过HTTP（HTTPS）接口进行请求，进行虚拟机或者卷等相关的操作。OpenStack提供I层基本的能力，比如创建、查询、删除虚拟机或者卷等操作，以OpenStack作为平台，对上提供用户接口，对下操作下层Driver完成对设备的操作，其大致的架构基本如下所示： 整个OpenStack提供的接口也都是无状态的，">
+<meta property="og:description" content="0. 背景介绍目前OpenStack对外提供的北向接口是以REST接口提供的，也就是说通过HTTP（HTTPS）接口进行请求，进行虚拟机或者卷等相关的操作。OpenStack提供I层基本的能力，比如创建、查询、删除虚拟机或者卷等操作，以OpenStack作为平台，对上提供用户接口，对下操作下层Driver完成对设备的操作，其大致的架构基本如下所示：">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/17061504/6b7cb7e4-5061-11e6-9adb-0337558ccc90.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/17061512/70953ac6-5061-11e6-82ed-47017c82ace2.png">
-<meta property="og:updated_time" content="2017-09-05T15:44:58.000Z">
+<meta property="og:updated_time" content="2017-09-08T12:09:12.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一次有关OpenStack请求的性能问题分析">
-<meta name="twitter:description" content="0. 背景介绍目前OpenStack对外提供的北向接口是以REST接口提供的，也就是说通过HTTP（HTTPS）接口进行请求，进行虚拟机或者卷等相关的操作。OpenStack提供I层基本的能力，比如创建、查询、删除虚拟机或者卷等操作，以OpenStack作为平台，对上提供用户接口，对下操作下层Driver完成对设备的操作，其大致的架构基本如下所示： 整个OpenStack提供的接口也都是无状态的，">
+<meta name="twitter:description" content="0. 背景介绍目前OpenStack对外提供的北向接口是以REST接口提供的，也就是说通过HTTP（HTTPS）接口进行请求，进行虚拟机或者卷等相关的操作。OpenStack提供I层基本的能力，比如创建、查询、删除虚拟机或者卷等操作，以OpenStack作为平台，对上提供用户接口，对下操作下层Driver完成对设备的操作，其大致的架构基本如下所示：">
 <meta name="twitter:image" content="https://cloud.githubusercontent.com/assets/1736354/17061504/6b7cb7e4-5061-11e6-9adb-0337558ccc90.png">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
@@ -199,7 +199,9 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="0-_背景介绍">0. 背景介绍</h3><p>目前OpenStack对外提供的北向接口是以REST接口提供的，也就是说通过HTTP（HTTPS）接口进行请求，进行虚拟机或者卷等相关的操作。OpenStack提供I层基本的能力，比如创建、查询、删除虚拟机或者卷等操作，以OpenStack作为平台，对上提供用户接口，对下操作下层Driver完成对设备的操作，其大致的架构基本如下所示：<br><img src="https://cloud.githubusercontent.com/assets/1736354/17061504/6b7cb7e4-5061-11e6-9adb-0337558ccc90.png" alt="openstackrest"></p>
+        <h3 id="0-_背景介绍">0. 背景介绍</h3><p>目前OpenStack对外提供的北向接口是以REST接口提供的，也就是说通过HTTP（HTTPS）接口进行请求，进行虚拟机或者卷等相关的操作。OpenStack提供I层基本的能力，比如创建、查询、删除虚拟机或者卷等操作，以OpenStack作为平台，对上提供用户接口，对下操作下层Driver完成对设备的操作，其大致的架构基本如下所示：</p>
+<a id="more"></a>
+<p><img src="https://cloud.githubusercontent.com/assets/1736354/17061504/6b7cb7e4-5061-11e6-9adb-0337558ccc90.png" alt="openstackrest"></p>
 <p>整个OpenStack提供的接口也都是无状态的，对外接口也非常简单，例如获取卷的详情可以通过volumes的接口，最终可以得到卷的详情信息：<br><img src="https://cloud.githubusercontent.com/assets/1736354/17061512/70953ac6-5061-11e6-82ed-47017c82ace2.png" alt="cinder show"></p>
 <p>一般调用这些接口的上层主要是一些编排性或者提高用户体验的应用，达到“点一个按钮”完成对资源创建或者查询的应用。</p>
 <h3 id="1-_问题出现">1. 问题出现</h3><p>问题的现象是，上层对资源进行操作、查询的时候非常慢，而实际在上层应用的服务器节点通过curl命令去调OpenStack接口的时候，发现整体时延均在秒级以上，甚至一个非常简单的卷查询指令也耗费了1秒以上的时间，而通过ping指令去测OpenStack响应时，保持在200ms左右，那么中间的时间耗在了哪？</p>
