@@ -1,10 +1,10 @@
 title: '[译] Simpler Road to Cinder Active-Active'
 tags:
   - Cinder
+  - OpenStack
 number: 56
 date: 2017-08-16 20:50:32
 ---
-
 
 > 译注：本篇文章为作者介绍Cinder AA方案的文章，作者是gorka，是实现cinder AA BP的core，文章介绍了这哥们实现AA时的记录，算是对方案的一种解释以及设计思路的总结，核心思想为以下几点：
 > 1. 每个volume node都增加一个`cluster`的配置项，作为集群，标记这个节点属于某个集群；
@@ -13,6 +13,8 @@ date: 2017-08-16 20:50:32
 > 4. 消费时，将操作记录在worker中，用来标记这个资源由某个worker来操作，这样当发生异常时，可以确保仅有某个worker进行cleanup的操作。
 
 原文链接：[Simpler Road to Cinder Active-Active](https://gorka.eguileor.com/simpler-road-to-cinder-active-active/)
+
+<!--more-->
 
 上一周，我发了一篇文，来介绍Cinder AA配置方案，可是，让我很受伤的是，觉得那个方案有点太复杂了，所以呢，这一波又搞了个简单的方案。
 

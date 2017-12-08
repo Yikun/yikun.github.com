@@ -8,6 +8,9 @@ date: 2016-07-22 23:09:25
 ### 0. 背景介绍
 
 目前OpenStack对外提供的北向接口是以REST接口提供的，也就是说通过HTTP（HTTPS）接口进行请求，进行虚拟机或者卷等相关的操作。OpenStack提供I层基本的能力，比如创建、查询、删除虚拟机或者卷等操作，以OpenStack作为平台，对上提供用户接口，对下操作下层Driver完成对设备的操作，其大致的架构基本如下所示：
+
+<!--more-->
+
 ![openstackrest](https://cloud.githubusercontent.com/assets/1736354/17061504/6b7cb7e4-5061-11e6-9adb-0337558ccc90.png)
 
 整个OpenStack提供的接口也都是无状态的，对外接口也非常简单，例如获取卷的详情可以通过volumes的接口，最终可以得到卷的详情信息：
