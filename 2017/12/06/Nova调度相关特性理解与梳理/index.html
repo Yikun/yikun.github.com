@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://yikun.github.io">
   <title>Nova调度相关特性理解与梳理 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="历史特性梳理Liberty版本L版本特性列表：链接https://blueprints.launchpad.net/nova/+spec/request-spec-objecthttps://blueprints.launchpad.net/nova/+spec/request-spec-object-mitaka Mitaka版本根据M版本特性优先级的信息，我们看到M版本规划的工作还是围绕着re">
+  <meta name="description" content="准备拿这篇文章梳理下OpenStack Nova调度相关的特性，由于目前Placement的引入，说起调度，和这个组件是分不开的，所以本文也可以看做是Placement的一个历史特性的梳理。第一阶段会按照版本，先把调度相关的BP过一遍，然后再通过理解和使用加强理解。好吧，我承认又开了一个系列的坑，话不多说，开始！">
 <meta name="keywords" content="Nova,OpenStack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Nova调度相关特性理解与梳理">
 <meta property="og:url" content="http://yikun.github.io/2017/12/06/Nova调度相关特性理解与梳理/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="历史特性梳理Liberty版本L版本特性列表：链接https://blueprints.launchpad.net/nova/+spec/request-spec-objecthttps://blueprints.launchpad.net/nova/+spec/request-spec-object-mitaka Mitaka版本根据M版本特性优先级的信息，我们看到M版本规划的工作还是围绕着re">
-<meta property="og:updated_time" content="2017-12-08T11:48:07.000Z">
+<meta property="og:description" content="准备拿这篇文章梳理下OpenStack Nova调度相关的特性，由于目前Placement的引入，说起调度，和这个组件是分不开的，所以本文也可以看做是Placement的一个历史特性的梳理。第一阶段会按照版本，先把调度相关的BP过一遍，然后再通过理解和使用加强理解。好吧，我承认又开了一个系列的坑，话不多说，开始！">
+<meta property="og:updated_time" content="2017-12-08T12:00:50.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Nova调度相关特性理解与梳理">
-<meta name="twitter:description" content="历史特性梳理Liberty版本L版本特性列表：链接https://blueprints.launchpad.net/nova/+spec/request-spec-objecthttps://blueprints.launchpad.net/nova/+spec/request-spec-object-mitaka Mitaka版本根据M版本特性优先级的信息，我们看到M版本规划的工作还是围绕着re">
+<meta name="twitter:description" content="准备拿这篇文章梳理下OpenStack Nova调度相关的特性，由于目前Placement的引入，说起调度，和这个组件是分不开的，所以本文也可以看做是Placement的一个历史特性的梳理。第一阶段会按照版本，先把调度相关的BP过一遍，然后再通过理解和使用加强理解。好吧，我承认又开了一个系列的坑，话不多说，开始！">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
   
@@ -196,10 +196,12 @@ var _hmt = _hmt || [];
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="历史特性梳理">历史特性梳理</h1><h2 id="Liberty版本">Liberty版本</h2><p>L版本特性列表：<a href="https://blueprints.launchpad.net/nova/liberty" target="_blank" rel="external">链接</a><br><a href="https://blueprints.launchpad.net/nova/+spec/request-spec-object" target="_blank" rel="external">https://blueprints.launchpad.net/nova/+spec/request-spec-object</a><br><a href="https://blueprints.launchpad.net/nova/+spec/request-spec-object-mitaka" target="_blank" rel="external">https://blueprints.launchpad.net/nova/+spec/request-spec-object-mitaka</a></p>
+        <p>准备拿这篇文章梳理下OpenStack Nova调度相关的特性，由于目前Placement的引入，说起调度，和这个组件是分不开的，所以本文也可以看做是Placement的一个历史特性的梳理。第一阶段会按照版本，先把调度相关的BP过一遍，然后再通过理解和使用加强理解。好吧，我承认又开了一个系列的坑，话不多说，开始！</p>
+<a id="more"></a>
+<h2 id="Liberty版本">Liberty版本</h2><p>L版本特性列表：<a href="https://blueprints.launchpad.net/nova/liberty" target="_blank" rel="external">链接</a><br><a href="https://blueprints.launchpad.net/nova/+spec/request-spec-object" target="_blank" rel="external">https://blueprints.launchpad.net/nova/+spec/request-spec-object</a><br><a href="https://blueprints.launchpad.net/nova/+spec/request-spec-object-mitaka" target="_blank" rel="external">https://blueprints.launchpad.net/nova/+spec/request-spec-object-mitaka</a></p>
 <h2 id="Mitaka版本">Mitaka版本</h2><p>根据<a href="https://specs.openstack.org/openstack/nova-specs/priorities/mitaka-priorities.html" target="_blank" rel="external">M版本特性优先级</a>的信息，我们看到M版本规划的工作还是围绕着request spec和object来展开的。在<a href="https://blueprints.launchpad.net/nova/mitaka" target="_blank" rel="external">M版本特性列表</a>中，我们可以看到确实重点还是在request spec的完善，其中虽然Inventory的拆分在这个版本提出，但是最终没有被完全实现，而是拖延到了N版本才完成。</p>
 <h3 id="Add_concept_of_resource_classes">Add concept of resource classes</h3><p>Link: <a href="https://blueprints.launchpad.net/nova/+spec/resource-classes" target="_blank" rel="external">bp/resource-classes</a></p>
-<p>原来我们增加某种资源的时候，都需要给instance的object增加filed，每一次改变，都要刷一下db shema，或是增加filed或是增加整个table，也就是说新增一种类型的支持，管理员就要把数据库也升级，这意味着会有业务中断，很不合理。<br>随着资源种类变多，这种方式有点臃肿，也不是很优雅，在紧接着的generic resource poll的bp中，也把亟需把资源抽象出来了。<br>因此，在M版本新增了一个Resource Class的object，用于记录虚拟机资源的类型，无论增加新的独立资源类型还是共享资源类型，都不需要再对db结构刷新了。<br>这个BP可以说是generic-resource-pools这个bp的基础，只有通过这种通用的方式将资源类型表征出来，才有可能将所有的资源都抽象出来。</p>
+<p>原来我们增加某种资源的时候，都需要给instance的object增加filed，每一次改变，都要刷一下db shema，或是增加filed或是增加整个table，也就是说新增一种类型的支持，管理员就要把数据库也升级，这意味着会有业务中断，很不合理。<br>随着资源种类变多，这种方式有点臃肿，也不是很优雅，在紧接着的generic resource pool的bp中，也亟需把资源抽象出来了。<br>因此，在M版本新增了一个Resource Class的object，用于记录虚拟机资源的类型，无论增加新的独立资源类型还是共享资源类型，都不需要再对db结构刷新了。<br>这个BP可以说是generic-resource-pools这个bp的基础，只有通过这种通用的方式将资源类型表征出来，才有可能将所有的资源都抽象出来。</p>
 <h2 id="Newton版本">Newton版本</h2><p>根据<a href="https://specs.openstack.org/openstack/nova-specs/priorities/newton-priorities.html#scheduler" target="_blank" rel="external">N版本特性优先级</a>来看，首次提到了要把Placement相关的东西独立出来，并且把cell数据库中的compute node的数据迁移到API DB的inventory和allocation中。因此，这个版本可以看做是Placement的元年。而从<a href="https://blueprints.launchpad.net/nova/newton" target="_blank" rel="external">N版本特性列表</a>中，我们看到了Placement所依赖的那些基础结构和模型均已在这个版本支持了。</p>
 <h3 id="Add_concept_of_generic_resource_pools">Add concept of generic resource pools</h3><p>Link: <a href="https://blueprints.launchpad.net/nova/+spec/generic-resource-pools" target="_blank" rel="external">bp/generic-resource-pools</a></p>
 <p>这个是一个非常重要的BP，可以认为是Placement组件的初始BP，原先，compute node的理念，把计算的资源强行绑到某一个node上了，而实际上，存在着一些诸如共享资源的情况，可能多个计算节点共享着某些资源。<br>所以，Nova期望能够定义一种“通用的资源”模型。<br>我们可以看到几个在Placement的重要概念都有在这个BP提到。<br>Resource Provider：名释其意，资源提供者，结构比较简单，UUID和这个RP对应的一些基本信息，比如name之类的，资源提供的具体资源的存量和消耗量，通过UUID关联到其他表中。<br>Inventory：存量，用来记录资源的总量，并且记录着资源可分配的最大、最小、步长等信息。每个RP（比如计算节点）的每种资源（比如vcpu、内存等）都占一行。<br>Allocation：已分配量，用于记录某个RP（如计算节点）被某个消耗者（如虚拟机）</p>
@@ -511,6 +513,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
@@ -520,10 +526,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Linux</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
             
             <div class="clearfix"></div>
