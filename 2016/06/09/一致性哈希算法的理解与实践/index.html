@@ -20,7 +20,7 @@
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/16341426/8c9e6caa-3a5f-11e6-87ad-fdb462b76aef.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/16341445/a0e32fde-3a5f-11e6-969d-085f64220e63.png">
 <meta property="og:image" content="https://cloud.githubusercontent.com/assets/1736354/16341455/b01139ec-3a5f-11e6-965a-070f5c4c0afa.png">
-<meta property="og:updated_time" content="2017-09-08T12:13:14.000Z">
+<meta property="og:updated_time" content="2017-12-08T11:48:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="一致性哈希算法的理解与实践">
 <meta name="twitter:description" content="0. 概述在维基百科中，是这么定义的  一致哈希是一种特殊的哈希算法。在使用一致哈希算法后，哈希表槽位数（大小）的改变平均只需要对 K/n个关键字重新映射，其中K是关键字的数量， n是槽位数量。然而在传统的哈希表中，添加或删除一个槽位的几乎需要对所有关键字进行重新映射。 1. 引出 我们在上文中已经介绍了一致性Hash算法的基本优势，我们看到了该算法主要解决的问题是：当slot数发生变化时，能够尽">
@@ -257,7 +257,7 @@ var _hmt = _hmt || [];
 <blockquote>
 <p>Ave: 100000<br>Max: 157298 (57.30%)<br>Min: 77405  (22.59%)</p>
 </blockquote>
-<p>可以看到，数据分布是比较理想的。如果节点数刚好和分区数相等，理论上是可以均匀分布的。而观察下增加节点后的数据移动比例，代码实现见<a href="https://github.com/Yikun/hashes/blob/master/part_consist_hash.py" target="_blank" rel="external">part_consist_hash.py</a></p>
+<p>可以看到，数据分布是比较理想的。如果节点数刚好和分区数相等，理论上是可以均匀分布的。而观察下增加节点后的数据移动比例，代码实现见<a href="https://github.com/Yikun/hashes/blob/master/part_consist_hash_add.py" target="_blank" rel="external">part_consist_hash_add.py</a></p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"></div><div class="line"><span class="keyword">for</span> part <span class="keyword">in</span> range(<span class="number">2</span> ** LOG_NODE):</div><div class="line">    ring.append(part)</div><div class="line">    part2node[part] = part % NODES</div><div class="line">    part2node2[part] = part % NODES2</div><div class="line"></div><div class="line">change = <span class="number">0</span></div><div class="line"><span class="keyword">for</span> item <span class="keyword">in</span> range(ITEMS):</div><div class="line">    h = _hash(item) &gt;&gt; PARTITION</div><div class="line">    p = bisect_left(ring, h)</div><div class="line">    p2 = bisect_left(ring, h)</div><div class="line">    n = part2node[p] % NODES</div><div class="line">    n2 = part2node2[p] % NODES2</div><div class="line">    <span class="keyword">if</span> n2 != n:</div><div class="line">        change += <span class="number">1</span></div></pre></td></tr></table></figure>
 <p>结果如下所示：</p>
 <blockquote>
@@ -528,11 +528,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -541,10 +545,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -560,7 +560,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
             
             <div class="clearfix"></div>

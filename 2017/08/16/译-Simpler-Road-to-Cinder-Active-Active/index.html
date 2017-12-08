@@ -9,13 +9,13 @@
   <title>[译] Simpler Road to Cinder Active-Active | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="译注：本篇文章为作者介绍Cinder AA方案的文章，作者是gorka，是实现cinder AA BP的core，文章介绍了这哥们实现AA时的记录，算是对方案的一种解释以及设计思路的总结，核心思想为以下几点：  每个volume node都增加一个cluster的配置项，作为集群，标记这个节点属于某个集群； 通过cluster@backend作为消息队列的topic，并且启动cluster@ba">
-<meta name="keywords" content="Cinder">
+<meta name="keywords" content="OpenStack,Cinder">
 <meta property="og:type" content="article">
 <meta property="og:title" content="[译] Simpler Road to Cinder Active-Active">
 <meta property="og:url" content="http://yikun.github.io/2017/08/16/译-Simpler-Road-to-Cinder-Active-Active/index.html">
 <meta property="og:site_name" content="Yikun">
 <meta property="og:description" content="译注：本篇文章为作者介绍Cinder AA方案的文章，作者是gorka，是实现cinder AA BP的core，文章介绍了这哥们实现AA时的记录，算是对方案的一种解释以及设计思路的总结，核心思想为以下几点：  每个volume node都增加一个cluster的配置项，作为集群，标记这个节点属于某个集群； 通过cluster@backend作为消息队列的topic，并且启动cluster@ba">
-<meta property="og:updated_time" content="2017-09-08T12:13:14.000Z">
+<meta property="og:updated_time" content="2017-12-08T11:48:07.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="[译] Simpler Road to Cinder Active-Active">
 <meta name="twitter:description" content="译注：本篇文章为作者介绍Cinder AA方案的文章，作者是gorka，是实现cinder AA BP的core，文章介绍了这哥们实现AA时的记录，算是对方案的一种解释以及设计思路的总结，核心思想为以下几点：  每个volume node都增加一个cluster的配置项，作为集群，标记这个节点属于某个集群； 通过cluster@backend作为消息队列的topic，并且启动cluster@ba">
@@ -287,6 +287,10 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
         		</li>
       		
@@ -356,6 +360,15 @@ var _hmt = _hmt || [];
 
   
 <nav id="article-nav">
+  
+    <a href="/2017/09/27/OpenStack-Nova虚拟机创建流程解析/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          OpenStack Nova虚拟机创建流程解析
+        
+      </div>
+    </a>
   
   
     <a href="/2016/07/22/一次有关OpenStack请求的性能问题分析/" id="article-nav-older" class="article-nav-link-wrap">
@@ -497,11 +510,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -510,10 +527,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">Nginx</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -529,7 +542,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
             
             <div class="clearfix"></div>
