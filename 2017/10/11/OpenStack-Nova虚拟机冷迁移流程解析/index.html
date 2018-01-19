@@ -17,7 +17,7 @@
 <meta property="og:description" content="1. 概述虚拟机冷迁移由于当用户想把虚拟机从一个计算节点移动到其他节点。主要涉及的命令如下：12$ nova migrate server_id$ nova resize-confirm server_id 看到后是不是觉得有点奇怪为啥migrate之后，还要resize-confirm？resize操作其实和migrate操作比较类似，不同的是迁移前后的flavor不一样。一般情况下resize">
 <meta property="og:image" content="https://user-images.githubusercontent.com/1736354/31429902-dd65687a-aea1-11e7-9209-06c37a09fe4b.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/1736354/31435001-ace4c0a6-aeb0-11e7-99b9-c414411b7eaa.png">
-<meta property="og:updated_time" content="2017-12-08T12:00:50.000Z">
+<meta property="og:updated_time" content="2018-01-19T14:06:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenStack Nova虚拟机冷迁移流程解析">
 <meta name="twitter:description" content="1. 概述虚拟机冷迁移由于当用户想把虚拟机从一个计算节点移动到其他节点。主要涉及的命令如下：12$ nova migrate server_id$ nova resize-confirm server_id 看到后是不是觉得有点奇怪为啥migrate之后，还要resize-confirm？resize操作其实和migrate操作比较类似，不同的是迁移前后的flavor不一样。一般情况下resize">
@@ -201,6 +201,7 @@ var _hmt = _hmt || [];
       
         <h3 id="1-_概述">1. 概述</h3><p>虚拟机冷迁移由于当用户想把虚拟机从一个计算节点移动到其他节点。主要涉及的命令如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> nova migrate server_id</div><div class="line"><span class="meta">$</span> nova resize-confirm server_id</div></pre></td></tr></table></figure></p>
 <p>看到后是不是觉得有点奇怪为啥migrate之后，还要resize-confirm？resize操作其实和migrate操作比较类似，不同的是迁移前后的flavor不一样。一般情况下resize的场景是，对虚拟机进行扩容，把flavor调大之类的。所以，在代码级别，nova也将两个流程合一了。migrate就是一个没有flavor变化的resize。</p>
+<a id="more"></a>
 <h3 id="2-_核心流程">2. 核心流程</h3><p>下图是虚拟机冷迁移时，涉及的组件交互：<br><img src="https://user-images.githubusercontent.com/1736354/31429902-dd65687a-aea1-11e7-9209-06c37a09fe4b.png" alt="instance migrate overview"><br>我们可以看到，在迁移时，主要流程包括调度、迁移准备、迁移、完成迁移。</p>
 <ol>
 <li>调度。conducotr通过select_destination访问Scheduler进行<strong>调度</strong>，最终选择一个可用的目的节点；</li>
@@ -383,7 +384,7 @@ gitment.render('gitmentContainer')
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 Yikun
+    		&copy; 2018 Yikun
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -461,10 +462,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
              
@@ -474,6 +471,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -489,6 +490,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Draft</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -497,11 +502,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">

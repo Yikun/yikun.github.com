@@ -173,6 +173,228 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Placement深度探索-Get-Allocation-Candidates" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/25/Placement深度探索-Get-Allocation-Candidates/">[Placement深度探索] Get Allocation Candidates</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/25/Placement深度探索-Get-Allocation-Candidates/" class="archive-article-date">
+  	<time datetime="2017-12-25T09:25:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Dec 25 2017</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1_功能概述">1 功能概述</h2><p>Placement的一个重要的接口，就是获取满足指定资源条件的allocation。举个例子，用户说，<code>我需要1个VCPU，512MB内存，1GB磁盘的资源，Placement你帮我找找看看，有没有合适的资源</code>。</p>
+        
+          <a class="article-more-a" href="/2017/12/25/Placement深度探索-Get-Allocation-Candidates/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Draft</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/25/Placement深度探索-Get-Allocation-Candidates/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-一个死锁问题的深入探究" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/13/一个死锁问题的深入探究/">一个死锁问题的深入探究</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/13/一个死锁问题的深入探究/" class="archive-article-date">
+  	<time datetime="2017-12-13T11:47:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Dec 13 2017</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本篇文章可以看做是一个问题定位、分析、学习过程的记录，介绍了OpenStack Nova一个死锁问题的分析和解决的过程，你将从本文了解到SQLAlchemy的session中的语序排序机制、OpenStack的死锁重试机制及改进点以及一些调试的手段。</p>
+<h3 id="0-_背景">0. 背景</h3><p>在Nova对虚拟机进行一些操作的时候，比如创建、停止虚拟机之类的操作的时候，会将这些事件记录在instance_actions表里面记录操作的时间、操作类型以及一些操作事件详情。</p>
+<p>例如，我们可以通过instnace-action-list来查看虚拟机的操作，并可以通过对应的req id来查操作中的事件详情，如果是失败的话，还可以从事件详情中，看到对应的错误栈信息。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> nova instance-action-list e92885a9-06d6-4491-ac43-6fd04e32ee72</span></div><div class="line">+--------+------------------------------------------+---------+----------------------------+</div><div class="line">| Action | Request_ID                               | Message | Start_Time                 |</div><div class="line">+--------+------------------------------------------+---------+----------------------------+</div><div class="line">| create | req-416cb88e-5adb-4c0f-9c32-6370d3661940 | -       | 2017-12-13T12:08:36.000000 |</div><div class="line">| stop   | req-52155da3-d2ca-463c-b380-6034c0b5fdf1 | -       | 2017-12-13T12:09:17.000000 |</div><div class="line">+--------+------------------------------------------+---------+----------------------------+</div><div class="line"><span class="meta"></span></div><div class="line">$<span class="bash"> nova instance-action e92885a9-06d6-4491-ac43-6fd04e32ee72 req-52155da3-d2ca-463c-b380-6034c0b5fdf1</span></div><div class="line">+---------------+--------------------------------------------------+</div><div class="line">| Property      | Value                                            |</div><div class="line">+---------------+--------------------------------------------------+</div><div class="line">| action        | stop                                             |</div><div class="line">| events        | [&#123;u'event': u'compute_stop_instance',            |</div><div class="line">|               |   u'finish_time': u'2017-12-13T12:09:23.000000', |</div><div class="line">|               |   u'result': u'Success',                         |</div><div class="line">|               |   u'start_time': u'2017-12-13T12:09:18.000000',  |</div><div class="line">|               |   u'traceback': None&#125;]                           |</div><div class="line">| instance_uuid | e92885a9-06d6-4491-ac43-6fd04e32ee72             |</div><div class="line">| message       | -                                                |</div><div class="line">| project_id    | 0232cef222f7479fae3fd8fa24d8c382                 |</div><div class="line">| request_id    | req-52155da3-d2ca-463c-b380-6034c0b5fdf1         |</div><div class="line">| start_time    | 2017-12-13T12:09:17.000000                       |</div><div class="line">| user_id       | 5b0b6a4c068f4c1ba78b50d8a4db5057                 |</div><div class="line">+---------------+--------------------------------------------------+</div></pre></td></tr></table></figure></p>
+<p>在instance_action的表里面，记录着action的更新时间，比如event结束了，我们也期望能够action里面能记录update的时间，但是目前并没有进行刷新。</p>
+<p><img src="https://user-images.githubusercontent.com/1736354/34138279-ac8d220e-e4a9-11e7-8617-8f8ddb0ef34a.jpg" alt="action"></p>
+<p>这个patch想做的事儿也比较简单，如上图所示，就是在event进行记录（比如开始和结束）的时候，也对action的更新时间也做刷新。也就是说，我们在写instance_event_action表后，也需要写instance_action表去记录下刷新时间。大致代码的关键逻辑如下所示（省略了一些无关的代码细节）：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@pick_context_manager_writer</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">action_event_finish</span><span class="params">(context, values)</span>:</span></div><div class="line">    <span class="string">"""Finish an event on an instance action."""</span></div><div class="line">    <span class="comment"># 原有获取action</span></div><div class="line">    action = _action_get_by_request_id(context, values[<span class="string">'instance_uuid'</span>],</div><div class="line">                                       values[<span class="string">'request_id'</span>])</div><div class="line">    <span class="comment"># 原有获取event</span></div><div class="line">    event_ref = model_query(context, models.InstanceActionEvent).\</div><div class="line">                            filter_by(action_id=action[<span class="string">'id'</span>]).\</div><div class="line">                            filter_by(event=values[<span class="string">'event'</span>]).\</div><div class="line">                            first()</div><div class="line">    <span class="comment"># 原有的event刷新流程</span></div><div class="line">    event_ref.update(values)</div><div class="line">    <span class="comment"># **新增的刷新action时间逻辑**</span></div><div class="line">    action.update(&#123;<span class="string">'updated_at'</span>: values[<span class="string">'finish_time'</span>]&#125;)</div><div class="line">    action.save(context.session)</div><div class="line">    <span class="keyword">return</span> event_ref</div></pre></td></tr></table></figure></p>
+<h3 id="1-_起因">1. 起因</h3><p>在修复Nova的这个事件时间刷新问题(<a href="https://bugs.launchpad.net/nova/+bug/1719561" target="_blank" rel="external">bug/507473</a>)的时候，CI会概率性地挂一些用例，先开始以为是CI不稳定，workflow+1之后，最终的门禁检查一直过不了。Matt recheck了几次都是失败的，然后问：</p>
+<blockquote>
+<p>I’m not sure if the test failures this patch is hitting are related to this change or not - they definitely don’t seem to be (I’m not sure why we’d get an UnexpectedTaskStateError during resize due to this change).</p>
+</blockquote>
+<p>这才引起了我的注意，我找了下归档的日志发现：</p>
+<blockquote>
+<p>Exception during message handling: DBDeadlock: (pymysql.err.InternalError) (1213, u’<strong>Deadlock found when trying to get lock</strong>; try restarting transaction’) [SQL: u’<strong>UPDATE instance_actions SET updated_at=%(updated_at)s WHERE instance_actions.id = %(instance_actions_id)s</strong>‘] [parameters: {‘instance_actions_id’: 23, ‘updated_at’: datetime.datetime(2017, 12, 4, 2, 48, 36, 91068)}]</p>
+</blockquote>
+<p>第一反应是，我去！死锁了？简单的一个update怎么会死锁？确认了下where条件比较单一，并不是因为条件排序不稳定引起的死锁；也确认了下action数据库的索引，也比较简单，也不会有死锁问题。然后，就看业务代码，代码逻辑也很简单，一个事务里面包含了4件事，2个查询，2个刷新。不科学啊！</p>
+<h3 id="2-_发现">2. 发现</h3><p>遇到这种活久见的问题，最好的办法就是把每一句SQL都dump出来，因为不是裸写SQL，鬼知道SQLAlchemy中间的ORM那层为我们做了什么。</p>
+<p>OpenStack的oslo.db为我们提供了一个配置项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[database]</div><div class="line"># (Integer) Verbosity of SQL debugging information: 0=None, 100=Everything.</div><div class="line">connection_debug = 100</div></pre></td></tr></table></figure></p>
+<p>把他设置成100就可以dump出执行的每一句SQL了，这个方法在我们进行调试的时候很方便。然后，进行复现，结果让我震惊了（问号脸？？？代码是一样的，生成SQL的顺序却是不一致的）：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 从API dump的结果</span></div><div class="line"><span class="keyword">BEGIN</span> (implicit)</div><div class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> instance_actions <span class="keyword">WHERE</span> ...</div><div class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> instance_actions_events <span class="keyword">WHERE</span> ...</div><div class="line"><span class="comment">-- 先刷新action</span></div><div class="line"><span class="keyword">UPDATE</span> instance_actions <span class="keyword">SET</span> updated_at=%(updated_at)s <span class="keyword">WHERE</span> instance_actions.id= %(instance_actions_id)s</div><div class="line"><span class="comment">-- 再刷新action_event</span></div><div class="line"><span class="keyword">UPDATE</span> instance_actions_events <span class="keyword">SET</span> updated_at=%(updated_at)s, finish_time=%(finish_time)s, <span class="keyword">result</span>=%(<span class="keyword">result</span>)s <span class="keyword">WHERE</span> instance_actions_events.id = %(instance_actions_events_id)s</div><div class="line"><span class="keyword">COMMIT</span></div><div class="line"></div><div class="line"><span class="comment">-- 从Conductor dump的结果</span></div><div class="line"><span class="keyword">BEGIN</span> (implicit)</div><div class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> instance_actions <span class="keyword">WHERE</span> ...</div><div class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> instance_actions_events <span class="keyword">WHERE</span> ...</div><div class="line"><span class="comment">-- 先刷新action_event</span></div><div class="line"><span class="keyword">UPDATE</span> instance_actions_events <span class="keyword">SET</span> updated_at=%(updated_at)s, finish_time=%(finish_time)s, <span class="keyword">result</span>=%(<span class="keyword">result</span>)s <span class="keyword">WHERE</span> instance_actions_events.id = %(instance_actions_events_id)s</div><div class="line"><span class="comment">-- 再刷新action</span></div><div class="line"><span class="keyword">UPDATE</span> instance_actions <span class="keyword">SET</span> updated_at=%(updated_at)s <span class="keyword">WHERE</span> instance_actions.id= %(instance_actions_id)s</div><div class="line"><span class="keyword">COMMIT</span></div></pre></td></tr></table></figure></p>
+<p>完整的SQL dump我贴在了<a href="http://paste.openstack.org/show/628609/" target="_blank" rel="external">paste/628609</a>，可以分析出来，就是产生死锁的根本原因：<strong>在一个事务中，更新2个表的相反行</strong>。并发执行2个这样的事务，一个事务拿着action表的行锁，一个事务拿着action_event表的行锁，它们都互相等着对方释放，最终产生了死锁，如下图所示。</p>
+<p><img src="https://user-images.githubusercontent.com/1736354/34138652-98867f06-e4ab-11e7-8d68-fea01b118e8b.jpg" alt="deadlockjpg"></p>
+<p>从MySQL官方DOC里，给的建议<a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-deadlocks-handling.html" target="_blank" rel="external">How to Minimize and Handle Deadlocks</a>中，我们也看到了类似的建议：</p>
+<blockquote>
+<p>When modifying multiple tables within a transaction, or different sets of rows in the same table, do those operations in a consistent order each time. Then transactions form well-defined queues and do not deadlock. For example, organize database operations into functions within your application, or call stored routines, rather than coding multiple similar sequences of INSERT, UPDATE, and DELETE statements in different places.</p>
+</blockquote>
+<p>核心意思就是说，我们在一个transaction中更新多个表的时候，或者说在一个表中更新不同行的时候，一定要保证每一次调用的顺序是一致的。最终，临时解决这个问题的方式也比较简单，就是在这个函数上加一个<a href="https://review.openstack.org/#/c/507473/16/nova/db/sqlalchemy/api.py@6304" target="_blank" rel="external">死锁重试装饰器</a>，即在发生死锁的时候进行重试，CI终于全绿了。</p>
+<h3 id="3-_进一步分析">3. 进一步分析</h3><p>问题解决就结束了吗？不，2个疑问一直在心中徘徊：</p>
+<blockquote>
+<ol>
+<li>死锁重试的装饰器是怎么实现的，真的有效吗？</li>
+<li>SQLalchemy做了什么导致最终生成SQL的顺序是不稳定的，为什么要这么做？</li>
+</ol>
+</blockquote>
+<h4 id="3-1_死锁重试机制">3.1 死锁重试机制</h4><p>我们从<a href="https://github.com/openstack/oslo.db/blob/4a727233dc2b7d1021ed7932d2cd27d8053dca31/oslo_db/api.py#L127-L161" target="_blank" rel="external">oslo_db/api.py</a>可以看到他的实现，原理比较简单，就是隔几秒（2的retry数次方秒），如果调用成功，就终止重试。伪代码大概如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">t = <span class="number">1</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="keyword">try</span>):</div><div class="line">    sleep(t)</div><div class="line">    <span class="comment"># 指数递增</span></div><div class="line">    t = t * <span class="number">2</span></div><div class="line">    <span class="comment"># 超过上限取上限</span></div><div class="line">    t = min(max_t, t)</div><div class="line">    func()</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">raise</span> deadlock:</div><div class="line">        <span class="keyword">break</span></div></pre></td></tr></table></figure></p>
+<p>虽然看着隔了一些时间，但是，这种指数递增的机制对于死锁这种问题没有什么卵用，大家一起等，然后再一起调，还是会再次产生死锁。</p>
+<p>这个问题的场景和上研的时候，在通信中搞的“退避算法”很类似（HINOC中信道接纳的时候，多个节点并行接纳时，如果发生冲突，需要退避重试），都是冲突避免，通信中是避免信道冲突，而这里则是避免数据库的死锁。</p>
+<p>在退避时间选择的过程中，其实有2个参数，需要我们仔细思考一下：</p>
+<ol>
+<li><p><strong>等待的基数时间</strong>。<br>目前时间的基数是，随着重试次数指数增长的，这个基数对于连接失败类的业务是比较有用的，想象一下，这种类型的业务我们重试的目的说白了就是：<strong>“过一段时间，试一试，看看能不能正常连上”</strong>，那这个时间不断的指数增长是挺有意义的。也就是说，随着重试次数的增加，我们每次等待的时间也会逐渐递增，1秒，2秒，4秒，8秒，16秒等等。</p>
+</li>
+<li><p><strong>抖动时间窗口</strong>。<br>目前的实现，对于时间窗口来说，其实是0，即使我们等待了很久，但是他们还是同时去调用的，没有这个抖动，而单单的增加等待时间基数，只会激增等待时间，而对实际的冲突避免没有什么意思。</p>
+</li>
+</ol>
+<p>我们思考下，对于死锁这种场景来说，我们真的需要具备这两个参数吗？我觉得其实并不需要很长的“等待的基数时间”，我们需要的只是让各种死锁的请求，互相避开即可，所以其实，只需要拉长等待的时间窗口即可。</p>
+<p><img src="https://user-images.githubusercontent.com/1736354/34139128-e2a3ddfc-e4ad-11e7-88fa-937a926d7f37.jpg" alt="jitter"></p>
+<h5 id="3-1-1-_Non-Jitter，无随机">3.1.1. Non-Jitter，无随机</h5><p>无随机的方式，就是oslo.db目前使用的方式，仅指数增长。</p>
+<h5 id="3-1-2-_Full_Jitter，全量随机">3.1.2. Full Jitter，全量随机</h5><p>所以，我觉得这块可以优化下，在退避sleep的时候，加入随机机制，使得sleep的时间随机化，指数拉长调用的窗口，从而降低再次死锁概率。顺着这个思路，也提了一个<a href="https://review.openstack.org/#/c/527362/2" target="_blank" rel="external">patch/527362</a>: Improve exponential backoff for wrap_db_retry，希望能够改进一下重试机制。加上这个机制后，等待时间变为0-1秒，0-2秒，0-4秒，0-8秒，0-16秒等范围内随机。</p>
+<h5 id="3-1-3-_Top_X_Jitter，顶部随机">3.1.3. Top X Jitter，顶部随机</h5><p>提交之后，Micheal Bayer（后面发现这位大神是SQLAlchemy的作者，社区真是卧虎藏龙，哈哈，神奇无处不在）马上给了<a href="https://review.openstack.org/#/c/527362/1/oslo_db/api.py@178" target="_blank" rel="external">review</a>，他认为，等待的基数时间，并且在基数时间的上沿边界向下抖动（比如25%）比较好。的确，这种方法来说既保留了“安全”的重试时间，而且抖动时间窗口也在递增。</p>
+<h5 id="3-1-4-_Other_Jitter，其他随机方式">3.1.4. Other Jitter，其他随机方式</h5><p>另外，我在一个AWS的博客中发现了一篇文章：<a href="https://amazonaws-china.com/blogs/architecture/exponential-backoff-and-jitter/" target="_blank" rel="external">Exponential Backoff And Jitter</a>，写的非常不错，大致就讲的是，各种随机时间窗口加到退避算法中的流程后，对平均时间和竞争的调用数也做了一个仿真。</p>
+<p>很显然，其中，Fulljitter（0~2**n随机，和我的思路比较类似），Equal Jitter（top 50%的边界抖动，和Micheal Bayer的思路比较类似），很显然但抖动范围大，平均抖动时间比较低，但从平均时间和冲突避免这两个指标看，Fulljitter是获胜的。但这并不意味着在所有情况下，我们都需要很低的时间间隔，更长的时间会拥有更“安全”的重试时间，代价则是更耗时了，我想这确实是一个值得思考的tradeoff。</p>
+<h4 id="3-2_SQLAlchemy_Session中的排序机制">3.2 SQLAlchemy Session中的排序机制</h4><p>上文已经提到，造成死锁的根本原因实际上是在一个事务中，更新2个表的时候的顺序不一致。在并发调用的时候，产生了死锁。Python的代码是按顺序更新的（先更新event内容，再更新action），但是为什么SQLAlchemy产生的SQL是乱序的呢？</p>
+<p>通过阅读SQLAlchemy的源码，最终找到了答案。先说结论：Session中的操作顺序，由UnitOfWork机制决定最终的调用顺序，如果没有依赖关系，最终执行顺序是不稳定的。</p>
+<h5 id="3-2-1-_SQLAlchemy的缓存刷新机制">3.2.1. SQLAlchemy的缓存刷新机制</h5><p>SQLAlchemy在进行数据刷新的时候，会有一个flush的过程(实现见<a href="https://github.com/zzzeek/sqlalchemy/blob/75bdcd096f12012bf45cffebd597c33b501c2ef2/lib/sqlalchemy/orm/session.py#L2203" target="_blank" rel="external">lib/sqlalchemy/orm/session.py#def flush</a>，这个过程会将所有的object的变化，刷新到数据库中。例如，会将插入、修改、删除，转换为INSERT、UPDATE、DELETE等操作。而刷新执行的顺序，是通过Session的”UNIT of Worker”依赖机制保证的。</p>
+<p>我们可以从有SQLalchemy作者写的一篇关于其架构的文章<a href="http://www.aosabook.org/en/sqlalchemy.html" target="_blank" rel="external">《SQLAlchemy》</a>中看到一些关于Session相关的数据结构：<br><img src="https://user-images.githubusercontent.com/1736354/34139960-93fe0f2e-e4b2-11e7-94ab-e439712a7258.png" alt="session-overview"></p>
+<p>Session维护着如上图所示的结构，在每次刷新的时候，会将object的变动刷新到数据库中。如作者所说说，flush这个函数可能是 SQLAlchemy最复杂的函数。</p>
+<h5 id="3-2-2-_SQLAlchemy的UNIT_of_WORK机制">3.2.2. SQLAlchemy的UNIT of WORK机制</h5><p>我们先看看来自作者的介绍：</p>
+<blockquote>
+<p>The job of the unit of work is to move all of the pending state present in a particular Session out to the database, emptying out the new, dirty, and deleted collections maintained by the Session. Once completed, the in-memory state of the Session and what’s present in the current transaction match. The primary challenge is to determine the correct series of persistence steps, and then to perform them in the correct order.</p>
+</blockquote>
+<p>UOW的工作主要是将session维护的new、dirty、deleted的集合清掉并落入数据库中。主要挑战就是决定正确的持久化步骤和顺序。我们看到了关键的地方，排序！</p>
+<p>从这篇文章中，我们了解到，其实对于UOW来说，共有两级排序：<br><img src="https://user-images.githubusercontent.com/1736354/34144270-c8be1bfa-e4cb-11e7-87df-ab894059bd13.jpg" alt="sort"><br>1） 第一级排序，是针对于多个表（class）之前的排序，依赖信息从表之间的关系获取，例如文章中所举的User和Address的例子，需要在user插入后，有了主键，然后再去更新。<br>2）第二季排序，是针对于一个表（class）之中操作的排序，例如文章中所举的，前一个插入的user依赖后一个user。</p>
+<p>然而，无论是哪个排序，如果表和表之间在SQLAlchemy定义模型的时候，并没有指定其顺序，那么便没有依赖关系，也便意味着，顺序是不稳定的。</p>
+<p>在我们出现的问题中，action和action_event在<a href="https://github.com/openstack/nova/blob/07c925a5321e379293bbf0e55bf3c40798eaf21b/nova/db/sqlalchemy/models.py#L1272-L1309" target="_blank" rel="external">model定义的代码</a>中，并未指定action和event之前的关系，因此，SQLAlchemy分析依赖的时候，只是将这两个表当做独立的2个表。</p>
+<h5 id="3-2-3-_实战一把">3.2.3. 实战一把</h5><p>为了证明我们的分析，我们在SQLAlchemy打印一些日志来记录依赖关系和最终执行的结果，代码见<a href="https://github.com/zzzeek/sqlalchemy/blob/68879d50faa9e2602e55d5d191647b1cf864e5ab/lib/sqlalchemy/orm/unitofwork.py#L372-L377" target="_blank" rel="external">lib/sqlalchemy/ormunitofwork.py</a>，取消掉这些注释即可。</p>
+<blockquote>
+<p>dependencies: set([(SaveUpdateAll(Mapper|InstanceActionEvent|instance_actions_events), DeleteAll(Mapper|InstanceActionEvent|instance_actions_events)), (SaveUpdateAll(Mapper|InstanceAction|instance_actions), DeleteAll(Mapper|InstanceAction|instance_actions))])</p>
+<p>cycles: set([])</p>
+<p>sort: [SaveUpdateAll(Mapper|InstanceAction|instance_actions), SaveUpdateAll(Mapper|InstanceActionEvent|instance_actions_events), DeleteAll(Mapper|InstanceActionEvent|instance_actions_events), DeleteAll(Mapper|InstanceAction|instance_actions)]</p>
+<p>COUNT OF POSTSORT ACTIONS 4</p>
+</blockquote>
+<p>上面共4行信息，我们需要的是dependencies信息和sort信息，从依赖信息我们可以看到，我们进行的这个事务仅有2组依赖，分别是action和event_action的缓存入库先于缓存清空，而action和event_action之间是没有依赖关系的。所以，最终生成的sort列表，其实是无法保证稳定性的。</p>
+<p>所以，才会出现我们本文所出的问题，一会先刷新action，一会先刷新action_event。然而，对于这种问题并不是无解，我们只需要在这两个表里加入relationship，使他们有依赖就可以了。如果确实没有什么关联，那我们就需要思考把更新拆分到更小的事务中了，就像MySQL官网说的那样：<strong>Keep transactions small and short in duration to make them less prone to collision</strong>。</p>
+<h3 id="4-_总结。">4. 总结。</h3><p>TL;DR。写完这篇文章发现，有点太长了，不想细看的看看总结吧，哈哈。</p>
+<ol>
+<li>遇到OpenStack数据库相关问题，可以通过设置[database]/connection_debug=100进行SQL打印。</li>
+<li>SQLAlchemy对于一个session中的更新顺序，如果表之间没有依赖，是无法保证顺序的。</li>
+<li>在一个事务中，更新多张表，需要考虑顺序，若ORM无法保证的更新顺序，尽量不要放在同一个事务中，尽量确保事务做的事简单。</li>
+<li>oslo.db目前的死锁重试机制，是大家一起等X秒，很有可能再次死锁。</li>
+</ol>
+<h3 id="参考">参考</h3><ol>
+<li><a href="https://bugs.launchpad.net/nova/+bug/1719561" target="_blank" rel="external">Instance action’s updated_at issue</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-deadlocks-handling.html" target="_blank" rel="external">How to Minimize and Handle Deadlocks</a></li>
+<li><a href="https://amazonaws-china.com/blogs/architecture/exponential-backoff-and-jitter/" target="_blank" rel="external">Exponential Backoff And Jitter</a></li>
+<li><a href="http://www.sqlalchemy.org/library.html" target="_blank" rel="external">SQLAlchemy library(tutorials, arch doc, talks, posts</a></li>
+<li><a href="https://news.ycombinator.com/item?id=10321331" target="_blank" rel="external">Some discussion on backoff algorithm</a></li>
+<li><a href="https://stackoverflow.com/questions/10154343/is-sqlalchemy-saves-order-in-adding-objects-to-session" target="_blank" rel="external">Is SQLAlchemy saves order in adding objects to session?</a></li>
+<li><a href="http://www.aosabook.org/en/sqlalchemy.html" target="_blank" rel="external">SQLAlchemy at Architecture of Open Source Applications</a></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/13/一个死锁问题的深入探究/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-Nova调度相关特性理解与梳理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -261,36 +483,9 @@ var _hmt = _hmt || [];
         <h3 id="1-_背景">1. 背景</h3><p>我们知道Nova目前正在慢慢地演进到Cell V2架构，Cell V2架构中，很重要的一个变化就是数据库的拆分，清晰的划分了数据库的职能，从而有具备横向扩展的能力。顶层数据库(nova_api)用来存储全局数据，而Cell中的数据库(nova_cellX)仅存储计算节点相关的数据。比如，创建虚拟机的全局数据，比如Flavor、Keypair之类的数据，放在上层的nova_api数据库中，而虚拟机本身的信息，比如某个虚拟机的信息，放在了子Cell中。</p>
 <p><img src="https://user-images.githubusercontent.com/1736354/33543222-307b8974-d911-11e7-9993-5373720491df.jpg" alt="cell"></p>
 <p>这样的架构另一个好处是Cell很轻松的可以实现扩展，从而提升虚拟机数量的规模。然而，这引入了一个问题，就是没有一个地方存储着全量虚拟机的数据了。当我们需要一些全局的虚拟机数据查询时（比如查询全量虚拟机列表）就比较棘手了。</p>
-<h3 id="2-_数据库的拆分">2. 数据库的拆分</h3><p>其实这样的架构在目前互联网业务中十分常见，随着业务量和历史数据的增长，很多业务都需要进行分表分库，切分的目的主要有2个，一是单个数据库的存储空间已经不足以支撑庞大的数据量，另外一个是单个数据库所能承载的连接数或者并发数不足以满足逐渐飙升的请求。一般来说，数据库的分库为垂直分库和水平分库。</p>
-<p><img src="https://user-images.githubusercontent.com/1736354/33540293-5f4852ca-d905-11e7-8e48-04b111cdbdf2.jpg" alt="split"></p>
-<ol>
-<li><p>垂直分库。<br>一般按照功能划分，每个分库的功能不同。把不同功能查询或写入的负载均分到独立功能库中。例如，我们将一些基础信息独立成一个库，详细信息独立成一个库，这种按照功能的划分，将负载均衡，只需要基础信息的去访问基础库，需要详细信息的时候，再去查详细信息的库。<br>在Cell V2的架构中，我们可以将nova_api和nova_cellX的数据库划分看成是垂直划分，对于nova_api库来说，只用关心上层全局数据的存储处理，而对于nova_cell库来说需要关心的是每个子cell里面数据的存储处理。</p>
-</li>
-<li><p>水平分库。<br>一般通过某种方法把数据打散到不同的库中，每个库的表结构是相同的。例如，我们根据用户ID进行分库，可以通过映射表、取余、Hash的方式来确定某个用户的请求到底落到哪个数据库去查。<br>在Cell V2的架构中，每个Cell数据的划分，就可以看做是水平分库了，虚拟机按照一定的“规则”，落到了不同的Cell中。</p>
-</li>
-</ol>
-<p>一般的业务演进，一般是先进行垂直分表分库，然后当用户或者数据规模达到一定程度后，再通过水平分库提升规模。就像OpenStack Nova一样，最开始所有的数据都聚集在一个叫Nova的库里，然后拆分出nova_api和nova，最后再将nova_cell拆出来，并根据虚拟机ID和Cell进行mapping，从而完成水平分库。</p>
-<h3 id="2-_引入的问题">2. 引入的问题</h3><p><img src="https://user-images.githubusercontent.com/1736354/33540482-43540b12-d906-11e7-99de-6fa30d29fcba.jpg" alt="mapping"></p>
-<p>在Cell V2的场景下，对于单个虚拟机来说基本没什么变化，无非就是多了一个映射查询的步骤：先查找虚拟机所对应的Cell数据库，然后对这个数据库进行操作即可。</p>
-<p>然而，由于水平切分导致每个Cell都丢失了“全局视角”，例如之前我们进行虚拟机列表查询时，在原来只需要在一个数据库查询，现在需要在多个数据库查询，尤其是需要指定一些全局参数进行查询时，比如limit、marker、sort等参数一加上，就更恶心了。</p>
-<h3 id="3-_解决方案">3. 解决方案</h3><p>这个问题，在多Cell场景一直没有得到很好的解决，只是在各个Cell里面搜集各个cell排序好的数据，然后append到结果里面，也并没有进行最终排序。呈现给用户来看，就是数据是乱序的。</p>
-<p>直到Q版本，Dan Smith大神提了一系列的<a href="https://review.openstack.org/#/q/topic:instance-list+(status:open+OR+status:merged" target="_blank" rel="external">instance-list Patch</a>)，初步解决了这个问题。</p>
-<p><img src="https://user-images.githubusercontent.com/1736354/33541997-310a2d28-d90c-11e7-860b-9302f33af6d5.jpg" alt="paging"></p>
-<p>我们先看看他的实现，这一系列的Patch最关键的实现在<a href="https://github.com/openstack/nova/blob/f4b3b77511366115a5ecef23d8d145ab9c4d953a/nova/compute/instance_list.py" target="_blank" rel="external">instance_list.py</a>中，大致的撇一眼整体的实现，<strong>全局/局部marker</strong>、<strong>并行搜集跨Cell数据</strong>、<strong>heap归并排序</strong>，相信从这几个关键词中你已经猜到了实现的大概逻辑。下面，我们先整体介绍一下整体的实现逻辑，然后再对实现细节做详细的解释。</p>
-<p>我们举个例子，来看看在跨cell场景下，如果获取一个虚拟机的列表</p>
-<p>假设我们有2个cell，里面有编号为i0~i5的6个虚拟机，从i0到i5，按顺序依次创建。当我们查询全量虚拟机时，按照创建时间逆序，我们期待得到的结果是<code>i5 i4 i3 i2 i1 i0</code>。再传递limit=2/sort=orderby(created_at,desc)/marker(i5)之后，处理的过程如下：</p>
-<h4 id="Step_1_查找全局marker。">Step 1 查找全局marker。</h4><p>我们首先需要在各个Cell中查找，<code>i5</code>是否存在。对于虚拟机来说，比较简单，在nova_api数据库中存在instance_mappings表，这个表里面记录了虚拟机和cell的映射关系，如果marker在cell中，我们直接可以从mapping表中找到它及其对应的cell。<br>我们的例子中，我们找到了位于cell2中的<code>i5</code>。</p>
-<p><img src="https://user-images.githubusercontent.com/1736354/33542019-3f48325e-d90c-11e7-9b9a-9943b4dc7ede.jpg" alt="gmarker"></p>
-<p>参考代码：<a href="https://github.com/openstack/nova/blob/3a19f89f34a1eaee7eec2dcc7b809058d61950f0/nova/compute/instance_list.py#L134,L142" target="_blank" rel="external">nova/compute/instance_list.py#L134,L142</a><br>具体获取marker时，是先在instance_mapping中查找了marker所在的cell，然后，在target_cell拿到了marker的信息，参考代码<a href="https://github.com/openstack/nova/blob/3a19f89f34a1eaee7eec2dcc7b809058d61950f0/nova/compute/instance_list.py#L66,L88" target="_blank" rel="external">nova/compute/instance_list.py#L66,L88</a>。</p>
-<h4 id="Step_2_并行查询子Cell中的local_marker，并获取满足条件的虚拟机。">Step 2 并行查询子Cell中的local marker，并获取满足条件的虚拟机。</h4><p><img src="https://user-images.githubusercontent.com/1736354/33542026-4784411a-d90c-11e7-8499-b24ef3a4cd03.jpg" alt="finding"></p>
-<p>在第一步中，我们拿到了i5的信息，由于排序是按照created_at，逆序，那我们查询local marker的时候，只需要一条SQL就可以拿到Cell中满足条件的local marker：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> instances <span class="keyword">ORDER</span> <span class="keyword">BY</span> created_at <span class="keyword">DESC</span> <span class="keyword">limit</span> <span class="number">1</span></div></pre></td></tr></table></figure></p>
-<p>然后，我们再根据这个local marker就可以拿到满足条件的虚拟机列表了。当然，我们需要各取limit个，因为也许最终满足条件的都在一个cell中，所以，我们取得的虚拟机列表中虚拟机的个数应该按照全局limit来获取。<br>值得注意的是，local marker如果不是global marker的话，我们需要把local marker也算在满足条件的列表中，因为全局来看，这个marker也是满足用户条件的。如果local marker也刚好就是global marker，那这个marker就不用管了。<br>参考代码<a href="https://github.com/openstack/nova/blob/3a19f89f34a1eaee7eec2dcc7b809058d61950f0/nova/compute/instance_list.py#L166,L212" target="_blank" rel="external">nova/compute/instance_list.py#L166,L212</a>，先找到满足条件的第一个local marker，然后就按照之前的流程，获取marker之后的记录就可以了。</p>
-<h4 id="Step_3_合并排序。">Step 3 合并排序。</h4><p>在步骤2中，我们会得到2个列表，分别是从cell1和cell2中拿到的数据。这两个列表是有序的，但是当我们合并后，需要进行全局重排序。这样，我们就拿到了有序的列表。<br><img src="https://user-images.githubusercontent.com/1736354/33542040-5001b066-d90c-11e7-8bbb-b1119c30d037.jpg" alt="merge"></p>
-<p>参考代码<a href="https://github.com/openstack/nova/blob/3a19f89f34a1eaee7eec2dcc7b809058d61950f0/nova/compute/instance_list.py#L228,L234" target="_blank" rel="external">nova/compute/instance_list.py#L228,L234</a>，可以看到，由于每个cell拿到的数据都是有序的，因此，最终排序的时候，也是用了heapq这个数据结构，来高效的完成有序列表的合并排序。</p>
-<h4 id="Step_4_进行limit操作。">Step 4 进行limit操作。</h4><p>最后，我们在第三步的结果上，进行limit操作就好了。在合并的过程中，对limit进行检查，最终，完成limit且排好序的结果。<br><img src="https://user-images.githubusercontent.com/1736354/33542045-5555ae1e-d90c-11e7-98b9-20eab3a9820a.jpg" alt="limit"></p>
-<h3 id="4-_The_end,_the_begin-">4. The end, the begin.</h3><p>Instance list给我们示范了一个跨Cell场景下列表的实现，主要有2个地方很有亮点，一个是并行的查询各个Cell的数据，一个是最终排序选择了heapq作为排序的结构，在保证分页正常的情况下，也兼顾了性能。<br>比较残忍的是，随着跨Cell迁移的支持，几乎后续所有和子Cell数据相关的列表查询，都需要进行跨Cell的支持，比如migration、instance action。</p>
-<p>架构很丰满，实现很骨感。不多说了，滚去写cross cell support的patch了。：）</p>
-
+        
+          <a class="article-more-a" href="/2017/11/16/跨Cell场景下查询的那些事儿/#more">more >></a>
+        
       
 
       
@@ -354,61 +549,9 @@ var _hmt = _hmt || [];
       
         <p>原文链接：<a href="https://github.com/jaypipes/articles/blob/master/openstack/placement-queens-update.md" target="_blank" rel="external">https://github.com/jaypipes/articles/blob/master/openstack/placement-queens-update.md</a></p>
 <p>这篇文章主要讲了在过去几个版本中，OpenStack社区对于Nova调度及Placement服务相关工作的更新进展。我也会着重介绍一些我们在Q版本中主要处理的几个BP，同时也介绍了未来重点工作的路标，我们会在未来的几个release中完成它们。</p>
-<h3 id="1-_过去版本完成情况的总结">1. 过去版本完成情况的总结</h3><p>Placement API已经在OpenStack的N版本成为一个独立的API endpoint。</p>
-<p>Placement API将存量记录(tracking inventory)、资源消耗(resource consumption)、资源的分组和共享(grouping and sharing of resources)以及表示资源所具能力字符串标签（string capability tags, traits）这些数据暴露出来。</p>
-<p>从那之后，社区持续地改进API，并且在Nova中更进一步地进行集成。</p>
-<p>在Newton版本，主要是让nova-compute正确地对本地的资源进行盘点，然后把这些inventory记录送到Placement API中。</p>
-<p>在Ocata版本，我们开始将nova-scheduler服务与Placement API进行集成。我们在scheduler进行了一些修改，使用Placement API进行满足一些基本资源请求条件的计算节点过滤。我们也添加了aggregates，来提供resource provider的分组机制。</p>
-<p>在Pike版本，我们主要将资源claim这个步骤从nova-compute移动到nova-scheduler中。做这个事主要有2个原因：一个是性能/扩展以及和Cells V2架构适配。在”候选主机列表及cell中重试”一节中，进行了详细介绍。</p>
-<h3 id="2-_Queens版本的优先级">2. Queens版本的优先级</h3><p>在丹佛的PTG中，Nova社区团队决定了在调度和资源placment功能中3个主要的工作：</p>
-<ol>
-<li>妥当地处理迁移操作</li>
-<li>在多cell中的备选主机列表及重试操作</li>
-<li>嵌套的resource provider</li>
-</ol>
-<p>应该指出的是，我们理解在这个领域仍然有许多许多的新功能需求，一些已经在我们的“雷达”中很多年了。我们承认当一些管理员或者一些潜在的用户看到一些长时间存在的问题或者工作并没有出现在Queens版本的高优先级列表中，会有点沮丧。然而，core团队实际能够review的东西是有限的，所以我们必须做这些决策。当然，我们也非常欢迎大家在PTG和邮件列表里来讨论这些决策。</p>
-<p>另外一个应该指出的是，尽管在Q版本的scheduler和resource placement领域中，仅有这3个高优先级工作，但这并不意味着其他的工作不能被review或者推进。这个仅代表core团队将重点review这些领域的patch。</p>
-<h3 id="3-_正确的处理移动操作">3. 正确的处理移动操作</h3><p>我们在Q版本第一优先级需要处理的是做与placement API相关的move操作（比如migrate、resize、evacuate、unshelve等）的收尾及测试用例的全覆盖。</p>
-<p>在Pike版本所剩时间不多时，Balasz Gibizer、Dan Smith和Matt Riedemann发现了一系列问题：在做Nova支持的各种各样的move操作时，资源应该如何在Placement API中记录。在Pike版本的时候，我们开始在nova-scheduler服务里进行资源的claim。很显然我们也需要在move操作的时候进行claim处理。在最初版本的实现，在虚拟机迁移的过程中，我们为虚拟机创建了一个成对的allocation，源节点和目的节点的资源都会占用一条allocation记录。这样做，可以工作，但是这个方案明显有弊端，尤其是在我们在同节点进行resize的操作。</p>
-<p>这产生了一系列关于在迁移时产生错误的或者丢了一些allocation记录的问题，我们需要在resource tracker和compute manger中，塞了很多不优雅的代码，来处理在滚动升级中新的conductor和scheduler服务的兼容，并且旧的计算节点也写入了不正确的记录。</p>
-<p>Dan Smith也提出了一个解决在迁移操作中记录allocation问题的方法<a href="http://specs.openstack.org/openstack/nova-specs/specs/queens/approved/migration-allocations.html" target="_blank" rel="external">migration-allocations</a>，但是因为时间问题，我们没办法在Pike版本实现。</p>
-<p>在Queens版本，我们需要优选Dan的解决方案，即在迁移之前，在allocation记录中，将源节点的UUID替换为迁移object自己的UUID。这样允许目的节点使用虚拟机的UUID来占用allocation，一旦迁移成功，我们便可仅仅删除被migration UUID消费的allocation就行了。再也不用受双倍的allcations困扰了。</p>
-<h3 id="4-_候选主机列表及cell中重试">4. 候选主机列表及cell中重试</h3><p>第二优先级的事情是，我们应该在Cells V2部署中支持创建虚拟机请求的重试能力。</p>
-<p>上面，我已经说过了，将资源claim的过程从compute移动到scheduler中，有两个原因，让我们来仔细讨论一下。</p>
-<p>首先，现在的版本存在一个问题：2个scheduler进程为2个虚拟机选择同一个host时，当启动虚拟机先第一个host启动完成时，消耗了host的最后一点资源。然后，不幸的第2个启动进程，必须进行重新调度流程。这个流程有点太重了，sheduler必须通过通过RPC来为虚拟机获取一个新的目的节点，然后许多状态都需要通过request spec来传递。补充一下，并没有什么能够确保新的节点就一定可用，可能同样的命运将降临，再一次触发了重试。</p>
-<p>在nova-scheduler代替目的计算节点来进行资源claim操作，意味着我们可以显著的减少在compute节点进行claim的时间和复杂性（造成重试操作的主要原因是在计算节点claim资源的竞争和竞态条件）</p>
-<p>现在我们尝试在scheduler服务选择目标主机的时候，进行资源的claim操作。如果Placment API返回200 OK，我们就知道虚拟机已经在目的节点已经占用了这个资源，唯一可能造成重试的操作就是某些不正常的主机失败，即不是常见的失败原因。如果Placement API返回409冲突，我们可以从返回的error中看到失败原因，到底是因为并发刷新失败了，还是说目的节点确实没有足够的空间来容纳虚拟机。</p>
-<p>如果另外的进程在目标主机完成资源claim的时间介于虚拟机调度选择和尝试claim资源之间，我们会简单的重试（在scheduler代码的小循环）尝试在目的主机claim资源。如果目的主机资源耗尽了，scheduler会选择另外的目的主机。我们完成这些时，不会启动的请求发送到目标的compute主机。</p>
-<p>我们将资源的claim移动到scheduler的第二个原因，是因为Cells V2架构。再次说明，Cells V2架构移除了独立分离又略显奇葩的Cells V1旧代码。单单使用的Cells V2 API控制面，意味着能够更简单也更容易地进行代码维护。</p>
-<p>然而，Cells V2设计架构的一个原则是一个启动（或者移动）虚拟机请求会获取到目标的cell，他没有向上调用的能力与API层进行通信。这对于我们目前的重试机制来说是一个问题。当前的重试机制依靠失败的计算节点来初始化资源的claim，并且能够反向调用scheduler，来找到另外的host进行虚拟机的启动。</p>
-<p>Ed Leafe正在Quees版本努力，让scheduler从API/Scheduler传递一系列备选主机和allocation到目标的cell。这个备选主机和allocation信息，将会被cell的conducotr用来去那些备选的目的节点去重试，虚拟机资源的claim依靠备选host，无需访问上层的API/Scheduler。</p>
-<h3 id="5-_嵌套的resource_providers">5. 嵌套的resource providers</h3><p>第三优先级的事情是我们称之为”嵌套的resource providers”的东西。</p>
-<p>例如，NUMA Cells和包含它的主机，SR-IOV网卡功能和包含它的主机，物理GPU组和包含它的主机。</p>
-<p>让我们举个2个计算节点的例子，2个节点每个都含有2个SR-IOV网卡。第一个计算节点每个网卡都有8个虚拟机网卡，第二个计算节点其中的一个物理网卡被标记为直通的（意味着用户能够全面掌控）另外一个网卡则被指为8个虚拟机网卡，与第一个计算节点类似。</p>
-<p><img src="https://user-images.githubusercontent.com/1736354/32042485-4af9dfd2-ba6a-11e7-8d3c-121ff9945bfa.png" alt="nested-resource-providers-advanced-topo"></p>
-<p>目前，Placement API无法理解父子provider这层关系。嵌套的resource provider这个spec和patch让Placement服务能够感知到这些，也允许用户区分子资源provider的父资源provider的UUID。</p>
-<p>嵌套的resource provider开启了一系列的功能，包括PCI设备、高级网络、NUMA等的支持。正因如此，我们将共享的resource provider在Q版本放在了相对来说不重要的位置，然后更专注实现基本的嵌套resource provider，至少支持SR-IOV物理功能和虚拟功能的关系。</p>
-<h3 id="6-_Queens其他的工作事项">6. Queens其他的工作事项</h3><p>除了上面的优先级事项，我们也将投入精力去做其他的一些事物。尽管review将专注在上述的优先级高的事物中，我们也将在下述的几个方面尽可能地进行review。</p>
-<h4 id="(1)_完成trait-flavor">(1) 完成trait-flavor</h4><p>这个是从Pike版本开始出现需要完成的工作。Placement API现在支持traits列表，简单的tags字符串来描述一个resource provider的能力。</p>
-<p>然而，一些地方仍然需要编码完成。</p>
-<ul>
-<li>Flavor中需要包含需要的traits列表</li>
-<li>Scheduler需要向Placement API过滤那些某个flavor要求的所有traits的providers</li>
-<li>Virt drivers需要开始上报traits给计算节点的resource provider，来取代之前上报一个无结构的virt-driver-specific在virt driver的get_available_resource。</li>
-</ul>
-<h4 id="(2)_Ironic_virt_driver的traits处理">(2) Ironic virt driver的traits处理</h4><p>如上面提到的，virt driver需要开始上报traits信息给计算节点的resource provider。然而，ironic driver有点不同，因为他处理了多个计算节点的resource provider记录（有一个resource provider记录着部署的每个Ironic裸机节点）</p>
-<p>Jhon Garbutt在主要负责Ironic API支持在virt driver中上报traits。</p>
-<h4 id="(3)_在Placement_API中缓存header处理">(3) 在Placement API中缓存header处理</h4><p>Chris Dent提出了在Placement API中的一些资源endpoints增加”Last-Modified”和其他的HTTP头部。确保在cahcing代理下的正确行为非常重要，并且完成这项工作的工作量似乎是可以控制的。</p>
-<h4 id="(4)_在Placement_API中支持POST多个allocations">(4) 在Placement API中支持POST多个allocations</h4><p>这个spec实际上是为了move操作的清理而开启的。Chris提出允许PORST /allocations调用（我们目前支持PUT /allocations/{consumer_uuid}调用）来支持在一个请求中写入多个consumers的多条allocation记录。这个将允许我们完成allocation从instance到migrations UUID的转换，这个是Dan Smith做move操作资源跟踪方案的一部分。</p>
-<h4 id="(5)_初步支持vGPU">(5) 初步支持vGPU</h4><p>尽管这个不像从Citrix的Jianghua Wang提出的spec来完全实现vGPU，在Queens版本，我们仍将尝试至少完成vGPU资源的基本支持。</p>
-<p>基础的支持意味着可能不会支持多GPU类型或者pGPU池（换句话说，仅支持每个计算节点的VGPU有一个单一的inventory记录）。</p>
-<h3 id="7-_Beyond_Queens">7. Beyond Queens</h3><h4 id="(1)_一个通用的设备管理">(1) 一个通用的设备管理</h4><p>Eric Fried和我正在讨论一个generic device manager，将会在一寸的nova/pci模块中替换很多代码。我们可能最早在Rocky版本完成。</p>
-<h4 id="(2)_支持NUMA">(2) 支持NUMA</h4><p>尽管嵌套的resource provider是为NUMA拓扑设计的，实际上，想要能够通过Placment API同等功能的把NUMATopologyFilter在Nova scheduler取代，仍然还有很长时间，可能在Rokcy版本吧。</p>
-<p>在Nova支持NUMA的实现与支持大页内存、CPU pining、模拟IO线程pinning甚至是PCI设备管理（比如PCI设备的NUMA亲和性）是强耦合的。</p>
-<p>似乎在可以看到的将来，NUMATopologyFilter仍然在Nova Scheduler保留，作为一个复杂自定义的调度failer/weigher，我们会慢慢的修改virt driver接口和resource tracker在nova-compute节点向Placement API上报NUMA cells信息作为resource provider。渐渐地通过查询Plament database来替换一些NUMATopologyFilter的功能。</p>
-<h4 id="(3)_共享的resource_provider">(3) 共享的resource provider</h4><p>Placement API允许resource provider通过aggregate关联来和其他provider来共享资源。这些reousrce provider我们称之为”shared resource providers”，尽管使用”sharing resource providers”更能合适地表达其目标。</p>
-<p>我们需要为共享存储和路由网络IP池的用力完成和增加一些功能测试，确保资源上报和跟踪正确的完成。</p>
-
+        
+          <a class="article-more-a" href="/2017/10/25/译-An-Update-on-the-Placement-API-and-Scheduler-plans-for-Queens/#more">more >></a>
+        
       
 
       
@@ -472,16 +615,9 @@ var _hmt = _hmt || [];
       
         <h3 id="1-_概述">1. 概述</h3><p>虚拟机冷迁移由于当用户想把虚拟机从一个计算节点移动到其他节点。主要涉及的命令如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> nova migrate server_id</div><div class="line"><span class="meta">$</span> nova resize-confirm server_id</div></pre></td></tr></table></figure></p>
 <p>看到后是不是觉得有点奇怪为啥migrate之后，还要resize-confirm？resize操作其实和migrate操作比较类似，不同的是迁移前后的flavor不一样。一般情况下resize的场景是，对虚拟机进行扩容，把flavor调大之类的。所以，在代码级别，nova也将两个流程合一了。migrate就是一个没有flavor变化的resize。</p>
-<h3 id="2-_核心流程">2. 核心流程</h3><p>下图是虚拟机冷迁移时，涉及的组件交互：<br><img src="https://user-images.githubusercontent.com/1736354/31429902-dd65687a-aea1-11e7-9209-06c37a09fe4b.png" alt="instance migrate overview"><br>我们可以看到，在迁移时，主要流程包括调度、迁移准备、迁移、完成迁移。</p>
-<ol>
-<li>调度。conducotr通过select_destination访问Scheduler进行<strong>调度</strong>，最终选择一个可用的目的节点；</li>
-<li>prep_resize阶段，迁移准备。在目的主机上进行一些检查，比如是否支持相同节点迁移、虚拟机的主机等检查。然后，生成了一个resize claim（不是真正的claim，目前看这个只是刷新的resource tracker的一些数据），并在Placment刷新了inventory信息。</li>
-<li>resize_instance阶段，在源节点把网络、磁盘之类的断掉，并且将数据复制到目的节点；</li>
-<li>迁移结束。在目的节点配置网络、挂卷，启动虚拟机；</li>
-<li>(resize-confirm)确认迁移。使用nova resize-confirm确认删除，把原来网络断掉，并完成源虚拟机数据及中间虚拟机数据的清空。</li>
-</ol>
-<p>具体细节，包括迁移的状态变化，如下图所示：<br><img src="https://user-images.githubusercontent.com/1736354/31435001-ace4c0a6-aeb0-11e7-99b9-c414411b7eaa.png" alt="2 instance migrate"></p>
-
+        
+          <a class="article-more-a" href="/2017/10/11/OpenStack-Nova虚拟机冷迁移流程解析/#more">more >></a>
+        
       
 
       
@@ -544,53 +680,9 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="1-_概述">1. 概述</h2><p>Nova是OpenStack中处理计算业务（虚拟机、裸机、容器）的组件，整体的虚拟机创建流程自然是学习和熟悉Nova组件的第一步。本篇文章主要基于OpenStack Pike版本，基于最新的Cell v2架构部署为例，来介绍虚拟机的创建流程，并分析了Pike等最近几个版本中，虚拟机创建流程的关键变化。</p>
-<h2 id="2-_虚拟机创建流程">2. 虚拟机创建流程</h2><p><img src="https://user-images.githubusercontent.com/1736354/31421492-36a84bdc-ae7a-11e7-94b3-d85fab04762c.png" alt="instance create pike"></p>
-<p>上图是虚拟机创建流程的整体流程，可以看到整体虚拟机创建流程一次经过了API、Conductor、Scheduler、Placement、Compute等主要服务，下面我们逐步介绍下虚拟机创建时，这些服务做的一些事情以及在Pike版本新引入的部分：</p>
-<h3 id="2-1_Nova-API">2.1 Nova-API</h3><p>在OpenStack的组件中，基本每个组件都会有一个API服务，对于Nova来说API服务主要的作用就是接收由用户通过Client或者一些其他REST请求工具（比如 curl、postman）发送的请求。一般来说会包含一些虚拟机创建的参数，比如虚拟机的规格、可用域之类的信息。</p>
-<p>在虚拟机创建的流程中，API就是Nova的入口，当API接收到请求后，主要会处理一些关于参数校验、配额检测等事务。</p>
-<h4 id="1-_参数校验">1. 参数校验</h4><p>例如，我们指定镜像和规格来创建一个虚拟机时，通常会使用：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">nova --debug boot --image 81e58b1a-4732-4255-b4f8-c844430485d2 --flavor 1 yikun</div></pre></td></tr></table></figure></p>
-<p>我们通过<code>--debug</code>来开启debug模式，来看看命令行究竟做了什么事，可以从回显中，看到一个关键的信息：</p>
-<blockquote>
-<p>curl -g -i -X POST <a href="http://xxx.xxx.xxx.xxx/compute/v2.1/servers" target="_blank" rel="external">http://xxx.xxx.xxx.xxx/compute/v2.1/servers</a> -H “Accept: application/json” -H “User-Agent: python-novaclient” -H “OpenStack-API-Version: compute 2.53” -H “X-OpenStack-Nova-API-Version: 2.53” -H “X-Auth-Token: $token” -H “Content-Type: application/json” -d <strong>‘{“server”: {“name”: “yikun”, “imageRef”: “81e58b1a-4732-4255-b4f8-c844430485d2”, “flavorRef”: “1”, “max_count”: 1, “min_count”: 1, “networks”: “auto”}}’</strong></p>
-</blockquote>
-<p>我们可以看到虚拟机创建时，传入了一些诸如虚拟机名称、镜像、规格、个数、网络等基本信息。在API中，首先就会对这些参数进行校验，比如镜像ID是否合法、网络是否正确等。</p>
-<h4 id="2-_配额检测">2. 配额检测</h4><p>值得一提的是，在Pike版本的虚拟机创建开始时，对配额检测进行了优化。</p>
-<p>我先看看之前的实现，在之前版本的Nova中，Quota检测过程相对来说比较复杂，首先会进行reserve操作，对资源进行预占，然后预占成功，并且创建成功后，最终会进行commit操作。然而，为了保证在并发的场景下，不会对超过用户配额（这都是钱啊！），因此在reserve和commit进行资源更新的时候都会quota相关的数据表的用户相关行加把锁，也就是说更新quota记录的时候，一个用户去更新时，其他用户再想刷新只能等着，直到前一个用户完成数据库记录刷新为止，这样就大大降低的效率，并发的性能也就不是很客观了。</p>
-<p>另外，由于需要对cell v2进行支持，目前所有的quota表均已移动到API的数据库了可以参考BP<a href="https://specs.openstack.org/openstack/nova-specs/specs/ocata/approved/cells-quota-api-db.html" target="_blank" rel="external">CellsV2 - Move quota tables to API database</a>。Cell V2的设计思想是，由API、Super Conductor去访问上层的全局数据库（nova_api数据库），而底下的cell中的组件，只需要关心cell中的逻辑即可。因此，为了彻底的解耦，让cell中的compute无需再访问api数据库进行诸如commit操作，在Pike版本，社区对quota机制进行了优化，详情可以参考<a href="https://specs.openstack.org/openstack/nova-specs/specs/pike/approved/cells-count-resources-to-check-quota-in-api.html" target="_blank" rel="external">Count resources to check quota in API for cells</a>这个BP。</p>
-<p>因此Pike版本之后，配额检测变成了这样：</p>
-<ol>
-<li>首先，api中进行第一次Quota检测，主要方法就是收集地下各个cell数据库中的资源信息，然后和api数据库中的quota上限进行对比。例如，一个用户可以创建10个虚拟机，在cell1中有2个，cell2中有7个，再创建一个虚拟机时，会搜集cell1和cell2中的虚拟机个数之和（9个），然后加上变化（新增一个），与总配额进行比较。</li>
-<li>二次检测（cell v2在super conductor里做）。由于在并发场景下，可能出现同时检测发现满足，之后进行创建，就会造成配额的超分，针对这个问题，社区目前给出的方案是，在创建虚拟机记录之后，再进行recheck，如果发现超额了，会将超额分配的虚拟机标记为ERROR，不再继续往下走了。</li>
-</ol>
-<p>每次检测的逻辑都调用相同的函数，具体逻辑如下图所示：<br><img src="https://user-images.githubusercontent.com/1736354/30894282-6c4a59c0-a375-11e7-8396-c3faad0a683d.png" alt="quota check"></p>
-<h3 id="2-2_Nova_Super_Conductor">2.2 Nova Super Conductor</h3><p>Super Conductor在创建虚拟机的流程其实和之前差不多，选个合适的节点（调度），然后，写入虚拟机相关的记录，然后，投递消息到选定的Compute节点进行虚拟机的创建。</p>
-<p>在Cell v2场景，虚拟机的创建记录已经需要写入的子cell中，因此，conductor需要做的事，包括一下几个步骤：</p>
-<ol>
-<li>进行调度，选出host。</li>
-<li>根据host，通过<strong>host_mappings</strong>找到对应的cell</li>
-<li>在对应的cell db中创建虚拟机记录，并且记录<strong>instances_mappings</strong>信息</li>
-<li>通过cell_mappings来查找对应的cell的mq，然后投递到对应的cell中的compute</li>
-</ol>
-<p>完成这些操作时，需要牵扯到3个关键的数据结构，我们来简单的看一下：</p>
-<ul>
-<li>host_mappings：记录了host和cell的映射信息</li>
-<li>instances_mappings：记录了虚拟机和cell的映射信息</li>
-<li>cell_mappings：记录了cell和cell对应的mq的映射信息</li>
-</ul>
-<p>与Cell v1不太相同，在目前的设计中，认为scheduler能看到的应该是底下能够提供资源的具体的所有的Resource Provider（对于计算资源来说，就是所有的计算节点），而不是整个cell，也就是说所有cell中的资源scheduler都可以看到，而子cell就负责创建就好了。因此，在super conductor中，需要做一些transfer的事情，这样也就不必在像cell v1那样，在子cell里还得搞个scheduler去做调度。</p>
-<h3 id="2-3_Nova-Scheduler">2.3 Nova-Scheduler</h3><p>刚才我们在conductor中，已经介绍了，在选择具体哪个节点来创建虚拟机时，调用了Scheduler的select_destination方法，在之前的版本的调度中，就是OpenStack最经典的Filter&amp;Weight的调度，已经有大量的资料介绍过具体的实现和用法。可以参考官方文档<a href="https://docs.openstack.org/nova/latest/user/filter-scheduler.html" target="_blank" rel="external">Filter Scheduler</a>。</p>
-<p>在Pike版本中，在调度这部分还是做了比较大的调度，主要就是2个相关变动。</p>
-<ol>
-<li><p>通过Placement获取可用的备选资源，参考<a href="https://specs.openstack.org/openstack/nova-specs/specs/pike/approved/placement-allocation-requests.html" target="_blank" rel="external">Placement Allocation Requests</a>的实现。<br>在Ocata版本时，<a href="https://specs.openstack.org/openstack/nova-specs/specs/ocata/implemented/resource-providers-scheduler-db-filters.html" target="_blank" rel="external">Resource Providers - Scheduler Filters in DB</a>这个BP就已经在调度前加了一步，获取备选节点。从BP的标题就可以看出，设计者想通过Placement服务提供的新的一套机制，来做过滤。原因是之前的调度需要在scheduler维护每一个compute节点的hoststate信息，然后调度的时候，再一个个去查，这太低效了，尤其是在计算节点数目比较多的时候。因此，增加了一个“预过滤”的流程，通过向Placement查询，Placement服务直接通过SQL去查一把，把满足条件（比如CPU充足、RAM充足等）先获取到。<br>而原来获取备选节点的时候，只支持获取单一的Resource Provider，这个BP增强了获取备选资源的能力，用于后续支持更复杂的请求，比如共享资源、嵌套资源的Provider查询。后面，Placement还会陆续支持更多的请求，比如对一些非存量不可计数的资源的支持。这样留给后面Filter&amp;Weight的压力就小一些了，再往后，会不会完全取代Filter呢？我想，现有的各种过滤都可以通过Placement支持后，完全有可能的。</p>
-</li>
-<li><p>Scheduler通过Placement来claim资源。参考<a href="https://blueprints.launchpad.net/nova/+spec/placement-claims" target="_blank" rel="external">Scheduler claiming resources to the Placement API</a>的实现。<br>在最早的时候，claim资源是由compute来做的，现在相当于提前到scheduler去搞了。有什么好处呢？我们先看看原来的问题：<br>调度时刻和真正的去compute节点去claim资源的时刻之间是由一段时间的，在资源不是那么充足的环境，就会造成在scheduler调度的时候，资源还没刷新，所以调度时候成功了，但是真正下来的时候，才发现compute实际已经没有资源了，然后又“跨越半个地球”去做重调度，无形地增加了系统的负载。<br>而且增加了创建的时长（哦，哪怕创建失败呢？），你想想，用户创了那么久的虚拟机，最后你告诉我调度失败了，用户不太能忍。<br>所以这个BP就把Claim资源放在调度处了，我上一个调度请求处理完，马上就告诉placement，这资源老子用了，其他人不要动了。OK，世界终于清净了，能拿到资源的拿到了，拿不到资源的马上也知道自己拿不到了，大大增强了调度的用户体验。</p>
-</li>
-</ol>
-<h3 id="2-4_Placement">2.4 Placement</h3><p>恩，在调度的时候，已经介绍过这个服务了，在虚拟机创建的流程中，比较常用的接口就是获取备选资源和claim资源。<br>Placement目标很宏伟，大致的作用就是：资源我来管，要资源问我要，用了资源告诉我。后面准备用一篇文章整体介绍一下Placement。（yep，这个Flag我立下了，会写的）</p>
-<h3 id="2-5_Nova-Compute">2.5 Nova-Compute</h3><p>好吧，到最后一个服务了，Compute。这个里面依旧还是做那么几件事，挂卷，挂网卡，调driver的接口启动一下虚拟机。至此，我们可爱的虚拟机就起来了。</p>
-<h2 id="3-_结语">3. 结语</h2><p>整体的看一下，其实在Pike版本，Nova还是有很多的变动。真的是一个版本过去了，创建虚拟机的流程已经面目全非了。</p>
-<p>从P版本的虚拟机创建流程来看，主要的优化集中在基于Cell V2架构下的多cell支持、调度的优化、Quota的优化，而后续的发展，目前也是集中在Placement各种资源的支持以及在Cell v2场景的诸如基本流程、调度等的优化。</p>
-
+        
+          <a class="article-more-a" href="/2017/09/27/OpenStack-Nova虚拟机创建流程解析/#more">more >></a>
+        
       
 
       
@@ -836,131 +928,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-理解Python中的“with”" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/15/理解Python中的“with”/">理解Python中的“with”</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/15/理解Python中的“with”/" class="archive-article-date">
-  	<time datetime="2016-04-15T15:44:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Apr 15 2016</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-_缘起">1. 缘起</h3><p>Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> open( <span class="string">"a.txt"</span> ) <span class="keyword">as</span> f :</div><div class="line">    <span class="comment"># do something</span></div></pre></td></tr></table></figure>
-<p>大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，<code>with</code>到底做了什么呢？</p>
-        
-          <a class="article-more-a" href="/2016/04/15/理解Python中的“with”/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/15/理解Python中的“with”/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-存储数据包的一生" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/03/存储数据包的一生/">存储数据包的一生</a>
-    </h1>
-  
-
-        
-        <a href="/2016/04/03/存储数据包的一生/" class="archive-article-date">
-  	<time datetime="2016-04-03T14:04:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Apr 3 2016</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近认认真真学习了一个叫<a href="https://www.brighttalk.com/webcast/663/169543" target="_blank" rel="external">《Life of a Storage Packet》</a>讲座，借助这个讲座将整个存储的过程理解了下，不放过任何一个有疑问的点。这篇文章算是对讲座的理解和自己收获的总结，同时也为那些对存储系统不够了解又想要了解的初学者，展现一个存储数据包的“生命”。这个演讲主要聚焦在“整体的存储”，强调存储系统中各个基本元素的关系，并且尽可能简单、清楚地用一种不同的方式可视化一些存储的概念。</p>
-<p>先上一张大图，可以说这篇文章目的就是解释这个图：<br><img src="https://cloud.githubusercontent.com/assets/1736354/14232888/3dc0f734-f9ea-11e5-877c-8b37b7addbdd.png" alt="12"></p>
-        
-          <a class="article-more-a" href="/2016/04/03/存储数据包的一生/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">系统</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/03/存储数据包的一生/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -975,7 +942,7 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 Yikun
+    		&copy; 2018 Yikun
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1053,10 +1020,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
              
@@ -1066,6 +1029,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1081,6 +1048,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Draft</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -1089,11 +1060,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">

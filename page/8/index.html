@@ -173,6 +173,197 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-Hello-World" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/12/21/Hello-World/">Hello World</a>
+    </h1>
+  
+
+        
+        <a href="/2012/12/21/Hello-World/" class="archive-article-date">
+  	<time datetime="2012-12-20T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Dec 21 2012</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>今天，是世界末日。同时，末日也是新生。<br>
+        
+          <a class="article-more-a" href="/2012/12/21/Hello-World/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2012/12/21/Hello-World/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-linux-record" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2012/12/06/linux-record/">Linux Record</a>
+    </h1>
+  
+
+        
+        <a href="/2012/12/06/linux-record/" class="archive-article-date">
+  	<time datetime="2012-12-05T16:00:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Dec 6 2012</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <a id="more"></a>
+<h2 id="User_Group_Password_Set">User Group Password Set</h2><pre><code>useradd –d <span class="regexp">/home/</span>youtpath yourname
+passwd  yourname
+groupadd yourgroup
+chown <span class="string">yourname:</span>yourgroup <span class="regexp">/home/</span>yourname
+</code></pre><p>if accuont is exist, try to using <code>usermod -d /home/yourpath -U yourname</code></p>
+<h2 id="IP_set">IP set</h2><h3 id="In_Ubuntu">In Ubuntu</h3><p>(/etc/network/interfaces)</p>
+<pre><code><span class="comment"># Dynamic IP</span>
+<span class="title">auto</span> eth0
+iface eth0 inet dhcp
+
+<span class="comment"># Static IP </span>
+auto eth0
+iface eth0 inet static
+address <span class="number">192.168.33.201</span>
+netmask <span class="number">255.255.255.0</span>
+gateway <span class="number">192.168.33.1</span>
+</code></pre><p>then, in shell(also, need sudo):</p>
+<pre><code>ifconfig eth0 <span class="preprocessor">down</span>
+ifconfig eth0 <span class="preprocessor">up</span>
+</code></pre><p>last, try to <code>ifconfig</code> to check result, perhaps you need using <code>/etc/init.d/networking restart</code> to restart all network services</p>
+<h3 id="In_RedHat">In RedHat</h3><p>you need modify 3 files:</p>
+<pre><code><span class="regexp">/etc/</span>sysconfig/network
+<span class="regexp">/etc/</span>sysconfig<span class="regexp">/network-scripts/</span>ifcfg-eth0
+<span class="regexp">/etc/</span>resolv.conf
+</code></pre><p>1./etc/sysconfig/network</p>
+<pre><code><span class="setting">NETWORKING=<span class="value"><span class="keyword">yes</span></span></span>
+<span class="setting">NETWORKING_IPV6=<span class="value"><span class="keyword">no</span></span></span>
+<span class="setting">HOSTNAME=<span class="value">kero</span></span>
+<span class="setting">GATEWAY=<span class="value"><span class="number">192.168</span>.<span class="number">1.1</span></span></span>
+</code></pre><p>2./etc/sysconfig/network-scripts/ifcfg-eth0</p>
+<pre><code><span class="setting">DEVICE=<span class="value">eth0                                </span></span>
+<span class="setting">NETMASK=<span class="value"><span class="number">255.255</span>.<span class="number">255.0</span>             </span></span>
+<span class="setting">IPADDR=<span class="value"><span class="number">192.168</span>.<span class="number">1.88</span>             </span></span>
+<span class="setting">BOOTPROTO=<span class="value">static                      #【none | static | bootp | dhcp】</span></span>
+<span class="setting">ONBOOT=<span class="value"><span class="keyword">yes</span>                            #【<span class="keyword">yes</span> | <span class="keyword">no</span>】引导时是否激活设备</span></span>
+<span class="setting">DNS1=<span class="value"><span class="number">211.99</span>.<span class="number">25.1</span>                      #域名解析服务器</span></span>
+<span class="setting">PEERDNS=<span class="value"><span class="keyword">yes</span></span></span>
+</code></pre><p>3./etc/resolv.conf</p>
+<pre><code><span class="title">nameserver</span> <span class="number">211.99.25.1</span>          <span class="comment">#DNS配置 同2中的 【DNS1=211.99.25.1 】</span>
+</code></pre><p>4.Resart</p>
+<p>   /sbin/ifdown eth0<br>   /sbin/ifup eth0<br>   /etc/init.d/network restart</p>
+<h2 id="SSH">SSH</h2><pre><code>sudo apt-get <span class="operator"><span class="keyword">install</span> openssh-<span class="keyword">server</span></span>
+</code></pre><h2 id="find">find</h2><pre><code>find ./ -name '<span class="keyword">*</span>.<span class="keyword">*</span>' 
+</code></pre><h2 id="du">du</h2><pre><code>du -h --<span class="built_in">max</span>-<span class="built_in">depth</span>=<span class="number">1</span>
+</code></pre><h2 id="Virtual_IP">Virtual IP</h2><ol>
+<li><p>Using <code>ifconfig</code> check your IP and eth</p>
+<p> eth1      Link encap:Ethernet  HWaddr 08:00:27:71:DA:8C</p>
+<pre><code>inet <span class="string">addr:</span>XXX.XXX.XXX.250  <span class="string">Bcast:</span>XXX.XXX.XXX.255  <span class="string">Mask:</span><span class="number">255.255</span>.255.0
+inet6 <span class="string">addr:</span> <span class="string">fe80:</span>:<span class="string">a00:</span><span class="number">27</span><span class="string">ff:</span><span class="string">fe71:</span>da8c/<span class="number">64</span> <span class="string">Scope:</span>Link
+UP BROADCAST RUNNING MULTICAST  <span class="string">MTU:</span><span class="number">1500</span>  <span class="string">Metric:</span><span class="number">1</span>
+RX <span class="string">packets:</span><span class="number">782</span> <span class="string">errors:</span><span class="number">0</span> <span class="string">dropped:</span><span class="number">0</span> <span class="string">overruns:</span><span class="number">0</span> <span class="string">frame:</span><span class="number">0</span>
+TX <span class="string">packets:</span><span class="number">91</span> <span class="string">errors:</span><span class="number">0</span> <span class="string">dropped:</span><span class="number">0</span> <span class="string">overruns:</span><span class="number">0</span> <span class="string">carrier:</span><span class="number">0</span>
+<span class="string">collisions:</span><span class="number">0</span> <span class="string">txqueuelen:</span><span class="number">1000</span>
+RX <span class="string">bytes:</span><span class="number">77624</span> (<span class="number">75.8</span> KiB)  TX <span class="string">bytes:</span><span class="number">14476</span> (<span class="number">14.1</span> KiB)
+Base <span class="string">address:</span><span class="number">0xd240</span> <span class="string">Memory:</span>f0820000-f0840000
+</code></pre></li>
+<li><p>Set the Virtual IP, </p>
+<p> ifconfig eth1:ha1 XXX.XXX.XXX.252 broadcast XXX.XXX.XXX.255 netmask 255.255.255.0 up</p>
+</li>
+</ol>
+<p><code>eth1:ha1</code>, eth1:XXXX, XXXX is your virtual name, modifiy name what you want.</p>
+<p><code>XXX.XXX.XXX.252</code>,  Virtual IP</p>
+<p><code>XXX.XXX.XXX.255</code>, broadcast (Same as eth1 Bcast)</p>
+<p><code>255.255.255.0</code>, netmask (Same as eth1 Mask)</p>
+<p>Also, you can using <code>ifconfig eth1:ha1 XXX.XXX.XXX.252 broadcast XXX.XXX.XXX.255 netmask 255.255.255.0 down</code> shutdown Virtual IP</p>
+<p>After it, you can using <code>ifconfig</code>, check result</p>
+<pre><code><span class="string">eth1:</span>ha1  Link <span class="string">encap:</span>Ethernet  HWaddr <span class="number">08</span>:<span class="number">00</span>:<span class="number">27</span>:<span class="number">71</span>:<span class="string">DA:</span><span class="number">8</span>C
+          inet <span class="string">addr:</span>XXX.XXX.XXX.252  <span class="string">Bcast:</span>XXX.XXX.XXX.255  <span class="string">Mask:</span><span class="number">255.255</span>.255.0
+          UP BROADCAST RUNNING MULTICAST  <span class="string">MTU:</span><span class="number">1500</span>  <span class="string">Metric:</span><span class="number">1</span>
+          Base <span class="string">address:</span><span class="number">0xd240</span> <span class="string">Memory:</span>f0820000-f0840000
+</code></pre><ol>
+<li>To ensure, Ip is unique, you could using arping to check</li>
+</ol>
+<p><code>arping -c 3 -I eth1 -s XXX.XXX.XXX.250 XXX.XXX.XXX.252</code></p>
+<p><code>-c</code> is count, </p>
+<p><code>-I</code> is your eth interface name, </p>
+<p><code>-s XXX.XXX.XXX.250</code> is your now ip(source ip)</p>
+<p><code>XXX.XXX.XXX.252</code> is the virtual ip you want to check</p>
+<ol>
+<li>If not active, you could using </li>
+</ol>
+<p><code>route add -host XXX.XXX.XXX.252 dev eth1:ha1</code></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2012/12/06/linux-record/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-congshijianzhongyiluzoulai" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -492,7 +683,7 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 Yikun
+    		&copy; 2018 Yikun
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -570,10 +761,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
              
@@ -583,6 +770,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -598,6 +789,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Draft</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -606,11 +801,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">

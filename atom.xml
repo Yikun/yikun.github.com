@@ -5,7 +5,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yikun.github.io/"/>
-  <updated>2017-12-08T12:00:50.000Z</updated>
+  <updated>2018-01-19T14:06:28.000Z</updated>
   <id>http://yikun.github.io/</id>
   
   <author>
@@ -16,11 +16,162 @@
   <generator uri="http://hexo.io/">Hexo</generator>
   
   <entry>
+    <title>[Placement深度探索] Get Allocation Candidates</title>
+    <link href="http://yikun.github.io/2017/12/25/Placement%E6%B7%B1%E5%BA%A6%E6%8E%A2%E7%B4%A2-Get-Allocation-Candidates/"/>
+    <id>http://yikun.github.io/2017/12/25/Placement深度探索-Get-Allocation-Candidates/</id>
+    <published>2017-12-25T09:25:17.000Z</published>
+    <updated>2018-01-19T14:06:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<h2 id="1_功能概述">1 功能概述</h2><p>Placement的一个重要的接口，就是获取满足指定资源条件的allocation。举个例子，用户说，<code>我需要1个VCPU，512MB内存，1GB磁盘的资源，Placement你帮我找找看看，有没有合适的资源</code>。</p>
+<a id="more"></a>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">curl -X GET http://10.76.6.31/placement/allocation_candidates?resources=DISK_GB:1,MEMORY_MB:512,VCPU:1 -H <span class="string">"X-Auth-Token: <span class="variable">$TOKEN</span>"</span> -H <span class="string">"OpenStack-API-Version: placement 1.15"</span></div></pre></td></tr></table></figure>
+<p>用户通过allocation_cadidates接口进行查询，参数是<code>DISK_GB:1,MEMORY_MB:512,VCPU:1</code>，随后，Placement自己做了一大堆的查询之后，“告诉”用户：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"allocation_requests"</span>: [&#123;</div><div class="line">        <span class="attr">"allocations"</span>: &#123;</div><div class="line">            <span class="attr">"f05575b2-3df6-4018-84f6-f2a75795b59b"</span>: &#123;</div><div class="line">                <span class="attr">"resources"</span>: &#123;</div><div class="line">                    <span class="attr">"DISK_GB"</span>: <span class="number">1</span>,</div><div class="line">                    <span class="attr">"MEMORY_MB"</span>: <span class="number">512</span>,</div><div class="line">                    <span class="attr">"VCPU"</span>: <span class="number">1</span></div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;],</div><div class="line">    <span class="attr">"provider_summaries"</span>: &#123;</div><div class="line">        <span class="attr">"f05575b2-3df6-4018-84f6-f2a75795b59b"</span>: &#123;</div><div class="line">            <span class="attr">"resources"</span>: &#123;</div><div class="line">                <span class="attr">"DISK_GB"</span>: &#123;</div><div class="line">                    <span class="attr">"capacity"</span>: <span class="number">243</span>,</div><div class="line">                    <span class="attr">"used"</span>: <span class="number">6</span></div><div class="line">                &#125;,</div><div class="line">                <span class="attr">"MEMORY_MB"</span>: &#123;</div><div class="line">                    <span class="attr">"capacity"</span>: <span class="number">11206</span>,</div><div class="line">                    <span class="attr">"used"</span>: <span class="number">3200</span></div><div class="line">                &#125;,</div><div class="line">                <span class="attr">"VCPU"</span>: &#123;</div><div class="line">                    <span class="attr">"capacity"</span>: <span class="number">16</span>,</div><div class="line">                    <span class="attr">"used"</span>: <span class="number">8</span></div><div class="line">                &#125;</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>上面就是我查找到的结果：</p>
+<blockquote>
+<ol>
+<li><strong>资源请求参数(allocation_requests)</strong>：您请求资源，DISK有1GB，MEMORY有512MB，VCPU有1个。我帮你找到一个UUID为<code>f05575b2-3df6-4018-84f6-f2a75795b59b</code>的Resource Provider，满足这个条件。</li>
+<li><strong>Provider详细信息(provider_summaries)</strong>：这个Resource Provider，它DISK总量为243GB使用了6GB，MEMORY总量为11206MB使用了3200MB，VCPU总个数为16个，已使用了8个。<h2 id="2_实现详情">2 实现详情</h2><h5 id="Step_1-_查询满足条件的resouce_provider">Step 1. 查询满足条件的resouce provider</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div><div class="line">56</div><div class="line">57</div><div class="line">58</div><div class="line">59</div><div class="line">60</div><div class="line">61</div><div class="line">62</div><div class="line">63</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> rp.id</div><div class="line"><span class="keyword">FROM</span> resource_providers <span class="keyword">AS</span> rp</div><div class="line">    <span class="comment">-- vcpu信息join</span></div><div class="line">    <span class="comment">-- vcpu总存量信息</span></div><div class="line">    <span class="keyword">INNER</span> <span class="keyword">JOIN</span> inventories <span class="keyword">AS</span> inv_vcpu</div><div class="line">        <span class="keyword">ON</span> inv_vcpu.resource_provider_id = rp.id </div><div class="line">        <span class="keyword">AND</span> inv_vcpu.resource_class_id = %(resource_class_id_1)s</div><div class="line">    <span class="comment">-- vcpu已使用量信息</span></div><div class="line">    <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> (</div><div class="line">        <span class="keyword">SELECT</span> allocations.resource_provider_id <span class="keyword">AS</span> resource_provider_id,</div><div class="line">        <span class="keyword">sum</span>(allocations.used) <span class="keyword">AS</span> used</div><div class="line">        <span class="keyword">FROM</span> allocations</div><div class="line">        <span class="keyword">WHERE</span> allocations.resource_class_id = %(resource_class_id_2)s</div><div class="line">        <span class="keyword">GROUP</span> <span class="keyword">BY</span> allocations.resource_provider_id</div><div class="line">    ) <span class="keyword">AS</span> usage_vcpu</div><div class="line">        <span class="keyword">ON</span> inv_vcpu.resource_provider_id = usage_vcpu.resource_provider_id</div><div class="line">    <span class="comment">-- memory信息join</span></div><div class="line">    <span class="comment">-- memory总存量信息</span></div><div class="line">    <span class="keyword">INNER</span> <span class="keyword">JOIN</span> inventories <span class="keyword">AS</span> inv_memory_mb</div><div class="line">        <span class="keyword">ON</span> inv_memory_mb.resource_provider_id = rp.id</div><div class="line">        <span class="keyword">AND</span> inv_memory_mb.resource_class_id = %(resource_class_id_3)s</div><div class="line">    <span class="comment">-- memory已使用量信息</span></div><div class="line">    <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> (</div><div class="line">        <span class="keyword">SELECT</span> allocations.resource_provider_id <span class="keyword">AS</span> resource_provider_id,</div><div class="line">            <span class="keyword">sum</span>(allocations.used) <span class="keyword">AS</span> used</div><div class="line">        <span class="keyword">FROM</span> allocations</div><div class="line">        <span class="keyword">WHERE</span> allocations.resource_class_id = %(resource_class_id_4)s</div><div class="line">        <span class="keyword">GROUP</span> <span class="keyword">BY</span> allocations.resource_provider_id</div><div class="line">    ) <span class="keyword">AS</span> usage_memory_mb</div><div class="line">        <span class="keyword">ON</span> inv_memory_mb.resource_provider_id = usage_memory_mb.resource_provider_id</div><div class="line">    <span class="comment">-- disk信息join</span></div><div class="line">    <span class="comment">-- disk总存量信息</span></div><div class="line">    <span class="keyword">INNER</span> <span class="keyword">JOIN</span> inventories <span class="keyword">AS</span> inv_disk_gb</div><div class="line">        <span class="keyword">ON</span> inv_disk_gb.resource_provider_id = rp.id</div><div class="line">        <span class="keyword">AND</span> inv_disk_gb.resource_class_id = %(resource_class_id_5)s</div><div class="line">    <span class="comment">-- disk已使用量信息</span></div><div class="line">    <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> (</div><div class="line">        <span class="keyword">SELECT</span> allocations.resource_provider_id</div><div class="line">        <span class="keyword">AS</span> resource_provider_id, <span class="keyword">sum</span>(allocations.used) <span class="keyword">AS</span> used</div><div class="line">        <span class="keyword">FROM</span> allocations</div><div class="line">        <span class="keyword">WHERE</span> allocations.resource_class_id = %(resource_class_id_6)s</div><div class="line">        <span class="keyword">GROUP</span> <span class="keyword">BY</span> allocations.resource_provider_id</div><div class="line">        ) <span class="keyword">AS</span> usage_disk_gb</div><div class="line">            <span class="keyword">ON</span> inv_disk_gb.resource_provider_id = usage_disk_gb.resource_provider_id</div><div class="line"><span class="keyword">WHERE</span> </div><div class="line"><span class="comment">-- vcpu满足上限/下限/步长条件</span></div><div class="line"><span class="keyword">coalesce</span>(usage_vcpu.used, %(coalesce_1)s) + %(coalesce_2)s &lt;= (</div><div class="line">inv_vcpu.total - inv_vcpu.reserved) * inv_vcpu.allocation_ratio <span class="keyword">AND</span></div><div class="line">inv_vcpu.min_unit &lt;= %(min_unit_1)s <span class="keyword">AND</span></div><div class="line">inv_vcpu.max_unit &gt;= %(max_unit_1)s <span class="keyword">AND</span></div><div class="line">%(step_size_1)s % inv_vcpu.step_size = %(param_1)s <span class="keyword">AND</span></div><div class="line"><span class="comment">-- memory满足上限/下限/步长条件</span></div><div class="line"><span class="keyword">coalesce</span>(usage_memory_mb.used, %(coalesce_3)s) + %(coalesce_4)s &lt;= (</div><div class="line">inv_memory_mb.total - inv_memory_mb.reserved) * inv_memory_mb.allocation_ratio <span class="keyword">AND</span></div><div class="line">inv_memory_mb.min_unit &lt;= %(min_unit_2)s <span class="keyword">AND</span></div><div class="line">inv_memory_mb.max_unit &gt;= %(max_unit_2)s <span class="keyword">AND</span></div><div class="line">%(step_size_2)s % inv_memory_mb.step_size = %(param_2)s <span class="keyword">AND</span></div><div class="line"><span class="comment">-- disk满足上限/下限/步长条件</span></div><div class="line"><span class="keyword">coalesce</span>(usage_disk_gb.used, %(coalesce_5)s) + %(coalesce_6)s &lt;= (</div><div class="line">inv_disk_gb.total - inv_disk_gb.reserved) * inv_disk_gb.allocation_ratio <span class="keyword">AND</span></div><div class="line">inv_disk_gb.min_unit &lt;= %(min_unit_3)s <span class="keyword">AND</span></div><div class="line">inv_disk_gb.max_unit &gt;= %(max_unit_3)s <span class="keyword">AND</span></div><div class="line">%(step_size_3)s % inv_disk_gb.step_size = %(param_3)s</div></pre></td></tr></table></figure>
+</li>
+</ol>
+</blockquote>
+<p>此步完成后，就可以拿到满足给定条件的Resource Provider的ID了。</p>
+<h5 id="Step_2-_查询满足条件的resouce_provider及其对应的总存量、已使用量信息">Step 2. 查询满足条件的resouce provider及其对应的总存量、已使用量信息</h5><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 从inventory/allocation/resource_provider表取信息</span></div><div class="line"><span class="keyword">SELECT</span> rp.id <span class="keyword">AS</span> resource_provider_id, rp.uuid <span class="keyword">AS</span> resource_provider_uuid,</div><div class="line">    inv.resource_class_id, inv.total, inv.reserved, inv.allocation_ratio,</div><div class="line">    <span class="string">`usage`</span>.used</div><div class="line"><span class="keyword">FROM</span> resource_providers <span class="keyword">AS</span> rp</div><div class="line">    <span class="comment">-- inventory信息，每个rp的总量</span></div><div class="line">    <span class="keyword">INNER</span> <span class="keyword">JOIN</span> inventories <span class="keyword">AS</span> inv</div><div class="line">        <span class="keyword">ON</span> rp.id = inv.resource_provider_id</div><div class="line">    <span class="comment">-- allocation信息</span></div><div class="line">    <span class="keyword">LEFT</span> <span class="keyword">OUTER</span> <span class="keyword">JOIN</span> (</div><div class="line">        <span class="comment">-- 每个rp和class的已使用量</span></div><div class="line">        <span class="keyword">SELECT</span> allocations.resource_provider_id <span class="keyword">AS</span> resource_provider_id,</div><div class="line">        allocations.resource_class_id <span class="keyword">AS</span> resource_class_id,</div><div class="line">        <span class="keyword">sum</span>(allocations.used) <span class="keyword">AS</span> used</div><div class="line">        <span class="keyword">FROM</span> allocations</div><div class="line">        <span class="keyword">WHERE</span> allocations.resource_provider_id <span class="keyword">IN</span> (%(resource_provider_id_1)s) <span class="keyword">AND</span></div><div class="line">            allocations.resource_class_id <span class="keyword">IN</span> (</div><div class="line">                %(resource_class_id_1)s,</div><div class="line">                %(resource_class_id_2)s,</div><div class="line">                %(resource_class_id_3)s</div><div class="line">            )</div><div class="line">        <span class="comment">-- 按照rp_id和rp_class_id进行分组</span></div><div class="line">        <span class="keyword">GROUP</span> <span class="keyword">BY</span> allocations.resource_provider_id, allocations.resource_class_id</div><div class="line">    ) <span class="keyword">AS</span> <span class="string">`usage`</span></div><div class="line">        <span class="keyword">ON</span> <span class="string">`usage`</span>.resource_provider_id = inv.resource_provider_id <span class="keyword">AND</span></div><div class="line">        <span class="string">`usage`</span>.resource_class_id = inv.resource_class_id</div><div class="line"><span class="comment">-- 查询指定id及class的resource</span></div><div class="line"><span class="keyword">WHERE</span> rp.id <span class="keyword">IN</span> (%(id_1)s) <span class="keyword">AND</span></div><div class="line">    inv.resource_class_id <span class="keyword">IN</span> (</div><div class="line">        %(resource_class_id_4)s,</div><div class="line">        %(resource_class_id_5)s,</div><div class="line">        %(resource_class_id_6)s</div><div class="line">    )</div></pre></td></tr></table></figure>
+<p>查询的最终结果如下：<br><img src="https://user-images.githubusercontent.com/1736354/34344401-874dbff4-ea20-11e7-835b-c3bea5599896.png" alt="image"></p>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;h2 id=&quot;1_功能概述&quot;&gt;1 功能概述&lt;/h2&gt;&lt;p&gt;Placement的一个重要的接口，就是获取满足指定资源条件的allocation。举个例子，用户说，&lt;code&gt;我需要1个VCPU，512MB内存，1GB磁盘的资源，Placement你帮我找找看看，有没有合适的资源&lt;/code&gt;。&lt;/p&gt;
+    
+    </summary>
+    
+    
+      <category term="Nova" scheme="http://yikun.github.io/tags/Nova/"/>
+    
+      <category term="OpenStack" scheme="http://yikun.github.io/tags/OpenStack/"/>
+    
+      <category term="Draft" scheme="http://yikun.github.io/tags/Draft/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>一个死锁问题的深入探究</title>
+    <link href="http://yikun.github.io/2017/12/13/%E4%B8%80%E4%B8%AA%E6%AD%BB%E9%94%81%E9%97%AE%E9%A2%98%E7%9A%84%E6%B7%B1%E5%85%A5%E6%8E%A2%E7%A9%B6/"/>
+    <id>http://yikun.github.io/2017/12/13/一个死锁问题的深入探究/</id>
+    <published>2017-12-13T11:47:10.000Z</published>
+    <updated>2018-01-19T14:06:28.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>本篇文章可以看做是一个问题定位、分析、学习过程的记录，介绍了OpenStack Nova一个死锁问题的分析和解决的过程，你将从本文了解到SQLAlchemy的session中的语序排序机制、OpenStack的死锁重试机制及改进点以及一些调试的手段。</p>
+<h3 id="0-_背景">0. 背景</h3><p>在Nova对虚拟机进行一些操作的时候，比如创建、停止虚拟机之类的操作的时候，会将这些事件记录在instance_actions表里面记录操作的时间、操作类型以及一些操作事件详情。</p>
+<p>例如，我们可以通过instnace-action-list来查看虚拟机的操作，并可以通过对应的req id来查操作中的事件详情，如果是失败的话，还可以从事件详情中，看到对应的错误栈信息。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> nova instance-action-list e92885a9-06d6-4491-ac43-6fd04e32ee72</span></div><div class="line">+--------+------------------------------------------+---------+----------------------------+</div><div class="line">| Action | Request_ID                               | Message | Start_Time                 |</div><div class="line">+--------+------------------------------------------+---------+----------------------------+</div><div class="line">| create | req-416cb88e-5adb-4c0f-9c32-6370d3661940 | -       | 2017-12-13T12:08:36.000000 |</div><div class="line">| stop   | req-52155da3-d2ca-463c-b380-6034c0b5fdf1 | -       | 2017-12-13T12:09:17.000000 |</div><div class="line">+--------+------------------------------------------+---------+----------------------------+</div><div class="line"><span class="meta"></span></div><div class="line">$<span class="bash"> nova instance-action e92885a9-06d6-4491-ac43-6fd04e32ee72 req-52155da3-d2ca-463c-b380-6034c0b5fdf1</span></div><div class="line">+---------------+--------------------------------------------------+</div><div class="line">| Property      | Value                                            |</div><div class="line">+---------------+--------------------------------------------------+</div><div class="line">| action        | stop                                             |</div><div class="line">| events        | [&#123;u'event': u'compute_stop_instance',            |</div><div class="line">|               |   u'finish_time': u'2017-12-13T12:09:23.000000', |</div><div class="line">|               |   u'result': u'Success',                         |</div><div class="line">|               |   u'start_time': u'2017-12-13T12:09:18.000000',  |</div><div class="line">|               |   u'traceback': None&#125;]                           |</div><div class="line">| instance_uuid | e92885a9-06d6-4491-ac43-6fd04e32ee72             |</div><div class="line">| message       | -                                                |</div><div class="line">| project_id    | 0232cef222f7479fae3fd8fa24d8c382                 |</div><div class="line">| request_id    | req-52155da3-d2ca-463c-b380-6034c0b5fdf1         |</div><div class="line">| start_time    | 2017-12-13T12:09:17.000000                       |</div><div class="line">| user_id       | 5b0b6a4c068f4c1ba78b50d8a4db5057                 |</div><div class="line">+---------------+--------------------------------------------------+</div></pre></td></tr></table></figure></p>
+<p>在instance_action的表里面，记录着action的更新时间，比如event结束了，我们也期望能够action里面能记录update的时间，但是目前并没有进行刷新。</p>
+<p><img src="https://user-images.githubusercontent.com/1736354/34138279-ac8d220e-e4a9-11e7-8617-8f8ddb0ef34a.jpg" alt="action"></p>
+<p>这个patch想做的事儿也比较简单，如上图所示，就是在event进行记录（比如开始和结束）的时候，也对action的更新时间也做刷新。也就是说，我们在写instance_event_action表后，也需要写instance_action表去记录下刷新时间。大致代码的关键逻辑如下所示（省略了一些无关的代码细节）：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@pick_context_manager_writer</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">action_event_finish</span><span class="params">(context, values)</span>:</span></div><div class="line">    <span class="string">"""Finish an event on an instance action."""</span></div><div class="line">    <span class="comment"># 原有获取action</span></div><div class="line">    action = _action_get_by_request_id(context, values[<span class="string">'instance_uuid'</span>],</div><div class="line">                                       values[<span class="string">'request_id'</span>])</div><div class="line">    <span class="comment"># 原有获取event</span></div><div class="line">    event_ref = model_query(context, models.InstanceActionEvent).\</div><div class="line">                            filter_by(action_id=action[<span class="string">'id'</span>]).\</div><div class="line">                            filter_by(event=values[<span class="string">'event'</span>]).\</div><div class="line">                            first()</div><div class="line">    <span class="comment"># 原有的event刷新流程</span></div><div class="line">    event_ref.update(values)</div><div class="line">    <span class="comment"># **新增的刷新action时间逻辑**</span></div><div class="line">    action.update(&#123;<span class="string">'updated_at'</span>: values[<span class="string">'finish_time'</span>]&#125;)</div><div class="line">    action.save(context.session)</div><div class="line">    <span class="keyword">return</span> event_ref</div></pre></td></tr></table></figure></p>
+<h3 id="1-_起因">1. 起因</h3><p>在修复Nova的这个事件时间刷新问题(<a href="https://bugs.launchpad.net/nova/+bug/1719561" target="_blank" rel="external">bug/507473</a>)的时候，CI会概率性地挂一些用例，先开始以为是CI不稳定，workflow+1之后，最终的门禁检查一直过不了。Matt recheck了几次都是失败的，然后问：</p>
+<blockquote>
+<p>I’m not sure if the test failures this patch is hitting are related to this change or not - they definitely don’t seem to be (I’m not sure why we’d get an UnexpectedTaskStateError during resize due to this change).</p>
+</blockquote>
+<p>这才引起了我的注意，我找了下归档的日志发现：</p>
+<blockquote>
+<p>Exception during message handling: DBDeadlock: (pymysql.err.InternalError) (1213, u’<strong>Deadlock found when trying to get lock</strong>; try restarting transaction’) [SQL: u’<strong>UPDATE instance_actions SET updated_at=%(updated_at)s WHERE instance_actions.id = %(instance_actions_id)s</strong>‘] [parameters: {‘instance_actions_id’: 23, ‘updated_at’: datetime.datetime(2017, 12, 4, 2, 48, 36, 91068)}]</p>
+</blockquote>
+<p>第一反应是，我去！死锁了？简单的一个update怎么会死锁？确认了下where条件比较单一，并不是因为条件排序不稳定引起的死锁；也确认了下action数据库的索引，也比较简单，也不会有死锁问题。然后，就看业务代码，代码逻辑也很简单，一个事务里面包含了4件事，2个查询，2个刷新。不科学啊！</p>
+<h3 id="2-_发现">2. 发现</h3><p>遇到这种活久见的问题，最好的办法就是把每一句SQL都dump出来，因为不是裸写SQL，鬼知道SQLAlchemy中间的ORM那层为我们做了什么。</p>
+<p>OpenStack的oslo.db为我们提供了一个配置项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[database]</div><div class="line"># (Integer) Verbosity of SQL debugging information: 0=None, 100=Everything.</div><div class="line">connection_debug = 100</div></pre></td></tr></table></figure></p>
+<p>把他设置成100就可以dump出执行的每一句SQL了，这个方法在我们进行调试的时候很方便。然后，进行复现，结果让我震惊了（问号脸？？？代码是一样的，生成SQL的顺序却是不一致的）：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 从API dump的结果</span></div><div class="line"><span class="keyword">BEGIN</span> (implicit)</div><div class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> instance_actions <span class="keyword">WHERE</span> ...</div><div class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> instance_actions_events <span class="keyword">WHERE</span> ...</div><div class="line"><span class="comment">-- 先刷新action</span></div><div class="line"><span class="keyword">UPDATE</span> instance_actions <span class="keyword">SET</span> updated_at=%(updated_at)s <span class="keyword">WHERE</span> instance_actions.id= %(instance_actions_id)s</div><div class="line"><span class="comment">-- 再刷新action_event</span></div><div class="line"><span class="keyword">UPDATE</span> instance_actions_events <span class="keyword">SET</span> updated_at=%(updated_at)s, finish_time=%(finish_time)s, <span class="keyword">result</span>=%(<span class="keyword">result</span>)s <span class="keyword">WHERE</span> instance_actions_events.id = %(instance_actions_events_id)s</div><div class="line"><span class="keyword">COMMIT</span></div><div class="line"></div><div class="line"><span class="comment">-- 从Conductor dump的结果</span></div><div class="line"><span class="keyword">BEGIN</span> (implicit)</div><div class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> instance_actions <span class="keyword">WHERE</span> ...</div><div class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> instance_actions_events <span class="keyword">WHERE</span> ...</div><div class="line"><span class="comment">-- 先刷新action_event</span></div><div class="line"><span class="keyword">UPDATE</span> instance_actions_events <span class="keyword">SET</span> updated_at=%(updated_at)s, finish_time=%(finish_time)s, <span class="keyword">result</span>=%(<span class="keyword">result</span>)s <span class="keyword">WHERE</span> instance_actions_events.id = %(instance_actions_events_id)s</div><div class="line"><span class="comment">-- 再刷新action</span></div><div class="line"><span class="keyword">UPDATE</span> instance_actions <span class="keyword">SET</span> updated_at=%(updated_at)s <span class="keyword">WHERE</span> instance_actions.id= %(instance_actions_id)s</div><div class="line"><span class="keyword">COMMIT</span></div></pre></td></tr></table></figure></p>
+<p>完整的SQL dump我贴在了<a href="http://paste.openstack.org/show/628609/" target="_blank" rel="external">paste/628609</a>，可以分析出来，就是产生死锁的根本原因：<strong>在一个事务中，更新2个表的相反行</strong>。并发执行2个这样的事务，一个事务拿着action表的行锁，一个事务拿着action_event表的行锁，它们都互相等着对方释放，最终产生了死锁，如下图所示。</p>
+<p><img src="https://user-images.githubusercontent.com/1736354/34138652-98867f06-e4ab-11e7-8d68-fea01b118e8b.jpg" alt="deadlockjpg"></p>
+<p>从MySQL官方DOC里，给的建议<a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-deadlocks-handling.html" target="_blank" rel="external">How to Minimize and Handle Deadlocks</a>中，我们也看到了类似的建议：</p>
+<blockquote>
+<p>When modifying multiple tables within a transaction, or different sets of rows in the same table, do those operations in a consistent order each time. Then transactions form well-defined queues and do not deadlock. For example, organize database operations into functions within your application, or call stored routines, rather than coding multiple similar sequences of INSERT, UPDATE, and DELETE statements in different places.</p>
+</blockquote>
+<p>核心意思就是说，我们在一个transaction中更新多个表的时候，或者说在一个表中更新不同行的时候，一定要保证每一次调用的顺序是一致的。最终，临时解决这个问题的方式也比较简单，就是在这个函数上加一个<a href="https://review.openstack.org/#/c/507473/16/nova/db/sqlalchemy/api.py@6304" target="_blank" rel="external">死锁重试装饰器</a>，即在发生死锁的时候进行重试，CI终于全绿了。</p>
+<h3 id="3-_进一步分析">3. 进一步分析</h3><p>问题解决就结束了吗？不，2个疑问一直在心中徘徊：</p>
+<blockquote>
+<ol>
+<li>死锁重试的装饰器是怎么实现的，真的有效吗？</li>
+<li>SQLalchemy做了什么导致最终生成SQL的顺序是不稳定的，为什么要这么做？</li>
+</ol>
+</blockquote>
+<h4 id="3-1_死锁重试机制">3.1 死锁重试机制</h4><p>我们从<a href="https://github.com/openstack/oslo.db/blob/4a727233dc2b7d1021ed7932d2cd27d8053dca31/oslo_db/api.py#L127-L161" target="_blank" rel="external">oslo_db/api.py</a>可以看到他的实现，原理比较简单，就是隔几秒（2的retry数次方秒），如果调用成功，就终止重试。伪代码大概如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">t = <span class="number">1</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="keyword">try</span>):</div><div class="line">    sleep(t)</div><div class="line">    <span class="comment"># 指数递增</span></div><div class="line">    t = t * <span class="number">2</span></div><div class="line">    <span class="comment"># 超过上限取上限</span></div><div class="line">    t = min(max_t, t)</div><div class="line">    func()</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">raise</span> deadlock:</div><div class="line">        <span class="keyword">break</span></div></pre></td></tr></table></figure></p>
+<p>虽然看着隔了一些时间，但是，这种指数递增的机制对于死锁这种问题没有什么卵用，大家一起等，然后再一起调，还是会再次产生死锁。</p>
+<p>这个问题的场景和上研的时候，在通信中搞的“退避算法”很类似（HINOC中信道接纳的时候，多个节点并行接纳时，如果发生冲突，需要退避重试），都是冲突避免，通信中是避免信道冲突，而这里则是避免数据库的死锁。</p>
+<p>在退避时间选择的过程中，其实有2个参数，需要我们仔细思考一下：</p>
+<ol>
+<li><p><strong>等待的基数时间</strong>。<br>目前时间的基数是，随着重试次数指数增长的，这个基数对于连接失败类的业务是比较有用的，想象一下，这种类型的业务我们重试的目的说白了就是：<strong>“过一段时间，试一试，看看能不能正常连上”</strong>，那这个时间不断的指数增长是挺有意义的。也就是说，随着重试次数的增加，我们每次等待的时间也会逐渐递增，1秒，2秒，4秒，8秒，16秒等等。</p>
+</li>
+<li><p><strong>抖动时间窗口</strong>。<br>目前的实现，对于时间窗口来说，其实是0，即使我们等待了很久，但是他们还是同时去调用的，没有这个抖动，而单单的增加等待时间基数，只会激增等待时间，而对实际的冲突避免没有什么意思。</p>
+</li>
+</ol>
+<p>我们思考下，对于死锁这种场景来说，我们真的需要具备这两个参数吗？我觉得其实并不需要很长的“等待的基数时间”，我们需要的只是让各种死锁的请求，互相避开即可，所以其实，只需要拉长等待的时间窗口即可。</p>
+<p><img src="https://user-images.githubusercontent.com/1736354/34139128-e2a3ddfc-e4ad-11e7-88fa-937a926d7f37.jpg" alt="jitter"></p>
+<h5 id="3-1-1-_Non-Jitter，无随机">3.1.1. Non-Jitter，无随机</h5><p>无随机的方式，就是oslo.db目前使用的方式，仅指数增长。</p>
+<h5 id="3-1-2-_Full_Jitter，全量随机">3.1.2. Full Jitter，全量随机</h5><p>所以，我觉得这块可以优化下，在退避sleep的时候，加入随机机制，使得sleep的时间随机化，指数拉长调用的窗口，从而降低再次死锁概率。顺着这个思路，也提了一个<a href="https://review.openstack.org/#/c/527362/2" target="_blank" rel="external">patch/527362</a>: Improve exponential backoff for wrap_db_retry，希望能够改进一下重试机制。加上这个机制后，等待时间变为0-1秒，0-2秒，0-4秒，0-8秒，0-16秒等范围内随机。</p>
+<h5 id="3-1-3-_Top_X_Jitter，顶部随机">3.1.3. Top X Jitter，顶部随机</h5><p>提交之后，Micheal Bayer（后面发现这位大神是SQLAlchemy的作者，社区真是卧虎藏龙，哈哈，神奇无处不在）马上给了<a href="https://review.openstack.org/#/c/527362/1/oslo_db/api.py@178" target="_blank" rel="external">review</a>，他认为，等待的基数时间，并且在基数时间的上沿边界向下抖动（比如25%）比较好。的确，这种方法来说既保留了“安全”的重试时间，而且抖动时间窗口也在递增。</p>
+<h5 id="3-1-4-_Other_Jitter，其他随机方式">3.1.4. Other Jitter，其他随机方式</h5><p>另外，我在一个AWS的博客中发现了一篇文章：<a href="https://amazonaws-china.com/blogs/architecture/exponential-backoff-and-jitter/" target="_blank" rel="external">Exponential Backoff And Jitter</a>，写的非常不错，大致就讲的是，各种随机时间窗口加到退避算法中的流程后，对平均时间和竞争的调用数也做了一个仿真。</p>
+<p>很显然，其中，Fulljitter（0~2**n随机，和我的思路比较类似），Equal Jitter（top 50%的边界抖动，和Micheal Bayer的思路比较类似），很显然但抖动范围大，平均抖动时间比较低，但从平均时间和冲突避免这两个指标看，Fulljitter是获胜的。但这并不意味着在所有情况下，我们都需要很低的时间间隔，更长的时间会拥有更“安全”的重试时间，代价则是更耗时了，我想这确实是一个值得思考的tradeoff。</p>
+<h4 id="3-2_SQLAlchemy_Session中的排序机制">3.2 SQLAlchemy Session中的排序机制</h4><p>上文已经提到，造成死锁的根本原因实际上是在一个事务中，更新2个表的时候的顺序不一致。在并发调用的时候，产生了死锁。Python的代码是按顺序更新的（先更新event内容，再更新action），但是为什么SQLAlchemy产生的SQL是乱序的呢？</p>
+<p>通过阅读SQLAlchemy的源码，最终找到了答案。先说结论：Session中的操作顺序，由UnitOfWork机制决定最终的调用顺序，如果没有依赖关系，最终执行顺序是不稳定的。</p>
+<h5 id="3-2-1-_SQLAlchemy的缓存刷新机制">3.2.1. SQLAlchemy的缓存刷新机制</h5><p>SQLAlchemy在进行数据刷新的时候，会有一个flush的过程(实现见<a href="https://github.com/zzzeek/sqlalchemy/blob/75bdcd096f12012bf45cffebd597c33b501c2ef2/lib/sqlalchemy/orm/session.py#L2203" target="_blank" rel="external">lib/sqlalchemy/orm/session.py#def flush</a>，这个过程会将所有的object的变化，刷新到数据库中。例如，会将插入、修改、删除，转换为INSERT、UPDATE、DELETE等操作。而刷新执行的顺序，是通过Session的”UNIT of Worker”依赖机制保证的。</p>
+<p>我们可以从有SQLalchemy作者写的一篇关于其架构的文章<a href="http://www.aosabook.org/en/sqlalchemy.html" target="_blank" rel="external">《SQLAlchemy》</a>中看到一些关于Session相关的数据结构：<br><img src="https://user-images.githubusercontent.com/1736354/34139960-93fe0f2e-e4b2-11e7-94ab-e439712a7258.png" alt="session-overview"></p>
+<p>Session维护着如上图所示的结构，在每次刷新的时候，会将object的变动刷新到数据库中。如作者所说说，flush这个函数可能是 SQLAlchemy最复杂的函数。</p>
+<h5 id="3-2-2-_SQLAlchemy的UNIT_of_WORK机制">3.2.2. SQLAlchemy的UNIT of WORK机制</h5><p>我们先看看来自作者的介绍：</p>
+<blockquote>
+<p>The job of the unit of work is to move all of the pending state present in a particular Session out to the database, emptying out the new, dirty, and deleted collections maintained by the Session. Once completed, the in-memory state of the Session and what’s present in the current transaction match. The primary challenge is to determine the correct series of persistence steps, and then to perform them in the correct order.</p>
+</blockquote>
+<p>UOW的工作主要是将session维护的new、dirty、deleted的集合清掉并落入数据库中。主要挑战就是决定正确的持久化步骤和顺序。我们看到了关键的地方，排序！</p>
+<p>从这篇文章中，我们了解到，其实对于UOW来说，共有两级排序：<br><img src="https://user-images.githubusercontent.com/1736354/34144270-c8be1bfa-e4cb-11e7-87df-ab894059bd13.jpg" alt="sort"><br>1） 第一级排序，是针对于多个表（class）之前的排序，依赖信息从表之间的关系获取，例如文章中所举的User和Address的例子，需要在user插入后，有了主键，然后再去更新。<br>2）第二季排序，是针对于一个表（class）之中操作的排序，例如文章中所举的，前一个插入的user依赖后一个user。</p>
+<p>然而，无论是哪个排序，如果表和表之间在SQLAlchemy定义模型的时候，并没有指定其顺序，那么便没有依赖关系，也便意味着，顺序是不稳定的。</p>
+<p>在我们出现的问题中，action和action_event在<a href="https://github.com/openstack/nova/blob/07c925a5321e379293bbf0e55bf3c40798eaf21b/nova/db/sqlalchemy/models.py#L1272-L1309" target="_blank" rel="external">model定义的代码</a>中，并未指定action和event之前的关系，因此，SQLAlchemy分析依赖的时候，只是将这两个表当做独立的2个表。</p>
+<h5 id="3-2-3-_实战一把">3.2.3. 实战一把</h5><p>为了证明我们的分析，我们在SQLAlchemy打印一些日志来记录依赖关系和最终执行的结果，代码见<a href="https://github.com/zzzeek/sqlalchemy/blob/68879d50faa9e2602e55d5d191647b1cf864e5ab/lib/sqlalchemy/orm/unitofwork.py#L372-L377" target="_blank" rel="external">lib/sqlalchemy/ormunitofwork.py</a>，取消掉这些注释即可。</p>
+<blockquote>
+<p>dependencies: set([(SaveUpdateAll(Mapper|InstanceActionEvent|instance_actions_events), DeleteAll(Mapper|InstanceActionEvent|instance_actions_events)), (SaveUpdateAll(Mapper|InstanceAction|instance_actions), DeleteAll(Mapper|InstanceAction|instance_actions))])</p>
+<p>cycles: set([])</p>
+<p>sort: [SaveUpdateAll(Mapper|InstanceAction|instance_actions), SaveUpdateAll(Mapper|InstanceActionEvent|instance_actions_events), DeleteAll(Mapper|InstanceActionEvent|instance_actions_events), DeleteAll(Mapper|InstanceAction|instance_actions)]</p>
+<p>COUNT OF POSTSORT ACTIONS 4</p>
+</blockquote>
+<p>上面共4行信息，我们需要的是dependencies信息和sort信息，从依赖信息我们可以看到，我们进行的这个事务仅有2组依赖，分别是action和event_action的缓存入库先于缓存清空，而action和event_action之间是没有依赖关系的。所以，最终生成的sort列表，其实是无法保证稳定性的。</p>
+<p>所以，才会出现我们本文所出的问题，一会先刷新action，一会先刷新action_event。然而，对于这种问题并不是无解，我们只需要在这两个表里加入relationship，使他们有依赖就可以了。如果确实没有什么关联，那我们就需要思考把更新拆分到更小的事务中了，就像MySQL官网说的那样：<strong>Keep transactions small and short in duration to make them less prone to collision</strong>。</p>
+<h3 id="4-_总结。">4. 总结。</h3><p>TL;DR。写完这篇文章发现，有点太长了，不想细看的看看总结吧，哈哈。</p>
+<ol>
+<li>遇到OpenStack数据库相关问题，可以通过设置[database]/connection_debug=100进行SQL打印。</li>
+<li>SQLAlchemy对于一个session中的更新顺序，如果表之间没有依赖，是无法保证顺序的。</li>
+<li>在一个事务中，更新多张表，需要考虑顺序，若ORM无法保证的更新顺序，尽量不要放在同一个事务中，尽量确保事务做的事简单。</li>
+<li>oslo.db目前的死锁重试机制，是大家一起等X秒，很有可能再次死锁。</li>
+</ol>
+<h3 id="参考">参考</h3><ol>
+<li><a href="https://bugs.launchpad.net/nova/+bug/1719561" target="_blank" rel="external">Instance action’s updated_at issue</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-deadlocks-handling.html" target="_blank" rel="external">How to Minimize and Handle Deadlocks</a></li>
+<li><a href="https://amazonaws-china.com/blogs/architecture/exponential-backoff-and-jitter/" target="_blank" rel="external">Exponential Backoff And Jitter</a></li>
+<li><a href="http://www.sqlalchemy.org/library.html" target="_blank" rel="external">SQLAlchemy library(tutorials, arch doc, talks, posts</a></li>
+<li><a href="https://news.ycombinator.com/item?id=10321331" target="_blank" rel="external">Some discussion on backoff algorithm</a></li>
+<li><a href="https://stackoverflow.com/questions/10154343/is-sqlalchemy-saves-order-in-adding-objects-to-session" target="_blank" rel="external">Is SQLAlchemy saves order in adding objects to session?</a></li>
+<li><a href="http://www.aosabook.org/en/sqlalchemy.html" target="_blank" rel="external">SQLAlchemy at Architecture of Open Source Applications</a></li>
+</ol>
+]]></content>
+    
+    <summary type="html">
+    
+      &lt;p&gt;本篇文章可以看做是一个问题定位、分析、学习过程的记录，介绍了OpenStack Nova一个死锁问题的分析和解决的过程，你将从本文了解到SQLAlchemy的session中的语序排序机制、OpenStack的死锁重试机制及改进点以及一些调试的手段。&lt;/p&gt;
+&lt;h3 id=
+    
+    </summary>
+    
+    
+      <category term="Nova" scheme="http://yikun.github.io/tags/Nova/"/>
+    
+      <category term="OpenStack" scheme="http://yikun.github.io/tags/OpenStack/"/>
+    
+      <category term="Python" scheme="http://yikun.github.io/tags/Python/"/>
+    
+  </entry>
+  
+  <entry>
     <title>Nova调度相关特性理解与梳理</title>
     <link href="http://yikun.github.io/2017/12/06/Nova%E8%B0%83%E5%BA%A6%E7%9B%B8%E5%85%B3%E7%89%B9%E6%80%A7%E7%90%86%E8%A7%A3%E4%B8%8E%E6%A2%B3%E7%90%86/"/>
     <id>http://yikun.github.io/2017/12/06/Nova调度相关特性理解与梳理/</id>
     <published>2017-12-06T01:41:11.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<p>准备拿这篇文章梳理下OpenStack Nova调度相关的特性，由于目前Placement的引入，说起调度，和这个组件是分不开的，所以本文也可以看做是Placement的一个历史特性的梳理。第一阶段会按照版本，先把调度相关的BP过一遍，然后再通过理解和使用加强理解。好吧，我承认又开了一个系列的坑，话不多说，开始！</p>
 <a id="more"></a>
@@ -81,11 +232,12 @@
     <link href="http://yikun.github.io/2017/11/16/%E8%B7%A8Cell%E5%9C%BA%E6%99%AF%E4%B8%8B%E6%9F%A5%E8%AF%A2%E7%9A%84%E9%82%A3%E4%BA%9B%E4%BA%8B%E5%84%BF/"/>
     <id>http://yikun.github.io/2017/11/16/跨Cell场景下查询的那些事儿/</id>
     <published>2017-11-16T13:19:14.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_背景">1. 背景</h3><p>我们知道Nova目前正在慢慢地演进到Cell V2架构，Cell V2架构中，很重要的一个变化就是数据库的拆分，清晰的划分了数据库的职能，从而有具备横向扩展的能力。顶层数据库(nova_api)用来存储全局数据，而Cell中的数据库(nova_cellX)仅存储计算节点相关的数据。比如，创建虚拟机的全局数据，比如Flavor、Keypair之类的数据，放在上层的nova_api数据库中，而虚拟机本身的信息，比如某个虚拟机的信息，放在了子Cell中。</p>
 <p><img src="https://user-images.githubusercontent.com/1736354/33543222-307b8974-d911-11e7-9993-5373720491df.jpg" alt="cell"></p>
 <p>这样的架构另一个好处是Cell很轻松的可以实现扩展，从而提升虚拟机数量的规模。然而，这引入了一个问题，就是没有一个地方存储着全量虚拟机的数据了。当我们需要一些全局的虚拟机数据查询时（比如查询全量虚拟机列表）就比较棘手了。</p>
+<a id="more"></a>
 <h3 id="2-_数据库的拆分">2. 数据库的拆分</h3><p>其实这样的架构在目前互联网业务中十分常见，随着业务量和历史数据的增长，很多业务都需要进行分表分库，切分的目的主要有2个，一是单个数据库的存储空间已经不足以支撑庞大的数据量，另外一个是单个数据库所能承载的连接数或者并发数不足以满足逐渐飙升的请求。一般来说，数据库的分库为垂直分库和水平分库。</p>
 <p><img src="https://user-images.githubusercontent.com/1736354/33540293-5f4852ca-d905-11e7-8e48-04b111cdbdf2.jpg" alt="split"></p>
 <ol>
@@ -108,7 +260,7 @@
 <p><img src="https://user-images.githubusercontent.com/1736354/33542019-3f48325e-d90c-11e7-9b9a-9943b4dc7ede.jpg" alt="gmarker"></p>
 <p>参考代码：<a href="https://github.com/openstack/nova/blob/3a19f89f34a1eaee7eec2dcc7b809058d61950f0/nova/compute/instance_list.py#L134,L142" target="_blank" rel="external">nova/compute/instance_list.py#L134,L142</a><br>具体获取marker时，是先在instance_mapping中查找了marker所在的cell，然后，在target_cell拿到了marker的信息，参考代码<a href="https://github.com/openstack/nova/blob/3a19f89f34a1eaee7eec2dcc7b809058d61950f0/nova/compute/instance_list.py#L66,L88" target="_blank" rel="external">nova/compute/instance_list.py#L66,L88</a>。</p>
 <h4 id="Step_2_并行查询子Cell中的local_marker，并获取满足条件的虚拟机。">Step 2 并行查询子Cell中的local marker，并获取满足条件的虚拟机。</h4><p><img src="https://user-images.githubusercontent.com/1736354/33542026-4784411a-d90c-11e7-8499-b24ef3a4cd03.jpg" alt="finding"></p>
-<p>在第一步中，我们拿到了i5的信息，由于排序是按照created_at，逆序，那我们查询local marker的时候，只需要一条SQL就可以拿到Cell中满足条件的local marker：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> instances <span class="keyword">ORDER</span> <span class="keyword">BY</span> created_at <span class="keyword">DESC</span> <span class="keyword">limit</span> <span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p>在第一步中，我们拿到了i5的信息，由于排序是按照created_at，逆序，那我们查询local marker的时候，只需要一条SQL就可以拿到Cell中满足条件的local marker：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> instances <span class="keyword">ORDER</span> <span class="keyword">BY</span> created_at <span class="keyword">DESC</span> <span class="keyword">limit</span> <span class="number">1</span> <span class="keyword">where</span> created_at &lt;= i5.created_at</div></pre></td></tr></table></figure></p>
 <p>然后，我们再根据这个local marker就可以拿到满足条件的虚拟机列表了。当然，我们需要各取limit个，因为也许最终满足条件的都在一个cell中，所以，我们取得的虚拟机列表中虚拟机的个数应该按照全局limit来获取。<br>值得注意的是，local marker如果不是global marker的话，我们需要把local marker也算在满足条件的列表中，因为全局来看，这个marker也是满足用户条件的。如果local marker也刚好就是global marker，那这个marker就不用管了。<br>参考代码<a href="https://github.com/openstack/nova/blob/3a19f89f34a1eaee7eec2dcc7b809058d61950f0/nova/compute/instance_list.py#L166,L212" target="_blank" rel="external">nova/compute/instance_list.py#L166,L212</a>，先找到满足条件的第一个local marker，然后就按照之前的流程，获取marker之后的记录就可以了。</p>
 <h4 id="Step_3_合并排序。">Step 3 合并排序。</h4><p>在步骤2中，我们会得到2个列表，分别是从cell1和cell2中拿到的数据。这两个列表是有序的，但是当我们合并后，需要进行全局重排序。这样，我们就拿到了有序的列表。<br><img src="https://user-images.githubusercontent.com/1736354/33542040-5001b066-d90c-11e7-8bbb-b1119c30d037.jpg" alt="merge"></p>
 <p>参考代码<a href="https://github.com/openstack/nova/blob/3a19f89f34a1eaee7eec2dcc7b809058d61950f0/nova/compute/instance_list.py#L228,L234" target="_blank" rel="external">nova/compute/instance_list.py#L228,L234</a>，可以看到，由于每个cell拿到的数据都是有序的，因此，最终排序的时候，也是用了heapq这个数据结构，来高效的完成有序列表的合并排序。</p>
@@ -119,7 +271,9 @@
     
     <summary type="html">
     
-      &lt;h3 id=&quot;1-_背景&quot;&gt;1. 背景&lt;/h3&gt;&lt;p&gt;我们知道Nova目前正在慢慢地演进到Cell V2架构，Cell V2架构中，很重要的一个变化就是数据库的拆分，清晰的划分了数据库的职能，从而有具备横向扩展的能力。顶层数据库(nova_api)用来存储全局数据，而Cell中
+      &lt;h3 id=&quot;1-_背景&quot;&gt;1. 背景&lt;/h3&gt;&lt;p&gt;我们知道Nova目前正在慢慢地演进到Cell V2架构，Cell V2架构中，很重要的一个变化就是数据库的拆分，清晰的划分了数据库的职能，从而有具备横向扩展的能力。顶层数据库(nova_api)用来存储全局数据，而Cell中的数据库(nova_cellX)仅存储计算节点相关的数据。比如，创建虚拟机的全局数据，比如Flavor、Keypair之类的数据，放在上层的nova_api数据库中，而虚拟机本身的信息，比如某个虚拟机的信息，放在了子Cell中。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/1736354/33543222-307b8974-d911-11e7-9993-5373720491df.jpg&quot; alt=&quot;cell&quot;&gt;&lt;/p&gt;
+&lt;p&gt;这样的架构另一个好处是Cell很轻松的可以实现扩展，从而提升虚拟机数量的规模。然而，这引入了一个问题，就是没有一个地方存储着全量虚拟机的数据了。当我们需要一些全局的虚拟机数据查询时（比如查询全量虚拟机列表）就比较棘手了。&lt;/p&gt;
     
     </summary>
     
@@ -135,10 +289,11 @@
     <link href="http://yikun.github.io/2017/10/25/%E8%AF%91-An-Update-on-the-Placement-API-and-Scheduler-plans-for-Queens/"/>
     <id>http://yikun.github.io/2017/10/25/译-An-Update-on-the-Placement-API-and-Scheduler-plans-for-Queens/</id>
     <published>2017-10-25T06:10:07.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<p>原文链接：<a href="https://github.com/jaypipes/articles/blob/master/openstack/placement-queens-update.md" target="_blank" rel="external">https://github.com/jaypipes/articles/blob/master/openstack/placement-queens-update.md</a></p>
 <p>这篇文章主要讲了在过去几个版本中，OpenStack社区对于Nova调度及Placement服务相关工作的更新进展。我也会着重介绍一些我们在Q版本中主要处理的几个BP，同时也介绍了未来重点工作的路标，我们会在未来的几个release中完成它们。</p>
+<a id="more"></a>
 <h3 id="1-_过去版本完成情况的总结">1. 过去版本完成情况的总结</h3><p>Placement API已经在OpenStack的N版本成为一个独立的API endpoint。</p>
 <p>Placement API将存量记录(tracking inventory)、资源消耗(resource consumption)、资源的分组和共享(grouping and sharing of resources)以及表示资源所具能力字符串标签（string capability tags, traits）这些数据暴露出来。</p>
 <p>从那之后，社区持续地改进API，并且在Nova中更进一步地进行集成。</p>
@@ -197,7 +352,8 @@
     
     <summary type="html">
     
-      &lt;p&gt;原文链接：&lt;a href=&quot;https://github.com/jaypipes/articles/blob/master/openstack/placement-queens-update.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https
+      &lt;p&gt;原文链接：&lt;a href=&quot;https://github.com/jaypipes/articles/blob/master/openstack/placement-queens-update.md&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;https://github.com/jaypipes/articles/blob/master/openstack/placement-queens-update.md&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;这篇文章主要讲了在过去几个版本中，OpenStack社区对于Nova调度及Placement服务相关工作的更新进展。我也会着重介绍一些我们在Q版本中主要处理的几个BP，同时也介绍了未来重点工作的路标，我们会在未来的几个release中完成它们。&lt;/p&gt;
     
     </summary>
     
@@ -213,10 +369,11 @@
     <link href="http://yikun.github.io/2017/10/11/OpenStack-Nova%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%86%B7%E8%BF%81%E7%A7%BB%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/"/>
     <id>http://yikun.github.io/2017/10/11/OpenStack-Nova虚拟机冷迁移流程解析/</id>
     <published>2017-10-11T08:36:09.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_概述">1. 概述</h3><p>虚拟机冷迁移由于当用户想把虚拟机从一个计算节点移动到其他节点。主要涉及的命令如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> nova migrate server_id</div><div class="line"><span class="meta">$</span> nova resize-confirm server_id</div></pre></td></tr></table></figure></p>
 <p>看到后是不是觉得有点奇怪为啥migrate之后，还要resize-confirm？resize操作其实和migrate操作比较类似，不同的是迁移前后的flavor不一样。一般情况下resize的场景是，对虚拟机进行扩容，把flavor调大之类的。所以，在代码级别，nova也将两个流程合一了。migrate就是一个没有flavor变化的resize。</p>
+<a id="more"></a>
 <h3 id="2-_核心流程">2. 核心流程</h3><p>下图是虚拟机冷迁移时，涉及的组件交互：<br><img src="https://user-images.githubusercontent.com/1736354/31429902-dd65687a-aea1-11e7-9209-06c37a09fe4b.png" alt="instance migrate overview"><br>我们可以看到，在迁移时，主要流程包括调度、迁移准备、迁移、完成迁移。</p>
 <ol>
 <li>调度。conducotr通过select_destination访问Scheduler进行<strong>调度</strong>，最终选择一个可用的目的节点；</li>
@@ -230,7 +387,8 @@
     
     <summary type="html">
     
-      &lt;h3 id=&quot;1-_概述&quot;&gt;1. 概述&lt;/h3&gt;&lt;p&gt;虚拟机冷迁移由于当用户想把虚拟机从一个计算节点移动到其他节点。主要涉及的命令如下：&lt;br&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;
+      &lt;h3 id=&quot;1-_概述&quot;&gt;1. 概述&lt;/h3&gt;&lt;p&gt;虚拟机冷迁移由于当用户想把虚拟机从一个计算节点移动到其他节点。主要涉及的命令如下：&lt;br&gt;&lt;figure class=&quot;highlight shell&quot;&gt;&lt;table&gt;&lt;tr&gt;&lt;td class=&quot;gutter&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;1&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;2&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;td class=&quot;code&quot;&gt;&lt;pre&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;$&lt;/span&gt; nova migrate server_id&lt;/div&gt;&lt;div class=&quot;line&quot;&gt;&lt;span class=&quot;meta&quot;&gt;$&lt;/span&gt; nova resize-confirm server_id&lt;/div&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;&lt;/figure&gt;&lt;/p&gt;
+&lt;p&gt;看到后是不是觉得有点奇怪为啥migrate之后，还要resize-confirm？resize操作其实和migrate操作比较类似，不同的是迁移前后的flavor不一样。一般情况下resize的场景是，对虚拟机进行扩容，把flavor调大之类的。所以，在代码级别，nova也将两个流程合一了。migrate就是一个没有flavor变化的resize。&lt;/p&gt;
     
     </summary>
     
@@ -246,9 +404,10 @@
     <link href="http://yikun.github.io/2017/09/27/OpenStack-Nova%E8%99%9A%E6%8B%9F%E6%9C%BA%E5%88%9B%E5%BB%BA%E6%B5%81%E7%A8%8B%E8%A7%A3%E6%9E%90/"/>
     <id>http://yikun.github.io/2017/09/27/OpenStack-Nova虚拟机创建流程解析/</id>
     <published>2017-09-27T03:15:15.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="1-_概述">1. 概述</h2><p>Nova是OpenStack中处理计算业务（虚拟机、裸机、容器）的组件，整体的虚拟机创建流程自然是学习和熟悉Nova组件的第一步。本篇文章主要基于OpenStack Pike版本，基于最新的Cell v2架构部署为例，来介绍虚拟机的创建流程，并分析了Pike等最近几个版本中，虚拟机创建流程的关键变化。</p>
+<a id="more"></a>
 <h2 id="2-_虚拟机创建流程">2. 虚拟机创建流程</h2><p><img src="https://user-images.githubusercontent.com/1736354/31421492-36a84bdc-ae7a-11e7-94b3-d85fab04762c.png" alt="instance create pike"></p>
 <p>上图是虚拟机创建流程的整体流程，可以看到整体虚拟机创建流程一次经过了API、Conductor、Scheduler、Placement、Compute等主要服务，下面我们逐步介绍下虚拟机创建时，这些服务做的一些事情以及在Pike版本新引入的部分：</p>
 <h3 id="2-1_Nova-API">2.1 Nova-API</h3><p>在OpenStack的组件中，基本每个组件都会有一个API服务，对于Nova来说API服务主要的作用就是接收由用户通过Client或者一些其他REST请求工具（比如 curl、postman）发送的请求。一般来说会包含一些虚拟机创建的参数，比如虚拟机的规格、可用域之类的信息。</p>
@@ -299,7 +458,7 @@
     
     <summary type="html">
     
-      &lt;h2 id=&quot;1-_概述&quot;&gt;1. 概述&lt;/h2&gt;&lt;p&gt;Nova是OpenStack中处理计算业务（虚拟机、裸机、容器）的组件，整体的虚拟机创建流程自然是学习和熟悉Nova组件的第一步。本篇文章主要基于OpenStack Pike版本，基于最新的Cell v2架构部署为例，来介绍
+      &lt;h2 id=&quot;1-_概述&quot;&gt;1. 概述&lt;/h2&gt;&lt;p&gt;Nova是OpenStack中处理计算业务（虚拟机、裸机、容器）的组件，整体的虚拟机创建流程自然是学习和熟悉Nova组件的第一步。本篇文章主要基于OpenStack Pike版本，基于最新的Cell v2架构部署为例，来介绍虚拟机的创建流程，并分析了Pike等最近几个版本中，虚拟机创建流程的关键变化。&lt;/p&gt;
     
     </summary>
     
@@ -315,7 +474,7 @@
     <link href="http://yikun.github.io/2017/08/16/%E8%AF%91-Simpler-Road-to-Cinder-Active-Active/"/>
     <id>http://yikun.github.io/2017/08/16/译-Simpler-Road-to-Cinder-Active-Active/</id>
     <published>2017-08-16T12:50:32.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>译注：本篇文章为作者介绍Cinder AA方案的文章，作者是gorka，是实现cinder AA BP的core，文章介绍了这哥们实现AA时的记录，算是对方案的一种解释以及设计思路的总结，核心思想为以下几点：</p>
@@ -393,7 +552,7 @@
     <link href="http://yikun.github.io/2016/07/22/%E4%B8%80%E6%AC%A1%E6%9C%89%E5%85%B3OpenStack%E8%AF%B7%E6%B1%82%E7%9A%84%E6%80%A7%E8%83%BD%E9%97%AE%E9%A2%98%E5%88%86%E6%9E%90/"/>
     <id>http://yikun.github.io/2016/07/22/一次有关OpenStack请求的性能问题分析/</id>
     <published>2016-07-22T15:09:25.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="0-_背景介绍">0. 背景介绍</h3><p>目前OpenStack对外提供的北向接口是以REST接口提供的，也就是说通过HTTP（HTTPS）接口进行请求，进行虚拟机或者卷等相关的操作。OpenStack提供I层基本的能力，比如创建、查询、删除虚拟机或者卷等操作，以OpenStack作为平台，对上提供用户接口，对下操作下层Driver完成对设备的操作，其大致的架构基本如下所示：</p>
 <a id="more"></a>
@@ -428,7 +587,7 @@
     <link href="http://yikun.github.io/2016/06/09/%E4%B8%80%E8%87%B4%E6%80%A7%E5%93%88%E5%B8%8C%E7%AE%97%E6%B3%95%E7%9A%84%E7%90%86%E8%A7%A3%E4%B8%8E%E5%AE%9E%E8%B7%B5/"/>
     <id>http://yikun.github.io/2016/06/09/一致性哈希算法的理解与实践/</id>
     <published>2016-06-09T02:43:54.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="0-_概述">0. 概述</h3><p>在维基百科中，是这么定义的</p>
 <blockquote>
@@ -519,7 +678,7 @@
     <link href="http://yikun.github.io/2016/04/15/%E7%90%86%E8%A7%A3Python%E4%B8%AD%E7%9A%84%E2%80%9Cwith%E2%80%9D/"/>
     <id>http://yikun.github.io/2016/04/15/理解Python中的“with”/</id>
     <published>2016-04-15T15:44:15.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_缘起">1. 缘起</h3><p>Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> open( <span class="string">"a.txt"</span> ) <span class="keyword">as</span> f :</div><div class="line">    <span class="comment"># do something</span></div></pre></td></tr></table></figure>
@@ -577,7 +736,7 @@
     <link href="http://yikun.github.io/2016/04/03/%E5%AD%98%E5%82%A8%E6%95%B0%E6%8D%AE%E5%8C%85%E7%9A%84%E4%B8%80%E7%94%9F/"/>
     <id>http://yikun.github.io/2016/04/03/存储数据包的一生/</id>
     <published>2016-04-03T14:04:23.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<p>最近认认真真学习了一个叫<a href="https://www.brighttalk.com/webcast/663/169543" target="_blank" rel="external">《Life of a Storage Packet》</a>讲座，借助这个讲座将整个存储的过程理解了下，不放过任何一个有疑问的点。这篇文章算是对讲座的理解和自己收获的总结，同时也为那些对存储系统不够了解又想要了解的初学者，展现一个存储数据包的“生命”。这个演讲主要聚焦在“整体的存储”，强调存储系统中各个基本元素的关系，并且尽可能简单、清楚地用一种不同的方式可视化一些存储的概念。</p>
 <p>先上一张大图，可以说这篇文章目的就是解释这个图：<br><img src="https://cloud.githubusercontent.com/assets/1736354/14232888/3dc0f734-f9ea-11e5-877c-8b37b7addbdd.png" alt="12"></p>
@@ -686,7 +845,7 @@
     <link href="http://yikun.github.io/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Cinder%E4%B8%AD%E7%9A%84%E8%B0%83%E5%BA%A6%E6%9C%BA%E5%88%B6/"/>
     <id>http://yikun.github.io/2016/03/05/OpenStack源码分析-Cinder中的调度机制/</id>
     <published>2016-03-04T16:45:44.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<p>整理了一下目前cinder中支持的调度的Filter和Weigher：<br><img src="https://cloud.githubusercontent.com/assets/1736354/15445332/29c1730c-1f2f-11e6-8706-4b38f5fc9e0d.png" alt="scheduler"><br>后面结合源码看下实现，留坑~</p>
 ]]></content>
@@ -707,7 +866,7 @@
     <link href="http://yikun.github.io/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Service%E5%90%AF%E5%8A%A8%E6%B5%81%E7%A8%8B/"/>
     <id>http://yikun.github.io/2016/03/05/OpenStack源码分析-Service启动流程/</id>
     <published>2016-03-04T16:38:21.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<p><img src="https://cloud.githubusercontent.com/assets/1736354/13372372/d42f0c0a-dd7b-11e5-9656-1f2ff817e53a.png" alt="cinder service launcher"></p>
 <a id="more"></a>
@@ -737,7 +896,7 @@
     <link href="http://yikun.github.io/2016/03/05/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-%E6%8C%82%E8%BD%BD%E5%8D%B7%E6%B5%81%E7%A8%8B/"/>
     <id>http://yikun.github.io/2016/03/05/OpenStack源码分析-挂载卷流程/</id>
     <published>2016-03-04T16:32:58.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_挂卷流程">1. 挂卷流程</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/13493796/5a1fda3a-e17b-11e5-98be-2bca8a26e0bb.png" alt="volume attach"><br>    当Nova volume-attach server volume执行后，主要经过以下几步：<br>a.  Nova Client解析指令，通过RESTFUL接口访问nova-api；<br>b.  Nova API解析响应请求获取虚拟机的基本信息，然后向cinder-api发出请求保留，并向nova-compute发送RPC异步调用请求卷挂载；<br>c.  Nova-compute向cinder-api初始化信息，并根据初始化连接调用Libvirt的接口完成挂卷流程；<br>d.  进而调用cinder-volume获取连接，获取了连接后，通过RESTFUL请求cinder-api进行数据库更新操作。</p>
 <a id="more"></a>
@@ -766,7 +925,7 @@
     <link href="http://yikun.github.io/2016/02/23/%E4%BC%98%E9%9B%85%E5%9C%B0%E8%B0%83%E8%AF%95OpenStack/"/>
     <id>http://yikun.github.io/2016/02/23/优雅地调试OpenStack/</id>
     <published>2016-02-22T16:00:52.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<p>恩，题目首先要起的高逼格一些。2333。</p>
 <p>在前面学习代码的过程中，主要通过源码来学习，开始学起来确实有点费劲，因为欠缺对OpenStack的整体的意识，于是<a href="http://yikun.github.io/2016/02/10/搭建OpenStack开发环境/">搭建OpenStack开发环境</a>对OpenStack的运行环境和使用有了初步认知。也看到了启动OpenStack后的一些相关进程，那么这些进程是如何与源码对应起来的呢？如何去调试OpenStack呢？本篇文章就讲下我的探索。</p>
@@ -776,6 +935,10 @@
 <h3 id="2-_启动OpenStack服务">2. 启动OpenStack服务</h3><p>在<a href="http://yikun.github.io/2016/02/10/搭建OpenStack开发环境/">搭建OpenStack开发环境</a>一文中，我们介绍了使用devstack启动开发环境，我们通过DevStack启动各个服务后：</p>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"># ... ...</div><div class="line">This is your host IP address: 192.168.56.101</div><div class="line">This is your host IPv6 address: ::1</div><div class="line">Horizon is now available at http://192.168.56.101/dashboard</div><div class="line">Keystone is serving at http://192.168.56.101:5000/</div><div class="line">The default users are: admin and demo</div><div class="line">The password: 1</div></pre></td></tr></table></figure>
 <p>使用screen来查看：</p>
+<blockquote>
+<p><strong>Note(2018.01.18)</strong>: 目前社区已经废弃了screen这种方式来启动进程了（参考<a href="https://review.openstack.org/#/c/499186/" target="_blank" rel="external">Remove screen support from devstack completely</a>），原因是OpenStack需要管理的进程太多了，screen已没有“能力”去管理。</p>
+<p>社区已经切换到systemd来进行进程管理，可以参考官方提供的<a href="https://docs.openstack.org/devstack/latest/systemd.html" target="_blank" rel="external">Using Systemd in DevStack</a>一文来入门。</p>
+</blockquote>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">screen -x stack</div></pre></td></tr></table></figure>
 <p>不得不说screen真是神器，虚拟了多个Terminal的Tab，使用”Ctrl+A+P”和”Ctrl+A+N”可以切换tab，使用”Ctrl+A+D”可以断开连接，在每个tab中可以使用“Ctrl+C”来中断进程：<br><img src="https://cloud.githubusercontent.com/assets/1736354/13224079/e3309ca4-d9c1-11e5-897a-04ed2b6c8e82.png" alt="qq20160223-0 2x"><br>我们看到在图中，有Nova和Cinder相关的进程，并且停在了cinder-api的进程上，每个tab中的进程都在运行着。</p>
 <h3 id="3-_编辑代码">3. 编辑代码</h3><p>因为代码大部分都在远端的运行（比如虚拟机），而开发环境则在近端（比如宿主机），如果在远端和近端都维护一套代码，不可避免的会拷来拷去，有时拷错了还得找半天原因。所以得想办法把远端的代码“共享”到近端。因此，我们使用sshfs共享文件：</p>
@@ -804,7 +967,7 @@
     <link href="http://yikun.github.io/2016/02/21/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Cinder%E5%88%A0%E9%99%A4%E5%8D%B7%E6%B5%81%E7%A8%8B/"/>
     <id>http://yikun.github.io/2016/02/21/OpenStack源码分析-Cinder删除卷流程/</id>
     <published>2016-02-21T11:56:59.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_Cinder删除卷整体流程">1. Cinder删除卷整体流程</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/13130440/f8979c4c-d61e-11e5-8665-84b9d2f928f9.png" alt="delete"></p>
 <p>删除卷流程比较简单，主要就是cinder-api解析Cilent的指令，并响应，发送RPC调用cinder-volume的delete操作，详细流程如下：<br>a. Client发送删除指令，通过RESTful接口访问cinder-api；<br>b. Cinder-api解析响应请求，通过RPC调用cinder-volume；<br>c. Cinder-volume通过调用Driver的delete函数进行删除。</p>
@@ -831,7 +994,7 @@
     <link href="http://yikun.github.io/2016/02/14/OpenStack%E6%BA%90%E7%A0%81%E5%88%86%E6%9E%90-Cinder%E5%88%9B%E5%BB%BA%E5%8D%B7%E6%B5%81%E7%A8%8B/"/>
     <id>http://yikun.github.io/2016/02/14/OpenStack源码分析-Cinder创建卷流程/</id>
     <published>2016-02-14T09:43:30.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_Cinder创卷整体流程">1. Cinder创卷整体流程</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/13130372/71de5178-d61e-11e5-8d7c-6b9f0a244e41.png" alt="create"></p>
 <p>如整体架构图所示，创建卷涉及的答题步骤主要有以下几步：<br>a. Client发送请求，通过RESTFUL接口访问cinder-api。<br>b. Api解析响应请求，api解析由Client发送来的请求，并通过rpc进一步调用cinder-scheduler。<br>c. Scheduler对资源进行调度，scheduler选择合适的节点进行。<br>d. Volume调用Driver创建卷，volume通过指定Driver进行卷的创建。</p>
@@ -863,7 +1026,7 @@
     <link href="http://yikun.github.io/2016/02/10/%E6%90%AD%E5%BB%BAOpenStack%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/"/>
     <id>http://yikun.github.io/2016/02/10/搭建OpenStack开发环境/</id>
     <published>2016-02-09T16:10:09.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<p>前段时间主要了解了一些OpenStack相关的基础性东西，现在希望通过安装使用来增强一下对系统整体的认识，最近也读了一篇文章<a href="http://www.csdn.net/article/2014-04-10/2819247-how-to-learn-opensouce-project-&amp;-ceph" target="_blank" rel="external">如何学习开源项目</a>，基本和我的想法很类似，所以基本上也就是按照这个节奏来的。不说废话了，开始。</p>
 <a id="more"></a>
@@ -905,7 +1068,7 @@
     <link href="http://yikun.github.io/2016/02/03/%E5%AD%98%E5%82%A8%E7%9F%A5%E8%AF%86%E5%AD%A6%E4%B9%A0/"/>
     <id>http://yikun.github.io/2016/02/03/存储知识学习/</id>
     <published>2016-02-03T14:46:58.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="1-_磁盘基本知识">1. 磁盘基本知识</h2><p>磁盘大致由盘片、磁头、步进电机等几部分组成组成。<br>盘面：硬盘一般含有一个或多个盘片，一个盘片包含两个盘面。<br>磁道：每个盘面被划成多个狭窄的同心圆环，这样的圆环叫做磁道。<br>扇区：每个磁道的每段圆弧叫做一个扇区，是读写的最小单位。<br>柱面：所有盘面上的同一磁道，在竖直方向构成一个圆柱，称为柱面。<br>    读写过程：硬盘读取数据时，磁头先移动到读取扇区所在磁道的上方，这个过程耗时叫做磁盘寻道时间，平均时间为10ms。之后，通过盘片的旋转，使得扇区转到磁头的下方，这个过程耗时叫做旋转延迟时间，对于7200转/min的硬盘转一周为60*1000/7200=8.33ms，平均旋转延迟为4.17ms（半圈）。</p>
 <h3 id="2-_RAID基本知识">2. RAID基本知识</h3><p>RAID（Redundant Array of Independent Disks），即由独立的磁盘组成的具有冗余特性的阵列。其基本思想就是把多个相对便宜的硬盘组合起来，成为一个硬盘阵列组，使性能达到甚至超过一个价格昂贵、 容量巨大的硬盘。<br>RAID 0，条带化存储，容量增加，并行化，但无冗余，容易单点故障。</p>
@@ -947,7 +1110,7 @@
     <link href="http://yikun.github.io/2016/01/23/%E8%AF%91-Internationalization/"/>
     <id>http://yikun.github.io/2016/01/23/译-Internationalization/</id>
     <published>2016-01-22T16:43:37.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>Nova uses the <strong>oslo.i18n library</strong> to <strong>support internationalization</strong>. The oslo.i18n library is built on top of <strong>gettext</strong> and provides functions that are used to enable user-facing strings such as log messages to appear in the <strong>appropriate language in different locales</strong>.</p>
@@ -982,7 +1145,7 @@
     <link href="http://yikun.github.io/2016/01/20/%E8%AF%91-Virtual-Machine-States-and-Transitions/"/>
     <id>http://yikun.github.io/2016/01/20/译-Virtual-Machine-States-and-Transitions/</id>
     <published>2016-01-20T15:46:59.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<p>虚拟机的状态及其转移，主要讲了一些虚拟机的状态以及在创建虚拟机时的状态转移情况，目前理解不够深刻，需要在后面看代码时，进一步深入理解。</p>
 <a id="more"></a>
@@ -1006,7 +1169,7 @@
     <link href="http://yikun.github.io/2016/01/02/2015%EF%BC%8C%E5%86%8D%E8%A7%81/"/>
     <id>http://yikun.github.io/2016/01/02/2015，再见/</id>
     <published>2016-01-01T16:05:42.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<p>2015年是很特殊的一年，是长达快20年的学生时代的终结。从年初最开始的时候，就对今年的会发生的事情做好了准备，也基本上按照自己的想法发生了。之前，也有一些计划，基本达到预期，现在想起这些目标都算是一些学生时代的梦想吧，这篇总结也大致的从这些方面展开。</p>
 <a id="more"></a>
@@ -1049,7 +1212,7 @@
     <link href="http://yikun.github.io/2015/12/21/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E6%95%B4%E5%9E%8B/"/>
     <id>http://yikun.github.io/2015/12/21/Python3源码学习-整型/</id>
     <published>2015-12-21T13:48:29.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_引入">1. 引入</h3><p>我们先看看对整型变量i进行赋值，并对i进行显示的过程：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>i=<span class="number">1</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>i</div><div class="line"><span class="number">1</span></div></pre></td></tr></table></figure>
@@ -1101,7 +1264,7 @@
     <link href="http://yikun.github.io/2015/12/20/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E7%B1%BB%E5%9E%8B/"/>
     <id>http://yikun.github.io/2015/12/20/Python3源码学习-类型/</id>
     <published>2015-12-20T15:03:21.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_类型">1. 类型</h3><p>我们在《Python3源码学习-对象》中提到了每个对象都含有一个type的属性，我们看看type是个什么东西，目光移到object.h：</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">typeobject</span> &#123;</span></div><div class="line">    PyObject_VAR_HEAD</div><div class="line">    <span class="keyword">const</span> <span class="keyword">char</span> *tp_name; <span class="comment">/* For printing, in format "&lt;module&gt;.&lt;name&gt;" */</span></div><div class="line">    Py_ssize_t tp_basicsize, tp_itemsize; <span class="comment">/* For allocation */</span></div><div class="line"></div><div class="line">    <span class="comment">/* Methods to implement standard operations */</span></div><div class="line">    destructor tp_dealloc;</div><div class="line"></div><div class="line">    <span class="comment">//... ...</span></div><div class="line"></div><div class="line">    <span class="comment">/* More standard operations (here for binary compatibility) */</span></div><div class="line">    hashfunc tp_hash;</div><div class="line">    ternaryfunc tp_call;</div><div class="line">    reprfunc tp_str;</div><div class="line">    getattrofunc tp_getattro;</div><div class="line">    setattrofunc tp_setattro;</div><div class="line"></div><div class="line">    <span class="comment">//... ...</span></div><div class="line"></div><div class="line">&#125; PyTypeObject;</div></pre></td></tr></table></figure>
@@ -1142,7 +1305,7 @@
     <link href="http://yikun.github.io/2015/12/20/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E7%BC%96%E8%AF%91Python%E6%BA%90%E7%A0%81/"/>
     <id>http://yikun.github.io/2015/12/20/Python3源码学习-编译Python源码/</id>
     <published>2015-12-20T12:36:58.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<p>在进行源码学习的时候，“实践出真知”。因此，在进行源码学习的过程中，我们首先需要对源码进行编译，然后，对我们感兴趣的点进行log，甚至debug。本篇文章记录了我在进行Python 3.5.0源码编译时的一些过程。</p>
 <a id="more"></a>
@@ -1182,7 +1345,7 @@
     <link href="http://yikun.github.io/2015/12/03/Python3%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0-%E5%AF%B9%E8%B1%A1/"/>
     <id>http://yikun.github.io/2015/12/03/Python3源码学习-对象/</id>
     <published>2015-12-03T07:07:19.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<p>最近开始看Python源码，大致看了看，发现Py2和Py3的部分实现差别挺大，《Python源码剖析》是根据Python 2写的。不过为了能激发主动性，便直接从Python 3（3.5.0）源码看起了，然后也会结合Python 2（2.7.10）的代码看看之前的实现，来对比学习~：）</p>
 <h3 id="1-_万物皆对象">1. 万物皆对象</h3><p>在Python中，万物皆对象，那么对象又是什么结构，如何组织，怎样实现的呢？</p>
@@ -1230,7 +1393,7 @@
     <link href="http://yikun.github.io/2015/11/23/%E7%BD%91%E7%BB%9C%E7%9F%A5%E8%AF%86%E6%8B%BE%E9%81%97/"/>
     <id>http://yikun.github.io/2015/11/23/网络知识拾遗/</id>
     <published>2015-11-23T13:19:23.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<p>本科加上研究生大概有七年时间，一直都是学的通信，不过覆盖面不是很全，一直对一些网络相关的概念和实现有些模糊。最近补了补通信网络中的一些基础知识和盲点，有目的地看了看《云计算网络珠玑》、《图解网络硬件》等和网络相关的书和一些文章，做一下记录总结。主要包括了二层交换、三层路由、Linux网络相关的内容。</p>
 <a id="more"></a>
@@ -1297,7 +1460,7 @@
     <link href="http://yikun.github.io/2015/11/19/%E8%AF%91-Threading-model/"/>
     <id>http://yikun.github.io/2015/11/19/译-Threading-model/</id>
     <published>2015-11-19T13:34:04.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:28.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Threading_model">Threading model</h1><blockquote>
 <p>All OpenStack services use green thread model of threading, implemented through using the Python eventlet and greenlet libraries.</p>
@@ -1338,7 +1501,7 @@
     <link href="http://yikun.github.io/2015/10/17/%E8%AF%91-Host-Aggregates/"/>
     <id>http://yikun.github.io/2015/10/17/译-Host-Aggregates/</id>
     <published>2015-10-17T03:15:40.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<p>先上一个自己画的图，非常有助于理解Host Aggregates:<br><img src="https://cloud.githubusercontent.com/assets/1736354/10556767/3a9f3156-74c0-11e5-94f2-1b8befff9aff.png" alt="host aggregates"></p>
 <a id="more"></a>
@@ -1393,7 +1556,7 @@
     <link href="http://yikun.github.io/2015/10/16/%E8%AF%91-Scope-of-the-Nova-project/"/>
     <id>http://yikun.github.io/2015/10/16/译-Scope-of-the-Nova-project/</id>
     <published>2015-10-16T12:02:54.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="Scope_of_the_Nova_project">Scope of the Nova project</h1><blockquote>
 <p>Nova is focusing on doing an awesome job of its core mission. This document aims to clarify that core mission.</p>
@@ -1544,7 +1707,7 @@
     <link href="http://yikun.github.io/2015/10/15/%E8%AF%91-Nova-System-Architecture/"/>
     <id>http://yikun.github.io/2015/10/15/译-Nova-System-Architecture/</id>
     <published>2015-10-15T02:04:44.000Z</published>
-    <updated>2017-12-08T12:00:50.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="Nova系统架构">Nova系统架构</h3><blockquote>
 <p>Nova is built on a <strong>shared-nothing</strong>, <strong>messaging-based</strong> architecture. All of the major nova components can be run on <strong>multiple servers</strong>. This means that most component to component communication must go via <strong>message queue</strong>. In order to <strong>avoid blocking</strong> each component while waiting for a response, we use <strong>deferred objects</strong>, with a <strong>callback</strong> that gets triggered when a response is received.</p>
@@ -1592,7 +1755,7 @@
     <link href="http://yikun.github.io/2015/10/08/%E8%AF%BB%E3%80%8AOpenStack%E8%AE%BE%E8%AE%A1%E4%B8%8E%E5%AE%9E%E7%8E%B0%E3%80%8B/"/>
     <id>http://yikun.github.io/2015/10/08/读《OpenStack设计与实现》/</id>
     <published>2015-10-08T13:52:35.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="初始OpenStack和开发基础">初始OpenStack和开发基础</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/10370055/daf455b2-6e0f-11e5-98c3-d3e17ee7d97d.PNG" alt="openstack_ch1ch2"></p>
 <p>OpenStack起于RakeSpace和NASA的合作，相关知识涉及到了云计算和虚拟化，体系结构上来看OpenStack是处于Iaas层，目前来看，还是处于追随AWS的阶段。OpenStack的子项目从新项目、孵化项目最终发展成为核心及集成项目。</p>
@@ -1645,7 +1808,7 @@
     <link href="http://yikun.github.io/2015/10/04/OpenStack%E6%A6%82%E8%A7%88/"/>
     <id>http://yikun.github.io/2015/10/04/OpenStack概览/</id>
     <published>2015-10-04T11:33:16.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_概览">1. 概览</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/10267380/3f2d8b74-6ac4-11e5-9372-6bc21c57f11f.png" alt="openstack-software-diagram"></p>
 <blockquote>
@@ -1695,7 +1858,7 @@
     <link href="http://yikun.github.io/2015/06/18/%E5%86%8D%E8%A7%81%EF%BC%8C%E5%8C%97%E4%BA%AC/"/>
     <id>http://yikun.github.io/2015/06/18/再见，北京/</id>
     <published>2015-06-18T08:10:00.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h2 id="在北大">在北大</h2><p>一年多的时间，基本都在中国第一学府——北京大学。这里有未名湖畔的波光粼粼，也有博雅塔下的春风垂柳；有艺园吃腻很久的炒菜米饭，也有小白房冒菜不限量的芝麻酱和鳕鱼培根夹馍；有农园清淡爽口的菜肴和炸酱面，也有畅春园改善伙食的麻辣香锅。总之一切都还美好，只是有老校医院实验室中永远调不完的bug后，其他的一切又稍显黯淡。</p>
 <a id="more"></a>
@@ -1726,7 +1889,7 @@
     <link href="http://yikun.github.io/2015/06/15/%E4%B8%80%E4%B8%AA%E7%AE%80%E5%8D%95%E7%9A%84%E7%BD%91%E7%BB%9C%E6%95%B0%E6%8D%AE%E5%8C%85%E5%B7%A5%E5%85%B7%E2%80%94%E2%80%94Packet-Assistant/"/>
     <id>http://yikun.github.io/2015/06/15/一个简单的网络数据包工具——Packet-Assistant/</id>
     <published>2015-06-15T11:11:00.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_起因">1. 起因</h3><p>最近一段时间，总是有一些<strong>发数据包、抓数据包</strong>之类的需求，主要是需要定制以太网MAC层的源MAC地址、目的MAC地址、协议类型之类的东西。</p>
 <p>之前实现这些都是用Winpcap实现的，然后用某基础类库去实现界面，实在是受不了“某基础类库”庞大冗余的结构了。这时，看到了PyQt，整个人一下清爽起来。所以，Packet Assistant就诞生了。</p>
@@ -1770,7 +1933,7 @@
     <link href="http://yikun.github.io/2015/05/29/Spring-IOC%E6%A0%B8%E5%BF%83%E6%BA%90%E7%A0%81%E5%AD%A6%E4%B9%A0/"/>
     <id>http://yikun.github.io/2015/05/29/Spring-IOC核心源码学习/</id>
     <published>2015-05-28T16:34:39.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_初始化">1. 初始化</h3><p>大致单步跟了下Spring IOC的初始化过程，整个脉络很庞大，初始化的过程主要就是<strong>读取XML资源，并解析，最终注册到Bean Factory中</strong>：</p>
 <p><img src="https://cloud.githubusercontent.com/assets/1736354/7897341/032179be-070b-11e5-9ecf-d7befc804e9d.png" alt="flow"></p>
@@ -1824,7 +1987,7 @@
     <link href="http://yikun.github.io/2015/05/24/%E5%AD%A6%E4%B9%A0awk%E5%92%8Csed/"/>
     <id>http://yikun.github.io/2015/05/24/学习awk和sed/</id>
     <published>2015-05-23T16:52:31.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<p>最近把awk和sed又系统地学习了下，使用<a href="http://naotu.baidu.com/" target="_blank" rel="external">百度脑图</a>简单地整理了一下大概的思路：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7785009/0d604ea2-01af-11e5-8fdc-b658a02e76bc.png" alt="awk sed"></p>
 <p>参考资料<br><a href="http://book.douban.com/subject/1236944/" target="_blank" rel="external">《sed与awk》</a><br><a href="http://coolshell.cn/articles/9104.html" target="_blank" rel="external">sed 简明教程</a><br><a href="http://coolshell.cn/articles/9070.html" target="_blank" rel="external">awk 简明教程</a></p>
@@ -1846,7 +2009,7 @@
     <link href="http://yikun.github.io/2015/05/21/%E5%88%A9%E7%94%A8Shell%E8%BF%9B%E8%A1%8CWeb%E6%97%A5%E5%BF%97%E5%88%86%E6%9E%90/"/>
     <id>http://yikun.github.io/2015/05/21/利用Shell进行Web日志分析/</id>
     <published>2015-05-20T16:24:48.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h4 id="1-Web日志">1.Web日志</h4><p>Web日志由Web服务器产生，比如Nginx、Apache等。例如一条Nginx的日志格式可能是这样的：</p>
 <blockquote>
@@ -1884,7 +2047,7 @@
     <link href="http://yikun.github.io/2015/05/19/%E9%87%8D%E6%96%B0%E5%AD%A6%E4%B9%A0Shell/"/>
     <id>http://yikun.github.io/2015/05/19/重新学习Shell/</id>
     <published>2015-05-19T04:42:23.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<p>之前，虽然已经对<code>Shell</code>比较熟悉了，但是遇到一些不太常用，但是却很有用的命令，还得搜个半天。所以，这几天准备把常用的指令重新过一下，然后再把基础的<code>Shell</code>流程控制、<code>awk</code>的操作等常用命令系统地学习一下，一方面作为总结，另一方面也作为一个Cheat Sheet，时不时的补充一下也是极好的，: )。</p>
 <h4 id="基本语法">基本语法</h4><p><strong>传参</strong><br><code>$n</code> - 传递的第n个参数<br><code>$#</code> - 传递的参数个数<br><code>$*</code> - 所有参数<br><code>$@</code> - 所有参数，加引号为字符串数组</p>
@@ -1919,7 +2082,7 @@
     <link href="http://yikun.github.io/2015/04/28/Java-CopyOnWriteArrayList%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/28/Java-CopyOnWriteArrayList工作原理及实现/</id>
     <published>2015-04-28T15:58:01.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<blockquote>
 <p>并发优化的ArrayList。用CopyOnWrite策略，在修改时先复制一个快照来修改，改完再让内部指针指向新数组。</p>
@@ -1946,7 +2109,7 @@
     <link href="http://yikun.github.io/2015/04/25/Git%E5%B8%B8%E7%94%A8%E6%93%8D%E4%BD%9C%E6%80%BB%E7%BB%93/"/>
     <id>http://yikun.github.io/2015/04/25/Git常用操作总结/</id>
     <published>2015-04-24T17:13:25.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<p>用Git比较久了，之前一直在Win用的TortoiseGit，现在命令行用的比较多，所以把一些指令总结一下，以便回顾和查询。</p>
 <p>理解这些指令，觉得最重要的是理解Git的内部原理，比如Git的分布式版本控制，分清楚工作区、暂存区、版本库，还有就是理解Git跟踪并管理的是修改，而非文件。</p>
@@ -1981,7 +2144,7 @@
     <link href="http://yikun.github.io/2015/04/24/Java-EnumMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/24/Java-EnumMap工作原理及实现/</id>
     <published>2015-04-23T16:11:56.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-概述">1.概述</h3><blockquote>
 <p>A specialized Map implementation for use with enum type keys. All of the keys in an enum map must come from a single enum type that is specified, explicitly or implicitly, when the map is created. Enum maps are represented internally as arrays. This representation is extremely compact and efficient.</p>
@@ -2016,7 +2179,7 @@
     <link href="http://yikun.github.io/2015/04/18/C%E8%AF%AD%E8%A8%80%E4%B8%AD%E7%A7%BB%E4%BD%8D%E6%93%8D%E4%BD%9C%E7%AC%A6%E4%BC%98%E5%85%88%E7%BA%A7%E7%9A%84%E5%9D%91/"/>
     <id>http://yikun.github.io/2015/04/18/C语言中移位操作符优先级的坑/</id>
     <published>2015-04-18T09:16:55.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<p>今天和tiancai交流他腾讯面试题目的时候，有这么一个题目，大致是这样描述的：</p>
 <blockquote>
@@ -2062,7 +2225,7 @@
     <link href="http://yikun.github.io/2015/04/11/Java-ArrayDeque%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/11/Java-ArrayDeque工作原理及实现/</id>
     <published>2015-04-11T10:50:32.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_概述">1. 概述</h3><blockquote>
 <p>Resizable-array implementation of the <strong>Deque interface</strong>. Array deques have no capacity restrictions; they <strong>grow as necessary to support usage</strong>. They are not thread-safe; in the absence of external synchronization, they do not support concurrent access by multiple threads. Null elements are prohibited. This class is likely to be faster than Stack when used as a stack, and faster than LinkedList when used as a queue.</p>
@@ -2091,7 +2254,7 @@
     <link href="http://yikun.github.io/2015/04/10/Java-TreeSet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/10/Java-TreeSet工作原理及实现/</id>
     <published>2015-04-10T09:05:12.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-概述">1.概述</h3><blockquote>
 <p>A NavigableSet implementation based on a <strong>TreeMap</strong>. The elements are ordered using their natural ordering, or by a Comparator provided at set creation time, depending on which constructor is used.This implementation provides guaranteed <strong>log(n)</strong> time cost for the basic operations (add, remove and contains).</p>
@@ -2120,7 +2283,7 @@
     <link href="http://yikun.github.io/2015/04/09/Java-LinkedHashSet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/09/Java-LinkedHashSet工作原理及实现/</id>
     <published>2015-04-09T14:50:16.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_概述">1. 概述</h3><blockquote>
 <p><strong>Hash table and linked list implementation of the Set interface</strong>, with predictable iteration order. This implementation differs from HashSet in that it maintains a doubly-linked list running through all of its entries. This linked list defines the iteration ordering, which is the order in which elements were inserted into the set (insertion-order). Note that insertion order is not affected if an element is re-inserted into the set. (An element e is reinserted into a set s if s.add(e) is invoked when s.contains(e) would return true immediately prior to the invocation.)</p>
@@ -2152,7 +2315,7 @@
     <link href="http://yikun.github.io/2015/04/08/Java-HashSet%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/08/Java-HashSet工作原理及实现/</id>
     <published>2015-04-08T15:31:28.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_概述">1. 概述</h3><blockquote>
 <p>This class implements the Set interface, backed by a hash table (actually a <strong>HashMap</strong> instance). It makes no guarantees as to the iteration order of the set; in particular, it does not guarantee that the order will remain constant over time. This class permits the null element.</p>
@@ -2184,7 +2347,7 @@
     <link href="http://yikun.github.io/2015/04/07/Java-PriorityQueue%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/07/Java-PriorityQueue工作原理及实现/</id>
     <published>2015-04-07T14:25:48.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="参考资料">参考资料</h3><p><a href="http://www.iteye.com/topic/1061958" target="_blank" rel="external">基于最小堆（小根堆）的topn算法</a><br><a href="http://my.oschina.net/leejun2005/blog/135085" target="_blank" rel="external">基于堆实现的优先级队列：PriorityQueue 解决 Top K 问题</a><br><a href="http://www.importnew.com/6932.html" target="_blank" rel="external">Java优先队列（PriorityQueue）示例</a><br><a href="http://wlh0706-163-com.iteye.com/blog/1850125" target="_blank" rel="external">JDK源码研究PriorityQueue（优先队列）</a><br><a href="http://cuisuqiang.iteye.com/blog/2019157" target="_blank" rel="external">优先级队列：PriorityQueue</a></p>
 ]]></content>
@@ -2205,7 +2368,7 @@
     <link href="http://yikun.github.io/2015/04/06/Java-TreeMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/06/Java-TreeMap工作原理及实现/</id>
     <published>2015-04-06T15:10:15.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_概述">1. 概述</h3><blockquote>
 <p>A <strong>Red-Black tree</strong> based NavigableMap implementation. The map is sorted according to the natural ordering of its keys, or by a Comparator provided at map creation time, depending on which constructor is used.<br>This implementation provides guaranteed <strong>log(n) time cost</strong> for the containsKey, get, put and remove operations. Algorithms are adaptations of those in Cormen, Leiserson, and Rivest’s Introduction to Algorithms.</p>
@@ -2253,7 +2416,7 @@
     <link href="http://yikun.github.io/2015/04/05/Java-LinkedList%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/05/Java-LinkedList工作原理及实现/</id>
     <published>2015-04-05T14:19:28.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_概述">1. 概述</h3><blockquote>
 <p>以双向链表实现。链表无容量限制，但双向链表本身使用了更多空间，也需要额外的链表指针操作。</p>
@@ -2291,7 +2454,7 @@
     <link href="http://yikun.github.io/2015/04/04/Java-ArrayList%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/04/Java-ArrayList工作原理及实现/</id>
     <published>2015-04-04T13:22:27.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_概述">1. 概述</h3><p><a href="http://calvin1978.blogcn.com/articles/collection.html" target="_blank" rel="external">关于Java集合的小抄</a>中是这样描述的：</p>
 <blockquote>
@@ -2337,7 +2500,7 @@
     <link href="http://yikun.github.io/2015/04/03/%E5%A6%82%E4%BD%95%E8%AE%BE%E8%AE%A1%E5%AE%9E%E7%8E%B0%E4%B8%80%E4%B8%AALRU-Cache%EF%BC%9F/"/>
     <id>http://yikun.github.io/2015/04/03/如何设计实现一个LRU-Cache？/</id>
     <published>2015-04-03T15:35:02.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_什么是LRU_Cache？">1. 什么是LRU Cache？</h3><p>之前，在LeetCode上看到一个LRU Cache实现的题目，题目描述是这样的：</p>
 <blockquote>
@@ -2369,7 +2532,7 @@
     <link href="http://yikun.github.io/2015/04/02/Java-LinkedHashMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/02/Java-LinkedHashMap工作原理及实现/</id>
     <published>2015-04-02T15:01:37.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_概述">1. 概述</h3><p>在理解了#7 介绍的HashMap后，我们来学习LinkedHashMap的工作原理及实现。首先还是类似的，我们写一个简单的LinkedHashMap的程序：</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">LinkedHashMap&lt;String, Integer&gt; lmap = <span class="keyword">new</span> LinkedHashMap&lt;String, Integer&gt;();</div><div class="line">lmap.put(<span class="string">"语文"</span>, <span class="number">1</span>);</div><div class="line">lmap.put(<span class="string">"数学"</span>, <span class="number">2</span>);</div><div class="line">lmap.put(<span class="string">"英语"</span>, <span class="number">3</span>);</div><div class="line">lmap.put(<span class="string">"历史"</span>, <span class="number">4</span>);</div><div class="line">lmap.put(<span class="string">"政治"</span>, <span class="number">5</span>);</div><div class="line">lmap.put(<span class="string">"地理"</span>, <span class="number">6</span>);</div><div class="line">lmap.put(<span class="string">"生物"</span>, <span class="number">7</span>);</div><div class="line">lmap.put(<span class="string">"化学"</span>, <span class="number">8</span>);</div><div class="line"><span class="keyword">for</span>(Entry&lt;String, Integer&gt; entry : lmap.entrySet()) &#123;</div><div class="line">    System.out.println(entry.getKey() + <span class="string">": "</span> + entry.getValue());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
@@ -2424,7 +2587,7 @@
     <link href="http://yikun.github.io/2015/04/01/Java-HashMap%E5%B7%A5%E4%BD%9C%E5%8E%9F%E7%90%86%E5%8F%8A%E5%AE%9E%E7%8E%B0/"/>
     <id>http://yikun.github.io/2015/04/01/Java-HashMap工作原理及实现/</id>
     <published>2015-04-01T08:53:14.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_概述">1. 概述</h3><p>从本文你可以学习到：</p>
 <blockquote>
@@ -2547,7 +2710,7 @@
     <link href="http://yikun.github.io/2015/03/31/Java%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6/"/>
     <id>http://yikun.github.io/2015/03/31/Java集合框架/</id>
     <published>2015-03-31T06:27:13.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="概述">概述</h3><h4 id="什么是集合？">什么是集合？</h4><p>这Java官方的<a href="https://docs.oracle.com/javase/tutorial/collections/intro/index.html" target="_blank" rel="external">入门文档</a>是这样描述集合的：</p>
 <blockquote>
@@ -2612,7 +2775,7 @@
     <link href="http://yikun.github.io/2015/03/08/%E5%AE%9A%E6%97%B6%E5%99%A8%E7%AE%A1%E7%90%86%E5%AE%9E%E7%8E%B0%E4%B8%8E%E5%88%9D%E6%8E%A2/"/>
     <id>http://yikun.github.io/2015/03/08/定时器管理实现与初探/</id>
     <published>2015-03-08T05:52:10.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="1-_背景">1. 背景</h3><p>最近需要实现一个简单的定时器管理，背景是硬件只有一个定时中断器，每100ms给一个时钟中断，我们需要利用它及相关代码实现整个协议中的定时器管理。然后大概看了看Linux的定时器、Nginx的定时器、Tegine的定时器，把一些思路和收获记一下。</p>
 <h3 id="2-_思路">2. 思路</h3><p>思路本身很简单，用硬件时钟计数，每次检查，有定时器该执行就调用就行了。</p>
@@ -2660,7 +2823,7 @@
     <link href="http://yikun.github.io/2015/02/08/%E8%87%AA%E5%A2%9E%E8%BF%90%E7%AE%97%E7%AC%A6%E7%9A%84%E5%8F%8D%E6%B1%87%E7%BC%96/"/>
     <id>http://yikun.github.io/2015/02/08/自增运算符的反汇编/</id>
     <published>2015-02-08T11:19:11.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h3 id="i++">i++</h3><figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> i=<span class="number">1</span>;</div><div class="line"><span class="keyword">int</span> j;</div><div class="line">j = i++;</div></pre></td></tr></table></figure>
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">mov         eax,dword ptr [i]  </div><div class="line">mov         dword ptr [j],eax  ;将i值赋值给j</div><div class="line">mov         ecx,dword ptr [i]  </div><div class="line">add         ecx,1                    </div><div class="line">mov         dword ptr [i],ecx  ;i自增</div></pre></td></tr></table></figure>
@@ -2685,7 +2848,7 @@
     <link href="http://yikun.github.io/2015/02/05/%E6%90%AD%E5%BB%BAGit%E6%9C%8D%E5%8A%A1%E5%99%A8/"/>
     <id>http://yikun.github.io/2015/02/05/搭建Git服务器/</id>
     <published>2015-02-05T05:11:46.000Z</published>
-    <updated>2017-12-08T12:00:55.000Z</updated>
+    <updated>2018-01-19T14:06:34.000Z</updated>
     
     <content type="html"><![CDATA[<h1 id="在服务器上安装git">在服务器上安装git</h1><h3 id="1-_安装git">1. 安装git</h3><p>sudo apt-get install git</p>
 <h3 id="2-_增加git用户">2. 增加git用户</h3><p>sudo adduser git</p>

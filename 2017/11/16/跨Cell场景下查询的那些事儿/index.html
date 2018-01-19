@@ -23,7 +23,7 @@
 <meta property="og:image" content="https://user-images.githubusercontent.com/1736354/33542026-4784411a-d90c-11e7-8499-b24ef3a4cd03.jpg">
 <meta property="og:image" content="https://user-images.githubusercontent.com/1736354/33542040-5001b066-d90c-11e7-8bbb-b1119c30d037.jpg">
 <meta property="og:image" content="https://user-images.githubusercontent.com/1736354/33542045-5555ae1e-d90c-11e7-98b9-20eab3a9820a.jpg">
-<meta property="og:updated_time" content="2017-12-08T12:00:50.000Z">
+<meta property="og:updated_time" content="2018-01-19T14:06:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="跨Cell场景下查询的那些事儿">
 <meta name="twitter:description" content="1. 背景我们知道Nova目前正在慢慢地演进到Cell V2架构，Cell V2架构中，很重要的一个变化就是数据库的拆分，清晰的划分了数据库的职能，从而有具备横向扩展的能力。顶层数据库(nova_api)用来存储全局数据，而Cell中的数据库(nova_cellX)仅存储计算节点相关的数据。比如，创建虚拟机的全局数据，比如Flavor、Keypair之类的数据，放在上层的nova_api数据库中，">
@@ -208,6 +208,7 @@ var _hmt = _hmt || [];
         <h3 id="1-_背景">1. 背景</h3><p>我们知道Nova目前正在慢慢地演进到Cell V2架构，Cell V2架构中，很重要的一个变化就是数据库的拆分，清晰的划分了数据库的职能，从而有具备横向扩展的能力。顶层数据库(nova_api)用来存储全局数据，而Cell中的数据库(nova_cellX)仅存储计算节点相关的数据。比如，创建虚拟机的全局数据，比如Flavor、Keypair之类的数据，放在上层的nova_api数据库中，而虚拟机本身的信息，比如某个虚拟机的信息，放在了子Cell中。</p>
 <p><img src="https://user-images.githubusercontent.com/1736354/33543222-307b8974-d911-11e7-9993-5373720491df.jpg" alt="cell"></p>
 <p>这样的架构另一个好处是Cell很轻松的可以实现扩展，从而提升虚拟机数量的规模。然而，这引入了一个问题，就是没有一个地方存储着全量虚拟机的数据了。当我们需要一些全局的虚拟机数据查询时（比如查询全量虚拟机列表）就比较棘手了。</p>
+<a id="more"></a>
 <h3 id="2-_数据库的拆分">2. 数据库的拆分</h3><p>其实这样的架构在目前互联网业务中十分常见，随着业务量和历史数据的增长，很多业务都需要进行分表分库，切分的目的主要有2个，一是单个数据库的存储空间已经不足以支撑庞大的数据量，另外一个是单个数据库所能承载的连接数或者并发数不足以满足逐渐飙升的请求。一般来说，数据库的分库为垂直分库和水平分库。</p>
 <p><img src="https://user-images.githubusercontent.com/1736354/33540293-5f4852ca-d905-11e7-8e48-04b111cdbdf2.jpg" alt="split"></p>
 <ol>
@@ -230,7 +231,7 @@ var _hmt = _hmt || [];
 <p><img src="https://user-images.githubusercontent.com/1736354/33542019-3f48325e-d90c-11e7-9b9a-9943b4dc7ede.jpg" alt="gmarker"></p>
 <p>参考代码：<a href="https://github.com/openstack/nova/blob/3a19f89f34a1eaee7eec2dcc7b809058d61950f0/nova/compute/instance_list.py#L134,L142" target="_blank" rel="external">nova/compute/instance_list.py#L134,L142</a><br>具体获取marker时，是先在instance_mapping中查找了marker所在的cell，然后，在target_cell拿到了marker的信息，参考代码<a href="https://github.com/openstack/nova/blob/3a19f89f34a1eaee7eec2dcc7b809058d61950f0/nova/compute/instance_list.py#L66,L88" target="_blank" rel="external">nova/compute/instance_list.py#L66,L88</a>。</p>
 <h4 id="Step_2_并行查询子Cell中的local_marker，并获取满足条件的虚拟机。">Step 2 并行查询子Cell中的local marker，并获取满足条件的虚拟机。</h4><p><img src="https://user-images.githubusercontent.com/1736354/33542026-4784411a-d90c-11e7-8499-b24ef3a4cd03.jpg" alt="finding"></p>
-<p>在第一步中，我们拿到了i5的信息，由于排序是按照created_at，逆序，那我们查询local marker的时候，只需要一条SQL就可以拿到Cell中满足条件的local marker：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> instances <span class="keyword">ORDER</span> <span class="keyword">BY</span> created_at <span class="keyword">DESC</span> <span class="keyword">limit</span> <span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p>在第一步中，我们拿到了i5的信息，由于排序是按照created_at，逆序，那我们查询local marker的时候，只需要一条SQL就可以拿到Cell中满足条件的local marker：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">SELECT</span> * <span class="keyword">FROM</span> instances <span class="keyword">ORDER</span> <span class="keyword">BY</span> created_at <span class="keyword">DESC</span> <span class="keyword">limit</span> <span class="number">1</span> <span class="keyword">where</span> created_at &lt;= i5.created_at</div></pre></td></tr></table></figure></p>
 <p>然后，我们再根据这个local marker就可以拿到满足条件的虚拟机列表了。当然，我们需要各取limit个，因为也许最终满足条件的都在一个cell中，所以，我们取得的虚拟机列表中虚拟机的个数应该按照全局limit来获取。<br>值得注意的是，local marker如果不是global marker的话，我们需要把local marker也算在满足条件的列表中，因为全局来看，这个marker也是满足用户条件的。如果local marker也刚好就是global marker，那这个marker就不用管了。<br>参考代码<a href="https://github.com/openstack/nova/blob/3a19f89f34a1eaee7eec2dcc7b809058d61950f0/nova/compute/instance_list.py#L166,L212" target="_blank" rel="external">nova/compute/instance_list.py#L166,L212</a>，先找到满足条件的第一个local marker，然后就按照之前的流程，获取marker之后的记录就可以了。</p>
 <h4 id="Step_3_合并排序。">Step 3 合并排序。</h4><p>在步骤2中，我们会得到2个列表，分别是从cell1和cell2中拿到的数据。这两个列表是有序的，但是当我们合并后，需要进行全局重排序。这样，我们就拿到了有序的列表。<br><img src="https://user-images.githubusercontent.com/1736354/33542040-5001b066-d90c-11e7-8bbb-b1119c30d037.jpg" alt="merge"></p>
 <p>参考代码<a href="https://github.com/openstack/nova/blob/3a19f89f34a1eaee7eec2dcc7b809058d61950f0/nova/compute/instance_list.py#L228,L234" target="_blank" rel="external">nova/compute/instance_list.py#L228,L234</a>，可以看到，由于每个cell拿到的数据都是有序的，因此，最终排序的时候，也是用了heapq这个数据结构，来高效的完成有序列表的合并排序。</p>
@@ -410,7 +411,7 @@ gitment.render('gitmentContainer')
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 Yikun
+    		&copy; 2018 Yikun
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -488,10 +489,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
              
@@ -501,6 +498,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -516,6 +517,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Draft</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -524,11 +529,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">

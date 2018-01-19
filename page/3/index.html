@@ -173,6 +173,139 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-译-Internationalization" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/23/译-Internationalization/">[译]Internationalization</a>
+    </h1>
+  
+
+        
+        <a href="/2016/01/23/译-Internationalization/" class="archive-article-date">
+  	<time datetime="2016-01-22T16:43:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Jan 23 2016</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>Nova uses the <strong>oslo.i18n library</strong> to <strong>support internationalization</strong>. The oslo.i18n library is built on top of <strong>gettext</strong> and provides functions that are used to enable user-facing strings such as log messages to appear in the <strong>appropriate language in different locales</strong>.</p>
+<p>Nova exposes the oslo.i18n library support via the nova/i18n.py integration module. This module provides the functions needed to wrap translatable strings. It provides the _() wrapper for general user-facing messages and specific wrappers for messages used only for logging. DEBUG level messages do not need translation but CRITICAL, ERROR, WARNING and INFO messages should be wrapped with _LC(), _LE(), _LW() or _LI() respectively.</p>
+</blockquote>
+<p>理解：Nova是通过oslo.i18n来支持国际化的，oslo.i18n是基于getnext做的，这个库可以把面向用户的字符（比如日志）翻译成指定的语言。其中DEBUG信息不翻译，其他的信息会被翻译。</p>
+<p>比如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># debug log</span></div><div class="line">LOG.debug(<span class="string">"block_device_mapping %(mapping)s"</span>,</div><div class="line">          &#123;<span class="string">'mapping'</span>: block_device_mapping&#125;)</div><div class="line"><span class="comment"># warn log</span></div><div class="line">LOG.warn(_LW(<span class="string">'Unknown base file %(img)s'</span>), &#123;<span class="string">'img'</span>: img&#125;)</div><div class="line"><span class="comment"># not log</span></div><div class="line"><span class="keyword">raise</span> nova.SomeException(_(<span class="string">'Invalid service catalogue'</span>))</div></pre></td></tr></table></figure>
+<blockquote>
+<p>Do not use locals() for formatting messages because: 1. It is not as clear as using explicit dicts. 2. It could produce hidden errors during refactoring. 3. Changing the name of a variable causes a change in the message. 4. It creates a lot of otherwise unused variables.</p>
+<p>If you do not follow the project conventions, your code may cause hacking checks to fail.</p>
+</blockquote>
+<p>另外，文中提到了不要使用<code>locals()</code>去格式化消息主要4点原因：1.不清楚是否有关键字. 2.重构时会有潜在的出错可能. 3.变量名变了消息就变. 4.创建很多无用的变量。</p>
+<p>这些函数_(), _LC(), _LE(), _LW() and _LI()可以通过以下方法导入：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">from</span> nova.i18n <span class="keyword">import</span> _</div><div class="line"><span class="keyword">from</span> nova.i18n <span class="keyword">import</span> _LC</div><div class="line"><span class="keyword">from</span> nova.i18n <span class="keyword">import</span> _LE</div><div class="line"><span class="keyword">from</span> nova.i18n <span class="keyword">import</span> _LW</div><div class="line"><span class="keyword">from</span> nova.i18n <span class="keyword">import</span> _LI</div></pre></td></tr></table></figure>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/01/23/译-Internationalization/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-译-Virtual-Machine-States-and-Transitions" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/01/20/译-Virtual-Machine-States-and-Transitions/">[译]Virtual Machine States and Transitions</a>
+    </h1>
+  
+
+        
+        <a href="/2016/01/20/译-Virtual-Machine-States-and-Transitions/" class="archive-article-date">
+  	<time datetime="2016-01-20T15:46:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Jan 20 2016</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>虚拟机的状态及其转移，主要讲了一些虚拟机的状态以及在创建虚拟机时的状态转移情况，目前理解不够深刻，需要在后面看代码时，进一步深入理解。</p>
+        
+          <a class="article-more-a" href="/2016/01/20/译-Virtual-Machine-States-and-Transitions/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/01/20/译-Virtual-Machine-States-and-Transitions/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
     <article id="post-2015，再见" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -685,143 +818,6 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-译-Scope-of-the-Nova-project" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/16/译-Scope-of-the-Nova-project/">[译]Scope of the Nova project</a>
-    </h1>
-  
-
-        
-        <a href="/2015/10/16/译-Scope-of-the-Nova-project/" class="archive-article-date">
-  	<time datetime="2015-10-16T12:02:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Oct 16 2015</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Scope_of_the_Nova_project">Scope of the Nova project</h1><blockquote>
-<p>Nova is focusing on doing an awesome job of its core mission. This document aims to clarify that core mission.</p>
-<p>This is a living document to help record where we agree about what Nova should and should not be doing, and why. Please treat this as a discussion of interesting, and hopefully useful, examples. It is not intended to be an exhaustive policy statement.</p>
-</blockquote>
-<p>理解：文档的主要内容是，理清Nova的核心使命。</p>
-        
-          <a class="article-more-a" href="/2015/10/16/译-Scope-of-the-Nova-project/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/10/16/译-Scope-of-the-Nova-project/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-译-Nova-System-Architecture" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/10/15/译-Nova-System-Architecture/">[译]Nova System Architecture</a>
-    </h1>
-  
-
-        
-        <a href="/2015/10/15/译-Nova-System-Architecture/" class="archive-article-date">
-  	<time datetime="2015-10-15T02:04:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Oct 15 2015</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="Nova系统架构">Nova系统架构</h3><blockquote>
-<p>Nova is built on a <strong>shared-nothing</strong>, <strong>messaging-based</strong> architecture. All of the major nova components can be run on <strong>multiple servers</strong>. This means that most component to component communication must go via <strong>message queue</strong>. In order to <strong>avoid blocking</strong> each component while waiting for a response, we use <strong>deferred objects</strong>, with a <strong>callback</strong> that gets triggered when a response is received.</p>
-</blockquote>
-<p>Nova建立在一个无共享，基于消息的架构。所有的nova主要组件都可以运行在不同的服务器。这就意味着大多数组件之间的通信必须通过消息队列。为了避免每个组件在等待响应时的阻塞，我们是用deferred对象，当一个响应接收时会触发相应的回调。</p>
-        
-          <a class="article-more-a" href="/2015/10/15/译-Nova-System-Architecture/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/10/15/译-Nova-System-Architecture/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -836,7 +832,7 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 Yikun
+    		&copy; 2018 Yikun
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -914,10 +910,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
              
@@ -927,6 +919,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -942,6 +938,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Draft</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -950,11 +950,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">

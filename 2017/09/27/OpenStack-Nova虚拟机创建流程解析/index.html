@@ -8,19 +8,19 @@
   <link rel="dns-prefetch" href="http://yikun.github.io">
   <title>OpenStack Nova虚拟机创建流程解析 | Yikun</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 概述Nova是OpenStack中处理计算业务（虚拟机、裸机、容器）的组件，整体的虚拟机创建流程自然是学习和熟悉Nova组件的第一步。本篇文章主要基于OpenStack Pike版本，基于最新的Cell v2架构部署为例，来介绍虚拟机的创建流程，并分析了Pike等最近几个版本中，虚拟机创建流程的关键变化。 2. 虚拟机创建流程 上图是虚拟机创建流程的整体流程，可以看到整体虚拟机创建流程一次经">
+  <meta name="description" content="1. 概述Nova是OpenStack中处理计算业务（虚拟机、裸机、容器）的组件，整体的虚拟机创建流程自然是学习和熟悉Nova组件的第一步。本篇文章主要基于OpenStack Pike版本，基于最新的Cell v2架构部署为例，来介绍虚拟机的创建流程，并分析了Pike等最近几个版本中，虚拟机创建流程的关键变化。">
 <meta name="keywords" content="Nova,OpenStack">
 <meta property="og:type" content="article">
 <meta property="og:title" content="OpenStack Nova虚拟机创建流程解析">
 <meta property="og:url" content="http://yikun.github.io/2017/09/27/OpenStack-Nova虚拟机创建流程解析/index.html">
 <meta property="og:site_name" content="Yikun">
-<meta property="og:description" content="1. 概述Nova是OpenStack中处理计算业务（虚拟机、裸机、容器）的组件，整体的虚拟机创建流程自然是学习和熟悉Nova组件的第一步。本篇文章主要基于OpenStack Pike版本，基于最新的Cell v2架构部署为例，来介绍虚拟机的创建流程，并分析了Pike等最近几个版本中，虚拟机创建流程的关键变化。 2. 虚拟机创建流程 上图是虚拟机创建流程的整体流程，可以看到整体虚拟机创建流程一次经">
+<meta property="og:description" content="1. 概述Nova是OpenStack中处理计算业务（虚拟机、裸机、容器）的组件，整体的虚拟机创建流程自然是学习和熟悉Nova组件的第一步。本篇文章主要基于OpenStack Pike版本，基于最新的Cell v2架构部署为例，来介绍虚拟机的创建流程，并分析了Pike等最近几个版本中，虚拟机创建流程的关键变化。">
 <meta property="og:image" content="https://user-images.githubusercontent.com/1736354/31421492-36a84bdc-ae7a-11e7-94b3-d85fab04762c.png">
 <meta property="og:image" content="https://user-images.githubusercontent.com/1736354/30894282-6c4a59c0-a375-11e7-8396-c3faad0a683d.png">
-<meta property="og:updated_time" content="2017-12-08T12:00:50.000Z">
+<meta property="og:updated_time" content="2018-01-19T14:06:28.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="OpenStack Nova虚拟机创建流程解析">
-<meta name="twitter:description" content="1. 概述Nova是OpenStack中处理计算业务（虚拟机、裸机、容器）的组件，整体的虚拟机创建流程自然是学习和熟悉Nova组件的第一步。本篇文章主要基于OpenStack Pike版本，基于最新的Cell v2架构部署为例，来介绍虚拟机的创建流程，并分析了Pike等最近几个版本中，虚拟机创建流程的关键变化。 2. 虚拟机创建流程 上图是虚拟机创建流程的整体流程，可以看到整体虚拟机创建流程一次经">
+<meta name="twitter:description" content="1. 概述Nova是OpenStack中处理计算业务（虚拟机、裸机、容器）的组件，整体的虚拟机创建流程自然是学习和熟悉Nova组件的第一步。本篇文章主要基于OpenStack Pike版本，基于最新的Cell v2架构部署为例，来介绍虚拟机的创建流程，并分析了Pike等最近几个版本中，虚拟机创建流程的关键变化。">
 <meta name="twitter:image" content="https://user-images.githubusercontent.com/1736354/31421492-36a84bdc-ae7a-11e7-94b3-d85fab04762c.png">
   
     <link rel="alternative" href="/atom.xml" title="Yikun" type="application/atom+xml">
@@ -200,6 +200,7 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h2 id="1-_概述">1. 概述</h2><p>Nova是OpenStack中处理计算业务（虚拟机、裸机、容器）的组件，整体的虚拟机创建流程自然是学习和熟悉Nova组件的第一步。本篇文章主要基于OpenStack Pike版本，基于最新的Cell v2架构部署为例，来介绍虚拟机的创建流程，并分析了Pike等最近几个版本中，虚拟机创建流程的关键变化。</p>
+<a id="more"></a>
 <h2 id="2-_虚拟机创建流程">2. 虚拟机创建流程</h2><p><img src="https://user-images.githubusercontent.com/1736354/31421492-36a84bdc-ae7a-11e7-94b3-d85fab04762c.png" alt="instance create pike"></p>
 <p>上图是虚拟机创建流程的整体流程，可以看到整体虚拟机创建流程一次经过了API、Conductor、Scheduler、Placement、Compute等主要服务，下面我们逐步介绍下虚拟机创建时，这些服务做的一些事情以及在Pike版本新引入的部分：</p>
 <h3 id="2-1_Nova-API">2.1 Nova-API</h3><p>在OpenStack的组件中，基本每个组件都会有一个API服务，对于Nova来说API服务主要的作用就是接收由用户通过Client或者一些其他REST请求工具（比如 curl、postman）发送的请求。一般来说会包含一些虚拟机创建的参数，比如虚拟机的规格、可用域之类的信息。</p>
@@ -419,7 +420,7 @@ gitment.render('gitmentContainer')
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2017 Yikun
+    		&copy; 2018 Yikun
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -497,10 +498,6 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
              
@@ -510,6 +507,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -525,6 +526,10 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">Draft</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Python</a>
               </li>
              
@@ -533,11 +538,11 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">vim</a>
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">vim</a>
               </li>
              
               <li class="article-tag-list-item">
