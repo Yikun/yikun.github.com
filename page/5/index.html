@@ -173,32 +173,34 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Java-CopyOnWriteArrayList工作原理及实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-译-Scope-of-the-Nova-project" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/28/Java-CopyOnWriteArrayList工作原理及实现/">Java CopyOnWriteArrayList工作原理及实现</a>
+      <a class="article-title" href="/2015/10/16/译-Scope-of-the-Nova-project/">[译]Scope of the Nova project</a>
     </h1>
   
 
         
-        <a href="/2015/04/28/Java-CopyOnWriteArrayList工作原理及实现/" class="archive-article-date">
-  	<time datetime="2015-04-28T15:58:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Apr 28 2015</time>
+        <a href="/2015/10/16/译-Scope-of-the-Nova-project/" class="archive-article-date">
+  	<time datetime="2015-10-16T12:02:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Oct 16 2015</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <blockquote>
-<p>并发优化的ArrayList。用CopyOnWrite策略，在修改时先复制一个快照来修改，改完再让内部指针指向新数组。</p>
-<p>因为对快照的修改对读操作来说不可见，所以只有写锁没有读锁，加上复制的昂贵成本，典型的适合读多写少的场景。如果更新频率较高，或数组较大时，还是Collections.synchronizedList(list)，对所有操作用同一把锁来保证线程安全更好。</p>
-<p>增加了addIfAbsent(e)方法，会遍历数组来检查元素是否已存在，性能可想像的不会太好。</p>
+        <h1 id="Scope_of_the_Nova_project">Scope of the Nova project</h1><blockquote>
+<p>Nova is focusing on doing an awesome job of its core mission. This document aims to clarify that core mission.</p>
+<p>This is a living document to help record where we agree about what Nova should and should not be doing, and why. Please treat this as a discussion of interesting, and hopefully useful, examples. It is not intended to be an exhaustive policy statement.</p>
 </blockquote>
-
+<p>理解：文档的主要内容是，理清Nova的核心使命。</p>
+        
+          <a class="article-more-a" href="/2015/10/16/译-Scope-of-the-Nova-project/#more">more >></a>
+        
       
 
       
@@ -211,7 +213,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
         		</li>
       		
 		</ul>
@@ -221,7 +227,7 @@ var _hmt = _hmt || [];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2015/04/28/Java-CopyOnWriteArrayList工作原理及实现/">展开全文 >></a>
+          <a class="article-more-a" href="/2015/10/16/译-Scope-of-the-Nova-project/">展开全文 >></a>
         </p>
       
 
@@ -236,113 +242,33 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Git常用操作总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-译-Nova-System-Architecture" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/25/Git常用操作总结/">Git常用操作总结</a>
+      <a class="article-title" href="/2015/10/15/译-Nova-System-Architecture/">[译]Nova System Architecture</a>
     </h1>
   
 
         
-        <a href="/2015/04/25/Git常用操作总结/" class="archive-article-date">
-  	<time datetime="2015-04-24T17:13:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Apr 25 2015</time>
+        <a href="/2015/10/15/译-Nova-System-Architecture/" class="archive-article-date">
+  	<time datetime="2015-10-15T02:04:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Oct 15 2015</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>用Git比较久了，之前一直在Win用的TortoiseGit，现在命令行用的比较多，所以把一些指令总结一下，以便回顾和查询。</p>
-<p>理解这些指令，觉得最重要的是理解Git的内部原理，比如Git的分布式版本控制，分清楚工作区、暂存区、版本库，还有就是理解Git跟踪并管理的是修改，而非文件。</p>
-<h3 id="设置">设置</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git config --global user.name &quot;Your Name&quot;</div><div class="line">$ git config --global user.email &quot;email@example.com&quot;</div></pre></td></tr></table></figure>
-<h3 id="提交">提交</h3><p>git tracked的是修改，而不是文件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">#将“当前修改”移动到暂存区(stage)</div><div class="line">$ git add somfile.txt</div><div class="line">#将暂存区修改提交</div><div class="line">$ git commit -m &quot;Add somfile.txt.&quot;</div></pre></td></tr></table></figure>
-<h3 id="状态">状态</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git status</div><div class="line">$ git diff</div></pre></td></tr></table></figure>
-<h3 id="回退">回退</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"># 放弃工作区修改</div><div class="line">$ git checkout -- file.name</div><div class="line">$ git checkout -- .</div><div class="line"></div><div class="line"># 取消commit(比如需要重写commit信息)</div><div class="line">$ git reset --soft HEAD</div><div class="line"></div><div class="line"># 取消commit、add(重新提交代码和commit)</div><div class="line">$ git reset HEAD</div><div class="line">$ git reset --mixed HEAD</div><div class="line"></div><div class="line"># 取消commit、add、工作区修改(需要完全重置)</div><div class="line">$ git reset --hard HEAD</div></pre></td></tr></table></figure>
-<h3 id="记录">记录</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git reflog</div><div class="line">$ git log</div></pre></td></tr></table></figure>
-<h3 id="删除">删除</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">$ rm file.name</div><div class="line">$ git rm file.name</div><div class="line">$ git commit -m &quot;Del&quot;</div></pre></td></tr></table></figure>
-<h3 id="远程操作">远程操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">$ git remote add origin git@github.com:michaelliao/learngit.git</div><div class="line"># 第一次推送，-u(--set-upstream)指定默认上游</div><div class="line">$ git push -u origin master</div><div class="line">$ git push origin master</div></pre></td></tr></table></figure>
-<h3 id="克隆">克隆</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git clone https://github.com/Yikun/yikun.github.com.git path</div><div class="line">$ git clone git@github.com:Yikun/yikun.github.com.git path</div></pre></td></tr></table></figure>
-<h3 id="分支操作">分支操作</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"># 产看当前分支</div><div class="line">$ git branch</div><div class="line"></div><div class="line"># 创建分支</div><div class="line">$ git branch dev</div><div class="line"># 切换分支</div><div class="line">$ git checkout dev</div><div class="line"></div><div class="line"># 创建并checkout分支</div><div class="line">$ git checkout -b dev</div><div class="line"></div><div class="line"></div><div class="line"># 合并分支</div><div class="line">$ git merge dev</div><div class="line"></div><div class="line"># 删除分支</div><div class="line">$ git branch -d dev</div></pre></td></tr></table></figure>
-<h3 id="标签">标签</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">$ git tag 0.1.1</div><div class="line">$ git push origin --tags</div></pre></td></tr></table></figure>
-<h3 id="同步上游">同步上游</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">// 1. 添加上游</div><div class="line">git remote add upstream</div><div class="line">// 2. 切换需要同步的分支</div><div class="line">git checkout XXX</div><div class="line">// 3. 更新上游</div><div class="line">git remote update upstream</div><div class="line">git rebase upstream/&#123;branch name&#125;</div><div class="line">// 4. 解决冲突</div><div class="line">// 手动解决冲突</div><div class="line">git add .</div><div class="line">git rebase --continue</div><div class="line">// 5. push</div><div class="line">git push</div></pre></td></tr></table></figure>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Git</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/04/25/Git常用操作总结/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-Java-EnumMap工作原理及实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/24/Java-EnumMap工作原理及实现/">Java EnumMap工作原理及实现</a>
-    </h1>
-  
-
-        
-        <a href="/2015/04/24/Java-EnumMap工作原理及实现/" class="archive-article-date">
-  	<time datetime="2015-04-23T16:11:56.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Apr 24 2015</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-概述">1.概述</h3><blockquote>
-<p>A specialized Map implementation for use with enum type keys. All of the keys in an enum map must come from a single enum type that is specified, explicitly or implicitly, when the map is created. Enum maps are represented internally as arrays. This representation is extremely compact and efficient.</p>
+        <h3 id="Nova系统架构">Nova系统架构</h3><blockquote>
+<p>Nova is built on a <strong>shared-nothing</strong>, <strong>messaging-based</strong> architecture. All of the major nova components can be run on <strong>multiple servers</strong>. This means that most component to component communication must go via <strong>message queue</strong>. In order to <strong>avoid blocking</strong> each component while waiting for a response, we use <strong>deferred objects</strong>, with a <strong>callback</strong> that gets triggered when a response is received.</p>
 </blockquote>
-<p>EnumMap是是一种键为枚举类型的特殊的Map实现。所有的Key也必须是一种枚举类型，EnumMap是使用数组来实现的。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line">EnumMap&lt;Course, String&gt; map = <span class="keyword">new</span> EnumMap&lt;Course, String&gt;(Course.class);</div><div class="line">map.put(Course.ONE, <span class="string">"语文"</span>);</div><div class="line">map.put(Course.ONE, <span class="string">"政治"</span>);</div><div class="line">map.put(Course.TWO, <span class="string">"数学"</span>);</div><div class="line">map.put(Course.THREE, <span class="string">"英语"</span>);</div><div class="line"><span class="keyword">for</span>(Entry&lt;Course, String&gt; entry : map.entrySet()) &#123;</div><div class="line">    System.out.println(entry.getKey() + <span class="string">": "</span> + entry.getValue());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>输出结果为：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">ONE: 政治</div><div class="line">TWO: 数学</div><div class="line">THREE: 英语</div></pre></td></tr></table></figure>
-<p>其具体实现的结构如下图所示：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7323140/1dc9a734-eadf-11e4-96f8-8df820f64590.png" alt="enummap"></p>
-<h3 id="2-_put和get方法">2. put和get方法</h3><p>put方法通过key的ordinal将值存储到对应的地方，get方法则根据key的ordinal获取对应的值。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</div><div class="line">    <span class="comment">// 类型检查</span></div><div class="line">    typeCheck(key);</div><div class="line">    <span class="comment">// 获取key的序号</span></div><div class="line">    <span class="keyword">int</span> index = key.ordinal();</div><div class="line">    Object oldValue = vals[index];</div><div class="line">    <span class="comment">// 赋值</span></div><div class="line">    vals[index] = maskNull(value);</div><div class="line">    <span class="comment">// 若之前的值为空，则size++</span></div><div class="line">    <span class="keyword">if</span> (oldValue == <span class="keyword">null</span>)</div><div class="line">        size++;</div><div class="line">    <span class="keyword">return</span> unmaskNull(oldValue);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> (isValidKey(key) ?</div><div class="line">            unmaskNull(vals[((Enum&lt;?&gt;)key).ordinal()]) : <span class="keyword">null</span>);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="3-_遍历">3. 遍历</h3><p>EnumMapIterator的迭代这样实现的：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">hasNext</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">while</span> (index &lt; vals.length &amp;&amp; vals[index] == <span class="keyword">null</span>)</div><div class="line">        index++;</div><div class="line">    <span class="keyword">return</span> index != vals.length;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="keyword">public</span> Map.<span class="function">Entry&lt;K,V&gt; <span class="title">next</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (!hasNext())</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NoSuchElementException();</div><div class="line">    lastReturnedEntry = <span class="keyword">new</span> Entry(index++);</div><div class="line">    <span class="keyword">return</span> lastReturnedEntry;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>通过hasNext跳过空的数组，也就是说，保证了遍历顺序与Enum中key的先后顺序一致。</p>
-<h3 id="参考资料">参考资料</h3><p><a href="http://javarevisited.blogspot.jp/2012/09/what-is-enummap-in-java-example-tutorial.html" target="_blank" rel="external">What is EnumMap in Java</a></p>
-
+<p>Nova建立在一个无共享，基于消息的架构。所有的nova主要组件都可以运行在不同的服务器。这就意味着大多数组件之间的通信必须通过消息队列。为了避免每个组件在等待响应时的阻塞，我们是用deferred对象，当一个响应接收时会触发相应的回调。</p>
+        
+          <a class="article-more-a" href="/2015/10/15/译-Nova-System-Architecture/#more">more >></a>
+        
       
 
       
@@ -355,7 +281,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
         		</li>
       		
 		</ul>
@@ -365,7 +295,7 @@ var _hmt = _hmt || [];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2015/04/24/Java-EnumMap工作原理及实现/">展开全文 >></a>
+          <a class="article-more-a" href="/2015/10/15/译-Nova-System-Architecture/">展开全文 >></a>
         </p>
       
 
@@ -380,48 +310,421 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-C语言中移位操作符优先级的坑" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-读《OpenStack设计与实现》" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/18/C语言中移位操作符优先级的坑/">C语言中移位操作符优先级的坑</a>
+      <a class="article-title" href="/2015/10/08/读《OpenStack设计与实现》/">读《OpenStack设计与实现》</a>
     </h1>
   
 
         
-        <a href="/2015/04/18/C语言中移位操作符优先级的坑/" class="archive-article-date">
-  	<time datetime="2015-04-18T09:16:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Apr 18 2015</time>
+        <a href="/2015/10/08/读《OpenStack设计与实现》/" class="archive-article-date">
+  	<time datetime="2015-10-08T13:52:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Oct 8 2015</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>今天和tiancai交流他腾讯面试题目的时候，有这么一个题目，大致是这样描述的：</p>
+        <h3 id="初始OpenStack和开发基础">初始OpenStack和开发基础</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/10370055/daf455b2-6e0f-11e5-98c3-d3e17ee7d97d.PNG" alt="openstack_ch1ch2"></p>
+<p>OpenStack起于RakeSpace和NASA的合作，相关知识涉及到了云计算和虚拟化，体系结构上来看OpenStack是处于Iaas层，目前来看，还是处于追随AWS的阶段。OpenStack的子项目从新项目、孵化项目最终发展成为核心及集成项目。</p>
+        
+          <a class="article-more-a" href="/2015/10/08/读《OpenStack设计与实现》/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/10/08/读《OpenStack设计与实现》/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-OpenStack概览" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/10/04/OpenStack概览/">OpenStack概览</a>
+    </h1>
+  
+
+        
+        <a href="/2015/10/04/OpenStack概览/" class="archive-article-date">
+  	<time datetime="2015-10-04T11:33:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Oct 4 2015</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-_概览">1. 概览</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/10267380/3f2d8b74-6ac4-11e5-9372-6bc21c57f11f.png" alt="openstack-software-diagram"></p>
 <blockquote>
-<p>有一个函数f，可以等概率产生0,1，写一个函数g，可以等概率地产生0~7中的数。</p>
+<p>OpenStack is a <strong>cloud operating system</strong> that controls large pools of <strong>compute</strong>, <strong>storage</strong>, and <strong>networking</strong> resources throughout a datacenter, all managed through a <strong>dashboard</strong> that gives administrators control while empowering their users to provision resources through a web interface.</p>
 </blockquote>
-<p>于是，我写出了如下一个错误的解法：</p>
+        
+          <a class="article-more-a" href="/2015/10/04/OpenStack概览/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/10/04/OpenStack概览/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-再见，北京" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/06/18/再见，北京/">再见，北京</a>
+    </h1>
+  
+
+        
+        <a href="/2015/06/18/再见，北京/" class="archive-article-date">
+  	<time datetime="2015-06-18T08:10:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Jun 18 2015</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="在北大">在北大</h2><p>一年多的时间，基本都在中国第一学府——北京大学。这里有未名湖畔的波光粼粼，也有博雅塔下的春风垂柳；有艺园吃腻很久的炒菜米饭，也有小白房冒菜不限量的芝麻酱和鳕鱼培根夹馍；有农园清淡爽口的菜肴和炸酱面，也有畅春园改善伙食的麻辣香锅。总之一切都还美好，只是有老校医院实验室中永远调不完的bug后，其他的一切又稍显黯淡。</p>
+        
+          <a class="article-more-a" href="/2015/06/18/再见，北京/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">随笔</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/06/18/再见，北京/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-一个简单的网络数据包工具——Packet-Assistant" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/06/15/一个简单的网络数据包工具——Packet-Assistant/">一个简单的网络数据包工具——Packet Assistant</a>
+    </h1>
+  
+
+        
+        <a href="/2015/06/15/一个简单的网络数据包工具——Packet-Assistant/" class="archive-article-date">
+  	<time datetime="2015-06-15T11:11:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Jun 15 2015</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-_起因">1. 起因</h3><p>最近一段时间，总是有一些<strong>发数据包、抓数据包</strong>之类的需求，主要是需要定制以太网MAC层的源MAC地址、目的MAC地址、协议类型之类的东西。</p>
+<p>之前实现这些都是用Winpcap实现的，然后用某基础类库去实现界面，实在是受不了“某基础类库”庞大冗余的结构了。这时，看到了PyQt，整个人一下清爽起来。所以，Packet Assistant就诞生了。</p>
+<p>总而言之，言而总之：</p>
 <blockquote>
-<p>f()+f()&lt;&lt;1+f()&lt;&lt;2</p>
+<p>Packet Assistant是一个简单的发包、抓包工具。</p>
 </blockquote>
-<p>而正确的应该是：</p>
+        
+          <a class="article-more-a" href="/2015/06/15/一个简单的网络数据包工具——Packet-Assistant/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/06/15/一个简单的网络数据包工具——Packet-Assistant/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-Spring-IOC核心源码学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/29/Spring-IOC核心源码学习/">Spring IOC核心源码学习</a>
+    </h1>
+  
+
+        
+        <a href="/2015/05/29/Spring-IOC核心源码学习/" class="archive-article-date">
+  	<time datetime="2015-05-28T16:34:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>May 29 2015</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-_初始化">1. 初始化</h3><p>大致单步跟了下Spring IOC的初始化过程，整个脉络很庞大，初始化的过程主要就是<strong>读取XML资源，并解析，最终注册到Bean Factory中</strong>：</p>
+<p><img src="https://cloud.githubusercontent.com/assets/1736354/7897341/032179be-070b-11e5-9ecf-d7befc804e9d.png" alt="flow"></p>
+        
+          <a class="article-more-a" href="/2015/05/29/Spring-IOC核心源码学习/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/05/29/Spring-IOC核心源码学习/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-学习awk和sed" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/24/学习awk和sed/">学习awk和sed</a>
+    </h1>
+  
+
+        
+        <a href="/2015/05/24/学习awk和sed/" class="archive-article-date">
+  	<time datetime="2015-05-23T16:52:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>May 24 2015</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>最近把awk和sed又系统地学习了下，使用<a href="http://naotu.baidu.com/" target="_blank" rel="external">百度脑图</a>简单地整理了一下大概的思路：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7785009/0d604ea2-01af-11e5-8fdc-b658a02e76bc.png" alt="awk sed"></p>
+<p>参考资料<br><a href="http://book.douban.com/subject/1236944/" target="_blank" rel="external">《sed与awk》</a><br><a href="http://coolshell.cn/articles/9104.html" target="_blank" rel="external">sed 简明教程</a><br><a href="http://coolshell.cn/articles/9070.html" target="_blank" rel="external">awk 简明教程</a></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2015/05/24/学习awk和sed/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-利用Shell进行Web日志分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2015/05/21/利用Shell进行Web日志分析/">利用Shell进行Web日志分析</a>
+    </h1>
+  
+
+        
+        <a href="/2015/05/21/利用Shell进行Web日志分析/" class="archive-article-date">
+  	<time datetime="2015-05-20T16:24:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>May 21 2015</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h4 id="1-Web日志">1.Web日志</h4><p>Web日志由Web服务器产生，比如Nginx、Apache等。例如一条Nginx的日志格式可能是这样的：</p>
 <blockquote>
-<p>f() + (f()&lt;&lt;1) + (f()&lt;&lt;2)</p>
+<p>222.68.172.190 - - [18/Sep/2013:06:49:57 +0000] “GET /images/my.jpg HTTP/1.1” 200 19939<br> “<a href="http://www.angularjs.cn/A00n" target="_blank" rel="external">http://www.angularjs.cn/A00n</a>“ “Mozilla/5.0 (Windows NT 6.1)<br> AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36”</p>
 </blockquote>
-<p>之前一直有误解，而实际情况是是<strong>移位操作符的优先级低于加减法的优先级</strong>。为了验证和加深记忆，又写了一个小测试：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">include</span> <span class="meta-string">&lt;stdio.h&gt;</span></span></div><div class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span></div><div class="line">&#123;</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"1&lt;&lt;1+2&lt;&lt;1:     %d\n"</span>, <span class="number">1</span>&lt;&lt;<span class="number">1</span>+<span class="number">2</span>&lt;&lt;<span class="number">1</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"1&lt;&lt;(1+2)&lt;&lt;1:   %d\n"</span>, <span class="number">1</span>&lt;&lt;(<span class="number">1</span>+<span class="number">2</span>)&lt;&lt;<span class="number">1</span>);</div><div class="line">    <span class="built_in">printf</span>(<span class="string">"(1&lt;&lt;1)+(2&lt;&lt;1): %d\n"</span>, (<span class="number">1</span>&lt;&lt;<span class="number">1</span>)+(<span class="number">2</span>&lt;&lt;<span class="number">1</span>));</div><div class="line">    <span class="keyword">return</span> <span class="number">0</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>输出为:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">1&lt;&lt;1+2&lt;&lt;1:     16</div><div class="line">1&lt;&lt;(1+2)&lt;&lt;1:   16</div><div class="line">(1&lt;&lt;1)+(2&lt;&lt;1): 6</div></pre></td></tr></table></figure>
-<p>其中编译的时候，也有一个友情提示：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">main.c:4:36: warning: operator &apos;&lt;&lt;&apos; has lower precedence than &apos;+&apos;; &apos;+&apos; will be</div><div class="line">      evaluated first [-Wshift-op-parentheses]</div><div class="line">        printf(&quot;1&lt;&lt;1+2&lt;&lt;1:     %d\n&quot;, 1&lt;&lt;1+2&lt;&lt;1);</div><div class="line">                                       ~~~^~</div><div class="line">main.c:4:36: note: place parentheses around the &apos;+&apos; expression to silence this</div><div class="line">      warning</div><div class="line">        printf(&quot;1&lt;&lt;1+2&lt;&lt;1:     %d\n&quot;, 1&lt;&lt;1+2&lt;&lt;1);</div><div class="line">                                          ^</div><div class="line">                                         (  )</div><div class="line">1 warning generated.</div></pre></td></tr></table></figure>
-<p>最后，</p>
+<p>可以拆解为以下8个变量</p>
 <blockquote>
-<p>希望自己永远保持一颗怀疑的心。</p>
-</blockquote>
+<p>remote_addr: 记录客户端的ip地址, 222.68.172.190<br>remote_user: 记录客户端用户名称, –<br>time_local: 记录访问时间与时区, [18/Sep/2013:06:49:57 +0000]<br>request: 记录请求的url与http协议, “GET /images/my.jpg HTTP/1.1″<br>status: 记录请求状态,成功是200, 200<br>body_bytes_sent: 记录发送给客户端文件主体内容大小, 19939<br>http_referer: 用来记录从那个页面链接访问过来的, “<a href="http://www.angularjs.cn/A00n”" target="_blank" rel="external">http://www.angularjs.cn/A00n”</a><br>http_user_agent: 记录客户浏览器的相关信息, “Mozilla/5.0 (Windows NT 6.1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/29.0.1547.66 Safari/537.36″</p>
+<h4 id="提取最近10分钟的日志：">提取最近10分钟的日志：</h4></blockquote>
+<p>思路一：利用awk提取时间，并做字符串比较</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 在OSX环境下，需要安装coreutils保证`date`等指令正常使用</span></div><div class="line"><span class="comment"># brew install coreutils</span></div><div class="line">tac <span class="built_in">log</span> | </div><div class="line">awk <span class="string">'BEGIN&#123;</span></div><div class="line">    # 获取时间至min10</div><div class="line">    "date -d \"-10 minute\" +\"%H:%M:%S\"" | getline min10 </div><div class="line">&#125; </div><div class="line">&#123;</div><div class="line">    # 日志时间和当前时间比较</div><div class="line">    if (substr($4,14) &gt; min10) </div><div class="line">        print ;</div><div class="line">    # 若一次不匹配则退出</div><div class="line">    else </div><div class="line">        exit;</div><div class="line">&#125;' |</div><div class="line">tac</div></pre></td></tr></table></figure>
+<p>思路二：利用grep的正则匹配，捕获满足条件的时刻</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat <span class="built_in">log</span> | grep -E <span class="string">"19/Sep/2013:06:2[4-9]|19/Sep/2013:06:3[0-3]"</span></div></pre></td></tr></table></figure>
+<p>思路三：使用sed的地址(时刻必须出现)</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">cat <span class="built_in">log</span> | sed -n <span class="string">'/19\/Sep\/2013:06:24/,//19\/Sep\/2013:06:33/p'</span></div></pre></td></tr></table></figure>
+<h4 id="统计某个接口(xxxapi)访问量和QPS">统计某个接口(xxxapi)访问量和QPS</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># cat log | grep xxxapi | wc -l</span></div><div class="line">query=$(cat <span class="built_in">log</span> | grep -c xxxapi)</div><div class="line">t=60</div><div class="line">qps=$((query/<span class="variable">$time</span>))</div></pre></td></tr></table></figure>
+<h4 id="参考资料">参考资料</h4><p><a href="http://blog.fens.me/hadoop-mapreduce-log-kpi/" target="_blank" rel="external">海量Web日志分析 用Hadoop提取KPI统计指标</a><br><a href="https://www.centos.bz/2012/11/shell-scrpit-auto-count-log/" target="_blank" rel="external">shell脚本每天自动统计网站访问日志</a><br><a href="http://www.oschina.net/question/42741_115440" target="_blank" rel="external">如何用Shell截取nginx最近10分钟的日志</a><br><a href="http://bbs.chinaunix.net/thread-4096403-1-1.html" target="_blank" rel="external">如何用awk从日志文件中找到时间范围的数据</a></p>
 
       
 
@@ -435,7 +738,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">C/C++</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -445,7 +748,7 @@ var _hmt = _hmt || [];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2015/04/18/C语言中移位操作符优先级的坑/">展开全文 >></a>
+          <a class="article-more-a" href="/2015/05/21/利用Shell进行Web日志分析/">展开全文 >></a>
         </p>
       
 
@@ -460,34 +763,41 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Java-ArrayDeque工作原理及实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-重新学习Shell" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/11/Java-ArrayDeque工作原理及实现/">Java ArrayDeque工作原理及实现</a>
+      <a class="article-title" href="/2015/05/19/重新学习Shell/">重新学习Shell</a>
     </h1>
   
 
         
-        <a href="/2015/04/11/Java-ArrayDeque工作原理及实现/" class="archive-article-date">
-  	<time datetime="2015-04-11T10:50:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Apr 11 2015</time>
+        <a href="/2015/05/19/重新学习Shell/" class="archive-article-date">
+  	<time datetime="2015-05-19T04:42:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>May 19 2015</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-_概述">1. 概述</h3><blockquote>
-<p>Resizable-array implementation of the <strong>Deque interface</strong>. Array deques have no capacity restrictions; they <strong>grow as necessary to support usage</strong>. They are not thread-safe; in the absence of external synchronization, they do not support concurrent access by multiple threads. Null elements are prohibited. This class is likely to be faster than Stack when used as a stack, and faster than LinkedList when used as a queue.</p>
-</blockquote>
-<p><img src="https://cloud.githubusercontent.com/assets/1736354/7120880/13a5b9a4-e243-11e4-8a63-33c4852c268c.png" alt="arrayqueue"></p>
-<blockquote>
-<p>以循环数组实现的双向Queue。大小是2的倍数，默认是16。</p>
-<p>普通数组只能快速在末尾添加元素，为了支持FIFO，从数组头快速取出元素，就需要使用循环数组：有队头队尾两个下标：弹出元素时，队头下标递增；加入元素时，如果已到数组空间的末尾，则将元素循环赋值到数组<a href="如果此时队头下标大于0，说明队头弹出过元素，有空位">0</a>，同时队尾下标指向0，再插入下一个元素则赋值到数组[1]，队尾下标指向1。如果队尾的下标追上队头，说明数组所有空间已用完，进行双倍的数组扩容。</p>
-</blockquote>
+        <p>之前，虽然已经对<code>Shell</code>比较熟悉了，但是遇到一些不太常用，但是却很有用的命令，还得搜个半天。所以，这几天准备把常用的指令重新过一下，然后再把基础的<code>Shell</code>流程控制、<code>awk</code>的操作等常用命令系统地学习一下，一方面作为总结，另一方面也作为一个Cheat Sheet，时不时的补充一下也是极好的，: )。</p>
+<h4 id="基本语法">基本语法</h4><p><strong>传参</strong><br><code>$n</code> - 传递的第n个参数<br><code>$#</code> - 传递的参数个数<br><code>$*</code> - 所有参数<br><code>$@</code> - 所有参数，加引号为字符串数组</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># var.sh arg1 arg2 arg3</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$0</span> <span class="variable">$1</span> <span class="variable">$2</span> <span class="variable">$3</span></div><div class="line"></div><div class="line"><span class="comment">#3</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$#</span></div><div class="line"></div><div class="line"><span class="comment"># arg1 arg2 arg3</span></div><div class="line"><span class="built_in">echo</span> <span class="variable">$@</span></div><div class="line"></div><div class="line"><span class="comment"># arg1 arg2 arg3</span></div><div class="line"><span class="built_in">echo</span> $*</div><div class="line"></div><div class="line"><span class="comment"># @:arg1</span></div><div class="line"><span class="comment"># @:arg2</span></div><div class="line"><span class="comment"># @:arg3</span></div><div class="line"><span class="keyword">for</span> arg <span class="keyword">in</span> <span class="string">"<span class="variable">$@</span>"</span></div><div class="line"><span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> @:<span class="string">"<span class="variable">$arg</span>"</span></div><div class="line"><span class="keyword">done</span></div><div class="line"></div><div class="line"><span class="comment"># *:arg1 arg2 arg3</span></div><div class="line"><span class="keyword">for</span> arg <span class="keyword">in</span> <span class="string">"$*"</span></div><div class="line"><span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> *:<span class="string">"<span class="variable">$arg</span>"</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<p><strong>if条件控制</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">a=10</div><div class="line">b=20</div><div class="line"><span class="keyword">if</span> [ <span class="variable">$a</span> -eq <span class="variable">$b</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"a euqals b."</span></div><div class="line"><span class="keyword">elif</span> [ <span class="variable">$a</span> -lt <span class="variable">$b</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"a little than b."</span></div><div class="line"><span class="keyword">elif</span> [ <span class="variable">$a</span> -gt <span class="variable">$b</span> ]</div><div class="line">    <span class="built_in">echo</span> <span class="string">"a greater than b."</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line">str=<span class="string">"linux"</span></div><div class="line"><span class="keyword">if</span> [ <span class="string">"<span class="variable">$str</span>"</span> == <span class="string">"linux"</span> ]</div><div class="line"><span class="keyword">then</span></div><div class="line">    <span class="built_in">echo</span> <span class="string">"str is linux."</span></div><div class="line"><span class="keyword">fi</span></div><div class="line"></div><div class="line"><span class="comment"># [ -e filename]    判断文件存在</span></div><div class="line"><span class="comment"># [ -d pathname] 判断目录存在</span></div></pre></td></tr></table></figure>
+<p><strong>循环控制</strong></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">arr=(<span class="string">"hello"</span> <span class="string">"bash"</span> <span class="string">"shell"</span>)</div><div class="line"><span class="keyword">for</span> a <span class="keyword">in</span> <span class="variable">$&#123;arr[*]&#125;</span></div><div class="line"><span class="keyword">do</span></div><div class="line">    <span class="built_in">echo</span> <span class="variable">$a</span></div><div class="line"><span class="keyword">done</span></div></pre></td></tr></table></figure>
+<h4 id="常用指令">常用指令</h4><p><strong>_head/tail</strong>_</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 前5行</span></div><div class="line">head -5</div><div class="line">head -n 5</div><div class="line"><span class="comment"># 前n-5行</span></div><div class="line">head -n -5</div><div class="line"><span class="comment"># 后n-5行</span></div><div class="line">tail -n +5</div><div class="line"><span class="comment"># 前5字节</span></div><div class="line">head -c 5</div></pre></td></tr></table></figure>
+<p><strong>_sort</strong>_</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 忽略起始空格(b)数值(n)去重(u)逆序(r)按照:分隔(-t ':')的第二列(-k 2)排序</span></div><div class="line">sort -bnur -t <span class="string">':'</span> -k 2 somefile</div></pre></td></tr></table></figure>
+<p><strong>_grep</strong>_</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 在当前文件夹的所有文件递归(-r)搜索main</span></div><div class="line">grep -r <span class="string">"main"</span> *</div><div class="line"><span class="comment"># 搜索匹配正则(-E)的行数(-c)，（带main或者括弧的）</span></div><div class="line">grep -cE <span class="string">"main|\(\)"</span> *</div><div class="line"><span class="comment"># 搜索不包含extern的(-v --&gt; invert-match)</span></div><div class="line">grep -v <span class="string">"extern"</span></div></pre></td></tr></table></figure>
+<p><strong>_wc</strong>_</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 打印所有.c文件的行数</span></div><div class="line">grep -r <span class="string">""</span> *.c | wc -l</div></pre></td></tr></table></figure>
 
       
 
@@ -501,7 +811,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
         		</li>
       		
 		</ul>
@@ -511,355 +821,7 @@ var _hmt = _hmt || [];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2015/04/11/Java-ArrayDeque工作原理及实现/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-Java-TreeSet工作原理及实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/10/Java-TreeSet工作原理及实现/">Java TreeSet工作原理及实现</a>
-    </h1>
-  
-
-        
-        <a href="/2015/04/10/Java-TreeSet工作原理及实现/" class="archive-article-date">
-  	<time datetime="2015-04-10T09:05:12.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Apr 10 2015</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-概述">1.概述</h3><blockquote>
-<p>A NavigableSet implementation based on a <strong>TreeMap</strong>. The elements are ordered using their natural ordering, or by a Comparator provided at set creation time, depending on which constructor is used.This implementation provides guaranteed <strong>log(n)</strong> time cost for the basic operations (add, remove and contains).</p>
-</blockquote>
-<p>TreeSet是基于TreeMap实现的，也非常简单，同样的只是用key及其操作，然后把value置为dummy的object。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">TreeSet&lt;String&gt; tset = <span class="keyword">new</span> TreeSet&lt;String&gt;();</div><div class="line">tset.add(<span class="string">"1语文"</span>);</div><div class="line">tset.add(<span class="string">"3英语"</span>);</div><div class="line">tset.add(<span class="string">"2数学"</span>);</div><div class="line">tset.add(<span class="string">"4政治"</span>);</div><div class="line">tset.add(<span class="string">"5历史"</span>);</div><div class="line">tset.add(<span class="string">"6地理"</span>);</div><div class="line">tset.add(<span class="string">"7生物"</span>);</div><div class="line">tset.add(<span class="string">"8化学"</span>);</div><div class="line"><span class="keyword">for</span>(String str : tset) &#123;</div><div class="line">    System.out.println(str);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>其具体的结构是：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7085286/d0b1658c-dfa7-11e4-972c-d1d07e5fadfd.png" alt="treeset"></p>
-<p>利用TreeMap的特性，实现了set的有序性(通过红黑树实现)。</p>
-<h3 id="参考资料">参考资料</h3><p><a href="http://docs.oracle.com/javase/8/docs/api/java/util/TreeSet.html" target="_blank" rel="external">TreeSet(Java Platform SE 8)</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/04/10/Java-TreeSet工作原理及实现/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-Java-LinkedHashSet工作原理及实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/09/Java-LinkedHashSet工作原理及实现/">Java LinkedHashSet工作原理及实现</a>
-    </h1>
-  
-
-        
-        <a href="/2015/04/09/Java-LinkedHashSet工作原理及实现/" class="archive-article-date">
-  	<time datetime="2015-04-09T14:50:16.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Apr 9 2015</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-_概述">1. 概述</h3><blockquote>
-<p><strong>Hash table and linked list implementation of the Set interface</strong>, with predictable iteration order. This implementation differs from HashSet in that it maintains a doubly-linked list running through all of its entries. This linked list defines the iteration ordering, which is the order in which elements were inserted into the set (insertion-order). Note that insertion order is not affected if an element is re-inserted into the set. (An element e is reinserted into a set s if s.add(e) is invoked when s.contains(e) would return true immediately prior to the invocation.)</p>
-</blockquote>
-<p>LinkedHashSet是基于HashMap和双向链表的实现。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">LinkedHashSet&lt;String&gt; lset = <span class="keyword">new</span> LinkedHashSet&lt;String&gt;();</div><div class="line">lset.add(<span class="string">"语文"</span>);</div><div class="line">lset.add(<span class="string">"数学"</span>);</div><div class="line">lset.add(<span class="string">"英语"</span>);</div><div class="line">lset.add(<span class="string">"历史"</span>);</div><div class="line">lset.add(<span class="string">"政治"</span>);</div><div class="line">lset.add(<span class="string">"地理"</span>);</div><div class="line">lset.add(<span class="string">"生物"</span>);</div><div class="line">lset.add(<span class="string">"化学"</span>);</div><div class="line"><span class="keyword">for</span>(String str : lset) &#123;</div><div class="line">    System.out.println(str);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>利用链表来记录，保证了迭代输出的有序性。其具体结构如下所示：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7082382/14d44b8e-df86-11e4-8e50-1e925f430b6e.png" alt="hashset"><br>可以看出，其实现基本和LinkedHashMap一样。</p>
-<h3 id="2-_关键实现">2. 关键实现</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LinkedHashSet</span>&lt;<span class="title">E</span>&gt;</span></div><div class="line">    <span class="keyword">extends</span> <span class="title">HashSet</span>&lt;<span class="title">E</span>&gt;</div><div class="line">    <span class="keyword">implements</span> <span class="title">Set</span>&lt;<span class="title">E</span>&gt;, <span class="title">Cloneable</span>, <span class="title">java</span>.<span class="title">io</span>.<span class="title">Serializable</span></div></pre></td></tr></table></figure>
-<p>从继承关系来看就知道LinkedHashMap的实现非常简单，就是集成HashSet的接口，并且在构造时调用的是：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">HashSet(<span class="keyword">int</span> initialCapacity, <span class="keyword">float</span> loadFactor, <span class="keyword">boolean</span> dummy) &#123;</div><div class="line">    map = <span class="keyword">new</span> LinkedHashMap&lt;&gt;(initialCapacity, loadFactor);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>因此，结构也便是如HashSet于HashMap一样，LinkedHashSet也便如LinkedHashMap一样，只是将Value做了一个dummy的object。</p>
-<h3 id="参考资料">参考资料</h3><p><a href="http://docs.oracle.com/javase/7/docs/api/java/util/LinkedHashSet.html" target="_blank" rel="external">LinkedHashSet</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/04/09/Java-LinkedHashSet工作原理及实现/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-Java-HashSet工作原理及实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/08/Java-HashSet工作原理及实现/">Java HashSet工作原理及实现</a>
-    </h1>
-  
-
-        
-        <a href="/2015/04/08/Java-HashSet工作原理及实现/" class="archive-article-date">
-  	<time datetime="2015-04-08T15:31:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Apr 8 2015</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-_概述">1. 概述</h3><blockquote>
-<p>This class implements the Set interface, backed by a hash table (actually a <strong>HashMap</strong> instance). It makes no guarantees as to the iteration order of the set; in particular, it does not guarantee that the order will remain constant over time. This class permits the null element.</p>
-</blockquote>
-<p>HashSet是基于HashMap来实现的，操作很简单，更像是对HashMap做了一次“封装”，而且只使用了HashMap的key来实现各种特性，我们先来感性的认识一下这个结构：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div></pre></td><td class="code"><pre><div class="line">HashSet&lt;String&gt; set = <span class="keyword">new</span> HashSet&lt;String&gt;();</div><div class="line">set.add(<span class="string">"语文"</span>);</div><div class="line">set.add(<span class="string">"数学"</span>);</div><div class="line">set.add(<span class="string">"英语"</span>);</div><div class="line">set.add(<span class="string">"历史"</span>);</div><div class="line">set.add(<span class="string">"政治"</span>);</div><div class="line">set.add(<span class="string">"地理"</span>);</div><div class="line">set.add(<span class="string">"生物"</span>);</div><div class="line">set.add(<span class="string">"化学"</span>);</div></pre></td></tr></table></figure>
-<p>其大致的结构是这样的：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7060522/0bcfd890-deb5-11e4-97b3-d4e811766893.png" alt="hashset"></p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">private</span> <span class="keyword">transient</span> HashMap&lt;E,Object&gt; map;</div><div class="line"><span class="comment">// Dummy value to associate with an Object in the backing Map</span></div><div class="line"><span class="keyword">private</span> <span class="keyword">static</span> <span class="keyword">final</span> Object PRESENT = <span class="keyword">new</span> Object();</div></pre></td></tr></table></figure>
-<p><code>map</code>是整个HashSet的核心，而<code>PRESENT</code>则是用来造一个假的value来用的。</p>
-<h3 id="2-_基本操作">2. 基本操作</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">add</span><span class="params">(E e)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> map.put(e, PRESENT)==<span class="keyword">null</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">remove</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> map.remove(o)==PRESENT;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">boolean</span> <span class="title">contains</span><span class="params">(Object o)</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> map.containsKey(o);</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">size</span><span class="params">()</span> </span>&#123;</div><div class="line">    <span class="keyword">return</span> map.size();</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>基本操作也非常简单，就是调用HashMap的相关方法，其中value就是之前那个dummy的Object。所以，只要了解#7 HashMap的实现就可以了。</p>
-<h3 id="参考资料">参考资料</h3><p><a href="http://docs.oracle.com/javase/8/docs/api/java/util/HashSet.html" target="_blank" rel="external">HashSet(Java Platform 8)</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/04/08/Java-HashSet工作原理及实现/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-Java-PriorityQueue工作原理及实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/07/Java-PriorityQueue工作原理及实现/">Java PriorityQueue工作原理及实现</a>
-    </h1>
-  
-
-        
-        <a href="/2015/04/07/Java-PriorityQueue工作原理及实现/" class="archive-article-date">
-  	<time datetime="2015-04-07T14:25:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Apr 7 2015</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="参考资料">参考资料</h3><p><a href="http://www.iteye.com/topic/1061958" target="_blank" rel="external">基于最小堆（小根堆）的topn算法</a><br><a href="http://my.oschina.net/leejun2005/blog/135085" target="_blank" rel="external">基于堆实现的优先级队列：PriorityQueue 解决 Top K 问题</a><br><a href="http://www.importnew.com/6932.html" target="_blank" rel="external">Java优先队列（PriorityQueue）示例</a><br><a href="http://wlh0706-163-com.iteye.com/blog/1850125" target="_blank" rel="external">JDK源码研究PriorityQueue（优先队列）</a><br><a href="http://cuisuqiang.iteye.com/blog/2019157" target="_blank" rel="external">优先级队列：PriorityQueue</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/04/07/Java-PriorityQueue工作原理及实现/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-Java-TreeMap工作原理及实现" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2015/04/06/Java-TreeMap工作原理及实现/">Java TreeMap工作原理及实现</a>
-    </h1>
-  
-
-        
-        <a href="/2015/04/06/Java-TreeMap工作原理及实现/" class="archive-article-date">
-  	<time datetime="2015-04-06T15:10:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Apr 6 2015</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-_概述">1. 概述</h3><blockquote>
-<p>A <strong>Red-Black tree</strong> based NavigableMap implementation. The map is sorted according to the natural ordering of its keys, or by a Comparator provided at map creation time, depending on which constructor is used.<br>This implementation provides guaranteed <strong>log(n) time cost</strong> for the containsKey, get, put and remove operations. Algorithms are adaptations of those in Cormen, Leiserson, and Rivest’s Introduction to Algorithms.</p>
-</blockquote>
-<p>之前已经学习过HashMap和LinkedHashMap了，HashMap不保证数据有序，LinkedHashMap保证数据可以保持插入顺序，而如果我们希望Map可以保持key的大小顺序的时候，我们就需要利用TreeMap了。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line">TreeMap&lt;Integer, String&gt; tmap = <span class="keyword">new</span> TreeMap&lt;Integer, String&gt;();</div><div class="line">tmap.put(<span class="number">1</span>, <span class="string">"语文"</span>);</div><div class="line">tmap.put(<span class="number">3</span>, <span class="string">"英语"</span>);</div><div class="line">tmap.put(<span class="number">2</span>, <span class="string">"数学"</span>);</div><div class="line">tmap.put(<span class="number">4</span>, <span class="string">"政治"</span>);</div><div class="line">tmap.put(<span class="number">5</span>, <span class="string">"历史"</span>);</div><div class="line">tmap.put(<span class="number">6</span>, <span class="string">"地理"</span>);</div><div class="line">tmap.put(<span class="number">7</span>, <span class="string">"生物"</span>);</div><div class="line">tmap.put(<span class="number">8</span>, <span class="string">"化学"</span>);</div><div class="line"><span class="keyword">for</span>(Entry&lt;Integer, String&gt; entry : tmap.entrySet()) &#123;</div><div class="line">    System.out.println(entry.getKey() + <span class="string">": "</span> + entry.getValue());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>其大致的结构如下所示：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7041463/05ee676a-de0c-11e4-9412-4c6964931e43.png" alt="treemap"><br>使用红黑树的好处是能够使得树具有不错的平衡性，这样操作的速度就可以达到log(n)的水平了。具体红黑树的实现不在这里赘述，可以参考<a href="http://dongxicheng.org/structure/red-black-tree/" target="_blank" rel="external">数据结构之红黑树</a>、<a href="http://zh.wikipedia.org/wiki/%E7%BA%A2%E9%BB%91%E6%A0%91" target="_blank" rel="external">wikipedia-红黑树</a>等的实现。</p>
-<h3 id="2-_put函数">2. put函数</h3><blockquote>
-<p>Associates the specified value with the specified key in this map.If the map previously contained a mapping for the key, the old value is replaced.</p>
-</blockquote>
-<p>如果存在的话，old value被替换；如果不存在的话，则新添一个节点，然后对做红黑树的平衡操作。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div><div class="line">40</div><div class="line">41</div><div class="line">42</div><div class="line">43</div><div class="line">44</div><div class="line">45</div><div class="line">46</div><div class="line">47</div><div class="line">48</div><div class="line">49</div><div class="line">50</div><div class="line">51</div><div class="line">52</div><div class="line">53</div><div class="line">54</div><div class="line">55</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">public</span> V <span class="title">put</span><span class="params">(K key, V value)</span> </span>&#123;</div><div class="line">    Entry&lt;K,V&gt; t = root;</div><div class="line">    <span class="keyword">if</span> (t == <span class="keyword">null</span>) &#123;</div><div class="line">        compare(key, key); <span class="comment">// type (and possibly null) check</span></div><div class="line"></div><div class="line">        root = <span class="keyword">new</span> Entry&lt;&gt;(key, value, <span class="keyword">null</span>);</div><div class="line">        size = <span class="number">1</span>;</div><div class="line">        modCount++;</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">int</span> cmp;</div><div class="line">    Entry&lt;K,V&gt; parent;</div><div class="line">    <span class="comment">// split comparator and comparable paths</span></div><div class="line">    Comparator&lt;? <span class="keyword">super</span> K&gt; cpr = comparator;</div><div class="line">        <span class="comment">// 如果该节点存在，则替换值直接返回</span></div><div class="line">    <span class="keyword">if</span> (cpr != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">do</span> &#123;</div><div class="line">            parent = t;</div><div class="line">            cmp = cpr.compare(key, t.key);</div><div class="line">            <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>)</div><div class="line">                t = t.left;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>)</div><div class="line">                t = t.right;</div><div class="line">            <span class="keyword">else</span></div><div class="line">                <span class="keyword">return</span> t.setValue(value);</div><div class="line">        &#125; <span class="keyword">while</span> (t != <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">else</span> &#123;</div><div class="line">        <span class="keyword">if</span> (key == <span class="keyword">null</span>)</div><div class="line">            <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</div><div class="line">        <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line">            Comparable&lt;? <span class="keyword">super</span> K&gt; k = (Comparable&lt;? <span class="keyword">super</span> K&gt;) key;</div><div class="line">        <span class="keyword">do</span> &#123;</div><div class="line">            parent = t;</div><div class="line">            cmp = k.compareTo(t.key);</div><div class="line">            <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>)</div><div class="line">                t = t.left;</div><div class="line">            <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>)</div><div class="line">                t = t.right;</div><div class="line">            <span class="keyword">else</span></div><div class="line">                <span class="keyword">return</span> t.setValue(value);</div><div class="line">        &#125; <span class="keyword">while</span> (t != <span class="keyword">null</span>);</div><div class="line">    &#125;</div><div class="line">        <span class="comment">// 如果该节点未存在，则新建</span></div><div class="line">    Entry&lt;K,V&gt; e = <span class="keyword">new</span> Entry&lt;&gt;(key, value, parent);</div><div class="line">    <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>)</div><div class="line">        parent.left = e;</div><div class="line">    <span class="keyword">else</span></div><div class="line">        parent.right = e;</div><div class="line">        <span class="comment">// 红黑树平衡调整</span></div><div class="line">    fixAfterInsertion(e);</div><div class="line">    size++;</div><div class="line">    modCount++;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="3-_get函数">3. get函数</h3><p>get函数则相对来说比较简单，以log(n)的复杂度进行get</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">final</span> Entry&lt;K,V&gt; <span class="title">getEntry</span><span class="params">(Object key)</span> </span>&#123;</div><div class="line">    <span class="comment">// Offload comparator-based version for sake of performance</span></div><div class="line">    <span class="keyword">if</span> (comparator != <span class="keyword">null</span>)</div><div class="line">        <span class="keyword">return</span> getEntryUsingComparator(key);</div><div class="line">    <span class="keyword">if</span> (key == <span class="keyword">null</span>)</div><div class="line">        <span class="keyword">throw</span> <span class="keyword">new</span> NullPointerException();</div><div class="line">    <span class="meta">@SuppressWarnings</span>(<span class="string">"unchecked"</span>)</div><div class="line">        Comparable&lt;? <span class="keyword">super</span> K&gt; k = (Comparable&lt;? <span class="keyword">super</span> K&gt;) key;</div><div class="line">    Entry&lt;K,V&gt; p = root;</div><div class="line">        <span class="comment">// 按照二叉树搜索的方式进行搜索，搜到返回</span></div><div class="line">    <span class="keyword">while</span> (p != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="keyword">int</span> cmp = k.compareTo(p.key);</div><div class="line">        <span class="keyword">if</span> (cmp &lt; <span class="number">0</span>)</div><div class="line">            p = p.left;</div><div class="line">        <span class="keyword">else</span> <span class="keyword">if</span> (cmp &gt; <span class="number">0</span>)</div><div class="line">            p = p.right;</div><div class="line">        <span class="keyword">else</span></div><div class="line">            <span class="keyword">return</span> p;</div><div class="line">    &#125;</div><div class="line">    <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">&#125;</div><div class="line"></div><div class="line"><span class="function"><span class="keyword">public</span> V <span class="title">get</span><span class="params">(Object key)</span> </span>&#123;</div><div class="line">    Entry&lt;K,V&gt; p = getEntry(key);</div><div class="line">    <span class="keyword">return</span> (p==<span class="keyword">null</span> ? <span class="keyword">null</span> : p.value);</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<h3 id="4-_successor后继">4. successor后继</h3><p>TreeMap是如何保证其迭代输出是有序的呢？其实从宏观上来讲，就相当于树的中序遍历(LDR)。我们先看一下迭代输出的步骤</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(Entry&lt;Integer, String&gt; entry : tmap.entrySet()) &#123;</div><div class="line">    System.out.println(entry.getKey() + <span class="string">": "</span> + entry.getValue());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>根据<a href="http://docs.oracle.com/javase/specs/jls/se8/html/jls-14.html#jls-14.14.2" target="_blank" rel="external">The enhanced for statement</a>，for语句会做如下转换为：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span>(Iterator&lt;Map.Entry&lt;String, String&gt;&gt; it = tmap.entrySet().iterator() ; tmap.hasNext(); ) &#123;</div><div class="line">    Entry&lt;Integer, String&gt; entry = it.next();</div><div class="line">    System.out.println(entry.getKey() + <span class="string">": "</span> + entry.getValue());</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>在<strong>it.next()</strong>的调用中会使用<strong>nextEntry</strong>调用<code>successor</code>这个是过的后继的重点，具体实现如下：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">static</span> &lt;K,V&gt; TreeMap.<span class="function">Entry&lt;K,V&gt; <span class="title">successor</span><span class="params">(Entry&lt;K,V&gt; t)</span> </span>&#123;</div><div class="line">    <span class="keyword">if</span> (t == <span class="keyword">null</span>)</div><div class="line">        <span class="keyword">return</span> <span class="keyword">null</span>;</div><div class="line">    <span class="keyword">else</span> <span class="keyword">if</span> (t.right != <span class="keyword">null</span>) &#123;</div><div class="line">        <span class="comment">// 有右子树的节点，后继节点就是右子树的“最左节点”</span></div><div class="line">        <span class="comment">// 因为“最左子树”是右子树的最小节点</span></div><div class="line">        Entry&lt;K,V&gt; p = t.right;</div><div class="line">        <span class="keyword">while</span> (p.left != <span class="keyword">null</span>)</div><div class="line">            p = p.left;</div><div class="line">        <span class="keyword">return</span> p;</div><div class="line">    &#125; <span class="keyword">else</span> &#123;</div><div class="line">        <span class="comment">// 如果右子树为空，则寻找当前节点所在左子树的第一个祖先节点</span></div><div class="line">        <span class="comment">// 因为左子树找完了，根据LDR该D了</span></div><div class="line">        Entry&lt;K,V&gt; p = t.parent;</div><div class="line">        Entry&lt;K,V&gt; ch = t;</div><div class="line">        <span class="comment">// 保证左子树</span></div><div class="line">        <span class="keyword">while</span> (p != <span class="keyword">null</span> &amp;&amp; ch == p.right) &#123;</div><div class="line">            ch = p;</div><div class="line">            p = p.parent;</div><div class="line">        &#125;</div><div class="line">        <span class="keyword">return</span> p;</div><div class="line">    &#125;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
-<p>怎么理解这个successor呢？只要记住，这个是中序遍历就好了，L-D-R。具体细节如下：</p>
-<blockquote>
-<p><strong>a. 空节点，没有后继</strong><br><strong>b. 有右子树的节点，后继就是右子树的“最左节点”</strong><br><strong>c. 无右子树的节点，后继就是该节点所在左子树的第一个祖先节点</strong></p>
-</blockquote>
-<p>a.好理解，不过b, c，有点像绕口令啊，没关系，上图举个例子就懂了！</p>
-<p><strong>有右子树的节点</strong>，节点的下一个节点，肯定在右子树中，而右子树中“最左”的那个节点则是右子树中最小的一个，那么当然是<strong>右子树的“最左节点”</strong>，就好像下图所示：<br><img src="https://cloud.githubusercontent.com/assets/1736354/7045283/652d00c4-de2f-11e4-8475-1a2f46afc380.png" alt="treemap1"></p>
-<p><strong>无右子树的节点</strong>，先找到这个节点所在的左子树(右图)，那么这个节点所在的左子树的父节点(绿色节点)，就是下一个节点。<br><img src="https://cloud.githubusercontent.com/assets/1736354/7045284/68279686-de2f-11e4-8310-c9f76b3f52ab.png" alt="treemap2"></p>
-<h3 id="参考资料">参考资料</h3><p><a href="http://docs.oracle.com/javase/8/docs/api/java/util/TreeMap.html" target="_blank" rel="external">TreeMap (Java Platform SE 8)</a><br><a href="http://www.cnblogs.com/yangecnu/p/Introduce-Red-Black-Tree.html" target="_blank" rel="external">浅谈算法和数据结构: 九 平衡查找树之红黑树</a><br><a href="http://blog.csdn.net/chenssy/article/details/26668941" target="_blank" rel="external">Java提高篇（二七）——-TreeMap</a><br><a href="http://dongxicheng.org/structure/red-black-tree/" target="_blank" rel="external">数据结构之红黑树</a><br><a href="http://zh.wikipedia.org/wiki/%E7%BA%A2%E9%BB%91%E6%A0%91" target="_blank" rel="external">wikipedia-红黑树</a><br><a href="http://www.cs.princeton.edu/~rs/talks/LLRB/RedBlack.pdf" target="_blank" rel="external">Red-Black Trees</a><br><a href="http://stackoverflow.com/questions/18063394/how-treemap-searches-successor-for-given-entry" target="_blank" rel="external">How TreeMap searches successor for given Entry?</a></p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2015/04/06/Java-TreeMap工作原理及实现/">展开全文 >></a>
+          <a class="article-more-a" href="/2015/05/19/重新学习Shell/">展开全文 >></a>
         </p>
       
 
@@ -876,7 +838,7 @@ var _hmt = _hmt || [];
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/4/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/">6</a><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/6/">Next &raquo;</a>
     </nav>
   
 
@@ -888,7 +850,7 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Yikun
+    		&copy; 2019 Yikun
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -966,6 +928,18 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
              
@@ -978,23 +952,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Draft</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1006,11 +964,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
               <li class="article-tag-list-item">

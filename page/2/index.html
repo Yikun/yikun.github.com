@@ -173,31 +173,29 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-理解Python中的“with”" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Placement深度探索-Get-Allocation-Candidates" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/15/理解Python中的“with”/">理解Python中的“with”</a>
+      <a class="article-title" href="/2017/12/25/Placement深度探索-Get-Allocation-Candidates/">[Placement深度探索] Get Allocation Candidates</a>
     </h1>
   
 
         
-        <a href="/2016/04/15/理解Python中的“with”/" class="archive-article-date">
-  	<time datetime="2016-04-15T15:44:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Apr 15 2016</time>
+        <a href="/2017/12/25/Placement深度探索-Get-Allocation-Candidates/" class="archive-article-date">
+  	<time datetime="2017-12-25T09:25:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Dec 25 2017</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-_缘起">1. 缘起</h3><p>Python中，打开文件的操作是非常常见的，也是非常方便的，那么如何优雅的打开一个文件？大部分的同学会这样实现：</p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">with</span> open( <span class="string">"a.txt"</span> ) <span class="keyword">as</span> f :</div><div class="line">    <span class="comment"># do something</span></div></pre></td></tr></table></figure>
-<p>大家都知道，这样写可以自动处理资源的释放、处理异常等，化简了我们打开文件的操作，那么，<code>with</code>到底做了什么呢？</p>
+        <h2 id="1_功能概述">1 功能概述</h2><p>Placement的一个重要的接口，就是获取满足指定资源条件的allocation。举个例子，用户说，<code>我需要1个VCPU，512MB内存，1GB磁盘的资源，Placement你帮我找找看看，有没有合适的资源</code>。</p>
         
-          <a class="article-more-a" href="/2016/04/15/理解Python中的“with”/#more">more >></a>
+          <a class="article-more-a" href="/2017/12/25/Placement深度探索-Get-Allocation-Candidates/#more">more >></a>
         
       
 
@@ -211,7 +209,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
         		</li>
       		
 		</ul>
@@ -221,7 +223,7 @@ var _hmt = _hmt || [];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/15/理解Python中的“with”/">展开全文 >></a>
+          <a class="article-more-a" href="/2017/12/25/Placement深度探索-Get-Allocation-Candidates/">展开全文 >></a>
         </p>
       
 
@@ -236,30 +238,640 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-存储数据包的一生" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-一个死锁问题的深入探究" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/04/03/存储数据包的一生/">存储数据包的一生</a>
+      <a class="article-title" href="/2017/12/13/一个死锁问题的深入探究/">一个死锁问题的深入探究</a>
     </h1>
   
 
         
-        <a href="/2016/04/03/存储数据包的一生/" class="archive-article-date">
-  	<time datetime="2016-04-03T14:04:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Apr 3 2016</time>
+        <a href="/2017/12/13/一个死锁问题的深入探究/" class="archive-article-date">
+  	<time datetime="2017-12-13T11:47:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Dec 13 2017</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近认认真真学习了一个叫<a href="https://www.brighttalk.com/webcast/663/169543" target="_blank" rel="external">《Life of a Storage Packet》</a>讲座，借助这个讲座将整个存储的过程理解了下，不放过任何一个有疑问的点。这篇文章算是对讲座的理解和自己收获的总结，同时也为那些对存储系统不够了解又想要了解的初学者，展现一个存储数据包的“生命”。这个演讲主要聚焦在“整体的存储”，强调存储系统中各个基本元素的关系，并且尽可能简单、清楚地用一种不同的方式可视化一些存储的概念。</p>
-<p>先上一张大图，可以说这篇文章目的就是解释这个图：<br><img src="https://cloud.githubusercontent.com/assets/1736354/14232888/3dc0f734-f9ea-11e5-877c-8b37b7addbdd.png" alt="12"></p>
+        <p>本篇文章可以看做是一个问题定位、分析、学习过程的记录，介绍了OpenStack Nova一个死锁问题的分析和解决的过程，你将从本文了解到SQLAlchemy的session中的语序排序机制、OpenStack的死锁重试机制及改进点以及一些调试的手段。</p>
+<h3 id="0-_背景">0. 背景</h3><p>在Nova对虚拟机进行一些操作的时候，比如创建、停止虚拟机之类的操作的时候，会将这些事件记录在instance_actions表里面记录操作的时间、操作类型以及一些操作事件详情。</p>
+<p>例如，我们可以通过instnace-action-list来查看虚拟机的操作，并可以通过对应的req id来查操作中的事件详情，如果是失败的话，还可以从事件详情中，看到对应的错误栈信息。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> nova instance-action-list e92885a9-06d6-4491-ac43-6fd04e32ee72</span></div><div class="line">+--------+------------------------------------------+---------+----------------------------+</div><div class="line">| Action | Request_ID                               | Message | Start_Time                 |</div><div class="line">+--------+------------------------------------------+---------+----------------------------+</div><div class="line">| create | req-416cb88e-5adb-4c0f-9c32-6370d3661940 | -       | 2017-12-13T12:08:36.000000 |</div><div class="line">| stop   | req-52155da3-d2ca-463c-b380-6034c0b5fdf1 | -       | 2017-12-13T12:09:17.000000 |</div><div class="line">+--------+------------------------------------------+---------+----------------------------+</div><div class="line"><span class="meta"></span></div><div class="line">$<span class="bash"> nova instance-action e92885a9-06d6-4491-ac43-6fd04e32ee72 req-52155da3-d2ca-463c-b380-6034c0b5fdf1</span></div><div class="line">+---------------+--------------------------------------------------+</div><div class="line">| Property      | Value                                            |</div><div class="line">+---------------+--------------------------------------------------+</div><div class="line">| action        | stop                                             |</div><div class="line">| events        | [&#123;u'event': u'compute_stop_instance',            |</div><div class="line">|               |   u'finish_time': u'2017-12-13T12:09:23.000000', |</div><div class="line">|               |   u'result': u'Success',                         |</div><div class="line">|               |   u'start_time': u'2017-12-13T12:09:18.000000',  |</div><div class="line">|               |   u'traceback': None&#125;]                           |</div><div class="line">| instance_uuid | e92885a9-06d6-4491-ac43-6fd04e32ee72             |</div><div class="line">| message       | -                                                |</div><div class="line">| project_id    | 0232cef222f7479fae3fd8fa24d8c382                 |</div><div class="line">| request_id    | req-52155da3-d2ca-463c-b380-6034c0b5fdf1         |</div><div class="line">| start_time    | 2017-12-13T12:09:17.000000                       |</div><div class="line">| user_id       | 5b0b6a4c068f4c1ba78b50d8a4db5057                 |</div><div class="line">+---------------+--------------------------------------------------+</div></pre></td></tr></table></figure></p>
+<p>在instance_action的表里面，记录着action的更新时间，比如event结束了，我们也期望能够action里面能记录update的时间，但是目前并没有进行刷新。</p>
+<p><img src="https://user-images.githubusercontent.com/1736354/34138279-ac8d220e-e4a9-11e7-8617-8f8ddb0ef34a.jpg" alt="action"></p>
+<p>这个patch想做的事儿也比较简单，如上图所示，就是在event进行记录（比如开始和结束）的时候，也对action的更新时间也做刷新。也就是说，我们在写instance_event_action表后，也需要写instance_action表去记录下刷新时间。大致代码的关键逻辑如下所示（省略了一些无关的代码细节）：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@pick_context_manager_writer</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">action_event_finish</span><span class="params">(context, values)</span>:</span></div><div class="line">    <span class="string">"""Finish an event on an instance action."""</span></div><div class="line">    <span class="comment"># 原有获取action</span></div><div class="line">    action = _action_get_by_request_id(context, values[<span class="string">'instance_uuid'</span>],</div><div class="line">                                       values[<span class="string">'request_id'</span>])</div><div class="line">    <span class="comment"># 原有获取event</span></div><div class="line">    event_ref = model_query(context, models.InstanceActionEvent).\</div><div class="line">                            filter_by(action_id=action[<span class="string">'id'</span>]).\</div><div class="line">                            filter_by(event=values[<span class="string">'event'</span>]).\</div><div class="line">                            first()</div><div class="line">    <span class="comment"># 原有的event刷新流程</span></div><div class="line">    event_ref.update(values)</div><div class="line">    <span class="comment"># **新增的刷新action时间逻辑**</span></div><div class="line">    action.update(&#123;<span class="string">'updated_at'</span>: values[<span class="string">'finish_time'</span>]&#125;)</div><div class="line">    action.save(context.session)</div><div class="line">    <span class="keyword">return</span> event_ref</div></pre></td></tr></table></figure></p>
+<h3 id="1-_起因">1. 起因</h3><p>在修复Nova的这个事件时间刷新问题(<a href="https://bugs.launchpad.net/nova/+bug/1719561" target="_blank" rel="external">bug/507473</a>)的时候，CI会概率性地挂一些用例，先开始以为是CI不稳定，workflow+1之后，最终的门禁检查一直过不了。Matt recheck了几次都是失败的，然后问：</p>
+<blockquote>
+<p>I’m not sure if the test failures this patch is hitting are related to this change or not - they definitely don’t seem to be (I’m not sure why we’d get an UnexpectedTaskStateError during resize due to this change).</p>
+</blockquote>
+<p>这才引起了我的注意，我找了下归档的日志发现：</p>
+<blockquote>
+<p>Exception during message handling: DBDeadlock: (pymysql.err.InternalError) (1213, u’<strong>Deadlock found when trying to get lock</strong>; try restarting transaction’) [SQL: u’<strong>UPDATE instance_actions SET updated_at=%(updated_at)s WHERE instance_actions.id = %(instance_actions_id)s</strong>‘] [parameters: {‘instance_actions_id’: 23, ‘updated_at’: datetime.datetime(2017, 12, 4, 2, 48, 36, 91068)}]</p>
+</blockquote>
+<p>第一反应是，我去！死锁了？简单的一个update怎么会死锁？确认了下where条件比较单一，并不是因为条件排序不稳定引起的死锁；也确认了下action数据库的索引，也比较简单，也不会有死锁问题。然后，就看业务代码，代码逻辑也很简单，一个事务里面包含了4件事，2个查询，2个刷新。不科学啊！</p>
+<h3 id="2-_发现">2. 发现</h3><p>遇到这种活久见的问题，最好的办法就是把每一句SQL都dump出来，因为不是裸写SQL，鬼知道SQLAlchemy中间的ORM那层为我们做了什么。</p>
+<p>OpenStack的oslo.db为我们提供了一个配置项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[database]</div><div class="line"># (Integer) Verbosity of SQL debugging information: 0=None, 100=Everything.</div><div class="line">connection_debug = 100</div></pre></td></tr></table></figure></p>
+<p>把他设置成100就可以dump出执行的每一句SQL了，这个方法在我们进行调试的时候很方便。然后，进行复现，结果让我震惊了（问号脸？？？代码是一样的，生成SQL的顺序却是不一致的）：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 从API dump的结果</span></div><div class="line"><span class="keyword">BEGIN</span> (implicit)</div><div class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> instance_actions <span class="keyword">WHERE</span> ...</div><div class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> instance_actions_events <span class="keyword">WHERE</span> ...</div><div class="line"><span class="comment">-- 先刷新action</span></div><div class="line"><span class="keyword">UPDATE</span> instance_actions <span class="keyword">SET</span> updated_at=%(updated_at)s <span class="keyword">WHERE</span> instance_actions.id= %(instance_actions_id)s</div><div class="line"><span class="comment">-- 再刷新action_event</span></div><div class="line"><span class="keyword">UPDATE</span> instance_actions_events <span class="keyword">SET</span> updated_at=%(updated_at)s, finish_time=%(finish_time)s, <span class="keyword">result</span>=%(<span class="keyword">result</span>)s <span class="keyword">WHERE</span> instance_actions_events.id = %(instance_actions_events_id)s</div><div class="line"><span class="keyword">COMMIT</span></div><div class="line"></div><div class="line"><span class="comment">-- 从Conductor dump的结果</span></div><div class="line"><span class="keyword">BEGIN</span> (implicit)</div><div class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> instance_actions <span class="keyword">WHERE</span> ...</div><div class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> instance_actions_events <span class="keyword">WHERE</span> ...</div><div class="line"><span class="comment">-- 先刷新action_event</span></div><div class="line"><span class="keyword">UPDATE</span> instance_actions_events <span class="keyword">SET</span> updated_at=%(updated_at)s, finish_time=%(finish_time)s, <span class="keyword">result</span>=%(<span class="keyword">result</span>)s <span class="keyword">WHERE</span> instance_actions_events.id = %(instance_actions_events_id)s</div><div class="line"><span class="comment">-- 再刷新action</span></div><div class="line"><span class="keyword">UPDATE</span> instance_actions <span class="keyword">SET</span> updated_at=%(updated_at)s <span class="keyword">WHERE</span> instance_actions.id= %(instance_actions_id)s</div><div class="line"><span class="keyword">COMMIT</span></div></pre></td></tr></table></figure></p>
+<p>完整的SQL dump我贴在了<a href="http://paste.openstack.org/show/628609/" target="_blank" rel="external">paste/628609</a>，可以分析出来，就是产生死锁的根本原因：<strong>在一个事务中，更新2个表的相反行</strong>。并发执行2个这样的事务，一个事务拿着action表的行锁，一个事务拿着action_event表的行锁，它们都互相等着对方释放，最终产生了死锁，如下图所示。</p>
+<p><img src="https://user-images.githubusercontent.com/1736354/34138652-98867f06-e4ab-11e7-8d68-fea01b118e8b.jpg" alt="deadlockjpg"></p>
+<p>从MySQL官方DOC里，给的建议<a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-deadlocks-handling.html" target="_blank" rel="external">How to Minimize and Handle Deadlocks</a>中，我们也看到了类似的建议：</p>
+<blockquote>
+<p>When modifying multiple tables within a transaction, or different sets of rows in the same table, do those operations in a consistent order each time. Then transactions form well-defined queues and do not deadlock. For example, organize database operations into functions within your application, or call stored routines, rather than coding multiple similar sequences of INSERT, UPDATE, and DELETE statements in different places.</p>
+</blockquote>
+<p>核心意思就是说，我们在一个transaction中更新多个表的时候，或者说在一个表中更新不同行的时候，一定要保证每一次调用的顺序是一致的。最终，临时解决这个问题的方式也比较简单，就是在这个函数上加一个<a href="https://review.openstack.org/#/c/507473/16/nova/db/sqlalchemy/api.py@6304" target="_blank" rel="external">死锁重试装饰器</a>，即在发生死锁的时候进行重试，CI终于全绿了。</p>
+<h3 id="3-_进一步分析">3. 进一步分析</h3><p>问题解决就结束了吗？不，2个疑问一直在心中徘徊：</p>
+<blockquote>
+<ol>
+<li>死锁重试的装饰器是怎么实现的，真的有效吗？</li>
+<li>SQLalchemy做了什么导致最终生成SQL的顺序是不稳定的，为什么要这么做？</li>
+</ol>
+</blockquote>
+<h4 id="3-1_oslo-db的死锁重试机制">3.1 oslo.db的死锁重试机制</h4><p>这个问题的场景和上研的时候，在通信中搞的“退避算法”很类似（HINOC中信道接纳的时候，多个节点并行接纳时，如果发生冲突，需要退避重试），都是冲突避免，通信中是避免信道冲突，而这里则是避免数据库的死锁。</p>
+<p>我们从<a href="https://github.com/openstack/oslo.db/blob/4a727233dc2b7d1021ed7932d2cd27d8053dca31/oslo_db/api.py#L127-L161" target="_blank" rel="external">oslo_db/api.py</a>可以看到他的实现，原理比较简单，就是隔几秒（2的retry数次方秒），如果调用成功，就终止重试。伪代码大概如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">t = <span class="number">1</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="keyword">try</span>):</div><div class="line">    sleep(t)</div><div class="line">    <span class="comment"># 指数递增</span></div><div class="line">    t = t * <span class="number">2</span></div><div class="line">    <span class="comment"># 超过上限取上限</span></div><div class="line">    t = min(max_t, t)</div><div class="line">    func()</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">raise</span> deadlock:</div><div class="line">        <span class="keyword">break</span></div></pre></td></tr></table></figure></p>
+<p>虽然看着隔了一些时间，但是，这种指数递增的机制对于死锁这种问题没有什么卵用，大家一起等，然后再一起调，还是会再次产生死锁。对于这个问题，我提交了一个Patch对其进行优化，具体内容可以参考 #71 <a href="https://github.com/Yikun/yikun.github.com/issues/71" target="_blank" rel="external">《oslo.db中的死锁重试机制优化》</a>的详细分析。</p>
+<h4 id="3-2_SQLAlchemy_Session中的排序机制">3.2 SQLAlchemy Session中的排序机制</h4><p>上文已经提到，造成死锁的根本原因实际上是在一个事务中，更新2个表的时候的顺序不一致。在并发调用的时候，产生了死锁。Python的代码是按顺序更新的（先更新event内容，再更新action），但是为什么SQLAlchemy产生的SQL是乱序的呢？</p>
+<p>通过阅读SQLAlchemy的源码，最终找到了答案。先说结论：Session中的操作顺序，由UnitOfWork机制决定最终的调用顺序，如果没有依赖关系，最终执行顺序是不稳定的。</p>
+<h5 id="3-2-1-_SQLAlchemy的缓存刷新机制">3.2.1. SQLAlchemy的缓存刷新机制</h5><p>SQLAlchemy在进行数据刷新的时候，会有一个flush的过程(实现见<a href="https://github.com/zzzeek/sqlalchemy/blob/75bdcd096f12012bf45cffebd597c33b501c2ef2/lib/sqlalchemy/orm/session.py#L2203" target="_blank" rel="external">lib/sqlalchemy/orm/session.py#def flush</a>，这个过程会将所有的object的变化，刷新到数据库中。例如，会将插入、修改、删除，转换为INSERT、UPDATE、DELETE等操作。而刷新执行的顺序，是通过Session的”UNIT of Worker”依赖机制保证的。</p>
+<p>我们可以从有SQLalchemy作者写的一篇关于其架构的文章<a href="http://www.aosabook.org/en/sqlalchemy.html" target="_blank" rel="external">《SQLAlchemy》</a>中看到一些关于Session相关的数据结构：<br><img src="https://user-images.githubusercontent.com/1736354/34139960-93fe0f2e-e4b2-11e7-94ab-e439712a7258.png" alt="session-overview"></p>
+<p>Session维护着如上图所示的结构，在每次刷新的时候，会将object的变动刷新到数据库中。如作者所说说，flush这个函数可能是 SQLAlchemy最复杂的函数。</p>
+<h5 id="3-2-2-_SQLAlchemy的UNIT_of_WORK机制">3.2.2. SQLAlchemy的UNIT of WORK机制</h5><p>我们先看看来自作者的介绍：</p>
+<blockquote>
+<p>The job of the unit of work is to move all of the pending state present in a particular Session out to the database, emptying out the new, dirty, and deleted collections maintained by the Session. Once completed, the in-memory state of the Session and what’s present in the current transaction match. The primary challenge is to determine the correct series of persistence steps, and then to perform them in the correct order.</p>
+</blockquote>
+<p>UOW的工作主要是将session维护的new、dirty、deleted的集合清掉并落入数据库中。主要挑战就是决定正确的持久化步骤和顺序。我们看到了关键的地方，排序！</p>
+<p>从这篇文章中，我们了解到，其实对于UOW来说，共有两级排序：<br><img src="https://user-images.githubusercontent.com/1736354/34144270-c8be1bfa-e4cb-11e7-87df-ab894059bd13.jpg" alt="sort"><br>1） 第一级排序，是针对于多个表（class）之前的排序，依赖信息从表之间的关系获取，例如文章中所举的User和Address的例子，需要在user插入后，有了主键，然后再去更新。<br>2）第二季排序，是针对于一个表（class）之中操作的排序，例如文章中所举的，前一个插入的user依赖后一个user。</p>
+<p>然而，无论是哪个排序，如果表和表之间在SQLAlchemy定义模型的时候，并没有指定其顺序，那么便没有依赖关系，也便意味着，顺序是不稳定的。</p>
+<p>在我们出现的问题中，action和action_event在<a href="https://github.com/openstack/nova/blob/07c925a5321e379293bbf0e55bf3c40798eaf21b/nova/db/sqlalchemy/models.py#L1272-L1309" target="_blank" rel="external">model定义的代码</a>中，并未指定action和event之前的关系，因此，SQLAlchemy分析依赖的时候，只是将这两个表当做独立的2个表。</p>
+<h5 id="3-2-3-_实战一把">3.2.3. 实战一把</h5><p>为了证明我们的分析，我们在SQLAlchemy打印一些日志来记录依赖关系和最终执行的结果，代码见<a href="https://github.com/zzzeek/sqlalchemy/blob/68879d50faa9e2602e55d5d191647b1cf864e5ab/lib/sqlalchemy/orm/unitofwork.py#L372-L377" target="_blank" rel="external">lib/sqlalchemy/ormunitofwork.py</a>，取消掉这些注释即可。</p>
+<blockquote>
+<p>dependencies: set([(SaveUpdateAll(Mapper|InstanceActionEvent|instance_actions_events), DeleteAll(Mapper|InstanceActionEvent|instance_actions_events)), (SaveUpdateAll(Mapper|InstanceAction|instance_actions), DeleteAll(Mapper|InstanceAction|instance_actions))])</p>
+<p>cycles: set([])</p>
+<p>sort: [SaveUpdateAll(Mapper|InstanceAction|instance_actions), SaveUpdateAll(Mapper|InstanceActionEvent|instance_actions_events), DeleteAll(Mapper|InstanceActionEvent|instance_actions_events), DeleteAll(Mapper|InstanceAction|instance_actions)]</p>
+<p>COUNT OF POSTSORT ACTIONS 4</p>
+</blockquote>
+<p>上面共4行信息，我们需要的是dependencies信息和sort信息，从依赖信息我们可以看到，我们进行的这个事务仅有2组依赖，分别是action和event_action的缓存入库先于缓存清空，而action和event_action之间是没有依赖关系的。所以，最终生成的sort列表，其实是无法保证稳定性的。</p>
+<p>所以，才会出现我们本文所出的问题，一会先刷新action，一会先刷新action_event。然而，对于这种问题并不是无解，我们只需要在这两个表里加入relationship，使他们有依赖就可以了。如果确实没有什么关联，那我们就需要思考把更新拆分到更小的事务中了，就像MySQL官网说的那样：<strong>Keep transactions small and short in duration to make them less prone to collision</strong>。</p>
+<h3 id="4-_总结。">4. 总结。</h3><p>TL;DR。写完这篇文章发现，有点太长了，不想细看的看看总结吧，哈哈。</p>
+<ol>
+<li>遇到OpenStack数据库相关问题，可以通过设置[database]/connection_debug=100进行SQL打印。</li>
+<li>SQLAlchemy对于一个session中的更新顺序，如果表之间没有依赖，是无法保证顺序的。</li>
+<li>在一个事务中，更新多张表，需要考虑顺序，若ORM无法保证的更新顺序，尽量不要放在同一个事务中，尽量确保事务做的事简单。</li>
+<li>oslo.db目前的死锁重试机制，是大家一起等X秒，很有可能再次死锁。</li>
+</ol>
+<h3 id="参考">参考</h3><ol>
+<li><a href="https://bugs.launchpad.net/nova/+bug/1719561" target="_blank" rel="external">Instance action’s updated_at issue</a></li>
+<li><a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-deadlocks-handling.html" target="_blank" rel="external">How to Minimize and Handle Deadlocks</a></li>
+<li><a href="https://amazonaws-china.com/blogs/architecture/exponential-backoff-and-jitter/" target="_blank" rel="external">Exponential Backoff And Jitter</a></li>
+<li><a href="http://www.sqlalchemy.org/library.html" target="_blank" rel="external">SQLAlchemy library(tutorials, arch doc, talks, posts</a></li>
+<li><a href="https://news.ycombinator.com/item?id=10321331" target="_blank" rel="external">Some discussion on backoff algorithm</a></li>
+<li><a href="https://stackoverflow.com/questions/10154343/is-sqlalchemy-saves-order-in-adding-objects-to-session" target="_blank" rel="external">Is SQLAlchemy saves order in adding objects to session?</a></li>
+<li><a href="http://www.aosabook.org/en/sqlalchemy.html" target="_blank" rel="external">SQLAlchemy at Architecture of Open Source Applications</a></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/13/一个死锁问题的深入探究/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-Nova调度相关特性理解与梳理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
         
-          <a class="article-more-a" href="/2016/04/03/存储数据包的一生/#more">more >></a>
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/06/Nova调度相关特性理解与梳理/">Nova调度相关特性理解与梳理</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/06/Nova调度相关特性理解与梳理/" class="archive-article-date">
+  	<time datetime="2017-12-06T01:41:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Dec 6 2017</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>准备拿这篇文章梳理下OpenStack Nova调度相关的特性，由于目前Placement的引入，说起调度，和这个组件是分不开的，所以本文也可以看做是Placement的一个历史特性的梳理。第一阶段会按照版本，先把调度相关的BP过一遍，然后再通过理解和使用加强理解。好吧，我承认又开了一个系列的坑，话不多说，开始！</p>
+        
+          <a class="article-more-a" href="/2017/12/06/Nova调度相关特性理解与梳理/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/06/Nova调度相关特性理解与梳理/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-跨Cell场景下查询的那些事儿" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/11/16/跨Cell场景下查询的那些事儿/">跨Cell场景下查询的那些事儿</a>
+    </h1>
+  
+
+        
+        <a href="/2017/11/16/跨Cell场景下查询的那些事儿/" class="archive-article-date">
+  	<time datetime="2017-11-16T13:19:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Nov 16 2017</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-_背景">1. 背景</h3><p>我们知道Nova目前正在慢慢地演进到Cell V2架构，Cell V2架构中，很重要的一个变化就是数据库的拆分，清晰的划分了数据库的职能，从而有具备横向扩展的能力。顶层数据库(nova_api)用来存储全局数据，而Cell中的数据库(nova_cellX)仅存储计算节点相关的数据。比如，创建虚拟机的全局数据，比如Flavor、Keypair之类的数据，放在上层的nova_api数据库中，而虚拟机本身的信息，比如某个虚拟机的信息，放在了子Cell中。</p>
+<p><img src="https://user-images.githubusercontent.com/1736354/33543222-307b8974-d911-11e7-9993-5373720491df.jpg" alt="cell"></p>
+<p>这样的架构另一个好处是Cell很轻松的可以实现扩展，从而提升虚拟机数量的规模。然而，这引入了一个问题，就是没有一个地方存储着全量虚拟机的数据了。当我们需要一些全局的虚拟机数据查询时（比如查询全量虚拟机列表）就比较棘手了。</p>
+        
+          <a class="article-more-a" href="/2017/11/16/跨Cell场景下查询的那些事儿/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/11/16/跨Cell场景下查询的那些事儿/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-译-An-Update-on-the-Placement-API-and-Scheduler-plans-for-Queens" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/25/译-An-Update-on-the-Placement-API-and-Scheduler-plans-for-Queens/">[译] An Update on the Placement API and Scheduler plans for Queens</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/25/译-An-Update-on-the-Placement-API-and-Scheduler-plans-for-Queens/" class="archive-article-date">
+  	<time datetime="2017-10-25T06:10:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Oct 25 2017</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>原文链接：<a href="https://github.com/jaypipes/articles/blob/master/openstack/placement-queens-update.md" target="_blank" rel="external">https://github.com/jaypipes/articles/blob/master/openstack/placement-queens-update.md</a></p>
+<p>这篇文章主要讲了在过去几个版本中，OpenStack社区对于Nova调度及Placement服务相关工作的更新进展。我也会着重介绍一些我们在Q版本中主要处理的几个BP，同时也介绍了未来重点工作的路标，我们会在未来的几个release中完成它们。</p>
+        
+          <a class="article-more-a" href="/2017/10/25/译-An-Update-on-the-Placement-API-and-Scheduler-plans-for-Queens/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/25/译-An-Update-on-the-Placement-API-and-Scheduler-plans-for-Queens/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-OpenStack-Nova虚拟机冷迁移流程解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/10/11/OpenStack-Nova虚拟机冷迁移流程解析/">OpenStack Nova虚拟机冷迁移流程解析</a>
+    </h1>
+  
+
+        
+        <a href="/2017/10/11/OpenStack-Nova虚拟机冷迁移流程解析/" class="archive-article-date">
+  	<time datetime="2017-10-11T08:36:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Oct 11 2017</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-_概述">1. 概述</h3><p>虚拟机冷迁移由于当用户想把虚拟机从一个计算节点移动到其他节点。主要涉及的命令如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> nova migrate server_id</div><div class="line"><span class="meta">$</span> nova resize-confirm server_id</div></pre></td></tr></table></figure></p>
+<p>看到后是不是觉得有点奇怪为啥migrate之后，还要resize-confirm？resize操作其实和migrate操作比较类似，不同的是迁移前后的flavor不一样。一般情况下resize的场景是，对虚拟机进行扩容，把flavor调大之类的。所以，在代码级别，nova也将两个流程合一了。migrate就是一个没有flavor变化的resize。</p>
+        
+          <a class="article-more-a" href="/2017/10/11/OpenStack-Nova虚拟机冷迁移流程解析/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/10/11/OpenStack-Nova虚拟机冷迁移流程解析/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-OpenStack-Nova虚拟机创建流程解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/27/OpenStack-Nova虚拟机创建流程解析/">OpenStack Nova虚拟机创建流程解析</a>
+    </h1>
+  
+
+        
+        <a href="/2017/09/27/OpenStack-Nova虚拟机创建流程解析/" class="archive-article-date">
+  	<time datetime="2017-09-27T03:15:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Sep 27 2017</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-_概述">1. 概述</h2><p>Nova是OpenStack中处理计算业务（虚拟机、裸机、容器）的组件，整体的虚拟机创建流程自然是学习和熟悉Nova组件的第一步。本篇文章主要基于OpenStack Pike版本，基于最新的Cell v2架构部署为例，来介绍虚拟机的创建流程，并分析了Pike等最近几个版本中，虚拟机创建流程的关键变化。</p>
+        
+          <a class="article-more-a" href="/2017/09/27/OpenStack-Nova虚拟机创建流程解析/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/09/27/OpenStack-Nova虚拟机创建流程解析/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-译-Simpler-Road-to-Cinder-Active-Active" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/08/16/译-Simpler-Road-to-Cinder-Active-Active/">[译] Simpler Road to Cinder Active-Active</a>
+    </h1>
+  
+
+        
+        <a href="/2017/08/16/译-Simpler-Road-to-Cinder-Active-Active/" class="archive-article-date">
+  	<time datetime="2017-08-16T12:50:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Aug 16 2017</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <blockquote>
+<p>译注：本篇文章为作者介绍Cinder AA方案的文章，作者是gorka，是实现cinder AA BP的core，文章介绍了这哥们实现AA时的记录，算是对方案的一种解释以及设计思路的总结，核心思想为以下几点：</p>
+<ol>
+<li>每个volume node都增加一个<code>cluster</code>的配置项，作为集群，标记这个节点属于某个集群；</li>
+<li>通过cluster@backend作为消息队列的topic，并且启动cluster@backend的服务；</li>
+<li>scheduler进行调度时，投递到某个合适的集群，集群中的某个后端进行消费；</li>
+<li>消费时，将操作记录在worker中，用来标记这个资源由某个worker来操作，这样当发生异常时，可以确保仅有某个worker进行cleanup的操作。</li>
+</ol>
+</blockquote>
+<p>原文链接：<a href="https://gorka.eguileor.com/simpler-road-to-cinder-active-active/" target="_blank" rel="external">Simpler Road to Cinder Active-Active</a></p>
+        
+          <a class="article-more-a" href="/2017/08/16/译-Simpler-Road-to-Cinder-Active-Active/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/08/16/译-Simpler-Road-to-Cinder-Active-Active/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-一次有关OpenStack请求的性能问题分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/07/22/一次有关OpenStack请求的性能问题分析/">一次有关OpenStack请求的性能问题分析</a>
+    </h1>
+  
+
+        
+        <a href="/2016/07/22/一次有关OpenStack请求的性能问题分析/" class="archive-article-date">
+  	<time datetime="2016-07-22T15:09:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Jul 22 2016</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="0-_背景介绍">0. 背景介绍</h3><p>目前OpenStack对外提供的北向接口是以REST接口提供的，也就是说通过HTTP（HTTPS）接口进行请求，进行虚拟机或者卷等相关的操作。OpenStack提供I层基本的能力，比如创建、查询、删除虚拟机或者卷等操作，以OpenStack作为平台，对上提供用户接口，对下操作下层Driver完成对设备的操作，其大致的架构基本如下所示：</p>
+        
+          <a class="article-more-a" href="/2016/07/22/一次有关OpenStack请求的性能问题分析/#more">more >></a>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2016/07/22/一次有关OpenStack请求的性能问题分析/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-一致性哈希算法的理解与实践" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2016/06/09/一致性哈希算法的理解与实践/">一致性哈希算法的理解与实践</a>
+    </h1>
+  
+
+        
+        <a href="/2016/06/09/一致性哈希算法的理解与实践/" class="archive-article-date">
+  	<time datetime="2016-06-09T02:43:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Jun 9 2016</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="0-_概述">0. 概述</h3><p>在维基百科中，是这么定义的</p>
+<blockquote>
+<p>一致哈希是一种特殊的哈希算法。在使用一致哈希算法后，哈希表槽位数（大小）的改变平均只需要对 K/n个关键字重新映射，其中K是关键字的数量， n是槽位数量。然而在传统的哈希表中，添加或删除一个槽位的几乎需要对所有关键字进行重新映射。</p>
+<h3 id="1-_引出">1. 引出</h3></blockquote>
+<p>我们在上文中已经介绍了一致性Hash算法的基本优势，我们看到了该算法主要解决的问题是：当slot数发生变化时，能够尽量少的移动数据。那么，我们思考一下，普通的Hash算法是如何实现？又存在什么问题呢？<br>那么我们引出一个问题：</p>
+<blockquote>
+<p>假设有1000w个数据项，100个存储节点，请设计一种算法合理地将他们存储在这些节点上。</p>
+</blockquote>
+<p>看一看普通Hash算法的原理：<br><img src="https://cloud.githubusercontent.com/assets/1736354/16341297/fe155f98-3a5e-11e6-834d-193e6f85afcd.png" alt="normal_hash"></p>
+        
+          <a class="article-more-a" href="/2016/06/09/一致性哈希算法的理解与实践/#more">more >></a>
         
       
 
@@ -283,536 +895,7 @@ var _hmt = _hmt || [];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/04/03/存储数据包的一生/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-OpenStack源码分析-Cinder中的调度机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/05/OpenStack源码分析-Cinder中的调度机制/">OpenStack源码分析-Cinder中的调度机制</a>
-    </h1>
-  
-
-        
-        <a href="/2016/03/05/OpenStack源码分析-Cinder中的调度机制/" class="archive-article-date">
-  	<time datetime="2016-03-04T16:45:44.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Mar 5 2016</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>整理了一下目前cinder中支持的调度的Filter和Weigher：<br><img src="https://cloud.githubusercontent.com/assets/1736354/15445332/29c1730c-1f2f-11e6-8706-4b38f5fc9e0d.png" alt="scheduler"><br>后面结合源码看下实现，留坑~</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/05/OpenStack源码分析-Cinder中的调度机制/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-OpenStack源码分析-Service启动流程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/05/OpenStack源码分析-Service启动流程/">OpenStack源码分析-Service启动流程</a>
-    </h1>
-  
-
-        
-        <a href="/2016/03/05/OpenStack源码分析-Service启动流程/" class="archive-article-date">
-  	<time datetime="2016-03-04T16:38:21.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Mar 5 2016</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p><img src="https://cloud.githubusercontent.com/assets/1736354/13372372/d42f0c0a-dd7b-11e5-9656-1f2ff817e53a.png" alt="cinder service launcher"></p>
-        
-          <a class="article-more-a" href="/2016/03/05/OpenStack源码分析-Service启动流程/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/05/OpenStack源码分析-Service启动流程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-OpenStack源码分析-挂载卷流程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/03/05/OpenStack源码分析-挂载卷流程/">OpenStack源码分析-挂载卷流程</a>
-    </h1>
-  
-
-        
-        <a href="/2016/03/05/OpenStack源码分析-挂载卷流程/" class="archive-article-date">
-  	<time datetime="2016-03-04T16:32:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Mar 5 2016</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-_挂卷流程">1. 挂卷流程</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/13493796/5a1fda3a-e17b-11e5-98be-2bca8a26e0bb.png" alt="volume attach"><br>    当Nova volume-attach server volume执行后，主要经过以下几步：<br>a.  Nova Client解析指令，通过RESTFUL接口访问nova-api；<br>b.  Nova API解析响应请求获取虚拟机的基本信息，然后向cinder-api发出请求保留，并向nova-compute发送RPC异步调用请求卷挂载；<br>c.  Nova-compute向cinder-api初始化信息，并根据初始化连接调用Libvirt的接口完成挂卷流程；<br>d.  进而调用cinder-volume获取连接，获取了连接后，通过RESTFUL请求cinder-api进行数据库更新操作。</p>
-        
-          <a class="article-more-a" href="/2016/03/05/OpenStack源码分析-挂载卷流程/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/03/05/OpenStack源码分析-挂载卷流程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-优雅地调试OpenStack" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/23/优雅地调试OpenStack/">优雅地调试OpenStack</a>
-    </h1>
-  
-
-        
-        <a href="/2016/02/23/优雅地调试OpenStack/" class="archive-article-date">
-  	<time datetime="2016-02-22T16:00:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Feb 23 2016</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>恩，题目首先要起的高逼格一些。2333。</p>
-<p>在前面学习代码的过程中，主要通过源码来学习，开始学起来确实有点费劲，因为欠缺对OpenStack的整体的意识，于是<a href="http://yikun.github.io/2016/02/10/搭建OpenStack开发环境/">搭建OpenStack开发环境</a>对OpenStack的运行环境和使用有了初步认知。也看到了启动OpenStack后的一些相关进程，那么这些进程是如何与源码对应起来的呢？如何去调试OpenStack呢？本篇文章就讲下我的探索。</p>
-        
-          <a class="article-more-a" href="/2016/02/23/优雅地调试OpenStack/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/02/23/优雅地调试OpenStack/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-OpenStack源码分析-Cinder删除卷流程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/21/OpenStack源码分析-Cinder删除卷流程/">OpenStack源码分析-Cinder删除卷流程</a>
-    </h1>
-  
-
-        
-        <a href="/2016/02/21/OpenStack源码分析-Cinder删除卷流程/" class="archive-article-date">
-  	<time datetime="2016-02-21T11:56:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Feb 21 2016</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-_Cinder删除卷整体流程">1. Cinder删除卷整体流程</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/13130440/f8979c4c-d61e-11e5-8665-84b9d2f928f9.png" alt="delete"></p>
-<p>删除卷流程比较简单，主要就是cinder-api解析Cilent的指令，并响应，发送RPC调用cinder-volume的delete操作，详细流程如下：<br>a. Client发送删除指令，通过RESTful接口访问cinder-api；<br>b. Cinder-api解析响应请求，通过RPC调用cinder-volume；<br>c. Cinder-volume通过调用Driver的delete函数进行删除。</p>
-<h3 id="2-_源码详解">2. 源码详解</h3><p> <img src="https://cloud.githubusercontent.com/assets/1736354/13130451/0e77ce74-d61f-11e5-91e9-9b63918beef1.png" alt="cinder delete"></p>
-<h4 id="2-1_Cinder_API">2.1 Cinder API</h4><p>(1) Cinder\api\v2\volumes.py<br>VolumeController的delete函数响应请求，首先从API获取Volume对象信息，然后，调用API的delete对对象进行删除；<br>(2) Cinder\volume\api.py<br>API.delete的对卷的状态进行检查，并更新状态为“deleting”，然后调用rpcapi的delete_volume函数</p>
-<h4 id="2-2_Cinder_Volume">2.2 Cinder Volume</h4><p>(1) Cinder\volume\rpcapi.py<br>VolumeAPI函数投递一个远程消息，通过消息队列远程调用cinder volume的delete_volume函数。<br>(2) Cinder\volume\manager<br>最终通过VolumeManager调用dirver的delete_volume对卷进行删除。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/02/21/OpenStack源码分析-Cinder删除卷流程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-OpenStack源码分析-Cinder创建卷流程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/14/OpenStack源码分析-Cinder创建卷流程/">OpenStack源码分析-Cinder创建卷流程</a>
-    </h1>
-  
-
-        
-        <a href="/2016/02/14/OpenStack源码分析-Cinder创建卷流程/" class="archive-article-date">
-  	<time datetime="2016-02-14T09:43:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Feb 14 2016</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-_Cinder创卷整体流程">1. Cinder创卷整体流程</h3><p><img src="https://cloud.githubusercontent.com/assets/1736354/13130372/71de5178-d61e-11e5-8d7c-6b9f0a244e41.png" alt="create"></p>
-<p>如整体架构图所示，创建卷涉及的答题步骤主要有以下几步：<br>a. Client发送请求，通过RESTFUL接口访问cinder-api。<br>b. Api解析响应请求，api解析由Client发送来的请求，并通过rpc进一步调用cinder-scheduler。<br>c. Scheduler对资源进行调度，scheduler选择合适的节点进行。<br>d. Volume调用Driver创建卷，volume通过指定Driver进行卷的创建。</p>
-<h3 id="2-_源码详解">2. 源码详解</h3><p>代码的整体流程如下所示：<br> <img src="https://cloud.githubusercontent.com/assets/1736354/13033012/82f1e54e-d342-11e5-835c-e8f6d3baff40.png" alt="cinder seq"><br>从上图可以看出，整体处理流程包括三大部分，分别是API、Scheduler、Volume三部分。</p>
-<h4 id="2-1_Cinder_API部分">2.1 Cinder API部分</h4><p><img src="https://cloud.githubusercontent.com/assets/1736354/13130422/b4a5c3b0-d61e-11e5-8781-52c9586b9c7d.png" alt="create_api"></p>
-<p>(1) cinder\api\v2\volumes.py<br>VolumeController. create函数对创建请求进行响应，首先函数对volume_type、metadata、snapshot等信息进行检查，然后调用Volume API的create进行创建。<br>(2) cinder\volume\api.py<br>API.create函数对source_volume、volume_type等参数进行进一步检查，并调用cinder.volume.flows.api.get_flow来创建。<br>(3) cinder\volume\flows\api\create_volume.py<br>get_flow函数检查Quata，最后创建EntryCreateTask及VolumeCastTask等任务，<br>其中EntryCreateTask会将卷的创建过程写入数据库，此时卷的状态为”creating”。<br>VolumeCastTask.excute函数会调用VoumeCastTask._cast_create_volume<br>VolumeCastTask._cast_create_volume函数，如果未传入host，则会经过调度进行创建卷，通过scheduler_rpcapi.create_volume创建卷；如果未传入host则直接交由Volume Manager去创建卷。</p>
-<p>至此为止，Cinder API部分完成了自己的工作。</p>
-<h4 id="2-2_Cinder_Scheduler">2.2 Cinder Scheduler</h4><p><img src="https://cloud.githubusercontent.com/assets/1736354/13130398/8ceff976-d61e-11e5-8ea7-08661eebb7af.png" alt="create_sche"></p>
-<p>(1) cinder\scheduler\rpcapi.py（此步还属于cinder-api）<br>SchedulerAPI.create_volume函数会通过消息异步调用SchedulerManager.create_volume函数。<br>(2) cinder\scheduler\manager.py<br>SchedulerManager.create_volume函数，使用自己的flow来创建volume，其中还传入了Driver。<br>(3) cinder\scheduler\flows\create_volume.py<br>get_flow函数，创建ScheduleCreateVolumeTask<br>ScheduleCreateVolumeTask.execute函数，会调用driver_api.schedule_create_volume<br>(4) cinder\scheduler\filter_scheduler.py<br>FilterScheduler. schedule_create_volume函数，更新数据库，最后通过消息队列请求调用volume_rpcapi.create_volume。</p>
-<h4 id="2-3_Cinder_Volume">2.3    Cinder Volume</h4><p> <img src="https://cloud.githubusercontent.com/assets/1736354/13130404/93c802e8-d61e-11e5-87e7-a01a64765a3b.png" alt="create_volume"><br>(1) /cinder/volume/rpcapi.py（此步还属于cinder-scheduler）<br>VolumeAPI.create_volume会通过消息队列远程调用VolumeManager.create_volume<br>(2) /cinder/volume/manager.py<br>VolumeManager函数也使用flow来创建volume，执行CreateVolumeFromSpecTask这个任务<br>(3) /cinder/volume/flows/manager/create_volume.py<br>CreateVolumeFromSpecTask.excute，这个函数会根据创建的不同类别，去创建卷，例如调用create_raw_volume，最终会调用具体的driver进行卷的创建。<br>在完成创卷后，CreateVolumeOnFinishTask这个任务，启动更新数据库，将卷更新为available状态。</p>
-<p>我们可以看到在创建卷的过程中盘的状态会从“creating”状态变为“available”状态。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/02/14/OpenStack源码分析-Cinder创建卷流程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-搭建OpenStack开发环境" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/10/搭建OpenStack开发环境/">搭建OpenStack开发环境</a>
-    </h1>
-  
-
-        
-        <a href="/2016/02/10/搭建OpenStack开发环境/" class="archive-article-date">
-  	<time datetime="2016-02-09T16:10:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Feb 10 2016</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>前段时间主要了解了一些OpenStack相关的基础性东西，现在希望通过安装使用来增强一下对系统整体的认识，最近也读了一篇文章<a href="http://www.csdn.net/article/2014-04-10/2819247-how-to-learn-opensouce-project-&amp;-ceph" target="_blank" rel="external">如何学习开源项目</a>，基本和我的想法很类似，所以基本上也就是按照这个节奏来的。不说废话了，开始。</p>
-        
-          <a class="article-more-a" href="/2016/02/10/搭建OpenStack开发环境/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/02/10/搭建OpenStack开发环境/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-存储知识学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2016/02/03/存储知识学习/">存储知识学习</a>
-    </h1>
-  
-
-        
-        <a href="/2016/02/03/存储知识学习/" class="archive-article-date">
-  	<time datetime="2016-02-03T14:46:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Feb 3 2016</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-_磁盘基本知识">1. 磁盘基本知识</h2><p>磁盘大致由盘片、磁头、步进电机等几部分组成组成。<br>盘面：硬盘一般含有一个或多个盘片，一个盘片包含两个盘面。<br>磁道：每个盘面被划成多个狭窄的同心圆环，这样的圆环叫做磁道。<br>扇区：每个磁道的每段圆弧叫做一个扇区，是读写的最小单位。<br>柱面：所有盘面上的同一磁道，在竖直方向构成一个圆柱，称为柱面。<br>    读写过程：硬盘读取数据时，磁头先移动到读取扇区所在磁道的上方，这个过程耗时叫做磁盘寻道时间，平均时间为10ms。之后，通过盘片的旋转，使得扇区转到磁头的下方，这个过程耗时叫做旋转延迟时间，对于7200转/min的硬盘转一周为60*1000/7200=8.33ms，平均旋转延迟为4.17ms（半圈）。</p>
-<h3 id="2-_RAID基本知识">2. RAID基本知识</h3><p>RAID（Redundant Array of Independent Disks），即由独立的磁盘组成的具有冗余特性的阵列。其基本思想就是把多个相对便宜的硬盘组合起来，成为一个硬盘阵列组，使性能达到甚至超过一个价格昂贵、 容量巨大的硬盘。<br>RAID 0，条带化存储，容量增加，并行化，但无冗余，容易单点故障。</p>
-<p>RAID 1，镜像存储，写入速率慢，读取速率快，有冗余备份，优点是高可靠、高可用，缺点是高花费。</p>
-<p>RAID 2，RAID 0的改进版，使用汉明码进行检测和纠错，适用于连续IO、大块IO（如视频流）。</p>
-<p>RAID 3，RAID 3和RAID 2的思路比较相似，使用奇偶校验进行错误检测和纠错，但校验盘单点故障。</p>
-<p>RAID 4，RAID 4和RAID 3思路一样，只不过是使用BLOCK进行存储。</p>
-<p>RAID 5，校验信息交叉的存储在所有数据盘上，高冗余，高数据传输率，实现复杂。</p>
-<p>RAID 6，相比RAID5增加块内的校验，允许同时坏2块硬盘而不丢失数据。</p>
-<p>RAID 01，先做条带（0），再做镜像（1）。读写速度快，数据保护能力强，空间利用率50%。<br>RAID 10，先做镜像（1），再做条带（0）。</p>
-<h3 id="3-_存储方式">3. 存储方式</h3><p>根据网上的资料和理解，用Visio整理了一张图对比了下几种方式：<br><img src="https://cloud.githubusercontent.com/assets/1736354/12811291/7906961c-cb66-11e5-89da-3f2bc2f00108.png" alt="das_nas_san"></p>
-<p>DAS全称为Direct Attached Storage，即服务器直连存储。如图所示，文件系统直接通过RAID完成对硬件访问。优点是操作简便，经济，缺点是分散式存储，不可集中管理。<br>NAS全称为Network Attached Storage，即网络存储服务。如图所示，文件系统通过网络暴露出来给应用服务。优点是结构简单。配置使用管理非常方便，可实现跨平台的数据共享。缺点是需要占用网络资源、应用局限性大。<br>SAN全称为Storage Aera Network，即存储区域网络，如图所示，RAID接口通过网络暴露出来。优点是扩展性强，集中管理，缺点是成本较高，管理维护难度大。</p>
-<h3 id="4-_IP_SAN与FC_SAN">4. IP SAN与FC SAN</h3><p>FC SAN指基于光纤通道（Fiber Channel）的存储区域网，在FC SAN中存在两张网，一张面向应用的网（IP网），另一张中则是存储网（FC网）。而IP SAN的出现则是为了寻求一种新的方式，用与应用网相同的体系架构来构造存储网，使用通用的IP网络及设备。<br>FC SAN性能好，价格高，但与主流的IP网络异构。适用于关键应用的几种存储、备份及容灾。<br>IP SAN则由于以太网MTU（1518字节）的限制，性能稍差，但基于通用的IP协议。适用于异地间的数据交换、备份容灾，非关键应用的集中存储。</p>
-<h3 id="5-_LVM基本知识">5. LVM基本知识</h3><p>LVM的全称是Logical Volume Manager，逻辑卷轴管理，主要解决的问题是，弹性调整文件系统的容量。</p>
-<p><img src="https://cloud.githubusercontent.com/assets/1736354/12811308/9e2cf4e0-cb66-11e5-91e4-5d375b576ae7.png" alt="lvm"></p>
-<p>与传统的磁盘与分区相比，LVM为计算机提供了更高层次的存储，通过在磁盘分区和文件系统之间增加一个逻辑层，提供一个抽象的逻辑盘卷。</p>
-<h3 id="参考资料">参考资料</h3><ol>
-<li>《大话存储》</li>
-<li>RAID技术介绍和总结<a href="http://blog.jobbole.com/83808/" target="_blank" rel="external">http://blog.jobbole.com/83808/</a></li>
-<li>基于OpenStack的NAS服务<a href="https://www.ustack.com/blog/openstack-nas/" target="_blank" rel="external">https://www.ustack.com/blog/openstack-nas/</a></li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2016/02/03/存储知识学习/">展开全文 >></a>
+          <a class="article-more-a" href="/2016/06/09/一致性哈希算法的理解与实践/">展开全文 >></a>
         </p>
       
 
@@ -829,7 +912,7 @@ var _hmt = _hmt || [];
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -841,7 +924,7 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Yikun
+    		&copy; 2019 Yikun
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -919,6 +1002,18 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
              
@@ -931,23 +1026,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Draft</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -959,11 +1038,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
               <li class="article-tag-list-item">

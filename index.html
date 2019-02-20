@@ -173,30 +173,206 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-Placement深度探索-Get-Allocation-Candidates" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Placement深度探索-共享、嵌套、分组模型深度解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/25/Placement深度探索-Get-Allocation-Candidates/">[Placement深度探索] Get Allocation Candidates</a>
+      <a class="article-title" href="/2018/08/01/Placement深度探索-共享、嵌套、分组模型深度解析/">[Placement深度探索] 共享、嵌套、分组模型深度解析</a>
     </h1>
   
 
         
-        <a href="/2017/12/25/Placement深度探索-Get-Allocation-Candidates/" class="archive-article-date">
-  	<time datetime="2017-12-25T09:25:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Dec 25 2017</time>
+        <a href="/2018/08/01/Placement深度探索-共享、嵌套、分组模型深度解析/" class="archive-article-date">
+  	<time datetime="2018-08-01T04:15:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Aug 1 2018</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="1_功能概述">1 功能概述</h2><p>Placement的一个重要的接口，就是获取满足指定资源条件的allocation。举个例子，用户说，<code>我需要1个VCPU，512MB内存，1GB磁盘的资源，Placement你帮我找找看看，有没有合适的资源</code>。</p>
+        <p>在 #63 中我们介绍了最简单的Allocation candidate的过程，在Placment中，是如何实现分享、嵌套、分组的呢？</p>
+<h2 id="1-_模型概览">1. 模型概览</h2><p><img src="https://user-images.githubusercontent.com/1736354/43573240-df680e7e-9673-11e8-9786-9492c9e8f4f8.png" alt="image"></p>
+<p>如上图所示，对于一共三个节点，然后还有一个128G的共享内存：</p>
+<ol>
+<li>节点1，含有16个VCPU、32768MB内存、包含2个NUMA分别挂2个PF，一个PF含8个VF，一个PF含2个VF</li>
+<li>节点2，含有16个VCPU、32768MB内存</li>
+<li>节点3，含有16个VCPU、16384MB内存</li>
+</ol>
+<h3 id="1-1_Single，独立模型。">1.1 Single，独立模型。</h3><p>最简单的模型就是将每个Resource Rrovider(RP)看做独立的，当单个模型含有全部请求资源时，才算满足要求。即请求16个VCPU、16384MB的内存，那我们期待的就是获取到ID为1，6，7的节点。</p>
+<h3 id="1-2_Nested，嵌套模型。">1.2 Nested，嵌套模型。</h3><p>对于嵌套模型，我们期望的是，将整个树的关系都能被发现到，当一颗树上的资源满足请求，即返回树。即请求16个VCPU、32768MB的内存、8个VF，那么我们最终得到的是1节点，他是作为满足条件树的根节点。</p>
+<h3 id="1-3_Sharing，共享模型。">1.3 Sharing，共享模型。</h3><p>对于共享模型，我们期望的是，将共享的NFS的资源也考虑进去，当然，这个资源仅共享给一个agg分组的RP，即请求16个VCPU、32768MB的内存、128G的硬盘，我们期望得到的是1节点和6节点。</p>
+<h3 id="1-4_Aggregate，分组模型。">1.4 Aggregate，分组模型。</h3><p>用户可以通过member_of指定agg，获取某个组内的资源。例如，我指定member_of agg1，那么我们期望得到的就是1节点和7节点。另外，还有一个场景，就是共享模型的提到的，即如果一个RP是共享的，那么在一个Aggregate中的RP都可以共享他的资源。</p>
+<h2 id="2-_实现深度解析">2. 实现深度解析</h2><p><img src="https://user-images.githubusercontent.com/1736354/43561899-d37ef762-964b-11e8-8820-1ae5acfafe18.png" alt="image"></p>
+<h3 id="2-1_Same_Provider">2.1 Same Provider</h3><p>在Placment的实现中，也是将single模型和其他模型通过use_same_provider参数区分开来。我们从简单的入手，先看单一模型的实现。建议先找找刺激，看看<a href="https://github.com/openstack/nova/tree/1adc6ad/nova/api/openstack/placement/objects/resource_provider.py#L2811~#L2916" target="_blank" rel="external">代码</a>，：）</p>
+<p>核心流程主要有以下几个过滤条件：</p>
+<h4 id="2-1-1_指定和禁止traits">2.1.1 <strong>指定和禁止traits</strong></h4><p>当用户指定或禁止traits时，过滤包含指定traits且不包含禁止traits的resource provider</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> required_traits:</div><div class="line">    <span class="comment"># 获取包含所有traits信息的resource provider ids</span></div><div class="line">    trait_rps = _get_provider_ids_having_all_traits(ctx, required_traits)</div><div class="line">   <span class="comment"># 如果未获取到，直接做短路处理</span></div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> trait_rps:</div><div class="line">        <span class="keyword">return</span> []</div><div class="line"><span class="keyword">if</span> forbidden_traits:</div><div class="line">    <span class="comment"># 获取包含任何forbidden traits的rp</span></div><div class="line">    forbidden_rp_ids = _get_provider_ids_having_any_trait(</div><div class="line">        ctx, forbidden_traits)</div><div class="line"><span class="comment"># ... ...</span></div><div class="line"><span class="comment"># First filter by the resource providers that had all the required traits</span></div><div class="line"><span class="keyword">if</span> trait_rps:</div><div class="line">    where_conds.append(rpt.c.id.in_(trait_rps))</div><div class="line"><span class="comment"># 除去这些包含forbidden traits的rp</span></div><div class="line"><span class="keyword">if</span> forbidden_rp_ids:</div><div class="line">    where_conds.append(~rpt.c.id.in_(forbidden_rp_ids))</div></pre></td></tr></table></figure>
+<p><img src="https://user-images.githubusercontent.com/1736354/43569516-42cec200-966a-11e8-9543-d2ab9565fb78.png" alt="image"></p>
+<p>我们看到SQL最开始的where条件就是traits和forbidden traits，放到最前面其实有个目的就是将大部分的RP都可以通过前面的条件过滤掉，这样提升了SQL的整体性能。</p>
+<h4 id="2-1-2_保证可用量">2.1.2 <strong>保证可用量</strong></h4><p>当用户请求某些资源时，保证RP的usage满足需求。可用量的检查类似如下过程：<br>a. VCPU &lt; 16          <strong>剩余量检查</strong>，已使用+请求量&lt;=(总量-预留量)<em>超分比<br>b. 1 &lt; VCPU &lt; 16   <strong>上下限检查</strong>，资源的分配粒度的检查，不能过大，不能过小。<br>c. VCPU % 1           <em>*分配步长</em></em>，比如某些资源仅能5G，5G的分配。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">for</span> rc_id, amount <span class="keyword">in</span> resources.items():</div><div class="line">    <span class="comment"># ... ...</span></div><div class="line">    <span class="comment"># join对应资源的resource usage信息后，进行条件限制</span></div><div class="line">    usage_cond = sa.and_(</div><div class="line">        (</div><div class="line">        <span class="comment"># 满足剩余可用</span></div><div class="line">        (sql.func.coalesce(usage_by_rc.c.used, <span class="number">0</span>) + amount) &lt;=</div><div class="line">        (inv_by_rc.c.total - inv_by_rc.c.reserved) *</div><div class="line">            inv_by_rc.c.allocation_ratio</div><div class="line">        ),</div><div class="line">        <span class="comment"># 满足大于最小限额，小于最大限额，且步长满足</span></div><div class="line">        inv_by_rc.c.min_unit &lt;= amount,</div><div class="line">        inv_by_rc.c.max_unit &gt;= amount,</div><div class="line">        amount % inv_by_rc.c.step_size == <span class="number">0</span>,</div><div class="line">    )</div><div class="line">    <span class="comment"># 对于每个资源都append其usage的限制</span></div><div class="line">    where_conds.append(usage_cond)</div></pre></td></tr></table></figure>
+<h4 id="2-1-3_指定分组">2.1.3 <strong>指定分组</strong></h4><p>当用户请求包含member_of分组信息时，仅获取aggregates的的resource provider。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># If 'member_of' has values, do a separate lookup to identify the</span></div><div class="line"><span class="comment"># resource providers that meet the member_of constraints.</span></div><div class="line"><span class="keyword">if</span> member_of:</div><div class="line">    rps_in_aggs = _provider_ids_matching_aggregates(ctx, member_of)</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> rps_in_aggs:</div><div class="line">        <span class="comment"># Short-circuit. The user either asked for a non-existing</span></div><div class="line">        <span class="comment"># aggregate or there were no resource providers that matched</span></div><div class="line">        <span class="comment"># the requirements...</span></div><div class="line">        <span class="keyword">return</span> []</div><div class="line">    where_conds.append(rpt.c.id.in_(rps_in_aggs))</div></pre></td></tr></table></figure></p>
+<p>上述过程完成后，一个Same Provider的过滤获取流程就走完了，最终包含的rp就是我们需要的信息，可以看出我们过滤了traits、forbidden traits、usage(inventory)、aggregates信息。</p>
+<blockquote>
+<p>Note: 我们在阅读这种长SQL的代码时，一定要抓住where条件，从where条件入手，查看过滤的关键点，理解了整个SQL的大意之后，再根据where条件所需的信息，往前看一连串的join信息。</p>
+</blockquote>
+<h3 id="2-2_NOT_Same_Provider">2.2 NOT Same Provider</h3><p>在上一节中，介绍了单一的Resource provider的获取流程，但是，当嵌套树、共享模型加进来后，事情变得复杂了一些。那么问题变成了，在考虑树状结构和分组信息的情况下，如何获取满足条件的树信息？</p>
+<h4 id="2-2-1_获得满足所有资源条件的树信息">2.2.1 获得满足所有资源条件的树信息</h4><p>代码见<a href="https://github.com/openstack/nova/blob/1adc6ad5339706faece09ff69c24302748ed456c/nova/api/openstack/placement/objects/resource_provider.py#L3148-L3187" target="_blank" rel="external">nova/api/openstack/placement/objects/resource_provider.py#L3148-L3187</a></p>
+<ol>
+<li><p>满足单个条件的Resource Provider（树的叶子节点）。<br>遍历每个资源类型，获取满足条件的provider id及对应的root id，例如，对于VCPU:16、VF:2的请求，我们会得到的是如下的rp列表：<br>a. 满足VCPU的（红色虚线框），即1, 6, 7。对应结果为：<code>(1, 1), (6, 6), (7, 7)</code><br>b. 满足VF的（蓝色虚线框），即4, 5。对应结果为：<code>(4, 1), (5, 1)</code><br><img src="https://user-images.githubusercontent.com/1736354/43575569-b6a1ecd4-9679-11e8-8a48-548a9588cad4.png" alt="image"></p>
+</li>
+<li><p>找出满足所有条件的树（树的根节点）。<br>在遍历所有用户请求的资源类型的过程中，生成了2个数据：<br>a. provs_with_inv，记录着<strong>所有满足</strong>资源的(provider_id, root_id, rc_id)，这个是并集。对应结果为：<code>[(1, 1), (6, 6), (7, 7), (4, 1), (5, 1)]</code><br>b. trees_with_inv，记录着<strong>满足所有</strong>资源请求的root_id，这个是取root的交集，即set([1, 6, 7]) &amp; set([1, 1])。对应结果为：<code>[1]</code>。<br>然后，根据tree_with_inv过滤provs_with_inv，一遍拿到最终满足条件的所有树（树的根节点）<br><img src="https://user-images.githubusercontent.com/1736354/43618862-71672588-96fd-11e8-969c-28d4e7c20417.png" alt="image"></p>
+</li>
+</ol>
+<p>最终得到的就是，即满足VCPU又满足VF的根节点。</p>
+<h4 id="2-2-2_追加共享的节点。">2.2.2 追加共享的节点。</h4><p>如果在树的基础上再考虑共享的节点的话，事情复杂了那么一点点。</p>
+<ol>
+<li><p>(<strong>共享独有步骤</strong>) 获取所有的共享RP。<br>首先最开始，捞了一把所有共享的RP。获取的方法比较简单，就是找到所有包含“MISC_SHARES_VIA_AGGREGATE”这一traits的RP，并且其剩余的可用量，满足我们的要求即可。</p>
+</li>
+<li><p>(<strong>在原有步骤追加</strong>) 在“满足单个条件的Resource Provider”追加共享信息。<br>在2.2.1的第1步完成时，继续append满足条件的共享信息。例如，对于VCPU:16、VF:2、DISK:128的请求，我们会得到的是如下的rp列表：<br>a. 满足VCPU的（红色虚线框），即1, 6, 7。对应结果为：<code>(1, 1), (6, 6), (7, 7)</code><br>b. 满足VF的（蓝色虚线框），即4, 5。对应结果为：<code>(4, 1), (5, 1)</code><br>c. (<strong>共享新增</strong>) 满足DISK的（紫色虚线框），即8。对应结果为：<code>(8, 1), (8, 6)</code><br><img src="https://user-images.githubusercontent.com/1736354/43621586-e7cb7988-970a-11e8-976a-2fc61c83b2b4.png" alt="image"></p>
+</li>
+<li><p>(<strong>在原有步骤追加</strong>) 在“满足所有条件的树（树的根节点）”与共享信息再取交集。<br>追加上sharing的RP后，我们那两个关键的数据变为了：<br>a. provs_with_inv，记录着<strong>所有满足</strong>资源（<strong>包括共享资源</strong>）的(provider_id, root_id, rc_id)，这个是并集。对应结果为：<code>[(1, 1), (6, 6), (7, 7), (4, 1), (5, 1), (8, 1), (8, 6)]</code>，比之前新增了<code>(8, 1), (8, 6)</code>。 即“anchors for sharing providers”这一方法完成的。<br>b. trees_with_inv，记录着<strong>满足所有</strong>资源请求（<strong>包括共享资源</strong>）的root_id，这个是取root的交集，即set([1, 6, 7]) &amp; set([1, 1]) &amp; set([1, 6])，比原来新增了<code>set([1, 6]</code>。对应结果仍为：<code>[1]</code>。</p>
+</li>
+</ol>
+<p><img src="https://user-images.githubusercontent.com/1736354/43621682-4ec32fc8-970b-11e8-83b5-f95f892279be.png" alt="image"></p>
+<p>最终，就找到了满足条件VCPU:16、VF:2、DISK:128的树。</p>
+<h4 id="2-2-3_“anchors_for_sharing_providers”_—_关键步骤单独解析。">2.2.3 “anchors for sharing providers” — 关键步骤单独解析。</h4><p>刚才我们提到了“anchors for sharing providers”，这个是干啥的？代码见<a href="https://github.com/openstack/nova/blob/1adc6ad5339706faece09ff69c24302748ed456c/nova/api/openstack/placement/objects/resource_provider.py#L433-L489" target="_blank" rel="external">nova/api/openstack/placement/objects/resource_provider.py#L433-L489</a><br>这个函数名字有点诡异，共享provider的“锚”？其实这个函数解决的就是：已知共享资源的情况下，如何找到可以使用这些共享资源的树根？<br>其实就是共享的RP与其关联的其他RP取笛卡尔积（即N*M）的过程，可能有点抽象，我们举个例子：<br>已知1、2、3处于一个AGG，然后，1、2共享了一些资源，我需要找到所有可以享用1、2资源的树。<br><img src="https://user-images.githubusercontent.com/1736354/43629343-8d9b9e96-972f-11e8-89f6-772eaed7238e.png" alt="image"></p>
+<ol>
+<li><p>1、2、3均处于同一agg 1中</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> resource_provider_id, aggregate_id <span class="keyword">from</span> resource_provider_aggregates;</div><div class="line">+<span class="comment">----------------------+--------------+</span></div><div class="line">| resource_provider_id | aggregate_id |</div><div class="line">+<span class="comment">----------------------+--------------+</span></div><div class="line">|                    1 |            1 |</div><div class="line">|                    2 |            1 |</div><div class="line">|                    3 |            1 |</div><div class="line">+<span class="comment">----------------------+--------------+</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>通过agg自join取笛卡尔积</p>
+<figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">select</span> sps.resource_provider_id,sps.aggregate_id,rps.aggregate_id,rps.resource_provider_id</div><div class="line">    # 笛卡尔积的左项</div><div class="line">    -&gt; <span class="keyword">from</span> resource_provider_aggregates sps</div><div class="line">    # 笛卡尔积的右项</div><div class="line">    -&gt; <span class="keyword">inner</span> <span class="keyword">join</span> resource_provider_aggregates rps</div><div class="line">    -&gt; <span class="keyword">on</span> sps.aggregate_id = rps.aggregate_id</div><div class="line">    # 笛卡尔积的左项，限制为共享的RP</div><div class="line">    -&gt; <span class="keyword">where</span> sps.resource_provider_id <span class="keyword">in</span> (<span class="number">1</span>,<span class="number">2</span>);</div><div class="line">+<span class="comment">----------------------+--------------+--------------+----------------------+</span></div><div class="line">| resource_provider_id | aggregate_id | aggregate_id | resource_provider_id |</div><div class="line">+<span class="comment">----------------------+--------------+--------------+----------------------+</span></div><div class="line">|                    1 |            1 |            1 |                    1 |</div><div class="line">|                    1 |            1 |            1 |                    2 |</div><div class="line">|                    1 |            1 |            1 |                    3 |</div><div class="line">|                    2 |            1 |            1 |                    1 |</div><div class="line">|                    2 |            1 |            1 |                    2 |</div><div class="line">|                    2 |            1 |            1 |                    3 |</div><div class="line">+<span class="comment">----------------------+--------------+--------------+----------------------+</span></div></pre></td></tr></table></figure>
+</li>
+<li><p>在笛卡尔积的基础上关联root<br>然后，再将上述结果，和RP一join，就得到了关联的root。最终，发现可以共享1、2资源的跟节点就是1(1所在树根)、2（2所在树根）、0（3所在树根）</p>
+</li>
+</ol>
+<h4 id="2-2-4_member_of过滤。">2.2.4 member_of过滤。</h4><p>代码见<a href="https://github.com/openstack/nova/blob/1adc6ad5339706faece09ff69c24302748ed456c/nova/api/openstack/placement/objects/resource_provider.py#L3189-L3199" target="_blank" rel="external">nova/api/openstack/placement/objects/resource_provider.py#L3189-L3199</a><br>这个逻辑就很简单了，RP和agg一join，然后额外的条件就是RP在agg就行。</p>
+<h4 id="2-2-5_指定或禁止traits。">2.2.5 指定或禁止traits。</h4><p>代码见<a href="https://github.com/openstack/nova/blob/1adc6ad5339706faece09ff69c24302748ed456c/nova/api/openstack/placement/objects/resource_provider.py#L3213-L3218" target="_blank" rel="external">nova/api/openstack/placement/objects/resource_provider.py#L3213-L3218</a><br>留下包含所有traits的RP，干掉包含任意forbidden traits的RP</p>
+<p>又是一篇TL;DR的文章，就这样吧。。。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/08/01/Placement深度探索-共享、嵌套、分组模型深度解析/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-Python3内建函数扫盲" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
         
-          <a class="article-more-a" href="/2017/12/25/Placement深度探索-Get-Allocation-Candidates/#more">more >></a>
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/15/Python3内建函数扫盲/">Python3内建函数扫盲</a>
+    </h1>
+  
+
         
+        <a href="/2018/06/15/Python3内建函数扫盲/" class="archive-article-date">
+  	<time datetime="2018-06-15T02:40:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Jun 15 2018</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p> 已完成11/68: <img src="http://progressed.io/bar/15" alt="Progress: 10/68"></p>
+<h4 id="0-_abs绝对值">0. abs绝对值</h4><h4 id="1-_all（all_items_are_True?）_迭代中所有元素均为True或者为空也返回true">1. all（all items are True?） 迭代中所有元素均为True或者为空也返回true</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>all([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>all([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">0</span>])</div><div class="line"><span class="keyword">False</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>all([])</div><div class="line"><span class="keyword">True</span></div></pre></td></tr></table></figure>
+<h4 id="2-_any（any_item_is_True?）,_迭代中任意一个元素为True，则返回True，否则返回False，为空返回False">2. any（any item is True?）, 迭代中任意一个元素为True，则返回True，否则返回False，为空返回False</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>any([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line"><span class="keyword">True</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>any([<span class="number">0</span>])</div><div class="line"><span class="keyword">False</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>any([])</div><div class="line"><span class="keyword">False</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>any([[],[]])</div><div class="line"><span class="keyword">False</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>any([[<span class="number">0</span>],[]])</div><div class="line"><span class="keyword">True</span></div></pre></td></tr></table></figure>
+<h4 id="3-_ascii，返回repr()的ascii形式">3. ascii，返回repr()的ascii形式</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>ascii(<span class="string">'中文'</span>)</div><div class="line"><span class="string">"'\\u4e2d\\u6587'"</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>ascii(<span class="number">1</span>)</div><div class="line"><span class="string">'1'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>ascii([])</div><div class="line"><span class="string">'[]'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>ascii([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>])</div><div class="line"><span class="string">'[1, 2, 3]'</span></div></pre></td></tr></table></figure>
+<p>repr和eval为反向函数（类似序列化反序列化？）<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>repr(<span class="string">'[1, 2, 3]'</span>)</div><div class="line"><span class="string">"'[1, 2, 3]'"</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>eval(<span class="string">"'[1, 2, 3]'"</span>)</div><div class="line"><span class="string">'[1, 2, 3]'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>eval(<span class="string">'[1, 2, 3]'</span>)</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>repr(<span class="string">'[1, 2, 3]'</span>)</div><div class="line"><span class="string">"'[1, 2, 3]'"</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>repr([<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>])</div><div class="line"><span class="string">'[1, 2, 3]'</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>eval(<span class="string">'[1, 2, 3]'</span>)</div><div class="line">[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>]</div></pre></td></tr></table></figure></p>
+<h4 id="4-_bin_返回二进制形式">4. bin 返回二进制形式</h4><h4 id="5-_bool_返回布尔值">5. bool 返回布尔值</h4><h4 id="6-_bytearray">6. bytearray</h4><p>大部分用法和bytes/str有点像，不过bytearray是可变的类似a list of char，str是immutable的。也就说说改变字符串的时候其实是把内存中真个对象换了，bytearray的话，只换某个字符，性能好一些</p>
+<p>参考学习：<a href="https://stackoverflow.com/questions/9099145/where-are-python-bytearrays-used" target="_blank" rel="external">Where are python bytearrays used?</a></p>
+<blockquote>
+<p>A bytearray is very similar to a regular python string (str in python2.x, bytes in python3) but with an important difference, whereas strings are immutable, bytearrays are mutable, a bit like a list of single character strings.</p>
+<p>This is useful because some applications use byte sequences in ways that perform poorly with immutable strings. When you are making lots of little changes in the middle of large chunks of memory, as in a database engine, or image library, strings perform quite poorly; since you have to make a copy of the whole (possibly large) string.  bytearrays have the advantage of making it possible to make that kind of change without making a copy of the memory first.</p>
+<p>But this particular case is actually more the exception, rather than the rule. Most uses involve comparing strings, or string formatting. For the latter, there’s usually a copy anyway, so a mutable type would offer no advantage, and for the former, since immutable strings cannot change, you can calculate a hash of the string and compare that as a shortcut to comparing each byte in order, which is almost always a big win; and so it’s the immutable type (str or bytes) that is the default; and bytearray is the exception when you need it’s special features.</p>
+</blockquote>
+<h4 id="7-bytes">7.bytes</h4><p>bytes is an immutable version of bytearray</p>
+<h4 id="8-callable_判断一个obj的argument是否可以call">8.callable 判断一个obj的argument是否可以call</h4><p><a href="https://github.com/openstack/nova/blob/2d6a838/nova/virt/hyperv/driver.py#L75" target="_blank" rel="external">https://github.com/openstack/nova/blob/2d6a838/nova/virt/hyperv/driver.py#L75</a></p>
+<h4 id="9-_chr_和_ord">9. chr 和 ord</h4><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="meta">&gt;&gt;&gt; </span>ord(<span class="string">'a'</span>)</div><div class="line"><span class="number">97</span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>chr(<span class="number">97</span>)</div><div class="line"><span class="string">'a'</span></div></pre></td></tr></table></figure>
+<h4 id="10-_@classmethod_和_@staticmethod">10. @classmethod 和 @staticmethod</h4><p>classmethod must have a reference to a class object as the first parameter, whereas staticmethod can have no parameters at all.</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="class"><span class="keyword">class</span> <span class="title">Date</span><span class="params">(object)</span>:</span></div><div class="line"></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__init__</span><span class="params">(self, day=<span class="number">0</span>, month=<span class="number">0</span>, year=<span class="number">0</span>)</span>:</span></div><div class="line">        self.day = day</div><div class="line">        self.month = month</div><div class="line">        self.year = year</div><div class="line"></div><div class="line"><span class="meta">    @classmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">from_string</span><span class="params">(cls, date_as_string)</span>:</span></div><div class="line">        day, month, year = map(int, date_as_string.split(<span class="string">'-'</span>))</div><div class="line">        date1 = cls(day, month, year)</div><div class="line">        <span class="keyword">return</span> date1</div><div class="line"></div><div class="line"><span class="meta">    @staticmethod</span></div><div class="line">    <span class="function"><span class="keyword">def</span> <span class="title">is_date_valid</span><span class="params">(date_as_string)</span>:</span></div><div class="line">        day, month, year = map(int, date_as_string.split(<span class="string">'-'</span>))</div><div class="line">        <span class="keyword">return</span> day &lt;= <span class="number">31</span> <span class="keyword">and</span> month &lt;= <span class="number">12</span> <span class="keyword">and</span> year &lt;= <span class="number">3999</span></div><div class="line"></div><div class="line">date2 = Date.from_string(<span class="string">'11-09-2012'</span>)</div><div class="line">is_date = Date.is_date_valid(<span class="string">'11-09-2012'</span>)</div></pre></td></tr></table></figure>
+<p><a href="https://stackoverflow.com/questions/12179271/meaning-of-classmethod-and-staticmethod-for-beginner" target="_blank" rel="external">https://stackoverflow.com/questions/12179271/meaning-of-classmethod-and-staticmethod-for-beginner</a></p>
+<h4 id="11-_compile">11. compile</h4><p>将一个字符串编译为字节代码，这个函数可以用在web应用从模板（可含Python语法）生成html。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&gt;&gt;&gt;str = <span class="string">"for i in range(0,10): print(i)"</span> </div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c = compile(str,<span class="string">''</span>,<span class="string">'exec'</span>)   <span class="comment"># 编译为字节代码对象 </span></div><div class="line"><span class="meta">&gt;&gt;&gt; </span>c</div><div class="line">&lt;code object &lt;module&gt; at <span class="number">0x10141e0b0</span>, file <span class="string">""</span>, line <span class="number">1</span>&gt;</div><div class="line"><span class="meta">&gt;&gt;&gt; </span>exec(c)</div></pre></td></tr></table></figure></p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/06/15/Python3内建函数扫盲/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-Cell-v2近期相关改进整理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/06/06/Cell-v2近期相关改进整理/">Cell v2近期相关改进整理</a>
+    </h1>
+  
+
+        
+        <a href="/2018/06/06/Cell-v2近期相关改进整理/" class="archive-article-date">
+  	<time datetime="2018-06-06T08:49:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Jun 6 2018</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="Handling_a_down_cell">Handling a down cell</h3><p><a href="https://review.openstack.org/#/c/557369" target="_blank" rel="external">https://review.openstack.org/#/c/557369</a><br>在某个cell挂掉的时候，会影响跨Cell的查询、计算Quota等操作。在这个BP中提到了几个场景：</p>
+<ol>
+<li>nova list在一个Cell挂的时候，也需要能正常工作。在当前租户Cell没挂时，没影响，挂掉的话，需要构造一些数据（从api拿一些，然后剩下信息填UNKNOW）</li>
+<li>nova service-list在一个Cell挂的时候，也需要能正常工作。也是通过构造解决。</li>
+<li>nova boot，短期解决方案是如果project有其他虚拟机在挂掉的cell不能创建虚拟机，长期解决方案是通过Placement计算quota和usage。</li>
+</ol>
+
       
 
       
@@ -215,10 +391,6 @@ var _hmt = _hmt || [];
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Draft</a>
-        		</li>
       		
 		</ul>
 	</div>
@@ -227,7 +399,7 @@ var _hmt = _hmt || [];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/25/Placement深度探索-Get-Allocation-Candidates/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/06/06/Cell-v2近期相关改进整理/">展开全文 >></a>
         </p>
       
 
@@ -242,112 +414,89 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-一个死锁问题的深入探究" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-oslo-db中的死锁重试机制优化" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/13/一个死锁问题的深入探究/">一个死锁问题的深入探究</a>
+      <a class="article-title" href="/2018/04/19/oslo-db中的死锁重试机制优化/">oslo.db中的死锁重试机制优化</a>
     </h1>
   
 
         
-        <a href="/2017/12/13/一个死锁问题的深入探究/" class="archive-article-date">
-  	<time datetime="2017-12-13T11:47:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Dec 13 2017</time>
+        <a href="/2018/04/19/oslo-db中的死锁重试机制优化/" class="archive-article-date">
+  	<time datetime="2018-04-19T02:26:46.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Apr 19 2018</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>本篇文章可以看做是一个问题定位、分析、学习过程的记录，介绍了OpenStack Nova一个死锁问题的分析和解决的过程，你将从本文了解到SQLAlchemy的session中的语序排序机制、OpenStack的死锁重试机制及改进点以及一些调试的手段。</p>
-<h3 id="0-_背景">0. 背景</h3><p>在Nova对虚拟机进行一些操作的时候，比如创建、停止虚拟机之类的操作的时候，会将这些事件记录在instance_actions表里面记录操作的时间、操作类型以及一些操作事件详情。</p>
-<p>例如，我们可以通过instnace-action-list来查看虚拟机的操作，并可以通过对应的req id来查操作中的事件详情，如果是失败的话，还可以从事件详情中，看到对应的错误栈信息。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span><span class="bash"> nova instance-action-list e92885a9-06d6-4491-ac43-6fd04e32ee72</span></div><div class="line">+--------+------------------------------------------+---------+----------------------------+</div><div class="line">| Action | Request_ID                               | Message | Start_Time                 |</div><div class="line">+--------+------------------------------------------+---------+----------------------------+</div><div class="line">| create | req-416cb88e-5adb-4c0f-9c32-6370d3661940 | -       | 2017-12-13T12:08:36.000000 |</div><div class="line">| stop   | req-52155da3-d2ca-463c-b380-6034c0b5fdf1 | -       | 2017-12-13T12:09:17.000000 |</div><div class="line">+--------+------------------------------------------+---------+----------------------------+</div><div class="line"><span class="meta"></span></div><div class="line">$<span class="bash"> nova instance-action e92885a9-06d6-4491-ac43-6fd04e32ee72 req-52155da3-d2ca-463c-b380-6034c0b5fdf1</span></div><div class="line">+---------------+--------------------------------------------------+</div><div class="line">| Property      | Value                                            |</div><div class="line">+---------------+--------------------------------------------------+</div><div class="line">| action        | stop                                             |</div><div class="line">| events        | [&#123;u'event': u'compute_stop_instance',            |</div><div class="line">|               |   u'finish_time': u'2017-12-13T12:09:23.000000', |</div><div class="line">|               |   u'result': u'Success',                         |</div><div class="line">|               |   u'start_time': u'2017-12-13T12:09:18.000000',  |</div><div class="line">|               |   u'traceback': None&#125;]                           |</div><div class="line">| instance_uuid | e92885a9-06d6-4491-ac43-6fd04e32ee72             |</div><div class="line">| message       | -                                                |</div><div class="line">| project_id    | 0232cef222f7479fae3fd8fa24d8c382                 |</div><div class="line">| request_id    | req-52155da3-d2ca-463c-b380-6034c0b5fdf1         |</div><div class="line">| start_time    | 2017-12-13T12:09:17.000000                       |</div><div class="line">| user_id       | 5b0b6a4c068f4c1ba78b50d8a4db5057                 |</div><div class="line">+---------------+--------------------------------------------------+</div></pre></td></tr></table></figure></p>
-<p>在instance_action的表里面，记录着action的更新时间，比如event结束了，我们也期望能够action里面能记录update的时间，但是目前并没有进行刷新。</p>
-<p><img src="https://user-images.githubusercontent.com/1736354/34138279-ac8d220e-e4a9-11e7-8617-8f8ddb0ef34a.jpg" alt="action"></p>
-<p>这个patch想做的事儿也比较简单，如上图所示，就是在event进行记录（比如开始和结束）的时候，也对action的更新时间也做刷新。也就是说，我们在写instance_event_action表后，也需要写instance_action表去记录下刷新时间。大致代码的关键逻辑如下所示（省略了一些无关的代码细节）：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div></pre></td><td class="code"><pre><div class="line"><span class="meta">@pick_context_manager_writer</span></div><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">action_event_finish</span><span class="params">(context, values)</span>:</span></div><div class="line">    <span class="string">"""Finish an event on an instance action."""</span></div><div class="line">    <span class="comment"># 原有获取action</span></div><div class="line">    action = _action_get_by_request_id(context, values[<span class="string">'instance_uuid'</span>],</div><div class="line">                                       values[<span class="string">'request_id'</span>])</div><div class="line">    <span class="comment"># 原有获取event</span></div><div class="line">    event_ref = model_query(context, models.InstanceActionEvent).\</div><div class="line">                            filter_by(action_id=action[<span class="string">'id'</span>]).\</div><div class="line">                            filter_by(event=values[<span class="string">'event'</span>]).\</div><div class="line">                            first()</div><div class="line">    <span class="comment"># 原有的event刷新流程</span></div><div class="line">    event_ref.update(values)</div><div class="line">    <span class="comment"># **新增的刷新action时间逻辑**</span></div><div class="line">    action.update(&#123;<span class="string">'updated_at'</span>: values[<span class="string">'finish_time'</span>]&#125;)</div><div class="line">    action.save(context.session)</div><div class="line">    <span class="keyword">return</span> event_ref</div></pre></td></tr></table></figure></p>
-<h3 id="1-_起因">1. 起因</h3><p>在修复Nova的这个事件时间刷新问题(<a href="https://bugs.launchpad.net/nova/+bug/1719561" target="_blank" rel="external">bug/507473</a>)的时候，CI会概率性地挂一些用例，先开始以为是CI不稳定，workflow+1之后，最终的门禁检查一直过不了。Matt recheck了几次都是失败的，然后问：</p>
+        <h3 id="0-_引言">0. 引言</h3><p>OpenStack oslo.db是OpenStack中处理DB相关功能的基础组件，基本OpenStack所有的核心组件都会使用这一基础库。</p>
+<p>去年12月，遇到一个死锁的问题 #62 <a href="https://github.com/Yikun/yikun.github.com/issues/62" target="_blank" rel="external">一个死锁问题的深入探究</a>，研究了下oslo.db死锁重试的方式，发现其中并没有加入随机机制。在通信领域，有一个叫做“二进制退避机制”的算法（嗯，也算没白读了7年通信，哈哈，在本文立刻提升逼格），就是通过指数递增+随机的方式来解决无中心、多节点接入时产生的冲突的。</p>
+<p>当时，顺着这个思路，我在oslo.db中提交了一个关于改进死锁重试机制的[patch/527362]：<a href="https://review.openstack.org/#/c/527362/" target="_blank" rel="external">Improve exponential backoff for wrap_db_retry</a>。4个多月后，终于合入了。写这篇文章主要是为了记录一下自己学习的过程，以及对死锁及其重试机制的思考。</p>
+<h3 id="1-_死锁与重试">1. 死锁与重试</h3><h4 id="1-1_从死锁说起">1.1 从死锁说起</h4><p>我们先看看MySQL的文档中对死锁的定义：</p>
 <blockquote>
-<p>I’m not sure if the test failures this patch is hitting are related to this change or not - they definitely don’t seem to be (I’m not sure why we’d get an UnexpectedTaskStateError during resize due to this change).</p>
+<p>A deadlock is a situation where different transactions are unable to proceed because each holds a lock that the other needs. Because both transactions are waiting for a resource to become available, neither ever release the locks it holds.</p>
 </blockquote>
-<p>这才引起了我的注意，我找了下归档的日志发现：</p>
+<p>大致意思就是说，死锁是由于每个事务持有另一个事务需要的锁，而导致不同事务都无法继续。因为两个事务都在等待资源变为可用，所以都不释放它拥有的锁。</p>
+<p>一个非常形象的例子如下所示：<br><img src="https://user-images.githubusercontent.com/1736354/38969913-22e76700-43c5-11e8-8ae6-f4b7b6829a14.jpg" alt="20ca9f2e2faf856e15933d95fd0a6a32_articlex"><br>来自4个路口的车“死锁”了，每个路口的车都无法前进，因为自己前行的道路，都被别的路口的车堵住了，而自己因为无法前进也无法释放自己的道路。</p>
+<h4 id="1-2_从容的应对死锁">1.2 从容的应对死锁</h4><p>当死锁发生的时候，我们能做什么呢？在Mysql的文档中<a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-deadlocks-handling.html" target="_blank" rel="external">How to Minimize and Handle Deadlocks</a>，给出了一些建议，下面我列举几个通用和常见的条目：</p>
 <blockquote>
-<p>Exception during message handling: DBDeadlock: (pymysql.err.InternalError) (1213, u’<strong>Deadlock found when trying to get lock</strong>; try restarting transaction’) [SQL: u’<strong>UPDATE instance_actions SET updated_at=%(updated_at)s WHERE instance_actions.id = %(instance_actions_id)s</strong>‘] [parameters: {‘instance_actions_id’: 23, ‘updated_at’: datetime.datetime(2017, 12, 4, 2, 48, 36, 91068)}]</p>
+<ul>
+<li>Always be prepared to re-issue a transaction if it fails due to deadlock. Deadlocks are not dangerous. Just try again.<br>如果发生了死锁错误了以后随时准备重试，死锁并不危险，放心大胆的重试吧</li>
+<li>Keep transactions small and short in duration to make them less prone to collision.<br>让事务尽可能的小而短，减少冲突的可能。</li>
+<li>Commit transactions immediately after making a set of related changes to make them less prone to collision.<br>提交事务的时候，也是能提交就尽可能地立刻提交</li>
+<li>When modifying multiple tables within a transaction, or different sets of rows in the same table, do those operations in a consistent order each time. Then transactions form well-defined queues and do not deadlock. For example, organize database operations into functions within your application, or call stored routines, rather than coding multiple similar sequences of INSERT, UPDATE, and DELETE statements in different places.<br>当在一个事务中修改不同的表，或者表中不同行的时候，尽量保持一致的顺序。</li>
+</ul>
 </blockquote>
-<p>第一反应是，我去！死锁了？简单的一个update怎么会死锁？确认了下where条件比较单一，并不是因为条件排序不稳定引起的死锁；也确认了下action数据库的索引，也比较简单，也不会有死锁问题。然后，就看业务代码，代码逻辑也很简单，一个事务里面包含了4件事，2个查询，2个刷新。不科学啊！</p>
-<h3 id="2-_发现">2. 发现</h3><p>遇到这种活久见的问题，最好的办法就是把每一句SQL都dump出来，因为不是裸写SQL，鬼知道SQLAlchemy中间的ORM那层为我们做了什么。</p>
-<p>OpenStack的oslo.db为我们提供了一个配置项：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">[database]</div><div class="line"># (Integer) Verbosity of SQL debugging information: 0=None, 100=Everything.</div><div class="line">connection_debug = 100</div></pre></td></tr></table></figure></p>
-<p>把他设置成100就可以dump出执行的每一句SQL了，这个方法在我们进行调试的时候很方便。然后，进行复现，结果让我震惊了（问号脸？？？代码是一样的，生成SQL的顺序却是不一致的）：<br><figure class="highlight sql"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div></pre></td><td class="code"><pre><div class="line"><span class="comment">-- 从API dump的结果</span></div><div class="line"><span class="keyword">BEGIN</span> (implicit)</div><div class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> instance_actions <span class="keyword">WHERE</span> ...</div><div class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> instance_actions_events <span class="keyword">WHERE</span> ...</div><div class="line"><span class="comment">-- 先刷新action</span></div><div class="line"><span class="keyword">UPDATE</span> instance_actions <span class="keyword">SET</span> updated_at=%(updated_at)s <span class="keyword">WHERE</span> instance_actions.id= %(instance_actions_id)s</div><div class="line"><span class="comment">-- 再刷新action_event</span></div><div class="line"><span class="keyword">UPDATE</span> instance_actions_events <span class="keyword">SET</span> updated_at=%(updated_at)s, finish_time=%(finish_time)s, <span class="keyword">result</span>=%(<span class="keyword">result</span>)s <span class="keyword">WHERE</span> instance_actions_events.id = %(instance_actions_events_id)s</div><div class="line"><span class="keyword">COMMIT</span></div><div class="line"></div><div class="line"><span class="comment">-- 从Conductor dump的结果</span></div><div class="line"><span class="keyword">BEGIN</span> (implicit)</div><div class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> instance_actions <span class="keyword">WHERE</span> ...</div><div class="line"><span class="keyword">SELECT</span> ... <span class="keyword">FROM</span> instance_actions_events <span class="keyword">WHERE</span> ...</div><div class="line"><span class="comment">-- 先刷新action_event</span></div><div class="line"><span class="keyword">UPDATE</span> instance_actions_events <span class="keyword">SET</span> updated_at=%(updated_at)s, finish_time=%(finish_time)s, <span class="keyword">result</span>=%(<span class="keyword">result</span>)s <span class="keyword">WHERE</span> instance_actions_events.id = %(instance_actions_events_id)s</div><div class="line"><span class="comment">-- 再刷新action</span></div><div class="line"><span class="keyword">UPDATE</span> instance_actions <span class="keyword">SET</span> updated_at=%(updated_at)s <span class="keyword">WHERE</span> instance_actions.id= %(instance_actions_id)s</div><div class="line"><span class="keyword">COMMIT</span></div></pre></td></tr></table></figure></p>
-<p>完整的SQL dump我贴在了<a href="http://paste.openstack.org/show/628609/" target="_blank" rel="external">paste/628609</a>，可以分析出来，就是产生死锁的根本原因：<strong>在一个事务中，更新2个表的相反行</strong>。并发执行2个这样的事务，一个事务拿着action表的行锁，一个事务拿着action_event表的行锁，它们都互相等着对方释放，最终产生了死锁，如下图所示。</p>
-<p><img src="https://user-images.githubusercontent.com/1736354/34138652-98867f06-e4ab-11e7-8d68-fea01b118e8b.jpg" alt="deadlockjpg"></p>
-<p>从MySQL官方DOC里，给的建议<a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-deadlocks-handling.html" target="_blank" rel="external">How to Minimize and Handle Deadlocks</a>中，我们也看到了类似的建议：</p>
-<blockquote>
-<p>When modifying multiple tables within a transaction, or different sets of rows in the same table, do those operations in a consistent order each time. Then transactions form well-defined queues and do not deadlock. For example, organize database operations into functions within your application, or call stored routines, rather than coding multiple similar sequences of INSERT, UPDATE, and DELETE statements in different places.</p>
-</blockquote>
-<p>核心意思就是说，我们在一个transaction中更新多个表的时候，或者说在一个表中更新不同行的时候，一定要保证每一次调用的顺序是一致的。最终，临时解决这个问题的方式也比较简单，就是在这个函数上加一个<a href="https://review.openstack.org/#/c/507473/16/nova/db/sqlalchemy/api.py@6304" target="_blank" rel="external">死锁重试装饰器</a>，即在发生死锁的时候进行重试，CI终于全绿了。</p>
-<h3 id="3-_进一步分析">3. 进一步分析</h3><p>问题解决就结束了吗？不，2个疑问一直在心中徘徊：</p>
-<blockquote>
-<ol>
-<li>死锁重试的装饰器是怎么实现的，真的有效吗？</li>
-<li>SQLalchemy做了什么导致最终生成SQL的顺序是不稳定的，为什么要这么做？</li>
-</ol>
-</blockquote>
-<h4 id="3-1_死锁重试机制">3.1 死锁重试机制</h4><p>我们从<a href="https://github.com/openstack/oslo.db/blob/4a727233dc2b7d1021ed7932d2cd27d8053dca31/oslo_db/api.py#L127-L161" target="_blank" rel="external">oslo_db/api.py</a>可以看到他的实现，原理比较简单，就是隔几秒（2的retry数次方秒），如果调用成功，就终止重试。伪代码大概如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line">t = <span class="number">1</span></div><div class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="keyword">try</span>):</div><div class="line">    sleep(t)</div><div class="line">    <span class="comment"># 指数递增</span></div><div class="line">    t = t * <span class="number">2</span></div><div class="line">    <span class="comment"># 超过上限取上限</span></div><div class="line">    t = min(max_t, t)</div><div class="line">    func()</div><div class="line">    <span class="keyword">if</span> <span class="keyword">not</span> <span class="keyword">raise</span> deadlock:</div><div class="line">        <span class="keyword">break</span></div></pre></td></tr></table></figure></p>
-<p>虽然看着隔了一些时间，但是，这种指数递增的机制对于死锁这种问题没有什么卵用，大家一起等，然后再一起调，还是会再次产生死锁。</p>
-<p>这个问题的场景和上研的时候，在通信中搞的“退避算法”很类似（HINOC中信道接纳的时候，多个节点并行接纳时，如果发生冲突，需要退避重试），都是冲突避免，通信中是避免信道冲突，而这里则是避免数据库的死锁。</p>
-<p>在退避时间选择的过程中，其实有2个参数，需要我们仔细思考一下：</p>
-<ol>
-<li><p><strong>等待的基数时间</strong>。<br>目前时间的基数是，随着重试次数指数增长的，这个基数对于连接失败类的业务是比较有用的，想象一下，这种类型的业务我们重试的目的说白了就是：<strong>“过一段时间，试一试，看看能不能正常连上”</strong>，那这个时间不断的指数增长是挺有意义的。也就是说，随着重试次数的增加，我们每次等待的时间也会逐渐递增，1秒，2秒，4秒，8秒，16秒等等。</p>
-</li>
-<li><p><strong>抖动时间窗口</strong>。<br>目前的实现，对于时间窗口来说，其实是0，即使我们等待了很久，但是他们还是同时去调用的，没有这个抖动，而单单的增加等待时间基数，只会激增等待时间，而对实际的冲突避免没有什么意思。</p>
-</li>
-</ol>
-<p>我们思考下，对于死锁这种场景来说，我们真的需要具备这两个参数吗？我觉得其实并不需要很长的“等待的基数时间”，我们需要的只是让各种死锁的请求，互相避开即可，所以其实，只需要拉长等待的时间窗口即可。</p>
+<p>另外，还提及了一些其他的应对策略，比如调整事务隔离的级别，锁的级别，优化索引的定义之类的，大多数是以预防为主。当发生死锁的时候，我们也应该首先想到是不是这些情况没有处理好，然而，当死锁真正发生的时候，我们还是用最土但最有效的方法去解决：重试！</p>
+<h4 id="1-3_重试？没那么简单">1.3 重试？没那么简单</h4><p>在重试机制的实现中，重试时长的选择非常关键，有两个因素需要我们仔细思考一下：</p>
+<p>(1) <strong>退避机制-等待的基数时间</strong>。<br>目前时间的基数是，随着重试次数指数增长的，这个基数对于连接失败类的业务是比较有用的，想象一下，这种类型的业务我们重试的目的说白了就是：<strong>“过一段时间，试一试，看看能不能正常连上”</strong>。</p>
+<p>退避策略的选择可以分为普通退避策略和指数退避策略。普通退避策略：也就是傻傻固定间隔的重试，比如，每次重试的时间都是x秒；<br>而还有一种方式就是指数退避：随着重试次数的增加，我们每次等待的时间也会逐渐递增，1秒，2秒，4秒，8秒，16秒等等。</p>
+<p>在<a href="https://amazonaws-china.com/blogs/architecture/exponential-backoff-and-jitter/" target="_blank" rel="external">Exponential Backoff And Jitter</a>一文中，也提到了指数退避、普通退避策略，并且附上了实际的仿真结果：<br><img src="https://user-images.githubusercontent.com/1736354/38991051-fe6a7152-440e-11e8-808e-01a0c60f81d6.png" alt="exponential-backoff-and-jitter-blog-figure-4"></p>
+<p>从图上看到，完成同样的事情，使用指数退避时，总的调用次数变少了。尤其在客户端竞争比较多的时候，指数退避的效果很明显。这个指数退避说白了就是：<strong>“再多等一会儿，别急这那么快就重试”</strong>。</p>
+<p>(2) <strong>随机因子-抖动时间窗口</strong>。<br>不加随机因子的问题是，即使我们大家一起等待了很久，但是还是同时去调用的，没有这个抖动，而单单的增加等待时间基数，只会激增等待时间，而对实际的冲突避免没有什么意思。</p>
+<p>我们思考下，对于死锁这种场景来说，我们真的需要很长的等待时间吗？我觉得其实并不需要很长的“等待的基数时间”，我们需要的只是让各种死锁的请求，互相避开即可，所以其实，只需要拉长等待的时间窗口即可。</p>
 <p><img src="https://user-images.githubusercontent.com/1736354/34139128-e2a3ddfc-e4ad-11e7-88fa-937a926d7f37.jpg" alt="jitter"></p>
-<h5 id="3-1-1-_Non-Jitter，无随机">3.1.1. Non-Jitter，无随机</h5><p>无随机的方式，就是oslo.db目前使用的方式，仅指数增长。</p>
-<h5 id="3-1-2-_Full_Jitter，全量随机">3.1.2. Full Jitter，全量随机</h5><p>所以，我觉得这块可以优化下，在退避sleep的时候，加入随机机制，使得sleep的时间随机化，指数拉长调用的窗口，从而降低再次死锁概率。顺着这个思路，也提了一个<a href="https://review.openstack.org/#/c/527362/2" target="_blank" rel="external">patch/527362</a>: Improve exponential backoff for wrap_db_retry，希望能够改进一下重试机制。加上这个机制后，等待时间变为0-1秒，0-2秒，0-4秒，0-8秒，0-16秒等范围内随机。</p>
-<h5 id="3-1-3-_Top_X_Jitter，顶部随机">3.1.3. Top X Jitter，顶部随机</h5><p>提交之后，Micheal Bayer（后面发现这位大神是SQLAlchemy的作者，社区真是卧虎藏龙，哈哈，神奇无处不在）马上给了<a href="https://review.openstack.org/#/c/527362/1/oslo_db/api.py@178" target="_blank" rel="external">review</a>，他认为，等待的基数时间，并且在基数时间的上沿边界向下抖动（比如25%）比较好。的确，这种方法来说既保留了“安全”的重试时间，而且抖动时间窗口也在递增。</p>
-<h5 id="3-1-4-_Other_Jitter，其他随机方式">3.1.4. Other Jitter，其他随机方式</h5><p>另外，我在一个AWS的博客中发现了一篇文章：<a href="https://amazonaws-china.com/blogs/architecture/exponential-backoff-and-jitter/" target="_blank" rel="external">Exponential Backoff And Jitter</a>，写的非常不错，大致就讲的是，各种随机时间窗口加到退避算法中的流程后，对平均时间和竞争的调用数也做了一个仿真。</p>
-<p>很显然，其中，Fulljitter（0~2**n随机，和我的思路比较类似），Equal Jitter（top 50%的边界抖动，和Micheal Bayer的思路比较类似），很显然但抖动范围大，平均抖动时间比较低，但从平均时间和冲突避免这两个指标看，Fulljitter是获胜的。但这并不意味着在所有情况下，我们都需要很低的时间间隔，更长的时间会拥有更“安全”的重试时间，代价则是更耗时了，我想这确实是一个值得思考的tradeoff。</p>
-<h4 id="3-2_SQLAlchemy_Session中的排序机制">3.2 SQLAlchemy Session中的排序机制</h4><p>上文已经提到，造成死锁的根本原因实际上是在一个事务中，更新2个表的时候的顺序不一致。在并发调用的时候，产生了死锁。Python的代码是按顺序更新的（先更新event内容，再更新action），但是为什么SQLAlchemy产生的SQL是乱序的呢？</p>
-<p>通过阅读SQLAlchemy的源码，最终找到了答案。先说结论：Session中的操作顺序，由UnitOfWork机制决定最终的调用顺序，如果没有依赖关系，最终执行顺序是不稳定的。</p>
-<h5 id="3-2-1-_SQLAlchemy的缓存刷新机制">3.2.1. SQLAlchemy的缓存刷新机制</h5><p>SQLAlchemy在进行数据刷新的时候，会有一个flush的过程(实现见<a href="https://github.com/zzzeek/sqlalchemy/blob/75bdcd096f12012bf45cffebd597c33b501c2ef2/lib/sqlalchemy/orm/session.py#L2203" target="_blank" rel="external">lib/sqlalchemy/orm/session.py#def flush</a>，这个过程会将所有的object的变化，刷新到数据库中。例如，会将插入、修改、删除，转换为INSERT、UPDATE、DELETE等操作。而刷新执行的顺序，是通过Session的”UNIT of Worker”依赖机制保证的。</p>
-<p>我们可以从有SQLalchemy作者写的一篇关于其架构的文章<a href="http://www.aosabook.org/en/sqlalchemy.html" target="_blank" rel="external">《SQLAlchemy》</a>中看到一些关于Session相关的数据结构：<br><img src="https://user-images.githubusercontent.com/1736354/34139960-93fe0f2e-e4b2-11e7-94ab-e439712a7258.png" alt="session-overview"></p>
-<p>Session维护着如上图所示的结构，在每次刷新的时候，会将object的变动刷新到数据库中。如作者所说说，flush这个函数可能是 SQLAlchemy最复杂的函数。</p>
-<h5 id="3-2-2-_SQLAlchemy的UNIT_of_WORK机制">3.2.2. SQLAlchemy的UNIT of WORK机制</h5><p>我们先看看来自作者的介绍：</p>
-<blockquote>
-<p>The job of the unit of work is to move all of the pending state present in a particular Session out to the database, emptying out the new, dirty, and deleted collections maintained by the Session. Once completed, the in-memory state of the Session and what’s present in the current transaction match. The primary challenge is to determine the correct series of persistence steps, and then to perform them in the correct order.</p>
-</blockquote>
-<p>UOW的工作主要是将session维护的new、dirty、deleted的集合清掉并落入数据库中。主要挑战就是决定正确的持久化步骤和顺序。我们看到了关键的地方，排序！</p>
-<p>从这篇文章中，我们了解到，其实对于UOW来说，共有两级排序：<br><img src="https://user-images.githubusercontent.com/1736354/34144270-c8be1bfa-e4cb-11e7-87df-ab894059bd13.jpg" alt="sort"><br>1） 第一级排序，是针对于多个表（class）之前的排序，依赖信息从表之间的关系获取，例如文章中所举的User和Address的例子，需要在user插入后，有了主键，然后再去更新。<br>2）第二季排序，是针对于一个表（class）之中操作的排序，例如文章中所举的，前一个插入的user依赖后一个user。</p>
-<p>然而，无论是哪个排序，如果表和表之间在SQLAlchemy定义模型的时候，并没有指定其顺序，那么便没有依赖关系，也便意味着，顺序是不稳定的。</p>
-<p>在我们出现的问题中，action和action_event在<a href="https://github.com/openstack/nova/blob/07c925a5321e379293bbf0e55bf3c40798eaf21b/nova/db/sqlalchemy/models.py#L1272-L1309" target="_blank" rel="external">model定义的代码</a>中，并未指定action和event之前的关系，因此，SQLAlchemy分析依赖的时候，只是将这两个表当做独立的2个表。</p>
-<h5 id="3-2-3-_实战一把">3.2.3. 实战一把</h5><p>为了证明我们的分析，我们在SQLAlchemy打印一些日志来记录依赖关系和最终执行的结果，代码见<a href="https://github.com/zzzeek/sqlalchemy/blob/68879d50faa9e2602e55d5d191647b1cf864e5ab/lib/sqlalchemy/orm/unitofwork.py#L372-L377" target="_blank" rel="external">lib/sqlalchemy/ormunitofwork.py</a>，取消掉这些注释即可。</p>
-<blockquote>
-<p>dependencies: set([(SaveUpdateAll(Mapper|InstanceActionEvent|instance_actions_events), DeleteAll(Mapper|InstanceActionEvent|instance_actions_events)), (SaveUpdateAll(Mapper|InstanceAction|instance_actions), DeleteAll(Mapper|InstanceAction|instance_actions))])</p>
-<p>cycles: set([])</p>
-<p>sort: [SaveUpdateAll(Mapper|InstanceAction|instance_actions), SaveUpdateAll(Mapper|InstanceActionEvent|instance_actions_events), DeleteAll(Mapper|InstanceActionEvent|instance_actions_events), DeleteAll(Mapper|InstanceAction|instance_actions)]</p>
-<p>COUNT OF POSTSORT ACTIONS 4</p>
-</blockquote>
-<p>上面共4行信息，我们需要的是dependencies信息和sort信息，从依赖信息我们可以看到，我们进行的这个事务仅有2组依赖，分别是action和event_action的缓存入库先于缓存清空，而action和event_action之间是没有依赖关系的。所以，最终生成的sort列表，其实是无法保证稳定性的。</p>
-<p>所以，才会出现我们本文所出的问题，一会先刷新action，一会先刷新action_event。然而，对于这种问题并不是无解，我们只需要在这两个表里加入relationship，使他们有依赖就可以了。如果确实没有什么关联，那我们就需要思考把更新拆分到更小的事务中了，就像MySQL官网说的那样：<strong>Keep transactions small and short in duration to make them less prone to collision</strong>。</p>
-<h3 id="4-_总结。">4. 总结。</h3><p>TL;DR。写完这篇文章发现，有点太长了，不想细看的看看总结吧，哈哈。</p>
+<h5 id="3-1-1-_Non-Jitter，无随机">3.1.1. Non-Jitter，无随机</h5><p>无随机的方式，就是oslo.db目前使用的方式，仅指数增长，等待时间为1秒，2秒，4秒，8秒。</p>
+<h5 id="3-1-2-_Full_Jitter，全量随机">3.1.2. Full Jitter，全量随机</h5><p>在退避sleep的时候，加入随机机制，使得sleep的时间随机化，指数拉长调用的窗口，从而降低再次死锁概率。加上这个jitter后，等待时间变为0~1秒，0~2秒，0~4秒，0~8秒，0~16秒等范围内随机。</p>
+<h5 id="3-1-3-_Top_X_Jitter，顶部随机">3.1.3. Top X Jitter，顶部随机</h5><p>除了全量随机因子外，我们也可以选择顶部随机的方式，保底的等待基数时间随指数递增，在基数时间的上沿边界向下抖动（比如25%）。这种方法来说既保留了“安全”的重试时间，而且抖动时间窗口也在递增。例如我们25%的都抖动随机，等待时间就为1*0.75~1秒，2*0.75~2秒，4*0.75~4秒，8*0.75~8秒，16*0.75秒~16秒。</p>
+<h5 id="3-1-4-_Other_Jitter，其他随机方式">3.1.4. Other Jitter，其他随机方式</h5><p>另外，在<a href="https://amazonaws-china.com/blogs/architecture/exponential-backoff-and-jitter/" target="_blank" rel="external">Exponential Backoff And Jitter</a>一文中，介绍了各种随机时间窗口加到退避算法中的流程后，对平均时间和竞争的调用数也做了一个仿真。结果如下图所示：</p>
+<p><img src="https://user-images.githubusercontent.com/1736354/39026065-903c4cea-447d-11e8-85db-1a2fc168fdc1.jpg" alt="simuj"></p>
+<p>很显然，其中，Fulljitter（0~2**n随机）的抖动范围大，平均抖动时间比较低，因此，从平均时间和冲突避免(总调用数)这两个指标综合看，Fulljitter是获胜的。但这并不意味着在所有情况下，我们都需要很低的时间间隔，更长的时间会拥有更“安全”的重试时间，代价则是更耗时了，我想这确实是一个值得思考的tradeoff。</p>
+<p>随机重试时间的选取，我们需要更多的结合业务去看，如果重试的业务是由于竞争冲突引起的（就像死锁），那么，我们就要通过抖动的范围将冲突化解；而如果重试的业务是由于服务暂时不可用，但是可用的时间我们并不确定，这样我们就可以通过增加基数时间来避免无谓的尝试。</p>
+<p>总结一下就是：<strong>通过指数退避机制递增的基数时间，来避免无谓的尝试，通过随机因子机制递增的抖动窗口，来减少冲突的可能</strong>。</p>
+<h3 id="2-_oslo-db的改进">2. oslo.db的改进</h3><h4 id="2-1_oslo-db的重试实现">2.1 oslo.db的重试实现</h4><p>在得到了充分的理论知识的洗礼后，我们回过头来看看，oslo.db的重试机制的实现。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line"><span class="comment"># 重试的基数时间 </span></div><div class="line">next_interval = self.retry_interva</div><div class="line"><span class="comment"># 重试的最大次数</span></div><div class="line">remaining = self.max_retries</div><div class="line"><span class="keyword">while</span> <span class="keyword">True</span>:</div><div class="line">    <span class="keyword">try</span>:</div><div class="line">        <span class="comment"># 调用需要重试的函数</span></div><div class="line">        <span class="keyword">return</span> f(*args, **kwargs)</div><div class="line">    <span class="keyword">except</span> Exception <span class="keyword">as</span> e:</div><div class="line">        <span class="comment"># 是否继续重试，不继续就reraise</span></div><div class="line">        expected = self._is_exception_expected(e)</div><div class="line">        <span class="comment"># reraise</span></div><div class="line">        <span class="comment"># 休息next_interval秒</span></div><div class="line">        time.sleep(next_interval )</div><div class="line">        <span class="comment"># 判断是否递增重试时间</span></div><div class="line">        <span class="keyword">if</span> self.inc_retry_interval:</div><div class="line">        <span class="comment"># 指数递增，并不超过最大重试时间</span></div><div class="line">            next_interval = min(next_interval * <span class="number">2</span>, self.max_retry_interval)</div><div class="line">        <span class="comment"># 剩余次数</span></div><div class="line">        remaining -= <span class="number">1</span></div></pre></td></tr></table></figure></p>
+<p>我将核心的代码提炼出来，我们来分析一下各个入参的作用</p>
+<ul>
+<li>retry_interval：重试的间隔，即基数时间，默认为1秒，即第一次重试1秒</li>
+<li>max_retries：最大重试的次数，默认为20次，即试20次就不试了，并通过内部变量remaining来记录剩余次数</li>
+<li>inc_retry_interval：是否递增最大重试次数，目前为指数递增</li>
+<li>max_retry_interval：最大的重试间隔</li>
+<li>exception_checker：需要进行重试的异常</li>
+</ul>
+<p>可以看到，目前的机制就是我们上文所提到的“指数退避机制”。也就是说，并没有增加随机因子jitter进来。</p>
+<h4 id="2-2_优化！">2.2 优化！</h4><p>于是，这个优化的Patch就诞生了：<a href="https://review.openstack.org/#/c/527362/" target="_blank" rel="external">Improve exponential backoff for wrap_db_retry</a>。核心做了2件事情：</p>
 <ol>
-<li>遇到OpenStack数据库相关问题，可以通过设置[database]/connection_debug=100进行SQL打印。</li>
-<li>SQLAlchemy对于一个session中的更新顺序，如果表之间没有依赖，是无法保证顺序的。</li>
-<li>在一个事务中，更新多张表，需要考虑顺序，若ORM无法保证的更新顺序，尽量不要放在同一个事务中，尽量确保事务做的事简单。</li>
-<li>oslo.db目前的死锁重试机制，是大家一起等X秒，很有可能再次死锁。</li>
+<li>通过增加随机因子jitter参数，为重试机制增加随机抖动的能力。</li>
+<li>在产生死锁的时候，默认启用随机抖动的能力，其中jitter为全量抖动。</li>
 </ol>
-<h3 id="参考">参考</h3><ol>
-<li><a href="https://bugs.launchpad.net/nova/+bug/1719561" target="_blank" rel="external">Instance action’s updated_at issue</a></li>
-<li><a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-deadlocks-handling.html" target="_blank" rel="external">How to Minimize and Handle Deadlocks</a></li>
-<li><a href="https://amazonaws-china.com/blogs/architecture/exponential-backoff-and-jitter/" target="_blank" rel="external">Exponential Backoff And Jitter</a></li>
-<li><a href="http://www.sqlalchemy.org/library.html" target="_blank" rel="external">SQLAlchemy library(tutorials, arch doc, talks, posts</a></li>
-<li><a href="https://news.ycombinator.com/item?id=10321331" target="_blank" rel="external">Some discussion on backoff algorithm</a></li>
-<li><a href="https://stackoverflow.com/questions/10154343/is-sqlalchemy-saves-order-in-adding-objects-to-session" target="_blank" rel="external">Is SQLAlchemy saves order in adding objects to session?</a></li>
-<li><a href="http://www.aosabook.org/en/sqlalchemy.html" target="_blank" rel="external">SQLAlchemy at Architecture of Open Source Applications</a></li>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> self.inc_retry_interval:</div><div class="line"><span class="comment"># NOTE(jiangyikun): In order to minimize the chance of</span></div><div class="line"><span class="comment"># regenerating a deadlock and reduce the average sleep</span></div><div class="line"><span class="comment"># time, we are using jitter by default when the</span></div><div class="line"><span class="comment"># deadlock is detected. With the jitter,</span></div><div class="line"><span class="comment"># sleep_time = [0, next_interval), otherwise, without</span></div><div class="line"><span class="comment"># the jitter, sleep_time = next_interval.</span></div><div class="line"><span class="keyword">if</span> isinstance(e, exception.DBDeadlock):</div><div class="line">	jitter = <span class="keyword">True</span></div><div class="line"><span class="keyword">else</span>:</div><div class="line">	jitter = self.jitter</div><div class="line">sleep_time, next_interval = self._get_inc_interval(next_interval, jitter)</div></pre></td></tr></table></figure>
+<p>其中，抖动时间的计算如下：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">_get_inc_interval</span><span class="params">(self, n, jitter)</span>:</span></div><div class="line">	<span class="comment"># NOTE(jiangyikun): The "n" help us to record the 2 ** retry_times.</span></div><div class="line">	<span class="comment"># The "sleep_time" means the real time to sleep:</span></div><div class="line">	<span class="comment"># - Without jitter: sleep_time = 2 ** retry_times = n</span></div><div class="line">	<span class="comment"># - With jitter:    sleep_time = [0, 2 ** retry_times) &lt; n</span></div><div class="line">        <span class="comment"># 指数增加重试时间间隔</span></div><div class="line">	n = n * <span class="number">2</span></div><div class="line">        <span class="comment"># 全量随机抖动</span></div><div class="line">	<span class="keyword">if</span> jitter:</div><div class="line">		sleep_time = random.uniform(<span class="number">0</span>, n)</div><div class="line">	<span class="keyword">else</span>:</div><div class="line">		sleep_time = n</div><div class="line">	<span class="keyword">return</span> min(sleep_time, self.max_retry_interval), n</div></pre></td></tr></table></figure></p>
+<p>这个Patch也在4个月后的几天前，完成了合入。下面也记录一下相关的讨论：</p>
+<ul>
+<li><strong>Michael Bayer（SQLAlchemy的作者）</strong> 也提出了一个<a href="https://review.openstack.org/#/c/527362/1/oslo_db/api.py@178" target="_blank" rel="external">思路</a>，就是类似于上文Top X Jitter的随机因子，我和他解释了对于死锁的重试，其实并不需要太多的基数时间，也将aws那个文章给贴上了，最终得到了他的认可。</li>
+<li><strong>Ben Nemec (oslo的现任PTL)</strong>，认为可以通过deadlock识别以及用户手动指定两种方式来开启这个随机因子。</li>
+<li><strong>Jay Pipes (Nova Core, MySQL Contributer)</strong>，提到了一个叫做<a href="https://github.com/jd/tenacity" target="_blank" rel="external">tenacity</a>的retry库，说未来也可以考虑用这个取代，库的作者还专门为这个“重试”的轮子写了一篇文章：<a href="https://julien.danjou.info/python-retrying/" target="_blank" rel="external">Get back up and try again: retrying in Python</a>，感兴趣的可以读读。</li>
+</ul>
+<h3 id="参考链接">参考链接</h3><ol>
+<li>Exponential Backoff And Jitter. <a href="https://amazonaws-china.com/blogs/architecture/exponential-backoff-and-jitter/" target="_blank" rel="external">链接1</a> <a href="https://aws.amazon.com/blogs/architecture/exponential-backoff-and-jitter/" target="_blank" rel="external">链接2</a></li>
+<li>Deadlocks in InnoDB <a href="https://dev.mysql.com/doc/refman/5.7/en/innodb-deadlocks.html" target="_blank" rel="external">https://dev.mysql.com/doc/refman/5.7/en/innodb-deadlocks.html</a></li>
+<li>Get back up and try again: retrying in Python <a href="https://julien.danjou.info/python-retrying/" target="_blank" rel="external">https://julien.danjou.info/python-retrying/</a></li>
+<li>Improve exponential backoff for wrap_db_retry <a href="https://review.openstack.org/#/c/527362/" target="_blank" rel="external">https://review.openstack.org/#/c/527362/</a></li>
 </ol>
 
       
@@ -362,15 +511,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">数据库</a>
         		</li>
       		
 		</ul>
@@ -380,7 +525,7 @@ var _hmt = _hmt || [];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/13/一个死锁问题的深入探究/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/19/oslo-db中的死锁重试机制优化/">展开全文 >></a>
         </p>
       
 
@@ -395,30 +540,68 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-Nova调度相关特性理解与梳理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Placement深度探索-Granular-Resource-Request-Syntax" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/12/06/Nova调度相关特性理解与梳理/">Nova调度相关特性理解与梳理</a>
+      <a class="article-title" href="/2018/04/02/Placement深度探索-Granular-Resource-Request-Syntax/">[Placement深度探索] Granular Resource Request Syntax</a>
     </h1>
   
 
         
-        <a href="/2017/12/06/Nova调度相关特性理解与梳理/" class="archive-article-date">
-  	<time datetime="2017-12-06T01:41:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Dec 6 2017</time>
+        <a href="/2018/04/02/Placement深度探索-Granular-Resource-Request-Syntax/" class="archive-article-date">
+  	<time datetime="2018-04-02T02:54:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Apr 2 2018</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>准备拿这篇文章梳理下OpenStack Nova调度相关的特性，由于目前Placement的引入，说起调度，和这个组件是分不开的，所以本文也可以看做是Placement的一个历史特性的梳理。第一阶段会按照版本，先把调度相关的BP过一遍，然后再通过理解和使用加强理解。好吧，我承认又开了一个系列的坑，话不多说，开始！</p>
-        
-          <a class="article-more-a" href="/2017/12/06/Nova调度相关特性理解与梳理/#more">more >></a>
-        
+        <h3 id="1-_问题背景">1. 问题背景</h3><p>在进行资源请求的时候，由于目前支持的能力有限，我们目前只能请求一个单一类型包含整数数量的资源。</p>
+<p>例如，我们请求VCPU为2，内存为2G，要求其架构为X86架构，即通过以下URL进行请求：</p>
+<blockquote>
+<p>GET /allocation_candidates?resources=VCPU:2,MEMORY_MB:2048&amp;required=HW_CPU_X86_AVX</p>
+</blockquote>
+<p>也不能指定我们需要某一个RP具有某种特质，所有不同类型的资源也只能从一个RP提供。</p>
+<p>但是，在进行一些通用和嵌套的Resource Provider时，会有诸如下列的需求：<br>Requirement 1. 根据类型、特质来请求一个allocation，根据相同类型和不同特质来请求不同的多个allocation。<br>Requirement 2. 保证指定的资源来自同一个resource provider<br>Requirement 3. 在资源有限（高饱和度）的情况下，将allocations散布到多个resource provider（多个resource provider拼凑起来）的能力。</p>
+<p>我们通过一个例子来说下这几个场景：<br><img src="https://user-images.githubusercontent.com/1736354/38181314-c5e0d054-3664-11e8-951e-bd811909b6e2.jpg" alt="unnamed"></p>
+<p><strong>Use Case 1</strong><br>我们希望请求一个在NET1上的VF，一个在NET2上的VF。</p>
+<ul>
+<li>[RP1(SRIOV_NET_VF:1), RP2(SRIOV_NET_VF:1)]</li>
+<li>[RP1(SRIOV_NET_VF:1), RP4(SRIOV_NET_VF:1)]</li>
+<li>[RP3(SRIOV_NET_VF:1), RP2(SRIOV_NET_VF:1)]</li>
+<li>[RP3(SRIOV_NET_VF:1), RP4(SRIOV_NET_VF:1)]<br>那么，我们请求的时候，可以使用：</li>
+</ul>
+<blockquote>
+<p>GET /allocation_candidates?resources=SRIOV_NET_VF:1&amp;resources1=SRIOV_NET_VF:1</p>
+</blockquote>
+<p>体现需求1要求的分组能力，在解析的时候，会将resource根据后面的number分组<br>Expect:<br>[RP1(SRIOV_NET_VF:1), RP2(SRIOV_NET_VF:1)]<br>[RP1(SRIOV_NET_VF:1), RP4(SRIOV_NET_VF:1)]<br>[RP3(SRIOV_NET_VF:1), RP2(SRIOV_NET_VF:1)]<br>[RP3(SRIOV_NET_VF:1), RP4(SRIOV_NET_VF:1)]</p>
+<p><strong>Use Case  2</strong><br>请求一个带宽为10000 bytes/sec的vf</p>
+<blockquote>
+<p>GET /allocation_candidates?resources1=SRIOV_NET_VF:1,NET_EGRESS_BYTES_SEC=1</p>
+</blockquote>
+<p>体现需求二，来自同一个Resource Provider。每个分组，通过suffix来作为后缀，来区分resource，同一个组的资源后面number相同，期望请求同一个Resource Provider。<br>Expect:<br>[RP1(SRIOV_NET_VF:1), RP1(NET_EGRESS_BYTES_SEC:10000)]<br>[RP2(SRIOV_NET_VF:1), RP2(NET_EGRESS_BYTES_SEC:10000)]<br>[RP3(SRIOV_NET_VF:1), RP3(NET_EGRESS_BYTES_SEC:10000)]<br>[RP4(SRIOV_NET_VF:1), RP4(NET_EGRESS_BYTES_SEC:10000)]</p>
+<p><strong>Use Case 3</strong><br>请求一个在NET1上带宽为10000bytes/sec的VF，并同时请求一个在NET2上贷款为20000bytes/sec的且网卡带有SSL加速的能力</p>
+<blockquote>
+<p>GET /allocation_candidates?resources1=SRIOV_NET_VF:1,NET_EGRESS_BYTES_SEC=10000<br>&amp;resource2=SRIOV_NET_VF:1,NET_EGRESS_BYTES_SEC=20000&amp;required2=HW_NIC_ACCEL_SSL</p>
+</blockquote>
+<p>体现了需求一和需求二，通过分组来获取不同的Resource Provider，通过同一分组编号来指定一个Resource Provider的能力。</p>
+<ul>
+<li>[RP1(SRIOV_NET_VF:1, NET_EGRESS_BYTES_SEC:10000), RP2(SRIOV_NET_VF:1, NET_EGRESS_BYTES_SEC:20000)]</li>
+<li>[RP3(SRIOV_NET_VF:1, NET_EGRESS_BYTES_SEC:10000), RP2(SRIOV_NET_VF:1, NET_EGRESS_BYTES_SEC:20000)]</li>
+</ul>
+<p><strong>Use Case 4</strong><br>假设一个PF只剩2个VF了，请求一个NET1上4个VF。</p>
+<blockquote>
+<p>GET /allocation_candidates?resources=SRIOV_NET_VF:4</p>
+</blockquote>
+<p>体现需求三，内部会自动将4分割成2个2：<br>Expect: [RP1(SRIOV_NET_VF:2), RP3(SRIOV_NET_VF:2)]</p>
+<h3 id="2-_核心实现">2. 核心实现</h3><p>这种表达方式我们称之为“Numbered Request Groups”，名字中包含了2个重要信息，一个是“Numbered”，对请求资源进行编号，另一个是“Groups”，根据编号对请求资源进行分组.<br>形如：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div></pre></td><td class="code"><pre><div class="line">resources = &#123; resource_classA: rcA_count,</div><div class="line">              resource_classB: rcB_count,</div><div class="line">              ... &#125;,</div><div class="line">required = [ TRAIT_C, TRAIT_D, ... ],</div><div class="line"></div><div class="line">resources1 = &#123; resource_class1A: rc1A_count,</div><div class="line">               resource_class1B: rc1B_count,</div><div class="line">               ... &#125;,</div><div class="line">required1 = [ TRAIT_1C, TRAIT_1D, ... ],</div><div class="line"></div><div class="line">resources2 = &#123; resource_class2A: rc2A_count,</div><div class="line">               resource_class2B: rc2B_count,</div><div class="line">               ... &#125;,</div><div class="line">required2 = [ TRAIT_2C, TRAIT_2D, ... ],</div><div class="line"></div><div class="line">...,</div><div class="line"></div><div class="line">resourcesX = &#123; resource_classXA: rcXA_count,</div><div class="line">               resource_classXB: rcXB_count,</div><div class="line">               ... &#125;,</div><div class="line">requiredX = [ TRAIT_XC, TRAIT_XD, ... ],</div></pre></td></tr></table></figure></p>
+<p>目前的解析部分的核心实现在<a href="https://github.com/openstack/nova/blob/master/nova/api/openstack/placement/util.py#L349-L465" target="_blank" rel="external">nova/api/openstack/placement/util.py#L349-L465</a>。</p>
+<p>目前已支持的参数有resources（对inventory请求）、required（对trait请求）、member_of（对aggregate请求）。</p>
+
       
 
       
@@ -445,7 +628,7 @@ var _hmt = _hmt || [];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/12/06/Nova调度相关特性理解与梳理/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/04/02/Placement深度探索-Granular-Resource-Request-Syntax/">展开全文 >></a>
         </p>
       
 
@@ -460,303 +643,39 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-跨Cell场景下查询的那些事儿" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Nova-Scheduler-Team-Meeting跟踪（三月）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2017/11/16/跨Cell场景下查询的那些事儿/">跨Cell场景下查询的那些事儿</a>
+      <a class="article-title" href="/2018/03/31/Nova-Scheduler-Team-Meeting跟踪（三月）/">Nova Scheduler Team Meeting跟踪（三月）</a>
     </h1>
   
 
         
-        <a href="/2017/11/16/跨Cell场景下查询的那些事儿/" class="archive-article-date">
-  	<time datetime="2017-11-16T13:19:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Nov 16 2017</time>
+        <a href="/2018/03/31/Nova-Scheduler-Team-Meeting跟踪（三月）/" class="archive-article-date">
+  	<time datetime="2018-03-31T02:26:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Mar 31 2018</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="1-_背景">1. 背景</h3><p>我们知道Nova目前正在慢慢地演进到Cell V2架构，Cell V2架构中，很重要的一个变化就是数据库的拆分，清晰的划分了数据库的职能，从而有具备横向扩展的能力。顶层数据库(nova_api)用来存储全局数据，而Cell中的数据库(nova_cellX)仅存储计算节点相关的数据。比如，创建虚拟机的全局数据，比如Flavor、Keypair之类的数据，放在上层的nova_api数据库中，而虚拟机本身的信息，比如某个虚拟机的信息，放在了子Cell中。</p>
-<p><img src="https://user-images.githubusercontent.com/1736354/33543222-307b8974-d911-11e7-9993-5373720491df.jpg" alt="cell"></p>
-<p>这样的架构另一个好处是Cell很轻松的可以实现扩展，从而提升虚拟机数量的规模。然而，这引入了一个问题，就是没有一个地方存储着全量虚拟机的数据了。当我们需要一些全局的虚拟机数据查询时（比如查询全量虚拟机列表）就比较棘手了。</p>
-        
-          <a class="article-more-a" href="/2017/11/16/跨Cell场景下查询的那些事儿/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/11/16/跨Cell场景下查询的那些事儿/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-译-An-Update-on-the-Placement-API-and-Scheduler-plans-for-Queens" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/25/译-An-Update-on-the-Placement-API-and-Scheduler-plans-for-Queens/">[译] An Update on the Placement API and Scheduler plans for Queens</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/25/译-An-Update-on-the-Placement-API-and-Scheduler-plans-for-Queens/" class="archive-article-date">
-  	<time datetime="2017-10-25T06:10:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Oct 25 2017</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>原文链接：<a href="https://github.com/jaypipes/articles/blob/master/openstack/placement-queens-update.md" target="_blank" rel="external">https://github.com/jaypipes/articles/blob/master/openstack/placement-queens-update.md</a></p>
-<p>这篇文章主要讲了在过去几个版本中，OpenStack社区对于Nova调度及Placement服务相关工作的更新进展。我也会着重介绍一些我们在Q版本中主要处理的几个BP，同时也介绍了未来重点工作的路标，我们会在未来的几个release中完成它们。</p>
-        
-          <a class="article-more-a" href="/2017/10/25/译-An-Update-on-the-Placement-API-and-Scheduler-plans-for-Queens/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/25/译-An-Update-on-the-Placement-API-and-Scheduler-plans-for-Queens/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-OpenStack-Nova虚拟机冷迁移流程解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/10/11/OpenStack-Nova虚拟机冷迁移流程解析/">OpenStack Nova虚拟机冷迁移流程解析</a>
-    </h1>
-  
-
-        
-        <a href="/2017/10/11/OpenStack-Nova虚拟机冷迁移流程解析/" class="archive-article-date">
-  	<time datetime="2017-10-11T08:36:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Oct 11 2017</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="1-_概述">1. 概述</h3><p>虚拟机冷迁移由于当用户想把虚拟机从一个计算节点移动到其他节点。主要涉及的命令如下：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="meta">$</span> nova migrate server_id</div><div class="line"><span class="meta">$</span> nova resize-confirm server_id</div></pre></td></tr></table></figure></p>
-<p>看到后是不是觉得有点奇怪为啥migrate之后，还要resize-confirm？resize操作其实和migrate操作比较类似，不同的是迁移前后的flavor不一样。一般情况下resize的场景是，对虚拟机进行扩容，把flavor调大之类的。所以，在代码级别，nova也将两个流程合一了。migrate就是一个没有flavor变化的resize。</p>
-        
-          <a class="article-more-a" href="/2017/10/11/OpenStack-Nova虚拟机冷迁移流程解析/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/10/11/OpenStack-Nova虚拟机冷迁移流程解析/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-OpenStack-Nova虚拟机创建流程解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/27/OpenStack-Nova虚拟机创建流程解析/">OpenStack Nova虚拟机创建流程解析</a>
-    </h1>
-  
-
-        
-        <a href="/2017/09/27/OpenStack-Nova虚拟机创建流程解析/" class="archive-article-date">
-  	<time datetime="2017-09-27T03:15:15.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Sep 27 2017</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="1-_概述">1. 概述</h2><p>Nova是OpenStack中处理计算业务（虚拟机、裸机、容器）的组件，整体的虚拟机创建流程自然是学习和熟悉Nova组件的第一步。本篇文章主要基于OpenStack Pike版本，基于最新的Cell v2架构部署为例，来介绍虚拟机的创建流程，并分析了Pike等最近几个版本中，虚拟机创建流程的关键变化。</p>
-        
-          <a class="article-more-a" href="/2017/09/27/OpenStack-Nova虚拟机创建流程解析/#more">more >></a>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2017/09/27/OpenStack-Nova虚拟机创建流程解析/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-
-
-
-
-  
-    <article id="post-译-Simpler-Road-to-Cinder-Active-Active" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/08/16/译-Simpler-Road-to-Cinder-Active-Active/">[译] Simpler Road to Cinder Active-Active</a>
-    </h1>
-  
-
-        
-        <a href="/2017/08/16/译-Simpler-Road-to-Cinder-Active-Active/" class="archive-article-date">
-  	<time datetime="2017-08-16T12:50:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Aug 16 2017</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <blockquote>
-<p>译注：本篇文章为作者介绍Cinder AA方案的文章，作者是gorka，是实现cinder AA BP的core，文章介绍了这哥们实现AA时的记录，算是对方案的一种解释以及设计思路的总结，核心思想为以下几点：</p>
+        <h2 id="2018年3月5日">2018年3月5日</h2><p>PTG刚开完，没什么太多的事儿，jaypipes说了几点：</p>
 <ol>
-<li>每个volume node都增加一个<code>cluster</code>的配置项，作为集群，标记这个节点属于某个集群；</li>
-<li>通过cluster@backend作为消息队列的topic，并且启动cluster@backend的服务；</li>
-<li>scheduler进行调度时，投递到某个合适的集群，集群中的某个后端进行消费；</li>
-<li>消费时，将操作记录在worker中，用来标记这个资源由某个worker来操作，这样当发生异常时，可以确保仅有某个worker进行cleanup的操作。</li>
+<li>jaypipes会发一个recap总结下R版本的重点<br><a href="http://lists.openstack.org/pipermail/openstack-dev/2018-March/128041.html" target="_blank" rel="external">http://lists.openstack.org/pipermail/openstack-dev/2018-March/128041.html</a></li>
+<li>最开始的3-4周，都会集中在update_provider_tree系列的patch落地</li>
+<li>在Resource tracker刷新额外traits的合并问题需要讨论，可以在update-provider-tree完成之后去做</li>
 </ol>
-</blockquote>
-<p>原文链接：<a href="https://gorka.eguileor.com/simpler-road-to-cinder-active-active/" target="_blank" rel="external">Simpler Road to Cinder Active-Active</a></p>
-        
-          <a class="article-more-a" href="/2017/08/16/译-Simpler-Road-to-Cinder-Active-Active/#more">more >></a>
-        
+<h2 id="2018年3月5日-1">2018年3月5日</h2><h3 id="Feature讨论">Feature讨论</h3><ol>
+<li>Support traits in Glance <a href="https://review.openstack.org/#/c/541507/" target="_blank" rel="external">https://review.openstack.org/#/c/541507/</a></li>
+<li>Add placement-req-filter spec <a href="https://review.openstack.org/#/c/544585/" target="_blank" rel="external">https://review.openstack.org/#/c/544585/</a><br>这是调度流程的一个很大变化，这个BP源自CERN从v1升v2的一个需求，最开始CERN用的是Cell v1规模挺大，大概有上万个计算节点，原来的用法是：<br>第一级调度：一个租户映射到指定的特定Cell中，一般一个Cell中也会把特殊硬件的计算节点集中起来，第二级调度：这样在Cell v1中通过租户找到的Cell，然后剩余的节点就不多了，然后进行第二级调度，调度在Cell内压力就小多了。<br>但是目前Placement是一个全局的，并不能感知到Cell，也就是说最差情况，Placement过滤得不好，可能导致真正Scheduler的时候，有上万的节点，所以，就在Placment前面加了一个步骤Pre filter。目前的作用就是，把Placement做不到的，自定义程度很高的Filter放到这里来。</li>
+<li>Forbidden Traits <a href="https://review.openstack.org/#/c/548915/" target="_blank" rel="external">https://review.openstack.org/#/c/548915/</a><br>required里面通过叹号来表示不想要某种traits</li>
+<li>Support default allocation ratios <a href="https://review.openstack.org/#/c/552105/" target="_blank" rel="external">https://review.openstack.org/#/c/552105/</a></li>
+</ol>
+
       
 
       
@@ -769,11 +688,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Cinder</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
         		</li>
       		
 		</ul>
@@ -783,7 +702,7 @@ var _hmt = _hmt || [];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2017/08/16/译-Simpler-Road-to-Cinder-Active-Active/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/03/31/Nova-Scheduler-Team-Meeting跟踪（三月）/">展开全文 >></a>
         </p>
       
 
@@ -798,30 +717,46 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-一次有关OpenStack请求的性能问题分析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Nova-Scheduler-Team-Meeting跟踪（二月）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/07/22/一次有关OpenStack请求的性能问题分析/">一次有关OpenStack请求的性能问题分析</a>
+      <a class="article-title" href="/2018/02/07/Nova-Scheduler-Team-Meeting跟踪（二月）/">Nova Scheduler Team Meeting跟踪（二月）</a>
     </h1>
   
 
         
-        <a href="/2016/07/22/一次有关OpenStack请求的性能问题分析/" class="archive-article-date">
-  	<time datetime="2016-07-22T15:09:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Jul 22 2016</time>
+        <a href="/2018/02/07/Nova-Scheduler-Team-Meeting跟踪（二月）/" class="archive-article-date">
+  	<time datetime="2018-02-07T10:40:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Feb 7 2018</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="0-_背景介绍">0. 背景介绍</h3><p>目前OpenStack对外提供的北向接口是以REST接口提供的，也就是说通过HTTP（HTTPS）接口进行请求，进行虚拟机或者卷等相关的操作。OpenStack提供I层基本的能力，比如创建、查询、删除虚拟机或者卷等操作，以OpenStack作为平台，对上提供用户接口，对下操作下层Driver完成对设备的操作，其大致的架构基本如下所示：</p>
-        
-          <a class="article-more-a" href="/2016/07/22/一次有关OpenStack请求的性能问题分析/#more">more >></a>
-        
+        <h1 id="1-_会议记录">1. 会议记录</h1><h2 id="2018年2月5日">2018年2月5日</h2><h3 id="(1)_Feature讨论">(1) Feature讨论</h3><p>目前已经Freature Freeze了，因此，对于BP来说，没有什么太多更新了，只是简单的罗列了下相关的Patch。<br><strong>Provider Tree series</strong> starting with: <a href="https://review.openstack.org/#/c/537648/" target="_blank" rel="external">https://review.openstack.org/#/c/537648/</a><br><strong>Nested RP traits selection</strong>: <a href="https://review.openstack.org/#/c/531899/" target="_blank" rel="external">https://review.openstack.org/#/c/531899/</a><br>目前，Nested RP的这2部分工作也不会在Queens版本合入了，会推迟到Rocky。</p>
+<p><strong>Granular resource requests review</strong>: <a href="https://review.openstack.org/#/c/517757/" target="_blank" rel="external">https://review.openstack.org/#/c/517757/</a><br>resource和requeired分组的支持，API部分的PatchQueens版本未完成。</p>
+<p><strong>Remove microversion fallback</strong>:<a href="https://review.openstack.org/#/c/528794/" target="_blank" rel="external">https://review.openstack.org/#/c/528794/</a><br>由于目前Queens已经使用1.14作为默认的microversion，因此，对于之前的一些兼容版本不会再使用了，所以对之前的兼容代码进行了清理。</p>
+<p><strong>Use alternate hosts for resize</strong>:<a href="https://review.openstack.org/#/c/537614/" target="_blank" rel="external">https://review.openstack.org/#/c/537614/</a><br>Alternate hosts已合入，上面是补了一些test case</p>
+<h3 id="(2)_Bug讨论">(2) Bug讨论</h3><h4 id="1-_Generation及重试问题">1. Generation及重试问题</h4><p><strong>Add generation support in aggregate association</strong> <a href="https://review.openstack.org/#/c/540447/" target="_blank" rel="external">https://review.openstack.org/#/c/540447/</a><br>没有什么新的bug了，在之前讨论的aggregate相关的API增加generation的问题，cdent提了一个BP，会在Rocky版本完成。<br><strong>placement server needs to retry allocations, server-side</strong> <a href="https://bugs.launchpad.net/nova/+bug/1719933" target="_blank" rel="external">https://bugs.launchpad.net/nova/+bug/1719933</a><br>对于并发更新时的重试问题，还是有一些讨论，<br>@edleafe 认为，对于一些场景，请求aloocation时，用户认为有足够容量呀，不能够失败。<br>@jaypipes还是原来的意见：</p>
+<blockquote>
+<p>it should “fail” in so much as a 409 Conflict is returned and allows the caller to retry if it wants.</p>
+</blockquote>
+<p>也就是说，409肯定是要失败，重试的事情需要调用他的人来做。<br>当然，也会在PTG讨论下，generation到底怎么样去使用和暴露。已经把这个问题记到<a href="https://etherpad.openstack.org/p/nova-ptg-rocky" target="_blank" rel="external">nova-ptg-rocky</a>：Do we have a concurrency problem with PUT /allocations/{consumer_uuid} and/or POST /allocations ?</p>
+<h3 id="(3)_开放讨论">(3) 开放讨论</h3><p>Placement queens summary <a href="https://anticdent.org/placement-queens-summary.html" target="_blank" rel="external">https://anticdent.org/placement-queens-summary.html</a><br>Placement extraction <a href="https://anticdent.org/placement-extraction.html" target="_blank" rel="external">https://anticdent.org/placement-extraction.html</a></p>
+<h4 id="关于将Placement抽离">关于将Placement抽离</h4><p>@cdent 完成了两篇文章，一个是queens版本的placement总结，另外一个是cdent做的，关于将Placement从Nova抽离出来的一些工作。<br>关于将Placement抽离出来，大家发表了自己的看法：<br>@cdent 他认为，较早的把Placement分离出来，对于Placement和Nova来说都好，目前抽离的工作量比较小，好分离，另外，目前Nova投入的大量的时间和优先级放在Placement相关的事务上，分离出来，对Nova好一些。<br>@bauzas 不太同意现在去分离，他主要是担心Nova和Placement分离后，有点难协调。</p>
+<h2 id="2018年2月12日">2018年2月12日</h2><h3 id="(1)_Feature讨论-1">(1) Feature讨论</h3><p>目前的Feature的讨论，已经开始Rocky版本的了。</p>
+<h4 id="1-_Support_traits_in_Glance">1. Support traits in Glance</h4><p><a href="https://review.openstack.org/#/c/541507/" target="_blank" rel="external">https://review.openstack.org/#/c/541507/</a><br>这个BP主要是希望为Glance增加Traits支持，在Glance的Properties中，增加类似”trait:HW_CPU_X86_AVX2=required”, “trait:CUSTOM_TRUSTED_HOST=required”的支持，让Placement调度的时候支持。</p>
+<h4 id="2-_Resource_Class_Affinity_Spec">2. Resource Class Affinity Spec</h4><p><a href="https://review.openstack.org/543062" target="_blank" rel="external">https://review.openstack.org/543062</a><br>efried写的一个bp，看名字知其意，调度的时候考虑Resouce Class的亲和。</p>
+<h3 id="(2)_bug讨论">(2) bug讨论</h3><p><strong>Handle volume-backed instances in IsolatedHostsFilter</strong>：<a href="https://review.openstack.org/#/q/topic:bug/1746483+(status:open+OR+status:merged" target="_blank" rel="external">https://review.openstack.org/#/q/topic:bug/1746483+(status:open+OR+status:merged</a>)<br>Matt发现了一个Filter的问题，主要是对volume-backed的情况进行一些异常处理。在Scheduler会议中，已经很久没有讨论过非Placement的问题。- -!</p>
+<h3 id="(3)_开放讨论-1">(3) 开放讨论</h3><p><strong>Add optional healthcheck middleware</strong> <a href="https://review.openstack.org/#/c/542992/" target="_blank" rel="external">https://review.openstack.org/#/c/542992/</a><br>一个用于健康检查的midleware，对于API服务挺有用，尤其是对于LB场景下的检查活跃来说。<br>Feature的spec在这里：<a href="https://review.openstack.org/#/c/531456/" target="_blank" rel="external">https://review.openstack.org/#/c/531456/</a></p>
+<h2 id="2018年2月19日">2018年2月19日</h2><h3 id="(1)_Feature讨论-2">(1) Feature讨论</h3><p>Glance image traits <a href="https://review.openstack.org/#/c/541507/" target="_blank" rel="external">https://review.openstack.org/#/c/541507/</a><br>Resource class的亲和性 至少到S版本才会落（包括在Placement中支持NUMA亲和），优先级不高，提了下Placement RBAC的需求(Policy/RBAC support in Placement REST API)可能会更高一些。<br>update provider tree的优先级很高解决了很多问题</p>
+<h3 id="(2)_Bug讨论-1">(2) Bug讨论</h3><p><strong>Placement returns 503 when Keystone is down</strong> <a href="https://bugs.launchpad.net/nova/+bug/1749797" target="_blank" rel="external">https://bugs.launchpad.net/nova/+bug/1749797</a><br>Keystone挂的时候，Placement会返回一个503，这个问题最后是在keystone middleware里面加了一些detail信息: <a href="https://review.openstack.org/546108" target="_blank" rel="external">https://review.openstack.org/546108</a></p>
+<h3 id="(3)开放讨论">(3)开放讨论</h3><p><strong>调度失败的”Nova valid host”足够了吗？</strong><br>@arvindn05 这哥们提到在虚拟机调度的时候，我们仅仅返回了”no valid host”，为啥不503一个，然后返回为啥调度失败。<br>@edleafe 说了2点，503肯定不合适，错误是用户，不是系统。详细信息不显示是因为不想把底层的硬件架构拓扑之类的信息暴露给用户。管理员可以通过日志之类的看到失败原因。</p>
+
       
 
       
@@ -833,6 +768,10 @@ var _hmt = _hmt || [];
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
+        		</li>
+      		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
         		</li>
@@ -844,7 +783,7 @@ var _hmt = _hmt || [];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/07/22/一次有关OpenStack请求的性能问题分析/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/02/07/Nova-Scheduler-Team-Meeting跟踪（二月）/">展开全文 >></a>
         </p>
       
 
@@ -859,38 +798,74 @@ var _hmt = _hmt || [];
 
 
   
-    <article id="post-一致性哈希算法的理解与实践" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Nova-Scheduler-Team-Meeting跟踪（一月）" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2016/06/09/一致性哈希算法的理解与实践/">一致性哈希算法的理解与实践</a>
+      <a class="article-title" href="/2018/02/01/Nova-Scheduler-Team-Meeting跟踪（一月）/">Nova Scheduler Team Meeting跟踪（一月）</a>
     </h1>
   
 
         
-        <a href="/2016/06/09/一致性哈希算法的理解与实践/" class="archive-article-date">
-  	<time datetime="2016-06-09T02:43:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Jun 9 2016</time>
+        <a href="/2018/02/01/Nova-Scheduler-Team-Meeting跟踪（一月）/" class="archive-article-date">
+  	<time datetime="2018-02-01T12:32:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Feb 1 2018</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h3 id="0-_概述">0. 概述</h3><p>在维基百科中，是这么定义的</p>
-<blockquote>
-<p>一致哈希是一种特殊的哈希算法。在使用一致哈希算法后，哈希表槽位数（大小）的改变平均只需要对 K/n个关键字重新映射，其中K是关键字的数量， n是槽位数量。然而在传统的哈希表中，添加或删除一个槽位的几乎需要对所有关键字进行重新映射。</p>
-<h3 id="1-_引出">1. 引出</h3></blockquote>
-<p>我们在上文中已经介绍了一致性Hash算法的基本优势，我们看到了该算法主要解决的问题是：当slot数发生变化时，能够尽量少的移动数据。那么，我们思考一下，普通的Hash算法是如何实现？又存在什么问题呢？<br>那么我们引出一个问题：</p>
-<blockquote>
-<p>假设有1000w个数据项，100个存储节点，请设计一种算法合理地将他们存储在这些节点上。</p>
-</blockquote>
-<p>看一看普通Hash算法的原理：<br><img src="https://cloud.githubusercontent.com/assets/1736354/16341297/fe155f98-3a5e-11e6-834d-193e6f85afcd.png" alt="normal_hash"></p>
-        
-          <a class="article-more-a" href="/2016/06/09/一致性哈希算法的理解与实践/#more">more >></a>
-        
+        <p>从今年开始，要细度每次的Nova Meeting了，确实对于整体把握整体社区某个领域的进度非常有用。我是这样设想的，按月汇总，每次一篇文章，包含以下几部分</p>
+<ol>
+<li><strong>记录</strong>。按照meeting日期，记录主要内容</li>
+<li><strong>总结</strong>。总结每次meeting的每次内容，简短的一句话或者一段话，避免流水账</li>
+<li><strong>TODO</strong>。每次meeting不一定能完全理解，把他们记录下来，学习后闭环。</li>
+</ol>
+<h1 id="1-_会议记录">1. 会议记录</h1><h2 id="2018年1月8日">2018年1月8日</h2><p>2018年的第一个team meeting，我们可以看到重点的工作还是在Nested Resource Provider这个BP，在这个时间，大家还是希望能够把Nested Resource Provider这个BP在Queens版本完成。</p>
+<h3 id="(1)_Feature讨论">(1) Feature讨论</h3><h4 id="1-_Nested_Resource_Provider">1. Nested Resource Provider</h4><ul>
+<li>@2uasimojo(efried) 正在完成ComputeDriver.update_provider_tree() <a href="https://review.openstack.org/#/c/521685/" target="_blank" rel="external">https://review.openstack.org/#/c/521685/</a></li>
+<li>@jaypipes 正在完成GET /allocation_candidates部分 <a href="https://review.openstack.org/#/c/531443/" target="_blank" rel="external">https://review.openstack.org/#/c/531443/</a><br>@bauzas 表示Xen可能是Nested Resource Provider最棒的目标用户。</li>
+</ul>
+<p>@jaypipes </p>
+<ul>
+<li>目前NRP的目标还是Queens版本完成，可以把NRP的report部分、candidates部分、xen作为client/consumer在Queens完成</li>
+<li>而NUMA/PCI部分的工作，估计搞不定，所以意味着我们在Queens还是需要PciPassthroughFilter及NUMATopologyFilter</li>
+<li>driver consumption的工作会在Queens完成，包括driver通过update_provider_tree来上报信息给RP，也包括了从scheduler中基于allocation来做设备的创建和分配。</li>
+</ul>
+<h4 id="2-_Alternate_hosts">2. Alternate hosts</h4><p>解决了一个<a href="https://launchpad.net/bugs/1741125" target="_blank" rel="external">bug/1741125 Instance resize intermittently fails when rescheduling</a><br><a href="https://review.openstack.org/#/c/531022/" target="_blank" rel="external">https://review.openstack.org/#/c/531022/</a></p>
+<h4 id="3-_limit_on_allocation_candidates">3. limit on allocation_candidates</h4><p>dansmith增加了一个CONF.scheduler.max_placement_results，用于限制每次备选节点的请求，默认1000<br><a href="https://review.openstack.org/#/c/531517/" target="_blank" rel="external">https://review.openstack.org/#/c/531517/</a></p>
+<h3 id="(2)_Open_discussion">(2) Open discussion</h3><h4 id="关于Resource_Provider的genration_id的讨论。">关于Resource Provider的genration id的讨论。</h4><p>在随后的开放讨论中，由于Resource Provider的aggregate信息在更新时，会有在不同节点上的多个请求并发进行更新的问题，我们需要一种方案去解决race conditions。是的，就是我们在 #65 提到的方法。</p>
+<p>@2uasimojo(efried) 提到，这种方案并不是进程或者线程的锁，建议按照原来的实现，给更新RP的aggregate加上genration id，用于解决并发下的竞态更新问题。<br>即在PUT的时候，用户需要传入genration id，这个id就是Get时候的genration id。这种方案看似有点土，我更新个字段还得自己传genration，太不方便了。<br>但是，却是一种很好的方法来解决从Get直到PUT入库中间的竞争。<br>大家对这点，达成了一致，另外，我们在更新rp的aggregate的时候，仅更新正更新的rp的generation，而不需要更新aggregate中其他rp的genration。</p>
+<p>最终，决定让 @cdent 去做generations-on-aggregate placement microversion相关的patch。</p>
+<h4 id="关于conflict_409后重试机制的讨论">关于conflict 409后重试机制的讨论</h4><p>@2uasimojo(efried) 提出了这个问题，对于409的处理，一直不是很清晰，因为我们重试的时候，不知道到底应该是仅仅重试之前的操作，还是说再看看这个数据是不是已经更新之类的。</p>
+<p>@jaypipes 说，发生409后，更新的调用者，需要回答一个问题“OK，我们需要更新的东西已经变了，在我进行重试时，检查一下我想要更新的东西是否已经更新过了”，所有的generation变化，只是表达了“something changed”，而不是“this thins changed”。所以在我们进行409的重试时，我们需要重读下所有的provider信息（比如traits、inventory等），然后检查下，我们想更新的东西是否已经存在了，如果是这样的话，我们什么都不做，如果没有，我们需要重新的调用update/set。<br>这个想要更新的状态取决于virt driver，和他希望做什么。（比如更新inventory和traits肯定是不一样的）。<br>总结来说，就是我们最初的设计：client-driven state retries，而不是傻傻的重试。</p>
+<p>本次Meeting总的来说还是充满干货的，尤其是对generation和409重试的讨论。</p>
+<h2 id="2018年1月15日">2018年1月15日</h2><h3 id="(1)_Feature讨论-1">(1) Feature讨论</h3><h4 id="1-_Nested_Resource_Providers">1. Nested Resource Providers</h4><p>NRP的进度没有太大进展，目前包含update_provider_tree和GET /allocation_candidates两部分内容。</p>
+<h4 id="2-_Granular_resource_requests">2. Granular resource requests</h4><p>这个是为了支持用户进行复杂资源请求的bp，最近会专门写一个文章记录一下其实现。</p>
+<h4 id="3-_Alternate_Hosts">3. Alternate Hosts</h4><p>目前这个特性基本完成了，相关Patch：<br><a href="https://review.openstack.org/#/c/526436" target="_blank" rel="external">patch/526436</a> Change compute RPC to use alternates for resize</p>
+<h3 id="(2)_Bug讨论">(2) Bug讨论</h3><p><a href="https://bugs.launchpad.net/nova/+bug/1743120" target="_blank" rel="external">bug/1743120</a>: placement inadvertently imports many python modules it does not need<br>这个bug主要是说Placement导入了很多不需要的模块，主要是和Nova耦合太近，不利于后面拆分，并且直接使用Nova的也不够简洁。所以，清理、化简，保持干净。</p>
+<h3 id="Open_discussion">Open discussion</h3><h4 id="ProviderTree_accessors">ProviderTree accessors</h4><p>Patch在这里：<a href="https://review.openstack.org/#/c/533244" target="_blank" rel="external">https://review.openstack.org/#/c/533244</a><br>主要为了对比ComputeDriver.update_provider_tree和缓存在report client的ProviderTree的变化。抽象出来了一个结构ProviderData，专门来返回数据。</p>
+<p>总的来说，本次Meeting的讨论内容较少，集中在Nested Resource Provider上面。</p>
+<h2 id="2018年1月22日">2018年1月22日</h2><p>重要事件：1月25日，Queens版本的Feature Freeze即将到来。</p>
+<h3 id="(1)_Feature讨论-2">(1) Feature讨论</h3><h4 id="1-_Nested_Resource_Providers-1">1. Nested Resource Providers</h4><p>目前还是包括update_provider_tree series和Nested RP selection两部分。update_provider_tree series接近完成了（不包括resource tracker端到端的上报），Nested RP selection，会推到Rocky版本。</p>
+<h4 id="2-_Request_Traits_in_Nova">2. Request Traits in Nova</h4><p>Nova中支持请求traits，另外这个请求也额外的提到了Granular resource requests特性，有部分功能是重合的，后续分析Granular resource requests时候，重点关注下。</p>
+<h4 id="3-_Use_alternate_hosts_for_resize">3. Use alternate hosts for resize</h4><p>Alternate hosts这个bp已经基本完成，后续也需要学习下。</p>
+<h3 id="(2)_Bug讨论-1">(2) Bug讨论</h3><h4 id="Remove_microversion_fallback_code_from_report_client">Remove microversion fallback code from report client</h4><p><a href="https://review.openstack.org/#/c/528794/" target="_blank" rel="external">https://review.openstack.org/#/c/528794/</a> 在Queens版本，nova默认支持1.14了，所以移除了一些之前版本的兼容代码。</p>
+<h2 id="2018年1月29日">2018年1月29日</h2><h3 id="(1)_Feature讨论-3">(1) Feature讨论</h3><h4 id="1-_Nested_Resource_Providers-2">1. Nested Resource Providers</h4><p>Provider Tree series部分的工作已完成，<a href="https://review.openstack.org/#/c/533808/" target="_blank" rel="external">https://review.openstack.org/#/c/533808/</a><br> First provider tree patch in progress： <a href="https://review.openstack.org/#/c/537648/" target="_blank" rel="external">https://review.openstack.org/#/c/537648/</a> 这部分是端到端的从resource tracker中调用driver的update tree，应该会推到Rocky去做<br>Nested RP traits selection: <a href="https://review.openstack.org/#/c/531899/" target="_blank" rel="external">https://review.openstack.org/#/c/531899/</a> 没有什么进展<br>从开放讨论中，@efried 提到，想要端到端的使用NRP，需要完成三部分：a. Resource Tracker刷新update_provider_tree b. jaypieps的NRP in alloc cands c. driver实现update_provider_tree。这三项工作，都没有在Queens完成，不过都比较接近完成了。</p>
+<h4 id="2-_Singular_request_group_traits">2. Singular request group traits</h4><p>基本完成</p>
+<h4 id="3-_Granular_resource_requests">3. Granular resource requests</h4><p>完整实现推迟到Queens版本，<a href="https://review.openstack.org/#/c/517757/" target="_blank" rel="external">https://review.openstack.org/#/c/517757/</a></p>
+<h4 id="4-_Use_alternate_hosts_for_resize">4. Use alternate hosts for resize</h4><p><a href="https://review.openstack.org/#/c/537614/" target="_blank" rel="external">https://review.openstack.org/#/c/537614/</a> 已经merge，至此，已经可以支持resize时候的alternate hostsl了</p>
+<h3 id="(2)_开放讨论">(2) 开放讨论</h3><h4 id="1-_Idea_for_a_simple_way_to_expose_compute_driver_capabilities_in_the_REST_API">1. Idea for a simple way to expose compute driver capabilities in the REST API</h4><p><a href="http://lists.openstack.org/pipermail/openstack-dev/2018-January/126653.html" target="_blank" rel="external">http://lists.openstack.org/pipermail/openstack-dev/2018-January/126653.html</a> Matt提出希望用一种简单方法保持driver的兼容</p>
+<h1 id="2-_TODO">2. TODO</h1><ol>
+<li>了解Idea for a simple way to expose compute driver capabilities in the REST API详细内容</li>
+<li>Granular resource requests分析</li>
+<li>Alternate hosts分析</li>
+<li>Nested Resource Provider分析</li>
+</ol>
+
       
 
       
@@ -903,7 +878,11 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">系统</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
         		</li>
       		
 		</ul>
@@ -913,7 +892,223 @@ var _hmt = _hmt || [];
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2016/06/09/一致性哈希算法的理解与实践/">展开全文 >></a>
+          <a class="article-more-a" href="/2018/02/01/Nova-Scheduler-Team-Meeting跟踪（一月）/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-Placement深度探索-Resource-Provider中的并发控制机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2018/01/23/Placement深度探索-Resource-Provider中的并发控制机制/">[Placement深度探索] Resource Provider中的并发控制机制</a>
+    </h1>
+  
+
+        
+        <a href="/2018/01/23/Placement深度探索-Resource-Provider中的并发控制机制/" class="archive-article-date">
+  	<time datetime="2018-01-23T02:02:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Jan 23 2018</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h3 id="1-_背景">1. 背景</h3><p>最近，在处理Nova Metadata并发更新的问题(<a href="https://bugs.launchpad.net/nova/+bug/1650188" target="_blank" rel="external">bug/1650188</a>)的时候，发现Resource Provider的并发控制机制在最开始就考虑，是通过乐观锁的机制实现并发控制的，简单的说就是：</p>
+<ol>
+<li>为Resource Provider增加了一个generation的字段，用来记录数据更新迭代的版本。</li>
+<li>每次进行刷新（如新增、删除、更新）的时候，检查generation和最初读取的是否一致，若一致则字段值自增，完成数据更新，否则抛出并发更新的异常，返回给用户一个409。</li>
+</ol>
+<p>其实，这个方式就是我们常说的乐观并发控制（OCC, Optimistic Concurrency Control，也称作乐观锁）机制。</p>
+<h3 id="2-_详细流程">2. 详细流程</h3><p>用户通过API对Resource Provider的资源进行更新时，会传入一个generation参数</p>
+<blockquote>
+<p>curl -X PUT <a href="http://10.76.6.31/placement/resource_providers/7d2590ae-9999-4080-9306-058b4c915e32/traits" target="_blank" rel="external">http://10.76.6.31/placement/resource_providers/7d2590ae-9999-4080-9306-058b4c915e32/traits</a> -H “X-Auth-Token: $TOKEN” -H “OpenStack-API-Version: placement 1.16” -H “Accept: application/json” -H “Content-Type: application/json” -d ‘{<br>    <strong>“resource_provider_generation”: 0,</strong><br>    “traits”: [“CUSTOM_YIKUN_TEST”]<br>}’</p>
+</blockquote>
+<p>在最终的数据刷新时，完成事务提交前，会对generation进行刷新，例如对于本例中的traits更新，对应的代码在这里：<a href="https://github.com/openstack/nova/blob/6d227722d4287726e144e4cf928c8e6ae52a6a4c/nova/objects/resource_provider.py#L571" target="_blank" rel="external">nova/objects/resource_provider.py#def _set_traits</a>，相当于做了一次检查，如果generation和用户预期的一致，更新成功，如果更新失败，则会raise并发更新失败的error。</p>
+<p><img src="https://user-images.githubusercontent.com/1736354/35274760-51f95ca0-0078-11e8-8ad0-29e6f48e3b64.jpg" alt="generation"></p>
+<p>如上图所示，如果操作A和操作B并发的请求进来，当A请求成功后，刷新了genration，这样，当B进行刷新的时候，就会刷新失败。</p>
+<p>在Placement中，在对Resource Provider下的资源（例如allocation、inventory、trait等）进行修改时，均会对resource provider的generation进行刷新。我们看下实现的细节：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div></pre></td><td class="code"><pre><div class="line"><span class="function"><span class="keyword">def</span> <span class="title">_increment_provider_generation</span><span class="params">(ctx, rp)</span>:</span></div><div class="line">    <span class="string">"""Increments the supplied provider's generation value, supplying the</span></div><div class="line">    currently-known generation. Returns whether the increment succeeded.</div><div class="line"></div><div class="line">    :param ctx: `nova.context.RequestContext` that contains an oslo_db Session</div><div class="line">    :param rp: `ResourceProvider` whose generation should be updated.</div><div class="line">    :returns: The new resource provider generation value if successful.</div><div class="line">    :raises nova.exception.ConcurrentUpdateDetected: if another thread updated</div><div class="line">            the same resource provider's view of its inventory or allocations</div><div class="line">            in between the time when this object was originally read</div><div class="line">            and the call to set the inventory.</div><div class="line">    """</div><div class="line">    rp_gen = rp.generation</div><div class="line">    new_generation = rp_gen + <span class="number">1</span></div><div class="line">    <span class="comment"># 注意这里的更新条件，通过id及generation匹配</span></div><div class="line">    upd_stmt = _RP_TBL.update().where(sa.and_(</div><div class="line">            _RP_TBL.c.id == rp.id,</div><div class="line">            _RP_TBL.c.generation == rp_gen)).values(</div><div class="line">                    generation=(new_generation))</div><div class="line"></div><div class="line">    res = ctx.session.execute(upd_stmt)</div><div class="line">    <span class="comment"># 如果rowcount为0，说明已经不是之前的RP了</span></div><div class="line">    <span class="keyword">if</span> res.rowcount != <span class="number">1</span>:</div><div class="line">        <span class="keyword">raise</span> exception.ConcurrentUpdateDetected</div><div class="line">    <span class="keyword">return</span> new_generation</div></pre></td></tr></table></figure></p>
+<h3 id="3-_参考">3. 参考</h3><ol>
+<li><a href="https://people.eecs.berkeley.edu/~fox/summaries/database/optimistic_concurrency.html" target="_blank" rel="external">On Optimistic Methods for Concurrency Control</a>：对乐观并发控制机制及其要点进行了一些总结。</li>
+<li>阿里巴巴Java开发手册：<blockquote>
+<p>并发修改同一记录时,避免更新丢失,要么在应用层加锁,要么在缓存加锁,要么在数据库层使用乐观锁,使用 version 作为更新依据。</p>
+<p>说明:如果每次访问冲突概率小于 20%,推荐使用乐观锁,否则使用悲观锁。乐观锁的重试次数不得小于 3 次。</p>
+</blockquote>
+</li>
+<li><a href="http://www.hollischuang.com/archives/934" target="_blank" rel="external">深入理解乐观锁与悲观锁</a>：介绍了乐观锁和悲观锁的基本原理，并举例说明。</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2018/01/23/Placement深度探索-Resource-Provider中的并发控制机制/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+
+
+
+
+  
+    <article id="post-Placement深度探索-Nested-Resource-Providers" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/12/26/Placement深度探索-Nested-Resource-Providers/">[Placement深度探索] Nested Resource Providers</a>
+    </h1>
+  
+
+        
+        <a href="/2017/12/26/Placement深度探索-Nested-Resource-Providers/" class="archive-article-date">
+  	<time datetime="2017-12-26T08:33:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>Dec 26 2017</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h2 id="1-_背景概述">1. 背景概述</h2><p>顾名思义，Nested Resource Providers，即嵌套的资源提供者。在Ocata版本，这个<a href="https://specs.openstack.org/openstack/nova-specs/specs/ocata/approved/nested-resource-providers.html" target="_blank" rel="external">bp/nested-resource-providers</a>就被提出，主要是为了使用户可以定义不同的Resource Provider之间的层级关系（hierarchical relationship）。</p>
+<p>我们知道，目前Placement的功能已初具雏形，我们可以记录系统中可数的资源的总数。一个Resource Provider有一系列不同资源种类的存量信息（Inventory），也通过已分配量（Allocation）信息来记录已使用量。通过Resource Provider/Inventory/Allocation这三个关键模型，我们就可以解决以下几个需求：</p>
+<ol>
+<li><strong>每个Resource Provider有多少某种类型的资源</strong>？通过Invetory记录，例如某个主机VCPU的总量；</li>
+<li><strong>系统已经消耗了多少某种类型的资源</strong>？通过Allocation记录，例如某个虚拟机消耗了1GB的内存；</li>
+<li><strong>每个Resource Provider为某种类型的资源提供多少超分配的能力</strong>？通过Inventory的allocation_ratio字段来记录。</li>
+</ol>
+<p>如下图所示，一个计算节点包含8个CPU，500GB硬盘，16GB内存，已使用3个CPU，3GB硬盘，2GB内存，这个计算节点所属高IO组，具备SSD的能力，抽象为Placement模型后，若下图所示：</p>
+<p><img src="https://user-images.githubusercontent.com/1736354/35139070-699e3be0-fd2c-11e7-8172-20f2cdb6671f.jpg" alt="placement"></p>
+<p>计算节点对应Resource Provider（蓝色），其包含的某种类型资源的总量对应Inventory（紫色），资源的类型对应Resource Class（灰色），已使用量对应Allocation（绿色），所属的组对应Placement组（黄色），计算节点的特质对应Trait（橙色）。</p>
+<p>在之前的实现中，对于RP之间的关系，也仅仅支持aggregate功能。例如，某个RP可以把自己的资源，通过aggregate将RP的资源共享给同一aggregate的其他RP。这一功能对于共享存储、共享IP池之类的业务是满足需求的，但是，对于类似父子的这种关系，是无法支持的。</p>
+<p>例如，在NUMA场景下，我们不但需要将主机的内存和VCPU资源记录，同时也需要记录每个主机上的某个NUMA的资源总量及消耗情况，这个就属于父子关系。</p>
+<h2 id="2-_存在的问题">2. 存在的问题</h2><p>在<a href="https://etherpad.openstack.org/p/nested-resource-providers" title="nested-resource-providers的etherpad" target="_blank" rel="external">nested-resource-providers</a>中提到一场景：</p>
+<blockquote>
+<p>there are resource classes that represent a consumable entity that is within another consumable entity. An example of such a resource class is the amount of memory “local” to a particular NUMA cell.</p>
+</blockquote>
+<p>就是说一些类型代表一种资源消费的实体，同时，包含了另外一种资源消费的实体。举个例子就是memory这种resource class，这个memory是属于某个NUMA的。让我们通过一个例子来看下这个问题。</p>
+<p>在一些对性能或时延有苛刻要求的场景，我们通常希望一个虚拟机能够部署到某个NUMA上（一个主机通常含有多个NUMA CELL，注意这个CELL和我们在Nova中说的Cell V2不是一个含义，而是NUMA独有的名词）。假设我们已经创建了一个叫做“NUMA_MEMORY_MB”的资源类型，资源的总量是192GB。当我们希望将它创建到一个磁盘大小充足并且NUMA内存充足的主机上时，如果仅考虑这个主机上的总内存，可能会找到一个并不是我们期望的主机。我们必须考虑每个NUMA CELL中的内存是否充足。</p>
+<p><img src="https://user-images.githubusercontent.com/1736354/35147337-321bf046-fd49-11e7-8814-3f256b4d02ad.jpg" alt="numa"></p>
+<p>如上图所示，假设一个主机总共有192GB内存。其中128GB分配给了NUMA CELL0，另外64GB分配给了NUMA CELL1。</p>
+<ul>
+<li>虚拟机A消耗了112GB内存，落在了NUMA CELL0上，NUMA CELL0还剩16GB内存</li>
+<li>虚拟机B消耗了48GB内存，落在了NUMA CELL1上，NUMA CELL1还剩16GB内存</li>
+<li>虚拟机C来的时候说：我需要32GB内存。我们应该如何调度主机呢？</li>
+</ul>
+<p>这时，现有的Placement机制，会汇总一个Resource Provider下面所有的某种资源的总和，即会查到的是主机上总内存，发现还有32GB，调度时，就认为这个主机可以作为备选主机。然而，实际我们从上图已经可以看出，实际每个NUMA CELL可供调度的内存均只有16GB，其实是不满足要求的。</p>
+<h2 id="3-_基础的数据模型">3. 基础的数据模型</h2><p>在现有Resource Provider的基础上，实现这种嵌套关系，基础的数据模型非常重要。在关系数据库中，对分层数据进行管理，主要有2个模型：</p>
+<p><img src="https://user-images.githubusercontent.com/1736354/35257252-264f5338-0033-11e8-9fb3-bc25d5d7c353.jpg" alt="datamodel"></p>
+<ol>
+<li>邻接表（Adjacency list）。记录parent，即父节点。</li>
+<li>嵌套集合（Nested sets）。记录left和right，注意这里不是指兄弟节点，而是类似一个编号，right=left+2n+1，根节点比较特殊，left为1，right为2n，其中，n为节点的总数。</li>
+</ol>
+<p>有关邻接表和嵌套模型的内容可以参考<a href="http://mikehillyer.com/articles/managing-hierarchical-data-in-mysql/" title="Managing Hierarchical Data in MySQL" target="_blank" rel="external">Managing Hierarchical Data in MySQL</a>和<a href="http://joinfu.com/presentations/joinfu/joinfu_part_two.pdf" title="Join-fu: The Art of SQL" target="_blank" rel="external">Join-fu: The Art of SQL</a>。</p>
+<p>Reousce Provider最终选择了邻接表作为基础数据结构，在<a href="http://mikehillyer.com/articles/managing-hierarchical-data-in-mysql/" title="Managing Hierarchical Data in MySQL" target="_blank" rel="external">etherpad</a>中，轻描淡写的描述了下选择的原因：</p>
+<blockquote>
+<p><strong>A simple way of modeling this kind of nesting in a relational data store is to use something called an adjacency list model.</strong> We add a NULLABLE parent_resource_provider_id column to the resource_providers table to indicate that the resource provider is either a “top-level” provider (such as a compute host) or a “nested” provider (such as a NUMA cell on the compute host).</p>
+</blockquote>
+<p>个人认为，选择这个模型的原因除了实现比较简单外，还有就是Resource Provider嵌套层级的不是非常深，即使进行一些查询时需要left join几次，也不会有非常大的性能损耗。当然，正如Jaypipes的PPT所述那样，比起Nest Sets来说，Adjacency list是<strong>very common but doesn’t scale</strong>。 </p>
+<p>另外，<a href="http://mikehillyer.com/articles/managing-hierarchical-data-in-mysql/" title="Managing Hierarchical Data in MySQL" target="_blank" rel="external">Managing Hierarchical Data in MySQL</a>的“LIMITATIONS OF THE ADJACENCY LIST MODEL”一节中，提到了2个这个数据结构的限制，回头看来，在Placement进行设计时，都有应对的措施：</p>
+<blockquote>
+<p>Working with the adjacency list model in pure SQL can be difficult at best. Before being able to see the full path of a category we have to know the level at which it resides. In addition, special care must be taken when deleting nodes because of the potential for orphaning an entire sub-tree in the process (delete the portable electronics category and all of its children are orphaned). </p>
+</blockquote>
+<p>其一，是Full-path的遍历（例如，获取一个父树），我们必须要多次join，并且需要知道自己在第几层，从而决定join的次数。这个在Placement，加了一个root_id进行解决。<br>其二，是删除父类节点时，有可能造成底下的树被孤立了，这个Placement则是通过限制用户行为来解决的，即不允许删除有子节点的父节点。</p>
+<p>因此，最终在Resource Provider的模型中，我们新增了2个field：</p>
+<ol>
+<li><strong>parent_provider_uuid</strong>：表示Resource Provider的直接父亲节点。对于非嵌套的节点，这个field为NULL，对于嵌套的节点来说，这个字段在大多数情况可能是计算节点的UUID，表示这个资源是host下的资源；<blockquote>
+<p>Indicates the UUID of the immediate parent provider. This will be None for the vast majority of providers, and for nested resource providers, this will most likely be the compute host’s UUID.</p>
+</blockquote>
+</li>
+<li><strong>root_provider_uuid</strong>：表示这个Resource Provider是一个树形providers的根节点。这个节点可以允许我们实现一个高效的树形访问，从而避免递归地查询父子关系。<blockquote>
+<p>Indicates the UUID of the resource provider that is at the “root” of the tree of providers. This field allows us to implement efficient tree-access queries and avoid use of recursive queries to follow child-&gt;parent relations.</p>
+</blockquote>
+</li>
+</ol>
+<p>数据模型的Patch在这: <a href="https://review.openstack.org/#/c/377138" target="_blank" rel="external">patch/377138</a>。</p>
+<h2 id="4-_核心流程解析">4. 核心流程解析</h2><h3 id="4-1_创建/删除_Nest_Resource_Provider">4.1 创建/删除 Nest Resource Provider</h3><p>最简单的流程就是对Nest Resource Provider进行操作了，对于创建的流程来说，需要用户传递父亲节点，请求的格式类似：<br><figure class="highlight json"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">&#123;</div><div class="line">    <span class="attr">"name"</span>: <span class="string">"Shared storage"</span>,</div><div class="line">    <span class="attr">"parent_provider_uuid"</span>: <span class="string">"542df8ed-9be2-49b9-b4db-6d3183ff8ec8"</span></div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>在创建的过程中，如果包含了父亲节点，那么，我们可以很方便的找到其对应的root节点，然后填到自己的root中（子节点和父节点有相同的root）；如果没有父节点的话，那么这个子节点的根节点就是自己了（参考代码：<a href="https://github.com/openstack/nova/blob/85a957dcd9c2e3dc8ed03f7e1f88a535bcced7f7/nova/objects/resource_provider.py#L812-L819" target="_blank" rel="external">nova/objects/resource_provider.py#L812-L819</a>）。</p>
+<p>同样的，在删除节点的时候，也需要考虑下嵌套的关系，在Resource Provider删除时，加了一个简单的限制：如果一个Resource Provider有子节点(参考代码：<a href="https://github.com/openstack/nova/blob/85a957dcd9c2e3dc8ed03f7e1f88a535bcced7f7/nova/objects/resource_provider.py#L824-L830" target="_blank" rel="external">nova/objects/resource_provider.py#L824-L830</a>)，则不允许进行删除。</p>
+<h3 id="4-2_获取满足条件的Resource_Provider">4.2 获取满足条件的Resource Provider</h3><p>在 #63 中，我们提到过Nested Resource Provider的获取流程，参考<a href="https://review.openstack.org/#/c/534968" target="_blank" rel="external">Patch/534968</a>大致的过程有以下几步：</p>
+<ol>
+<li>获取满足条件的所有树的Root id。在这一步中，对整棵树中的资源，进行了获取和判断。参考<a href="https://review.openstack.org/#/c/534866" target="_blank" rel="external">Patch/534866</a>。</li>
+<li>获取root id对应的树的usage信息。参考<a href="https://review.openstack.org/#/c/534967" target="_blank" rel="external">Patch/534967</a><br><img src="https://user-images.githubusercontent.com/1736354/35499685-69550382-050e-11e8-8350-7e5b7d2d2391.jpg" alt="nest"><br>例如，对于上述的结构中，当用户进行请求时，则会将右边的树获取出来，然后最终拿到父亲节点。</li>
+</ol>
+<p>由于目前Patch还在开发中，并且在估计最早要到Rocky版本才能完成，所以，等到全部完成后，再进行更详尽的介绍。</p>
+<h2 id="参考">参考</h2><ol>
+<li><a href="https://etherpad.openstack.org/p/nested-resource-providers" title="nested-resource-providers的etherpad" target="_blank" rel="external">nested-resource-providers的etherpad</a></li>
+<li><a href="http://mikehillyer.com/articles/managing-hierarchical-data-in-mysql/" title="Managing Hierarchical Data in MySQL" target="_blank" rel="external">Managing Hierarchical Data in MySQL</a></li>
+<li><a href="http://joinfu.com/presentations/joinfu/joinfu_part_two.pdf" title="Join-fu: The Art of SQL" target="_blank" rel="external">Join-fu: The Art of SQL</a></li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Nova</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">OpenStack</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/12/26/Placement深度探索-Nested-Resource-Providers/">展开全文 >></a>
         </p>
       
 
@@ -930,7 +1125,7 @@ var _hmt = _hmt || [];
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -942,7 +1137,7 @@ var _hmt = _hmt || [];
   <div class="outer">
     <div id="footer-info">
     	<div class="footer-left">
-    		&copy; 2018 Yikun
+    		&copy; 2019 Yikun
     	</div>
       	<div class="footer-right">
       		<a href="http://hexo.io/" target="_blank">Hexo</a>  Theme <a href="https://github.com/litten/hexo-theme-yilia" target="_blank">Yilia</a> by Litten
@@ -1020,6 +1215,18 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">C/C++</a>
               </li>
              
@@ -1032,23 +1239,7 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">随笔</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Nova</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">OpenStack</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Cinder</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">Draft</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1060,11 +1251,15 @@ return o(t,i(n),arguments.length<3?void 0:u(arguments[2]))}})},function(t,n,r){v
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">网络</a>
+                <a href="javascript:void(0)" class="js-tag color4">数据库</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">vim</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">网络</a>
               </li>
              
               <li class="article-tag-list-item">
