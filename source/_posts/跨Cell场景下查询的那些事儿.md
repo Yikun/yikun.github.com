@@ -13,6 +13,8 @@ date: 2017-11-16 21:19:14
 
 这样的架构另一个好处是Cell很轻松的可以实现扩展，从而提升虚拟机数量的规模。然而，这引入了一个问题，就是没有一个地方存储着全量虚拟机的数据了。当我们需要一些全局的虚拟机数据查询时（比如查询全量虚拟机列表）就比较棘手了。
 
+<!--more-->
+
 ### 2. 数据库的拆分
 其实这样的架构在目前互联网业务中十分常见，随着业务量和历史数据的增长，很多业务都需要进行分表分库，切分的目的主要有2个，一是单个数据库的存储空间已经不足以支撑庞大的数据量，另外一个是单个数据库所能承载的连接数或者并发数不足以满足逐渐飙升的请求。一般来说，数据库的分库为垂直分库和水平分库。
 
@@ -67,7 +69,7 @@ date: 2017-11-16 21:19:14
 
 在第一步中，我们拿到了i5的信息，由于排序是按照created_at，逆序，那我们查询local marker的时候，只需要一条SQL就可以拿到Cell中满足条件的local marker： 
 ```SQL
-SELECT * FROM instances ORDER BY created_at DESC limit 1
+SELECT * FROM instances ORDER BY created_at DESC limit 1 where created_at <= i5.created_at
 ```
 然后，我们再根据这个local marker就可以拿到满足条件的虚拟机列表了。当然，我们需要各取limit个，因为也许最终满足条件的都在一个cell中，所以，我们取得的虚拟机列表中虚拟机的个数应该按照全局limit来获取。
 值得注意的是，local marker如果不是global marker的话，我们需要把local marker也算在满足条件的列表中，因为全局来看，这个marker也是满足用户条件的。如果local marker也刚好就是global marker，那这个marker就不用管了。

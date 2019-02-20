@@ -10,6 +10,8 @@ date: 2017-10-25 14:10:07
 
 这篇文章主要讲了在过去几个版本中，OpenStack社区对于Nova调度及Placement服务相关工作的更新进展。我也会着重介绍一些我们在Q版本中主要处理的几个BP，同时也介绍了未来重点工作的路标，我们会在未来的几个release中完成它们。
 
+<!--more-->
+
 ### 1. 过去版本完成情况的总结
 Placement API已经在OpenStack的N版本成为一个独立的API endpoint。
 

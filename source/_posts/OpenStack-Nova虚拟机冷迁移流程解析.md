@@ -15,6 +15,8 @@ $ nova resize-confirm server_id
 
 看到后是不是觉得有点奇怪为啥migrate之后，还要resize-confirm？resize操作其实和migrate操作比较类似，不同的是迁移前后的flavor不一样。一般情况下resize的场景是，对虚拟机进行扩容，把flavor调大之类的。所以，在代码级别，nova也将两个流程合一了。migrate就是一个没有flavor变化的resize。
 
+<!--more-->
+
 ### 2. 核心流程
 下图是虚拟机冷迁移时，涉及的组件交互：
 ![instance migrate overview](https://user-images.githubusercontent.com/1736354/31429902-dd65687a-aea1-11e7-9209-06c37a09fe4b.png)

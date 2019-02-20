@@ -6,7 +6,10 @@ number: 61
 date: 2017-12-06 09:41:11
 ---
 
-# 历史特性梳理
+准备拿这篇文章梳理下OpenStack Nova调度相关的特性，由于目前Placement的引入，说起调度，和这个组件是分不开的，所以本文也可以看做是Placement的一个历史特性的梳理。第一阶段会按照版本，先把调度相关的BP过一遍，然后再通过理解和使用加强理解。好吧，我承认又开了一个系列的坑，话不多说，开始！
+
+<!--more-->
+
 ## Liberty版本
 L版本特性列表：[链接](https://blueprints.launchpad.net/nova/liberty)
 https://blueprints.launchpad.net/nova/+spec/request-spec-object
@@ -19,7 +22,7 @@ https://blueprints.launchpad.net/nova/+spec/request-spec-object-mitaka
 Link: [bp/resource-classes](https://blueprints.launchpad.net/nova/+spec/resource-classes)
 
 原来我们增加某种资源的时候，都需要给instance的object增加filed，每一次改变，都要刷一下db shema，或是增加filed或是增加整个table，也就是说新增一种类型的支持，管理员就要把数据库也升级，这意味着会有业务中断，很不合理。
-随着资源种类变多，这种方式有点臃肿，也不是很优雅，在紧接着的generic resource poll的bp中，也把亟需把资源抽象出来了。
+随着资源种类变多，这种方式有点臃肿，也不是很优雅，在紧接着的generic resource pool的bp中，也亟需把资源抽象出来了。
 因此，在M版本新增了一个Resource Class的object，用于记录虚拟机资源的类型，无论增加新的独立资源类型还是共享资源类型，都不需要再对db结构刷新了。
 这个BP可以说是generic-resource-pools这个bp的基础，只有通过这种通用的方式将资源类型表征出来，才有可能将所有的资源都抽象出来。
 

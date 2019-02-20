@@ -9,6 +9,7 @@ date: 2017-09-27 11:15:15
 ## 1. 概述
 Nova是OpenStack中处理计算业务（虚拟机、裸机、容器）的组件，整体的虚拟机创建流程自然是学习和熟悉Nova组件的第一步。本篇文章主要基于OpenStack Pike版本，基于最新的Cell v2架构部署为例，来介绍虚拟机的创建流程，并分析了Pike等最近几个版本中，虚拟机创建流程的关键变化。
 
+<!--more-->
 
 ## 2. 虚拟机创建流程
 ![instance create pike](https://user-images.githubusercontent.com/1736354/31421492-36a84bdc-ae7a-11e7-94b3-d85fab04762c.png)

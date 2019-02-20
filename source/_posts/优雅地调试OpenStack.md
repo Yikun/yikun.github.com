@@ -31,6 +31,10 @@ The password: 1
 
 使用screen来查看：
 
+> **Note(2018.01.18)**: 目前社区已经废弃了screen这种方式来启动进程了（参考[Remove screen support from devstack completely](https://review.openstack.org/#/c/499186/)），原因是OpenStack需要管理的进程太多了，screen已没有“能力”去管理。
+> 
+> 社区已经切换到systemd来进行进程管理，可以参考官方提供的[Using Systemd in DevStack](https://docs.openstack.org/devstack/latest/systemd.html)一文来入门。
+
 ```
 screen -x stack
 ```
