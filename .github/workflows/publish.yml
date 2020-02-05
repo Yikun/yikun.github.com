@@ -1,0 +1,46 @@
+name: Publish blog
+
+on:
+  issues:
+    types: [opened, edited]
+
+jobs:
+  publish:
+    name: Generate page
+    runs-on: ubuntu-latest
+    steps:
+      - name: Install requirements
+        run: |
+          sudo apt install -y nodejs npm
+          sudo npm install -g hexo-cli
+      - name: Checkout repo
+        uses: actions/checkout@v2
+      - name: Prepare hexo
+        run: |
+          sudo git clone -b hexo https://github.com/Yikun/yikun.github.com.git
+          pushd yikun.github.com
+          sudo npm install
+      - name: Init yilia
+        run: |
+          pushd yikun.github.com
+          sudo git clone -b yikun https://github.com/Yikun/hexo-theme-yilia.git themes/yilia
+          sudo cp theme_config.yml themes/yilia/_config.yml
+      - name: Update config
+        run: |
+          pushd yikun.github.com
+          sudo sed -i'' "/^ *repo/s~github\.com~${{ secrets.hexo_token }}@github.com~" _config.yml
+          popd
+      - name: Generate page
+        run: |
+          pushd yikun.github.com
+          sudo hexo migrate github-issue Yikun/yikun.github.com
+          sudo hexo clean
+          sudo hexo generate
+          popd
+      - name: Publish
+        run: |
+          pushd yikun.github.com
+          sudo git config --global user.name "Yikun"
+          sudo git config --global user.email "yikunkero@gmail.com"
+          sudo hexo deploy
+          popd
