@@ -9,8 +9,8 @@ jobs:
     steps:
       - name: Install requirements
         run: |
-          sudo apt install -y nodejs npm
-          sudo npm install -g hexo-cli
+          apt install -y nodejs npm
+          npm install -g hexo-cli
       - name: Checkout repo
         uses: actions/checkout@v2
       - name: Prepare hexo
@@ -22,22 +22,23 @@ jobs:
         run: |
           pushd yikun.github.com
           git clone https://github.com/litten/hexo-theme-yilia.git themes/yilia
-          sudo cp theme_config.yml themes/yilia/_config.yml
+          cp theme_config.yml themes/yilia/_config.yml
       - name: Update config
         run: |
           pushd yikun.github.com
-          sudo sed -i'' "/^ *repo/s~github\.com~${{ secrets.hexo_token }}@github.com~" _config.yml
+          sed -i'' "/^ *repo/s~github\.com~${{ secrets.hexo_token }}@github.com~" _config.yml
           popd
       - name: Generate page
         run: |
           pushd yikun.github.com
-          sudo hexo clean
-          sudo hexo generate
+          hexo migrate github-issue Yikun/yikun.github.com
+          hexo clean
+          hexo generate
           popd
       - name: Publish
         run: |
           pushd yikun.github.com
-          sudo git config --global user.name "Yikun"
-          sudo git config --global user.email "yikunkero@gmail.com"
-          sudo hexo deploy
+          git config --global user.name "Yikun"
+          git config --global user.email "yikunkero@gmail.com"
+          hexo deploy
           popd
