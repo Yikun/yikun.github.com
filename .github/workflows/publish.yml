@@ -1,8 +1,10 @@
 name: Publish blog
 
 on:
+  push:
+    branches: [ hexo ]
   issues:
-    types: [opened, edited]
+    types: [labeled]
 
 jobs:
   publish:
@@ -33,7 +35,7 @@ jobs:
       - name: Generate page
         run: |
           pushd yikun.github.com
-          sudo hexo migrate github-issue Yikun/yikun.github.com
+          sudo hexo migrate github-issue Yikun/yikun.github.com --publish
           sudo hexo clean
           sudo hexo generate
           popd
