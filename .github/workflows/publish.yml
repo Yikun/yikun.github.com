@@ -10,6 +10,7 @@ jobs:
   publish:
     name: Generate page
     runs-on: ubuntu-latest
+    if: github.event.label.name == 'publish'
     steps:
       - name: Install requirements
         run: |
