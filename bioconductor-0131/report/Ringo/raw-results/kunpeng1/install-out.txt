@@ -1,0 +1,40 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL Ringo
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘Ringo’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c mmeansd.cpp -o mmeansd.o
+mmeansd.cpp: In function ‘SEXPREC* moving_mean_sd(SEXP, SEXP, SEXP)’:
+mmeansd.cpp:29:24: warning: variable ‘is’ set but not used [-Wunused-but-set-variable]
+   29 |     int * x, nval, hs, is, i;
+      |                        ^~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c mmedian.cpp -o mmedian.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c region_overlap.c -o region_overlap.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c ringo_init.c -o ringo_init.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o Ringo.so mmeansd.o mmedian.o region_overlap.o ringo_init.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-Ringo/00new/Ringo/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a generic function for ‘ls’ from package ‘base’ in package ‘Ringo’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (Ringo)

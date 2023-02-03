@@ -1,0 +1,39 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL minet
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘minet’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c aracne.cpp -o aracne.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c clr.cpp -o clr.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c minet.cpp -o minet.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c mrnet.cpp -o mrnet.o
+mrnet.cpp: In function ‘SEXPREC* mrnet(SEXP, SEXP)’:
+mrnet.cpp:190:34: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+  190 |                   for( int l=0; l<n; ++l )
+      |                                 ~^~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c validate.cpp -o validate.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o minet.so aracne.o clr.o minet.o mrnet.o validate.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-minet/00new/minet/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (minet)

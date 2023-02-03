@@ -1,0 +1,43 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data multicrispr
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘multicrispr/DESCRIPTION’ ... OK
+* preparing ‘multicrispr’:
+* checking DESCRIPTION meta-information ... OK
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘crispr_grna_design.Rmd’ using rmarkdown
+Warning in for (i in (1L:cols)[do]) { :
+  closing unused connection 4 (/tmp/Rtmp1FFext/Rinst19ae2334fc1059/multicrispr/extdata/SRF.bed)
+The magick package is required to crop "/tmp/Rtmp1FFext/Rbuild19ae23213dcc16/multicrispr/vignettes/crispr_grna_design_files/figure-html/unnamed-chunk-7-1.png" but not available.
+The magick package is required to crop "/tmp/Rtmp1FFext/Rbuild19ae23213dcc16/multicrispr/vignettes/crispr_grna_design_files/figure-html/unnamed-chunk-8-1.png" but not available.
+Quitting from lines 136-138 (crispr_grna_design.Rmd) 
+Error: processing vignette 'crispr_grna_design.Rmd' failed with diagnostics:
+there is no package called 'BSgenome.Mmusculus.UCSC.mm10'
+--- failed re-building ‘crispr_grna_design.Rmd’
+
+--- re-building ‘genome_arithmetics.Rmd’ using rmarkdown
+Quitting from lines 27-35 (genome_arithmetics.Rmd) 
+Error: processing vignette 'genome_arithmetics.Rmd' failed with diagnostics:
+there is no package called 'BSgenome.Hsapiens.UCSC.hg38'
+--- failed re-building ‘genome_arithmetics.Rmd’
+
+--- re-building ‘prime_editing.Rmd’ using rmarkdown
+Quitting from lines 112-117 (prime_editing.Rmd) 
+Error: processing vignette 'prime_editing.Rmd' failed with diagnostics:
+there is no package called 'BSgenome.Hsapiens.UCSC.hg38'
+--- failed re-building ‘prime_editing.Rmd’
+
+SUMMARY: processing the following files failed:
+  ‘crispr_grna_design.Rmd’ ‘genome_arithmetics.Rmd’ ‘prime_editing.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted

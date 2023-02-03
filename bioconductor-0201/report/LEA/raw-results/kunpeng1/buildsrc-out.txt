@@ -1,0 +1,46 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data LEA
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘LEA/DESCRIPTION’ ... OK
+* preparing ‘LEA’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* installing the package to build vignettes
+      -----------------------------------
+* installing *source* package ‘LEA’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I.  -I/usr/local/include    -fPIC  -g -O2  -Wall -c R_LFMM.c -o R_LFMM.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I.  -I/usr/local/include    -fPIC  -g -O2  -Wall -c R_crossEntropy.c -o R_crossEntropy.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I.  -I/usr/local/include    -fPIC  -g -O2  -Wall -c R_createDataSet.c -o R_createDataSet.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I.  -I/usr/local/include    -fPIC  -g -O2  -Wall -c R_sNMF.c -o R_sNMF.o
+In file included from sNMF/sNMF.h:13,
+                 from R_sNMF.c:24:
+sNMF/../bituint/bituint.h:212:2: error: #error Unsupported architecture
+  212 | #error Unsupported architecture
+      |  ^~~~~
+sNMF/../bituint/bituint.h:223:23: error: unknown type name ‘bituint’; did you mean ‘uint’?
+  223 | void init_mat_bituint(bituint ** dat, int N, int Mc, int *Mp);
+      |                       ^~~~~~~
+      |                       uint
+In file included from R_sNMF.c:24:
+sNMF/sNMF.h:62:9: error: unknown type name ‘bituint’
+   62 |         bituint *X;             /**< @brief the data matrix (of size nxMp) */
+      |         ^~~~~~~
+sNMF/sNMF.h:63:9: error: unknown type name ‘bituint’
+   63 |         bituint *Xi;             /**< @brief the init data matrix (of size nxMpi) */
+      |         ^~~~~~~
+make: *** [/home/biocbuild/bbs-3.17-bioc/R/etc/Makeconf:191: R_sNMF.o] Error 1
+ERROR: compilation failed for package ‘LEA’
+* removing ‘/tmp/Rtmpd90ZwR/Rinst15c99e781c9b0c/LEA’
+      -----------------------------------
+ERROR: package installation failed

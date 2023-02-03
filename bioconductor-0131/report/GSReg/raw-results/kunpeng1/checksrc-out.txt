@@ -1,0 +1,188 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:GSReg.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings GSReg_1.33.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/GSReg.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘GSReg/DESCRIPTION’ ... OK
+* this is package ‘GSReg’ version ‘1.33.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘GSReg’ can be installed ... OK
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(GSReg, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘GSReg’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... NOTE
+Packages in Depends field not imported from:
+  ‘AnnotationDbi’ ‘GenomicFeatures’ ‘Homo.sapiens’ ‘org.Hs.eg.db’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+GSReg.DIRAC.Pathways: no visible global function definition for ‘pnorm’
+GSReg.DIRAC.mu: no visible global function definition for ‘var’
+GSReg.Variance: no visible global function definition for ‘var’
+GSReg.Variance: no visible global function definition for ‘pnorm’
+GSReg.kendall.tau.distance.Restricted.Sparse.internal: no visible
+  global function definition for ‘as’
+GSReg.overlapJunction: no visible binding for global variable
+  ‘TxDb.Hsapiens.UCSC.hg19.knownGene’
+GSReg.overlapJunction: no visible binding for global variable
+  ‘org.Hs.eg.db’
+GSReg.overlapJunction: no visible global function definition for
+  ‘genes’
+GSReg.overlapJunction: no visible global function definition for
+  ‘mapIds’
+GSReg.overlapJunction: no visible global function definition for
+  ‘GRanges’
+GSReg.overlapJunction: no visible global function definition for ‘Rle’
+GSReg.overlapJunction: no visible global function definition for
+  ‘IRanges’
+GSReg.overlapJunction: no visible global function definition for
+  ‘findOverlaps’
+GSReg.overlapJunction: no visible global function definition for
+  ‘queryHits’
+GSReg.overlapJunction: no visible global function definition for
+  ‘subjectHits’
+GSReg.overlapJunction : <anonymous>: no visible global function
+  definition for ‘findOverlaps’
+GSReg.overlapJunction : <anonymous>: no visible global function
+  definition for ‘Matrix’
+GSReg.overlapJunction : <anonymous>: no visible global function
+  definition for ‘queryHits’
+GSReg.overlapJunction : <anonymous>: no visible global function
+  definition for ‘subjectHits’
+Undefined global functions or variables:
+  GRanges IRanges Matrix Rle TxDb.Hsapiens.UCSC.hg19.knownGene as
+  findOverlaps genes mapIds org.Hs.eg.db pnorm queryHits subjectHits
+  var
+Consider adding
+  importFrom("methods", "as")
+  importFrom("stats", "pnorm", "var")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘GSReg.kendall.tau.distance.template’
+Undocumented data sets:
+  ‘geneExrsGSReg’ ‘junc.RPM.Simulated’ ‘phenotypes’
+All user-level objects in a package should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... WARNING
+Codoc mismatches from documentation object 'GSReg.GeneSets.DIRAC':
+GSReg.GeneSets.DIRAC
+  Code: function(geneexpres, pathways, phenotypes, Nperm = 0, alpha =
+                 0, minGeneNum = 5)
+  Docs: function(geneexpres, pathways, phenotypes, Nperm = 0, alpha =
+                 0.05, minGeneNum = 5)
+  Mismatches in argument default values:
+    Name: 'alpha' Code: 0 Docs: 0.05
+
+Codoc mismatches from documentation object 'GSReg.GeneSets.EVA':
+GSReg.GeneSets.EVA
+  Code: function(geneexpres, pathways, phenotypes, verbose = T,
+                 minGeneNum = 5, distFunc = GSReg.kendall.tau.distance,
+                 distparamPathways, ...)
+  Docs: function(geneexpres, pathways, phenotypes, minGeneNum = 5)
+  Argument names in code not in docs:
+    verbose distFunc distparamPathways ...
+  Mismatches in argument names:
+    Position: 4 Code: verbose Docs: minGeneNum
+
+* checking Rd \usage sections ... WARNING
+Objects in \usage without \alias in documentation object 'GSReg.kendall.tau.distance':
+  ‘GSReg.kendall.tau.distance.template’
+
+Bad \usage lines found in documentation object 'GSReg.overlapJunction':
+   GSReg.overlapJunction <- function(juncExprs,
+                                    GenestoStudy=NULL,
+                                    geneexpr=NULL,
+                                    minmeanloggeneexp= 3,
+                                    alpha =0,
+                                    sparse = F,
+                                    genesCoordinatesTxDB = TxDb.Hsapiens.UCSC.hg19.knownGene, 
+                                    geneIDInTxDB = 'ENTREZID', 
+                                    geneIDOut = 'SYMBOL',
+                                    org=org.Hs.eg.db, ...) 
+Bad \usage lines found in documentation object 'GSReg.SEVA':
+   function(juncExprs,
+  		  phenoVect, 
+            verbose=T,
+            sparse =F, ...)
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... OK
+* checking files in ‘vignettes’ ... NOTE
+The following files look like leftovers/mistakes:
+  ‘Rplots.pdf’
+Please remove them from your package.
+* checking examples ... SKIPPED
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘GSReg.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 4 WARNINGs, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/GSReg.Rcheck/00check.log’
+for details.
+
+

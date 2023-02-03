@@ -1,0 +1,176 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL rhdf5filters
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘rhdf5filters’ ...
+** using staged installation
+configuring the BLOSC filter...
+x86_CPU=false
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether C compiler accepts -msse2... no
+checking whether C compiler accepts -mavx2... no
+configure: creating ./config.status
+config.status: creating src/blosc/lib/blosc-1.20.1/Makefile
+config.status: creating src/blosc/Makefile
+configure:    BZIP2_LIB=bzip2/libH5Zbz2.so
+configure:    BLOSC_LIB=blosc/libH5Zblosc.so
+configure:    LZF_LIB=lzf/libH5Zlzf.so
+configure: creating ./config.status
+config.status: creating src/blosc/lib/blosc-1.20.1/Makefile
+config.status: creating src/blosc/Makefile
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+make -C blosc
+make[1]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/rhdf5filters/src/blosc'
+make -C lib/snappy-1.1.1
+make[2]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/rhdf5filters/src/blosc/lib/snappy-1.1.1'
+g++ -std=gnu++14  -g -O2 -Wall -fPIC -I/usr/local/include -I"/home/biocbuild/bbs-3.17-bioc/R/site-library/Rhdf5lib/include" -c snappy.cc
+snappy.cc: In member function ‘bool snappy::SnappyIOVecWriter::Append(const char*, size_t)’:
+snappy.cc:1013:33: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+ 1013 |         if (curr_iov_index_ + 1 >= output_iov_count_) {
+      |             ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+snappy.cc: In member function ‘bool snappy::SnappyIOVecWriter::AppendFromSelf(size_t, size_t)’:
+snappy.cc:1095:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+ 1095 |           if (curr_iov_index_ + 1 >= output_iov_count_) {
+      |               ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~
+snappy.cc: At global scope:
+snappy.cc:567:13: warning: ‘void snappy::ComputeTable()’ defined but not used [-Wunused-function]
+  567 | static void ComputeTable() {
+      |             ^~~~~~~~~~~~
+g++ -std=gnu++14  -g -O2 -Wall -fPIC -I/usr/local/include -I"/home/biocbuild/bbs-3.17-bioc/R/site-library/Rhdf5lib/include" -c snappy-c.cc
+g++ -std=gnu++14  -g -O2 -Wall -fPIC -I/usr/local/include -I"/home/biocbuild/bbs-3.17-bioc/R/site-library/Rhdf5lib/include" -c snappy-sinksource.cc
+g++ -std=gnu++14  -g -O2 -Wall -fPIC -I/usr/local/include -I"/home/biocbuild/bbs-3.17-bioc/R/site-library/Rhdf5lib/include" -c snappy-stubs-internal.cc
+make[2]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/rhdf5filters/src/blosc/lib/snappy-1.1.1'
+make -C lib/lz4-1.9.2
+make[2]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/rhdf5filters/src/blosc/lib/lz4-1.9.2'
+gcc -g -O2 -Wall -fPIC -c lz4.c
+gcc -g -O2 -Wall -fPIC -c lz4hc.c
+make[2]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/rhdf5filters/src/blosc/lib/lz4-1.9.2'
+make -C lib/zstd-1.4.5
+make[2]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/rhdf5filters/src/blosc/lib/zstd-1.4.5'
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c common/debug.c -o common/debug.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c common/entropy_common.c -o common/entropy_common.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c common/error_private.c -o common/error_private.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c common/fse_decompress.c -o common/fse_decompress.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -I. -c common/pool.c -o common/pool.o -o common/pool.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c common/threading.c -o common/threading.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c common/xxhash.c -o common/xxhash.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c common/zstd_common.c -o common/zstd_common.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c compress/fse_compress.c -o compress/fse_compress.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c compress/hist.c -o compress/hist.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c compress/huf_compress.c -o compress/huf_compress.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c compress/zstd_compress.c -o compress/zstd_compress.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c compress/zstd_compress_literals.c -o compress/zstd_compress_literals.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c compress/zstd_compress_sequences.c -o compress/zstd_compress_sequences.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c compress/zstd_compress_superblock.c -o compress/zstd_compress_superblock.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c compress/zstd_double_fast.c -o compress/zstd_double_fast.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c compress/zstd_fast.c -o compress/zstd_fast.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c compress/zstd_lazy.c -o compress/zstd_lazy.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c compress/zstd_ldm.c -o compress/zstd_ldm.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c compress/zstd_opt.c -o compress/zstd_opt.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c compress/zstdmt_compress.c -o compress/zstdmt_compress.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c decompress/huf_decompress.c -o decompress/huf_decompress.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c decompress/zstd_ddict.c -o decompress/zstd_ddict.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c decompress/zstd_decompress.c -o decompress/zstd_decompress.o
+gcc -g -O2 -Wall -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -c decompress/zstd_decompress_block.c -o decompress/zstd_decompress_block.o
+make[2]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/rhdf5filters/src/blosc/lib/zstd-1.4.5'
+make -C lib/blosc-1.20.1 all
+make[2]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/rhdf5filters/src/blosc/lib/blosc-1.20.1'
+gcc -g -O2 -Wall -fPIC -I/usr/local/include -I"/home/biocbuild/bbs-3.17-bioc/R/site-library/Rhdf5lib/include" -I../lz4-1.9.2 -I../snappy-1.1.1 -I../zstd-1.4.5   -c bitshuffle-generic.c
+gcc -g -O2 -Wall -fPIC -I/usr/local/include -I"/home/biocbuild/bbs-3.17-bioc/R/site-library/Rhdf5lib/include" -I../lz4-1.9.2 -I../snappy-1.1.1 -I../zstd-1.4.5   -c shuffle-generic.c
+gcc -g -O2 -Wall -fPIC -I/usr/local/include -I"/home/biocbuild/bbs-3.17-bioc/R/site-library/Rhdf5lib/include" -I../lz4-1.9.2 -I../snappy-1.1.1 -I../zstd-1.4.5     -c shuffle.c
+shuffle.c: In function ‘get_shuffle_implementation’:
+shuffle.c:316:22: warning: unused variable ‘cpu_features’ [-Wunused-variable]
+  316 |   blosc_cpu_features cpu_features = blosc_get_cpu_features();
+      |                      ^~~~~~~~~~~~
+In file included from shuffle.c:12:
+At top level:
+shuffle-generic.h:61:13: warning: ‘unshuffle_generic_inline’ defined but not used [-Wunused-function]
+   61 | static void unshuffle_generic_inline(const size_t type_size,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~
+shuffle-generic.h:32:13: warning: ‘shuffle_generic_inline’ defined but not used [-Wunused-function]
+   32 | static void shuffle_generic_inline(const size_t type_size,
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+gcc -g -O2 -Wall -fPIC -I/usr/local/include -I"/home/biocbuild/bbs-3.17-bioc/R/site-library/Rhdf5lib/include" -I../lz4-1.9.2 -I../snappy-1.1.1 -I../zstd-1.4.5   -c blosclz.c
+gcc -g -O2 -Wall -fPIC -I/usr/local/include -I"/home/biocbuild/bbs-3.17-bioc/R/site-library/Rhdf5lib/include" -I../lz4-1.9.2 -I../snappy-1.1.1 -I../zstd-1.4.5   -c blosc.c
+gcc -g -O2 -Wall -fPIC -I/usr/local/include -I"/home/biocbuild/bbs-3.17-bioc/R/site-library/Rhdf5lib/include" -I../lz4-1.9.2 -I../snappy-1.1.1 -I../zstd-1.4.5   -c fastcopy.c
+make[2]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/rhdf5filters/src/blosc/lib/blosc-1.20.1'
+rm -f libblosc.a
+ar cq libblosc.a lib/blosc-1.20.1/blosc.o lib/blosc-1.20.1/bitshuffle-generic.o lib/blosc-1.20.1/blosclz.o lib/blosc-1.20.1/shuffle.o lib/blosc-1.20.1/fastcopy.o lib/blosc-1.20.1/shuffle-generic.o lib/snappy-1.1.1/snappy.o lib/snappy-1.1.1/snappy-c.o lib/snappy-1.1.1/snappy-sinksource.o lib/snappy-1.1.1/snappy-stubs-internal.o lib/lz4-1.9.2/lz4.o lib/lz4-1.9.2/lz4hc.o lib/zstd-1.4.5/common/debug.o lib/zstd-1.4.5/common/entropy_common.o lib/zstd-1.4.5/common/error_private.o lib/zstd-1.4.5/common/fse_decompress.o lib/zstd-1.4.5/common/pool.o lib/zstd-1.4.5/common/threading.o lib/zstd-1.4.5/common/xxhash.o lib/zstd-1.4.5/common/zstd_common.o lib/zstd-1.4.5/compress/fse_compress.o lib/zstd-1.4.5/compress/hist.o lib/zstd-1.4.5/compress/huf_compress.o lib/zstd-1.4.5/compress/zstd_compress.o lib/zstd-1.4.5/compress/zstd_compress_literals.o lib/zstd-1.4.5/compress/zstd_compress_sequences.o lib/zstd-1.4.5/compress/zstd_compress_superblock.o lib/zstd-1.4.5/compress/zstd_double_fast.o lib/zstd-1.4.5/compress/zstd_fast.o lib/zstd-1.4.5/compress/zstd_lazy.o lib/zstd-1.4.5/compress/zstd_ldm.o lib/zstd-1.4.5/compress/zstd_opt.o lib/zstd-1.4.5/compress/zstdmt_compress.o lib/zstd-1.4.5/decompress/huf_decompress.o lib/zstd-1.4.5/decompress/zstd_ddict.o lib/zstd-1.4.5/decompress/zstd_decompress.o lib/zstd-1.4.5/decompress/zstd_decompress_block.o
+ranlib libblosc.a
+gcc -g -O2 -Wall -fPIC -c -o H5Zblosc.o H5Zblosc.c \
+-I/usr/local/include -I"/home/biocbuild/bbs-3.17-bioc/R/site-library/Rhdf5lib/include" -I./lib/blosc-1.20.1
+H5Zblosc.c: In function ‘H5Z_filter_blosc’:
+H5Zblosc.c:96:10: warning: unused variable ‘errmsg’ [-Wunused-variable]
+   96 |     char errmsg[256];
+      |          ^~~~~~
+g++ -std=gnu++14  -g -O2 -Wall -fPIC -L/usr/local/lib -shared -o libH5Zblosc.so H5Zblosc.o \
+libblosc.a -lz
+make[1]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/rhdf5filters/src/blosc'
+make -C bzip2
+make[1]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/rhdf5filters/src/bzip2'
+make -C bzip2-1.0.8
+make[2]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/rhdf5filters/src/bzip2/bzip2-1.0.8'
+gcc -g -O2 -Wall -fPIC -D_FILE_OFFSET_BITS=64 -c blocksort.c
+gcc -g -O2 -Wall -fPIC -D_FILE_OFFSET_BITS=64 -c huffman.c
+gcc -g -O2 -Wall -fPIC -D_FILE_OFFSET_BITS=64 -c crctable.c
+gcc -g -O2 -Wall -fPIC -D_FILE_OFFSET_BITS=64 -c randtable.c
+gcc -g -O2 -Wall -fPIC -D_FILE_OFFSET_BITS=64 -c compress.c
+gcc -g -O2 -Wall -fPIC -D_FILE_OFFSET_BITS=64 -c decompress.c
+gcc -g -O2 -Wall -fPIC -D_FILE_OFFSET_BITS=64 -c bzlib.c
+rm -f libbz2.a
+ar cq libbz2.a blocksort.o huffman.o crctable.o randtable.o compress.o decompress.o bzlib.o
+ranlib libbz2.a
+make[2]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/rhdf5filters/src/bzip2/bzip2-1.0.8'
+gcc -g -O2 -Wall -fPIC -shared H5Zbzip2.c -I/usr/local/include -I"/home/biocbuild/bbs-3.17-bioc/R/site-library/Rhdf5lib/include" \
+-I./bzip2-1.0.8/ ./bzip2-1.0.8/libbz2.a -L/usr/local/lib -o libH5Zbz2.so
+make[1]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/rhdf5filters/src/bzip2'
+make -C lzf
+make[1]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/rhdf5filters/src/lzf'
+make -C lzf
+make[2]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/rhdf5filters/src/lzf/lzf'
+gcc -g -O2 -Wall -fPIC -c lzf_c.c
+gcc -g -O2 -Wall -fPIC -c lzf_d.c
+rm -f liblzf.a
+ar cq liblzf.a lzf_c.o lzf_d.o
+make[2]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/rhdf5filters/src/lzf/lzf'
+gcc -g -O2 -Wall -fPIC -shared H5Zlzf.c -I/usr/local/include -I"/home/biocbuild/bbs-3.17-bioc/R/site-library/Rhdf5lib/include" \
+-I./lzf/ ./lzf/liblzf.a -L/usr/local/lib -o libH5Zlzf.so
+make[1]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/rhdf5filters/src/lzf'
+mkdir -p "/home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-rhdf5filters/00new/rhdf5filters/lib/"
+cp bzip2/libH5Zbz2.so "/home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-rhdf5filters/00new/rhdf5filters/lib/"
+cp blosc/libH5Zblosc.so "/home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-rhdf5filters/00new/rhdf5filters/lib/"
+cp lzf/libH5Zlzf.so "/home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-rhdf5filters/00new/rhdf5filters/lib/"
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I/usr/local/include -I"/home/biocbuild/bbs-3.17-bioc/R/site-library/Rhdf5lib/include" -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rhdf5lib/include' -I/usr/local/include   -g -O2 -Wall -fPIC  -g -O2  -Wall -c rhdf5filters.c -o rhdf5filters.o
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o rhdf5filters.so rhdf5filters.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-rhdf5filters/00new/rhdf5filters/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rhdf5filters)

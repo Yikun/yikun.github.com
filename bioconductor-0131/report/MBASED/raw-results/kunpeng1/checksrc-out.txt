@@ -1,0 +1,213 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:MBASED.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings MBASED_1.33.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/MBASED.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘MBASED/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘MBASED’ version ‘1.33.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘MBASED’ can be installed ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(MBASED, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘MBASED’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+MBASEDMetaAnalysis: no visible global function definition for ‘pchisq’
+MBASEDMetaAnalysis: no visible global function definition for ‘pnorm’
+maxLogLikelihoodCalculator1s: no visible global function definition for
+  ‘optimize’
+maxLogLikelihoodCalculator2s: no visible global function definition for
+  ‘optimize’
+runMBASED: no visible global function definition for ‘is’
+runMBASED1s: no visible global function definition for ‘is’
+runMBASED2s: no visible global function definition for ‘is’
+vectorizedRbetabinomAB: no visible global function definition for
+  ‘rbeta’
+vectorizedRbetabinomAB: no visible global function definition for
+  ‘rbinom’
+vectorizedRbetabinomMR: no visible global function definition for
+  ‘rbeta’
+vectorizedRbetabinomMR: no visible global function definition for
+  ‘rbinom’
+Undefined global functions or variables:
+  is optimize pchisq pnorm rbeta rbinom
+Consider adding
+  importFrom("methods", "is")
+  importFrom("stats", "optimize", "pchisq", "pnorm", "rbeta", "rbinom")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘runTests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘MBASED.Rnw’... failed to complete the test
+ ERROR
+Errors in running code in vignettes:
+when running code in ‘MBASED.Rnw’
+  ...
++     "gene2_SNV2", "gene2_SNV3", "gene3_SNV1")
+
+> myTumorNormalExample <- SummarizedExperiment(assays = list(lociAllele1Counts = matrix(c(c(25, 
++     10, 35, 14, 35), c(18, 17, 21, 25, 40)), ncol = .... [TRUNCATED] 
+
+> ASEresults_2s <- runMBASED(ASESummarizedExperiment = myTumorNormalExample, 
++     isPhased = FALSE, numSim = 10^6, BPPARAM = SerialParam())
+Killed
+
+... incomplete output.  Crash?
+
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘MBASED.Rnw’ using Sweave
+Loading required package: RUnit
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: BiocParallel
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: SummarizedExperiment
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+Warning in parallel::mccollect(wait = FALSE, timeout = 1) :
+  1 parallel job did not deliver a result
+
+Error: processing vignette 'MBASED.Rnw' failed with diagnostics:
+ chunk 7 (label = isoform_specific) 
+Error in h(simpleError(msg, call)) : 
+  error in evaluating the argument 'x' in selecting a method for function 'assays': wrong args for environment subassignment
+
+--- failed re-building ‘MBASED.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘MBASED.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 1 WARNING, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/MBASED.Rcheck/00check.log’
+for details.
+

@@ -1,0 +1,47 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL SMAP
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘SMAP’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c gradient.c -o gradient.o
+gradient.c: In function ‘prior_gradient’:
+gradient.c:142:21: warning: variable ‘lower’ set but not used [-Wunused-but-set-variable]
+  142 |                 int lower;
+      |                     ^~~~~
+gradient.c: In function ‘hmm_update’:
+gradient.c:247:24: warning: unused variable ‘tmp’ [-Wunused-variable]
+  247 |                 double tmp;
+      |                        ^~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c init.c -o init.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c overlap.c -o overlap.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c prob.c -o prob.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c viterbi.c -o viterbi.o
+viterbi.c: In function ‘viterbi’:
+viterbi.c:125:24: warning: ‘*delta[<unknown>][0]’ may be used uninitialized [-Wmaybe-uninitialized]
+  125 |                 double max = delta[T-1][0];
+      |                        ^~~
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o SMAP.so gradient.o init.o overlap.o prob.o viterbi.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-SMAP/00new/SMAP/libs
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (SMAP)

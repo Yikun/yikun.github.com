@@ -1,0 +1,119 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:minfi.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings minfi_1.45.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/minfi.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘minfi/DESCRIPTION’ ... OK
+* this is package ‘minfi’ version ‘1.45.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘minfi’ can be installed ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Invalid citation information in ‘inst/CITATION’:
+  Warning message:
+  In utils::packageDescription(basename(dir), dirname(dir)) :
+    no package 'minfi' was found
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(minfi, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘minfi’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... NOTE
+Unexported objects imported by ':::' calls:
+  ‘DelayedArray:::get_verbose_block_processing’
+  ‘DelayedArray:::normarg_grid’ ‘bumphunter:::.getEstimate’
+  See the note in ?`:::` about the use of this operator.
+There are ::: calls to the package's namespace in its code. A package
+  almost never needs to use ::: for its own objects:
+  ‘.guessArrayTypes’
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+Found the following possibly unsafe calls:
+File ‘minfi/R/IlluminaMethylationManifest-class.R’:
+  unlockBinding(name, env = object@data)
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘runTests.R’
+ ERROR
+Running the tests in ‘tests/runTests.R’ failed.
+Last 13 lines of output:
+  
+  Attaching package: 'Matrix'
+  
+  The following object is masked from 'package:S4Vectors':
+  
+      expand
+  
+  
+  Attaching package: 'DelayedArray'
+  
+  The following objects are masked from 'package:base':
+  
+      apply, rowsum, scale, sweep
+  
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘minfi.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘minfi.Rmd’ using rmarkdown
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 2 WARNINGs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/minfi.Rcheck/00check.log’
+for details.
+

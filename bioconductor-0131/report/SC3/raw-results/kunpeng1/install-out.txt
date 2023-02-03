@@ -1,0 +1,44 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL SC3
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘SC3’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c cppFunctions.cpp -o cppFunctions.o
+cppFunctions.cpp: In function ‘arma::mat consmx(arma::mat)’:
+cppFunctions.cpp:63:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uword’ {aka ‘const unsigned int’} [-Wsign-compare]
+   63 |         for (j = 0; j < dat.n_cols; j++) {
+      |                     ~~^~~~~~~~~~~~
+cppFunctions.cpp:64:31: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uword’ {aka ‘const unsigned int’} [-Wsign-compare]
+   64 |                 for (i = 0; i < dat.n_rows; i++) {
+      |                             ~~^~~~~~~~~~~~
+cppFunctions.cpp:65:43: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uword’ {aka ‘const unsigned int’} [-Wsign-compare]
+   65 |                         for (k = i + 1; k < dat.n_rows; k++) {
+      |                                         ~~^~~~~~~~~~~~
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o SC3.so RcppExports.o cppFunctions.o -llapack -L/home/biocbuild/bbs-3.17-bioc/R/lib -lRblas -lgfortran -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-SC3/00new/SC3/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (SC3)

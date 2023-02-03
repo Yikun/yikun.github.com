@@ -1,0 +1,59 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL sparseMatrixStats
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘sparseMatrixStats’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c SparseMatrixView.cpp -o SparseMatrixView.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c methods.cpp -o methods.o
+In file included from methods.cpp:6:
+quantile.h: In instantiation of ‘double quantile_sparse_impl(T, int, double) [with T = VectorSubsetView<14>]’:
+quantile.h:85:58:   required from here
+quantile.h:35:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   35 |   for(int i = 0; i < sorted_values.size() + number_of_zeros; i++){
+      |                  ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+methods.cpp: In instantiation of ‘double colOrderStats::operator()(V&, R&, int) const [with V = SkipNAVectorSubsetView<14>; R = SkipNAVectorSubsetView<13>]’:
+methods.cpp:25:18:   required from ‘Rcpp::NumericVector reduce_matrix_double(Rcpp::S4, bool, Functor) [with Functor = colOrderStats; Rcpp::NumericVector = Rcpp::Vector<14, Rcpp::PreserveStorage>; Rcpp::S4 = Rcpp::S4_Impl<Rcpp::PreserveStorage>]’
+methods.cpp:510:30:   required from here
+methods.cpp:475:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  475 |     for(int i = 0; i < sorted_values.size() + number_of_zeros; i++){
+      |                    ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+methods.cpp: In instantiation of ‘double colOrderStats::operator()(V&, R&, int) const [with V = VectorSubsetView<14>; R = VectorSubsetView<13>]’:
+methods.cpp:30:18:   required from ‘Rcpp::NumericVector reduce_matrix_double(Rcpp::S4, bool, Functor) [with Functor = colOrderStats; Rcpp::NumericVector = Rcpp::Vector<14, Rcpp::PreserveStorage>; Rcpp::S4 = Rcpp::S4_Impl<Rcpp::PreserveStorage>]’
+methods.cpp:510:30:   required from here
+methods.cpp:475:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+In file included from methods.cpp:6:
+quantile.h: In instantiation of ‘double quantile_sparse_impl(T, int, double) [with T = SkipNAVectorSubsetView<14>]’:
+methods.cpp:269:32:   required from ‘double colMedians::operator()(V&, R&, int) const [with V = SkipNAVectorSubsetView<14>; R = SkipNAVectorSubsetView<13>]’
+methods.cpp:25:18:   required from ‘Rcpp::NumericVector reduce_matrix_double(Rcpp::S4, bool, Functor) [with Functor = colMedians; Rcpp::NumericVector = Rcpp::Vector<14, Rcpp::PreserveStorage>; Rcpp::S4 = Rcpp::S4_Impl<Rcpp::PreserveStorage>]’
+methods.cpp:277:30:   required from here
+quantile.h:35:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   35 |   for(int i = 0; i < sorted_values.size() + number_of_zeros; i++){
+      |                  ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c row_methods.cpp -o row_methods.o
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o sparseMatrixStats.so RcppExports.o SparseMatrixView.o methods.o row_methods.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-sparseMatrixStats/00new/sparseMatrixStats/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (sparseMatrixStats)

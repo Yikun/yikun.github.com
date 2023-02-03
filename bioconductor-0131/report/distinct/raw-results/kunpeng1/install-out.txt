@@ -1,0 +1,91 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL distinct
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘distinct’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rfast/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c Perm.cpp -o Perm.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rfast/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c Perm_covariates.cpp -o Perm_covariates.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R/site-library/Rfast/include/Rfast.h:5,
+                 from Perm_covariates.cpp:2:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/Rfast/include/Rfast/matrix.hpp:553: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  553 |                                 #pragma omp parallel for
+      | 
+/home/biocbuild/bbs-3.17-bioc/R/site-library/Rfast/include/Rfast/matrix.hpp:604: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  604 |                                 #pragma omp parallel for
+      | 
+/home/biocbuild/bbs-3.17-bioc/R/site-library/Rfast/include/Rfast/matrix.hpp:621: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  621 |                     #pragma omp parallel for
+      | 
+/home/biocbuild/bbs-3.17-bioc/R/site-library/Rfast/include/Rfast/matrix.hpp:639: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  639 |                         #pragma omp parallel for
+      | 
+/home/biocbuild/bbs-3.17-bioc/R/site-library/Rfast/include/Rfast/matrix.hpp:654: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  654 |                     #pragma omp parallel for
+      | 
+/home/biocbuild/bbs-3.17-bioc/R/site-library/Rfast/include/Rfast/matrix.hpp:669: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  669 |                         #pragma omp parallel for
+      | 
+Perm_covariates.cpp: In function ‘arma::vec my_rint_reg(const mat&, const vec&, Rcpp::IntegerVector, const unsigned int&, const unsigned int&, const double&, const unsigned int&)’:
+Perm_covariates.cpp:189:16: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const unsigned int’ [-Wsign-compare]
+  189 |   for(int i=0;i<p;i++)
+      |               ~^~
+Perm_covariates.cpp:210:12: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const unsigned int’ [-Wsign-compare]
+  210 |   while(i++<maxiters && sum(abs(b2-b1.col(0))) > tol) {
+      |         ~~~^~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rfast/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c Perm_covariates_parallel.cpp -o Perm_covariates_parallel.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R/site-library/Rfast/include/Rfast.h:5,
+                 from Perm_covariates_parallel.cpp:2:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/Rfast/include/Rfast/matrix.hpp:553: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  553 |                                 #pragma omp parallel for
+      | 
+/home/biocbuild/bbs-3.17-bioc/R/site-library/Rfast/include/Rfast/matrix.hpp:604: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  604 |                                 #pragma omp parallel for
+      | 
+/home/biocbuild/bbs-3.17-bioc/R/site-library/Rfast/include/Rfast/matrix.hpp:621: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  621 |                     #pragma omp parallel for
+      | 
+/home/biocbuild/bbs-3.17-bioc/R/site-library/Rfast/include/Rfast/matrix.hpp:639: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  639 |                         #pragma omp parallel for
+      | 
+/home/biocbuild/bbs-3.17-bioc/R/site-library/Rfast/include/Rfast/matrix.hpp:654: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  654 |                     #pragma omp parallel for
+      | 
+/home/biocbuild/bbs-3.17-bioc/R/site-library/Rfast/include/Rfast/matrix.hpp:669: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  669 |                         #pragma omp parallel for
+      | 
+Perm_covariates_parallel.cpp: In function ‘arma::vec my_rint_reg_parallel(const mat&, const vec&, Rcpp::IntegerVector, const unsigned int&, const unsigned int&, const double&, const unsigned int&)’:
+Perm_covariates_parallel.cpp:189:16: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const unsigned int’ [-Wsign-compare]
+  189 |   for(int i=0;i<p;i++)
+      |               ~^~
+Perm_covariates_parallel.cpp:210:12: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const unsigned int’ [-Wsign-compare]
+  210 |   while(i++<maxiters && sum(abs(b2-b1.col(0))) > tol) {
+      |         ~~~^~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rfast/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c Perm_parallel.cpp -o Perm_parallel.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rfast/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o distinct.so Perm.o Perm_covariates.o Perm_covariates_parallel.o Perm_parallel.o RcppExports.o -llapack -L/home/biocbuild/bbs-3.17-bioc/R/lib -lRblas -lgfortran -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-distinct/00new/distinct/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (distinct)

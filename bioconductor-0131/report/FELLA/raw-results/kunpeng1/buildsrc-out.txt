@@ -1,0 +1,99 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data FELLA
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘FELLA/DESCRIPTION’ ... OK
+* preparing ‘FELLA’:
+* checking DESCRIPTION meta-information ... OK
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘musmusculus.Rmd’ using rmarkdown
+! LaTeX Error: Environment cslreferences undefined.
+
+Error: processing vignette 'musmusculus.Rmd' failed with diagnostics:
+LaTeX failed to compile /tmp/RtmpuZ8Jkl/Rbuild1698e2ca64319/FELLA/vignettes/musmusculus.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See musmusculus.log for more info.
+--- failed re-building ‘musmusculus.Rmd’
+
+--- re-building ‘quickstart.Rmd’ using rmarkdown
+The magick package is required to crop "/tmp/RtmpuZ8Jkl/Rbuild1698e2ca64319/FELLA/vignettes/quickstart_files/figure-html/unnamed-chunk-12-1.png" but not available.
+The magick package is required to crop "/tmp/RtmpuZ8Jkl/Rbuild1698e2ca64319/FELLA/vignettes/quickstart_files/figure-html/unnamed-chunk-13-1.png" but not available.
+The magick package is required to crop "/tmp/RtmpuZ8Jkl/Rbuild1698e2ca64319/FELLA/vignettes/quickstart_files/figure-html/unnamed-chunk-14-1.png" but not available.
+--- finished re-building ‘quickstart.Rmd’
+
+--- re-building ‘zebrafish.Rmd’ using rmarkdown
+! LaTeX Error: Environment cslreferences undefined.
+
+Error: processing vignette 'zebrafish.Rmd' failed with diagnostics:
+LaTeX failed to compile /tmp/RtmpuZ8Jkl/Rbuild1698e2ca64319/FELLA/vignettes/zebrafish.tex. See https://yihui.org/tinytex/r/#debugging for debugging tips. See zebrafish.log for more info.
+--- failed re-building ‘zebrafish.Rmd’
+
+--- re-building ‘FELLA.Rnw’ using Sweave
+Building through KEGGREST...
+Available gene annotations: ncbi-geneid, ncbi-proteinid. Using ncbi-geneid
+Done.
+Building graph...
+Filtering 5 pathways.
+Done.
+Pruning graph...
+Current weight: 1 out of 4...
+Current weight: 2 out of 4...
+Current weight: 3 out of 4...
+Current weight: 4 out of 4...
+Done.
+Computing probabilities for random subgraphs... (this may take a while)
+Directory /tmp/RtmpDOLZkL/my_database does not exist. Creating it...
+Done.
+Done.
+Computing diffusion.matrix... (this may take a while and use some memory)
+Warning in asMethod(object) :
+  sparse->dense coercion: allocating vector of size 1.0 GiB
+Done
+Computing diffusion.rowSums...
+Done.
+Loading KEGG graph data...
+Done.
+Loading hypergeom data...
+Loading matrix...
+'hypergeom.matrix.RData' not present in:/tmp/RtmpDOLZkL/my_database/hypergeom.matrix.RData. Hypergeometric test won't execute.
+Done.
+Loading diffusion data...
+Loading matrix...
+Done.
+Loading rowSums...
+Done.
+Loading pagerank data...
+Loading matrix...
+'pagerank.matrix.RData' not loaded. Simulated permutations may execute slower for pagerank.
+Done.
+Loading rowSums...
+'pagerank.rowSums.RData' not present in:/tmp/RtmpDOLZkL/my_database/pagerank.rowSums.RData. Z-scores won't be available for pagerank.
+Done.
+Data successfully loaded.
+No background compounds specified. Default background will be used.
+Warning in defineCompounds(compounds = compounds.epithelial, data = fella.data) :
+  Some compounds were introduced as affected but they do not belong to the background. These compounds will be excluded from the analysis. Use 'getExcluded' to see them.
+Running diffusion...
+Computing p-scores through the specified distribution.
+Done.
+290 nodes below the threshold have been limited to 150 nodes.
+290 nodes below the threshold have been limited to 150 nodes.
+
+Error: processing vignette 'FELLA.Rnw' failed with diagnostics:
+ chunk 15 (label = 04_go) 
+Error in curl::curl_fetch_memory(url, handle = handle) : 
+  Timeout was reached: [www.ensembl.org:443] Operation timed out after 10000 milliseconds with 150554 bytes received
+
+--- failed re-building ‘FELLA.Rnw’
+
+SUMMARY: processing the following files failed:
+  ‘musmusculus.Rmd’ ‘zebrafish.Rmd’ ‘FELLA.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted

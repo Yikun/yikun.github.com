@@ -1,0 +1,113 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL CellaRepertorium
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘CellaRepertorium’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c cdhit-bombs.cpp -o cdhit-bombs.o
+In file included from cdhit-bombs.cpp:2:
+cdhit-common.h: In member function ‘void WorkingBuffer::Set(size_t, size_t, const Options&)’:
+cdhit-common.h:494:26: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘const int’ [-Wsign-compare]
+  494 |                 if( band > options.band_width ) band = options.band_width;
+      |                     ~~~~~^~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c cdhit-common.cpp -o cdhit-common.o
+cdhit-common.cpp:160: warning: ignoring ‘#pragma omp critical’ [-Wunknown-pragmas]
+  160 |                 #pragma omp critical
+      | 
+cdhit-common.cpp:174: warning: ignoring ‘#pragma omp critical’ [-Wunknown-pragmas]
+  174 |         #pragma omp critical
+      | 
+cdhit-common.cpp:2418: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+ 2418 |                         #pragma omp parallel for schedule( dynamic, 1 )
+      | 
+cdhit-common.cpp:2435: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+ 2435 |                         #pragma omp parallel for schedule( dynamic, 1 )
+      | 
+cdhit-common.cpp:2437: warning: ignoring ‘#pragma omp flush’ [-Wunknown-pragmas]
+ 2437 |                                 #pragma omp flush (stop)
+      | 
+cdhit-common.cpp:2458: warning: ignoring ‘#pragma omp critical’ [-Wunknown-pragmas]
+ 2458 |                                                         #pragma omp critical
+      | 
+cdhit-common.cpp:2467: warning: ignoring ‘#pragma omp flush’ [-Wunknown-pragmas]
+ 2467 |                                                         #pragma omp flush (stop)
+      | 
+cdhit-common.cpp:2492: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+ 2492 |                                 #pragma omp parallel for schedule( dynamic, 1 )
+      | 
+cdhit-common.cpp:3151: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+ 3151 |                         #pragma omp parallel for schedule( dynamic, 1 )
+      | 
+In file included from cdhit-common.cpp:37:
+cdhit-common.h: In member function ‘void WorkingBuffer::Set(size_t, size_t, const Options&)’:
+cdhit-common.h:494:26: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘const int’ [-Wsign-compare]
+  494 |                 if( band > options.band_width ) band = options.band_width;
+      |                     ~~~~~^~~~~~~~~~~~~~~~~~~~
+cdhit-common.cpp: In function ‘int diag_test_aapn(int, char*, int, int, WorkingBuffer&, int&, int, int&, int&, int&, int)’:
+cdhit-common.cpp:545:13: warning: variable ‘max_diag’ set but not used [-Wunused-but-set-variable]
+  545 |         int max_diag = 0;
+      |             ^~~~~~~~
+cdhit-common.cpp: In function ‘int diag_test_aapn_est(int, char*, int, int, WorkingBuffer&, int&, int, int&, int&, int&, int)’:
+cdhit-common.cpp:669:13: warning: variable ‘max_diag’ set but not used [-Wunused-but-set-variable]
+  669 |         int max_diag = 0;
+      |             ^~~~~~~~
+cdhit-common.cpp: In member function ‘void SequenceDB::SortDivide(Options&, bool)’:
+cdhit-common.cpp:1774:25: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1774 |                 if (len > max_len) max_len = len;
+      |                     ~~~~^~~~~~~~~
+cdhit-common.cpp:1775:25: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1775 |                 if (len < min_len) min_len = len;
+      |                     ~~~~^~~~~~~~~
+cdhit-common.cpp: In member function ‘void SequenceDB::DoClustering(int, const Options&)’:
+cdhit-common.cpp:2379:16: warning: variable ‘mem’ set but not used [-Wunused-but-set-variable]
+ 2379 |         size_t mem, mega = 1000000;
+      |                ^~~
+In file included from cdhit-common.cpp:37:
+In member function ‘void NVector<TYPE>::Resize(int, const TYPE&) [with TYPE = long int]’,
+    inlined from ‘NVector<TYPE>::NVector(int, const TYPE&) [with TYPE = long int]’ at cdhit-common.h:124:10,
+    inlined from ‘int local_band_align(char*, char*, int, int, ScoreMatrix&, int&, int&, int&, float&, int*, int, int, int, WorkingBuffer&)’ at cdhit-common.cpp:802:36:
+cdhit-common.h:149:55: warning: argument 1 range [18446744056529682448, 18446744073709551608] exceeds maximum object size 9223372036854775807 [-Walloc-size-larger-than=]
+  149 |                                 items = (TYPE*)realloc( items, capacity*sizeof(TYPE) );
+      |                                                ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cdhit-common.h: In function ‘int local_band_align(char*, char*, int, int, ScoreMatrix&, int&, int&, int&, float&, int*, int, int, int, WorkingBuffer&)’:
+cdhit-common.h:149:55: note: in a call to built-in allocation function ‘void* __builtin_malloc(long unsigned int)’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c cdhit-est.cpp -o cdhit-est.o
+In file included from cdhit-est.cpp:32:
+cdhit-common.h: In member function ‘void WorkingBuffer::Set(size_t, size_t, const Options&)’:
+cdhit-common.h:494:26: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘const int’ [-Wsign-compare]
+  494 |                 if( band > options.band_width ) band = options.band_width;
+      |                     ~~~~~^~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c cdhit.cpp -o cdhit.o
+In file included from cdhit.cpp:31:
+cdhit-common.h: In member function ‘void WorkingBuffer::Set(size_t, size_t, const Options&)’:
+cdhit-common.h:494:26: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘const int’ [-Wsign-compare]
+  494 |                 if( band > options.band_width ) band = options.band_width;
+      |                     ~~~~~^~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c progress.cpp -o progress.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o CellaRepertorium.so RcppExports.o cdhit-bombs.o cdhit-common.o cdhit-est.o cdhit.o progress.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-CellaRepertorium/00new/CellaRepertorium/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (CellaRepertorium)

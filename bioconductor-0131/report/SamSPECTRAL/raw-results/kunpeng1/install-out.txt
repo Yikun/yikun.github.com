@@ -1,0 +1,41 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL SamSPECTRAL
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘SamSPECTRAL’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c Rinit.c -o Rinit.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c conductance_computation.c -o conductance_computation.o
+conductance_computation.c: In function ‘conductance_computation’:
+conductance_computation.c:155:24: warning: variable ‘repres_ind’ set but not used [-Wunused-but-set-variable]
+  155 |         int *density, *repres_ind;
+      |                        ^~~~~~~~~~
+conductance_computation.c:155:14: warning: variable ‘density’ set but not used [-Wunused-but-set-variable]
+  155 |         int *density, *repres_ind;
+      |              ^~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c maximum_of_rows.c -o maximum_of_rows.o
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o SamSPECTRAL.so Rinit.o conductance_computation.o maximum_of_rows.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-SamSPECTRAL/00new/SamSPECTRAL/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (SamSPECTRAL)

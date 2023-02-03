@@ -1,0 +1,63 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL DNAcopy
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘DNAcopy’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gfortran  -fPIC  -g -O2  -Wall -c cbsWtstats.f -o cbsWtstats.o
+cbsWtstats.f:283:72:
+
+  283 |       iseg(2) = tmaxj
+      |                                                                        ^
+Warning: ‘tmaxj’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+cbsWtstats.f:282:72:
+
+  282 |       iseg(1) = tmaxi
+      |                                                                        ^
+Warning: ‘tmaxi’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+gfortran  -fPIC  -g -O2  -Wall -c cbststats.f -o cbststats.o
+cbststats.f:258:72:
+
+  258 |                      tmaxj = sxmxi + i2j
+      |                                                                        ^
+Warning: ‘sxmxi’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+gfortran  -fPIC  -g -O2  -Wall -c changepoints-wtd.f -o changepoints-wtd.o
+gfortran  -fPIC  -g -O2  -Wall -c changepoints.f -o changepoints.o
+gfortran  -fPIC  -g -O2  -Wall -c esegment.f -o esegment.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c flchoose.c -o flchoose.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c fphyper.c -o fphyper.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c fpnorm.c -o fpnorm.o
+gfortran  -fPIC  -g -O2  -Wall -c getbdry.f -o getbdry.o
+gfortran  -fPIC  -g -O2  -Wall -c prune.f -o prune.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c rshared.c -o rshared.o
+gfortran  -fPIC  -g -O2  -Wall -c segmentp.f -o segmentp.o
+gfortran  -fPIC  -g -O2  -Wall -c smoothCNA.f -o smoothCNA.o
+gfortran  -fPIC  -g -O2  -Wall -c tailprobs.f -o tailprobs.o
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o DNAcopy.so cbsWtstats.o cbststats.o changepoints-wtd.o changepoints.o esegment.o flchoose.o fphyper.o fpnorm.o getbdry.o prune.o rshared.o segmentp.o smoothCNA.o tailprobs.o -lgfortran -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-DNAcopy/00new/DNAcopy/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (DNAcopy)

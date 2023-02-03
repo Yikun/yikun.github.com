@@ -1,0 +1,167 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data R453Plus1Toolbox
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘R453Plus1Toolbox/DESCRIPTION’ ... OK
+* preparing ‘R453Plus1Toolbox’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘vignette.Rnw’ using Sweave
+Loading required package: VariantAnnotation
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce,
+    anyDuplicated, aperm, append, as.data.frame,
+    basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl,
+    intersect, is.unsorted, lapply, mapply, match,
+    mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff,
+    sort, table, tapply, union, unique, unsplit,
+    which.max, which.min
+
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet,
+    colCollapse, colCounts, colCummaxs, colCummins,
+    colCumprods, colCumsums, colDiffs, colIQRDiffs,
+    colIQRs, colLogSumExps, colMadDiffs, colMads,
+    colMaxs, colMeans2, colMedians, colMins,
+    colOrderStats, colProds, colQuantiles, colRanges,
+    colRanks, colSdDiffs, colSds, colSums2,
+    colTabulates, colVarDiffs, colVars,
+    colWeightedMads, colWeightedMeans,
+    colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys,
+    rowAvgsPerColSet, rowCollapse, rowCounts,
+    rowCummaxs, rowCummins, rowCumprods, rowCumsums,
+    rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2,
+    rowMedians, rowMins, rowOrderStats, rowProds,
+    rowQuantiles, rowRanges, rowRanks, rowSdDiffs,
+    rowSds, rowSums2, rowTabulates, rowVarDiffs,
+    rowVars, rowWeightedMads, rowWeightedMeans,
+    rowWeightedMedians, rowWeightedSds,
+    rowWeightedVars
+
+Loading required package: GenomeInfoDb
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomicRanges
+Loading required package: SummarizedExperiment
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view
+    with 'browseVignettes()'. To cite Bioconductor,
+    see 'citation("Biobase")', and for packages
+    'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+Loading required package: Rsamtools
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+
+Attaching package: ‘VariantAnnotation’
+
+The following object is masked from ‘package:base’:
+
+    tabulate
+
+Warning: 'AVASet(dirname)' is deprecated.
+Use 'AVASet(dirname, avaBin)' instead.
+See help("Deprecated")
+Reading sample data ... done
+Reading reference sequences ... done
+Reading variant data ... done
+Reading amplicon data ... done
+Variants: 
+
+Amplicons: 
+assayDataAmp:4 features,  6 samples
+  element names:forwCountrevCount
+featureDataAmp: 
+
+Reference sequences: 
+Loading required package: BiocParallel
+Loading required package: GenomicAlignments
+combined forward & reverse filter set to 0.05
+forward filter set to 0.1
+reverse filter set to 0.05
+combined forward & reverse filter set to 0
+combined forward & reverse filter set to 0
+Warning: Ensembl will soon enforce the use of https.
+Ensure the 'host' argument includes "https://"
+Reading data ... 
+... from /tmp/RtmphVWB3W/Rinst1b12cc77e0a998/R453Plus1Toolbox/extdata/MapperSet/N01
+... from /tmp/RtmphVWB3W/Rinst1b12cc77e0a998/R453Plus1Toolbox/extdata/MapperSet/N03
+... from /tmp/RtmphVWB3W/Rinst1b12cc77e0a998/R453Plus1Toolbox/extdata/MapperSet/N04
+done
+Extrating chimeric reads with exactly two local alignments.
+Removing reads that do not align to the target region.
+Removing reads with a linker sequence in the middle.
+Removing reads with close local alignments (perhaps small indels).
+Removing duplicated reads (perhaps duplication due to PCR).
+Loading required package: BSgenome.Hsapiens.UCSC.hg19
+Warning in library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called ‘BSgenome.Hsapiens.UCSC.hg19’
+
+Error: processing vignette 'vignette.Rnw' failed with diagnostics:
+ chunk 50 (label = detectBreakpoints) 
+Error in detectBreakpoints(filterReads, minClusterSize = 1) : 
+  library BSgenome.Hsapiens.UCSC.hg19 not found (please try to pass your own genome via function parameters)
+
+--- failed re-building ‘vignette.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘vignette.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted

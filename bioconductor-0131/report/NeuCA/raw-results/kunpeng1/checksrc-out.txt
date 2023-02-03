@@ -1,0 +1,122 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:NeuCA.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings NeuCA_1.5.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/NeuCA.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘NeuCA/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘NeuCA’ version ‘1.5.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘NeuCA’ can be installed ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(NeuCA, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘NeuCA’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... NOTE
+Package in Depends field not imported from: ‘e1071’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+HNN_assign: no visible global function definition for ‘txtProgressBar’
+HNN_assign: no visible global function definition for
+  ‘setTxtProgressBar’
+HNN_assign: no visible global function definition for ‘predict’
+NeuCA: no visible global function definition for ‘is’
+NeuCA: no visible global function definition for ‘assay’
+NeuCA: no visible global function definition for ‘predict’
+SCHwrapper: no visible binding for global variable ‘sd’
+SampleNorm: no visible binding for global variable ‘sd’
+assignCT: no visible global function definition for ‘na.omit’
+cor.det: no visible global function definition for ‘cor’
+train_SCH: no visible global function definition for ‘na.omit’
+train_SCH: no visible global function definition for ‘dist’
+train_SCH: no visible global function definition for ‘hclust’
+Undefined global functions or variables:
+  assay cor dist hclust is na.omit predict sd setTxtProgressBar
+  txtProgressBar
+Consider adding
+  importFrom("methods", "is")
+  importFrom("stats", "cor", "dist", "hclust", "na.omit", "predict",
+             "sd")
+  importFrom("utils", "setTxtProgressBar", "txtProgressBar")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘NeuCA.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘NeuCA.Rmd’ using rmarkdown
+/usr/local/lib/python3.10/dist-packages/tensorflow_io/python/ops/__init__.py:98: UserWarning: unable to load libtensorflow_io_plugins.so: unable to open file: libtensorflow_io_plugins.so, from paths: ['/usr/local/lib/python3.10/dist-packages/tensorflow_io/python/ops/libtensorflow_io_plugins.so']
+caused by: ["[Errno 2] The file to load file system plugin from does not exist.: '/usr/local/lib/python3.10/dist-packages/tensorflow_io/python/ops/libtensorflow_io_plugins.so'"]
+  warnings.warn(f"unable to load libtensorflow_io_plugins.so: {e}")
+/usr/local/lib/python3.10/dist-packages/tensorflow_io/python/ops/__init__.py:104: UserWarning: file system plugins are not loaded: unable to open file: libtensorflow_io.so, from paths: ['/usr/local/lib/python3.10/dist-packages/tensorflow_io/python/ops/libtensorflow_io.so']
+caused by: ['/usr/local/lib/python3.10/dist-packages/tensorflow_io/python/ops/libtensorflow_io.so: cannot open shared object file: No such file or directory']
+  warnings.warn(f"file system plugins are not loaded: {e}")
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 1 WARNING, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/NeuCA.Rcheck/00check.log’
+for details.
+

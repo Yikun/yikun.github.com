@@ -1,0 +1,294 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:MSnID.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings MSnID_1.33.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/MSnID.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘MSnID/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘MSnID’ version ‘1.33.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘MSnID’ can be installed ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(MSnID, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘MSnID’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... NOTE
+Namespaces in Imports field not imported from:
+  ‘BiocGenerics’ ‘BiocStyle’ ‘RUnit’ ‘ggplot2’ ‘msmsTests’ ‘xtable’
+  All declared Imports should be used.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.read_mzIDs.mzR.engine.single.file: no visible binding for global
+  variable ‘peptideRef’
+Undefined global functions or variables:
+  peptideRef
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘runTests.R’
+ ERROR
+Running the tests in ‘tests/runTests.R’ failed.
+Last 13 lines of output:
+   
+  1 Test Suite : 
+  MSnID RUnit Tests - 19 test functions, 0 errors, 1 failure
+  FAILURE in test_data_load: Error in checkIdentical(psms(msnidObj), psms(msnid2)) : FALSE 
+   
+  
+  Test files with failing tests
+  
+     test_data_load.R 
+       test_data_load 
+  
+  
+  Error in BiocGenerics:::testPackage("MSnID") : 
+    unit tests failed for package MSnID
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘handling_mods.Rnw’... OK
+  ‘msnid_vignette.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘handling_mods.Rnw’ using Sweave
+Loading required package: Rcpp
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:dplyr’:
+
+    combine, intersect, setdiff, union
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:dplyr’:
+
+    first, rename
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+
+Attaching package: ‘IRanges’
+
+The following objects are masked from ‘package:dplyr’:
+
+    collapse, desc, slice
+
+Loading required package: XVector
+Loading required package: GenomeInfoDb
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Note, the anticipated/suggested columns in the
+peptide-to-spectrum matching results are:
+-----------------------------------------------
+accession
+calculatedMassToCharge
+chargeState
+experimentalMassToCharge
+isDecoy
+peptide
+spectrumFile
+spectrumID
+Reading from mzIdentMLs ...
+
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Detected extra chararacters in the peptide sequences!
+
+Peptides with no modifications in question were detected. 
+The correspoding identifications will be removed.
+
+snapshotDate(): 2022-12-16
+loading from cache
+Loading required package: AnnotationDbi
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘AnnotationDbi’
+
+The following object is masked from ‘package:dplyr’:
+
+    select
+
+'select()' returned 1:many mapping between keys and columns
+Detected extra chararacters in the peptide sequences!
+
+--- finished re-building ‘handling_mods.Rnw’
+
+--- re-building ‘msnid_vignette.Rnw’ using Sweave
+Loading required package: Rcpp
+Note, the anticipated/suggested columns in the
+peptide-to-spectrum matching results are:
+-----------------------------------------------
+accession
+calculatedMassToCharge
+chargeState
+experimentalMassToCharge
+isDecoy
+peptide
+spectrumFile
+spectrumID
+Reading from mzIdentMLs ...
+
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning in type.convert.default(...) :
+  'as.is' should be specified by the caller; using TRUE
+Warning: The dot-dot notation (`..count..`) was deprecated in ggplot2 3.4.0.
+ℹ Please use `after_stat(count)` instead.
+Killed
+SUMMARY: processing the following file failed:
+  ‘msnid_vignette.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 1 WARNING, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/MSnID.Rcheck/00check.log’
+for details.
+

@@ -1,0 +1,242 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:KEGGgraph.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings KEGGgraph_1.59.3.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/KEGGgraph.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘KEGGgraph/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘KEGGgraph’ version ‘1.59.3’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘KEGGgraph’ can be installed ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Invalid citation information in ‘inst/CITATION’:
+  Warning message:
+  In utils::packageDescription(basename(dir), dirname(dir)) :
+    no package 'KEGGgraph' was found
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(KEGGgraph, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘KEGGgraph’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... WARNING
+checkRd: (7) getRgraphvizEdgeNames.Rd:20: Invalid URL: maito:jitao_david.zhang@roche.com
+checkRd: (7) parseReaction.Rd:23: Invalid URL: mail:jitao_david.zhang@roche.com
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘kegg2graph.R’
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘KEGGgraph.Rnw’ using ‘UTF-8’... OK
+  ‘KEGGgraphApp.Rnw’ using ‘UTF-8’... OK
+ OK
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘KEGGgraph.Rnw’ using Sweave
+
+Attaching package: ‘KEGGgraph’
+
+The following object is masked from ‘package:graphics’:
+
+    plot
+
+The following object is masked from ‘package:base’:
+
+    plot
+
+Loading required package: graph
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: grid
+Loading required package: org.Hs.eg.db
+Loading required package: AnnotationDbi
+Loading required package: stats4
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: IRanges
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:Rgraphviz’:
+
+    from, to
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+
+Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col = edgeColor,  :
+  zero-length arrow is of indeterminate angle and so skipped
+Warning in arrows(head_from[1], head_from[2], head_to[1], head_to[2], col = edgeColor,  :
+  zero-length arrow is of indeterminate angle and so skipped
+trying URL 'https://rest.kegg.jp/get/hsa04010/kgml'
+downloaded 63 KB
+
+trying URL 'https://rest.kegg.jp/get/hsa04070/kgml'
+downloaded 29 KB
+
+Warning in download.file(needdown[i], tmps[i], method = downloadmethod,  :
+  URL 'https://rest.kegg.jp/get/hsa04070/kgml': Timeout of 600 seconds was reached
+
+Error: processing vignette 'KEGGgraph.Rnw' failed with diagnostics:
+ chunk 21 (label = mapk14expand) 
+Error in download.file(needdown[i], tmps[i], method = downloadmethod,  : 
+  download from 'https://rest.kegg.jp/get/hsa04070/kgml' failed
+
+--- failed re-building ‘KEGGgraph.Rnw’
+
+--- re-building ‘KEGGgraphApp.Rnw’ using Sweave
+
+Attaching package: ‘KEGGgraph’
+
+The following object is masked from ‘package:graphics’:
+
+    plot
+
+The following object is masked from ‘package:base’:
+
+    plot
+
+Loading required package: graph
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: grid
+Loading required package: SPIA
+Loading required package: AnnotationDbi
+Loading required package: stats4
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: IRanges
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:Rgraphviz’:
+
+    from, to
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: org.Hs.eg.db
+
+
+trying URL 'https://rest.kegg.jp/get/hsa05210/kgml'
+downloaded 32 KB
+
+--- finished re-building ‘KEGGgraphApp.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘KEGGgraph.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 WARNINGs, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/KEGGgraph.Rcheck/00check.log’
+for details.
+
+

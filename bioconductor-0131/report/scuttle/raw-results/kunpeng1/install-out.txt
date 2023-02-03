@@ -1,0 +1,419 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL scuttle
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘scuttle’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I../inst/include/ -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I../inst/include/ -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c cumulative_prop.cpp -o cumulative_prop.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:12,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:11,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/beachmat.h:24,
+                 from cumulative_prop.cpp:2:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::SparseArraySeed_reader<V, TIT>::SparseArraySeed_reader(Rcpp::RObject) [with V = Rcpp::Vector<13>; TIT = const int*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:561:46:   required from ‘beachmat::lin_SparseArraySeed<V, TIT>::lin_SparseArraySeed(Rcpp::RObject) [with V = Rcpp::Vector<13>; TIT = const int*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:36:39:   required from ‘std::unique_ptr<_Codecvt> beachmat::read_lin_sparse_block_raw(Rcpp::RObject) [with M = beachmat::lin_matrix; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:65:57:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:535:17: warning: comparison of integer expressions of different signedness: ‘const size_t’ {aka ‘const long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  535 |         if (nnz != x.size()) {
+      |             ~~~~^~~~~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:45: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                       ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:73: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                                                   ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:593:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  593 |                 for (int v = 0; v < nnz; ++v, ++rowIt, ++colIt, ++xIt) {
+      |                                 ~~^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::SparseArraySeed_reader<V, TIT>::SparseArraySeed_reader(Rcpp::RObject) [with V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:561:46:   required from ‘beachmat::lin_SparseArraySeed<V, TIT>::lin_SparseArraySeed(Rcpp::RObject) [with V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:38:39:   required from ‘std::unique_ptr<_Codecvt> beachmat::read_lin_sparse_block_raw(Rcpp::RObject) [with M = beachmat::lin_matrix; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:65:57:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:535:17: warning: comparison of integer expressions of different signedness: ‘const size_t’ {aka ‘const long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  535 |         if (nnz != x.size()) {
+      |             ~~~~^~~~~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:45: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                       ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:73: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                                                   ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:593:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  593 |                 for (int v = 0; v < nnz; ++v, ++rowIt, ++colIt, ++xIt) {
+      |                                 ~~^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::SparseArraySeed_reader<V, TIT>::SparseArraySeed_reader(Rcpp::RObject) [with V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:561:46:   required from ‘beachmat::lin_SparseArraySeed<V, TIT>::lin_SparseArraySeed(Rcpp::RObject) [with V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:40:39:   required from ‘std::unique_ptr<_Codecvt> beachmat::read_lin_sparse_block_raw(Rcpp::RObject) [with M = beachmat::lin_matrix; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:65:57:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:535:17: warning: comparison of integer expressions of different signedness: ‘const size_t’ {aka ‘const long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  535 |         if (nnz != x.size()) {
+      |             ~~~~^~~~~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:45: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                       ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:73: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                                                   ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:593:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  593 |                 for (int v = 0; v < nnz; ++v, ++rowIt, ++colIt, ++xIt) {
+      |                                 ~~^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::sparse_index<OUT, I> beachmat::Csparse_core<TIT, I, P>::get_row(size_t, ALT, I*, size_t, size_t) [with OUT = const int*; ALT = int*; TIT = const double*; I = int; P = long unsigned int; size_t = long unsigned int]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:650:42:   required from ‘beachmat::sparse_index<OUT, int> beachmat::SparseArraySeed_reader<V, TIT>::get_row(size_t, ALT, int*, size_t, size_t) [with OUT = const int*; ALT = int*; V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:596:51:   required from ‘beachmat::sparse_index<const int*, int> beachmat::lin_SparseArraySeed<V, TIT>::get_row(size_t, int*, int*, size_t, size_t) [with V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:595:35:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:250:22: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘const long unsigned int’ [-Wsign-compare]
+  250 |             if (idex != *pIt && static_cast<size_t>(i[idex]) == r) {
+      |                 ~~~~~^~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::sparse_index<OUT, I> beachmat::Csparse_core<TIT, I, P>::get_row(size_t, ALT, I*, size_t, size_t) [with OUT = const double*; ALT = double*; TIT = const double*; I = int; P = long unsigned int; size_t = long unsigned int]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:650:42:   required from ‘beachmat::sparse_index<OUT, int> beachmat::SparseArraySeed_reader<V, TIT>::get_row(size_t, ALT, int*, size_t, size_t) [with OUT = const double*; ALT = double*; V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:602:54:   required from ‘beachmat::sparse_index<const double*, int> beachmat::lin_SparseArraySeed<V, TIT>::get_row(size_t, double*, int*, size_t, size_t) [with V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:601:38:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:250:22: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘const long unsigned int’ [-Wsign-compare]
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::sparse_index<OUT, I> beachmat::Csparse_core<TIT, I, P>::get_row(size_t, ALT, I*, size_t, size_t) [with OUT = const int*; ALT = int*; TIT = const int*; I = int; P = long unsigned int; size_t = long unsigned int]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:650:42:   required from ‘beachmat::sparse_index<OUT, int> beachmat::SparseArraySeed_reader<V, TIT>::get_row(size_t, ALT, int*, size_t, size_t) [with OUT = const int*; ALT = int*; V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:596:51:   required from ‘beachmat::sparse_index<const int*, int> beachmat::lin_SparseArraySeed<V, TIT>::get_row(size_t, int*, int*, size_t, size_t) [with V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:595:35:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:250:22: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘const long unsigned int’ [-Wsign-compare]
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::sparse_index<OUT, I> beachmat::Csparse_core<TIT, I, P>::get_row(size_t, ALT, I*, size_t, size_t) [with OUT = const double*; ALT = double*; TIT = const int*; I = int; P = long unsigned int; size_t = long unsigned int]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:650:42:   required from ‘beachmat::sparse_index<OUT, int> beachmat::SparseArraySeed_reader<V, TIT>::get_row(size_t, ALT, int*, size_t, size_t) [with OUT = const double*; ALT = double*; V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:602:54:   required from ‘beachmat::sparse_index<const double*, int> beachmat::lin_SparseArraySeed<V, TIT>::get_row(size_t, double*, int*, size_t, size_t) [with V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:601:38:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:250:22: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘const long unsigned int’ [-Wsign-compare]
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I../inst/include/ -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c downsample_counts.cpp -o downsample_counts.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:12,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:11,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/beachmat.h:24,
+                 from downsample_counts.cpp:2:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::SparseArraySeed_reader<V, TIT>::SparseArraySeed_reader(Rcpp::RObject) [with V = Rcpp::Vector<13>; TIT = const int*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:561:46:   required from ‘beachmat::lin_SparseArraySeed<V, TIT>::lin_SparseArraySeed(Rcpp::RObject) [with V = Rcpp::Vector<13>; TIT = const int*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:36:39:   required from ‘std::unique_ptr<_Codecvt> beachmat::read_lin_sparse_block_raw(Rcpp::RObject) [with M = beachmat::lin_matrix; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:65:57:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:535:17: warning: comparison of integer expressions of different signedness: ‘const size_t’ {aka ‘const long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  535 |         if (nnz != x.size()) {
+      |             ~~~~^~~~~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:45: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                       ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:73: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                                                   ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:593:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  593 |                 for (int v = 0; v < nnz; ++v, ++rowIt, ++colIt, ++xIt) {
+      |                                 ~~^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::SparseArraySeed_reader<V, TIT>::SparseArraySeed_reader(Rcpp::RObject) [with V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:561:46:   required from ‘beachmat::lin_SparseArraySeed<V, TIT>::lin_SparseArraySeed(Rcpp::RObject) [with V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:38:39:   required from ‘std::unique_ptr<_Codecvt> beachmat::read_lin_sparse_block_raw(Rcpp::RObject) [with M = beachmat::lin_matrix; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:65:57:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:535:17: warning: comparison of integer expressions of different signedness: ‘const size_t’ {aka ‘const long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  535 |         if (nnz != x.size()) {
+      |             ~~~~^~~~~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:45: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                       ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:73: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                                                   ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:593:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  593 |                 for (int v = 0; v < nnz; ++v, ++rowIt, ++colIt, ++xIt) {
+      |                                 ~~^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::SparseArraySeed_reader<V, TIT>::SparseArraySeed_reader(Rcpp::RObject) [with V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:561:46:   required from ‘beachmat::lin_SparseArraySeed<V, TIT>::lin_SparseArraySeed(Rcpp::RObject) [with V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:40:39:   required from ‘std::unique_ptr<_Codecvt> beachmat::read_lin_sparse_block_raw(Rcpp::RObject) [with M = beachmat::lin_matrix; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:65:57:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:535:17: warning: comparison of integer expressions of different signedness: ‘const size_t’ {aka ‘const long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  535 |         if (nnz != x.size()) {
+      |             ~~~~^~~~~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:45: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                       ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:73: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                                                   ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:593:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  593 |                 for (int v = 0; v < nnz; ++v, ++rowIt, ++colIt, ++xIt) {
+      |                                 ~~^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::sparse_index<OUT, I> beachmat::Csparse_core<TIT, I, P>::get_row(size_t, ALT, I*, size_t, size_t) [with OUT = const int*; ALT = int*; TIT = const double*; I = int; P = long unsigned int; size_t = long unsigned int]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:650:42:   required from ‘beachmat::sparse_index<OUT, int> beachmat::SparseArraySeed_reader<V, TIT>::get_row(size_t, ALT, int*, size_t, size_t) [with OUT = const int*; ALT = int*; V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:596:51:   required from ‘beachmat::sparse_index<const int*, int> beachmat::lin_SparseArraySeed<V, TIT>::get_row(size_t, int*, int*, size_t, size_t) [with V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:595:35:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:250:22: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘const long unsigned int’ [-Wsign-compare]
+  250 |             if (idex != *pIt && static_cast<size_t>(i[idex]) == r) {
+      |                 ~~~~~^~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::sparse_index<OUT, I> beachmat::Csparse_core<TIT, I, P>::get_row(size_t, ALT, I*, size_t, size_t) [with OUT = const double*; ALT = double*; TIT = const double*; I = int; P = long unsigned int; size_t = long unsigned int]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:650:42:   required from ‘beachmat::sparse_index<OUT, int> beachmat::SparseArraySeed_reader<V, TIT>::get_row(size_t, ALT, int*, size_t, size_t) [with OUT = const double*; ALT = double*; V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:602:54:   required from ‘beachmat::sparse_index<const double*, int> beachmat::lin_SparseArraySeed<V, TIT>::get_row(size_t, double*, int*, size_t, size_t) [with V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:601:38:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:250:22: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘const long unsigned int’ [-Wsign-compare]
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::sparse_index<OUT, I> beachmat::Csparse_core<TIT, I, P>::get_row(size_t, ALT, I*, size_t, size_t) [with OUT = const int*; ALT = int*; TIT = const int*; I = int; P = long unsigned int; size_t = long unsigned int]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:650:42:   required from ‘beachmat::sparse_index<OUT, int> beachmat::SparseArraySeed_reader<V, TIT>::get_row(size_t, ALT, int*, size_t, size_t) [with OUT = const int*; ALT = int*; V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:596:51:   required from ‘beachmat::sparse_index<const int*, int> beachmat::lin_SparseArraySeed<V, TIT>::get_row(size_t, int*, int*, size_t, size_t) [with V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:595:35:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:250:22: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘const long unsigned int’ [-Wsign-compare]
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::sparse_index<OUT, I> beachmat::Csparse_core<TIT, I, P>::get_row(size_t, ALT, I*, size_t, size_t) [with OUT = const double*; ALT = double*; TIT = const int*; I = int; P = long unsigned int; size_t = long unsigned int]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:650:42:   required from ‘beachmat::sparse_index<OUT, int> beachmat::SparseArraySeed_reader<V, TIT>::get_row(size_t, ALT, int*, size_t, size_t) [with OUT = const double*; ALT = double*; V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:602:54:   required from ‘beachmat::sparse_index<const double*, int> beachmat::lin_SparseArraySeed<V, TIT>::get_row(size_t, double*, int*, size_t, size_t) [with V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:601:38:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:250:22: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘const long unsigned int’ [-Wsign-compare]
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I../inst/include/ -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c fit_linear_model.cpp -o fit_linear_model.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:12,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:11,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/beachmat.h:24,
+                 from fit_linear_model.cpp:2:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::SparseArraySeed_reader<V, TIT>::SparseArraySeed_reader(Rcpp::RObject) [with V = Rcpp::Vector<13>; TIT = const int*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:561:46:   required from ‘beachmat::lin_SparseArraySeed<V, TIT>::lin_SparseArraySeed(Rcpp::RObject) [with V = Rcpp::Vector<13>; TIT = const int*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:36:39:   required from ‘std::unique_ptr<_Codecvt> beachmat::read_lin_sparse_block_raw(Rcpp::RObject) [with M = beachmat::lin_matrix; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:65:57:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:535:17: warning: comparison of integer expressions of different signedness: ‘const size_t’ {aka ‘const long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  535 |         if (nnz != x.size()) {
+      |             ~~~~^~~~~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:45: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                       ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:73: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                                                   ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:593:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  593 |                 for (int v = 0; v < nnz; ++v, ++rowIt, ++colIt, ++xIt) {
+      |                                 ~~^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::SparseArraySeed_reader<V, TIT>::SparseArraySeed_reader(Rcpp::RObject) [with V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:561:46:   required from ‘beachmat::lin_SparseArraySeed<V, TIT>::lin_SparseArraySeed(Rcpp::RObject) [with V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:38:39:   required from ‘std::unique_ptr<_Codecvt> beachmat::read_lin_sparse_block_raw(Rcpp::RObject) [with M = beachmat::lin_matrix; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:65:57:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:535:17: warning: comparison of integer expressions of different signedness: ‘const size_t’ {aka ‘const long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  535 |         if (nnz != x.size()) {
+      |             ~~~~^~~~~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:45: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                       ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:73: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                                                   ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:593:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  593 |                 for (int v = 0; v < nnz; ++v, ++rowIt, ++colIt, ++xIt) {
+      |                                 ~~^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::SparseArraySeed_reader<V, TIT>::SparseArraySeed_reader(Rcpp::RObject) [with V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:561:46:   required from ‘beachmat::lin_SparseArraySeed<V, TIT>::lin_SparseArraySeed(Rcpp::RObject) [with V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:40:39:   required from ‘std::unique_ptr<_Codecvt> beachmat::read_lin_sparse_block_raw(Rcpp::RObject) [with M = beachmat::lin_matrix; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:65:57:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:535:17: warning: comparison of integer expressions of different signedness: ‘const size_t’ {aka ‘const long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  535 |         if (nnz != x.size()) {
+      |             ~~~~^~~~~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:45: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                       ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:73: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                                                   ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:593:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  593 |                 for (int v = 0; v < nnz; ++v, ++rowIt, ++colIt, ++xIt) {
+      |                                 ~~^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::sparse_index<OUT, I> beachmat::Csparse_core<TIT, I, P>::get_row(size_t, ALT, I*, size_t, size_t) [with OUT = const int*; ALT = int*; TIT = const double*; I = int; P = long unsigned int; size_t = long unsigned int]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:650:42:   required from ‘beachmat::sparse_index<OUT, int> beachmat::SparseArraySeed_reader<V, TIT>::get_row(size_t, ALT, int*, size_t, size_t) [with OUT = const int*; ALT = int*; V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:596:51:   required from ‘beachmat::sparse_index<const int*, int> beachmat::lin_SparseArraySeed<V, TIT>::get_row(size_t, int*, int*, size_t, size_t) [with V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:595:35:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:250:22: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘const long unsigned int’ [-Wsign-compare]
+  250 |             if (idex != *pIt && static_cast<size_t>(i[idex]) == r) {
+      |                 ~~~~~^~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::sparse_index<OUT, I> beachmat::Csparse_core<TIT, I, P>::get_row(size_t, ALT, I*, size_t, size_t) [with OUT = const double*; ALT = double*; TIT = const double*; I = int; P = long unsigned int; size_t = long unsigned int]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:650:42:   required from ‘beachmat::sparse_index<OUT, int> beachmat::SparseArraySeed_reader<V, TIT>::get_row(size_t, ALT, int*, size_t, size_t) [with OUT = const double*; ALT = double*; V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:602:54:   required from ‘beachmat::sparse_index<const double*, int> beachmat::lin_SparseArraySeed<V, TIT>::get_row(size_t, double*, int*, size_t, size_t) [with V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:601:38:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:250:22: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘const long unsigned int’ [-Wsign-compare]
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::sparse_index<OUT, I> beachmat::Csparse_core<TIT, I, P>::get_row(size_t, ALT, I*, size_t, size_t) [with OUT = const int*; ALT = int*; TIT = const int*; I = int; P = long unsigned int; size_t = long unsigned int]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:650:42:   required from ‘beachmat::sparse_index<OUT, int> beachmat::SparseArraySeed_reader<V, TIT>::get_row(size_t, ALT, int*, size_t, size_t) [with OUT = const int*; ALT = int*; V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:596:51:   required from ‘beachmat::sparse_index<const int*, int> beachmat::lin_SparseArraySeed<V, TIT>::get_row(size_t, int*, int*, size_t, size_t) [with V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:595:35:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:250:22: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘const long unsigned int’ [-Wsign-compare]
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::sparse_index<OUT, I> beachmat::Csparse_core<TIT, I, P>::get_row(size_t, ALT, I*, size_t, size_t) [with OUT = const double*; ALT = double*; TIT = const int*; I = int; P = long unsigned int; size_t = long unsigned int]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:650:42:   required from ‘beachmat::sparse_index<OUT, int> beachmat::SparseArraySeed_reader<V, TIT>::get_row(size_t, ALT, int*, size_t, size_t) [with OUT = const double*; ALT = double*; V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:602:54:   required from ‘beachmat::sparse_index<const double*, int> beachmat::lin_SparseArraySeed<V, TIT>::get_row(size_t, double*, int*, size_t, size_t) [with V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:601:38:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:250:22: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘const long unsigned int’ [-Wsign-compare]
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I../inst/include/ -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c pool_size_factors.cpp -o pool_size_factors.o
+pool_size_factors.cpp: In function ‘Rcpp::List pool_size_factors(Rcpp::RObject, Rcpp::NumericVector, Rcpp::IntegerVector, Rcpp::IntegerVector)’:
+pool_size_factors.cpp:56:15: warning: comparison of integer expressions of different signedness: ‘const size_t’ {aka ‘const long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+   56 |     if (ngenes!=pseudo_cell.size()) {
+      |         ~~~~~~^~~~~~~~~~~~~~~~~~~~
+pool_size_factors.cpp:61:22: warning: comparison of integer expressions of different signedness: ‘R_xlen_t’ {aka ‘long int’} and ‘long unsigned int’ [-Wsign-compare]
+   61 |     if (order.size() < ncells*2-1)  {
+      |         ~~~~~~~~~~~~~^~~~~~~~~~~~
+pool_size_factors.cpp:170:37: warning: comparison of integer expressions of different signedness: ‘int’ and ‘long unsigned int’ [-Wsign-compare]
+  170 |                     for (auto i=0; i<n; ++i, ++val, ++rows) {
+      |                                    ~^~
+In file included from /home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:12,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:11,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/beachmat.h:24,
+                 from pool_size_factors.cpp:2:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::SparseArraySeed_reader<V, TIT>::SparseArraySeed_reader(Rcpp::RObject) [with V = Rcpp::Vector<13>; TIT = const int*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:561:46:   required from ‘beachmat::lin_SparseArraySeed<V, TIT>::lin_SparseArraySeed(Rcpp::RObject) [with V = Rcpp::Vector<13>; TIT = const int*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:36:39:   required from ‘std::unique_ptr<_Codecvt> beachmat::read_lin_sparse_block_raw(Rcpp::RObject) [with M = beachmat::lin_matrix; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:65:57:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:535:17: warning: comparison of integer expressions of different signedness: ‘const size_t’ {aka ‘const long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  535 |         if (nnz != x.size()) {
+      |             ~~~~^~~~~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:45: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                       ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:73: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                                                   ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:593:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  593 |                 for (int v = 0; v < nnz; ++v, ++rowIt, ++colIt, ++xIt) {
+      |                                 ~~^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::SparseArraySeed_reader<V, TIT>::SparseArraySeed_reader(Rcpp::RObject) [with V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:561:46:   required from ‘beachmat::lin_SparseArraySeed<V, TIT>::lin_SparseArraySeed(Rcpp::RObject) [with V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:38:39:   required from ‘std::unique_ptr<_Codecvt> beachmat::read_lin_sparse_block_raw(Rcpp::RObject) [with M = beachmat::lin_matrix; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:65:57:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:535:17: warning: comparison of integer expressions of different signedness: ‘const size_t’ {aka ‘const long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  535 |         if (nnz != x.size()) {
+      |             ~~~~^~~~~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:45: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                       ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:73: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                                                   ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:593:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  593 |                 for (int v = 0; v < nnz; ++v, ++rowIt, ++colIt, ++xIt) {
+      |                                 ~~^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::SparseArraySeed_reader<V, TIT>::SparseArraySeed_reader(Rcpp::RObject) [with V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:561:46:   required from ‘beachmat::lin_SparseArraySeed<V, TIT>::lin_SparseArraySeed(Rcpp::RObject) [with V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:40:39:   required from ‘std::unique_ptr<_Codecvt> beachmat::read_lin_sparse_block_raw(Rcpp::RObject) [with M = beachmat::lin_matrix; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:65:57:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:535:17: warning: comparison of integer expressions of different signedness: ‘const size_t’ {aka ‘const long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  535 |         if (nnz != x.size()) {
+      |             ~~~~^~~~~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:45: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                       ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:73: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                                                   ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:593:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  593 |                 for (int v = 0; v < nnz; ++v, ++rowIt, ++colIt, ++xIt) {
+      |                                 ~~^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::sparse_index<OUT, I> beachmat::Csparse_core<TIT, I, P>::get_row(size_t, ALT, I*, size_t, size_t) [with OUT = const int*; ALT = int*; TIT = const double*; I = int; P = long unsigned int; size_t = long unsigned int]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:650:42:   required from ‘beachmat::sparse_index<OUT, int> beachmat::SparseArraySeed_reader<V, TIT>::get_row(size_t, ALT, int*, size_t, size_t) [with OUT = const int*; ALT = int*; V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:596:51:   required from ‘beachmat::sparse_index<const int*, int> beachmat::lin_SparseArraySeed<V, TIT>::get_row(size_t, int*, int*, size_t, size_t) [with V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:595:35:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:250:22: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘const long unsigned int’ [-Wsign-compare]
+  250 |             if (idex != *pIt && static_cast<size_t>(i[idex]) == r) {
+      |                 ~~~~~^~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::sparse_index<OUT, I> beachmat::Csparse_core<TIT, I, P>::get_row(size_t, ALT, I*, size_t, size_t) [with OUT = const double*; ALT = double*; TIT = const double*; I = int; P = long unsigned int; size_t = long unsigned int]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:650:42:   required from ‘beachmat::sparse_index<OUT, int> beachmat::SparseArraySeed_reader<V, TIT>::get_row(size_t, ALT, int*, size_t, size_t) [with OUT = const double*; ALT = double*; V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:602:54:   required from ‘beachmat::sparse_index<const double*, int> beachmat::lin_SparseArraySeed<V, TIT>::get_row(size_t, double*, int*, size_t, size_t) [with V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:601:38:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:250:22: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘const long unsigned int’ [-Wsign-compare]
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::sparse_index<OUT, I> beachmat::Csparse_core<TIT, I, P>::get_row(size_t, ALT, I*, size_t, size_t) [with OUT = const int*; ALT = int*; TIT = const int*; I = int; P = long unsigned int; size_t = long unsigned int]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:650:42:   required from ‘beachmat::sparse_index<OUT, int> beachmat::SparseArraySeed_reader<V, TIT>::get_row(size_t, ALT, int*, size_t, size_t) [with OUT = const int*; ALT = int*; V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:596:51:   required from ‘beachmat::sparse_index<const int*, int> beachmat::lin_SparseArraySeed<V, TIT>::get_row(size_t, int*, int*, size_t, size_t) [with V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:595:35:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:250:22: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘const long unsigned int’ [-Wsign-compare]
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::sparse_index<OUT, I> beachmat::Csparse_core<TIT, I, P>::get_row(size_t, ALT, I*, size_t, size_t) [with OUT = const double*; ALT = double*; TIT = const int*; I = int; P = long unsigned int; size_t = long unsigned int]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:650:42:   required from ‘beachmat::sparse_index<OUT, int> beachmat::SparseArraySeed_reader<V, TIT>::get_row(size_t, ALT, int*, size_t, size_t) [with OUT = const double*; ALT = double*; V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:602:54:   required from ‘beachmat::sparse_index<const double*, int> beachmat::lin_SparseArraySeed<V, TIT>::get_row(size_t, double*, int*, size_t, size_t) [with V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:601:38:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:250:22: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘const long unsigned int’ [-Wsign-compare]
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I../inst/include/ -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c sparse_summarize.cpp -o sparse_summarize.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I../inst/include/ -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c sum_counts.cpp -o sum_counts.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:12,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:11,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/beachmat.h:24,
+                 from sum_counts.cpp:2:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::SparseArraySeed_reader<V, TIT>::SparseArraySeed_reader(Rcpp::RObject) [with V = Rcpp::Vector<13>; TIT = const int*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:561:46:   required from ‘beachmat::lin_SparseArraySeed<V, TIT>::lin_SparseArraySeed(Rcpp::RObject) [with V = Rcpp::Vector<13>; TIT = const int*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:36:39:   required from ‘std::unique_ptr<_Codecvt> beachmat::read_lin_sparse_block_raw(Rcpp::RObject) [with M = beachmat::lin_matrix; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:65:57:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:535:17: warning: comparison of integer expressions of different signedness: ‘const size_t’ {aka ‘const long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  535 |         if (nnz != x.size()) {
+      |             ~~~~^~~~~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:45: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                       ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:73: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                                                   ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:593:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  593 |                 for (int v = 0; v < nnz; ++v, ++rowIt, ++colIt, ++xIt) {
+      |                                 ~~^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::SparseArraySeed_reader<V, TIT>::SparseArraySeed_reader(Rcpp::RObject) [with V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:561:46:   required from ‘beachmat::lin_SparseArraySeed<V, TIT>::lin_SparseArraySeed(Rcpp::RObject) [with V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:38:39:   required from ‘std::unique_ptr<_Codecvt> beachmat::read_lin_sparse_block_raw(Rcpp::RObject) [with M = beachmat::lin_matrix; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:65:57:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:535:17: warning: comparison of integer expressions of different signedness: ‘const size_t’ {aka ‘const long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  535 |         if (nnz != x.size()) {
+      |             ~~~~^~~~~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:45: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                       ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:73: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                                                   ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:593:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  593 |                 for (int v = 0; v < nnz; ++v, ++rowIt, ++colIt, ++xIt) {
+      |                                 ~~^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::SparseArraySeed_reader<V, TIT>::SparseArraySeed_reader(Rcpp::RObject) [with V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:561:46:   required from ‘beachmat::lin_SparseArraySeed<V, TIT>::lin_SparseArraySeed(Rcpp::RObject) [with V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:40:39:   required from ‘std::unique_ptr<_Codecvt> beachmat::read_lin_sparse_block_raw(Rcpp::RObject) [with M = beachmat::lin_matrix; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/read_lin_block.h:65:57:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:535:17: warning: comparison of integer expressions of different signedness: ‘const size_t’ {aka ‘const long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  535 |         if (nnz != x.size()) {
+      |             ~~~~^~~~~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:45: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                       ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:551:73: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  551 |                     if (lastR <= 0 || lastR > NR || lastC <= 0 || lastC > NC) {
+      |                                                                   ~~~~~~^~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:593:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  593 |                 for (int v = 0; v < nnz; ++v, ++rowIt, ++colIt, ++xIt) {
+      |                                 ~~^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::sparse_index<OUT, I> beachmat::Csparse_core<TIT, I, P>::get_row(size_t, ALT, I*, size_t, size_t) [with OUT = const int*; ALT = int*; TIT = const double*; I = int; P = long unsigned int; size_t = long unsigned int]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:650:42:   required from ‘beachmat::sparse_index<OUT, int> beachmat::SparseArraySeed_reader<V, TIT>::get_row(size_t, ALT, int*, size_t, size_t) [with OUT = const int*; ALT = int*; V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:596:51:   required from ‘beachmat::sparse_index<const int*, int> beachmat::lin_SparseArraySeed<V, TIT>::get_row(size_t, int*, int*, size_t, size_t) [with V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:595:35:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:250:22: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘const long unsigned int’ [-Wsign-compare]
+  250 |             if (idex != *pIt && static_cast<size_t>(i[idex]) == r) {
+      |                 ~~~~~^~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::sparse_index<OUT, I> beachmat::Csparse_core<TIT, I, P>::get_row(size_t, ALT, I*, size_t, size_t) [with OUT = const double*; ALT = double*; TIT = const double*; I = int; P = long unsigned int; size_t = long unsigned int]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:650:42:   required from ‘beachmat::sparse_index<OUT, int> beachmat::SparseArraySeed_reader<V, TIT>::get_row(size_t, ALT, int*, size_t, size_t) [with OUT = const double*; ALT = double*; V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:602:54:   required from ‘beachmat::sparse_index<const double*, int> beachmat::lin_SparseArraySeed<V, TIT>::get_row(size_t, double*, int*, size_t, size_t) [with V = Rcpp::Vector<14, Rcpp::PreserveStorage>; TIT = const double*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:601:38:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:250:22: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘const long unsigned int’ [-Wsign-compare]
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::sparse_index<OUT, I> beachmat::Csparse_core<TIT, I, P>::get_row(size_t, ALT, I*, size_t, size_t) [with OUT = const int*; ALT = int*; TIT = const int*; I = int; P = long unsigned int; size_t = long unsigned int]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:650:42:   required from ‘beachmat::sparse_index<OUT, int> beachmat::SparseArraySeed_reader<V, TIT>::get_row(size_t, ALT, int*, size_t, size_t) [with OUT = const int*; ALT = int*; V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:596:51:   required from ‘beachmat::sparse_index<const int*, int> beachmat::lin_SparseArraySeed<V, TIT>::get_row(size_t, int*, int*, size_t, size_t) [with V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:595:35:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:250:22: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘const long unsigned int’ [-Wsign-compare]
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h: In instantiation of ‘beachmat::sparse_index<OUT, I> beachmat::Csparse_core<TIT, I, P>::get_row(size_t, ALT, I*, size_t, size_t) [with OUT = const double*; ALT = double*; TIT = const int*; I = int; P = long unsigned int; size_t = long unsigned int]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:650:42:   required from ‘beachmat::sparse_index<OUT, int> beachmat::SparseArraySeed_reader<V, TIT>::get_row(size_t, ALT, int*, size_t, size_t) [with OUT = const double*; ALT = double*; V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:602:54:   required from ‘beachmat::sparse_index<const double*, int> beachmat::lin_SparseArraySeed<V, TIT>::get_row(size_t, double*, int*, size_t, size_t) [with V = Rcpp::Vector<10, Rcpp::PreserveStorage>; TIT = const int*; size_t = long unsigned int]’
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/lin_matrix.h:601:38:   required from here
+/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include/beachmat3/Csparse_reader.h:250:22: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘const long unsigned int’ [-Wsign-compare]
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I../inst/include/ -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c utils.cpp -o utils.o
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o scuttle.so RcppExports.o cumulative_prop.o downsample_counts.o fit_linear_model.o pool_size_factors.o sparse_summarize.o sum_counts.o utils.o -llapack -L/home/biocbuild/bbs-3.17-bioc/R/lib -lRblas -lgfortran -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-scuttle/00new/scuttle/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (scuttle)

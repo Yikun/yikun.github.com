@@ -1,0 +1,539 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:PREDA.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings PREDA_1.45.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/PREDA.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘PREDA/DESCRIPTION’ ... OK
+* this is package ‘PREDA’ version ‘1.45.0’
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Package which this enhances but not available for checking: ‘rsprng’
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘PREDA’ can be installed ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(PREDA, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘PREDA’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... NOTE
+'library' or 'require' calls to packages already attached by Depends:
+  ‘annotate’ ‘lokern’ ‘multtest’ ‘stats’
+  Please remove these calls from your code.
+'library' or 'require' calls in package code:
+  ‘Rmpi’ ‘affy’ ‘caTools’ ‘limma’ ‘quantsmooth’ ‘qvalue’ ‘rsprng’
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+Packages in Depends field not imported from:
+  ‘Biobase’ ‘annotate’ ‘lokern’ ‘methods’ ‘multtest’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... NOTE
+Foreign function call to a different package:
+  .Call("mpi_finalize", ..., PACKAGE = "Rmpi")
+See chapter ‘System and foreign language interfaces’ in the ‘Writing R
+Extensions’ manual.
+* checking R code for possible problems ... NOTE
+GE_computeStatistic_onMatrix : <anonymous>: no visible global function
+  definition for ‘t.test’
+GE_computeStatistic_onMatrix : <anonymous>: no visible global function
+  definition for ‘median’
+GE_computeStatistic_onMatrix: no visible global function definition for
+  ‘model.matrix’
+GE_computeStatistic_onMatrix: no visible global function definition for
+  ‘lmFit’
+GE_computeStatistic_onMatrix: no visible global function definition for
+  ‘makeContrasts’
+GE_computeStatistic_onMatrix: no visible global function definition for
+  ‘contrasts.fit’
+GE_computeStatistic_onMatrix: no visible global function definition for
+  ‘eBayes’
+GE_computeStatistic_onMatrix: no visible global function definition for
+  ‘topTable’
+GenomicAnnotationsForPREDAFromfile: no visible global function
+  definition for ‘read.table’
+GenomicAnnotationsFromLibrary: no visible global function definition
+  for ‘annPkgName’
+GenomicAnnotationsFromLibrary: no visible global function definition
+  for ‘keys’
+GenomicAnnotationsFromLibrary: no visible global function definition
+  for ‘lookUp’
+GenomicAnnotationsFromLibrary: no visible global function definition
+  for ‘slot’
+GenomicAnnotationsFromdataframe: no visible global function definition
+  for ‘new’
+GenomicAnnotationsFromfile: no visible global function definition for
+  ‘read.table’
+GenomicRegions2dataframe: no visible global function definition for
+  ‘slot’
+GenomicRegionsFromdataframe: no visible global function definition for
+  ‘new’
+GenomicRegionsFromfile: no visible global function definition for
+  ‘read.table’
+MergeStatisticAnnotations2DataForPREDA: no visible global function
+  definition for ‘slot’
+MergeStatisticAnnotations2DataForPREDA: no visible global function
+  definition for ‘new’
+PREDA_main: no visible global function definition for ‘slot’
+PREDA_main : .Last: no visible global function definition for
+  ‘mpi.comm.size’
+PREDA_main : .Last: no visible global function definition for
+  ‘mpi.close.Rslaves’
+PREDA_main: no visible global function definition for
+  ‘mpi.spawn.Rslaves’
+PREDA_main: no visible global function definition for
+  ‘mpi.bcast.Robj2slave’
+PREDA_main: no visible global function definition for ‘mpi.remote.exec’
+PREDA_main: no visible global function definition for ‘init.sprng’
+PREDA_main: no visible global function definition for ‘mpi.comm.size’
+PREDA_main: no visible global function definition for ‘mpi.comm.rank’
+PREDA_main : Listen_on_slaves: no visible global function definition
+  for ‘mpi.recv.Robj’
+PREDA_main : Listen_on_slaves: no visible global function definition
+  for ‘mpi.any.tag’
+PREDA_main : Listen_on_slaves: no visible global function definition
+  for ‘mpi.get.sourcetag’
+PREDA_main : Listen_on_slaves: no visible global function definition
+  for ‘mpi.send.Robj’
+PREDA_main: no visible global function definition for ‘txtProgressBar’
+PREDA_main: no visible global function definition for
+  ‘setTxtProgressBar’
+PREDA_main: no visible global function definition for ‘mpi.isend.Robj’
+PREDA_main: no visible global function definition for ‘mpi.bcast.cmd’
+PREDA_main: no visible global function definition for ‘mpi.recv.Robj’
+PREDA_main: no visible global function definition for ‘mpi.any.source’
+PREDA_main: no visible global function definition for ‘mpi.any.tag’
+PREDA_main: no visible global function definition for
+  ‘mpi.get.sourcetag’
+PREDA_main: no visible global function definition for ‘free.sprng’
+PREDA_main: no visible global function definition for
+  ‘mpi.close.Rslaves’
+PREDA_main_permRows: no visible global function definition for ‘slot’
+PREDA_main_permRows: no visible global function definition for
+  ‘mpi.spawn.Rslaves’
+PREDA_main_permRows: no visible global function definition for
+  ‘mpi.bcast.Robj2slave’
+PREDA_main_permRows: no visible global function definition for
+  ‘mpi.remote.exec’
+PREDA_main_permRows: no visible global function definition for
+  ‘init.sprng’
+PREDA_main_permRows: no visible global function definition for
+  ‘mpi.comm.size’
+PREDA_main_permRows: no visible global function definition for
+  ‘mpi.comm.rank’
+PREDA_main_permRows : Listen_on_slaves: no visible global function
+  definition for ‘mpi.recv.Robj’
+PREDA_main_permRows : Listen_on_slaves: no visible global function
+  definition for ‘mpi.any.tag’
+PREDA_main_permRows : Listen_on_slaves: no visible global function
+  definition for ‘mpi.get.sourcetag’
+PREDA_main_permRows : Listen_on_slaves: no visible global function
+  definition for ‘mpi.send.Robj’
+PREDA_main_permRows: no visible global function definition for
+  ‘txtProgressBar’
+PREDA_main_permRows: no visible global function definition for
+  ‘setTxtProgressBar’
+PREDA_main_permRows: no visible global function definition for
+  ‘mpi.isend.Robj’
+PREDA_main_permRows: no visible global function definition for
+  ‘mpi.bcast.cmd’
+PREDA_main_permRows: no visible global function definition for
+  ‘mpi.recv.Robj’
+PREDA_main_permRows: no visible global function definition for
+  ‘mpi.any.source’
+PREDA_main_permRows: no visible global function definition for
+  ‘mpi.any.tag’
+PREDA_main_permRows: no visible global function definition for
+  ‘mpi.get.sourcetag’
+PREDA_main_permRows: no visible global function definition for
+  ‘free.sprng’
+PREDA_main_permRows: no visible global function definition for
+  ‘mpi.close.Rslaves’
+PREDA_main_permSamples: no visible global function definition for
+  ‘slot’
+PREDA_main_permSamples: no visible global function definition for
+  ‘mpi.spawn.Rslaves’
+PREDA_main_permSamples: no visible global function definition for
+  ‘mpi.bcast.Robj2slave’
+PREDA_main_permSamples: no visible global function definition for
+  ‘mpi.remote.exec’
+PREDA_main_permSamples: no visible global function definition for
+  ‘init.sprng’
+PREDA_main_permSamples: no visible global function definition for
+  ‘mpi.comm.size’
+PREDA_main_permSamples: no visible global function definition for
+  ‘mpi.comm.rank’
+PREDA_main_permSamples : Listen_on_slaves: no visible global function
+  definition for ‘mpi.recv.Robj’
+PREDA_main_permSamples : Listen_on_slaves: no visible global function
+  definition for ‘mpi.any.tag’
+PREDA_main_permSamples : Listen_on_slaves: no visible global function
+  definition for ‘mpi.get.sourcetag’
+PREDA_main_permSamples : Listen_on_slaves: no visible global function
+  definition for ‘mpi.send.Robj’
+PREDA_main_permSamples: no visible global function definition for
+  ‘txtProgressBar’
+PREDA_main_permSamples: no visible global function definition for
+  ‘setTxtProgressBar’
+PREDA_main_permSamples: no visible global function definition for
+  ‘mpi.isend.Robj’
+PREDA_main_permSamples: no visible global function definition for
+  ‘mpi.bcast.cmd’
+PREDA_main_permSamples: no visible global function definition for
+  ‘mpi.recv.Robj’
+PREDA_main_permSamples: no visible global function definition for
+  ‘mpi.any.source’
+PREDA_main_permSamples: no visible global function definition for
+  ‘mpi.any.tag’
+PREDA_main_permSamples: no visible global function definition for
+  ‘mpi.get.sourcetag’
+PREDA_main_permSamples: no visible global function definition for
+  ‘free.sprng’
+PREDA_main_permSamples: no visible global function definition for
+  ‘mpi.close.Rslaves’
+PREDA_multTestCorrection: no visible global function definition for
+  ‘qvalue’
+PREDA_multTestCorrection: no visible global function definition for
+  ‘mt.rawp2adjp’
+PREDA_quantsmoothStat: no visible global function definition for
+  ‘quantsmooth’
+PREDA_quantsmoothStatPerm: no visible global function definition for
+  ‘quantsmooth’
+PREDA_smoothStat: no visible global function definition for ‘lokerns’
+PREDA_smoothStatPerm: no visible global function definition for
+  ‘lokerns’
+PREDA_splineStat: no visible global function definition for
+  ‘smooth.spline’
+PREDA_splineStat: no visible global function definition for ‘predict’
+PREDA_splineStatPerm: no visible global function definition for
+  ‘smooth.spline’
+PREDA_splineStatPerm: no visible global function definition for
+  ‘predict’
+RMAwithCDFfilter: no visible global function definition for
+  ‘cleancdfname’
+RMAwithCDFfilter: no visible global function definition for
+  ‘multiassign’
+RMAwithCDFfilter: no visible global function definition for
+  ‘annotation<-’
+RMAwithCDFfilter: no visible global function definition for ‘new’
+RMAwithCDFfilter: no visible global function definition for ‘pData’
+RMAwithCDFfilter: no visible global function definition for
+  ‘sampleNames’
+RMAwithCDFfilter: no visible global function definition for
+  ‘phenoData<-’
+RMAwithCDFfilter: no visible global function definition for ‘rma’
+RMAwithCDFfilter: no visible global function definition for
+  ‘read.table’
+RMAwithCDFfilter: no visible global function definition for ‘justRMA’
+StatisticsForPREDAFromdataframe: no visible global function definition
+  for ‘new’
+StatisticsForPREDAFromfile: no visible global function definition for
+  ‘read.table’
+datasetSignatureFromFlags : <anonymous>: no visible global function
+  definition for ‘dbinom’
+genomePlot_improved: no visible global function definition for
+  ‘rainbow’
+genomePlot_improved: no visible global function definition for ‘slot’
+genomePlot_improved: no visible global function definition for ‘par’
+genomePlot_improved : <anonymous>: no visible global function
+  definition for ‘lines’
+genomePlot_improved : <anonymous>: no visible global function
+  definition for ‘slot’
+genomePlot_improved: no visible global function definition for ‘lines’
+genomePlot_improved: no visible global function definition for ‘axis’
+genomePlot_improved: no visible global function definition for
+  ‘polygon’
+getExpectedSmoothFunction: no visible global function definition for
+  ‘existsFunction’
+getExpectedSmoothFunction_runmean : PREDA_runmeanStatPerm_fun: no
+  visible global function definition for ‘runmean’
+getObservedSmoothFunction: no visible global function definition for
+  ‘existsFunction’
+getObservedSmoothFunction_runmean : PREDA_runmeanStat_fun: no visible
+  global function definition for ‘runmean’
+getPermutationMatrix: no visible global function definition for ‘combn’
+getStardadizeFunction : my_standardize: no visible global function
+  definition for ‘sd’
+getStardadizeFunction : my_standardize: no visible global function
+  definition for ‘median’
+DataForPREDA2GenomicAnnotationsForPREDA,DataForPREDA: no visible global
+  function definition for ‘new’
+DataForPREDA2GenomicAnnotationsForPREDA,DataForPREDA: no visible global
+  function definition for ‘slot’
+DataForPREDA2StatisticsForPREDA,DataForPREDA: no visible global
+  function definition for ‘new’
+DataForPREDA2StatisticsForPREDA,DataForPREDA: no visible global
+  function definition for ‘slot’
+DataForPREDAAddEffect_single,DataForPREDA: no visible global function
+  definition for ‘slot’
+DataForPREDAAddEffect_single,DataForPREDA: no visible global function
+  definition for ‘runif’
+DataForPREDAAddEffect_single,DataForPREDA: no visible global function
+  definition for ‘slot<-’
+DataForPREDAAddEffects,DataForPREDA-GenomicRegions: no visible global
+  function definition for ‘slot’
+DataForPREDAMedianCenter,DataForPREDA: no visible global function
+  definition for ‘slot’
+DataForPREDAMedianCenter,DataForPREDA: no visible binding for global
+  variable ‘median’
+DataForPREDAMedianCenter,DataForPREDA: no visible global function
+  definition for ‘slot<-’
+DataForPREDARandomShuffle,DataForPREDA: no visible global function
+  definition for ‘slot’
+DataForPREDARandomShuffle,DataForPREDA: no visible global function
+  definition for ‘slot<-’
+DataForPREDASimulationGetExpectedFlags,DataForPREDA-GenomicRegions: no
+  visible global function definition for ‘slot’
+GE_computeStatistic,ExpressionSet: no visible global function
+  definition for ‘pData’
+GE_computeStatistic,ExpressionSet: no visible global function
+  definition for ‘sampleNames’
+GE_computeStatistic,ExpressionSet: no visible global function
+  definition for ‘exprs’
+GE_simulations_samplingColumns,ExpressionSet: no visible global
+  function definition for ‘pData’
+GE_simulations_samplingColumns,ExpressionSet: no visible global
+  function definition for ‘exprs’
+GE_simulations_samplingColumns,ExpressionSet: no visible global
+  function definition for ‘exprs<-’
+GE_standardize,ExpressionSet: no visible global function definition for
+  ‘exprs’
+GE_standardize,ExpressionSet: no visible global function definition for
+  ‘exprs<-’
+GE_standardize,StatisticsForPREDA: no visible global function
+  definition for ‘slot’
+GenomicAnnotations2GenomicAnnotationsForPREDA,GenomicAnnotations: no
+  visible global function definition for ‘new’
+GenomicAnnotations2GenomicAnnotationsForPREDA,GenomicAnnotations: no
+  visible global function definition for ‘slot’
+GenomicAnnotations2dataframe,GenomicAnnotations: no visible global
+  function definition for ‘slot’
+GenomicAnnotations2dataframe,GenomicAnnotationsForPREDA: no visible
+  global function definition for ‘slot’
+GenomicAnnotations2reference_positions,GenomicAnnotations: no visible
+  global function definition for ‘slot’
+GenomicAnnotationsExtract,GenomicAnnotations: no visible global
+  function definition for ‘slot’
+GenomicAnnotationsFilter_neg,GenomicAnnotations: no visible global
+  function definition for ‘slot’
+GenomicAnnotationsFilter_neg,GenomicAnnotationsForPREDA: no visible
+  global function definition for ‘slot’
+GenomicAnnotationsFilter_pos,DataForPREDA: no visible global function
+  definition for ‘slot’
+GenomicAnnotationsFilter_pos,GenomicAnnotations: no visible global
+  function definition for ‘slot’
+GenomicAnnotationsFilter_pos,GenomicAnnotationsForPREDA: no visible
+  global function definition for ‘slot’
+GenomicAnnotationsForPREDA2GenomicAnnotations,GenomicAnnotationsForPREDA:
+  no visible global function definition for ‘new’
+GenomicAnnotationsForPREDA2GenomicAnnotations,GenomicAnnotationsForPREDA:
+  no visible global function definition for ‘slot’
+GenomicAnnotationsForPREDA2PREDAResults,GenomicAnnotationsForPREDA: no
+  visible global function definition for ‘new’
+GenomicAnnotationsForPREDA2PREDAResults,GenomicAnnotationsForPREDA: no
+  visible global function definition for ‘slot’
+GenomicAnnotationsForPREDAGetExpectedFlags,GenomicAnnotationsForPREDA:
+  no visible global function definition for ‘slot’
+GenomicAnnotationsSortAndCleanNA,GenomicAnnotations: no visible global
+  function definition for ‘slot’
+GenomicAnnotationsSortAndCleanNA,GenomicAnnotationsForPREDA: no visible
+  global function definition for ‘slot’
+GenomicAnnotationsSortAndCleanNA,PREDADataAndResults: no visible global
+  function definition for ‘slot’
+GenomicAnnotationsSortAndCleanNA,PREDADataAndResults: no visible global
+  function definition for ‘new’
+GenomicAnnotationsSortAndCleanNA,PREDAResults: no visible global
+  function definition for ‘slot’
+GenomicAnnotationsSortAndCleanNA,PREDAResults: no visible global
+  function definition for ‘new’
+GenomicRegionsAnnotate,GenomicRegions-GenomicAnnotations: no visible
+  global function definition for ‘slot’
+GenomicRegionsAnnotate,GenomicRegions-GenomicAnnotations: no visible
+  global function definition for ‘new’
+GenomicRegionsChrNumber,GenomicRegions: no visible global function
+  definition for ‘slot’
+GenomicRegionsCreateRegionsIds,GenomicRegions: no visible global
+  function definition for ‘slot’
+GenomicRegionsFilter_neg,GenomicRegions: no visible global function
+  definition for ‘slot’
+GenomicRegionsFilter_pos,GenomicRegions: no visible global function
+  definition for ‘slot’
+GenomicRegionsNumber,GenomicRegions: no visible global function
+  definition for ‘slot’
+GenomicRegionsSpan,GenomicRegions: no visible global function
+  definition for ‘slot’
+PREDADataAndResults2dataframe,PREDADataAndResults: no visible global
+  function definition for ‘slot’
+PREDAResults2GenomicRegions,PREDAResults: no visible global function
+  definition for ‘slot’
+PREDAResults2GenomicRegionsSingle,PREDAResults: no visible global
+  function definition for ‘slot’
+PREDAResults2PREDADataAndResults,PREDAResults: no visible global
+  function definition for ‘slot’
+PREDAResults2PREDADataAndResults,PREDAResults: no visible global
+  function definition for ‘new’
+PREDAResults2dataframe,PREDAResults: no visible global function
+  definition for ‘slot’
+PREDAResultsGetObservedFlags,PREDAResults: no visible global function
+  definition for ‘slot’
+SODEGIR_GEstatistics,ExpressionSet: no visible global function
+  definition for ‘pData’
+SODEGIR_GEstatistics,ExpressionSet: no visible global function
+  definition for ‘sampleNames’
+SODEGIR_GEstatistics,ExpressionSet: no visible global function
+  definition for ‘featureNames’
+StatisticsForPREDA2dataframe,StatisticsForPREDA: no visible global
+  function definition for ‘slot’
+StatisticsForPREDAFilterColumns_neg,StatisticsForPREDA: no visible
+  global function definition for ‘slot’
+StatisticsForPREDAFilterColumns_neg,StatisticsForPREDA: no visible
+  global function definition for ‘new’
+StatisticsForPREDAFilterColumns_pos,DataForPREDA: no visible global
+  function definition for ‘slot’
+StatisticsForPREDAFilterColumns_pos,StatisticsForPREDA: no visible
+  global function definition for ‘slot’
+analysesNames,PREDAResults: no visible global function definition for
+  ‘slot’
+analysesNames,StatisticsForPREDA: no visible global function definition
+  for ‘slot’
+compareFunctionFromStatisticsForPREDA,StatisticsForPREDA: no visible
+  global function definition for ‘slot’
+computeDatasetSignature,GenomicAnnotationsForPREDA: no visible global
+  function definition for ‘slot’
+computeDatasetSignature,GenomicAnnotationsForPREDA: no visible global
+  function definition for ‘new’
+eset2GenomicAnnotations,ExpressionSet: no visible global function
+  definition for ‘featureNames’
+eset2GenomicAnnotations,ExpressionSet: no visible global function
+  definition for ‘annotation’
+genomePlot,GenomicAnnotationsForPREDA: no visible global function
+  definition for ‘slot’
+genomePlot,GenomicAnnotationsForPREDA : <anonymous>: no visible global
+  function definition for ‘slot’
+genomePlot,GenomicAnnotationsForPREDA: no visible global function
+  definition for ‘rainbow’
+genomePlot,GenomicAnnotationsForPREDA: no visible global function
+  definition for ‘par’
+genomePlot,GenomicAnnotationsForPREDA : <anonymous>: no visible global
+  function definition for ‘lines’
+genomePlot,GenomicAnnotationsForPREDA: no visible global function
+  definition for ‘lines’
+genomePlot,GenomicAnnotationsForPREDA: no visible global function
+  definition for ‘axis’
+genomePlot,GenomicAnnotationsForPREDA: no visible global function
+  definition for ‘polygon’
+getStatisticByName,StatisticsForPREDA: no visible global function
+  definition for ‘slot’
+initialize,DataForPREDA: no visible global function definition for
+  ‘new’
+initialize,DataForPREDA: no visible global function definition for
+  ‘slot’
+initialize,GenomicAnnotationsForPREDA: no visible global function
+  definition for ‘new’
+initialize,GenomicAnnotationsForPREDA: no visible global function
+  definition for ‘slot’
+initialize,PREDADataAndResults: no visible global function definition
+  for ‘new’
+initialize,PREDADataAndResults: no visible global function definition
+  for ‘slot’
+initialize,PREDAResults: no visible global function definition for
+  ‘new’
+initialize,PREDAResults: no visible global function definition for
+  ‘slot’
+statisticsForPREDAfromEset,ExpressionSet: no visible global function
+  definition for ‘pData’
+statisticsForPREDAfromEset,ExpressionSet: no visible global function
+  definition for ‘sampleNames’
+statisticsForPREDAfromEset,ExpressionSet: no visible global function
+  definition for ‘featureNames’
+Undefined global functions or variables:
+  annPkgName annotation annotation<- axis cleancdfname combn
+  contrasts.fit dbinom eBayes existsFunction exprs exprs<- featureNames
+  free.sprng init.sprng justRMA keys lines lmFit lokerns lookUp
+  makeContrasts median model.matrix mpi.any.source mpi.any.tag
+  mpi.bcast.Robj2slave mpi.bcast.cmd mpi.close.Rslaves mpi.comm.rank
+  mpi.comm.size mpi.get.sourcetag mpi.isend.Robj mpi.recv.Robj
+  mpi.remote.exec mpi.send.Robj mpi.spawn.Rslaves mt.rawp2adjp
+  multiassign new pData par phenoData<- polygon predict quantsmooth
+  qvalue rainbow read.table rma runif runmean sampleNames sd
+  setTxtProgressBar slot slot<- smooth.spline t.test topTable
+  txtProgressBar
+Consider adding
+  importFrom("grDevices", "rainbow")
+  importFrom("graphics", "axis", "lines", "par", "polygon")
+  importFrom("methods", "existsFunction", "new", "slot", "slot<-")
+  importFrom("stats", "dbinom", "median", "model.matrix", "predict",
+             "runif", "sd", "smooth.spline", "t.test")
+  importFrom("utils", "combn", "read.table", "setTxtProgressBar",
+             "txtProgressBar")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Documented arguments not in \usage in documentation object 'StatisticsForPREDAFromdataframe':
+  ‘...’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘PREDAclasses.Rnw’ using ‘latin1’... OK
+  ‘PREDAtutorial.Rnw’ using ‘latin1’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 WARNINGs, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/PREDA.Rcheck/00check.log’
+for details.
+
+

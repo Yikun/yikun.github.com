@@ -1,0 +1,71 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data FlowSOM
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘FlowSOM/DESCRIPTION’ ... OK
+* preparing ‘FlowSOM’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘FlowSOM.Rnw’ using Sweave
+Loading required package: igraph
+
+Attaching package: ‘igraph’
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+Thanks for using FlowSOM. From version 2.1.4 on, the scale 
+parameter in the FlowSOM function defaults to FALSE
+Plot FlowSOM trees
+Calculate t-SNE
+Plot cluster per metacluster distribution
+Plot heatmap
+Make tables
+Printing
+
+Attaching package: ‘flowCore’
+
+The following object is masked from ‘package:igraph’:
+
+    normalize
+
+Reading file /tmp/RtmpOJV4Ip/Rinst13f07e3af03cf3/FlowSOM/extdata/68983.fcs
+
+Scaling the data
+
+Scaling the data
+
+Building SOM
+
+Mapping data to SOM
+
+Building MST
+
+The packages "CytoML" and "flowWorkspace" are necessary for the function GetFlowJoLabels, but are not available.
+
+Error: processing vignette 'FlowSOM.Rnw' failed with diagnostics:
+ chunk 17 
+Error in PlotPies(fSOM, cellTypes = gatingResult$manual) : 
+  There are 19225 cells, while you provided 0 labels. These numbers should match.
+
+--- failed re-building ‘FlowSOM.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘FlowSOM.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted

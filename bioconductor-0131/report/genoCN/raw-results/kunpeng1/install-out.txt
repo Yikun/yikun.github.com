@@ -1,0 +1,59 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL genoCN
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘genoCN’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c tnorm_mle.c -o tnorm_mle.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c utility.c -o utility.o
+utility.c: In function ‘readfile’:
+utility.c:155:13: warning: ignoring return value of ‘fscanf’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  155 |             fscanf(file,"%s",temp);
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c xCNV.c -o xCNV.o
+xCNV.c: In function ‘emiss’:
+xCNV.c:317:25: warning: unused variable ‘k’ [-Wunused-variable]
+  317 |   int L, N, M, K, i, z, k, nGtp, contam=*contamR, CNA=*CNAR;
+      |                         ^
+xCNV.c:317:16: warning: unused variable ‘K’ [-Wunused-variable]
+  317 |   int L, N, M, K, i, z, k, nGtp, contam=*contamR, CNA=*CNAR;
+      |                ^
+xCNV.c: In function ‘baum_welch’:
+xCNV.c:787:20: warning: unused variable ‘sd_b_tmp’ [-Wunused-variable]
+  787 |   double mu_b_tmp, sd_b_tmp;
+      |                    ^~~~~~~~
+xCNV.c:787:10: warning: unused variable ‘mu_b_tmp’ [-Wunused-variable]
+  787 |   double mu_b_tmp, sd_b_tmp;
+      |          ^~~~~~~~
+xCNV.c:762:10: warning: variable ‘LL’ set but not used [-Wunused-but-set-variable]
+  762 |   int L, LL, N, NN, M, MM, S, LS, CNA = *RCNA,
+      |          ^~
+xCNV.c:1839:17: warning: ‘pbf’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1839 |                 weights(ws, pbf, z, CNA, contam, nGtp, *geno_error);
+      |                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+xCNV.c:1839:17: warning: ‘nGtp’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o genoCN.so tnorm_mle.o utility.o xCNV.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-genoCN/00new/genoCN/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (genoCN)

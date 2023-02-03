@@ -1,0 +1,55 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL cydar
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘cydar’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c compute_density.cpp -o compute_density.o
+compute_density.cpp: In function ‘Rcpp::NumericVector compute_density(Rcpp::List, double)’:
+compute_density.cpp:7:23: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+    7 |     for (size_t i=0; i<distances.size(); ++i) {
+      |                      ~^~~~~~~~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c count_cells.cpp -o count_cells.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c drop_redundant.cpp -o drop_redundant.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c median_int_by_sample.cpp -o median_int_by_sample.o
+median_int_by_sample.cpp: In function ‘Rcpp::List median_int_by_sample(Rcpp::NumericMatrix, Rcpp::List, Rcpp::NumericVector, int)’:
+median_int_by_sample.cpp:22:25: warning: comparison of integer expressions of different signedness: ‘R_xlen_t’ {aka ‘long int’} and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+   22 |     if (sample_id.size()!=ncells) {
+      |         ~~~~~~~~~~~~~~~~^~~~~~~~
+median_int_by_sample.cpp:42:39: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+   42 |             if (curdex <= 0 || curdex > ncells) {
+      |                                ~~~~~~~^~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c weighted_median_int.cpp -o weighted_median_int.o
+weighted_median_int.cpp: In function ‘SEXPREC* weighted_median_int(Rcpp::NumericMatrix, Rcpp::List, Rcpp::NumericVector, Rcpp::NumericVector)’:
+weighted_median_int.cpp:16:25: warning: comparison of integer expressions of different signedness: ‘R_xlen_t’ {aka ‘long int’} and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+   16 |     if (sample_id.size()!=ncells) {
+      |         ~~~~~~~~~~~~~~~~^~~~~~~~
+weighted_median_int.cpp:42:35: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+   42 |             for (size_t icx=0; icx<curass.size(); ++icx) {
+      |                                ~~~^~~~~~~~~~~~~~
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o cydar.so RcppExports.o compute_density.o count_cells.o drop_redundant.o median_int_by_sample.o weighted_median_int.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-cydar/00new/cydar/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (cydar)

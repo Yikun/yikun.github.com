@@ -1,0 +1,58 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL GeneSelectMMD
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘GeneSelectMMD’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c GeneSelectMMD_init.c -o GeneSelectMMD_init.o
+gfortran  -fPIC  -g -O2  -Wall -c Qfunc.f -o Qfunc.o
+gfortran  -fPIC  -g -O2  -Wall -c blas.f -o blas.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c isnan.c -o isnan.o
+gfortran  -fPIC  -g -O2  -Wall -c lbfgsb.f -o lbfgsb.o
+lbfgsb.f:1409:25:
+
+ 1409 |      +                 tu,tl,wmc,wmp,wmw,ddot,tj,tj0,neggi,sbgnrm,
+      |                         ^
+Warning: ‘tu’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+lbfgsb.f:1482:72:
+
+ 1482 |                t(nbreak) = tl/(-neggi)
+      |                                                                        ^
+Warning: ‘tl’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+gfortran  -fPIC  -g -O2  -Wall -c lbfgsbDriver.f -o lbfgsbDriver.o
+lbfgsbDriver.f:243:71:
+
+  243 |      +                 wa(2*mmax*nmax + 5*nmax + 11*mmax*mmax + 8*mmax)
+      |                                                                       1
+Warning: Array ‘wa’ at (1) is larger than limit set by ‘-fmax-stack-var-size=’, moved from stack to static storage. This makes the procedure unsafe when called recursively, or concurrently from multiple threads. Consider increasing the ‘-fmax-stack-var-size=’ limit (or use ‘-frecursive’, which implies unlimited ‘-fmax-stack-var-size’) - or change the code to use an ALLOCATABLE array. If the variable is never accessed concurrently, this warning can be ignored, and the variable could also be declared with the SAVE attribute. [-Wsurprising]
+gfortran  -fPIC  -g -O2  -Wall -c linpack.f -o linpack.o
+gfortran  -fPIC  -g -O2  -Wall -c llkhFun.f -o llkhFun.o
+gfortran  -fPIC  -g -O2  -Wall -c myTtest.f -o myTtest.o
+gfortran  -fPIC  -g -O2  -Wall -c paraEstLoop.f -o paraEstLoop.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c pt.c -o pt.o
+gfortran  -fPIC  -g -O2  -Wall -c timer.f -o timer.o
+gfortran  -fPIC  -g -O2  -Wall -c wiFun.f -o wiFun.o
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o GeneSelectMMD.so GeneSelectMMD_init.o Qfunc.o blas.o isnan.o lbfgsb.o lbfgsbDriver.o linpack.o llkhFun.o myTtest.o paraEstLoop.o pt.o timer.o wiFun.o -lgfortran -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-GeneSelectMMD/00new/GeneSelectMMD/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (GeneSelectMMD)

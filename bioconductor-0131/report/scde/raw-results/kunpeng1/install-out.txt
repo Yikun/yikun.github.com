@@ -1,0 +1,63 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL scde
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘scde’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c bwpca.cpp -o bwpca.o
+bwpca.cpp: In function ‘void set_random_matrix(arma::mat&, arma::mat&)’:
+bwpca.cpp:23:18: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uword’ {aka ‘const unsigned int’} [-Wsign-compare]
+   23 |     for(int j=0;j<target.n_rows;j++) {
+      |                 ~^~~~~~~~~~~~~~
+bwpca.cpp:27:18: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uword’ {aka ‘const unsigned int’} [-Wsign-compare]
+   27 |     for(int i=0;i<target.n_cols;i++) {
+      |                 ~^~~~~~~~~~~~~~
+bwpca.cpp:30:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uword’ {aka ‘const unsigned int’} [-Wsign-compare]
+   30 |         for(int j=0;j<target.n_rows;j++) {
+      |                     ~^~~~~~~~~~~~~~
+bwpca.cpp: In function ‘void set_random_matrices(arma::mat&, arma::mat&, arma::mat&, arma::mat&)’:
+bwpca.cpp:40:18: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uword’ {aka ‘const unsigned int’} [-Wsign-compare]
+   40 |     for(int j=0;j<target1.n_rows;j++) {
+      |                 ~^~~~~~~~~~~~~~~
+bwpca.cpp:44:18: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uword’ {aka ‘const unsigned int’} [-Wsign-compare]
+   44 |     for(int i=0;i<target1.n_cols;i++) {
+      |                 ~^~~~~~~~~~~~~~~
+bwpca.cpp:47:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uword’ {aka ‘const unsigned int’} [-Wsign-compare]
+   47 |         for(int j=0;j<target1.n_rows;j++) {
+      |                     ~^~~~~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c jpmatLogBoot.cpp -o jpmatLogBoot.o
+jpmatLogBoot.cpp: In function ‘SEXPREC* logBootPosterior(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)’:
+jpmatLogBoot.cpp:200:24: warning: unused variable ‘maxv’ [-Wunused-variable]
+  200 |                 double maxv=nbp.max(maxij);
+      |                        ^~~~
+jpmatLogBoot.cpp: In function ‘SEXPREC* logBootBatchPosterior(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)’:
+jpmatLogBoot.cpp:443:24: warning: unused variable ‘maxv’ [-Wunused-variable]
+  443 |                 double maxv=nbp.max(maxij);
+      |                        ^~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c matSlideMult.cpp -o matSlideMult.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c pagoda.cpp -o pagoda.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o scde.so bwpca.o jpmatLogBoot.o matSlideMult.o pagoda.o -llapack -L/home/biocbuild/bbs-3.17-bioc/R/lib -lRblas -lgfortran -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-scde/00new/scde/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (scde)

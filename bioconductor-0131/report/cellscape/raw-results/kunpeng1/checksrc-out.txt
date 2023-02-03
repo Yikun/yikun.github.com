@@ -1,0 +1,146 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:cellscape.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings cellscape_1.23.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/cellscape.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘cellscape/DESCRIPTION’ ... OK
+* this is package ‘cellscape’ version ‘1.23.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘cellscape’ can be installed ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(cellscape, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘cellscape’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... NOTE
+Namespace in Imports field not imported from: ‘plyr’
+  All declared Imports should be used.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+cellscape: no visible global function definition for ‘setNames’
+cellscape: no visible global function definition for ‘melt’
+cellscape: no visible global function definition for ‘na.omit’
+cellscape: no visible global function definition for ‘combn’
+cellscape: no visible binding for global variable ‘site’
+cellscape: no visible binding for global variable ‘genotype’
+cellscape: no visible binding for global variable ‘VAF’
+cellscape: no visible global function definition for ‘n’
+cellscape: no visible binding for global variable ‘n_gt’
+cellscape: no visible binding for global variable ‘n’
+cellscape: no visible binding for global variable ‘timepoint’
+cellscape: no visible binding for global variable ‘single_cell_id’
+getCNVHeatmapForEachSC: no visible binding for global variable
+  ‘single_cell_id’
+getCNVHeatmapForEachSC: no visible binding for global variable ‘px’
+getCNVHeatmapForEachSC: no visible binding for global variable
+  ‘px_width’
+getCNVHeatmapForEachSC: no visible binding for global variable ‘chr’
+getCNVHeatmapForEachSC: no visible binding for global variable
+  ‘chrom_index’
+getCNVHeatmapForEachSC: no visible binding for global variable
+  ‘copy_number’
+getCNVHeatmapForEachSC: no visible binding for global variable ‘sc_id’
+getCNVHeatmapForEachSC: no visible binding for global variable
+  ‘mode_cnv’
+getCNVHeatmapForEachSC: no visible binding for global variable
+  ‘cumsum_values’
+getMutOrder: no visible global function definition for ‘dist’
+getMutOrder: no visible global function definition for ‘hclust’
+getMutOrder: no visible binding for global variable ‘site’
+getMutOrder: no visible binding for global variable ‘VAF’
+getMutOrder: no visible global function definition for ‘lm’
+getMutOrder: no visible binding for global variable ‘na.omit’
+getMutOrder: no visible global function definition for ‘coef’
+getMutationsData: no visible binding for global variable
+  ‘show_warnings’
+getTargetedHeatmapForEachSC: no visible binding for global variable
+  ‘single_cell_id’
+getTargetedHeatmapForEachSC: no visible binding for global variable
+  ‘chr’
+getTargetedHeatmapForEachSC: no visible binding for global variable
+  ‘coord’
+Undefined global functions or variables:
+  VAF chr chrom_index coef combn coord copy_number cumsum_values dist
+  genotype hclust lm melt mode_cnv n n_gt na.omit px px_width sc_id
+  setNames show_warnings single_cell_id site timepoint
+Consider adding
+  importFrom("stats", "coef", "dist", "hclust", "lm", "na.omit",
+             "setNames")
+  importFrom("utils", "combn")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Duplicated \argument entries in documentation object 'dfs_tree':
+  ‘chrom_bounds’ ‘ncols’ ‘chrom_bounds’ ‘cnv_data’ ‘chrom_bounds’
+  ‘n_bp_per_pixel’ ‘mut_data’ ‘width’ ‘height’ ‘mutations’ ‘height’
+  ‘width’ ‘clonal_prev’ ‘tree_edges’ ‘alpha’ ‘clonal_prev’ ‘tree_edges’
+  ‘genotype_position’ ‘clone_colours’ ‘perturbations’ ‘mutations’
+  ‘tree_edges’ ‘clonal_prev’ ‘clonal_prev’ ‘tree_edges’ ‘clone_colours’
+  ‘mutations’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘cellscape_vignette.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 WARNINGs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/cellscape.Rcheck/00check.log’
+for details.
+
+

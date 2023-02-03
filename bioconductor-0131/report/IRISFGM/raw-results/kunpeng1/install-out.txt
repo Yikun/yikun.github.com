@@ -1,0 +1,69 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL IRISFGM
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘IRISFGM’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include   -fopenmp -DVER=2.08 -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include   -fopenmp -DVER=2.08 -fPIC  -g -O2  -Wall -c cluster.cpp -o cluster.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include   -fopenmp -DVER=2.08 -fPIC  -g -O2  -Wall -c expand.cpp -o expand.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include   -fopenmp -DVER=2.08 -fPIC  -g -O2  -Wall -c get_options.cpp -o get_options.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c getline.c -o getline.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include   -fopenmp -DVER=2.08 -fPIC  -g -O2  -Wall -c main.cpp -o main.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include   -fopenmp -DVER=2.08 -fPIC  -g -O2  -Wall -c make_graph.cpp -o make_graph.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include   -fopenmp -DVER=2.08 -fPIC  -g -O2  -Wall -c rcpp_irisfgm.cpp -o rcpp_irisfgm.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include   -fopenmp -DVER=2.08 -fPIC  -g -O2  -Wall -c read_array.cpp -o read_array.o
+read_array.cpp: In function ‘void discretize_new(const char*)’:
+read_array.cpp:882:26: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘__gnu_cxx::__alloc_traits<std::allocator<long unsigned int>, long unsigned int>::value_type’ {aka ‘long unsigned int’} [-Wformat=]
+  882 |         fprintf(F2, "%s_%d", genes_n[id], eflags[id][i]);
+      |                         ~^
+      |                          |
+      |                          int
+      |                         %ld
+read_array.cpp:883:35: warning: comparison of integer expressions of different signedness: ‘std::size_t’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+  883 |         for (std::size_t j = 0; j < cols; j++) {
+      |                                 ~~^~~~~~
+read_array.cpp: In function ‘void discretize_rpkm(const char*)’:
+read_array.cpp:1376:26: warning: format ‘%d’ expects argument of type ‘int’, but argument 4 has type ‘__gnu_cxx::__alloc_traits<std::allocator<long unsigned int>, long unsigned int>::value_type’ {aka ‘long unsigned int’} [-Wformat=]
+ 1376 |         fprintf(F2, "%s_%d", genes_n[id], eflags[id][i]);
+      |                         ~^
+      |                          |
+      |                          int
+      |                         %ld
+read_array.cpp:1377:35: warning: comparison of integer expressions of different signedness: ‘std::size_t’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+ 1377 |         for (std::size_t j = 0; j < cols; j++) {
+      |                                 ~~^~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include   -fopenmp -DVER=2.08 -fPIC  -g -O2  -Wall -c struct.cpp -o struct.o
+struct.cpp: In function ‘void uglyTime(const char*, ...)’:
+struct.cpp:75:15: warning: variable ‘lastTime’ set but not used [-Wunused-but-set-variable]
+   75 |   static long lastTime = 0;
+      |               ^~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include   -fopenmp -DVER=2.08 -fPIC  -g -O2  -Wall -c write_block.cpp -o write_block.o
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o IRISFGM.so RcppExports.o cluster.o expand.o get_options.o getline.o main.o make_graph.o rcpp_irisfgm.o read_array.o struct.o write_block.o -fopenmp -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-IRISFGM/00new/IRISFGM/libs
+** R
+** data
+** byte-compile and prepare package for lazy loading
+Creating a generic function from function ‘ReadFrom10X_h5’ in package ‘IRISFGM’
+Creating a generic function from function ‘ReadFrom10X_folder’ in package ‘IRISFGM’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (IRISFGM)

@@ -1,0 +1,48 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL BufferedMatrix
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘BufferedMatrix’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c RBufferedMatrix.c -o RBufferedMatrix.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c doubleBufferedMatrix.c -o doubleBufferedMatrix.o
+doubleBufferedMatrix.c: In function ‘dbm_ReadOnlyMode’:
+doubleBufferedMatrix.c:1580:7: warning: suggest parentheses around operand of ‘!’ or change ‘&’ to ‘&&’ or ‘!’ to ‘~’ [-Wparentheses]
+ 1580 |   if (!(Matrix->readonly) & setting){
+      |       ^~~~~~~~~~~~~~~~~~~
+At top level:
+doubleBufferedMatrix.c:3327:12: warning: ‘sort_double’ defined but not used [-Wunused-function]
+ 3327 | static int sort_double(const double *a1,const double *a2){
+      |            ^~~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c doubleBufferedMatrix_C_tests.c -o doubleBufferedMatrix_C_tests.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c init_package.c -o init_package.o
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o BufferedMatrix.so RBufferedMatrix.o doubleBufferedMatrix.o doubleBufferedMatrix_C_tests.o init_package.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-BufferedMatrix/00new/BufferedMatrix/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a new generic function for ‘rowMeans’ in package ‘BufferedMatrix’
+Creating a new generic function for ‘rowSums’ in package ‘BufferedMatrix’
+Creating a new generic function for ‘colMeans’ in package ‘BufferedMatrix’
+Creating a new generic function for ‘colSums’ in package ‘BufferedMatrix’
+Creating a generic function for ‘ncol’ from package ‘base’ in package ‘BufferedMatrix’
+Creating a generic function for ‘nrow’ from package ‘base’ in package ‘BufferedMatrix’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (BufferedMatrix)

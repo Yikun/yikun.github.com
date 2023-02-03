@@ -1,0 +1,135 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:limma.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings limma_3.55.4.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/limma.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘limma/DESCRIPTION’ ... OK
+* this is package ‘limma’ version ‘3.55.4’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘limma’ can be installed ... OK
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Invalid citation information in ‘inst/CITATION’:
+  Warning message:
+  In utils::packageDescription(basename(dir), dirname(dir)) :
+    no package 'limma' was found
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(limma, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘limma’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘limma-Tests.R’
+  Comparing ‘limma-Tests.Rout’ to ‘limma-Tests.Rout.save’ ...504,509c504,509
+<  Min.   :-5.88010   Min.   :-5.66985  
+<  1st Qu.:-1.18497   1st Qu.:-1.57014  
+<  Median :-0.21643   Median : 0.04823  
+<  Mean   : 0.03489   Mean   :-0.05481  
+<  3rd Qu.: 1.49638   3rd Qu.: 1.45113  
+<  Max.   : 7.07506   Max.   : 6.19744  
+---
+>  Min.   :-5.88044   Min.   :-5.66985  
+>  1st Qu.:-1.18483   1st Qu.:-1.57014  
+>  Median :-0.21632   Median : 0.04823  
+>  Mean   : 0.03487   Mean   :-0.05481  
+>  3rd Qu.: 1.49669   3rd Qu.: 1.45113  
+>  Max.   : 7.07324   Max.   : 6.19744  
+520,524c520,524
+< [1,] -1.1669589  4.5558123
+< [2,]  0.8969743  0.3296544
+< [3,]  2.8245754  1.4249960
+< [4,] -1.8532747  0.4804851
+< [5,]  1.9159023 -5.5087631
+---
+> [1,] -1.1689588  4.5558123
+> [2,]  0.8971363  0.3296544
+> [3,]  2.8247439  1.4249960
+> [4,] -1.8533240  0.4804851
+> [5,]  1.9158459 -5.5087631
+535,539c535,539
+< [1,] -1.1669589  4.5558123
+< [2,]  0.8969743  0.3296544
+< [3,]  2.8245754  1.4249960
+< [4,] -1.8532747  0.4804851
+< [5,]  1.9159023 -5.5087631
+---
+> [1,] -1.1689588  4.5558123
+> [2,]  0.8971363  0.3296544
+> [3,]  2.8247439  1.4249960
+> [4,] -1.8533240  0.4804851
+> [5,]  1.9158459 -5.5087631
+871,872c871,872
+< mu+alpha    0.3333333  3.333333e-01 -1.232595e-32
+< mu+beta    -0.3333333 -1.232595e-32  3.333333e-01
+---
+> mu+alpha    0.3333333 3.333333e-01  5.551115e-17
+> mu+beta    -0.3333333 5.551115e-17  3.333333e-01
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘intro.Rnw’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 WARNINGs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/limma.Rcheck/00check.log’
+for details.
+
+

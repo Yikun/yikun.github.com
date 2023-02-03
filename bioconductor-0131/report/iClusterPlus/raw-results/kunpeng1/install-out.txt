@@ -1,0 +1,433 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL iClusterPlus
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘iClusterPlus’ ...
+** using staged installation
+ This package has only been tested with gfortran.
+ So some checks are needed.
+ R_HOME is /home/biocbuild/bbs-3.17-bioc/R
+Attempting to determine R_ARCH...
+R_ARCH is 
+Attempting to detect how R was configured for Fortran 90....
+  R configured for gfortran; Good!
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c iClusterBayes.c -o iClusterBayes.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R/include/R.h:78,
+                 from iClusterBayes.c:7:
+iClusterBayes.c: In function ‘rmvnormal’:
+iClusterBayes.c:87:12: error: too few arguments to function ‘dpotrf_’
+   87 |   F77_CALL(dpotrf)(uplo,n,tempcov,n,&info);
+      |            ^~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/Lapack.h:825:10: note: declared here
+  825 | F77_NAME(dpotrf)(const char* uplo, const int* n,
+      |          ^~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/Lapack.h:825:1: note: in expansion of macro ‘F77_NAME’
+  825 | F77_NAME(dpotrf)(const char* uplo, const int* n,
+      | ^~~~~~~~
+iClusterBayes.c:103:12: error: too few arguments to function ‘dgemv_’
+  103 |   F77_CALL(dgemv)(transN,n,n,&ONE,tempcov,n,zvec,&incx, &ZERO,vec, &incy);
+      |            ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:10: note: declared here
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:1: note: in expansion of macro ‘F77_NAME’
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      | ^~~~~~~~
+iClusterBayes.c: In function ‘bvsNormal’:
+iClusterBayes.c:166:12: error: too few arguments to function ‘dgemm_’
+  166 |   F77_CALL(dgemm)(transT,transN,&k1,&k1,n,&ONE,C1Z,n,C1Z,n,&ZERO,ZtZ,&k1);
+      |            ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:10: note: declared here
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:1: note: in expansion of macro ‘F77_NAME’
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      | ^~~~~~~~
+iClusterBayes.c:171:12: error: too few arguments to function ‘dgemm_’
+  171 |   F77_CALL(dgemm)(transT,transN,&k1,p,n,&ONE,C1Z,n,X,n,&ZERO,ZtX,&k1);
+      |            ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:10: note: declared here
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:1: note: in expansion of macro ‘F77_NAME’
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      | ^~~~~~~~
+iClusterBayes.c:197:12: error: too few arguments to function ‘dgemm_’
+  197 |   F77_CALL(dgemm)(transN,transT,n,p, &k1,&ONE,C1Z,n,alphaBeta,p,&ZERO,meanX,n);
+      |            ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:10: note: declared here
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:1: note: in expansion of macro ‘F77_NAME’
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      | ^~~~~~~~
+iClusterBayes.c:249:14: error: too few arguments to function ‘dgemv_’
+  249 |     F77_CALL(dgemv)(transN,&k1,&k1,&ONE,beta_invV,&k1,ZtXj,&incx, &ZERO,beta_m, &incy);
+      |              ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:10: note: declared here
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:1: note: in expansion of macro ‘F77_NAME’
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      | ^~~~~~~~
+iClusterBayes.c:293:12: error: too few arguments to function ‘dgemm_’
+  293 |   F77_CALL(dgemm)(transN,transT,n,p, &k1,&ONE,C1Z,n,alphaBeta2,p,&ZERO,meanX,n);
+      |            ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:10: note: declared here
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:1: note: in expansion of macro ‘F77_NAME’
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      | ^~~~~~~~
+iClusterBayes.c:306:12: error: too few arguments to function ‘dgemm_’
+  306 |   F77_CALL(dgemm)(transN,transT,n,p, &k1,&ONE,C1Z,n,alphaBeta2,p,&ZERO,meanX_p,n);
+      |            ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:10: note: declared here
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:1: note: in expansion of macro ‘F77_NAME’
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      | ^~~~~~~~
+iClusterBayes.c: In function ‘bvsPoisson’:
+iClusterBayes.c:422:12: error: too few arguments to function ‘dgemm_’
+  422 |   F77_CALL(dgemm)(transT,transN,&k1,&k1,n,&ONE,C1Z,n,C1Z,n,&ZERO,ZtZ,&k1);
+      |            ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:10: note: declared here
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:1: note: in expansion of macro ‘F77_NAME’
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      | ^~~~~~~~
+iClusterBayes.c:465:12: error: too few arguments to function ‘dgemm_’
+  465 |   F77_CALL(dgemm)(transN,transT,n,p, &k1,&ONE,C1Z,n,alphaBeta2,p,&ZERO,ZtBeta,n);
+      |            ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:10: note: declared here
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:1: note: in expansion of macro ‘F77_NAME’
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      | ^~~~~~~~
+iClusterBayes.c:480:12: error: too few arguments to function ‘dgemm_’
+  480 |   F77_CALL(dgemm)(transN,transT,n,p, &k1,&ONE,C1Z,n,alphaBeta2,p,&ZERO,ZtBeta_p,n);
+      |            ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:10: note: declared here
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:1: note: in expansion of macro ‘F77_NAME’
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      | ^~~~~~~~
+iClusterBayes.c:501:13: error: too few arguments to function ‘dgemv_’
+  501 |    F77_CALL(dgemv)(transN,&k1,&k1,&ONE,invSigma0,&k1,tempab,&incx, &ZERO,invSigmaBeta0, &incy);
+      |             ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:10: note: declared here
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:1: note: in expansion of macro ‘F77_NAME’
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      | ^~~~~~~~
+iClusterBayes.c:505:13: error: too few arguments to function ‘dgemv_’
+  505 |    F77_CALL(dgemv)(transN,&k1,&k1,&ONE,invSigma0,&k1,tempab_p,&incx, &ZERO,invSigmaBeta0, &incy);
+      |             ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:10: note: declared here
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:1: note: in expansion of macro ‘F77_NAME’
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      | ^~~~~~~~
+iClusterBayes.c:548:16: error: too few arguments to function ‘dgemv_’
+  548 |       F77_CALL(dgemv)(transN,n,&k1,&ONE,C1Z,n,beta_m,&incx,&ZERO,Zbeta,&incy);
+      |                ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:10: note: declared here
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:1: note: in expansion of macro ‘F77_NAME’
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      | ^~~~~~~~
+iClusterBayes.c:551:16: error: too few arguments to function ‘dgemv_’
+  551 |       F77_CALL(dgemv)(transN,n,&k1,&ONE,C1Z,n,beta_p,&incx,&ZERO,Zbeta_p,&incy);
+      |                ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:10: note: declared here
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:1: note: in expansion of macro ‘F77_NAME’
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      | ^~~~~~~~
+iClusterBayes.c:570:16: error: too few arguments to function ‘dgemv_’
+  570 |       F77_CALL(dgemv)(transN,&k1,&k1,&ONE,invSigma0,&k1,tempab,&incx, &ZERO,invSigmaBeta0, &incy);
+      |                ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:10: note: declared here
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:1: note: in expansion of macro ‘F77_NAME’
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      | ^~~~~~~~
+iClusterBayes.c:574:16: error: too few arguments to function ‘dgemv_’
+  574 |       F77_CALL(dgemv)(transN,&k1,&k1,&ONE,invSigma0,&k1,tempab_p,&incx, &ZERO,invSigmaBeta0, &incy);
+      |                ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:10: note: declared here
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:1: note: in expansion of macro ‘F77_NAME’
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      | ^~~~~~~~
+iClusterBayes.c: In function ‘bvsBinom’:
+iClusterBayes.c:670:12: error: too few arguments to function ‘dgemm_’
+  670 |   F77_CALL(dgemm)(transT,transN,&k1,&k1,n,&ONE,C1Z,n,C1Z,n,&ZERO,ZtZ,&k1);
+      |            ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:10: note: declared here
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:1: note: in expansion of macro ‘F77_NAME’
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      | ^~~~~~~~
+iClusterBayes.c:713:12: error: too few arguments to function ‘dgemm_’
+  713 |   F77_CALL(dgemm)(transN,transT,n,p, &k1,&ONE,C1Z,n,alphaBeta2,p,&ZERO,ZtBeta,n);
+      |            ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:10: note: declared here
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:1: note: in expansion of macro ‘F77_NAME’
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      | ^~~~~~~~
+iClusterBayes.c:728:12: error: too few arguments to function ‘dgemm_’
+  728 |   F77_CALL(dgemm)(transN,transT,n,p, &k1,&ONE,C1Z,n,alphaBeta2,p,&ZERO,ZtBeta_p,n);
+      |            ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:10: note: declared here
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:207:1: note: in expansion of macro ‘F77_NAME’
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      | ^~~~~~~~
+iClusterBayes.c:754:13: error: too few arguments to function ‘dgemv_’
+  754 |    F77_CALL(dgemv)(transN,&k1,&k1,&ONE,invSigma0,&k1,tempab,&incx, &ZERO,invSigmaBeta0, &incy);
+      |             ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:10: note: declared here
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:1: note: in expansion of macro ‘F77_NAME’
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      | ^~~~~~~~
+iClusterBayes.c:757:13: error: too few arguments to function ‘dgemv_’
+  757 |    F77_CALL(dgemv)(transN,&k1,&k1,&ONE,invSigma0,&k1,tempab_p,&incx, &ZERO,invSigmaBeta0, &incy);
+      |             ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:10: note: declared here
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:1: note: in expansion of macro ‘F77_NAME’
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      | ^~~~~~~~
+iClusterBayes.c:800:16: error: too few arguments to function ‘dgemv_’
+  800 |       F77_CALL(dgemv)(transN,n,&k1,&ONE,C1Z,n,beta_m,&incx,&ZERO,Zbeta,&incy);
+      |                ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:10: note: declared here
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:1: note: in expansion of macro ‘F77_NAME’
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      | ^~~~~~~~
+iClusterBayes.c:803:16: error: too few arguments to function ‘dgemv_’
+  803 |       F77_CALL(dgemv)(transN,n,&k1,&ONE,C1Z,n,beta_p,&incx,&ZERO,Zbeta_p,&incy);
+      |                ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:10: note: declared here
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:1: note: in expansion of macro ‘F77_NAME’
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      | ^~~~~~~~
+iClusterBayes.c:827:16: error: too few arguments to function ‘dgemv_’
+  827 |       F77_CALL(dgemv)(transN,&k1,&k1,&ONE,invSigma0,&k1,tempab,&incx, &ZERO,invSigmaBeta0, &incy);
+      |                ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:10: note: declared here
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:1: note: in expansion of macro ‘F77_NAME’
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      | ^~~~~~~~
+iClusterBayes.c:831:16: error: too few arguments to function ‘dgemv_’
+  831 |       F77_CALL(dgemv)(transN,&k1,&k1,&ONE,invSigma0,&k1,tempab_p,&incx, &ZERO,invSigmaBeta0, &incy);
+      |                ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:10: note: declared here
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/BLAS.h:107:1: note: in expansion of macro ‘F77_NAME’
+  107 | F77_NAME(dgemv)(const char *trans, const int *m, const int *n,
+      | ^~~~~~~~
+iClusterBayes.c: In function ‘mcmcBayes’:
+iClusterBayes.c:1212:28: warning: variable ‘Zdraw’ set but not used [-Wunused-but-set-variable]
+ 1212 |   int i,j,h,n,k,ID,Zburnin,Zdraw,ndt,nk,thin,nthin,remainder,ty0,p0,ty1,p1,ty2,p2,ty3,p3,ty4,p4,ty5,p5,betaBurnin,betaDraw,p0k,p1k,p2k,p3k,p4k,p5k;
+      |                            ^~~~~
+iClusterBayes.c:1212:20: warning: variable ‘Zburnin’ set but not used [-Wunused-but-set-variable]
+ 1212 |   int i,j,h,n,k,ID,Zburnin,Zdraw,ndt,nk,thin,nthin,remainder,ty0,p0,ty1,p1,ty2,p2,ty3,p3,ty4,p4,ty5,p5,betaBurnin,betaDraw,p0k,p1k,p2k,p3k,p4k,p5k;
+      |                    ^~~~~~~
+make: *** [/home/biocbuild/bbs-3.17-bioc/R/etc/Makeconf:191: iClusterBayes.o] Error 1
+ERROR: compilation failed for package ‘iClusterPlus’
+* removing ‘/home/biocbuild/bbs-3.17-bioc/R/site-library/iClusterPlus’

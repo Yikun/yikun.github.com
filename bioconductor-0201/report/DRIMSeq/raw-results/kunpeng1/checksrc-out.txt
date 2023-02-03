@@ -1,0 +1,119 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:DRIMSeq.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings DRIMSeq_1.27.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/DRIMSeq.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘DRIMSeq/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘DRIMSeq’ version ‘1.27.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘DRIMSeq’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... NOTE
+Problems with news in ‘NEWS’:
+  Cannot process chunk/lines:
+    v0.99.0: - Bioconductor submission.
+  Cannot process chunk/lines:
+    v1.1.2: - Bioconductor accepted devel version.
+  Cannot process chunk/lines:
+    v1.1.3: - New features: 
+    	i) The level of moderation is calculated automatically. 
+    	ii) Permutation approach to adjust p-values in sQTL analyses.
+  Cannot process chunk/lines:
+    v1.1.4: - Use data frames with counts and genotypes when creating the dmDSdata and dmSQTLdata objects.
+  Cannot process chunk/lines:
+    v1.3.1: - Equals to v1.1.4.
+  Cannot process chunk/lines:
+    v1.3.2: - Implementation of the two-stage test dmTwoStageTest().
+  Cannot process chunk/lines:
+    Additionally:
+    	i) Removing max_features argument from dmFilter.
+    	ii) Keeping only the grid approach for estimating tagwise dispersion. 
+    	iii) Allow to use only a subset of genes (disp_subset parameter) in common dispersion estimation to speed up the calculations; if disp_subset < 1, use set.seed() to make the analysis reproducible.
+    	iv) Always use tagwise dispersion for fitting full and null models.
+    	v) In one group fitting, return NA for tags having the last feature with zero counts in all samples. We always use the q-th feature as a denominator in logit calculation. In such a case all the logits are anyways Inf.
+    	vi) Use plotPValues instead of plotTest
+    	vii) Use 'prop' instead of 'pi' and 'disp' instead of 'gamma0'.
+    	viii) Use only 'constrOptim' (old 'constrOptimG') to estimate proportions and 'optim' to estimate coefficients in the regression model. 
+    	ix) Use plotProportions instead of plotFit.
+    	x) No 'out_dir' parameter in plotting functions. All plotting functions return a ggplot object.
+    	xi) Use term "precision" instead of "dispersion" as in DRIMSeq we directly estimate the precision parameter. Dispersion can be calculated with formula: dispersion = 1 / (1 + precision).
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Documented arguments not in \usage in documentation object 'dmSQTLtest-class':
+  ‘...’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                    user system elapsed
+dmSQTLtest-class 164.885  1.047 168.149
+dmDStest-class    11.291  0.079  11.546
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘DRIMSeq.Rnw’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 WARNING, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/DRIMSeq.Rcheck/00check.log’
+for details.
+
+

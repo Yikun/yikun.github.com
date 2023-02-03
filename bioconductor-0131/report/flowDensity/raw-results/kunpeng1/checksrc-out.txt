@@ -1,0 +1,120 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:flowDensity.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings flowDensity_1.33.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/flowDensity.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘flowDensity/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘flowDensity’ version ‘1.33.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘flowDensity’ can be installed ... WARNING
+Found the following significant warnings:
+  Warning: replacing previous import ‘flowCore::plot’ by ‘graphics::plot’ when loading ‘flowDensity’
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/flowDensity.Rcheck/00install.out’ for details.
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(flowDensity, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘flowDensity’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... WARNING
+checkRd: (7) deGate.Rd:121: Invalid email address: <mmalekes@bccrc.ca>
+checkRd: (7) flowDensity.Rd:84: Invalid email address: <mmalekes@bccrc.ca>
+checkRd: (7) flowDensity.Rd:85: Invalid email address: <jtaghiyar@bccrc.ca>
+checkRd: (7) getPeaks.Rd:55: Invalid email address: <mmalekes@bccrc.ca>
+checkRd: (7) getflowFrame.Rd:23: Invalid email address: <jtaghiyar@bccrc.ca>
+checkRd: (7) nmRemove.Rd:37: Invalid email address: <jtaghiyar@bccrc.ca>
+checkRd: (7) nmRemove.Rd:38: Invalid email address: <mmalekes@bccrc.ca>
+checkRd: (7) notSubFrame.Rd:41: Invalid email address: <mmalekes@bccrc.ca>
+checkRd: (7) plotDens.Rd:89: Invalid email address: <mmalekes@bccrc.ca>
+checkRd: (7) plotDens.Rd:90: Invalid email address: <jtaghiyar@bccrc.ca>
+* checking Rd metadata ... WARNING
+Rd files with duplicated alias 'flowDensity':
+  ‘flowDensity-methods.Rd’ ‘flowDensity.Rd’
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented S4 methods:
+  generic 'flowDensity' and siglist
+    'CellPopulation,ANY,logical,missing'
+  generic 'flowDensity' and siglist 'GatingHierarchy,ANY,logical,ANY'
+  generic 'flowDensity' and siglist 'flowFrame,ANY,logical,missing'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Objects in \usage without \alias in documentation object 'flowDensity-methods':
+  ‘\S4method{flowDensity}{CellPopulation,ANY,logical,missing}’
+  ‘\S4method{flowDensity}{flowFrame,ANY,logical,missing}’
+  ‘\S4method{flowDensity}{GatingHierarchy,ANY,logical,ANY}’
+
+Undocumented arguments in documentation object 'plotDens'
+  ‘dens.col’ ‘cex’ ‘dens.type’
+Documented arguments not in \usage in documentation object 'plotDens':
+  ‘density.type’ ‘density.col’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘flowDensity.Rmd’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 6 WARNINGs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/flowDensity.Rcheck/00check.log’
+for details.
+
+

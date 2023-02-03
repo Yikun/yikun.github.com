@@ -1,0 +1,156 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:annmap.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings annmap_1.41.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/annmap.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘annmap/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘annmap’ version ‘1.41.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .BBSoptions
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘annmap’ can be installed ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Title field: should not end in a period.
+Malformed Description field: should contain one or more complete sentences.
+* checking top-level files ... NOTE
+File
+  LICENSE
+is not mentioned in the DESCRIPTION file.
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(annmap, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘annmap’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... NOTE
+'library' or 'require' call to ‘rjson’ in package code.
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+There are ::: calls to the package's namespace in its code. A package
+  almost never needs to use ::: for its own objects:
+  ‘.make.hash’
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.get.stats.cache: no visible global function definition for
+  ‘flush.console’
+.layout.genes: no visible global function definition for ‘strwidth’
+.load.and.parse: no visible global function definition for ‘fromJSON’
+.read.databases: no visible global function definition for ‘read.table’
+.single.transcript.coords.to.genome: no visible global function
+  definition for ‘tail’
+.xmc.connect: no visible global function definition for ‘menu’
+.xmcws.connect: no visible global function definition for ‘fromJSON’
+.xmcws.connect: no visible global function definition for ‘menu’
+annmapAddConnection: no visible global function definition for
+  ‘write.table’
+annmapConnect: no visible global function definition for
+  ‘install.packages’
+arrayType: no visible global function definition for ‘menu’
+convertBamToRle: no visible global function definition for ‘RangedData’
+convertBamToRle : <anonymous>: no visible global function definition
+  for ‘Rle’
+geneToGeneRegionTrack : generate: no visible global function definition
+  for ‘GeneRegionTrack’
+generateBridgeData: no visible global function definition for ‘rainbow’
+genomicPlot : <anonymous>: no visible global function definition for
+  ‘rgb’
+genomicPlot: no visible global function definition for ‘rgb’
+ngsTracePlotter : local.draw: no visible global function definition for
+  ‘runValue’
+ngsTracePlotter: no visible global function definition for ‘modifyList’
+ngsTraceScale : <anonymous>: no visible global function definition for
+  ‘runValue’
+seqnameMapping: no visible global function definition for ‘seqlevels<-’
+seqnameMapping: no visible global function definition for ‘seqlevels’
+Undefined global functions or variables:
+  GeneRegionTrack RangedData Rle flush.console fromJSON
+  install.packages menu modifyList rainbow read.table rgb runValue
+  seqlevels seqlevels<- strwidth tail write.table
+Consider adding
+  importFrom("grDevices", "rainbow", "rgb")
+  importFrom("graphics", "strwidth")
+  importFrom("utils", "flush.console", "install.packages", "menu",
+             "modifyList", "read.table", "tail", "write.table")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... WARNING
+Missing link or links in documentation object 'annmap.range.Rd':
+  ‘RangedData’
+
+Missing link or links in documentation object 'annmap.utils.Rd':
+  ‘RangedData’
+
+Missing link or links in documentation object 'plot.ngs.Rd':
+  ‘[IRanges]{Rle}’
+
+See section 'Cross-references' in the 'Writing R Extensions' manual.
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in Makefiles ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking include directives in Makefiles ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘doRUnit.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘INSTALL.Rnw’... OK
+  ‘annmap.Rnw’... OK
+  ‘cookbook.Rnw’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 WARNINGs, 5 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/annmap.Rcheck/00check.log’
+for details.
+
+

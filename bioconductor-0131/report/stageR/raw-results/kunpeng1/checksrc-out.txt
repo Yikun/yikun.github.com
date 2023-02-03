@@ -1,0 +1,203 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:stageR.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings stageR_1.21.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/stageR.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘stageR/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘stageR’ version ‘1.21.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘stageR’ can be installed ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Description field: should contain one or more complete sentences.
+Package listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘methods’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(stageR, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘stageR’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... NOTE
+Namespaces in Imports field not imported from:
+  ‘methods’ ‘stats’
+  All declared Imports should be used.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.stageWiseTest : <anonymous>: warning in gsub(x = paste(namesList[ii],
+  namesListElements[[ii]]), pattern = " ", replace = ":"): partial
+  argument match of 'replace' to 'replacement'
+.stageWiseTest: no visible global function definition for ‘p.adjust’
+stageR: no visible global function definition for ‘new’
+stageRTx: no visible global function definition for ‘new’
+Undefined global functions or variables:
+  new p.adjust
+Consider adding
+  importFrom("methods", "new")
+  importFrom("stats", "p.adjust")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... WARNING
+Missing link or links in documentation object 'getAdjustedPValues.Rd':
+  ‘stageWiseAdjustment,stageR,character,numeric-method’
+
+Missing link or links in documentation object 'stageRClass.Rd':
+  ‘getAdjustedPValues,stageR,logical,logical-method’
+  ‘getResults,stageR-method’
+
+See section 'Cross-references' in the 'Writing R Extensions' manual.
+* checking for missing documentation entries ... WARNING
+Undocumented S4 classes:
+  ‘stageRTx’ ‘stageR’
+Undocumented S4 methods:
+  generic 'adjustedAlphaLevel' and siglist 'stageR'
+  generic 'getAdjustedPValues' and siglist 'stageR,logical,logical'
+  generic 'getAlpha' and siglist 'stageR'
+  generic 'getMethod' and siglist 'stageR'
+  generic 'getPConfirmation' and siglist 'stageR'
+  generic 'getPScreen' and siglist 'stageR'
+  generic 'getResults' and siglist 'stageR'
+  generic 'getSignificantGenes' and siglist 'stageRTx'
+  generic 'getSignificantTx' and siglist 'stageRTx'
+  generic 'getTx2gene' and siglist 'stageRTx'
+  generic 'isAdjusted' and siglist 'stageR'
+  generic 'isPScreenAdjusted' and siglist 'stageR'
+  generic 'stageWiseAdjustment' and siglist 'stageR,character,numeric'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'adjustedAlphaLevel'
+  ‘...’
+Objects in \usage without \alias in documentation object 'adjustedAlphaLevel':
+  ‘\S4method{adjustedAlphaLevel}{stageR}’
+
+Objects in \usage without \alias in documentation object 'getAdjustedPValues':
+  ‘\S4method{getAdjustedPValues}{stageR,logical,logical}’
+
+Objects in \usage without \alias in documentation object 'getAlpha':
+  ‘\S4method{getAlpha}{stageR}’
+
+Objects in \usage without \alias in documentation object 'getMethod':
+  ‘\S4method{getMethod}{stageR}’
+
+Undocumented arguments in documentation object 'getPConfirmation'
+  ‘...’
+Objects in \usage without \alias in documentation object 'getPConfirmation':
+  ‘\S4method{getPConfirmation}{stageR}’
+
+Objects in \usage without \alias in documentation object 'getPScreen':
+  ‘\S4method{getPScreen}{stageR}’
+
+Undocumented arguments in documentation object 'getResults'
+  ‘...’
+Objects in \usage without \alias in documentation object 'getResults':
+  ‘\S4method{getResults}{stageR}’
+
+Undocumented arguments in documentation object 'getSignificantGenes'
+  ‘...’
+Objects in \usage without \alias in documentation object 'getSignificantGenes':
+  ‘\S4method{getSignificantGenes}{stageRTx}’
+
+Undocumented arguments in documentation object 'getSignificantTx'
+  ‘...’
+Objects in \usage without \alias in documentation object 'getSignificantTx':
+  ‘\S4method{getSignificantTx}{stageRTx}’
+
+Objects in \usage without \alias in documentation object 'getTx2gene':
+  ‘\S4method{getTx2gene}{stageRTx}’
+
+Objects in \usage without \alias in documentation object 'isAdjusted':
+  ‘\S4method{isAdjusted}{stageR}’
+
+Objects in \usage without \alias in documentation object 'isPScreenAdjusted':
+  ‘\S4method{isPScreenAdjusted}{stageR}’
+
+Documented arguments not in \usage in documentation object 'stageR':
+  ‘...’
+
+Documented arguments not in \usage in documentation object 'stageRTx':
+  ‘...’
+
+Objects in \usage without \alias in documentation object 'stageWiseAdjustment':
+  ‘\S4method{stageWiseAdjustment}{stageR,character,numeric}’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘stageRVignette.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘stageRVignette.Rmd’ using rmarkdown
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/stageR.Rcheck/vign_test/stageR/vignettes/stageRVignette_files/figure-html/unnamed-chunk-7-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/stageR.Rcheck/vign_test/stageR/vignettes/stageRVignette_files/figure-html/unnamed-chunk-16-1.png" but not available.
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 4 WARNINGs, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/stageR.Rcheck/00check.log’
+for details.
+

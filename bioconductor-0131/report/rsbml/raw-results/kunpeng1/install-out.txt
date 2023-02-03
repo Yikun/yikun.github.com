@@ -1,0 +1,97 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL rsbml
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘rsbml’ ...
+** using staged installation
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for LIBSBML... yes
+configure: === Begin local SOSLib build ===
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking build system type... config/config.guess: unable to guess system type
+
+This script, last modified 2008-01-23, has failed to recognize
+the operating system you are using. It is advised that you
+download the most up to date version of the config scripts from
+
+  http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.guess;hb=HEAD
+and
+  http://git.savannah.gnu.org/gitweb/?p=config.git;a=blob_plain;f=config.sub;hb=HEAD
+
+If the version you run (config/config.guess) is already up to date, please
+send the following data and any information you think might be
+pertinent to <config-patches@gnu.org> in order to provide the needed
+information to handle your system.
+
+config.guess timestamp = 2008-01-23
+
+uname -m = aarch64
+uname -r = 5.15.0-58-generic
+uname -s = Linux
+uname -v = #64-Ubuntu SMP Thu Jan 5 12:06:43 UTC 2023
+
+/usr/bin/uname -p = aarch64
+/bin/uname -X     = 
+
+hostinfo               = 
+/bin/universe          = 
+/usr/bin/arch -k       = 
+/bin/arch              = aarch64
+/usr/bin/oslevel       = 
+/usr/convex/getsysinfo = 
+
+UNAME_MACHINE = aarch64
+UNAME_RELEASE = 5.15.0-58-generic
+UNAME_SYSTEM  = Linux
+UNAME_VERSION = #64-Ubuntu SMP Thu Jan 5 12:06:43 UTC 2023
+configure: error: cannot guess build type; you must specify one
+configure: === End local SOSLib build ===
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I/usr/include/libxml2    -I/usr/local/include    -fPIC  -g -O2  -Wall -c StringMap.c -o StringMap.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I/usr/include/libxml2    -I/usr/local/include    -fPIC  -g -O2  -Wall -c check.c -o check.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I/usr/include/libxml2    -I/usr/local/include    -fPIC  -g -O2  -Wall -c doc.c -o doc.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I/usr/include/libxml2    -I/usr/local/include    -fPIC  -g -O2  -Wall -c dom.c -o dom.o
+dom.c: In function ‘rsbml_build_dom_line_segment’:
+dom.c:687:12: warning: comparison between ‘SBMLTypeCode_t’ and ‘enum <anonymous>’ [-Wenum-compare]
+  687 |   if (type == SBML_LAYOUT_CUBICBEZIER) {
+      |            ^~
+dom.c:693:19: warning: comparison between ‘SBMLTypeCode_t’ and ‘enum <anonymous>’ [-Wenum-compare]
+  693 |   } else if (type == SBML_LAYOUT_LINESEGMENT)
+      |                   ^~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I/usr/include/libxml2    -I/usr/local/include    -fPIC  -g -O2  -Wall -c graph.c -o graph.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I/usr/include/libxml2    -I/usr/local/include    -fPIC  -g -O2  -Wall -c init.c -o init.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I/usr/include/libxml2    -I/usr/local/include    -fPIC  -g -O2  -Wall -c io.c -o io.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I/usr/include/libxml2    -I/usr/local/include    -fPIC  -g -O2  -Wall  -c layoutWrappers.cpp -o layoutWrappers.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I/usr/include/libxml2    -I/usr/local/include    -fPIC  -g -O2  -Wall -c mathml.c -o mathml.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I/usr/include/libxml2    -I/usr/local/include    -fPIC  -g -O2  -Wall -c simulate.c -o simulate.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o rsbml.so StringMap.o check.o doc.o dom.o graph.o init.o io.o layoutWrappers.o mathml.o simulate.o -lsbml -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-rsbml/00new/rsbml/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rsbml)

@@ -1,0 +1,47 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL tweeDEseq
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘tweeDEseq’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c cov_wt_C.c -o cov_wt_C.o
+cov_wt_C.c: In function ‘cov_wt_C’:
+cov_wt_C.c:79:14: warning: ‘wvar’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   79 |   free(aux), free(wvar), free(y);
+      |              ^~~~~~~~~~
+cov_wt_C.c: In function ‘momentEstimates_wt_C’:
+cov_wt_C.c:154:12: warning: ‘moments’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  154 |   free(y), free(moments), free(aux);
+      |            ^~~~~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c init_tweeDEseq.c -o init_tweeDEseq.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c loglikGlm.c -o loglikGlm.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c logprobs.c -o logprobs.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c permtest.c -o permtest.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c probs.c -o probs.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c zhu2.c -o zhu2.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c zhu3.c -o zhu3.o
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o tweeDEseq.so cov_wt_C.o init_tweeDEseq.o loglikGlm.o logprobs.o permtest.o probs.o zhu2.o zhu3.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-tweeDEseq/00new/tweeDEseq/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (tweeDEseq)

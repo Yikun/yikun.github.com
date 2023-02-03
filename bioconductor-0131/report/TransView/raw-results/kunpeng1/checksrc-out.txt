@@ -1,0 +1,153 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:TransView.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings TransView_1.43.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/TransView.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘TransView/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘TransView’ version ‘1.43.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘TransView’ can be installed ... WARNING
+Found the following significant warnings:
+  /home/biocbuild/bbs-3.17-bioc/R/site-library/Rhtslib/include/htslib/hts_log.h:75:1: warning: ‘Rprintf’ is an unrecognized format function type [-Wformat=]
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/TransView.Rcheck/00install.out’ for details.
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Versioned 'LinkingTo' value for ‘Rhtslib’ is only usable in R >= 3.0.2
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(TransView, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘TransView’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... NOTE
+'library' or 'require' call to ‘RUnit’ in package code.
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.gene2window : <anonymous> : <anonymous>: no visible global function
+  definition for ‘median’
+.gene2window: no visible binding for global variable ‘approx’
+.onAttach: no visible global function definition for
+  ‘packageDescription’
+.test: no visible global function definition for ‘defineTestSuite’
+.test: no visible global function definition for ‘runTestSuite’
+.test: no visible global function definition for ‘printTextProtocol’
+annotatePeaks : <anonymous>: no visible global function definition for
+  ‘median’
+gtf2gr: no visible global function definition for ‘read.table’
+gtf2gr: no visible global function definition for ‘ave’
+macs2gr: no visible global function definition for ‘read.delim’
+meltPeak: no visible global function definition for ‘approx’
+meltPeak: no visible global function definition for ‘lowess’
+plotTV: no visible global function definition for ‘quantile’
+plotTV: no visible global function definition for ‘kmeans’
+plotTV: no visible global function definition for ‘as.dendrogram’
+plotTV: no visible global function definition for ‘hclust’
+plotTV: no visible global function definition for ‘as.dist’
+plotTV: no visible global function definition for ‘dist’
+plotTV: no visible global function definition for ‘order.dendrogram’
+plotTV: no visible global function definition for ‘par’
+plotTV: no visible global function definition for ‘layout’
+plotTV: no visible global function definition for ‘image’
+plotTV: no visible global function definition for ‘hist’
+plotTV: no visible global function definition for ‘title’
+plotTV: no visible global function definition for ‘mtext’
+plotTV: no visible global function definition for ‘lines’
+plotTV: no visible global function definition for ‘axis’
+plotTV: no visible global function definition for ‘rainbow’
+plotTV: no visible global function definition for ‘text’
+plotTV: no visible global function definition for ‘rgb’
+plotTV: no visible global function definition for ‘plot.new’
+setTV: no visible global function definition for ‘object.size’
+.setTV,DensityContainer-character-character-numeric-numeric-numeric-logical-character-character-logical:
+  no visible global function definition for ‘object.size’
+Undefined global functions or variables:
+  approx as.dendrogram as.dist ave axis defineTestSuite dist hclust
+  hist image kmeans layout lines lowess median mtext object.size
+  order.dendrogram packageDescription par plot.new printTextProtocol
+  quantile rainbow read.delim read.table rgb runTestSuite text title
+Consider adding
+  importFrom("grDevices", "rainbow", "rgb")
+  importFrom("graphics", "axis", "hist", "image", "layout", "lines",
+             "mtext", "par", "plot.new", "text", "title")
+  importFrom("stats", "approx", "as.dendrogram", "as.dist", "ave",
+             "dist", "hclust", "kmeans", "lowess", "median",
+             "order.dendrogram", "quantile")
+  importFrom("utils", "object.size", "packageDescription", "read.delim",
+             "read.table")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... NOTE
+GNU make is a SystemRequirements.
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘TransView_unit_tests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘TransView.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 WARNINGs, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/TransView.Rcheck/00check.log’
+for details.
+
+

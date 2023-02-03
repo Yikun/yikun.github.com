@@ -1,0 +1,124 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:OUTRIDER.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings OUTRIDER_1.17.1.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/OUTRIDER.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘OUTRIDER/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘OUTRIDER’ version ‘1.17.1’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘OUTRIDER’ can be installed ... OK
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Invalid citation information in ‘inst/CITATION’:
+  Error in tools:::.parse_CITATION_file(file, meta$Encoding): non-ASCII input in a CITATION file without a declared encoding
+  Warning message:
+  In utils::packageDescription(basename(dir), dirname(dir)) :
+    no package 'OUTRIDER' was found
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(OUTRIDER, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘OUTRIDER’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+padjOnSubset: no visible global function definition for ‘bpmapply’
+Undefined global functions or variables:
+  bpmapply
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  [1] "Evaluation loss: 0.460212271656785 for q=3"
+  [1] "Sun Jan 29 05:45:21 2023: Initial PCA loss: 4.43176861864039"
+  [1] "Sun Jan 29 05:45:23 2023: Iteration: 1 loss: 4.06063376579377"
+  [1] "Sun Jan 29 05:45:23 2023: Iteration: 2 loss: 4.04476978018496"
+  Time difference of 1.956957 secs
+  [1] "Sun Jan 29 05:45:23 2023: 2 Final nb-AE loss: 4.04476978018496"
+  [1] "Evaluation loss: 0.390843039383055 for q=4"
+  [1] "Sun Jan 29 05:45:25 2023: Initial PCA loss: 4.41197623767674"
+  [1] "Sun Jan 29 05:45:27 2023: Iteration: 1 loss: 3.97891544194152"
+  [1] "Sun Jan 29 05:45:29 2023: Iteration: 2 loss: 3.95220884636681"
+  Time difference of 3.042551 secs
+  [1] "Sun Jan 29 05:45:29 2023: 2 Final nb-AE loss: 3.95220884636681"
+  [1] "Evaluation loss: 0.37400553871916 for q=5"
+  [1] "Sun Jan 29 05:45:43 2023: Initial PCA loss: 6.46616282459584"
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘OUTRIDER.Rnw’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘OUTRIDER.Rnw’ using knitr
+The magick package is required to crop "figure/deVsOutlier-1.png" but not available.
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 2 WARNINGs, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/OUTRIDER.Rcheck/00check.log’
+for details.
+

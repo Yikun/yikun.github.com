@@ -1,0 +1,156 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:DeMixT.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings DeMixT_1.15.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/DeMixT.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘DeMixT/DESCRIPTION’ ... OK
+* this is package ‘DeMixT’ version ‘1.15.0’
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  'parallel', 'Rcpp', 'SummarizedExperiment', 'knitr', 'KernSmooth',
+  'matrixcalc', 'rmarkdown', 'DSS', 'dendextend', 'psych', 'sva'
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘DeMixT’ can be installed ... WARNING
+Found the following significant warnings:
+  Warning: replacing previous import ‘ggplot2::%+%’ by ‘psych::%+%’ when loading ‘DeMixT’
+  Warning: replacing previous import ‘SummarizedExperiment::distance’ by ‘psych::distance’ when loading ‘DeMixT’
+  Warning: replacing previous import ‘ggplot2::alpha’ by ‘psych::alpha’ when loading ‘DeMixT’
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/DeMixT.Rcheck/00install.out’ for details.
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Invalid citation information in ‘inst/CITATION’:
+  Warning message:
+  In utils::packageDescription(basename(dir), dirname(dir)) :
+    no package 'DeMixT' was found
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(DeMixT, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘DeMixT’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+DeMixT_GS: no visible global function definition for ‘qchisq’
+DeMixT_preprocessing: no visible global function definition for
+  ‘quantile_normalization’
+detect_suspicious_sample_by_hierarchical_clustering_2comp :
+  <anonymous>: no visible global function definition for ‘wilcox.test’
+detect_suspicious_sample_by_hierarchical_clustering_2comp: no visible
+  global function definition for ‘prcomp’
+detect_suspicious_sample_by_hierarchical_clustering_2comp: no visible
+  global function definition for ‘dist’
+detect_suspicious_sample_by_hierarchical_clustering_2comp: no visible
+  global function definition for ‘hclust’
+detect_suspicious_sample_by_hierarchical_clustering_2comp: no visible
+  global function definition for ‘par’
+detect_suspicious_sample_by_hierarchical_clustering_2comp: no visible
+  global function definition for ‘as.dendrogram’
+detect_suspicious_sample_by_hierarchical_clustering_2comp: no visible
+  global function definition for ‘legend’
+plot_dim: no visible global function definition for ‘prcomp’
+plot_dim: no visible global function definition for ‘rainbow’
+plot_dim: no visible global function definition for ‘abline’
+plot_dim: no visible global function definition for ‘segments’
+plot_dim: no visible global function definition for ‘points’
+plot_dim: no visible global function definition for ‘legend’
+plot_sd: no visible global function definition for ‘par’
+scale_normalization_75th_percentile: no visible global function
+  definition for ‘median’
+simulate_2comp: no visible global function definition for ‘SimpleList’
+simulate_2comp: no visible global function definition for ‘DataFrame’
+simulate_3comp: no visible global function definition for ‘SimpleList’
+simulate_3comp: no visible global function definition for ‘DataFrame’
+Undefined global functions or variables:
+  DataFrame SimpleList abline as.dendrogram dist hclust legend median
+  par points prcomp qchisq quantile_normalization rainbow segments
+  wilcox.test
+Consider adding
+  importFrom("grDevices", "rainbow")
+  importFrom("graphics", "abline", "legend", "par", "points", "segments")
+  importFrom("stats", "as.dendrogram", "dist", "hclust", "median",
+             "prcomp", "qchisq", "wilcox.test")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'detect_suspicious_sample_by_hierarchical_clustering_2comp'
+  ‘labels’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in vignettes ... NOTE
+'library' or 'require' call not declared from: ‘calibrate’
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘demixt.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 4 WARNINGs, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/DeMixT.Rcheck/00check.log’
+for details.
+
+

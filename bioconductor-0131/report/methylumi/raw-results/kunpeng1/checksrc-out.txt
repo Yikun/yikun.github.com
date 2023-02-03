@@ -1,0 +1,337 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:methylumi.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings methylumi_2.45.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/methylumi.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘methylumi/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘methylumi’ version ‘2.45.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  'Biobase', 'scales', 'reshape2', 'ggplot2', 'matrixStats',
+  'FDb.InfiniumMethylation.hg19', 'minfi'
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .travis.yml
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘methylumi’ can be installed ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Packages listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘Biobase’ ‘minfi’ ‘lattice’ ‘matrixStats’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(methylumi, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘methylumi’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... NOTE
+Killed
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+getBarcodes: warning in list.files(path = path, patt = "idat"): partial
+  argument match of 'patt' to 'pattern'
+coerce,RangedSummarizedExperiment-GenomicMethylSet: warning in
+  assays(from, withDim = F): partial argument match of 'withDim' to
+  'withDimnames'
+.getFinalReportBlock: no visible global function definition for
+  ‘read.table’
+.mclapply: no visible global function definition for ‘mclapply’
+.parallel : <anonymous>: no visible global function definition for
+  ‘ecdf’
+.readOldMethylationFile: no visible global function definition for
+  ‘read.delim’
+CSVtoDF: no visible global function definition for ‘read.csv’
+SEtoGRset: no visible global function definition for ‘GenomicRatioSet’
+beta.mme: no visible global function definition for ‘weighted.mean’
+beta.transform: no visible global function definition for
+  ‘weighted.mean’
+cy3: no visible global function definition for ‘addColorChannelInfo’
+cy5: no visible global function definition for ‘addColorChannelInfo’
+gamma.get.xcs: no visible global function definition for
+  ‘gamma.integral’
+gamma.get.xs : <anonymous>: no visible global function definition for
+  ‘gamma.mle’
+gamma.get.xs : <anonymous>: no visible global function definition for
+  ‘gamma.integral’
+gamma.signal: no visible global function definition for
+  ‘gamma.integral’
+gammaM.get.xcs : <anonymous>: no visible binding for global variable
+  ‘offset’
+gammaM.get.xs : <anonymous>: no visible global function definition for
+  ‘gamma.mode’
+gammaM.get.xs : <anonymous>: no visible global function definition for
+  ‘gamma.mle’
+getAssayDataNameSubstitutions: no visible global function definition
+  for ‘read.table’
+getMethylationBeadMappers : <anonymous>: no visible global function
+  definition for ‘data’
+getMethylationBeadMappers : <anonymous>: no visible binding for global
+  variable ‘hm27.controls’
+getMethylationBeadMappers : <anonymous>: no visible binding for global
+  variable ‘hm450.controls’
+getMethylationBeadMappers : <anonymous>: no visible binding for global
+  variable ‘hm27.ordering’
+getMethylationBeadMappers : <anonymous>: no visible binding for global
+  variable ‘hm450.ordering’
+getPlatform: no visible binding for global variable
+  ‘FDb.InfiniumMethylation.hg19’
+getPlatform: no visible global function definition for ‘data’
+getPlatform: no visible global function definition for ‘DNAStringSet’
+illumina.get.xs: no visible global function definition for
+  ‘colQuantiles’
+median.get.xs: no visible global function definition for ‘colMedians’
+methylumi.bgcorr: no visible binding for global variable
+  ‘IlluminaHumanMethylation27kCOLORCHANNEL’
+methylumi.bgcorr: no visible binding for global variable
+  ‘IlluminaHumanMethylation450kCOLORCHANNEL’
+methylumi.diagnostics: no visible binding for global variable
+  ‘IlluminaHumanMethylation27kCOLORCHANNEL’
+methylumi.diagnostics: no visible binding for global variable
+  ‘IlluminaHumanMethylation450kCOLORCHANNEL’
+methylumi.diagnostics: no visible global function definition for ‘par’
+methylumi.diagnostics: no visible global function definition for
+  ‘colorRampPalette’
+methylumi.diagnostics: no visible global function definition for
+  ‘lines’
+methylumi.diagnostics: no visible global function definition for
+  ‘title’
+methylumi.diagnostics: no visible global function definition for
+  ‘plot.density’
+methylumi.diagnostics: no visible global function definition for
+  ‘abline’
+methylumiCSV: no visible global function definition for
+  ‘DFsToNChannelSet’
+methylumiR: no visible global function definition for ‘capture.output’
+methylumiToMinfi: no visible global function definition for
+  ‘RGChannelSet’
+normalizeMethyLumiSet: no visible global function definition for
+  ‘capture.output’
+normexp.get.xs: no visible global function definition for ‘huber’
+normexp.get.xs: no visible global function definition for ‘colSds’
+normexp.signal: no visible global function definition for ‘dnorm’
+normexp.signal: no visible global function definition for ‘pnorm’
+plotNegOob: no visible global function definition for ‘par’
+plotNegOob : <anonymous>: no visible global function definition for
+  ‘melt’
+plotNegOob: no visible global function definition for ‘ggplot’
+plotNegOob: no visible global function definition for ‘aes’
+plotNegOob: no visible binding for global variable ‘intensity’
+plotNegOob: no visible binding for global variable ‘channel.probes’
+plotNegOob: no visible global function definition for ‘geom_histogram’
+plotNegOob: no visible binding for global variable ‘..density..’
+plotNegOob: no visible global function definition for
+  ‘position_identity’
+plotNegOob: no visible global function definition for ‘facet_grid’
+plotNegOob: no visible global function definition for
+  ‘scale_x_continuous’
+plotNegOob: no visible global function definition for
+  ‘scale_y_continuous’
+plotNegOob: no visible global function definition for
+  ‘scale_fill_manual’
+plotNegOob: no visible global function definition for ‘opts’
+plotNegOob: no visible global function definition for ‘theme_bw’
+psummary: no visible global function definition for ‘p.adjust’
+qc.probe.plot: no visible global function definition for ‘log_trans’
+qc.probe.plot: no visible global function definition for ‘melt’
+qc.probe.plot: no visible binding for global variable ‘variable’
+qc.probe.plot: no visible binding for global variable ‘value’
+qc.probe.plot: no visible global function definition for ‘coord_flip’
+qc.probe.plot: no visible global function definition for
+  ‘scale_x_continuous’
+qc.probe.plot: no visible global function definition for
+  ‘scale_y_discrete’
+qc.probe.plot: no visible global function definition for ‘facet_grid’
+qc.probe.plot: no visible global function definition for
+  ‘scale_colour_manual’
+qc.probe.plot: no visible global function definition for
+  ‘scale_shape_manual’
+qc.probe.plot: no visible global function definition for ‘theme_bw’
+[,MethyLumiM-ANY-ANY-ANY: no visible global function definition for
+  ‘packageDescription’
+coerce,MethyLumiM-MethylSet: no visible global function definition for
+  ‘MethylSet’
+coerce,MethyLumiM-MethylSet: no visible global function definition for
+  ‘packageVersion’
+coerce,MethyLumiSet-MethylSet: no visible global function definition
+  for ‘MethylSet’
+coerce,MethyLumiSet-MethylSet: no visible global function definition
+  for ‘packageVersion’
+coerce,RangedSummarizedExperiment-GenomicMethylSet: no visible global
+  function definition for ‘GenomicMethylSet’
+coerce,eSet-MethyLumiM: no visible global function definition for
+  ‘capture.output’
+coerce,eSet-MethyLumiM: no visible global function definition for
+  ‘packageDescription’
+combine27k450k,MethyLumiSet-MethyLumiSet: no visible global function
+  definition for ‘subsetCommonProbes’
+combine,MethyLumiM-MethyLumiM: no visible global function definition
+  for ‘capture.output’
+combine,MethyLumiM-MethyLumiM: no visible global function definition
+  for ‘packageDescription’
+corplot,MethyLumiSet: no visible global function definition for
+  ‘hclust’
+corplot,MethyLumiSet: no visible global function definition for
+  ‘as.dist’
+getProbesByChannel,methylData : <anonymous>: no visible binding for
+  global variable ‘allele’
+hist,MethyLumiQC: no visible global function definition for ‘par’
+hist,MethyLumiSet: no visible global function definition for ‘par’
+initialize,MethyLumiQC: ... may be used in an incorrect context:
+  ‘assayDataNew(...)’
+intensities.IB,MethyLumiSet-character: no visible binding for global
+  variable ‘IlluminaHumanMethylation27kCOLORCHANNEL’
+intensities.IB,MethyLumiSet-character: no visible binding for global
+  variable ‘IlluminaHumanMethylation450kCOLORCHANNEL’
+intensities.M,MethyLumiSet-character: no visible binding for global
+  variable ‘IlluminaHumanMethylation27kCOLORCHANNEL’
+intensities.M,MethyLumiSet-character: no visible binding for global
+  variable ‘IlluminaHumanMethylation450kCOLORCHANNEL’
+intensities.OOB.allelic,MethyLumiSet-character-character: no visible
+  binding for global variable ‘IlluminaHumanMethylation27kCOLORCHANNEL’
+intensities.OOB.allelic,MethyLumiSet-character-character: no visible
+  binding for global variable
+  ‘IlluminaHumanMethylation450kCOLORCHANNEL’
+intensities.OOB,MethyLumiSet-character: no visible binding for global
+  variable ‘IlluminaHumanMethylation27kCOLORCHANNEL’
+intensities.OOB,MethyLumiSet-character: no visible binding for global
+  variable ‘IlluminaHumanMethylation450kCOLORCHANNEL’
+intensities.U,MethyLumiSet-character: no visible binding for global
+  variable ‘IlluminaHumanMethylation27kCOLORCHANNEL’
+intensities.U,MethyLumiSet-character: no visible binding for global
+  variable ‘IlluminaHumanMethylation450kCOLORCHANNEL’
+pairs,MethyLumiSet : upperPanel: no visible global function definition
+  for ‘points’
+pairs,MethyLumiSet : upperPanel: no visible global function definition
+  for ‘abline’
+pairs,MethyLumiSet : lowerPanel: no visible global function definition
+  for ‘par’
+pairs,MethyLumiSet : lowerPanel: no visible global function definition
+  for ‘text’
+pairs,MethyLumiSet : diagPanel: no visible global function definition
+  for ‘par’
+pairs,MethyLumiSet : diagPanel: no visible global function definition
+  for ‘rect’
+pairs,MethyLumiSet: no visible global function definition for ‘par’
+plotNAs,methylData: no visible binding for global variable ‘index’
+plotNAs,methylData: no visible binding for global variable ‘dropouts’
+plotProbeNAs,methylData: no visible binding for global variable ‘mu’
+plotProbeNAs,methylData: no visible binding for global variable ‘drops’
+plotSampleIntensities,MethyLumiSet: no visible global function
+  definition for ‘lines’
+plotSampleIntensities,MethyLumiSet: no visible global function
+  definition for ‘box’
+plotSampleIntensities,MethyLumiSet: no visible global function
+  definition for ‘axis’
+pval.detect<-,methylData-numeric : <anonymous> : <anonymous>: no
+  visible global function definition for ‘ecdf’
+pval.detect<-,methylData-numeric: no visible global function definition
+  for ‘rowMins’
+Undefined global functions or variables:
+  ..density.. DFsToNChannelSet DNAStringSet
+  FDb.InfiniumMethylation.hg19 GenomicMethylSet GenomicRatioSet
+  IlluminaHumanMethylation27kCOLORCHANNEL
+  IlluminaHumanMethylation450kCOLORCHANNEL MethylSet RGChannelSet
+  abline addColorChannelInfo aes allele as.dist axis box capture.output
+  channel.probes colMedians colQuantiles colSds colorRampPalette
+  coord_flip data dnorm dropouts drops ecdf facet_grid gamma.integral
+  gamma.mle gamma.mode geom_histogram ggplot hclust hm27.controls
+  hm27.ordering hm450.controls hm450.ordering huber index intensity
+  lines log_trans mclapply melt mu offset opts p.adjust
+  packageDescription packageVersion par plot.density pnorm points
+  position_identity read.csv read.delim read.table rect rowMins
+  scale_colour_manual scale_fill_manual scale_shape_manual
+  scale_x_continuous scale_y_continuous scale_y_discrete
+  subsetCommonProbes text theme_bw title value variable weighted.mean
+Consider adding
+  importFrom("grDevices", "colorRampPalette")
+  importFrom("graphics", "abline", "axis", "box", "lines", "par",
+             "points", "rect", "text", "title")
+  importFrom("stats", "as.dist", "dnorm", "ecdf", "hclust", "offset",
+             "p.adjust", "pnorm", "weighted.mean")
+  importFrom("utils", "capture.output", "data", "packageDescription",
+             "packageVersion", "read.csv", "read.delim", "read.table")
+to your NAMESPACE file.
+* checking Rd files ... NOTE
+prepare_Rd: estimateM.Rd:34-36: Dropping empty section \seealso
+prepare_Rd: estimateM.Rd:37-39: Dropping empty section \examples
+checkRd: (-1) extractBarcodeAndPosition.Rd:14: Escaped LaTeX specials: \_ \_
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘methylumi.Rnw’ using ‘UTF-8’... OK
+  ‘methylumi450k.Rnw’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘methylumi.Rnw’ using knitr
+--- finished re-building ‘methylumi.Rnw’
+
+--- re-building ‘methylumi450k.Rnw’ using knitr
+Killed
+SUMMARY: processing the following file failed:
+  ‘methylumi450k.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 1 WARNING, 6 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/methylumi.Rcheck/00check.log’
+for details.
+

@@ -1,0 +1,219 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:beadarray.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings beadarray_2.49.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/beadarray.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘beadarray/DESCRIPTION’ ... OK
+* this is package ‘beadarray’ version ‘2.49.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘beadarray’ can be installed ... OK
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Invalid citation information in ‘inst/CITATION’:
+  Warning message:
+  In utils::packageDescription(basename(dir), dirname(dir)) :
+    no package 'beadarray' was found
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(beadarray, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘beadarray’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... NOTE
+Package in Depends field not imported from: ‘hexbin’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+Unexported objects imported by ':::' calls:
+  ‘BeadDataPackR:::combineFiles’ ‘BeadDataPackR:::readHeader’
+  ‘Biobase:::assayDataStorageMode’
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... NOTE
+Foreign function call to a different package:
+  .Call("roundLocsFileValues", ..., PACKAGE = "BeadDataPackR")
+See chapter ‘System and foreign language interfaces’ in the ‘Writing R
+Extensions’ manual.
+* checking R code for possible problems ... NOTE
+combinedControlPlot: no visible binding for global variable ‘Negative’
+createGEOMeta: no visible binding for global variable ‘metaTemplate’
+expressionQCPipeline: no visible global function definition for
+  ‘openPage’
+expressionQCPipeline: no visible global function definition for
+  ‘hwrite’
+expressionQCPipeline: no visible global function definition for
+  ‘hwriteImage’
+expressionQCPipeline: no visible global function definition for
+  ‘closePage’
+getPlatformSigs: no visible global function definition for
+  ‘lumiHumanIDMapping_dbconn’
+getPlatformSigs: no visible global function definition for
+  ‘dbListTables’
+getPlatformSigs: no visible global function definition for
+  ‘dbListFields’
+getPlatformSigs: no visible global function definition for ‘dbGetQuery’
+getPlatformSigs: no visible global function definition for
+  ‘lumiMouseIDMapping_dbconn’
+getPlatformSigs: no visible global function definition for
+  ‘lumiRatIDMapping_dbconn’
+imageplot: no visible binding for global variable ‘Var1’
+imageplot: no visible binding for global variable ‘Var2’
+imageplot: no visible binding for global variable ‘value’
+makeReport: no visible binding for global variable ‘Nozzle.R1’
+makeReport: no visible binding for global variable ‘ggbio’
+makeReport: no visible global function definition for ‘newCustomReport’
+makeReport: no visible global function definition for ‘newSection’
+makeReport: no visible global function definition for ‘newTable’
+makeReport: no visible global function definition for ‘newParagraph’
+makeReport: no visible global function definition for ‘addTo’
+makeReport: no visible global function definition for ‘autoplot’
+makeReport: no visible global function definition for ‘plotIdeogram’
+makeReport: no visible global function definition for ‘tracks’
+makeReport: no visible global function definition for ‘newFigure’
+makeReport: no visible binding for global variable ‘IMAGE.TYPE.RASTER’
+makeReport: no visible binding for global variable ‘PROTECTION.PUBLIC’
+makeReport: no visible binding for global variable ‘value’
+makeReport: no visible global function definition for ‘writeReport’
+maplots: no visible binding for global variable ‘value.1’
+maplots: no visible binding for global variable ‘value’
+normaliseIllumina: no visible global function definition for ‘lumiT’
+normaliseIllumina: no visible global function definition for
+  ‘normalize.qspline’
+normaliseIllumina: no visible global function definition for ‘vsn2’
+plotBeadLocations2: no visible global function definition for ‘qplot’
+plotBeadLocations2: no visible global function definition for ‘opts’
+plotBeadLocations2: no visible global function definition for
+  ‘theme_blank’
+plotProbe: no visible global function definition for ‘autoplot’
+plotProbe: no visible binding for global variable ‘genesymbol’
+plotProbe: no visible global function definition for ‘tracks’
+plotProbe: no visible binding for global variable ‘PROBEQUALITY’
+rankInvariantNormalise: no visible global function definition for
+  ‘normalize.invariantset’
+suggestAnnotation: no visible binding for global variable
+  ‘platformSigs’
+suggestAnnotation_Vector: no visible binding for global variable
+  ‘platformSigs’
+[,ExpressionSetIllumina-ANY: no visible global function definition for
+  ‘assayDataEnvLock’
+boxplot,ExpressionSetIllumina: no visible binding for global variable
+  ‘Var2’
+boxplot,ExpressionSetIllumina: no visible binding for global variable
+  ‘value’
+plotMA,ExpressionSetIllumina: no visible binding for global variable
+  ‘value.1’
+plotMA,ExpressionSetIllumina: no visible binding for global variable
+  ‘value’
+Undefined global functions or variables:
+  IMAGE.TYPE.RASTER Negative Nozzle.R1 PROBEQUALITY PROTECTION.PUBLIC
+  Var1 Var2 addTo assayDataEnvLock autoplot closePage dbGetQuery
+  dbListFields dbListTables genesymbol ggbio hwrite hwriteImage
+  lumiHumanIDMapping_dbconn lumiMouseIDMapping_dbconn
+  lumiRatIDMapping_dbconn lumiT metaTemplate newCustomReport newFigure
+  newParagraph newSection newTable normalize.invariantset
+  normalize.qspline openPage opts platformSigs plotIdeogram qplot
+  theme_blank tracks value value.1 vsn2 writeReport
+* checking Rd files ... NOTE
+checkRd: (-1) readBeadSummaryData.Rd:70: Escaped LaTeX specials: \_
+checkRd: (-1) readBeadSummaryData.Rd:71: Escaped LaTeX specials: \_ \_
+checkRd: (-1) readBeadSummaryData.Rd:76: Escaped LaTeX specials: \_ \_
+checkRd: (-1) sampleSheet.Rd:26: Escaped LaTeX specials: \_ \_ \_ \_ \_ \_ \_ \_ \_ \_ \_ \_
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘ImageProcessing.rnw’... OK
+  ‘beadarray.rnw’... OK
+  ‘beadlevel.rnw’... OK
+  ‘beadsummary.rnw’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+--- re-building ‘ImageProcessing.rnw’ using knitr
+--- finished re-building ‘ImageProcessing.rnw’
+
+--- re-building ‘beadarray.rnw’ using knitr
+--- finished re-building ‘beadarray.rnw’
+
+--- re-building ‘beadlevel.rnw’ using knitr
+The magick package is required to crop "figure/Imageplot1-1.png" but not available.
+The magick package is required to crop "figure/Imageplot2-1.png" but not available.
+The magick package is required to crop "figure/masks-1.png" but not available.
+The magick package is required to crop "figure/doPlot-1.png" but not available.
+--- finished re-building ‘beadlevel.rnw’
+
+--- re-building ‘beadsummary.rnw’ using knitr
+The magick package is required to crop "figure/boxplot1-1.png" but not available.
+The magick package is required to crop "figure/boxplot2-1.png" but not available.
+The magick package is required to crop "figure/boxplot4-1.png" but not available.
+The magick package is required to crop "figure/boxplot5-1.png" but not available.
+The magick package is required to crop "figure/boxplot6-1.png" but not available.
+The magick package is required to crop "figure/ggplot-layout-1.png" but not available.
+The magick package is required to crop "figure/MAs-1.png" but not available.
+The magick package is required to crop "figure/unnamed-chunk-3-1.png" but not available.
+The magick package is required to crop "figure/unnamed-chunk-3-2.png" but not available.
+The magick package is required to crop "figure/unnamed-chunk-3-3.png" but not available.
+The magick package is required to crop "figure/unnamed-chunk-4-1.png" but not available.
+Killed
+SUMMARY: processing the following file failed:
+  ‘beadsummary.rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 2 WARNINGs, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/beadarray.Rcheck/00check.log’
+for details.
+

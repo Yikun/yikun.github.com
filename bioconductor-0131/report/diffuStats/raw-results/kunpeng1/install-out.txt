@@ -1,0 +1,41 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL diffuStats
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘diffuStats’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c diffuse_parallel.cpp -o diffuse_parallel.o
+diffuse_parallel.cpp: In function ‘arma::sp_mat sparsify2(const mat&, int, const sp_mat&)’:
+diffuse_parallel.cpp:54:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘arma::uword’ {aka ‘unsigned int’} [-Wsign-compare]
+   54 |   for (int i = 0; i < pos.size(); ++i) {
+      |                   ~~^~~~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c init.c -o init.o
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o diffuStats.so RcppExports.o diffuse_parallel.o init.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-diffuStats/00new/diffuStats/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (diffuStats)

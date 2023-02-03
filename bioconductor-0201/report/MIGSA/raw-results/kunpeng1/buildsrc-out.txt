@@ -1,0 +1,85 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data MIGSA
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘MIGSA/DESCRIPTION’ ... OK
+* preparing ‘MIGSA’:
+* checking DESCRIPTION meta-information ... OK
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘MIGSA.Rnw’ using Sweave
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: annotate
+Loading required package: AnnotationDbi
+Loading required package: stats4
+Loading required package: IRanges
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: XML
+Loading required package: graph
+
+Attaching package: ‘graph’
+
+The following object is masked from ‘package:XML’:
+
+    addNode
+
+
+Error: processing vignette 'MIGSA.Rnw' failed with diagnostics:
+ chunk 4 (label = Speedup1) 
+Error in library(mGSZ) : there is no package called ‘mGSZ’
+
+--- failed re-building ‘MIGSA.Rnw’
+
+--- re-building ‘gettingPbcmcData.Rnw’ using Sweave
+--- finished re-building ‘gettingPbcmcData.Rnw’
+
+--- re-building ‘gettingTcgaData.Rnw’ using Sweave
+
+Error: processing vignette 'gettingTcgaData.Rnw' failed with diagnostics:
+ chunk 1 (label = basalSubjects) 
+Error in library(MIGSAdata) : there is no package called ‘MIGSAdata’
+
+--- failed re-building ‘gettingTcgaData.Rnw’
+
+SUMMARY: processing the following files failed:
+  ‘MIGSA.Rnw’ ‘gettingTcgaData.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted

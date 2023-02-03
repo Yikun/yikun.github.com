@@ -1,0 +1,101 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL BiocParallel
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘BiocParallel’ ...
+** using staged installation
+checking whether the C++ compiler works... yes
+checking for C++ compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C++... yes
+checking whether g++ -std=gnu++14 accepts -g... yes
+checking for g++ -std=gnu++14 option to enable C++11 features... none needed
+checking for library containing shm_open... none required
+checking for stdio.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for strings.h... yes
+checking for sys/stat.h... yes
+checking for sys/types.h... yes
+checking for unistd.h... yes
+checking for sys/mman.h... yes
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/cpp11/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c cpp11.cpp -o cpp11.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/cpp11/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c ipcmutex.cpp -o ipcmutex.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/aux_/na_assert.hpp:23,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/arg.hpp:25,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/placeholders.hpp:24,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/apply.hpp:24,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/aux_/fold_impl.hpp:19,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/fold.hpp:20,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/remove_if.hpp:18,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/remove.hpp:18,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/function_types/components.hpp:44,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/function_types/is_member_function_pointer.hpp:14,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/tti/detail/dmem_fun.hpp:10,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/tti/has_member_function.hpp:15,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/uuid/random_generator.hpp:20,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/uuid/uuid_generators.hpp:17,
+                 from ipcmutex.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/assert.hpp:194:21: warning: unnecessary parentheses in declaration of ‘assert_arg’ [-Wparentheses]
+  194 | failed ************ (Pred::************
+      |                     ^~~~~~~~~~~~~~~~~~~
+  195 |       assert_arg( void (*)(Pred), typename assert_arg_pred<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  196 |     );
+      |     ~                
+/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/assert.hpp:194:21: note: remove parentheses
+  194 | failed ************ (Pred::************
+      |                     ^~~~~~~~~~~~~~~~~~~
+      |                     -
+  195 |       assert_arg( void (*)(Pred), typename assert_arg_pred<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  196 |     );
+      |     ~                
+      |     -
+/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/assert.hpp:199:21: warning: unnecessary parentheses in declaration of ‘assert_not_arg’ [-Wparentheses]
+  199 | failed ************ (boost::mpl::not_<Pred>::************
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  200 |       assert_not_arg( void (*)(Pred), typename assert_arg_pred_not<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  201 |     );
+      |     ~                
+/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/assert.hpp:199:21: note: remove parentheses
+  199 | failed ************ (boost::mpl::not_<Pred>::************
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     -
+  200 |       assert_not_arg( void (*)(Pred), typename assert_arg_pred_not<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  201 |     );
+      |     ~                
+      |     -
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o BiocParallel.so cpp11.o ipcmutex.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-BiocParallel/00new/BiocParallel/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (BiocParallel)

@@ -1,0 +1,60 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL ADaCGH2
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘ADaCGH2’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c init.c -o init.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c r_haarseg.c -o r_haarseg.o
+r_haarseg.c: In function ‘ad_HaarConv’:
+r_haarseg.c:65:12: warning: unused variable ‘totalNorm’ [-Wunused-variable]
+   65 |     double totalNorm;
+      |            ^~~~~~~~~
+r_haarseg.c: In function ‘ad_FindLocalPeaks’:
+r_haarseg.c:152:43: warning: "/*" within comment [-Wcomment]
+  152 |                                          }/* for j */
+      |                                            
+r_haarseg.c:176:43: warning: "/*" within comment [-Wcomment]
+  176 |                                          }/* for j */
+      |                                            
+r_haarseg.c:128:16: warning: unused variable ‘j’ [-Wunused-variable]
+  128 |          int k,j;
+      |                ^
+r_haarseg.c: In function ‘ad_HaarConv’:
+r_haarseg.c:97:27: warning: ‘highNonNormed’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   97 |             highNonNormed += signal[highEnd]*weight[highEnd] - signal[k-1]*weight[k-1];
+      |             ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+r_haarseg.c:98:26: warning: ‘lowWeightSum’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   98 |             lowWeightSum += weight[k-1] - weight[lowEnd];
+      |             ~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+r_haarseg.c:99:27: warning: ‘highWeightSum’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   99 |             highWeightSum += weight[highEnd] - weight[k-1];
+      |             ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+r_haarseg.c:96:26: warning: ‘lowNonNormed’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   96 |             lowNonNormed += signal[lowEnd]*weight[lowEnd] - signal[k-1]*weight[k-1];
+      |             ~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o ADaCGH2.so init.o r_haarseg.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-ADaCGH2/00new/ADaCGH2/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ADaCGH2)

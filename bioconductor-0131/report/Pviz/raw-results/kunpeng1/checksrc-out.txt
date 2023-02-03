@@ -1,0 +1,175 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:Pviz.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings Pviz_1.33.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/Pviz.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘Pviz/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘Pviz’ version ‘1.33.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘Pviz’ can be installed ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(Pviz, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘Pviz’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.makeParMapping: no visible global function definition for
+  'assignInNamespace'
+plot_clade: no visible global function definition for 'tail'
+drawGD,ProbeTrack: no visible global function definition for
+  'pushViewport'
+drawGD,ProbeTrack: no visible global function definition for 'viewport'
+drawGD,ProbeTrack: no visible global function definition for
+  'popViewport'
+drawGD,ProbeTrack: no visible global function definition for 'unit'
+drawGD,ProbeTrack: no visible global function definition for 'gpar'
+drawGD,ProbeTrack: no visible global function definition for
+  'convertWidth'
+drawGD,ProbeTrack: no visible global function definition for
+  'stringWidth'
+drawGD,ProbeTrack: no visible global function definition for
+  'stringHeight'
+drawGD,ProbeTrack: no visible global function definition for
+  'grid.text'
+drawGD,ProbeTrack: no visible global function definition for
+  'grid.rect'
+drawGD,ProbeTrack: no visible global function definition for
+  'dataViewport'
+drawGD,ProbeTrack : <anonymous>: no visible global function definition
+  for 'grid.rect'
+drawGD,ProbeTrack : <anonymous>: no visible global function definition
+  for 'gpar'
+drawGD,ProbeTrack : <anonymous>: no visible global function definition
+  for 'grid.text'
+drawGD,ProteinAxisTrack: no visible global function definition for
+  'pushViewport'
+drawGD,ProteinAxisTrack: no visible global function definition for
+  'dataViewport'
+drawGD,ProteinAxisTrack: no visible global function definition for
+  'convertHeight'
+drawGD,ProteinAxisTrack: no visible global function definition for
+  'stringHeight'
+drawGD,ProteinAxisTrack: no visible global function definition for
+  'popViewport'
+drawGD,ProteinAxisTrack: no visible global function definition for
+  '.getGapPos'
+drawGD,ProteinAxisTrack: no visible global function definition for
+  'gaps'
+drawGD,ProteinAxisTrack: no visible global function definition for
+  'viewport'
+drawGD,ProteinAxisTrack: no visible global function definition for
+  'grid.segments'
+drawGD,ProteinAxisTrack: no visible global function definition for
+  'gpar'
+drawGD,ProteinAxisTrack: no visible global function definition for
+  'coord2ext'
+drawGD,ProteinAxisTrack: no visible global function definition for
+  'grid.text'
+drawGD,ProteinAxisTrack: no visible global function definition for
+  'convertWidth'
+drawGD,ProteinAxisTrack: no visible global function definition for
+  'stringWidth'
+drawGD,ProteinSequenceTrack: no visible global function definition for
+  'pushViewport'
+drawGD,ProteinSequenceTrack: no visible global function definition for
+  'dataViewport'
+drawGD,ProteinSequenceTrack: no visible global function definition for
+  'gpar'
+drawGD,ProteinSequenceTrack: no visible global function definition for
+  'popViewport'
+drawGD,ProteinSequenceTrack: no visible global function definition for
+  'convertUnit'
+drawGD,ProteinSequenceTrack: no visible global function definition for
+  'stringWidth'
+drawGD,ProteinSequenceTrack: no visible global function definition for
+  'grid.lines'
+drawGD,ProteinSequenceTrack: no visible global function definition for
+  'unit'
+drawGD,ProteinSequenceTrack: no visible global function definition for
+  'grid.text'
+drawGD,ProteinSequenceTrack: no visible global function definition for
+  'grid.rect'
+Undefined global functions or variables:
+  .getGapPos assignInNamespace convertHeight convertUnit convertWidth
+  coord2ext dataViewport gaps gpar grid.lines grid.rect grid.segments
+  grid.text popViewport pushViewport stringHeight stringWidth tail unit
+  viewport
+Consider adding
+  importFrom("utils", "assignInNamespace", "tail")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... WARNING
+Missing link or links in documentation object 'ATrack.Rd':
+  ‘GdObject’
+
+Missing link or links in documentation object 'DTrack.Rd':
+  ‘GdObject’
+
+Missing link or links in documentation object 'ProbeTrack.Rd':
+  ‘GdObject’
+
+See section 'Cross-references' in the 'Writing R Extensions' manual.
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘Pviz.Rnw’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 WARNINGs, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/Pviz.Rcheck/00check.log’
+for details.
+
+

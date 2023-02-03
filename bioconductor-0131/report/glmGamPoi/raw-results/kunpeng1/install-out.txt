@@ -1,0 +1,126 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL glmGamPoi
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘glmGamPoi’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I../inst/include/ -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I../inst/include/ -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c beta_estimation.cpp -o beta_estimation.o
+beta_estimation.cpp: In function ‘bool lte_n_equal_rows(const NumericMatrix&, int, double)’:
+beta_estimation.cpp:32:35: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+   32 |   for(size_t row_idx = 0; row_idx < matrix.nrow(); row_idx++){
+      |                           ~~~~~~~~^~~~~~~~~~~~~~~
+beta_estimation.cpp:44:20: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+   44 |       if(n_matches > n){
+      |          ~~~~~~~~~~^~~
+beta_estimation.cpp: In function ‘Rcpp::IntegerVector get_row_groups(const NumericMatrix&, int, double)’:
+beta_estimation.cpp:58:35: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+   58 |   for(size_t row_idx = 0; row_idx < matrix.nrow(); row_idx++){
+      |                           ~~~~~~~~^~~~~~~~~~~~~~~
+In file included from beta_estimation.cpp:6:
+../inst/include/deviance.h: In instantiation of ‘arma::Mat<double> compute_gp_deviance_residuals_matrix_impl(arma::Mat<eT>, arma::Mat<double>, Rcpp::NumericVector) [with NumericType = int; Rcpp::NumericVector = Rcpp::Vector<14, Rcpp::PreserveStorage>]’:
+../inst/include/deviance.h:88:58:   required from here
+../inst/include/deviance.h:76:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uword’ {aka ‘const unsigned int’} [-Wsign-compare]
+   76 |   for(int i = 0; i < Y.n_elem; i++){
+      |                  ~~^~~~~~~~~~
+../inst/include/deviance.h: In instantiation of ‘arma::Mat<double> compute_gp_deviance_residuals_matrix_impl(arma::Mat<eT>, arma::Mat<double>, Rcpp::NumericVector) [with NumericType = double; Rcpp::NumericVector = Rcpp::Vector<14, Rcpp::PreserveStorage>]’:
+../inst/include/deviance.h:91:61:   required from here
+../inst/include/deviance.h:76:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uword’ {aka ‘const unsigned int’} [-Wsign-compare]
+beta_estimation.cpp: In instantiation of ‘void clamp_inplace(arma::Mat<eT>&, double, double) [with NumericType = double]’:
+beta_estimation.cpp:81:16:   required from here
+beta_estimation.cpp:15:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uword’ {aka ‘const unsigned int’} [-Wsign-compare]
+   15 |   for(int i = 0; i < v.n_elem; i++){
+      |                  ~~^~~~~~~~~~
+In file included from beta_estimation.cpp:6:
+../inst/include/deviance.h: In instantiation of ‘double compute_gp_deviance_sum(const arma::Mat<eT>&, const arma::Mat<double>&, double) [with NumericType = int]’:
+beta_estimation.cpp:246:40:   required from ‘Rcpp::List fitBeta_fisher_scoring_impl(Rcpp::RObject, const mat&, Rcpp::RObject, Rcpp::NumericVector, SEXP, Rcpp::Nullable<Rcpp::Matrix<14> >, double, double, int, bool) [with NumericType = int; BMNumericType = beachmat::lin_matrix<int, Rcpp::Vector<13> >; Rcpp::List = Rcpp::Vector<19>; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>; arma::mat = arma::Mat<double>; Rcpp::NumericVector = Rcpp::Vector<14, Rcpp::PreserveStorage>; SEXP = SEXPREC*]’
+beta_estimation.cpp:301:70:   required from here
+../inst/include/deviance.h:53:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uword’ {aka ‘const unsigned int’} [-Wsign-compare]
+   53 |   for (int i = 0; i < Y.n_elem; i++) {
+      |                   ~~^~~~~~~~~~
+../inst/include/deviance.h: In instantiation of ‘double compute_gp_deviance_sum(const arma::Mat<eT>&, const arma::Mat<double>&, double) [with NumericType = double]’:
+beta_estimation.cpp:246:40:   required from ‘Rcpp::List fitBeta_fisher_scoring_impl(Rcpp::RObject, const mat&, Rcpp::RObject, Rcpp::NumericVector, SEXP, Rcpp::Nullable<Rcpp::Matrix<14> >, double, double, int, bool) [with NumericType = double; BMNumericType = beachmat::lin_matrix<double, Rcpp::Vector<14, Rcpp::PreserveStorage> >; Rcpp::List = Rcpp::Vector<19>; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>; arma::mat = arma::Mat<double>; Rcpp::NumericVector = Rcpp::Vector<14, Rcpp::PreserveStorage>; SEXP = SEXPREC*]’
+beta_estimation.cpp:307:73:   required from here
+../inst/include/deviance.h:53:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uword’ {aka ‘const unsigned int’} [-Wsign-compare]
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I../inst/include/ -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c deviance.cpp -o deviance.o
+In file included from deviance.cpp:3:
+../inst/include/deviance.h: In instantiation of ‘arma::Mat<double> compute_gp_deviance_residuals_matrix_impl(arma::Mat<eT>, arma::Mat<double>, Rcpp::NumericVector) [with NumericType = int; Rcpp::NumericVector = Rcpp::Vector<14, Rcpp::PreserveStorage>]’:
+../inst/include/deviance.h:88:58:   required from here
+../inst/include/deviance.h:76:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uword’ {aka ‘const unsigned int’} [-Wsign-compare]
+   76 |   for(int i = 0; i < Y.n_elem; i++){
+      |                  ~~^~~~~~~~~~
+../inst/include/deviance.h: In instantiation of ‘arma::Mat<double> compute_gp_deviance_residuals_matrix_impl(arma::Mat<eT>, arma::Mat<double>, Rcpp::NumericVector) [with NumericType = double; Rcpp::NumericVector = Rcpp::Vector<14, Rcpp::PreserveStorage>]’:
+../inst/include/deviance.h:91:61:   required from here
+../inst/include/deviance.h:76:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uword’ {aka ‘const unsigned int’} [-Wsign-compare]
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I../inst/include/ -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c overdispersion.cpp -o overdispersion.o
+overdispersion.cpp: In function ‘Rcpp::List make_table_if_small(const NumericVector&, int)’:
+overdispersion.cpp:26:22: warning: comparison of integer expressions of different signedness: ‘std::unordered_map<long int, long unsigned int>::size_type’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+   26 |     if(counts.size() > stop_if_larger){
+      |        ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~
+overdispersion.cpp: In function ‘double conventional_loglikelihood_fast(Rcpp::NumericVector, Rcpp::NumericVector, double, const mat&, bool, Rcpp::NumericVector, Rcpp::NumericVector)’:
+overdispersion.cpp:93:31: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+   93 |     for(size_t iter = 0; iter < count_frequencies.size(); ++iter){
+      |                          ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+overdispersion.cpp:101:23: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  101 |   for(size_t i = 0; i < y.size(); ++i){
+      |                     ~~^~~~~~~~~~
+overdispersion.cpp: In function ‘double conventional_score_function_fast(Rcpp::NumericVector, Rcpp::NumericVector, double, const mat&, bool, Rcpp::NumericVector, Rcpp::NumericVector)’:
+overdispersion.cpp:137:31: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  137 |     for(size_t iter = 0; iter < count_frequencies.size(); ++iter){
+      |                          ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+overdispersion.cpp:160:31: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  160 |     for(size_t iter = 0; iter < y.size(); ++iter){
+      |                          ~~~~~^~~~~~~~~~
+overdispersion.cpp:178:23: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  178 |   for(size_t i = 0; i < y.size(); ++i){
+      |                     ~~^~~~~~~~~~
+overdispersion.cpp: In function ‘double conventional_deriv_score_function_fast(Rcpp::NumericVector, Rcpp::NumericVector, double, const mat&, bool, Rcpp::NumericVector, Rcpp::NumericVector)’:
+overdispersion.cpp:234:31: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  234 |     for(size_t iter = 0; iter < count_frequencies.size(); ++iter){
+      |                          ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+overdispersion.cpp:252:23: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  252 |   for(size_t i = 0; i < y.size(); ++i){
+      |                     ~~^~~~~~~~~~
+overdispersion.cpp: In instantiation of ‘Rcpp::List estimate_overdispersions_fast_internal(Rcpp::RObject, Rcpp::RObject, Rcpp::NumericMatrix, bool, double, int) [with NumericType = beachmat::lin_matrix<int, Rcpp::Vector<13> >; Rcpp::List = Rcpp::Vector<19>; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>; Rcpp::NumericMatrix = Rcpp::Matrix<14>]’:
+overdispersion.cpp:313:76:   required from here
+overdispersion.cpp:275:14: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  275 |   if(n_genes != mean_mat_bm->get_nrow() || n_samples != mean_mat_bm->get_ncol()){
+      |      ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+overdispersion.cpp:275:54: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  275 |   if(n_genes != mean_mat_bm->get_nrow() || n_samples != mean_mat_bm->get_ncol()){
+      |                                            ~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+overdispersion.cpp: In instantiation of ‘Rcpp::List estimate_overdispersions_fast_internal(Rcpp::RObject, Rcpp::RObject, Rcpp::NumericMatrix, bool, double, int) [with NumericType = beachmat::lin_matrix<double, Rcpp::Vector<14, Rcpp::PreserveStorage> >; Rcpp::List = Rcpp::Vector<19>; Rcpp::RObject = Rcpp::RObject_Impl<Rcpp::PreserveStorage>; Rcpp::NumericMatrix = Rcpp::Matrix<14>]’:
+overdispersion.cpp:315:76:   required from here
+overdispersion.cpp:275:14: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  275 |   if(n_genes != mean_mat_bm->get_nrow() || n_samples != mean_mat_bm->get_ncol()){
+      |      ~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+overdispersion.cpp:275:54: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  275 |   if(n_genes != mean_mat_bm->get_nrow() || n_samples != mean_mat_bm->get_ncol()){
+      |                                            ~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I../inst/include/ -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/beachmat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c utils.cpp -o utils.o
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o glmGamPoi.so RcppExports.o beta_estimation.o deviance.o overdispersion.o utils.o -llapack -L/home/biocbuild/bbs-3.17-bioc/R/lib -lRblas -lgfortran -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-glmGamPoi/00new/glmGamPoi/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (glmGamPoi)

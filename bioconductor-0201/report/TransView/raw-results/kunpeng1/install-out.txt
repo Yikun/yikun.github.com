@@ -1,0 +1,49 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL TransView
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘TransView’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c R_init_TransView.c -o R_init_TransView.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c bam_plbuf.c -o bam_plbuf.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c bin_density.c -o bin_density.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c construct_dc.c -o construct_dc.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include/htslib/hts.h:36,
+                 from /home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include/htslib/sam.h:33,
+                 from /home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include/samtools-1.7-compat.h:5,
+                 from parse_sam.h:4,
+                 from construct_dc.c:23:
+/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include/htslib/hts_log.h:75:1: warning: ‘Rprintf’ is an unrecognized format function type [-Wformat=]
+   75 | HTS_FORMAT(HTS_PRINTF_FMT, 3, 4);
+      | ^~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c parse_sam.c -o parse_sam.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c slice_dc.c -o slice_dc.o
+slice_dc.c: In function ‘slice_dc’:
+slice_dc.c:179:33: warning: ‘slicep’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  179 |                                 shrink(slicep,new_vecp,rebuildc,wsize,summarizep);
+      |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c visuals.c -o visuals.o
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o TransView.so R_init_TransView.o bam_plbuf.o bin_density.o construct_dc.o parse_sam.o slice_dc.o visuals.o /home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/usrlib/libhts.a -lcurl -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-TransView/00new/TransView/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (TransView)

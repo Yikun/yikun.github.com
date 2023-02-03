@@ -1,0 +1,77 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL MSnbase
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘MSnbase’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c RcppExports.cpp -o RcppExports.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c Spectrum1_class.c -o Spectrum1_class.o
+Spectrum1_class.c:8:13: warning: ‘_new_Spectrum1’ defined but not used [-Wunused-function]
+    8 | static SEXP _new_Spectrum1(SEXP msLevel, SEXP peaksCount, SEXP rt,
+      |             ^~~~~~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c Spectrum2_class.c -o Spectrum2_class.o
+Spectrum2_class.c:9:13: warning: ‘_new_Spectrum2’ defined but not used [-Wunused-function]
+    9 | static SEXP _new_Spectrum2(SEXP msLevel, SEXP peaksCount, SEXP rt,
+      |             ^~~~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c imp_neighbour_avg.cpp -o imp_neighbour_avg.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c utils.c -o utils.o
+utils.c: In function ‘compar_double_dd_for_stable_asc_order’:
+utils.c:92:15: warning: unused variable ‘ret’ [-Wunused-variable]
+   92 |   int i1, i2, ret;
+      |               ^~~
+utils.c: In function ‘compar_double_dd_for_stable_desc_order’:
+utils.c:107:15: warning: unused variable ‘ret’ [-Wunused-variable]
+  107 |   int i1, i2, ret;
+      |               ^~~
+utils.c: In function ‘compar_double_asc_order’:
+utils.c:123:18: warning: unused variable ‘ret’ [-Wunused-variable]
+  123 |   double d1, d2, ret;
+      |                  ^~~
+utils.c: In function ‘compar_double_desc_order’:
+utils.c:133:18: warning: unused variable ‘ret’ [-Wunused-variable]
+  133 |   double d1, d2, ret;
+      |                  ^~~
+At top level:
+utils.c:131:12: warning: ‘compar_double_desc_order’ defined but not used [-Wunused-function]
+  131 | static int compar_double_desc_order(const void *p1, const void *p2)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~~
+utils.c:121:12: warning: ‘compar_double_asc_order’ defined but not used [-Wunused-function]
+  121 | static int compar_double_asc_order(const void *p1, const void *p2)
+      |            ^~~~~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o MSnbase.so RcppExports.o Spectrum1_class.o Spectrum2_class.o imp_neighbour_avg.o utils.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-MSnbase/00new/MSnbase/libs
+** R
+** data
+*** moving datasets to lazyload DB
+Creating a new generic function for ‘trimws’ in package ‘MSnbase’
+in method for ‘coerce’ with signature ‘"MSnSet","SummarizedExperiment"’: no definition for class “SummarizedExperiment”
+in method for ‘coerce’ with signature ‘"SummarizedExperiment","MSnSet"’: no definition for class “SummarizedExperiment”
+in method for ‘coerce’ with signature ‘"IBSpectra","MSnSet"’: no definition for class “IBSpectra”
+in method for ‘plotMzDelta’ with signature ‘"mzRramp"’: no definition for class “mzRramp”
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a new generic function for ‘trimws’ in package ‘MSnbase’
+in method for ‘coerce’ with signature ‘"MSnSet","SummarizedExperiment"’: no definition for class “SummarizedExperiment”
+in method for ‘coerce’ with signature ‘"SummarizedExperiment","MSnSet"’: no definition for class “SummarizedExperiment”
+in method for ‘coerce’ with signature ‘"IBSpectra","MSnSet"’: no definition for class “IBSpectra”
+in method for ‘plotMzDelta’ with signature ‘"mzRramp"’: no definition for class “mzRramp”
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (MSnbase)

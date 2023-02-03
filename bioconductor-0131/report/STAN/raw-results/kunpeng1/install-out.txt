@@ -1,0 +1,60 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL STAN
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘STAN’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -D_RDLL_ -fopenmp  -fPIC  -g -O2  -Wall  -c Bernoulli.cpp -o Bernoulli.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -D_RDLL_ -fopenmp  -fPIC  -g -O2  -Wall  -c EmissionFactory.cpp -o EmissionFactory.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -D_RDLL_ -fopenmp  -fPIC  -g -O2  -Wall  -c EmissionFunction.cpp -o EmissionFunction.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -D_RDLL_ -fopenmp  -fPIC  -g -O2  -Wall  -c HMM.cpp -o HMM.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -D_RDLL_ -fopenmp  -fPIC  -g -O2  -Wall  -c InitialProbability.cpp -o InitialProbability.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -D_RDLL_ -fopenmp  -fPIC  -g -O2  -Wall  -c JointlyIndependent.cpp -o JointlyIndependent.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -D_RDLL_ -fopenmp  -fPIC  -g -O2  -Wall  -c MemoryAllocation.cpp -o MemoryAllocation.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -D_RDLL_ -fopenmp  -fPIC  -g -O2  -Wall  -c Multinomial.cpp -o Multinomial.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -D_RDLL_ -fopenmp  -fPIC  -g -O2  -Wall  -c MultivariateGaussian.cpp -o MultivariateGaussian.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -D_RDLL_ -fopenmp  -fPIC  -g -O2  -Wall  -c NegativeBinomial.cpp -o NegativeBinomial.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -D_RDLL_ -fopenmp  -fPIC  -g -O2  -Wall  -c ParamContainerEmissions.cpp -o ParamContainerEmissions.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -D_RDLL_ -fopenmp  -fPIC  -g -O2  -Wall  -c Poisson.cpp -o Poisson.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -D_RDLL_ -fopenmp  -fPIC  -g -O2  -Wall  -c PoissonLogNormal.cpp -o PoissonLogNormal.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -D_RDLL_ -fopenmp  -fPIC  -g -O2  -Wall  -c RAccessUtils.cpp -o RAccessUtils.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -D_RDLL_ -fopenmp  -fPIC  -g -O2  -Wall  -c RWrapper.cpp -o RWrapper.o
+RWrapper.cpp: In function ‘EmissionFunction** RGETEMISSION(SEXP, int, SEXP, int*, const char*, double***, int*, int, SEXP, int*, int*, int*)’:
+RWrapper.cpp:350:16: warning: ‘HMMEmissionFunctions’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  350 |         return HMMEmissionFunctions;
+      |                ^~~~~~~~~~~~~~~~~~~~
+RWrapper.cpp: In function ‘SEXPREC* prepareEmission(const char*, SEXP, SEXP, EmissionFunction**, int)’:
+RWrapper.cpp:1157:16: warning: ‘sexpemissionParam’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1157 |         return sexpemissionParam;
+      |                ^~~~~~~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -D_RDLL_ -fopenmp  -fPIC  -g -O2  -Wall  -c TransitionMatrix.cpp -o TransitionMatrix.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -D_RDLL_ -fopenmp  -fPIC  -g -O2  -Wall  -c matUtils.cpp -o matUtils.o
+matUtils.cpp: In function ‘double matrixDet(double**, int)’:
+matUtils.cpp:118:20: error: too few arguments to function ‘void dspev_(const char*, const char*, const int*, double*, double*, double*, const int*, double*, int*, size_t, size_t)’
+  118 |     F77_NAME(dspev)("V", "U", &myN, myAP, myW, myZ, &myldz, myWork, &myInfo) ;
+      |                    ^
+In file included from /home/biocbuild/bbs-3.17-bioc/R/include/R.h:78,
+                 from matUtils.h:6,
+                 from matUtils.cpp:2:
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/Lapack.h:1050:10: note: declared here
+ 1050 | F77_NAME(dspev)(const char* jobz, const char* uplo, const int* n,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/Lapack.h:1050:1: note: in expansion of macro ‘F77_NAME’
+ 1050 | F77_NAME(dspev)(const char* jobz, const char* uplo, const int* n,
+      | ^~~~~~~~
+make: *** [/home/biocbuild/bbs-3.17-bioc/R/etc/Makeconf:198: matUtils.o] Error 1
+ERROR: compilation failed for package ‘STAN’
+* removing ‘/home/biocbuild/bbs-3.17-bioc/R/site-library/STAN’

@@ -1,0 +1,88 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL waddR
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘waddR’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c wasserstein.cpp -o wasserstein.o
+wasserstein.cpp: In function ‘std::vector<double> rep_weighted(std::vector<double>, std::vector<int, std::allocator<int> >)’:
+wasserstein.cpp:348:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  348 |         for(int i=0; i<x.size(); i++) {
+      |                      ~^~~~~~~~~
+wasserstein.cpp: In function ‘std::vector<double> concat(std::vector<double>&, std::vector<double>&)’:
+wasserstein.cpp:386:34: warning: variable ‘out_it_end’ set but not used [-Wunused-but-set-variable]
+  386 |         vector<double>::iterator out_it_end = out.end();
+      |                                  ^~~~~~~~~~
+wasserstein.cpp: In function ‘std::vector<int, std::allocator<int> > interval_table(const std::vector<double>&, const std::vector<double>&, int)’:
+wasserstein.cpp:584:39: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  584 |                         while (data_i < datavec.size()) {
+      |                                ~~~~~~~^~~~~~~~~~~~~~~~
+wasserstein.cpp: In function ‘double cor_test_export(Rcpp::NumericVector, Rcpp::NumericVector)’:
+wasserstein.cpp:1088:24: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1088 |         for (int i=0; i<x.size(); i++) { x[i] = x_[i];}
+      |                       ~^~~~~~~~~
+wasserstein.cpp:1089:24: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1089 |         for (int j=0; j<y.size(); j++) { y[j] = y_[j];}
+      |                       ~^~~~~~~~~
+wasserstein.cpp: In instantiation of ‘double cor(const std::vector<T>&, const std::vector<T>&, double, double) [with T = double]’:
+wasserstein.cpp:716:24:   required from here
+wasserstein.cpp:439:24: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  439 |         for (int i=0; i<x.size(); i++){
+      |                       ~^~~~~~~~~
+wasserstein.cpp: In instantiation of ‘std::vector<T> operator-(const std::vector<T>&, const std::vector<T>&) [with T = double]’:
+wasserstein.cpp:778:44:   required from here
+wasserstein.cpp:121:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  121 |     for (int i=0; i<x.size(); i++) {
+      |                   ~^~~~~~~~~
+wasserstein.cpp: In instantiation of ‘std::vector<T> cumSum(const std::vector<T>&, int) [with T = double]’:
+wasserstein.cpp:884:14:   required from here
+wasserstein.cpp:472:54: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  472 |         int upper = ((last_index > 0) && (last_index <= x.size())
+      |                                          ~~~~~~~~~~~~^~~~~~~~~~~~
+wasserstein.cpp: In instantiation of ‘std::vector<T> operator*(const std::vector<T>&, const std::vector<T>&) [with T = double]’:
+wasserstein.cpp:912:62:   required from here
+wasserstein.cpp:101:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  101 |     for (int i=0; i<x.size(); i++) {
+      |                   ~^~~~~~~~~
+wasserstein.cpp: In instantiation of ‘std::vector<T> operator+(std::vector<T>, std::vector<T>) [with T = double]’:
+wasserstein.cpp:933:15:   required from here
+wasserstein.cpp:53:32: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   53 |                 for (int i=0; i<x.size(); i++) {
+      |                               ~^~~~~~~~~
+wasserstein.cpp: In instantiation of ‘std::vector<T> operator/(const std::vector<T>&, const std::vector<T>&) [with T = double]’:
+wasserstein.cpp:1046:15:   required from here
+wasserstein.cpp:169:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  169 |     for (int i=0; i<x.size(); i++) {
+      |                   ~^~~~~~~~~
+wasserstein.cpp: In instantiation of ‘std::vector<T> quantile(const std::vector<T>&, std::vector<double>, int) [with T = double]’:
+wasserstein.cpp:1162:16:   required from here
+wasserstein.cpp:501:11: warning: unused variable ‘max_x’ [-Wunused-variable]
+  501 |         T max_x = x_sorted[n-1];
+      |           ^~~~~
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o waddR.so RcppExports.o wasserstein.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-waddR/00new/waddR/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+[1] "Downloading Reference Distribution: \n"
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (waddR)

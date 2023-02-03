@@ -1,0 +1,54 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL BufferedMatrixMethods
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘BufferedMatrixMethods’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BufferedMatrix/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c init_package.c -o init_package.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BufferedMatrix/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c preprocess_bm.c -o preprocess_bm.o
+preprocess_bm.c: In function ‘bm_rma_bg_correct’:
+preprocess_bm.c:344:7: warning: unused variable ‘i’ [-Wunused-variable]
+  344 |   int i,j;
+      |       ^
+preprocess_bm.c: In function ‘R_bm_rma_bg_correct’:
+preprocess_bm.c:378:7: warning: unused variable ‘current_mode’ [-Wunused-variable]
+  378 |   int current_mode;
+      |       ^~~~~~~~~~~~
+preprocess_bm.c: In function ‘R_bm_quantile_normalize’:
+preprocess_bm.c:593:7: warning: unused variable ‘current_mode’ [-Wunused-variable]
+  593 |   int current_mode;
+      |       ^~~~~~~~~~~~
+preprocess_bm.c: In function ‘do_RMA_buffmat’:
+preprocess_bm.c:924:7: warning: variable ‘first_ind’ set but not used [-Wunused-but-set-variable]
+  924 |   int first_ind;
+      |       ^~~~~~~~~
+preprocess_bm.c: In function ‘R_bm_rma_bg_correct_quantile_normalize’:
+preprocess_bm.c:1151:7: warning: unused variable ‘current_mode’ [-Wunused-variable]
+ 1151 |   int current_mode;
+      |       ^~~~~~~~~~~~
+At top level:
+preprocess_bm.c:453:12: warning: ‘min’ defined but not used [-Wunused-function]
+  453 | static int min(int x1,int x2){
+      |            ^~~
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o BufferedMatrixMethods.so init_package.o preprocess_bm.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-BufferedMatrixMethods/00new/BufferedMatrixMethods/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (BufferedMatrixMethods)

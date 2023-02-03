@@ -1,0 +1,248 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:Risa.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings Risa_1.41.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/Risa.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘Risa/DESCRIPTION’ ... OK
+* this is package ‘Risa’ version ‘1.41.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘Risa’ can be installed ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Invalid citation information in ‘inst/CITATION’:
+  Warning message:
+  In utils::packageDescription(basename(dir), dirname(dir)) :
+    no package 'Risa' was found
+Problems with news in ‘NEWS’:
+  Cannot process chunk/lines:
+    Changes for 1.9.1
+    1. Added citation information.
+    2. The identification of investigation files now avoids editor backup files (ignoring files like  "i_Investigation~")
+    3. Fixed issue where the investigation file wasn't fully read, due to the number of columns in higher rows being greater than the first five rows (as used by read.table)
+    4. Moved inst/doc to vignettes folder as required since R 3.1.0
+    5. Imported packages in Depends
+    6. Removed 'library' or 'require' calls to packages already attached by Depends.
+    7. Fixed no visible binding for global variable.
+  Cannot process chunk/lines:
+    Changes for 1.3.3
+    1. Fixed definitions of assay.filenames.per.sample and factors.
+    2. Fixed regulession of investigation file (i_) to be considered at the beginning of the string. 
+    3. Added CITATION file.
+  Cannot process chunk/lines:
+    Changes for 1.1.0
+    1. The ISAtab-class was extended to include the definition of assay.names, factors, treatments and groups.
+    2. The previous processAssayXcmsSet method was split into processAssayXcmsSet.1factor and processAssayXcmsSet to consider the first factor only (as it was in the previous definition) or all the factors, respectively.
+    3. More methods for processing mass spectrometry assays were added:
+      - the method getMSAssayFilenames retrieves a list with the mass spectrometry assay filenames 
+      - the method getRawDataFiles retrieves a list with all the files listed under the column 'Raw Spectral Data File' within the mass spectrometry assays.
+      - the method is.ms receives an object from the ISAtab-class and an assay filename as parameter, and retrieves TRUE if the assay filename is a mass spectrometry assay, or FALSE otherwise.
+    4. A method called suggestBiocPackage was added, which retrieves a list of packages in Bioconductor that might be relevant to the ISAtab dataset, according to its assays' mesaurement and technology types. This method relies on the BiocViews annotations for each of the packages available in Bioconductor in a specific version.
+    5. Added AssayTab-class and subclasses for MS, Microarray, Seq and NMR.
+    6. Defined method getAssayRawDataFilenames and getRawDataFilenames
+    7. Defined method getExpressionSet for microarray assays relying on affy package.
+  Cannot process chunk/lines:
+    This is the first release version of the package. It contains functionality to parse ISAtab datasets into an R object from the ISAtab class. It also provides functionality to save the ISA-tab dataset, or each of its individual files. Additionally, it is also possible to update assay files. Currently, metadata associated to proteomics and metabolomics-based assays (i.e. mass spectrometry) can be processed into an xcmsSet object (from the xcms R package).
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(Risa, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘Risa’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+getPackagesInBiocView: no visible global function definition for ‘data’
+readISAtabZip: no visible global function definition for ‘unzip’
+suggestBiocPackage: no visible global function definition for
+  ‘read.csv’
+write.assay.file: no visible global function definition for
+  ‘write.table’
+write.investigation.file: no visible global function definition for
+  ‘write.table’
+write.study.file: no visible global function definition for
+  ‘write.table’
+initialize,ISATab: no visible global function definition for
+  ‘count.fields’
+initialize,ISATab: no visible global function definition for
+  ‘read.table’
+initialize,ISATab : <anonymous>: no visible global function definition
+  for ‘read.table’
+initialize,ISATab : <anonymous> : <anonymous>: no visible global
+  function definition for ‘read.table’
+initialize,ISATab: no visible global function definition for ‘na.omit’
+Undefined global functions or variables:
+  count.fields data na.omit read.csv read.table unzip write.table
+Consider adding
+  importFrom("stats", "na.omit")
+  importFrom("utils", "count.fields", "data", "read.csv", "read.table",
+             "unzip", "write.table")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘Risa.Rnw’... failed
+ ERROR
+Errors in running code in vignettes:
+when running code in ‘Risa.Rnw’
+  ...
+
+> assay.filename <- faahkoISA["assay.filenames"][1]
+
+> faahkoXset <- processAssayXcmsSet(faahkoISA, assay.filename)
+Warning in parallel::mccollect(wait = FALSE, timeout = 1) :
+  1 parallel job did not deliver a result
+
+  When sourcing ‘Risa.R’:
+Error: wrong args for environment subassignment
+Execution halted
+
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘Risa.Rnw’ using Sweave
+Loading required package: Biobase
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: Rcpp
+Loading required package: biocViews
+Loading required package: affy
+Loading required package: faahKO
+Loading required package: xcms
+Loading required package: BiocParallel
+Loading required package: MSnbase
+Loading required package: mzR
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: ProtGenerics
+
+Attaching package: ‘ProtGenerics’
+
+The following objects are masked from ‘package:affy’:
+
+    intensity, intensity<-
+
+The following object is masked from ‘package:stats’:
+
+    smooth
+
+
+This is MSnbase version 2.25.1 
+  Visit https://lgatto.github.io/MSnbase/ to get started.
+
+
+Attaching package: ‘MSnbase’
+
+The following object is masked from ‘package:affy’:
+
+    plotDensity
+
+The following object is masked from ‘package:base’:
+
+    trimws
+
+
+This is xcms version 3.21.0 
+
+
+Attaching package: ‘xcms’
+
+The following object is masked from ‘package:stats’:
+
+    sigma
+
+Warning in parallel::mccollect(wait = FALSE, timeout = 1) :
+  1 parallel job did not deliver a result
+
+Error: processing vignette 'Risa.Rnw' failed with diagnostics:
+ chunk 3 (label = Risa-processXcmsSet) 
+Error in reducer$value.cache[[as.character(idx)]] <- values : 
+  wrong args for environment subassignment
+
+--- failed re-building ‘Risa.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘Risa.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 2 WARNINGs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/Risa.Rcheck/00check.log’
+for details.
+

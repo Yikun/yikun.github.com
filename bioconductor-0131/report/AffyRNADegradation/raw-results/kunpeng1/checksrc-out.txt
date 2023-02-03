@@ -1,0 +1,123 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:AffyRNADegradation.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings AffyRNADegradation_1.45.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/AffyRNADegradation.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘AffyRNADegradation/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘AffyRNADegradation’ version ‘1.45.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘AffyRNADegradation’ can be installed ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Invalid citation information in ‘inst/CITATION’:
+  Warning message:
+  In utils::packageDescription(basename(dir), dirname(dir)) :
+    no package 'AffyRNADegradation' was found
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(AffyRNADegradation, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘AffyRNADegradation’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... NOTE
+Package in Depends field not imported from: ‘methods’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+ComputeTongs: no visible global function definition for ‘filter’
+ComputeTongs: no visible global function definition for ‘na.omit’
+EstimateHookParams: no visible global function definition for ‘loess’
+EstimateHookParams: no visible global function definition for
+  ‘quantile’
+GetTongs: no visible global function definition for ‘ave’
+PlotDegradationHooks: no visible global function definition for
+  ‘rainbow’
+PlotDegradationHooks: no visible global function definition for ‘lines’
+PlotDegradationHooks: no visible global function definition for
+  ‘legend’
+PlotDx: no visible global function definition for ‘grid’
+PlotDx: no visible global function definition for ‘points’
+PlotDx: no visible global function definition for ‘lines’
+PlotTongs: no visible global function definition for ‘grid’
+PlotTongs: no visible global function definition for ‘lines’
+PlotTongs: no visible global function definition for ‘legend’
+RNADegradation: no visible global function definition for ‘ave’
+RNADegradation: no visible global function definition for ‘loess’
+RNADegradation: no visible global function definition for ‘approx’
+RNADegradation: no visible global function definition for ‘new’
+TryToFitDecayFunction: no visible global function definition for ‘nls’
+TryToFitDecayFunction: no visible global function definition for ‘coef’
+getProbeInfo.index: no visible global function definition for ‘ave’
+Undefined global functions or variables:
+  approx ave coef filter grid legend lines loess na.omit new nls points
+  quantile rainbow
+Consider adding
+  importFrom("grDevices", "rainbow")
+  importFrom("graphics", "grid", "legend", "lines", "points")
+  importFrom("methods", "new")
+  importFrom("stats", "approx", "ave", "coef", "filter", "loess",
+             "na.omit", "nls", "quantile")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘vignette.Rnw’ using ‘UTF-8’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 WARNINGs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/AffyRNADegradation.Rcheck/00check.log’
+for details.
+
+

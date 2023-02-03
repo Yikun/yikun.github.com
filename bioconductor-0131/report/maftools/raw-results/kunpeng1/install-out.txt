@@ -1,0 +1,50 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL maftools
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘maftools’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/zlibbioc/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c ntcounts.c -o ntcounts.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/zlibbioc/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c snpcounts.c -o snpcounts.o
+snpcounts.c: In function ‘snpcounts’:
+snpcounts.c:56:26: warning: passing argument 1 of ‘countlines’ discards ‘const’ qualifier from pointer target type [-Wdiscarded-qualifiers]
+   56 |   int nloci = countlines(bedfile);
+      |                          ^~~~~~~
+snpcounts.c:13:22: note: expected ‘char *’ but argument is of type ‘const char *’
+   13 | int countlines(char *filename){
+      |                ~~~~~~^~~~~~~~
+snpcounts.c:89:47: warning: format ‘%llu’ expects argument of type ‘long long unsigned int’, but argument 3 has type ‘uint64_t’ {aka ‘long unsigned int’} [-Wformat=]
+   89 |   fprintf(tsv_fp, "#idxstats_mapped_reads\t%llu\n", tot_mapped);
+      |                                            ~~~^     ~~~~~~~~~~
+      |                                               |     |
+      |                                               |     uint64_t {aka long unsigned int}
+      |                                               long long unsigned int
+      |                                            %lu
+snpcounts.c:56:7: warning: unused variable ‘nloci’ [-Wunused-variable]
+   56 |   int nloci = countlines(bedfile);
+      |       ^~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/zlibbioc/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c somaticfreq.c -o somaticfreq.o
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o maftools.so ntcounts.o snpcounts.o somaticfreq.o /home/biocbuild/bbs-3.17-bioc/R/site-library/Rhtslib/usrlib/libhts.a -lcurl -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-maftools/00new/maftools/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (maftools)

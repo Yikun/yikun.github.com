@@ -1,0 +1,166 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:switchBox.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings switchBox_1.35.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/switchBox.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘switchBox/DESCRIPTION’ ... OK
+* this is package ‘switchBox’ version ‘1.35.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘switchBox’ can be installed ... OK
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Invalid citation information in ‘inst/CITATION’:
+  Warning message:
+  In utils::packageDescription(basename(dir), dirname(dir)) :
+    no package 'switchBox' was found
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(switchBox, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘switchBox’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... NOTE
+There are ::: calls to the package's namespace in its code. A package
+  almost never needs to use ::: for its own objects:
+  ‘KTSP.CalculateSignedScore’ ‘KTSP.tiedRank’
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+plotGenePairBoxplot: no visible global function definition for
+  ‘boxplot’
+plotGenePairBoxplot: no visible global function definition for
+  ‘stripchart’
+plotGenePairBoxplot: no visible global function definition for ‘legend’
+plotGenePairBoxplot: no visible global function definition for ‘grid’
+plotGenePairClassesBoxplot: no visible global function definition for
+  ‘boxplot’
+plotGenePairClassesBoxplot: no visible global function definition for
+  ‘axis’
+plotGenePairClassesBoxplot: no visible global function definition for
+  ‘legend’
+plotGenePairClassesBoxplot: no visible global function definition for
+  ‘abline’
+plotGenePairClassesBoxplot: no visible global function definition for
+  ‘grid’
+plotGenePairScatter: no visible global function definition for ‘abline’
+plotGenePairScatter: no visible global function definition for ‘grid’
+plotGenePairScatter: no visible global function definition for ‘legend’
+plotGenes: no visible global function definition for ‘lines’
+plotGenes: no visible global function definition for ‘grid’
+plotGenes: no visible global function definition for ‘abline’
+plotGenes: no visible global function definition for ‘legend’
+plotkTSPTrainTestROC: no visible global function definition for ‘lines’
+plotkTSPTrainTestROC: no visible global function definition for
+  ‘legend’
+plotkTSPTrainTestROC: no visible global function definition for ‘grid’
+plotkTSPVotes: no visible global function definition for ‘plot.new’
+Undefined global functions or variables:
+  abline axis boxplot grid legend lines plot.new stripchart
+Consider adding
+  importFrom("graphics", "abline", "axis", "boxplot", "grid", "legend",
+             "lines", "plot.new", "stripchart")
+to your NAMESPACE file.
+* checking Rd files ... NOTE
+prepare_Rd: SWAP.Kby.Measurement.Rd:70-72: Dropping empty section \examples
+prepare_Rd: SWAP.Kby.Ttest.Rd:64-66: Dropping empty section \examples
+prepare_Rd: SWAP.PlotKTSP.Votes.Rd:54-56: Dropping empty section \examples
+* checking Rd metadata ... OK
+* checking Rd cross-references ... WARNING
+Package unavailable to check Rd xrefs: ‘mammaPrintData’
+Missing link or links in documentation object 'SWAP.PlotKTSP.TrainTestROC.Rd':
+  ‘SWAP.GetkTSPTrainTestResults’
+
+See section 'Cross-references' in the 'Writing R Extensions' manual.
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘SWAP.GetKFoldIndices’ ‘SWAP.MakeTrainTestData’
+  ‘SWAP.ScoreMatrixToVector’ ‘SWAP.ScoreVectorToMatrix’
+All user-level objects in a package should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Assignments in \usage in documentation object 'SWAP.Kby.Measurement':
+  k_opts = list(disjoint = TRUE, measurement = "auc")
+
+Undocumented arguments in documentation object 'SWAP.PlotKTSP.GenePairScatter'
+  ‘...’
+
+Undocumented arguments in documentation object 'SWAP.PlotKTSP.Genes'
+  ‘colors’ ‘legends’ ‘...’
+
+Undocumented arguments in documentation object 'SWAP.PlotKTSP.TrainTestROC'
+  ‘...’
+
+Undocumented arguments in documentation object 'SWAP.PlotKTSP.Votes'
+  ‘...’
+
+Bad \usage lines found in documentation object 'SWAP.Kby.Measurement':
+  SWAP.Kby.Measurement(inputMat, phenoGroup, 
+    scoreTable, classes, krange, 
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘switchBox.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 5 WARNINGs, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/switchBox.Rcheck/00check.log’
+for details.
+
+

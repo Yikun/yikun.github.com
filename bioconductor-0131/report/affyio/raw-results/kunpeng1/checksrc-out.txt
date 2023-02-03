@@ -1,0 +1,102 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:affyio.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings affyio_1.69.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/affyio.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘affyio/DESCRIPTION’ ... OK
+* this is package ‘affyio’ version ‘1.69.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘affyio’ can be installed ... WARNING
+Found the following significant warnings:
+  /usr/include/aarch64-linux-gnu/bits/string_fortified.h:95:10: warning: ‘__builtin_strncpy’ specified bound depends on the length of the source argument [-Wstringop-truncation]
+  read_bpmap.c:698:27: warning: ‘__builtin___sprintf_chk’ may write a terminating nul past the end of the destination [-Wformat-overflow=]
+  read_bpmap.c:655:27: warning: ‘__builtin___sprintf_chk’ may write a terminating nul past the end of the destination [-Wformat-overflow=]
+  read_bpmap.c:603:25: warning: ‘__builtin___sprintf_chk’ may write a terminating nul past the end of the destination [-Wformat-overflow=]
+  /usr/include/aarch64-linux-gnu/bits/string_fortified.h:95:10: warning: ‘__builtin_strncpy’ output truncated before terminating nul copying 11 bytes from a string of the same length [-Wstringop-truncation]
+  /usr/include/aarch64-linux-gnu/bits/string_fortified.h:95:10: warning: ‘__builtin_strncpy’ output truncated before terminating nul copying 12 bytes from a string of the same length [-Wstringop-truncation]
+  /usr/include/aarch64-linux-gnu/bits/string_fortified.h:95:10: warning: ‘__builtin_strncpy’ output truncated before terminating nul copying 14 bytes from a string of the same length [-Wstringop-truncation]
+  /usr/include/aarch64-linux-gnu/bits/string_fortified.h:95:10: warning: ‘__builtin_strncpy’ output truncated before terminating nul copying 17 bytes from a string of the same length [-Wstringop-truncation]
+  /usr/include/aarch64-linux-gnu/bits/string_fortified.h:95:10: warning: ‘__builtin_strncpy’ output truncated before terminating nul copying 18 bytes from a string of the same length [-Wstringop-truncation]
+  /usr/include/aarch64-linux-gnu/bits/string_fortified.h:95:10: warning: ‘__builtin_strncpy’ output truncated before terminating nul copying 26 bytes from a string of the same length [-Wstringop-truncation]
+  /usr/include/aarch64-linux-gnu/bits/string_fortified.h:95:10: warning: ‘__builtin_strncpy’ output truncated before terminating nul copying 20 bytes from a string of the same length [-Wstringop-truncation]
+  /usr/include/aarch64-linux-gnu/bits/string_fortified.h:95:10: warning: ‘__builtin_strncpy’ output truncated before terminating nul copying 16 bytes from a string of the same length [-Wstringop-truncation]
+  /usr/include/aarch64-linux-gnu/bits/string_fortified.h:95:10: warning: ‘__builtin_strncpy’ output truncated before terminating nul copying 8 bytes from a string of the same length [-Wstringop-truncation]
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/affyio.Rcheck/00install.out’ for details.
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... NOTE
+Found a ‘configure.in’ file: ‘configure.ac’ has long been preferred.
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(affyio, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘affyio’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in shell scripts ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... NOTE
+Package has both ‘src/Makevars.in’ and ‘src/Makevars’.
+Installation with --no-configure' is unlikely to work.  If you intended
+‘src/Makevars’ to be used on Windows, rename it to ‘src/Makevars.win’
+otherwise remove it.  If ‘configure’ created ‘src/Makevars’, you need a
+‘cleanup’ script.
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... OK
+* checking examples ... SKIPPED
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 WARNINGs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/affyio.Rcheck/00check.log’
+for details.
+
+

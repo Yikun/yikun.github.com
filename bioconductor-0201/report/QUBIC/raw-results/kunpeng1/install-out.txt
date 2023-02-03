@@ -1,0 +1,46 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL QUBIC
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘QUBIC’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -Wall -c charset.cc -o charset.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -Wall -c cluster.cc -o cluster.o
+cluster.cc: In function ‘bool internal::check_seed(const Edge*, const std::vector<Block>&, std::size_t)’:
+cluster.cc:132:19: warning: comparison of integer expressions of different signedness: ‘const int’ and ‘std::size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  132 |   return e->score >= b3;
+      |          ~~~~~~~~~^~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -Wall -c discretize.cc -o discretize.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -Wall -c edge_list.cc -o edge_list.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c fib.c -o fib.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -Wall -c fopen_matrix.cc -o fopen_matrix.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -Wall -c qubic.cc -o qubic.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -Wall -c rcpp_qubic.cpp -o rcpp_qubic.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -Wall -c struct.cc -o struct.o
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o QUBIC.so RcppExports.o charset.o cluster.o discretize.o edge_list.o fib.o fopen_matrix.o qubic.o rcpp_qubic.o struct.o -fopenmp -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-QUBIC/00new/QUBIC/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (QUBIC)

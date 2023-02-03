@@ -1,0 +1,288 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL DIAlignR
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘DIAlignR’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++14
+g++ -std=gnu++14 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c ChromatogramPeak.cpp -o ChromatogramPeak.o
+g++ -std=gnu++14 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c DPosition.cpp -o DPosition.o
+g++ -std=gnu++14 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c MSChromatogram.cpp -o MSChromatogram.o
+g++ -std=gnu++14 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c PeakIntegrator.cpp -o PeakIntegrator.o
+g++ -std=gnu++14 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++14 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c Rmain.cpp -o Rmain.o
+Rmain.cpp: In function ‘Rcpp::NumericVector areaIntegrator(Rcpp::List, Rcpp::List, double, double, std::string, std::string, bool, bool, int, int)’:
+Rmain.cpp:273:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  273 |     for(int i = 0; i<vov2.size(); i++) sgolay.smoothChroms(vov2[i]);
+      |                    ~^~~~~~~~~~~~
+Rmain.cpp: In function ‘Rcpp::NumericMatrix sgolayCpp(Rcpp::NumericMatrix, int, int)’:
+Rmain.cpp:305:19: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  305 |   for(int i = 0; i<d.size(); i++){
+      |                  ~^~~~~~~~~
+Rmain.cpp: In function ‘Rcpp::NumericMatrix getAlignedTimesCpp(Rcpp::List, Rcpp::List, int, int, std::string, double, std::string, std::string, const std::vector<double>&, double, double, double, bool, double, double, int, bool, double)’:
+Rmain.cpp:368:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  368 |     for(int i = 0; i<intensity1.size(); i++){
+      |                    ~^~~~~~~~~~~~~~~~~~
+Rmain.cpp: In function ‘Rcpp::List getChildXICpp(Rcpp::List, Rcpp::List, int, int, std::string, double, std::string, std::string, const std::vector<double>&, double, double, double, bool, double, double, int, bool, double, double, std::string, std::string, bool)’:
+Rmain.cpp:771:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  771 |     for(int i = 0; i<intensity1.size(); i++){
+      |                    ~^~~~~~~~~~~~~~~~~~
+Rmain.cpp:818:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  818 |   for(int i = 0; i < keep.size(); i++){
+      |                  ~~^~~~~~~~~~~~~
+Rmain.cpp:824:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  824 |   for(int j = 0; j <intensity1NN.size(); j++){
+      |                  ~~^~~~~~~~~~~~~~~~~~~~
+Rmain.cpp:827:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  827 |     for(int i = 0; i < keep.size(); i++){
+      |                    ~~^~~~~~~~~~~~~
+Rmain.cpp:837:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  837 |   for(int i = 0; i < keep.size(); i++) alignedChildTime[keep[i]] = t1NN[i];
+      |                  ~~^~~~~~~~~~~~~
+Rmain.cpp:862:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  862 |   for (int i = 0; i < intensity1NN.size(); i++){
+      |                   ~~^~~~~~~~~~~~~~~~~~~~~
+Rmain.cpp:873:28: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  873 |     for(int i =0, j = 0; i < alignedChildTime.size(); i++){
+      |                          ~~^~~~~~~~~~~~~~~~~~~~~~~~~
+Rmain.cpp: In function ‘Rcpp::List otherChildXICpp(Rcpp::List, Rcpp::List, int, int, Rcpp::NumericMatrix, std::vector<double>, double, std::string)’:
+Rmain.cpp:944:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  944 |     for(int i = 0; i<intensity1.size(); i++){
+      |                    ~^~~~~~~~~~~~~~~~~~
+Rmain.cpp:972:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  972 |   for(int j = 0; j <intensity1NN.size(); j++){
+      |                  ~~^~~~~~~~~~~~~~~~~~~~
+Rmain.cpp:975:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  975 |     for(int i = 0; i < keep.size(); i++){
+      |                    ~~^~~~~~~~~~~~~
+Rmain.cpp:1008:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1008 |   for (int i = 0; i < intensity1NN.size(); i++){
+      |                   ~~^~~~~~~~~~~~~~~~~~~~~
+In file included from Rmain.cpp:19:
+miscell.h: At global scope:
+miscell.h:14:19: warning: ‘const bool DIAlign::detect_end_na(double, double)’ declared ‘static’ but never defined [-Wunused-function]
+   14 | static bool const detect_end_na(double a, double b);
+      |                   ^~~~~~~~~~~~~
+miscell.h:16:19: warning: ‘const bool DIAlign::detect_start_na(double, double)’ declared ‘static’ but never defined [-Wunused-function]
+   16 | static bool const detect_start_na(double a, double b);
+      |                   ^~~~~~~~~~~~~~~
+miscell.h:18:19: warning: ‘const bool DIAlign::lessZero(double)’ declared ‘static’ but never defined [-Wunused-function]
+   18 | static bool const lessZero(double a);
+      |                   ^~~~~~~~
+In file included from miscell.h:9,
+                 from Rmain.cpp:19:
+spline.h:390:10: warning: ‘double DIAlign::{anonymous}::tk::spline::deriv(int, double) const’ defined but not used [-Wunused-function]
+  390 |   double spline::deriv(int order, double x) const
+      |          ^~~~~~
+spline.h:364:10: warning: ‘double DIAlign::{anonymous}::tk::spline::operator()(double) const’ defined but not used [-Wunused-function]
+  364 |   double spline::operator() (double x) const
+      |          ^~~~~~
+spline.h:273:8: warning: ‘void DIAlign::{anonymous}::tk::spline::set_points(const std::vector<double>&, const std::vector<double>&, bool)’ defined but not used [-Wunused-function]
+  273 |   void spline::set_points(const std::vector<double>& x,
+      |        ^~~~~~
+spline.h:261:8: warning: ‘void DIAlign::{anonymous}::tk::spline::set_boundary(DIAlign::{anonymous}::tk::spline::bd_type, double, DIAlign::{anonymous}::tk::spline::bd_type, double, bool)’ defined but not used [-Wunused-function]
+  261 |   void spline::set_boundary(spline::bd_type left, double left_value,
+      |        ^~~~~~
+g++ -std=gnu++14 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c SavitzkyGolayFilter.cpp -o SavitzkyGolayFilter.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include/Eigen/Core:507,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include/Eigen/Dense:1,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include/RcppEigenForward.h:30,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include/RcppEigen.h:25,
+                 from SavitzkyGolayFilter.cpp:1:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include/Eigen/src/Core/products/TriangularMatrixVector.h: In static member function ‘static void Eigen::internal::trmv_selector<Mode, 1>::run(const Lhs&, const Rhs&, Dest&, const typename Dest::Scalar&) [with Lhs = Eigen::Transpose<const Eigen::Block<const Eigen::Block<Eigen::Matrix<double, -1, -1>, -1, -1, false>, -1, -1, false> >; Rhs = Eigen::Transpose<const Eigen::CwiseBinaryOp<Eigen::internal::scalar_product_op<double, double>, const Eigen::CwiseNullaryOp<Eigen::internal::scalar_constant_op<double>, const Eigen::Matrix<double, 1, -1> >, const Eigen::Transpose<const Eigen::Block<const Eigen::Block<const Eigen::Block<Eigen::Matrix<double, -1, -1>, -1, -1, false>, -1, 1, true>, -1, 1, false> > > >; Dest = Eigen::Transpose<Eigen::Block<Eigen::Block<Eigen::Matrix<double, -1, -1, 1, -1, -1>, 1, -1, true>, 1, -1, false> >; int Mode = 6]’:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include/Eigen/src/Core/products/TriangularMatrixVector.h:332:12: warning: ‘result’ may be used uninitialized [-Wmaybe-uninitialized]
+  327 |     internal::triangular_matrix_vector_product
+      |     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  328 |       <Index,Mode,
+      |       ~~~~~~~~~~~~
+  329 |        LhsScalar, LhsBlasTraits::NeedToConjugate,
+      |        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  330 |        RhsScalar, RhsBlasTraits::NeedToConjugate,
+      |        ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  331 |        RowMajor>
+      |        ~~~~~~~~~
+  332 |       ::run(actualLhs.rows(),actualLhs.cols(),
+      |       ~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  333 |             actualLhs.data(),actualLhs.outerStride(),
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  334 |             actualRhsPtr,1,
+      |             ~~~~~~~~~~~~~~~
+  335 |             dest.data(),dest.innerStride(),
+      |             ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  336 |             actualAlpha);
+      |             ~~~~~~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include/Eigen/src/Core/products/TriangularMatrixVector.h:105:24: note: by argument 5 of type ‘const double*’ to ‘static void Eigen::internal::triangular_matrix_vector_product<Index, Mode, LhsScalar, ConjLhs, RhsScalar, ConjRhs, 1, Version>::run(Index, Index, const LhsScalar*, Index, const RhsScalar*, Index, Eigen::internal::triangular_matrix_vector_product<Index, Mode, LhsScalar, ConjLhs, RhsScalar, ConjRhs, 1, Version>::ResScalar*, Index, const ResScalar&) [with Index = long int; int Mode = 6; LhsScalar = double; bool ConjLhs = false; RhsScalar = double; bool ConjRhs = false; int Version = 0]’ declared here
+  105 | EIGEN_DONT_INLINE void triangular_matrix_vector_product<Index,Mode,LhsScalar,ConjLhs,RhsScalar,ConjRhs,RowMajor,Version>
+      |                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++14 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c affinealignment.cpp -o affinealignment.o
+affinealignment.cpp: In function ‘double DIAlign::AffineAlignment::getOlapAffineAlignStartIndices(double*, double*, double*, int, int, int&, int&, DIAlign::Traceback::tbJump&)’:
+affinealignment.cpp:485:16: warning: ‘MaxColIndex’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  485 |   OlapStartCol = MaxColIndex;
+      |   ~~~~~~~~~~~~~^~~~~~~~~~~~~
+affinealignment.cpp:484:16: warning: ‘MaxRowIndex’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  484 |   OlapStartRow = MaxRowIndex;
+      |   ~~~~~~~~~~~~~^~~~~~~~~~~~~
+g++ -std=gnu++14 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c affinealignobj.cpp -o affinealignobj.o
+g++ -std=gnu++14 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c alignment.cpp -o alignment.o
+g++ -std=gnu++14 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c chromSimMatrix.cpp -o chromSimMatrix.o
+chromSimMatrix.cpp: In function ‘std::vector<double> DIAlign::SimilarityMatrix::perSampleEucLenVecOfVec(const std::vector<std::vector<double> >&)’:
+chromSimMatrix.cpp:32:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   32 |   for (int i = 0; i < mag.size(); i++){
+      |                   ~~^~~~~~~~~~~~
+chromSimMatrix.cpp: In function ‘std::vector<double> DIAlign::SimilarityMatrix::perSampleSqrSumVecOfVec(const std::vector<std::vector<double> >&)’:
+chromSimMatrix.cpp:45:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   45 |   for (int i = 0; i < mag.size(); i++){
+      |                   ~~^~~~~~~~~~~~
+chromSimMatrix.cpp: In function ‘std::vector<double> DIAlign::SimilarityMatrix::perSampleMeanVecOfVec(const std::vector<std::vector<double> >&)’:
+chromSimMatrix.cpp:57:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   57 |   for (int i = 0; i < mean.size(); i++){
+      |                   ~~^~~~~~~~~~~~~
+chromSimMatrix.cpp: In function ‘std::vector<double> DIAlign::SimilarityMatrix::perSampleSumVecOfVec(const std::vector<std::vector<double> >&)’:
+chromSimMatrix.cpp:70:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   70 |   for (int i = 0; i < sum.size(); i++){
+      |                   ~~^~~~~~~~~~~~
+chromSimMatrix.cpp: In function ‘DIAlign::SimMatrix DIAlign::SimilarityMatrix::getSimilarityMatrix(const std::vector<std::vector<double> >&, const std::vector<std::vector<double> >&, std::string, std::string, double, double, int)’:
+chromSimMatrix.cpp:414:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  414 |     for(int i = 0; i < MASK.size(); i++){
+      |                    ~~^~~~~~~~~~~~~
+g++ -std=gnu++14 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c constrainMat.cpp -o constrainMat.o
+constrainMat.cpp: In function ‘void DIAlign::ConstrainMatrix::calcNoBeefMask2(DIAlign::SimMatrix&, std::vector<double>, std::vector<double>, std::vector<double>, int, bool)’:
+constrainMat.cpp:78:10: warning: unused variable ‘mapped’ [-Wunused-variable]
+   78 |   double mapped = 0.0;
+      |          ^~~~~~
+g++ -std=gnu++14 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c gapPenalty.cpp -o gapPenalty.o
+gapPenalty.cpp: In function ‘double DIAlign::getGapPenalty(const DIAlign::SimMatrix&, double, std::string)’:
+gapPenalty.cpp:26:35: warning: ‘gapPenalty’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   26 |   return std::max(0.01, gapPenalty); // gapPenalty must be positive.
+      |                                   ^
+g++ -std=gnu++14 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c integrateArea.cpp -o integrateArea.o
+g++ -std=gnu++14 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c interface.cpp -o interface.o
+g++ -std=gnu++14 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c miscell.cpp -o miscell.o
+miscell.cpp: In function ‘void DIAlign::xicIntersect(std::vector<std::vector<double> >&, std::vector<std::vector<double> >&)’:
+miscell.cpp:10:30: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+   10 |   for (unsigned int i = 0; i < len; i++){
+      |                            ~~^~~~~
+miscell.cpp:15:29: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+   15 |   for(unsigned int i = 0; i < len; i++){
+      |                           ~~^~~~~
+miscell.cpp:26:30: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+   26 |   for (unsigned int i = 0; i < len; i++){
+      |                            ~~^~~~~
+miscell.cpp:39:30: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+   39 |   for (unsigned int i = 0; i < len; i++) len2[i] = intensity[i].size();
+      |                            ~~^~~~~
+miscell.cpp: In function ‘std::vector<std::vector<double> > DIAlign::imputeChromatogram(const std::vector<std::vector<double> >&, const std::vector<double>&, const std::vector<int>&)’:
+miscell.cpp:125:18: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  125 |   for(int i =0; i< middle.size(); i++){
+      |                 ~^~~~~~~~~~~~~~~
+miscell.cpp:131:19: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  131 |   for(int i =0; i < (Anew.size()-1); i++){
+      |                 ~~^~~~~~~~~~~~~~~~~
+miscell.cpp:139:19: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  139 |     for(int j=0; j<result.size(); j++){
+      |                  ~^~~~~~~~~~~~~~
+miscell.cpp: In function ‘std::vector<int> DIAlign::getSkip(const std::vector<int>&, const std::vector<int>&)’:
+miscell.cpp:164:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  164 |   for(int i = 0; i < index.size(); i++){
+      |                  ~~^~~~~~~~~~~~~~
+miscell.cpp: In function ‘void DIAlign::mergeIntensity(std::vector<std::vector<double> >&, std::vector<std::vector<double> >&, double)’:
+miscell.cpp:221:19: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  221 |   for(int i = 0; i< A.size(); i++){
+      |                  ~^~~~~~~~~~
+miscell.cpp: In function ‘void DIAlign::addFlankToLeft(const std::vector<double>&, std::vector<double>&, std::vector<double>&, const std::vector<std::vector<double> >&, std::vector<std::vector<double> >&, std::vector<int>&)’:
+miscell.cpp:250:19: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  250 |   for(int i = 0; i< intenN.size(); i++){
+      |                  ~^~~~~~~~~~~~~~~
+miscell.cpp: In function ‘void DIAlign::addFlankToRight(const std::vector<double>&, std::vector<double>&, std::vector<double>&, const std::vector<std::vector<double> >&, std::vector<std::vector<double> >&, std::vector<int>&)’:
+miscell.cpp:277:19: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  277 |   for(int i = 0; i< intenN.size(); i++){
+      |                  ~^~~~~~~~~~~~~~~
+miscell.cpp: In function ‘void DIAlign::addFlankToLeft1(const std::vector<std::vector<double> >&, std::vector<std::vector<double> >&, std::vector<int>&)’:
+miscell.cpp:288:19: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  288 |   for(int i = 0; i< intenN.size(); i++){
+      |                  ~^~~~~~~~~~~~~~~
+miscell.cpp: In function ‘void DIAlign::addFlankToRight1(const std::vector<std::vector<double> >&, std::vector<std::vector<double> >&, std::vector<int>&)’:
+miscell.cpp:307:19: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  307 |   for(int i = 0; i< intenN.size(); i++){
+      |                  ~^~~~~~~~~~~~~~~
+miscell.cpp: In function ‘std::vector<int> DIAlign::getMatchingIdx(const std::vector<double>&, const std::vector<double>&)’:
+miscell.cpp:318:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  318 |   for(int i =0, j=0; i< tMain.size(); i++){
+      |                      ~^~~~~~~~~~~~~~
+miscell.cpp:320:12: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  320 |     for(; j<t.size();){
+      |           ~^~~~~~~~~
+miscell.cpp: In function ‘std::vector<std::vector<double> > DIAlign::imputeChromatogram1(const std::vector<std::vector<double> >&, const std::vector<int>&, const std::vector<double>&, const std::vector<double>&)’:
+miscell.cpp:337:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  337 |   for(int j = 0; j <A.size(); j++){
+      |                  ~~^~~~~~~~~
+miscell.cpp:339:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  339 |     for(int i = 0; i < temp.size(); i++){
+      |                    ~~^~~~~~~~~~~~~
+miscell.cpp:353:18: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  353 |   for(int i =0; i< middle.size(); i++){
+      |                 ~^~~~~~~~~~~~~~~
+miscell.cpp:358:19: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  358 |   for(int i =0; i < intensity.size(); i++){
+      |                 ~~^~~~~~~~~~~~~~~~~~
+miscell.cpp:360:19: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  360 |     for(int j=0; j<result.size(); j++){
+      |                  ~^~~~~~~~~~~~~~
+miscell.cpp: At global scope:
+miscell.cpp:53:19: warning: ‘const bool DIAlign::lessZero(double)’ defined but not used [-Wunused-function]
+   53 | static bool const lessZero(double a){
+      |                   ^~~~~~~~
+In file included from miscell.h:9,
+                 from miscell.cpp:3:
+spline.h:390:10: warning: ‘double DIAlign::{anonymous}::tk::spline::deriv(int, double) const’ defined but not used [-Wunused-function]
+  390 |   double spline::deriv(int order, double x) const
+      |          ^~~~~~
+spline.h:364:10: warning: ‘double DIAlign::{anonymous}::tk::spline::operator()(double) const’ defined but not used [-Wunused-function]
+  364 |   double spline::operator() (double x) const
+      |          ^~~~~~
+spline.h:273:8: warning: ‘void DIAlign::{anonymous}::tk::spline::set_points(const std::vector<double>&, const std::vector<double>&, bool)’ defined but not used [-Wunused-function]
+  273 |   void spline::set_points(const std::vector<double>& x,
+      |        ^~~~~~
+spline.h:261:8: warning: ‘void DIAlign::{anonymous}::tk::spline::set_boundary(DIAlign::{anonymous}::tk::spline::bd_type, double, DIAlign::{anonymous}::tk::spline::bd_type, double, bool)’ defined but not used [-Wunused-function]
+  261 |   void spline::set_boundary(spline::bd_type left, double left_value,
+      |        ^~~~~~
+g++ -std=gnu++14 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c run_alignment.cpp -o run_alignment.o
+g++ -std=gnu++14 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c simpleFcn.cpp -o simpleFcn.o
+g++ -std=gnu++14 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c spline.cpp -o spline.o
+In file included from spline.cpp:1:
+spline.h:390:10: warning: ‘double DIAlign::{anonymous}::tk::spline::deriv(int, double) const’ defined but not used [-Wunused-function]
+  390 |   double spline::deriv(int order, double x) const
+      |          ^~~~~~
+spline.h:261:8: warning: ‘void DIAlign::{anonymous}::tk::spline::set_boundary(DIAlign::{anonymous}::tk::spline::bd_type, double, DIAlign::{anonymous}::tk::spline::bd_type, double, bool)’ defined but not used [-Wunused-function]
+  261 |   void spline::set_boundary(spline::bd_type left, double left_value,
+      |        ^~~~~~
+g++ -std=gnu++14 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c utils.cpp -o utils.o
+utils.cpp: In function ‘double DIAlign::Utils::getQuantile(std::vector<double>, double)’:
+utils.cpp:48:9: warning: unused variable ‘idx’ [-Wunused-variable]
+   48 |     int idx = n*(1-p);
+      |         ^~~
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o DIAlignR.so ChromatogramPeak.o DPosition.o MSChromatogram.o PeakIntegrator.o RcppExports.o Rmain.o SavitzkyGolayFilter.o affinealignment.o affinealignobj.o alignment.o chromSimMatrix.o constrainMat.o gapPenalty.o integrateArea.o interface.o miscell.o run_alignment.o simpleFcn.o spline.o utils.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-DIAlignR/00new/DIAlignR/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (DIAlignR)

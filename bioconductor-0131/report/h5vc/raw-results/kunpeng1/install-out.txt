@@ -1,0 +1,53 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL h5vc
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘h5vc’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c bam_plbuf.c -o bam_plbuf.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c tallyBAM.cpp -o tallyBAM.o
+tallyBAM.cpp: In function ‘int pileup_func_old(uint32_t, hts_pos_t, int, const bam_pileup1_t*, void*)’:
+tallyBAM.cpp:47:7: warning: unused variable ‘len’ [-Wunused-variable]
+   47 |   int len = nttable->end - nttable->beg;
+      |       ^~~
+tallyBAM.cpp: In function ‘int pileup_func(uint32_t, hts_pos_t, int, const bam_pileup1_t*, void*)’:
+tallyBAM.cpp:96:7: warning: unused variable ‘len’ [-Wunused-variable]
+   96 |   int len = nttable->end - nttable->beg;
+      |       ^~~
+tallyBAM.cpp: In function ‘int _tallyBAM(char**, char**, int*, int*, int*, int*, int*, int*, int*, int*)’:
+tallyBAM.cpp:140:13: warning: unused variable ‘c’ [-Wunused-variable]
+  140 |         int c = 0;
+      |             ^
+tallyBAM.cpp: At global scope:
+tallyBAM.cpp:43:12: warning: ‘int pileup_func_old(uint32_t, hts_pos_t, int, const bam_pileup1_t*, void*)’ defined but not used [-Wunused-function]
+   43 | static int pileup_func_old(uint32_t tid, hts_pos_t pos, int n, const bam_pileup1_t *pl, void *data)
+      |            ^~~~~~~~~~~~~~~
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o h5vc.so bam_plbuf.o tallyBAM.o /home/biocbuild/bbs-3.17-bioc/R/site-library/Rhtslib/usrlib/libhts.a -lcurl -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-h5vc/00new/h5vc/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Warning: replacing previous import ‘Biostrings::pattern’ by ‘grid::pattern’ when loading ‘h5vc’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+Warning: replacing previous import ‘Biostrings::pattern’ by ‘grid::pattern’ when loading ‘h5vc’
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+Warning: replacing previous import ‘Biostrings::pattern’ by ‘grid::pattern’ when loading ‘h5vc’
+** testing if installed package keeps a record of temporary installation path
+* DONE (h5vc)

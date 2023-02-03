@@ -1,0 +1,42 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL GlobalAncova
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘GlobalAncova’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c GlobalAncova.c -o GlobalAncova.o
+GlobalAncova.c: In function ‘permut_withFperm’:
+GlobalAncova.c:186:16: warning: ‘ord_perm’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  186 |             n1 =  ord_perm[j] ;
+      |             ~~~^~~~~~~~~~~~~~
+GlobalAncova.c: In function ‘permut’:
+GlobalAncova.c:289:16: warning: ‘ord_perm’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  289 |             n1 =  ord_perm[j] ;
+      |             ~~~^~~~~~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c ludcmp.c -o ludcmp.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c matrix.c -o matrix.o
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o GlobalAncova.so GlobalAncova.o ludcmp.o matrix.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-GlobalAncova/00new/GlobalAncova/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (GlobalAncova)

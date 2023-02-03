@@ -1,0 +1,40 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL flagme
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘flagme’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c dp.c -o dp.o
+dp.c: In function ‘dp’:
+dp.c:263:33: warning: ‘cur_min’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  263 |           D[(i+1)+(j+1)*(nr+1)] = cur_min;
+      |           ~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
+dp.c:264:35: warning: ‘tb’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  264 |           phi[(i+1)+(j+1)*(nr+1)] = tb;
+      |           ~~~~~~~~~~~~~~~~~~~~~~~~^~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c init.c -o init.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c pearson.c -o pearson.o
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o flagme.so dp.o init.o pearson.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-flagme/00new/flagme/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (flagme)

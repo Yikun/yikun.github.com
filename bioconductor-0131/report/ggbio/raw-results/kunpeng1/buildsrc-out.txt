@@ -1,0 +1,101 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data ggbio
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘ggbio/DESCRIPTION’ ... OK
+* preparing ‘ggbio’:
+* checking DESCRIPTION meta-information ... OK
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘ggbio.Rnw’ using Sweave
+--- finished re-building ‘ggbio.Rnw’
+
+cp realvignettes/*.Rnw .
+/home/biocbuild/bbs-3.17-bioc/R/bin/Rscript -e "library(knitr); knit2pdf('ggbio.Rnw')"
+
+
+processing file: ggbio.Rnw
+
+  |                                                    
+  |                                              |   0%
+  |                                                    
+  |                                              |   1%                        
+  |                                                    
+  |.                                             |   2% (style-knitr)                                  
+  |                                                    
+  |.                                             |   3% (setup)                
+  |                                                    
+  |..                                            |   4%                        
+  |                                                    
+  |..                                            |   5% (citation)             
+  |                                                    
+  |...                                           |   6%                         (unnamed-chunk-1)      
+  |                                                    
+  |...                                           |   7%                        
+  |                                                    
+  |....                                          |   8% (unnamed-chunk-2)      
+  |                                                    
+  |....                                          |   9%                        
+  |                                                    
+  |....                                          |  10% (unnamed-chunk-3)      
+  |                                                    
+  |.....                                         |  10%                        
+  |                                                    
+  |.....                                         |  11% (unnamed-chunk-4)      
+  |                                                    
+  |......                                        |  12%                        
+  |                                                    
+  |......                                        |  13% (unnamed-chunk-5)      
+  |                                                    
+  |......                                        |  14%                        
+  |                                                    
+  |.......                                       |  14% (unnamed-chunk-6)      
+  |                                                    
+  |.......                                       |  15%                        
+  |                                                    
+  |.......                                       |  16% (unnamed-chunk-7)      
+  |                                                    
+  |........                                      |  17%                        
+  |                                                    
+  |........                                      |  18% (unnamed-chunk-8)                              
+  |                                                    
+  |.........                                     |  19% (unnamed-chunk-9)      
+  |                                                    
+  |.........                                     |  20%                        
+  |                                                    
+  |..........                                    |  21% (unnamed-chunk-10)     
+  |                                                    
+  |..........                                    |  22%                         (unnamed-chunk-11)     
+  |                                                    
+  |...........                                   |  23%                        
+  |                                                    
+  |...........                                   |  24% (unnamed-chunk-12)     
+  |                                                    
+  |...........                                   |  25%                        
+  |                                                    
+  |............                                  |  26% (unnamed-chunk-13)                             
+  |                                                    
+  |.............                                 |  27% (unnamed-chunk-14)     
+  |                                                    
+  |.............                                 |  28%                        
+  |                                                    
+  |.............                                 |  29% (unnamed-chunk-15)     
+  |                                                    
+  |..............                                |  30%                         (unnamed-chunk-16)     Quitting from lines 288-299 (ggbio.Rnw) 
+Error in library(BSgenome.Hsapiens.UCSC.hg19) : 
+  there is no package called 'BSgenome.Hsapiens.UCSC.hg19'
+Calls: knit2pdf ... withVisible -> eval_with_user_handlers -> eval -> eval -> library
+
+                                                                                                                  
+Execution halted
+make: *** [Makefile:15: ggbio.pdf] Error 1
+Error in tools::buildVignettes(dir = ".", tangle = TRUE) : 
+  running 'make' failed
+Execution halted

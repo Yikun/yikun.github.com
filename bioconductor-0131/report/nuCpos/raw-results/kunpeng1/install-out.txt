@@ -1,0 +1,68 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL nuCpos
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘nuCpos’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gfortran  -fPIC  -g -O2  -Wall -c  HBA_3.f90 -o HBA_3.o
+HBA_3.f90:13:36:
+
+   13 |   real(8)    tranN4(5:147,4,4,4,4,4),freqL4(4,4,4,4)
+      |                                    1
+Warning: Array ‘trann4’ at (1) is larger than limit set by ‘-fmax-stack-var-size=’, moved from stack to static storage. This makes the procedure unsafe when called recursively, or concurrently from multiple threads. Consider increasing the ‘-fmax-stack-var-size=’ limit (or use ‘-frecursive’, which implies unlimited ‘-fmax-stack-var-size’) - or change the code to use an ALLOCATABLE array. If the variable is never accessed concurrently, this warning can be ignored, and the variable could also be declared with the SAVE attribute. [-Wsurprising]
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c R_init_nuCpos.c -o R_init_nuCpos.o
+gfortran  -fPIC  -g -O2  -Wall -c  localHBA_3.f90 -o localHBA_3.o
+localHBA_3.f90:30:36:
+
+   30 |   real(8)    tranN4(5:147,4,4,4,4,4),freqL4(4,4,4,4)
+      |                                    1
+Warning: Array ‘trann4’ at (1) is larger than limit set by ‘-fmax-stack-var-size=’, moved from stack to static storage. This makes the procedure unsafe when called recursively, or concurrently from multiple threads. Consider increasing the ‘-fmax-stack-var-size=’ limit (or use ‘-frecursive’, which implies unlimited ‘-fmax-stack-var-size’) - or change the code to use an ALLOCATABLE array. If the variable is never accessed concurrently, this warning can be ignored, and the variable could also be declared with the SAVE attribute. [-Wsurprising]
+gfortran  -fPIC  -g -O2  -Wall -c  nuCpos2_1.f90 -o nuCpos2_1.o
+nuCpos2_1.f90:12:51:
+
+   12 |   real*8    freqN4(4,4,4,4),tranN4(5:147,4,4,4,4,4),freqL4(4,4,4,4)
+      |                                                   1
+Warning: Array ‘trann4’ at (1) is larger than limit set by ‘-fmax-stack-var-size=’, moved from stack to static storage. This makes the procedure unsafe when called recursively, or concurrently from multiple threads. Consider increasing the ‘-fmax-stack-var-size=’ limit (or use ‘-frecursive’, which implies unlimited ‘-fmax-stack-var-size’) - or change the code to use an ALLOCATABLE array. If the variable is never accessed concurrently, this warning can be ignored, and the variable could also be declared with the SAVE attribute. [-Wsurprising]
+gfortran  -fPIC  -g -O2  -Wall -c  nuCpos2_2.f90 -o nuCpos2_2.o
+nuCpos2_2.f90:12:51:
+
+   12 |   real*8    freqN4(4,4,4,4),tranN4(5:147,4,4,4,4,4),freqL4(4,4,4,4)
+      |                                                   1
+Warning: Array ‘trann4’ at (1) is larger than limit set by ‘-fmax-stack-var-size=’, moved from stack to static storage. This makes the procedure unsafe when called recursively, or concurrently from multiple threads. Consider increasing the ‘-fmax-stack-var-size=’ limit (or use ‘-frecursive’, which implies unlimited ‘-fmax-stack-var-size’) - or change the code to use an ALLOCATABLE array. If the variable is never accessed concurrently, this warning can be ignored, and the variable could also be declared with the SAVE attribute. [-Wsurprising]
+gfortran  -fPIC  -g -O2  -Wall -c  nuCpos_1.f90 -o nuCpos_1.o
+nuCpos_1.f90:15:51:
+
+   15 |   real*8    freqN4(4,4,4,4),tranN4(5:147,4,4,4,4,4),freqL4(4,4,4,4)
+      |                                                   1
+Warning: Array ‘trann4’ at (1) is larger than limit set by ‘-fmax-stack-var-size=’, moved from stack to static storage. This makes the procedure unsafe when called recursively, or concurrently from multiple threads. Consider increasing the ‘-fmax-stack-var-size=’ limit (or use ‘-frecursive’, which implies unlimited ‘-fmax-stack-var-size’) - or change the code to use an ALLOCATABLE array. If the variable is never accessed concurrently, this warning can be ignored, and the variable could also be declared with the SAVE attribute. [-Wsurprising]
+gfortran  -fPIC  -g -O2  -Wall -c  nuCpos_2.f90 -o nuCpos_2.o
+nuCpos_2.f90:15:51:
+
+   15 |   real*8    freqN4(4,4,4,4),tranN4(5:147,4,4,4,4,4),freqL4(4,4,4,4)
+      |                                                   1
+Warning: Array ‘trann4’ at (1) is larger than limit set by ‘-fmax-stack-var-size=’, moved from stack to static storage. This makes the procedure unsafe when called recursively, or concurrently from multiple threads. Consider increasing the ‘-fmax-stack-var-size=’ limit (or use ‘-frecursive’, which implies unlimited ‘-fmax-stack-var-size’) - or change the code to use an ALLOCATABLE array. If the variable is never accessed concurrently, this warning can be ignored, and the variable could also be declared with the SAVE attribute. [-Wsurprising]
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o nuCpos.so HBA_3.o R_init_nuCpos.o localHBA_3.o nuCpos2_1.o nuCpos2_2.o nuCpos_1.o nuCpos_2.o -lgfortran -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-nuCpos/00new/nuCpos/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (nuCpos)

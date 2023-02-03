@@ -1,0 +1,147 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data ensemblVEP
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘ensemblVEP/DESCRIPTION’ ... OK
+* preparing ‘ensemblVEP’:
+* checking DESCRIPTION meta-information ... OK
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘ensemblVEP.Rnw’ using Sweave
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: VariantAnnotation
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Loading required package: SummarizedExperiment
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+Loading required package: Rsamtools
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+
+Attaching package: ‘VariantAnnotation’
+
+The following object is masked from ‘package:base’:
+
+    tabulate
+
+
+Attaching package: ‘ensemblVEP’
+
+The following object is masked from ‘package:Biobase’:
+
+    cache
+
+
+-------------------- WARNING ----------------------
+MSG: homo_sapiens is not a valid species name (check DB and API version)
+FILE: Bio/EnsEMBL/Registry.pm LINE: 1334
+CALLED BY: Bio/EnsEMBL/Registry.pm  LINE: 1109
+Date (localtime)    = Wed Feb  1 15:52:54 2023
+Ensembl API version = 109
+---------------------------------------------------
+
+-------------------- EXCEPTION --------------------
+MSG: Can not find internal name for species 'homo_sapiens'
+STACK Bio::EnsEMBL::Registry::get_adaptor /usr/local/ensembl-vep/Bio/EnsEMBL/Registry.pm:1111
+STACK Bio::EnsEMBL::VEP::BaseVEP::get_adaptor /usr/local/ensembl-vep/modules/Bio/EnsEMBL/VEP/BaseVEP.pm:308
+STACK Bio::EnsEMBL::VEP::BaseVEP::get_database_assembly /usr/local/ensembl-vep/modules/Bio/EnsEMBL/VEP/BaseVEP.pm:419
+STACK Bio::EnsEMBL::VEP::BaseRunner::setup_db_connection /usr/local/ensembl-vep/modules/Bio/EnsEMBL/VEP/BaseRunner.pm:123
+STACK Bio::EnsEMBL::VEP::Runner::init /usr/local/ensembl-vep/modules/Bio/EnsEMBL/VEP/Runner.pm:123
+STACK Bio::EnsEMBL::VEP::Runner::run /usr/local/ensembl-vep/modules/Bio/EnsEMBL/VEP/Runner.pm:199
+STACK toplevel /usr/local/ensembl-vep/vep:236
+Date (localtime)    = Wed Feb  1 15:52:54 2023
+Ensembl API version = 109
+---------------------------------------------------
+
+Error: processing vignette 'ensemblVEP.Rnw' failed with diagnostics:
+ chunk 5 (label = rtn_GRanges) 
+Error in .io_check_exists(path(con)) : file(s) do not exist:
+  '/tmp/RtmpKSAZZU/file139e3464e3dd70'
+
+--- failed re-building ‘ensemblVEP.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘ensemblVEP.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted

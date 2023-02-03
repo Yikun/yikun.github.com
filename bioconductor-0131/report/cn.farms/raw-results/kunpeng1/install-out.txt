@@ -1,0 +1,46 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL cn.farms
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘cn.farms’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c R_init_cnfarms.c -o R_init_cnfarms.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c laplace.cpp -o laplace.o
+laplace.cpp: In function ‘SEXPREC* momentsGauss(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)’:
+laplace.cpp:442:13: warning: unused variable ‘method’ [-Wunused-variable]
+  442 |         int method=0;
+      |             ^~~~~~
+laplace.cpp: In function ‘void computeParameters(double, double, double, double, double, double, int&, double&, double&, double&, double&, double&, double&, double&, double&, double&, double&, double&, double&, double&, double&)’:
+laplace.cpp:387:35: warning: ‘I1right’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  387 |         absMoment1=(I1right*leftMy+I1left*rightMy+2.0*I1left*I1right*leftSigma)/(I1left-I1right);
+      |                     ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+laplace.cpp:367:16: warning: ‘I1left’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  367 |         double leftMoment1=1.0*leftMy*I0left+1.0*leftSigma*I1left;
+      |                ^~~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c sparse_farms.c -o sparse_farms.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o cn.farms.so R_init_cnfarms.o laplace.o sparse_farms.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-cn.farms/00new/cn.farms/libs
+** R
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (cn.farms)

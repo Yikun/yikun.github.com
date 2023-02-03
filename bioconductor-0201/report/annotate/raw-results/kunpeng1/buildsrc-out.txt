@@ -1,0 +1,133 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data annotate
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘annotate/DESCRIPTION’ ... OK
+* preparing ‘annotate’:
+* checking DESCRIPTION meta-information ... OK
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘GOusage.Rnw’ using Sweave
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: AnnotationDbi
+Loading required package: stats4
+Loading required package: IRanges
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: XML
+
+Attaching package: ‘graph’
+
+The following object is masked from ‘package:XML’:
+
+    addNode
+
+
+Attaching package: ‘Rgraphviz’
+
+The following object is masked from ‘package:annotate’:
+
+    toFile
+
+The following objects are masked from ‘package:IRanges’:
+
+    from, to
+
+The following objects are masked from ‘package:S4Vectors’:
+
+    from, to
+
+Loading required package: org.Hs.eg.db
+
+
+
+--- finished re-building ‘GOusage.Rnw’
+
+--- re-building ‘annotate.Rnw’ using Sweave
+--- finished re-building ‘annotate.Rnw’
+
+--- re-building ‘chromLoc.Rnw’ using Sweave
+--- finished re-building ‘chromLoc.Rnw’
+
+--- re-building ‘prettyOutput.Rnw’ using Sweave
+--- finished re-building ‘prettyOutput.Rnw’
+
+--- re-building ‘query.Rnw’ using Sweave
+Read 4 items
+
+Error: processing vignette 'query.Rnw' failed with diagnostics:
+ chunk 6 
+Error in file(file, "r") : 
+  cannot open the connection to 'https://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?tool=bioconductor&rettype=xml&retmode=text&db=gene&id=1939271%2c2449431%2c7729427%2c7835343%2c7836461%2c7933101%2c8121496%2c8680883%2c8764009%2c8764062'
+
+--- failed re-building ‘query.Rnw’
+
+--- re-building ‘useDataPkgs.Rnw’ using Sweave
+--- finished re-building ‘useDataPkgs.Rnw’
+
+--- re-building ‘useProbeInfo.Rnw’ using Sweave
+Loading required package: org.Rn.eg.db
+
+
+Loading required package: XVector
+Loading required package: GenomeInfoDb
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:grid’:
+
+    pattern
+
+The following object is masked from ‘package:graph’:
+
+    complement
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+--- finished re-building ‘useProbeInfo.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘query.Rnw’
+
+Error: Vignette re-building failed.
+In addition: Warning message:
+In file(file, "r") :
+  cannot open URL 'https://www.ncbi.nlm.nih.gov/entrez/eutils/efetch.fcgi?tool=bioconductor&rettype=xml&retmode=text&db=gene&id=1939271%2c2449431%2c7729427%2c7835343%2c7836461%2c7933101%2c8121496%2c8680883%2c8764009%2c8764062': HTTP status was '400 Bad Request'
+Execution halted

@@ -1,0 +1,128 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:HilbertVisGUI.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings HilbertVisGUI_1.57.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/HilbertVisGUI.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘HilbertVisGUI/DESCRIPTION’ ... OK
+* this is package ‘HilbertVisGUI’ version ‘1.57.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .BBSoptions
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘HilbertVisGUI’ can be installed ... WARNING
+Found the following significant warnings:
+  /usr/include/gdkmm-2.4/gdkmm/pixbufanimation.h:124:72: warning: ‘GTimeVal’ is deprecated: Use 'GDateTime' instead [-Wdeprecated-declarations]
+  /usr/include/gtk-2.0/gtk/gtktypeutils.h:236:64: warning: ‘GTypeDebugFlags’ is deprecated [-Wdeprecated-declarations]
+  /usr/include/gtk-2.0/gtk/gtktooltips.h:73:12: warning: ‘GTimeVal’ is deprecated: Use 'GDateTime' instead [-Wdeprecated-declarations]
+  colorizers.h:42:9: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  display.cc:21:46: warning: narrowing conversion of ‘(((long int)c.coord::y) + (1 << (lv - 1)))’ from ‘long int’ to ‘int’ [-Wnarrowing]
+  display.cc:22:41: warning: narrowing conversion of ‘(((long int)c.coord::x) + (1 << (lv - 1)))’ from ‘long int’ to ‘int’ [-Wnarrowing]
+  display.cc:22:65: warning: narrowing conversion of ‘(((long int)c.coord::y) + (1 << (lv - 1)))’ from ‘long int’ to ‘int’ [-Wnarrowing]
+  display.cc:23:50: warning: narrowing conversion of ‘(((1 << lv) - 1) - ((long int)c.coord::y))’ from ‘long int’ to ‘int’ [-Wnarrowing]
+  display.cc:23:78: warning: narrowing conversion of ‘(((1 << (lv - 1)) - 1) - ((long int)c.coord::x))’ from ‘long int’ to ‘int’ [-Wnarrowing]
+  window.cc:212:31: warning: catching polymorphic type ‘class HilbertValueError’ by value [-Wcatch-value=]
+  window.cc:232:31: warning: catching polymorphic type ‘class HilbertValueError’ by value [-Wcatch-value=]
+  window.cc:241:31: warning: catching polymorphic type ‘class HilbertValueError’ by value [-Wcatch-value=]
+  window.cc:371:31: warning: catching polymorphic type ‘class HilbertValueError’ by value [-Wcatch-value=]
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/HilbertVisGUI.Rcheck/00install.out’ for details.
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Description field: should contain one or more complete sentences.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Invalid citation information in ‘inst/CITATION’:
+  Warning message:
+  In utils::packageDescription(basename(dir), dirname(dir)) :
+    no package 'HilbertVisGUI' was found
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(HilbertVisGUI, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘HilbertVisGUI’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+hilbertDisplay: no visible global function definition for
+  ‘colorRampPalette’
+hilbertDisplay: no visible global function definition for ‘col2rgb’
+hilbertDisplay: no visible global function definition for ‘median’
+hilbertDisplayThreeChannel: no visible global function definition for
+  ‘col2rgb’
+Undefined global functions or variables:
+  col2rgb colorRampPalette median
+Consider adding
+  importFrom("grDevices", "col2rgb", "colorRampPalette")
+  importFrom("stats", "median")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in shell scripts ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... NOTE
+GNU make is a SystemRequirements.
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking include directives in Makefiles ... OK
+* checking compiled code ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘HilbertVisGUI.Rnw’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 WARNINGs, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/HilbertVisGUI.Rcheck/00check.log’
+for details.
+
+

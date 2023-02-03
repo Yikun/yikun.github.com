@@ -1,0 +1,76 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL GraphAlignment
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘GraphAlignment’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c GA_alloc.c -o GA_alloc.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c GA_matrix.c -o GA_matrix.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c GA_matrix_R.c -o GA_matrix_R.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c GA_message.c -o GA_message.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c GA_vector.c -o GA_vector.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c GA_vector_R.c -o GA_vector_R.o
+GA_vector_R.c: In function ‘GA_clamp_mode_from_R’:
+GA_vector_R.c:139:9: warning: unused variable ‘size’ [-Wunused-variable]
+  139 |     int size = LENGTH(robj);
+      |         ^~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c GraphAlignment.c -o GraphAlignment.o
+GraphAlignment.c: In function ‘GA_encode_directed_graph’:
+GraphAlignment.c:138:20: warning: suggest explicit braces to avoid ambiguous ‘else’ [-Wdangling-else]
+  138 |                 if (matrix->elts[i][j] == 1)
+      |                    ^
+GraphAlignment.c:159:20: warning: suggest explicit braces to avoid ambiguous ‘else’ [-Wdangling-else]
+  159 |                 if (matrix->elts[i][j] == 1)
+      |                    ^
+GraphAlignment.c: In function ‘GA_directed_mode_from_R’:
+GraphAlignment.c:264:9: warning: unused variable ‘size’ [-Wunused-variable]
+  264 |     int size = LENGTH(robj);
+      |         ^~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c lap.c -o lap.o
+lap.c: In function ‘LAP_checklap’:
+lap.c:348:9: warning: ignoring return value of ‘scanf’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  348 |         scanf("%c", &wait);
+      |         ^~~~~~~~~~~~~~~~~~
+lap.c:358:7: warning: ignoring return value of ‘scanf’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  358 |       scanf("%c", &wait);
+      |       ^~~~~~~~~~~~~~~~~~
+lap.c:371:7: warning: ignoring return value of ‘scanf’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  371 |       scanf("%c", &wait);
+      |       ^~~~~~~~~~~~~~~~~~
+lap.c:384:7: warning: ignoring return value of ‘scanf’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  384 |       scanf("%c", &wait);
+      |       ^~~~~~~~~~~~~~~~~~
+lap.c:394:7: warning: ignoring return value of ‘scanf’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  394 |       scanf("%c", &wait);
+      |       ^~~~~~~~~~~~~~~~~~
+lap.c: In function ‘LAP_lap’:
+lap.c:64:30: warning: ‘last’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   64 |   col  j, j1, j2, endofpath, last, low, up, *collist, *matches;
+      |                              ^~~~
+lap.c:269:16: warning: ‘min’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  269 |             if (v2 == min)   /* new column found at same minimum value */
+      |                ^
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o GraphAlignment.so GA_alloc.o GA_matrix.o GA_matrix_R.o GA_message.o GA_vector.o GA_vector_R.o GraphAlignment.o lap.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-GraphAlignment/00new/GraphAlignment/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (GraphAlignment)

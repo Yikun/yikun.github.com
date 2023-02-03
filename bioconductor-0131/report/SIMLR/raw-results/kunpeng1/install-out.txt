@@ -1,0 +1,64 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL SIMLR
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘SIMLR’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c Rtsne.cpp -o Rtsne.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c package_init.c -o package_init.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c projsplx_R.c -o projsplx_R.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c sptree.cpp -o sptree.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c tsne.cpp -o tsne.o
+tsne.cpp: In member function ‘bool TSNE::load_data(double**, int*, int*, int*, double*, double*, int*)’:
+tsne.cpp:979:48: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+  979 |   if (fread(*data, sizeof(double), *n * *d, h) != *n * *d) {
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+In file included from tsne.cpp:43:
+vptree.h: In instantiation of ‘void VpTree<T, distance>::search(VpTree<T, distance>::Node*, const T&, int, std::priority_queue<VpTree<T, distance>::HeapItem>&) [with T = DataPoint; double (* distance)(const T&, const T&) = precomputed_distance; typename std::vector<VpTree<T, distance>::HeapItem, std::allocator<VpTree<T, distance>::HeapItem> >::value_type = VpTree<DataPoint, precomputed_distance>::HeapItem]’:
+vptree.h:131:15:   required from ‘void VpTree<T, distance>::search(const T&, int, std::vector<T>*, std::vector<double>*) [with T = DataPoint; double (* distance)(const T&, const T&) = precomputed_distance]’
+tsne.cpp:484:21:   required from here
+vptree.h:237:28: warning: comparison of integer expressions of different signedness: ‘std::priority_queue<VpTree<DataPoint, precomputed_distance>::HeapItem, std::vector<VpTree<DataPoint, precomputed_distance>::HeapItem, std::allocator<VpTree<DataPoint, precomputed_distance>::HeapItem> >, std::less<VpTree<DataPoint, precomputed_distance>::HeapItem> >::size_type’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+  237 |             if(heap.size() == k) heap.pop();                 // remove furthest node from result list (if we already have k results)
+      |                ~~~~~~~~~~~~^~~~
+In file included from tsne.cpp:43:
+vptree.h:239:28: warning: comparison of integer expressions of different signedness: ‘std::priority_queue<VpTree<DataPoint, precomputed_distance>::HeapItem, std::vector<VpTree<DataPoint, precomputed_distance>::HeapItem, std::allocator<VpTree<DataPoint, precomputed_distance>::HeapItem> >, std::less<VpTree<DataPoint, precomputed_distance>::HeapItem> >::size_type’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+  239 |             if(heap.size() == k) _tau = heap.top().dist;     // update value of tau (farthest point in result list)
+      |                ~~~~~~~~~~~~^~~~
+In file included from tsne.cpp:43:
+vptree.h: In instantiation of ‘void VpTree<T, distance>::search(VpTree<T, distance>::Node*, const T&, int, std::priority_queue<VpTree<T, distance>::HeapItem>&) [with T = DataPoint; double (* distance)(const T&, const T&) = euclidean_distance; typename std::vector<VpTree<T, distance>::HeapItem, std::allocator<VpTree<T, distance>::HeapItem> >::value_type = VpTree<DataPoint, euclidean_distance>::HeapItem]’:
+vptree.h:131:15:   required from ‘void VpTree<T, distance>::search(const T&, int, std::vector<T>*, std::vector<double>*) [with T = DataPoint; double (* distance)(const T&, const T&) = euclidean_distance]’
+tsne.cpp:562:21:   required from here
+vptree.h:237:28: warning: comparison of integer expressions of different signedness: ‘std::priority_queue<VpTree<DataPoint, euclidean_distance>::HeapItem, std::vector<VpTree<DataPoint, euclidean_distance>::HeapItem, std::allocator<VpTree<DataPoint, euclidean_distance>::HeapItem> >, std::less<VpTree<DataPoint, euclidean_distance>::HeapItem> >::size_type’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+  237 |             if(heap.size() == k) heap.pop();                 // remove furthest node from result list (if we already have k results)
+      |                ~~~~~~~~~~~~^~~~
+In file included from tsne.cpp:43:
+vptree.h:239:28: warning: comparison of integer expressions of different signedness: ‘std::priority_queue<VpTree<DataPoint, euclidean_distance>::HeapItem, std::vector<VpTree<DataPoint, euclidean_distance>::HeapItem, std::allocator<VpTree<DataPoint, euclidean_distance>::HeapItem> >, std::less<VpTree<DataPoint, euclidean_distance>::HeapItem> >::size_type’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+  239 |             if(heap.size() == k) _tau = heap.top().dist;     // update value of tau (farthest point in result list)
+      |                ~~~~~~~~~~~~^~~~
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o SIMLR.so RcppExports.o Rtsne.o package_init.o projsplx_R.o sptree.o tsne.o -llapack -L/home/biocbuild/bbs-3.17-bioc/R/lib -lRblas -lgfortran -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-SIMLR/00new/SIMLR/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (SIMLR)

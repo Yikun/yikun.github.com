@@ -1,0 +1,57 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL switchBox
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘switchBox’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c CalculateSignedScoreCore.cc -o CalculateSignedScoreCore.o
+CalculateSignedScoreCore.cc: In function ‘void CalculateSignedScoreCore(int*, int*, double*, int*, double*, int*, double*, double*, double*, double*, double*, double*, double*)’:
+CalculateSignedScoreCore.cc:36:26: warning: variable ‘pairsNo’ set but not used [-Wunused-but-set-variable]
+   36 |     int i,j,l,countplace,pairsNo;
+      |                          ^~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c CalculateSignedScoreCoreTieHandler.cc -o CalculateSignedScoreCoreTieHandler.o
+CalculateSignedScoreCoreTieHandler.cc: In function ‘void CalculateSignedScoreCoreTieHandler(int*, int*, double*, int*, double*, int*, double*, double*, double*, double*)’:
+CalculateSignedScoreCoreTieHandler.cc:49:12: warning: unused variable ‘score1’ [-Wunused-variable]
+   49 |     double score1, score2, type;
+      |            ^~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c CalculateSignedScoreRestrictedPairsCore.cc -o CalculateSignedScoreRestrictedPairsCore.o
+CalculateSignedScoreRestrictedPairsCore.cc: In function ‘void CalculateSignedScoreRestrictedPairsCore(int*, int*, double*, int*, double*, int*, int*, int*, int*, double*, double*, double*)’:
+CalculateSignedScoreRestrictedPairsCore.cc:22:25: warning: variable ‘countplace’ set but not used [-Wunused-but-set-variable]
+   22 |                 int i,l,countplace,pairsNo;
+      |                         ^~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c CalculateSignedScoreRestrictedPairsCoreTieHandler.cc -o CalculateSignedScoreRestrictedPairsCoreTieHandler.o
+CalculateSignedScoreRestrictedPairsCoreTieHandler.cc: In function ‘void CalculateSignedScoreRestrictedPairsCoreTieHandler(int*, int*, double*, int*, double*, int*, int*, int*, int*, double*, double*, double*, double*)’:
+CalculateSignedScoreRestrictedPairsCoreTieHandler.cc:25:25: warning: unused variable ‘countplace’ [-Wunused-variable]
+   25 |                 int i,l,countplace,pairsNo;
+      |                         ^~~~~~~~~~
+CalculateSignedScoreRestrictedPairsCoreTieHandler.cc:35:24: warning: unused variable ‘score1’ [-Wunused-variable]
+   35 |                 double score1, score2, type;
+      |                        ^~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c rinit.c -o rinit.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c vect2compC.cc -o vect2compC.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o switchBox.so CalculateSignedScoreCore.o CalculateSignedScoreCoreTieHandler.o CalculateSignedScoreRestrictedPairsCore.o CalculateSignedScoreRestrictedPairsCoreTieHandler.o rinit.o vect2compC.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-switchBox/00new/switchBox/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (switchBox)

@@ -1,0 +1,87 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL bcSeq
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘bcSeq’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Matrix/include' -I/usr/local/include   -pthread -fPIC  -g -O2  -Wall -c CRISPR_matching.cpp -o CRISPR_matching.o
+In file included from helper/../structures/Trie.h:16,
+                 from helper/count.h:5,
+                 from CRISPR_matching.cpp:3:
+helper/../structures/NodePool.h: In member function ‘void Pool::resize()’:
+helper/../structures/NodePool.h:58:16: warning: ‘void* memcpy(void*, const void*, size_t)’ writing to an object of non-trivially copyable type ‘struct Node’; use copy-assignment or copy-initialization instead [-Wclass-memaccess]
+   58 |     std::memcpy(x, buff.get(), count * sizeof(Node));
+      |     ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from helper/../structures/Trie.h:15,
+                 from helper/count.h:5,
+                 from CRISPR_matching.cpp:3:
+helper/../structures/Node.h:11:8: note: ‘struct Node’ declared here
+   11 | struct Node {
+      |        ^~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Matrix/include' -I/usr/local/include   -pthread -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Matrix/include' -I/usr/local/include   -pthread -fPIC  -g -O2  -Wall -c Trie_edit.cpp -o Trie_edit.o
+In file included from structures/Trie.h:16,
+                 from Trie_edit.cpp:1:
+structures/NodePool.h: In member function ‘void Pool::resize()’:
+structures/NodePool.h:58:16: warning: ‘void* memcpy(void*, const void*, size_t)’ writing to an object of non-trivially copyable type ‘struct Node’; use copy-assignment or copy-initialization instead [-Wclass-memaccess]
+   58 |     std::memcpy(x, buff.get(), count * sizeof(Node));
+      |     ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from structures/Trie.h:15,
+                 from Trie_edit.cpp:1:
+structures/Node.h:11:8: note: ‘struct Node’ declared here
+   11 | struct Node {
+      |        ^~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Matrix/include' -I/usr/local/include   -pthread -fPIC  -g -O2  -Wall -c Trie_hamming.cpp -o Trie_hamming.o
+In file included from structures/Trie.h:16,
+                 from Trie_hamming.cpp:1:
+structures/NodePool.h: In member function ‘void Pool::resize()’:
+structures/NodePool.h:58:16: warning: ‘void* memcpy(void*, const void*, size_t)’ writing to an object of non-trivially copyable type ‘struct Node’; use copy-assignment or copy-initialization instead [-Wclass-memaccess]
+   58 |     std::memcpy(x, buff.get(), count * sizeof(Node));
+      |     ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from structures/Trie.h:15,
+                 from Trie_hamming.cpp:1:
+structures/Node.h:11:8: note: ‘struct Node’ declared here
+   11 | struct Node {
+      |        ^~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Matrix/include' -I/usr/local/include   -pthread -fPIC  -g -O2  -Wall -c Trie_util.cpp -o Trie_util.o
+In file included from structures/Trie.h:16,
+                 from Trie_util.cpp:2:
+structures/NodePool.h: In member function ‘void Pool::resize()’:
+structures/NodePool.h:58:16: warning: ‘void* memcpy(void*, const void*, size_t)’ writing to an object of non-trivially copyable type ‘struct Node’; use copy-assignment or copy-initialization instead [-Wclass-memaccess]
+   58 |     std::memcpy(x, buff.get(), count * sizeof(Node));
+      |     ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from structures/Trie.h:15,
+                 from Trie_util.cpp:2:
+structures/Node.h:11:8: note: ‘struct Node’ declared here
+   11 | struct Node {
+      |        ^~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Matrix/include' -I/usr/local/include   -pthread -fPIC  -g -O2  -Wall -c alignment.cpp -o alignment.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Matrix/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c init.c -o init.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Matrix/include' -I/usr/local/include   -pthread -fPIC  -g -O2  -Wall -c trimRead.cpp -o trimRead.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Matrix/include' -I/usr/local/include   -pthread -fPIC  -g -O2  -Wall -c uniqueBar.cpp -o uniqueBar.o
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o bcSeq.so CRISPR_matching.o RcppExports.o Trie_edit.o Trie_hamming.o Trie_util.o alignment.o init.o trimRead.o uniqueBar.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-bcSeq/00new/bcSeq/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (bcSeq)

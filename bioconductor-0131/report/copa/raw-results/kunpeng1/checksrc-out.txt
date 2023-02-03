@@ -1,0 +1,118 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:copa.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings copa_1.67.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/copa.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘copa/DESCRIPTION’ ... OK
+* this is package ‘copa’ version ‘1.67.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘copa’ can be installed ... OK
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Title field: should not end in a period.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Invalid citation information in ‘inst/CITATION’:
+  Warning message:
+  In utils::packageDescription(basename(dir), dirname(dir)) :
+    no package 'copa' was found
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(copa, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘copa’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... NOTE
+Packages in Depends field not imported from:
+  ‘Biobase’ ‘methods’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+copa: warning in matrix(1:dim(mat)[1], nc = dim(mat)[1], nr =
+  dim(mat)[1]): partial argument match of 'nr' to 'nrow'
+copa: warning in matrix(1:dim(mat)[1], nc = dim(mat)[1], nr =
+  dim(mat)[1]): partial argument match of 'nc' to 'ncol'
+pSum: warning in matrix(out, nc = length(a), nr = length(a)): partial
+  argument match of 'nr' to 'nrow'
+pSum: warning in matrix(out, nc = length(a), nr = length(a)): partial
+  argument match of 'nc' to 'ncol'
+plotCopa: warning in matrix(1:2, nc = 1): partial argument match of
+  'nc' to 'ncol'
+copa: no visible binding for global variable ‘quantile’
+do.copaFilter: no visible binding for global variable ‘median’
+do.copaFilter: no visible binding for global variable ‘mad’
+do.copaFilter: no visible global function definition for ‘quantile’
+pSum: no visible binding for global variable ‘mat’
+plotCopa: no visible global function definition for ‘par’
+plotCopa: no visible global function definition for ‘layout’
+plotCopa: no visible global function definition for ‘barplot’
+copaFilter,ExpressionSet: no visible global function definition for
+  ‘exprs’
+Undefined global functions or variables:
+  barplot exprs layout mad mat median par quantile
+Consider adding
+  importFrom("graphics", "barplot", "layout", "par")
+  importFrom("stats", "mad", "median", "quantile")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘copa.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 WARNINGs, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/copa.Rcheck/00check.log’
+for details.
+
+

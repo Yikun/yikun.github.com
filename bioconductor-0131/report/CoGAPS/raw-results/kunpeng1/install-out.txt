@@ -1,0 +1,251 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL CoGAPS
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘CoGAPS’ ...
+** using staged installation
+checking whether the C++ compiler works... yes
+checking for C++ compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ -std=gnu++14 accepts -g... yes
+checking how to run the C++ preprocessor... g++ -std=gnu++14 -E
+checking whether we are using the GNU C++ compiler... (cached) yes
+checking whether g++ -std=gnu++14 accepts -g... (cached) yes
+./configure: line 2752: AX_COMPILER_VENDOR: command not found
+./configure: line 2753: AX_COMPILER_VERSION: command not found
+./configure: line 2764: AX_OPENMP: command not found
+building on  compiler version 
+Using AVX instructions if available
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c Cogaps.cpp -o Cogaps.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c GapsParameters.cpp -o GapsParameters.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c GapsResult.cpp -o GapsResult.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c GapsRunner.cpp -o GapsRunner.o
+In file included from GapsRunner.cpp:8:
+gibbs_sampler/AsynchronousGibbsSampler.h:105: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  105 |         #pragma omp parallel for num_threads(nThreads)
+      | 
+In file included from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/aux_/na_assert.hpp:23,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/arg.hpp:25,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/placeholders.hpp:24,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/iterator/iterator_categories.hpp:16,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/iterator/iterator_facade.hpp:13,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/range/iterator_range_core.hpp:27,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/algorithm/string/replace.hpp:16,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/date_time/date_facet.hpp:17,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/date_time/gregorian/gregorian_io.hpp:16,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/date_time/gregorian/gregorian.hpp:31,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/date_time/posix_time/time_formatters.hpp:12,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/date_time/posix_time/posix_time.hpp:24,
+                 from GapsRunner.cpp:27:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/assert.hpp:194:21: warning: unnecessary parentheses in declaration of ‘assert_arg’ [-Wparentheses]
+  194 | failed ************ (Pred::************
+      |                     ^~~~~~~~~~~~~~~~~~~
+  195 |       assert_arg( void (*)(Pred), typename assert_arg_pred<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  196 |     );
+      |     ~                
+/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/assert.hpp:194:21: note: remove parentheses
+  194 | failed ************ (Pred::************
+      |                     ^~~~~~~~~~~~~~~~~~~
+      |                     -
+  195 |       assert_arg( void (*)(Pred), typename assert_arg_pred<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  196 |     );
+      |     ~                
+      |     -
+/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/assert.hpp:199:21: warning: unnecessary parentheses in declaration of ‘assert_not_arg’ [-Wparentheses]
+  199 | failed ************ (boost::mpl::not_<Pred>::************
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  200 |       assert_not_arg( void (*)(Pred), typename assert_arg_pred_not<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  201 |     );
+      |     ~                
+/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/assert.hpp:199:21: note: remove parentheses
+  199 | failed ************ (boost::mpl::not_<Pred>::************
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     -
+  200 |       assert_not_arg( void (*)(Pred), typename assert_arg_pred_not<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  201 |     );
+      |     ~                
+      |     -
+GapsRunner.cpp: In instantiation of ‘GapsResult runCoGAPSAlgorithm(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with Sampler = AsynchronousGibbsSampler<SparseNormalModel>; DataType = Matrix]’:
+GapsRunner.cpp:70:73:   required from ‘GapsResult chooseSampler(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataModel = SparseNormalModel; DataType = Matrix]’
+GapsRunner.cpp:85:48:   required from ‘GapsResult chooseDataModel(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataType = Matrix]’
+GapsRunner.cpp:104:27:   required from ‘GapsResult run_helper(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataType = Matrix]’
+GapsRunner.cpp:113:22:   required from here
+GapsRunner.cpp:430:5: warning: enumeration value ‘GAPS_ALL_PHASES’ not handled in switch [-Wswitch]
+  430 |     switch (phase)
+      |     ^~~~~~
+GapsRunner.cpp: In instantiation of ‘GapsResult runCoGAPSAlgorithm(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with Sampler = SingleThreadedGibbsSampler<SparseNormalModel>; DataType = Matrix]’:
+GapsRunner.cpp:74:71:   required from ‘GapsResult chooseSampler(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataModel = SparseNormalModel; DataType = Matrix]’
+GapsRunner.cpp:85:48:   required from ‘GapsResult chooseDataModel(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataType = Matrix]’
+GapsRunner.cpp:104:27:   required from ‘GapsResult run_helper(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataType = Matrix]’
+GapsRunner.cpp:113:22:   required from here
+GapsRunner.cpp:430:5: warning: enumeration value ‘GAPS_ALL_PHASES’ not handled in switch [-Wswitch]
+GapsRunner.cpp: In instantiation of ‘GapsResult runCoGAPSAlgorithm(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with Sampler = AsynchronousGibbsSampler<DenseNormalModel>; DataType = Matrix]’:
+GapsRunner.cpp:70:73:   required from ‘GapsResult chooseSampler(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataModel = DenseNormalModel; DataType = Matrix]’
+GapsRunner.cpp:88:43:   required from ‘GapsResult chooseDataModel(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataType = Matrix]’
+GapsRunner.cpp:104:27:   required from ‘GapsResult run_helper(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataType = Matrix]’
+GapsRunner.cpp:113:22:   required from here
+GapsRunner.cpp:430:5: warning: enumeration value ‘GAPS_ALL_PHASES’ not handled in switch [-Wswitch]
+GapsRunner.cpp: In instantiation of ‘GapsResult runCoGAPSAlgorithm(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with Sampler = SingleThreadedGibbsSampler<DenseNormalModel>; DataType = Matrix]’:
+GapsRunner.cpp:74:71:   required from ‘GapsResult chooseSampler(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataModel = DenseNormalModel; DataType = Matrix]’
+GapsRunner.cpp:88:43:   required from ‘GapsResult chooseDataModel(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataType = Matrix]’
+GapsRunner.cpp:104:27:   required from ‘GapsResult run_helper(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataType = Matrix]’
+GapsRunner.cpp:113:22:   required from here
+GapsRunner.cpp:430:5: warning: enumeration value ‘GAPS_ALL_PHASES’ not handled in switch [-Wswitch]
+GapsRunner.cpp: In instantiation of ‘GapsResult runCoGAPSAlgorithm(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with Sampler = AsynchronousGibbsSampler<SparseNormalModel>; DataType = std::__cxx11::basic_string<char>]’:
+GapsRunner.cpp:70:73:   required from ‘GapsResult chooseSampler(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataModel = SparseNormalModel; DataType = std::__cxx11::basic_string<char>]’
+GapsRunner.cpp:85:48:   required from ‘GapsResult chooseDataModel(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataType = std::__cxx11::basic_string<char>]’
+GapsRunner.cpp:104:27:   required from ‘GapsResult run_helper(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataType = std::__cxx11::basic_string<char>]’
+GapsRunner.cpp:119:22:   required from here
+GapsRunner.cpp:430:5: warning: enumeration value ‘GAPS_ALL_PHASES’ not handled in switch [-Wswitch]
+GapsRunner.cpp: In instantiation of ‘GapsResult runCoGAPSAlgorithm(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with Sampler = SingleThreadedGibbsSampler<SparseNormalModel>; DataType = std::__cxx11::basic_string<char>]’:
+GapsRunner.cpp:74:71:   required from ‘GapsResult chooseSampler(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataModel = SparseNormalModel; DataType = std::__cxx11::basic_string<char>]’
+GapsRunner.cpp:85:48:   required from ‘GapsResult chooseDataModel(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataType = std::__cxx11::basic_string<char>]’
+GapsRunner.cpp:104:27:   required from ‘GapsResult run_helper(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataType = std::__cxx11::basic_string<char>]’
+GapsRunner.cpp:119:22:   required from here
+GapsRunner.cpp:430:5: warning: enumeration value ‘GAPS_ALL_PHASES’ not handled in switch [-Wswitch]
+GapsRunner.cpp: In instantiation of ‘GapsResult runCoGAPSAlgorithm(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with Sampler = AsynchronousGibbsSampler<DenseNormalModel>; DataType = std::__cxx11::basic_string<char>]’:
+GapsRunner.cpp:70:73:   required from ‘GapsResult chooseSampler(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataModel = DenseNormalModel; DataType = std::__cxx11::basic_string<char>]’
+GapsRunner.cpp:88:43:   required from ‘GapsResult chooseDataModel(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataType = std::__cxx11::basic_string<char>]’
+GapsRunner.cpp:104:27:   required from ‘GapsResult run_helper(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataType = std::__cxx11::basic_string<char>]’
+GapsRunner.cpp:119:22:   required from here
+GapsRunner.cpp:430:5: warning: enumeration value ‘GAPS_ALL_PHASES’ not handled in switch [-Wswitch]
+GapsRunner.cpp: In instantiation of ‘GapsResult runCoGAPSAlgorithm(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with Sampler = SingleThreadedGibbsSampler<DenseNormalModel>; DataType = std::__cxx11::basic_string<char>]’:
+GapsRunner.cpp:74:71:   required from ‘GapsResult chooseSampler(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataModel = DenseNormalModel; DataType = std::__cxx11::basic_string<char>]’
+GapsRunner.cpp:88:43:   required from ‘GapsResult chooseDataModel(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataType = std::__cxx11::basic_string<char>]’
+GapsRunner.cpp:104:27:   required from ‘GapsResult run_helper(const DataType&, GapsParameters&, const DataType&, GapsRandomState*) [with DataType = std::__cxx11::basic_string<char>]’
+GapsRunner.cpp:119:22:   required from here
+GapsRunner.cpp:430:5: warning: enumeration value ‘GAPS_ALL_PHASES’ not handled in switch [-Wswitch]
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c GapsStatistics.cpp -o GapsStatistics.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c test-runner.cpp -o test-runner.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c atomic/Atom.cpp -o atomic/Atom.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c atomic/ConcurrentAtom.cpp -o atomic/ConcurrentAtom.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c atomic/AtomicDomain.cpp -o atomic/AtomicDomain.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c atomic/ConcurrentAtomicDomain.cpp -o atomic/ConcurrentAtomicDomain.o
+atomic/ConcurrentAtomicDomain.cpp:64: warning: ignoring ‘#pragma omp critical’ [-Wunknown-pragmas]
+   64 |     #pragma omp critical(AtomicInsertOrErase)
+      | 
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c atomic/ProposalQueue.cpp -o atomic/ProposalQueue.o
+atomic/ProposalQueue.cpp:101: warning: ignoring ‘#pragma omp atomic’ [-Wunknown-pragmas]
+  101 |     #pragma omp atomic
+      | 
+atomic/ProposalQueue.cpp:107: warning: ignoring ‘#pragma omp atomic’ [-Wunknown-pragmas]
+  107 |     #pragma omp atomic
+      | 
+atomic/ProposalQueue.cpp:113: warning: ignoring ‘#pragma omp atomic’ [-Wunknown-pragmas]
+  113 |     #pragma omp atomic
+      | 
+atomic/ProposalQueue.cpp:119: warning: ignoring ‘#pragma omp atomic’ [-Wunknown-pragmas]
+  119 |     #pragma omp atomic
+      | 
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c data_structures/HashSets.cpp -o data_structures/HashSets.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c data_structures/HybridMatrix.cpp -o data_structures/HybridMatrix.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c data_structures/HybridVector.cpp -o data_structures/HybridVector.o
+data_structures/HybridVector.cpp:60: warning: ignoring ‘#pragma omp atomic’ [-Wunknown-pragmas]
+   60 |         #pragma omp atomic
+      | 
+data_structures/HybridVector.cpp:65: warning: ignoring ‘#pragma omp atomic’ [-Wunknown-pragmas]
+   65 |     #pragma omp atomic
+      | 
+data_structures/HybridVector.cpp:77: warning: ignoring ‘#pragma omp atomic’ [-Wunknown-pragmas]
+   77 |         #pragma omp atomic
+      | 
+data_structures/HybridVector.cpp:82: warning: ignoring ‘#pragma omp atomic’ [-Wunknown-pragmas]
+   82 |     #pragma omp atomic
+      | 
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c data_structures/Matrix.cpp -o data_structures/Matrix.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c data_structures/SparseIterator.cpp -o data_structures/SparseIterator.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c data_structures/SparseMatrix.cpp -o data_structures/SparseMatrix.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c data_structures/SparseVector.cpp -o data_structures/SparseVector.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c data_structures/Vector.cpp -o data_structures/Vector.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c file_parser/CharacterDelimitedParser.cpp -o file_parser/CharacterDelimitedParser.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c file_parser/FileParser.cpp -o file_parser/FileParser.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c file_parser/MatrixElement.cpp -o file_parser/MatrixElement.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c file_parser/MtxParser.cpp -o file_parser/MtxParser.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c gibbs_sampler/AlphaParameters.cpp -o gibbs_sampler/AlphaParameters.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c gibbs_sampler/DenseNormalModel.cpp -o gibbs_sampler/DenseNormalModel.o
+gibbs_sampler/DenseNormalModel.cpp:26: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+   26 |     #pragma omp parallel for num_threads(nThreads)
+      | 
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c gibbs_sampler/SparseNormalModel.cpp -o gibbs_sampler/SparseNormalModel.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c math/Math.cpp -o math/Math.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/aux_/na_assert.hpp:23,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/arg.hpp:25,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/placeholders.hpp:24,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/iterator/iterator_categories.hpp:16,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/iterator/iterator_facade.hpp:13,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/range/iterator_range_core.hpp:27,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/math/tools/convert_from_string.hpp:15,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/math/constants/constants.hpp:14,
+                 from /home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/math/distributions/exponential.hpp:10,
+                 from math/Math.cpp:4:
+/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/assert.hpp:194:21: warning: unnecessary parentheses in declaration of ‘assert_arg’ [-Wparentheses]
+  194 | failed ************ (Pred::************
+      |                     ^~~~~~~~~~~~~~~~~~~
+  195 |       assert_arg( void (*)(Pred), typename assert_arg_pred<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  196 |     );
+      |     ~                
+/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/assert.hpp:194:21: note: remove parentheses
+  194 | failed ************ (Pred::************
+      |                     ^~~~~~~~~~~~~~~~~~~
+      |                     -
+  195 |       assert_arg( void (*)(Pred), typename assert_arg_pred<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  196 |     );
+      |     ~                
+      |     -
+/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/assert.hpp:199:21: warning: unnecessary parentheses in declaration of ‘assert_not_arg’ [-Wparentheses]
+  199 | failed ************ (boost::mpl::not_<Pred>::************
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  200 |       assert_not_arg( void (*)(Pred), typename assert_arg_pred_not<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  201 |     );
+      |     ~                
+/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include/boost/mpl/assert.hpp:199:21: note: remove parentheses
+  199 | failed ************ (boost::mpl::not_<Pred>::************
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     -
+  200 |       assert_not_arg( void (*)(Pred), typename assert_arg_pred_not<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  201 |     );
+      |     ~                
+      |     -
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c math/MatrixMath.cpp -o math/MatrixMath.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c math/Random.cpp -o math/Random.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DBOOST_MATH_PROMOTE_DOUBLE_POLICY=0 -DGAPS_DISABLE_CHECKPOINTS -D__GAPS_R_BUILD__ -Iinclude -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/BH/include' -I/usr/local/include   -march=native  -fPIC  -g -O2  -Wall  -c math/VectorMath.cpp -o math/VectorMath.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o CoGAPS.so Cogaps.o GapsParameters.o GapsResult.o GapsRunner.o GapsStatistics.o RcppExports.o test-runner.o atomic/Atom.o atomic/ConcurrentAtom.o atomic/AtomicDomain.o atomic/ConcurrentAtomicDomain.o atomic/ProposalQueue.o data_structures/HashSets.o data_structures/HybridMatrix.o data_structures/HybridVector.o data_structures/Matrix.o data_structures/SparseIterator.o data_structures/SparseMatrix.o data_structures/SparseVector.o data_structures/Vector.o file_parser/CharacterDelimitedParser.o file_parser/FileParser.o file_parser/MatrixElement.o file_parser/MtxParser.o gibbs_sampler/AlphaParameters.o gibbs_sampler/DenseNormalModel.o gibbs_sampler/SparseNormalModel.o math/Math.o math/MatrixMath.o math/Random.o math/VectorMath.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-CoGAPS/00new/CoGAPS/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (CoGAPS)

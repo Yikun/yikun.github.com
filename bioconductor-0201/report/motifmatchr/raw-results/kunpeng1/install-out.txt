@@ -1,0 +1,133 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL motifmatchr
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘motifmatchr’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I. -I./MOODS/ -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I. -I./MOODS/ -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c r_interface.cpp -o r_interface.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I. -I./MOODS/ -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c MOODS/scanner.cpp -o MOODS/scanner.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I. -I./MOODS/ -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c MOODS/motif_h.cpp -o MOODS/motif_h.o
+MOODS/motif_h.cpp: In member function ‘std::vector<double> MOODS::scan::MotifH::expected_scores(const std::vector<double>&)’:
+MOODS/motif_h.cpp:26:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+   26 |     for (int i = 0; i < cols; ++i){
+      |                     ~~^~~~~~
+MOODS/motif_h.cpp:27:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+   27 |         for (int j = 0; j < rows; ++j){
+      |                         ~~^~~~~~
+MOODS/motif_h.cpp: In member function ‘virtual std::pair<bool, double> MOODS::scan::MotifH::check_hit(const string&, const std::vector<unsigned char>&, std::size_t, double)’:
+MOODS/motif_h.cpp:256:25: warning: suggest parentheses around arithmetic in operand of ‘^’ [-Wparentheses]
+  256 |             CODE = MASK & (CODE << SHIFT) ^ alphabet_map[s[ii + i + q - 1]];
+      |                    ~~~~~^~~~~~~~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I. -I./MOODS/ -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c MOODS/motif_0.cpp -o MOODS/motif_0.o
+MOODS/motif_0.cpp: In function ‘std::vector<double> MOODS::scan::expected_differences(const score_matrix&, const std::vector<double>&)’:
+MOODS/motif_0.cpp:28:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+   28 |     for (int i = 0; i < m; ++i)
+      |                     ~~^~~
+MOODS/motif_0.cpp:31:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+   31 |         for (int j = 0; j < a; ++j)
+      |                         ~~^~~
+MOODS/motif_0.cpp:38:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+   38 |         for (int j = 0; j < a; ++j)
+      |                         ~~^~~
+MOODS/motif_0.cpp: In function ‘unsigned int MOODS::scan::window_position(const std::vector<double>&, unsigned int, unsigned int)’:
+MOODS/motif_0.cpp:64:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+   64 |         for (int i = 0; i < m - l; ++i)
+      |                         ~~^~~~~~~
+MOODS/motif_0.cpp: In function ‘std::vector<unsigned int> MOODS::scan::compute_lookahead_order(const std::vector<double>&, unsigned int, unsigned int, unsigned int)’:
+MOODS/motif_0.cpp:96:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+   96 |         for (int i = 0; i < window_pos; ++i)
+      |                         ~~^~~~~~~~~~~~
+MOODS/motif_0.cpp:100:38: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+  100 |         for (int i = window_pos+l; i < m; ++i)
+      |                                    ~~^~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I. -I./MOODS/ -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c MOODS/moods_tools.cpp -o MOODS/moods_tools.o
+MOODS/moods_tools.cpp: In function ‘double MOODS::tools::threshold_from_p(const score_matrix&, const std::vector<double>&, const double&)’:
+MOODS/moods_tools.cpp:155:26: warning: comparison of integer expressions of different signedness: ‘std::size_t’ {aka ‘long unsigned int’} and ‘long int’ [-Wsign-compare]
+  155 |     for (size_t i = 0; i < n; ++i)
+      |                        ~~^~~
+MOODS/moods_tools.cpp:157:30: warning: comparison of integer expressions of different signedness: ‘std::size_t’ {aka ‘long unsigned int’} and ‘long int’ [-Wsign-compare]
+  157 |         for (size_t j = 0; j < a; ++j)
+      |                            ~~^~~
+MOODS/moods_tools.cpp:168:26: warning: comparison of integer expressions of different signedness: ‘std::size_t’ {aka ‘long unsigned int’} and ‘long int’ [-Wsign-compare]
+  168 |     for (size_t i = 0; i < n; ++i)
+      |                        ~~^~~
+MOODS/moods_tools.cpp:172:30: warning: comparison of integer expressions of different signedness: ‘std::size_t’ {aka ‘long unsigned int’} and ‘long int’ [-Wsign-compare]
+  172 |         for (size_t j = 1; j < a; ++j)
+      |                            ~~^~~
+MOODS/moods_tools.cpp:190:26: warning: comparison of integer expressions of different signedness: ‘std::size_t’ {aka ‘long unsigned int’} and ‘long int’ [-Wsign-compare]
+  190 |     for (size_t j = 0; j < a; ++j)
+      |                        ~~^~~
+MOODS/moods_tools.cpp:193:26: warning: comparison of integer expressions of different signedness: ‘std::size_t’ {aka ‘long unsigned int’} and ‘long int’ [-Wsign-compare]
+  193 |     for (size_t i = 1; i < n; ++i)
+      |                        ~~^~~
+MOODS/moods_tools.cpp:195:30: warning: comparison of integer expressions of different signedness: ‘std::size_t’ {aka ‘long unsigned int’} and ‘long int’ [-Wsign-compare]
+  195 |         for (size_t j = 0; j < a; ++j)
+      |                            ~~^~~
+MOODS/moods_tools.cpp: In function ‘score_matrix MOODS::tools::log_odds(const std::vector<std::vector<double> >&, const std::vector<std::vector<double> >&, const std::vector<double>&, double, std::size_t)’:
+MOODS/moods_tools.cpp:320:38: warning: comparison of integer expressions of different signedness: ‘std::size_t’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+  320 |         for (size_t PCODE = 0; PCODE < 1 << (SHIFT * r); ++PCODE ){
+      |                                ~~~~~~^~~~~~~~~~~~~~~~~~
+MOODS/moods_tools.cpp:328:46: warning: comparison of integer expressions of different signedness: ‘std::size_t’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+  328 |                 for (size_t SCODE = 0; SCODE < 1 << (SHIFT * (q - r - 1)); ++SCODE){
+      |                                        ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+MOODS/moods_tools.cpp: In function ‘double MOODS::tools::threshold_from_p(const score_matrix&, const std::vector<double>&, const double&, std::size_t)’:
+MOODS/moods_tools.cpp:454:26: warning: comparison of integer expressions of different signedness: ‘std::size_t’ {aka ‘long unsigned int’} and ‘long int’ [-Wsign-compare]
+  454 |     for (size_t i = 0; i < cols; ++i)
+      |                        ~~^~~~~~
+MOODS/moods_tools.cpp:456:36: warning: comparison of integer expressions of different signedness: ‘std::size_t’ {aka ‘long unsigned int’} and ‘long int’ [-Wsign-compare]
+  456 |         for (size_t CODE = 0; CODE < rows; ++CODE)
+      |                               ~~~~~^~~~~~
+MOODS/moods_tools.cpp:468:26: warning: comparison of integer expressions of different signedness: ‘std::size_t’ {aka ‘long unsigned int’} and ‘long int’ [-Wsign-compare]
+  468 |     for (size_t i = 0; i < cols; ++i)
+      |                        ~~^~~~~~
+MOODS/moods_tools.cpp:472:36: warning: comparison of integer expressions of different signedness: ‘std::size_t’ {aka ‘long unsigned int’} and ‘long int’ [-Wsign-compare]
+  472 |         for (size_t CODE = 1; CODE < rows; ++CODE)
+      |                               ~~~~~^~~~~~
+MOODS/moods_tools.cpp:489:32: warning: comparison of integer expressions of different signedness: ‘std::size_t’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+  489 |     for (size_t CODE = 0; CODE < (1 << (SHIFT * q)); ++CODE){
+      |                           ~~~~~^~~~~~~~~~~~~~~~~~~~
+MOODS/moods_tools.cpp:500:26: warning: comparison of integer expressions of different signedness: ‘std::size_t’ {aka ‘long unsigned int’} and ‘long int’ [-Wsign-compare]
+  500 |     for (size_t i = 1; i < cols; ++i)
+      |                        ~~^~~~~~
+MOODS/moods_tools.cpp:503:36: warning: comparison of integer expressions of different signedness: ‘std::size_t’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+  503 |         for (size_t CODE = 0; CODE < (1 << (SHIFT * q)); ++CODE)
+      |                               ~~~~~^~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I. -I./MOODS/ -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c MOODS/moods_scan.cpp -o MOODS/moods_scan.o
+MOODS/moods_scan.cpp: In function ‘std::vector<std::vector<MOODS::match> > MOODS::scan::scan_best_hits_dna(const string&, const std::vector<std::vector<std::vector<double> > >&, std::size_t, int, unsigned int, std::size_t, std::size_t)’:
+MOODS/moods_scan.cpp:97:14: warning: unused variable ‘done’ [-Wunused-variable]
+   97 |         bool done = 0;
+      |              ^~~~
+MOODS/moods_scan.cpp: In function ‘std::vector<MOODS::match> MOODS::scan::naive_scan_dna(const string&, score_matrix, double, std::size_t)’:
+MOODS/moods_scan.cpp:252:33: warning: suggest parentheses around arithmetic in operand of ‘|’ [-Wparentheses]
+  252 |                     CODE = MASK & (CODE << SHIFT) | alphabet_map[seq[i+j+q-1]];
+      |                            ~~~~~^~~~~~~~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I. -I./MOODS/ -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c MOODS/moods_parsers.cpp -o MOODS/moods_parsers.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I. -I./MOODS/ -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c MOODS/moods_misc.cpp -o MOODS/moods_misc.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I. -I./MOODS/ -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c MOODS/match_types.cpp -o MOODS/match_types.o
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o motifmatchr.so ./RcppExports.o ./r_interface.o ./MOODS/scanner.o ./MOODS/motif_h.o ./MOODS/motif_0.o ./MOODS/moods_tools.o ./MOODS/moods_scan.o ./MOODS/moods_parsers.o ./MOODS/moods_misc.o ./MOODS/match_types.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-motifmatchr/00new/motifmatchr/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (motifmatchr)

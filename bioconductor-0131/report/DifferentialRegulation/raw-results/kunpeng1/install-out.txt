@@ -1,0 +1,64 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL DifferentialRegulation
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘DifferentialRegulation’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c Rcpp_MCMC.cpp -o Rcpp_MCMC.o
+Rcpp_MCMC.cpp: In function ‘Rcpp::NumericVector Rcpp_MCMC(const unsigned int&, const unsigned int&, const unsigned int&, const unsigned int&, const IntegerVector&, const IntegerVector&, const Rcpp::ListOf<Rcpp::Vector<13> >&, const IntegerVector&, const unsigned int&, const unsigned int&, Rcpp::NumericMatrix&, Rcpp::ListOf<Rcpp::Matrix<14> >&, const Rcpp::ListOf<Rcpp::Matrix<14> >&, const Rcpp::ListOf<Rcpp::ListOf<Rcpp::Vector<13> > >&, const Rcpp::ListOf<Rcpp::ListOf<Rcpp::Vector<14, Rcpp::PreserveStorage> > >&, const Rcpp::ListOf<Rcpp::Vector<13> >&, Rcpp::ListOf<Rcpp::Matrix<14> >&, Rcpp::ListOf<Rcpp::Matrix<14> >&, Rcpp::ListOf<Rcpp::Matrix<14> >&, Rcpp::ListOf<Rcpp::ListOf<Rcpp::Matrix<14> > >&, Rcpp::ListOf<Rcpp::Matrix<14> >&, const bool&, const double&, const double&, const double&)’:
+Rcpp_MCMC.cpp:279:32: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘const type’ {aka ‘const int’} [-Wsign-compare]
+  279 |         for(sample = 0; sample < n_samples_per_group[ gr ]; sample ++){
+Rcpp_MCMC.cpp:144:10: warning: unused variable ‘tmp_1’ [-Wunused-variable]
+  144 |   double tmp_1, tmp_2, tmp_3;
+      |          ^~~~~
+Rcpp_MCMC.cpp:144:17: warning: unused variable ‘tmp_2’ [-Wunused-variable]
+  144 |   double tmp_1, tmp_2, tmp_3;
+      |                 ^~~~~
+Rcpp_MCMC.cpp:144:24: warning: unused variable ‘tmp_3’ [-Wunused-variable]
+  144 |   double tmp_1, tmp_2, tmp_3;
+      |                        ^~~~~
+Rcpp_MCMC.cpp:365:10: warning: ‘ll_original’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  365 |       ll += ll_original;
+      |       ~~~^~~~~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c Rcpp_MCMC_sce.cpp -o Rcpp_MCMC_sce.o
+Rcpp_MCMC_sce.cpp: In function ‘Rcpp::NumericVector Rcpp_MCMC_sce(const unsigned int&, const unsigned int&, const unsigned int&, const IntegerVector&, const Rcpp::ListOf<Rcpp::Vector<13> >&, const IntegerVector&, const unsigned int&, const unsigned int&, Rcpp::ListOf<Rcpp::Matrix<14> >&, const Rcpp::ListOf<Rcpp::Matrix<14> >&, Rcpp::ListOf<Rcpp::Matrix<14> >&, Rcpp::ListOf<Rcpp::Matrix<14> >&, Rcpp::ListOf<Rcpp::Matrix<14> >&, Rcpp::ListOf<Rcpp::ListOf<Rcpp::Matrix<14> > >&, Rcpp::ListOf<Rcpp::Matrix<14> >&, const bool&, const double&, const double&, const double&)’:
+Rcpp_MCMC_sce.cpp:234:32: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘const type’ {aka ‘const int’} [-Wsign-compare]
+  234 |         for(sample = 0; sample < n_samples_per_group[ gr ]; sample ++){
+Rcpp_MCMC_sce.cpp:145:10: warning: unused variable ‘tmp_1’ [-Wunused-variable]
+  145 |   double tmp_1, tmp_2, tmp_3;
+      |          ^~~~~
+Rcpp_MCMC_sce.cpp:145:17: warning: unused variable ‘tmp_2’ [-Wunused-variable]
+  145 |   double tmp_1, tmp_2, tmp_3;
+      |                 ^~~~~
+Rcpp_MCMC_sce.cpp:145:24: warning: unused variable ‘tmp_3’ [-Wunused-variable]
+  145 |   double tmp_1, tmp_2, tmp_3;
+      |                        ^~~~~
+Rcpp_MCMC_sce.cpp:320:10: warning: ‘ll_original’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  320 |       ll += ll_original;
+      |       ~~~^~~~~~~~~~~~~~
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o DifferentialRegulation.so RcppExports.o Rcpp_MCMC.o Rcpp_MCMC_sce.o -llapack -L/home/biocbuild/bbs-3.17-bioc/R/lib -lRblas -lgfortran -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-DifferentialRegulation/00new/DifferentialRegulation/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (DifferentialRegulation)

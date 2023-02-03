@@ -1,0 +1,74 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data pageRank
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘pageRank/DESCRIPTION’ ... OK
+* preparing ‘pageRank’:
+* checking DESCRIPTION meta-information ... OK
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘introduction.rnw’ using Sweave
+
+Loading required package: Biobase
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: stats4
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: AnnotationDbi
+
+Loading required package: XML
+  403 genes were dropped because they have exons located on both strands
+  of the same reference sequence or on more than one reference sequence,
+  so cannot be represented by a single genomic range.
+  Use 'single.strand.genes.only=FALSE' to get all the genes in a
+  GRangesList object, or use suppressMessages() to suppress this message.
+
+Error: processing vignette 'introduction.rnw' failed with diagnostics:
+ chunk 6 (label = accessibility_network) 
+Error in library(BSgenome.Hsapiens.UCSC.hg19) : 
+  there is no package called ‘BSgenome.Hsapiens.UCSC.hg19’
+
+--- failed re-building ‘introduction.rnw’
+
+SUMMARY: processing the following file failed:
+  ‘introduction.rnw’
+
+Error: Vignette re-building failed.
+Execution halted

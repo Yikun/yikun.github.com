@@ -1,0 +1,42 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL sitePath
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘sitePath’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c lumpyCluster.cpp -o lumpyCluster.o
+lumpyCluster.cpp: In member function ‘void LumpyCluster::Base::mergeClusters(const clusters&, int)’:
+lumpyCluster.cpp:96:24: warning: comparison of integer expressions of different signedness: ‘std::vector<Treemer::TipSeqLinker*>::size_type’ {aka ‘long unsigned int’} and ‘const int’ [-Wsign-compare]
+   96 |     if (allTips.size() >= m_maxSNPnum) {
+      |         ~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c minEntropy.cpp -o minEntropy.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c searchNode.cpp -o searchNode.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c searchTree.cpp -o searchTree.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c treemer.cpp -o treemer.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c util.cpp -o util.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o sitePath.so RcppExports.o lumpyCluster.o minEntropy.o searchNode.o searchTree.o treemer.o util.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-sitePath/00new/sitePath/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (sitePath)

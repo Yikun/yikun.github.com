@@ -1,0 +1,73 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL ORFik
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘ORFik’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c findORFsHelpers.cpp -o findORFsHelpers.o
+findORFsHelpers.cpp: In function ‘Rcpp::IntegerMatrix orfs_as_matrix(std::string&, std::string, std::string, int)’:
+findORFsHelpers.cpp:214:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  214 |   for (int i = 0; i < uorfSize/2; i++) {
+      |                   ~~^~~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c findOrfs.cpp -o findOrfs.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c findOrfsFasta.cpp -o findOrfsFasta.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c pmapFromTranscripts.cpp -o pmapFromTranscripts.o
+pmapFromTranscripts.cpp: In function ‘Rcpp::List pmapFromTranscriptsCPP(const std::vector<int>&, const std::vector<int>&, const std::vector<int>&, const std::vector<int>&, const std::vector<int>&, const char&, bool)’:
+pmapFromTranscripts.cpp:151:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  151 |   for(auto i = 0;i < xSize; i++){
+      |                  ~~^~~~~~~
+pmapFromTranscripts.cpp:155:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  155 |   for(auto i = 0; i < indexSize; i++){
+      |                   ~~^~~~~~~~~~~
+pmapFromTranscripts.cpp:161:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  161 |   for(auto i = 1; i < indexSize; i++){
+      |                   ~~^~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c pmapToTranscripts.cpp -o pmapToTranscripts.o
+pmapToTranscripts.cpp: In function ‘void pmapToPositive(vi&, const int&, int&, const vi&, const vi&, const vi&, const vi&, const vi&, const vi&, const vi&, const vi&)’:
+pmapToTranscripts.cpp:22:7: warning: variable ‘currentWidth’ set but not used [-Wunused-but-set-variable]
+   22 |   int currentWidth = 0;
+      |       ^~~~~~~~~~~~
+pmapToTranscripts.cpp: In function ‘void pmapToNegative(vi&, const int&, int&, const vi&, const vi&, const vi&, const vi&, const vi&, const vi&, const vi&, const vi&)’:
+pmapToTranscripts.cpp:68:7: warning: variable ‘currentWidth’ set but not used [-Wunused-but-set-variable]
+   68 |   int currentWidth = 0;
+      |       ^~~~~~~~~~~~
+pmapToTranscripts.cpp: In function ‘Rcpp::List pmapToTranscriptsCPP(const std::vector<int>&, const std::vector<int>&, const std::vector<int>&, const std::vector<int>&, const std::vector<int>&, const char&, const std::vector<int>&)’:
+pmapToTranscripts.cpp:126:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  126 |   for(auto i = 0;i < xSize; i++){ // Width per exon in x
+      |                  ~~^~~~~~~
+pmapToTranscripts.cpp:130:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  130 |   for(auto i = 0; i < indexSize; i++){ // Width per exon in tx
+      |                   ~~^~~~~~~~~~~
+pmapToTranscripts.cpp:136:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  136 |   for(auto i = 1; i < indexSize; i++){
+      |                   ~~^~~~~~~~~~~
+pmapToTranscripts.cpp:147:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  147 |   for (auto i = 1; i < 2 * xSize; i = i + 2) {
+      |                    ~~^~~~~~~~~~~
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o ORFik.so RcppExports.o findORFsHelpers.o findOrfs.o findOrfsFasta.o pmapFromTranscripts.o pmapToTranscripts.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-ORFik/00new/ORFik/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a new generic function for ‘symbols’ in package ‘ORFik’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ORFik)

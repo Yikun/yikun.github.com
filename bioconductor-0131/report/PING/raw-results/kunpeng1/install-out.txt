@@ -1,0 +1,53 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL PING
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘PING’ ...
+** using staged installation
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for GSL... yes
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c init.c -o init.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c ping.c -o ping.o
+ping.c: In function ‘fitModelAllk’:
+ping.c:145:40: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+  145 |   if( REAL(VECTOR_ELT(paraPrior, 5))[0]>0 & REAL(VECTOR_ELT(paraEM, 0))[0]==0) // automatically decide minK and maxKK for histone data, when minK=0
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~
+ping.c: In function ‘ECM2’:
+ping.c:1536:16: warning: variable ‘chiSum’ set but not used [-Wunused-but-set-variable]
+ 1536 |         double chiSum = 0, etaF, etaR, dd, cc;
+      |                ^~~~~~
+ping.c: In function ‘mergePeak’:
+ping.c:3280:20: warning: variable ‘tstatMax’ set but not used [-Wunused-but-set-variable]
+ 3280 |   double tstat=0.0,tstatMax=0.0;
+      |                    ^~~~~~~~
+ping.c: In function ‘fitModelK’:
+ping.c:477:25: warning: ‘firstFit’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  477 |         SEXP ans, temp, firstFit;
+      |                         ^~~~~~~~
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o PING.so init.o ping.o -lgsl -lgslcblas -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-PING/00new/PING/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (PING)

@@ -1,0 +1,63 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL beadarray
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘beadarray’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c BASH.c -o BASH.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c HULK.c -o HULK.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c determiningGridPositions.c -o determiningGridPositions.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c findAllOutliers.c -o findAllOutliers.o
+findAllOutliers.c: In function ‘findBeadStatus’:
+findAllOutliers.c:196:43: warning: ‘ma’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  196 |                 if((inten[k] < (m + *nmads*ma)) && (inten[k] > (m - *nmads*ma))){
+      |                                     ~~~~~~^~~
+findAllOutliers.c:196:67: warning: ‘m’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  196 |                 if((inten[k] < (m + *nmads*ma)) && (inten[k] > (m - *nmads*ma))){
+      |                                                                ~~~^~~~~~~~~~~~
+findAllOutliers.c: In function ‘findAllOutliers’:
+findAllOutliers.c:246:20: warning: ‘status’ may be used uninitialized [-Wmaybe-uninitialized]
+  246 |         free(status->validInds);
+      |              ~~~~~~^~~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c imageProcessing.c -o imageProcessing.o
+imageProcessing.c: In function ‘illuminaBackground’:
+imageProcessing.c:88: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+   88 |     #pragma omp parallel shared(nthreads, nbeads, imageHeight, pixelMatrix, coords) private(tid, start, end)
+      | 
+imageProcessing.c: In function ‘medianBackground’:
+imageProcessing.c:135: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  135 |     #pragma omp parallel shared(nthreads, nbeads, imageHeight, pixelMatrix, coords) private(tid, start, end)
+      | 
+imageProcessing.c: In function ‘illuminaSharpen’:
+imageProcessing.c:244: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  244 |     #pragma omp parallel for private(i, j) shared(sharpened) num_threads(2)
+      | 
+imageProcessing.c:251: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  251 |     #pragma omp parallel for private(i, j, sum) shared(sharpened) num_threads(2)
+      | 
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o beadarray.so BASH.o HULK.o determiningGridPositions.o findAllOutliers.o imageProcessing.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-beadarray/00new/beadarray/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (beadarray)

@@ -1,0 +1,61 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL xcms
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘xcms’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+rm -f massifquant/xcms_massifquant.o massifquant/TrMgr.o massifquant/Tracker.o massifquant/SegProc.o massifquant/DataKeeper.o massifquant/OpOverload.o obiwarp/mat.o obiwarp/vec.o obiwarp/xcms_dynprog.o obiwarp/xcms_lmat.o xcms_obiwarp.o fastMatch.o mzClust_hclust.o mzROI.o util.o xcms.o binners.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c massifquant/xcms_massifquant.cpp -o massifquant/xcms_massifquant.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c massifquant/TrMgr.cpp -o massifquant/TrMgr.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c massifquant/Tracker.cpp -o massifquant/Tracker.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c massifquant/SegProc.cpp -o massifquant/SegProc.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c massifquant/DataKeeper.cpp -o massifquant/DataKeeper.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c massifquant/OpOverload.cpp -o massifquant/OpOverload.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c obiwarp/mat.cpp -o obiwarp/mat.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c obiwarp/vec.cpp -o obiwarp/vec.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c obiwarp/xcms_dynprog.cpp -o obiwarp/xcms_dynprog.o
+obiwarp/xcms_dynprog.cpp: In member function ‘void DynProg::find_path(VEC::MatF&, VEC::VecF&, int, float, float, int, float)’:
+obiwarp/xcms_dynprog.cpp:1113:9: warning: variable ‘bestscore’ set but not used [-Wunused-but-set-variable]
+ 1113 |   float bestscore;
+      |         ^~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c obiwarp/xcms_lmat.cpp -o obiwarp/xcms_lmat.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c xcms_obiwarp.cpp -o xcms_obiwarp.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c fastMatch.c -o fastMatch.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c mzClust_hclust.c -o mzClust_hclust.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c mzROI.c -o mzROI.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c util.c -o util.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c xcms.c -o xcms.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c binners.c -o binners.o
+binners.c: In function ‘_breaks_on_binSize’:
+binners.c:357:7: warning: unused variable ‘idx’ [-Wunused-variable]
+  357 |   int idx = 0;
+      |       ^~~
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o xcms.so massifquant/xcms_massifquant.o massifquant/TrMgr.o massifquant/Tracker.o massifquant/SegProc.o massifquant/DataKeeper.o massifquant/OpOverload.o obiwarp/mat.o obiwarp/vec.o obiwarp/xcms_dynprog.o obiwarp/xcms_lmat.o xcms_obiwarp.o fastMatch.o mzClust_hclust.o mzROI.o util.o xcms.o binners.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-xcms/00new/xcms/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a new generic function for ‘group’ in package ‘xcms’
+Creating a new generic function for ‘sigma’ in package ‘xcms’
+Creating a generic function from function ‘hasFilledChromPeaks’ in package ‘xcms’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (xcms)

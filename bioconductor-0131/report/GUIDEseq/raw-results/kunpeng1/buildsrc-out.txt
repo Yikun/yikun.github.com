@@ -1,0 +1,63 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data GUIDEseq
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘GUIDEseq/DESCRIPTION’ ... OK
+* preparing ‘GUIDEseq’:
+* checking DESCRIPTION meta-information ... OK
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘GUIDEseq.Rnw’ using Sweave
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+computing coverage for plus strand ...
+computing coverage for minus strand ...
+call peaks ...
+finding local max for chromosome: chr13
+
+Error: processing vignette 'GUIDEseq.Rnw' failed with diagnostics:
+ chunk 7 
+Error in library(BSgenome.Hsapiens.UCSC.hg19) : 
+  there is no package called ‘BSgenome.Hsapiens.UCSC.hg19’
+
+--- failed re-building ‘GUIDEseq.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘GUIDEseq.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted

@@ -1,0 +1,44 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL BUSseq
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘BUSseq’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+/home/biocbuild/bbs-3.17-bioc/R/share/make/shlib.mk:10: warning: overriding recipe for target 'BUSseq.so'
+Makevars:9: warning: ignoring old recipe for target 'BUSseq.so'
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -fopenmp -fPIC  -g -O2  -Wall  -c BUSseq.cpp -o BUSseq.o
+BUSseq.cpp: In function ‘double postprob_DE_thr_fun(double*, double, int, int)’:
+BUSseq.cpp:964:69: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+  964 |     while((fdr <= _fdr_threshold) & (kappa <= postprob_DE_thr) & (i < (unsigned)vec_PPI.size())){
+      |                                                                   ~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+BUSseq.cpp: In function ‘void BUSseq_inference(int*, int*, int*, int*, char**, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, int*, double*, int*, double*)’:
+BUSseq.cpp:2674:14: warning: variable ‘All_Drop’ set but not used [-Wunused-but-set-variable]
+ 2674 |         bool All_Drop = true;
+      |              ^~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -fopenmp -fPIC  -g -O2  -Wall  -c rngstream.cpp -o rngstream.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o BUSseq.so BUSseq.o rngstream.o -fopenmp -llapack -L/home/biocbuild/bbs-3.17-bioc/R/lib -lRblas -lgfortran -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-BUSseq/00new/BUSseq/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (BUSseq)

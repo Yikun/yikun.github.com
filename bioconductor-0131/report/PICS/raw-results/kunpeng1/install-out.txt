@@ -1,0 +1,73 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL PICS
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘PICS’ ...
+** using staged installation
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for GSL... yes
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c pics.c -o pics.o
+pics.c: In function ‘ECM2’:
+pics.c:1009:16: warning: variable ‘chiSum’ set but not used [-Wunused-but-set-variable]
+ 1009 |         double chiSum, etaF, etaR, dd, cc;
+      |                ^~~~~~
+pics.c: In function ‘getInfMat’:
+pics.c:1633:83: warning: unused variable ‘PhiRw’ [-Wunused-variable]
+ 1633 |           double aNormF, aNormR, bNormF, bNormR, P0F=1, P0R=1, PhiF, PhiR, PhiFw, PhiRw, wPjF, wPjR;
+      |                                                                                   ^~~~~
+pics.c:1633:76: warning: unused variable ‘PhiFw’ [-Wunused-variable]
+ 1633 |           double aNormF, aNormR, bNormF, bNormR, P0F=1, P0R=1, PhiF, PhiR, PhiFw, PhiRw, wPjF, wPjR;
+      |                                                                            ^~~~~
+pics.c: In function ‘mergePeak’:
+pics.c:1889:11: warning: unused variable ‘j’ [-Wunused-variable]
+ 1889 |   int i=0,j=0,k=0,l=0,kMerge=0,flag=0;
+      |           ^
+pics.c:1889:7: warning: unused variable ‘i’ [-Wunused-variable]
+ 1889 |   int i=0,j=0,k=0,l=0,kMerge=0,flag=0;
+      |       ^
+pics.c: In function ‘BIC’:
+pics.c:1307:13: warning: ‘penalty’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1307 |         bic = logDensityMix(yF, w, muF, sigmaSqF, K, NF) + logDensityMix(yR, w, muR, sigmaSqR, K,NR) - penalty;
+      |         ~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+pics.c: In function ‘fitModelK’:
+pics.c:421:25: warning: ‘firstFit’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  421 |         SEXP ans, temp, firstFit;
+      |                         ^~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c segment.c -o segment.o
+segment.c: In function ‘getDensity’:
+segment.c:1494:19: warning: variable ‘chr’ set but not used [-Wunused-but-set-variable]
+ 1494 |   SEXP ans, x, y, chr, names;
+      |                   ^~~
+segment.c:1490:8: warning: unused variable ‘filter1’ [-Wunused-variable]
+ 1490 |   SEXP filter1;
+      |        ^~~~~~~
+segment.c:1489:11: warning: unused variable ‘muFilter’ [-Wunused-variable]
+ 1489 |   double *muFilter, *deltaFilter, *sFFilter, *sRFilter, *seFilter, *seFilterF, *seFilterR, *scoreFilter, *score;
+      |           ^~~~~~~~
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o PICS.so pics.o segment.o -lgsl -lgslcblas -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-PICS/00new/PICS/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (PICS)

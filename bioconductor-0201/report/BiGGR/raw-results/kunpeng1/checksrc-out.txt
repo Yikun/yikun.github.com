@@ -1,0 +1,125 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:BiGGR.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings BiGGR_1.35.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/BiGGR.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘BiGGR/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘BiGGR’ version ‘1.35.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .BBSoptions
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘BiGGR’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Package in Depends field not imported from: ‘stringr’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.buildSubModel: no visible global function definition for ‘new’
+buildSBMLFromBiGG: no visible global function definition for
+  ‘read.delim’
+buildSBMLFromBiGG : <anonymous>: no visible global function definition
+  for ‘new’
+buildSBMLFromBiGG: no visible global function definition for ‘new’
+createLIMFromSBML: no visible global function definition for ‘hasArg’
+gprMapping: no visible global function definition for ‘str_detect’
+gprMapping: no visible global function definition for ‘na.omit’
+gprMappingAvg: no visible global function definition for ‘na.omit’
+sampleFluxEnsemble: no visible global function definition for ‘Xsample’
+sbml2hyperdraw : <anonymous>: no visible binding for global variable
+  ‘species’
+sbml2hyperdraw: no visible global function definition for ‘hasArg’
+sbml2hyperdraw: no visible global function definition for ‘graphLayout’
+sbml2hyperdraw: no visible global function definition for
+  ‘nodeDataDefaults<-’
+sbml2hyperdraw: no visible global function definition for
+  ‘edgeDataDefaults<-’
+sbml2hyperdraw: no visible global function definition for
+  ‘graphDataDefaults<-’
+sbml2hyperdraw : <anonymous>: no visible global function definition for
+  ‘edgeData<-’
+Undefined global functions or variables:
+  Xsample edgeData<- edgeDataDefaults<- graphDataDefaults<- graphLayout
+  hasArg na.omit new nodeDataDefaults<- read.delim species str_detect
+Consider adding
+  importFrom("methods", "hasArg", "new")
+  importFrom("stats", "na.omit")
+  importFrom("utils", "read.delim")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking installed files from ‘inst/doc’ ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                         user system elapsed
+gprMapping            125.823  0.267 137.337
+gprMappingAvg          22.078  0.071  24.939
+buildSBMLFromGenes      6.262  0.036   8.348
+buildSBMLFromPathways   4.648  0.004   6.232
+getPathwaysForSBML      3.151  0.004   5.150
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘BiGGR.Rnw’ using ‘UTF-8’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/BiGGR.Rcheck/00check.log’
+for details.
+
+

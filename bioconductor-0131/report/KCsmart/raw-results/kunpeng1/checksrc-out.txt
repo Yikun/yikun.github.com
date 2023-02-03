@@ -1,0 +1,165 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:KCsmart.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings KCsmart_2.57.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/KCsmart.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘KCsmart/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘KCsmart’ version ‘2.57.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘KCsmart’ can be installed ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Description field: should contain one or more complete sentences.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... WARNING
+Error in library(KCsmart, lib.loc = "/home/biocbuild/bbs-3.17-bioc/R/library") : 
+  there is no package called ‘KCsmart’
+Execution halted
+
+It looks like this package has a loading problem when not on .libPaths:
+see the messages for details.
+* checking dependencies in R code ... NOTE
+'library' or 'require' call to ‘siggenes’ which was already attached by Depends.
+  Please remove these calls from your code.
+Packages in Depends field not imported from:
+  ‘KernSmooth’ ‘siggenes’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+There are ::: calls to the package's namespace in its code. A package
+  almost never needs to use ::: for its own objects:
+  ‘.add2spmc’ ‘.checkMirrorLocs’ ‘.comparativeKcPerms’
+  ‘.comparativeKcSiggenes’ ‘.convertCGHbase’ ‘.findCutoffByFdr’
+  ‘.findPeaks’ ‘.findfdrcutoff’ ‘.getRegions’ ‘.getSigRegions’
+  ‘.makePermutations’ ‘.mirrorData’ ‘.permutedSpm’ ‘.samplePointMatrix’
+  ‘.samplePointMatrixOld’ ‘.snr’ ‘.spm2spmc’ ‘.varr’
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.comparativeKcSiggenes: no visible binding for global variable ‘sam’
+.samplePointMatrix: no visible global function definition for ‘locpoly’
+.samplePointMatrix: no visible global function definition for ‘bkde’
+.samplePointMatrixOld: no visible global function definition for
+  ‘aggregate’
+.samplePointMatrixOld: no visible global function definition for
+  ‘dnorm’
+.snr: no visible global function definition for ‘quantile’
+getSigRegionsCompKC: no visible global function definition for
+  ‘findDelta’
+idPoints: no visible global function definition for ‘dev.set’
+idPoints: no visible global function definition for ‘identify’
+plot,compKc-missing: no visible global function definition for ‘layout’
+plot,compKc-missing: no visible global function definition for ‘abline’
+plot,compKc-missing: no visible global function definition for ‘rect’
+plot,compKc-missing: no visible global function definition for ‘lines’
+plot,compKc-missing: no visible global function definition for ‘text’
+plot,compKc-missing: no visible global function definition for ‘axis’
+plot,samplePointMatrix-missing: no visible global function definition
+  for ‘layout’
+plot,samplePointMatrix-missing: no visible global function definition
+  for ‘abline’
+plot,samplePointMatrix-missing: no visible global function definition
+  for ‘tail’
+plot,samplePointMatrix-missing: no visible global function definition
+  for ‘polygon’
+plot,samplePointMatrix-missing: no visible global function definition
+  for ‘lines’
+plot,samplePointMatrix-missing: no visible global function definition
+  for ‘segments’
+plot,samplePointMatrix-missing: no visible global function definition
+  for ‘text’
+plot,samplePointMatrix-missing: no visible global function definition
+  for ‘axis’
+plot,scaleSpace-missing: no visible global function definition for
+  ‘dev.cur’
+plot,scaleSpace-missing: no visible global function definition for
+  ‘x11’
+plot,scaleSpace-missing: no visible global function definition for
+  ‘heat.colors’
+plot,scaleSpace-missing: no visible global function definition for
+  ‘dev.set’
+plot,scaleSpace-missing: no visible global function definition for
+  ‘segments’
+plot,scaleSpace-missing: no visible global function definition for
+  ‘abline’
+plot,scaleSpace-missing: no visible global function definition for
+  ‘text’
+plot,scaleSpace-missing: no visible global function definition for
+  ‘axis’
+Undefined global functions or variables:
+  abline aggregate axis bkde dev.cur dev.set dnorm findDelta
+  heat.colors identify layout lines locpoly polygon quantile rect sam
+  segments tail text x11
+Consider adding
+  importFrom("grDevices", "dev.cur", "dev.set", "heat.colors", "x11")
+  importFrom("graphics", "abline", "axis", "identify", "layout", "lines",
+             "polygon", "rect", "segments", "text")
+  importFrom("stats", "aggregate", "dnorm", "quantile")
+  importFrom("utils", "tail")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented S4 methods:
+  generic '[' and siglist 'probeAnnotation,ANY,ANY,ANY'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... SKIPPED
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘KCS.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 WARNINGs, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/KCsmart.Rcheck/00check.log’
+for details.
+
+

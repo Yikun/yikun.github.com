@@ -1,0 +1,68 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL Travel
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘Travel’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG `pkg-config fuse --cflags` -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c Cpp_interface.cpp -o Cpp_interface.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG `pkg-config fuse --cflags` -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG `pkg-config fuse --cflags` -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c altfile_operations.cpp -o altfile_operations.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG `pkg-config fuse --cflags` -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c altmmap_operations.cpp -o altmmap_operations.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG `pkg-config fuse --cflags` -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c altrep_manager.cpp -o altrep_manager.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG `pkg-config fuse --cflags` -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c class_Cache_block.cpp -o class_Cache_block.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG `pkg-config fuse --cflags` -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c class_Filesystem_cache_copier.cpp -o class_Filesystem_cache_copier.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG `pkg-config fuse --cflags` -I'/home/biocbuild/bbs-3.17-bioc/R/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c class_Filesystem_file_data.cpp -o class_Filesystem_file_data.o
+In file included from class_Filesystem_file_data.h:5,
+                 from class_Filesystem_file_data.cpp:1:
+class_Cache_block.h:10:5: error: ‘size_t’ does not name a type
+   10 |     size_t size;
+      |     ^~~~~~
+class_Cache_block.h:1:1: note: ‘size_t’ is defined in header ‘<cstddef>’; did you forget to ‘#include <cstddef>’?
+  +++ |+#include <cstddef>
+    1 | #ifndef HEADER_CACHE_BLOCK
+class_Cache_block.h:11:5: error: ‘size_t’ does not name a type
+   11 |     size_t *counter = nullptr;
+      |     ^~~~~~
+class_Cache_block.h:11:5: note: ‘size_t’ is defined in header ‘<cstddef>’; did you forget to ‘#include <cstddef>’?
+class_Cache_block.h:14:23: error: expected ‘)’ before ‘size’
+   14 |     Cache_block(size_t size);
+      |                ~      ^~~~~
+      |                       )
+class_Cache_block.h:21:5: error: ‘size_t’ does not name a type
+   21 |     size_t use_count() const;
+      |     ^~~~~~
+class_Cache_block.h:21:5: note: ‘size_t’ is defined in header ‘<cstddef>’; did you forget to ‘#include <cstddef>’?
+class_Cache_block.h:23:5: error: ‘size_t’ does not name a type
+   23 |     size_t get_size() const;
+      |     ^~~~~~
+class_Cache_block.h:23:5: note: ‘size_t’ is defined in header ‘<cstddef>’; did you forget to ‘#include <cstddef>’?
+class_Cache_block.h:27:5: error: ‘size_t’ does not name a type
+   27 |     size_t get_serialize_size() const;
+      |     ^~~~~~
+class_Cache_block.h:27:5: note: ‘size_t’ is defined in header ‘<cstddef>’; did you forget to ‘#include <cstddef>’?
+class_Filesystem_file_data.cpp: In member function ‘size_t Filesystem_file_data::get_serialize_size()’:
+class_Filesystem_file_data.cpp:70:26: error: ‘const class Cache_block’ has no member named ‘get_serialize_size’
+   70 |         size += i.second.get_serialize_size();
+      |                          ^~~~~~~~~~~~~~~~~~
+class_Filesystem_file_data.cpp: In member function ‘void Filesystem_file_data::serialize(void*)’:
+class_Filesystem_file_data.cpp:92:39: error: ‘const class Cache_block’ has no member named ‘get_serialize_size’
+   92 |         size_t buffer_size = i.second.get_serialize_size();
+      |                                       ^~~~~~~~~~~~~~~~~~
+class_Filesystem_file_data.cpp: In member function ‘void Filesystem_cache_index_iterator::compute_block_info()’:
+class_Filesystem_file_data.cpp:177:39: error: ‘class Cache_block’ has no member named ‘get_size’
+  177 |     block_length = block_iter->second.get_size() / type_size;
+      |                                       ^~~~~~~~
+make: *** [/home/biocbuild/bbs-3.17-bioc/R/etc/Makeconf:198: class_Filesystem_file_data.o] Error 1
+ERROR: compilation failed for package ‘Travel’
+* removing ‘/home/biocbuild/bbs-3.17-bioc/R/site-library/Travel’

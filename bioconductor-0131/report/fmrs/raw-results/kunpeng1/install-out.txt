@@ -1,0 +1,42 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL fmrs
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/site-library’
+* installing *source* package ‘fmrs’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c fmrs.c -o fmrs.o
+fmrs.c: In function ‘FMR_Weibl_MLE’:
+fmrs.c:1485:12: warning: variable ‘multX’ set but not used [-Wunused-but-set-variable]
+ 1485 |     double multX[N][D][K];
+      |            ^~~~~
+fmrs.c: In function ‘FMR_Weibl_CTun’:
+fmrs.c:2554:12: warning: variable ‘pi_new’ set but not used [-Wunused-but-set-variable]
+ 2554 |     double pi_new[K];
+      |            ^~~~~~
+fmrs.c:2535:12: warning: variable ‘multX’ set but not used [-Wunused-but-set-variable]
+ 2535 |     double multX[N][D][k1];
+      |            ^~~~~
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o fmrs.so fmrs.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/site-library/00LOCK-fmrs/00new/fmrs/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (fmrs)

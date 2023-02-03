@@ -1,0 +1,157 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:hypeR.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings hypeR_1.15.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/hypeR.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘hypeR/DESCRIPTION’ ... OK
+* this is package ‘hypeR’ version ‘1.15.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘hypeR’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.dots_multi_plot : <anonymous>: no visible binding for global variable
+  ‘pval’
+.dots_multi_plot : <anonymous>: no visible binding for global variable
+  ‘fdr’
+.dots_multi_plot : <anonymous>: no visible binding for global variable
+  ‘label’
+.dots_multi_plot: no visible global function definition for ‘head’
+.dots_multi_plot: no visible binding for global variable ‘significance’
+.dots_multi_plot: no visible binding for global variable ‘signature’
+.dots_multi_plot: no visible binding for global variable ‘label’
+.dots_multi_plot: no visible binding for global variable ‘size’
+.dots_plot: no visible binding for global variable ‘pval’
+.dots_plot: no visible binding for global variable ‘fdr’
+.dots_plot: no visible binding for global variable ‘significance’
+.dots_plot: no visible binding for global variable ‘size’
+.enrichment_map: no visible binding for global variable ‘pval’
+.enrichment_map: no visible binding for global variable ‘fdr’
+.find_members: no visible binding for global variable ‘from’
+.find_members: no visible binding for global variable ‘to’
+.hiearchy_map: no visible binding for global variable ‘pval’
+.hiearchy_map: no visible binding for global variable ‘fdr’
+.hiearchy_map : <anonymous>: no visible binding for global variable
+  ‘label’
+.hyper_enrichment: no visible global function definition for ‘is’
+.ks_enrichment: no visible global function definition for ‘is’
+enrichr_available: no visible binding for global variable ‘.’
+ggvenn: no visible binding for global variable ‘x’
+ggvenn: no visible binding for global variable ‘y’
+hyp_dots: no visible global function definition for ‘is’
+hyp_emap: no visible global function definition for ‘is’
+hyp_hmap: no visible global function definition for ‘is’
+hyp_show: no visible global function definition for ‘is’
+hyp_to_excel: no visible global function definition for ‘is’
+hyp_to_graph: no visible global function definition for ‘is’
+hyp_to_rmd: no visible global function definition for ‘is’
+hyp_to_rmd : <anonymous>: no visible global function definition for
+  ‘is’
+hyp_to_table: no visible global function definition for ‘is’
+hyp_to_table: no visible global function definition for ‘write.table’
+hypeR: no visible global function definition for ‘is’
+hypeR: no visible global function definition for ‘packageVersion’
+hypeR: no visible global function definition for ‘head’
+msigdb_available: no visible binding for global variable ‘gs_cat’
+msigdb_available: no visible binding for global variable ‘gs_subcat’
+msigdb_download: no visible binding for global variable ‘gs_name’
+msigdb_download: no visible binding for global variable ‘gene_symbol’
+msigdb_version: no visible global function definition for
+  ‘packageVersion’
+rctbl_build: no visible global function definition for ‘is’
+Undefined global functions or variables:
+  . fdr from gene_symbol gs_cat gs_name gs_subcat head is label
+  packageVersion pval signature significance size to write.table x y
+Consider adding
+  importFrom("methods", "is", "signature")
+  importFrom("utils", "head", "packageVersion", "write.table")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                   user system elapsed
+msigdb_available 32.395  1.209  34.252
+hyp_hmap         10.657  0.009  12.045
+enrichr_download  0.092  0.000  11.001
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+    1. ├─... %>% hyp_dots_tests() at test-hyp_dots.R:23:4
+    2. ├─hypeR (local) hyp_dots_tests(.)
+    3. │ └─hypeR::hyp_dots(hyp_obj, "gg") at test-hyp_dots.R:8:4
+    4. │   └─hypeR:::.dots_plot(...)
+    5. │     └─... %>% purrr::when(!is.null(top) ~ head(., top), ~.)
+    6. └─purrr::when(., !is.null(top) ~ head(., top), ~.)
+    7.   └─base::eval(dots[[i]][[action]], env, env)
+    8.     └─base::eval(dots[[i]][[action]], env, env)
+    9.       ├─utils::head(., top)
+   10.       └─utils (local) head.data.frame(., top)
+   11.         └─utils:::checkHT(n, d <- dim(x))
+  
+  [ FAIL 1 | WARN 4 | SKIP 0 | PASS 364 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘hypeR.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/hypeR.Rcheck/00check.log’
+for details.
+

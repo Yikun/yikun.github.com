@@ -1,0 +1,142 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data GenomicRanges
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘GenomicRanges/DESCRIPTION’ ... OK
+* preparing ‘GenomicRanges’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘GenomicRangesIntroduction.Rmd’ using rmarkdown
+--- finished re-building ‘GenomicRangesIntroduction.Rmd’
+
+--- re-building ‘ExtendingGenomicRanges.Rnw’ using Sweave
+--- finished re-building ‘ExtendingGenomicRanges.Rnw’
+
+--- re-building ‘GRanges_and_GRangesList_slides.Rnw’ using Sweave
+Warning in .merge_two_Seqinfo_objects(x, y) :
+  The 2 combined objects have no sequence levels in common. (Use
+  suppressWarnings() to suppress this warning.)
+Loading required package: SummarizedExperiment
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse, colCounts,
+    colCummaxs, colCummins, colCumprods, colCumsums, colDiffs,
+    colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs, colMads, colMaxs,
+    colMeans2, colMedians, colMins, colOrderStats, colProds, colQuantiles,
+    colRanges, colRanks, colSdDiffs, colSds, colSums2, colTabulates,
+    colVarDiffs, colVars, colWeightedMads, colWeightedMeans,
+    colWeightedMedians, colWeightedSds, colWeightedVars, rowAlls,
+    rowAnyNAs, rowAnys, rowAvgsPerColSet, rowCollapse, rowCounts,
+    rowCummaxs, rowCummins, rowCumprods, rowCumsums, rowDiffs,
+    rowIQRDiffs, rowIQRs, rowLogSumExps, rowMadDiffs, rowMads, rowMaxs,
+    rowMeans2, rowMedians, rowMins, rowOrderStats, rowProds, rowQuantiles,
+    rowRanges, rowRanks, rowSdDiffs, rowSds, rowSums2, rowTabulates,
+    rowVarDiffs, rowVars, rowWeightedMads, rowWeightedMeans,
+    rowWeightedMedians, rowWeightedSds, rowWeightedVars
+
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see 'citation("Biobase")',
+    and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: Rsamtools
+Loading required package: GenomicFeatures
+Loading required package: AnnotationDbi
+--- finished re-building ‘GRanges_and_GRangesList_slides.Rnw’
+
+--- re-building ‘GenomicRangesHOWTOs.Rnw’ using Sweave
+Import genomic features from the file as a GRanges object ... OK
+Prepare the 'metadata' data frame ... OK
+Make the TxDb object ... Warning in .get_cds_IDX(mcols0$type, mcols0$phase) :
+  The "phase" metadata column contains non-NA values for features
+  of type exon. This information was ignored.
+OK
+Loading required package: BiocFileCache
+Loading required package: dbplyr
+
+Attaching package: ‘AnnotationHub’
+
+The following object is masked from ‘package:Biobase’:
+
+    cache
+
+snapshotDate(): 2022-12-16
+loading from cache
+Loading required package: limma
+
+Attaching package: ‘limma’
+
+The following object is masked from ‘package:DESeq2’:
+
+    plotMA
+
+The following object is masked from ‘package:BiocGenerics’:
+
+    plotMA
+
+
+Error: processing vignette 'GenomicRangesHOWTOs.Rnw' failed with diagnostics:
+ chunk 49 (label = trak_8) 
+Error in library(BSgenome.Hsapiens.UCSC.hg19) : 
+  there is no package called ‘BSgenome.Hsapiens.UCSC.hg19’
+
+--- failed re-building ‘GenomicRangesHOWTOs.Rnw’
+
+--- re-building ‘Ten_things_slides.Rnw’ using Sweave
+Loading required package: rtracklayer
+
+Attaching package: ‘rtracklayer’
+
+The following object is masked from ‘package:AnnotationHub’:
+
+    hubUrl
+
+
+Error: processing vignette 'Ten_things_slides.Rnw' failed with diagnostics:
+ chunk 22 
+Error in library(BSgenome.Mmusculus.UCSC.mm10) : 
+  there is no package called ‘BSgenome.Mmusculus.UCSC.mm10’
+
+--- failed re-building ‘Ten_things_slides.Rnw’
+
+SUMMARY: processing the following files failed:
+  ‘GenomicRangesHOWTOs.Rnw’ ‘Ten_things_slides.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
