@@ -1,0 +1,44 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL GGPA
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘GGPA’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c 1_Main.cpp -o 1_Main.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c 3_Param.cpp -o 3_Param.o
+3_Param.cpp: In member function ‘void CParam::S6_G_beta_ij(CData&)’:
+3_Param.cpp:350:47: warning: ‘normC_prop’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  350 |     Beta = Beta_prop ; G_mat = G_prop ; normC = normC_prop ;
+      |                                         ~~~~~~^~~~~~~~~~~~
+3_Param.cpp:335:39: warning: ‘logP_denom’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  335 |           if ( w_cur > 0 ) logP_denom = logP_denom - log(w_cur) ; // f(G) // if w_cur=0, let 1/w_cur = 1, so that log(w_cur) = 0
+      |                            ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~
+3_Param.cpp:334:40: warning: ‘logP_numer’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  334 |           if ( w_prop > 0 ) logP_numer = logP_numer - log(w_prop) ; // f(G^q) // if w_prop=0, let 1/w_prop = 1, so that log(w_prop) = 0
+      |                             ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c Gibbs_e_it_no_ann.cpp -o Gibbs_e_it_no_ann.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o GGPA.so 1_Main.o 3_Param.o Gibbs_e_it_no_ann.o RcppExports.o -llapack -L/home/biocbuild/bbs-3.17-bioc/R/lib -lRblas -lgfortran -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-GGPA/00new/GGPA/libs
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (GGPA)

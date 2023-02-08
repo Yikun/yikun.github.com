@@ -1,0 +1,207 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:netZooR.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings netZooR_1.3.1.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/netZooR.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘netZooR/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘netZooR’ version ‘1.3.1’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘netZooR’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is  5.2Mb
+  sub-directories of 1Mb or more:
+    data      1.5Mb
+    extdata   2.8Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+degreeAdjust: possible error in dim(A, 1): unused argument (1)
+degreeAdjust: possible error in dim(A, 2): unused argument (2)
+runEgret: no visible binding for global variable ‘NA12878’
+spider: no visible global function definition for ‘normalizeNetwork’
+spider: no visible global function definition for ‘tanimoto’
+spider: no visible global function definition for ‘update.diagonal’
+spider: no visible global function definition for ‘prepResult’
+Undefined global functions or variables:
+  NA12878 normalizeNetwork prepResult tanimoto update.diagonal
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'pandaPy'
+  ‘with_header’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘netZooR-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: pandaDiffEdges
+> ### Title: Identify differential edges in two PANDA networks
+> ### Aliases: pandaDiffEdges
+> 
+> ### ** Examples
+> 
+> # refer to four input datasets files in inst/extdat
+> treated_expression_file_path <- system.file("extdata", "expr4_matched.txt", 
++ package = "netZooR", mustWork = TRUE)
+> control_expression_file_path <- system.file("extdata", "expr10_matched.txt", 
++ package = "netZooR", mustWork = TRUE)
+> motif_file_path <- system.file("extdata", "chip_matched.txt", package = "netZooR", mustWork = TRUE)
+> ppi_file_path <- system.file("extdata", "ppi_matched.txt", package = "netZooR", mustWork = TRUE)
+> 
+> 
+> # Run PANDA for treated and control network
+> treated_all_panda_result <- pandaPy(expr_file = treated_expression_file_path, 
++ motif_file= motif_file_path, ppi_file = ppi_file_path, modeProcess="legacy", remove_missing = TRUE )
+Use the legacy mode to pre-process the input dataset and keep only the matched TFs or Genes
+Loading motif data ...
+  Elapsed time: 0.04 sec.
+Loading expression data ...
+  Elapsed time: 0.05 sec.
+Loading PPI data ...
+Number of PPIs: 864
+  Elapsed time: 0.01 sec.
+Remove expression not in motif:
+   0 rows removed from the initial 2501
+Remove motif not in expression data:
+   0 rows removed from the initial 6517
+Remove ppi not in motif:
+   0 rows removed from the initial 864
+new case
+Calculating coexpression network ...
+  Elapsed time: 0.52 sec.
+Creating motif network ...
+  Elapsed time: 0.01 sec.
+Creating PPI network ...
+  Elapsed time: 0.00 sec.
+legacy /home/biocbuild/bbs-3.17-bioc/R/library/netZooR/extdata/chip_matched.txt /home/biocbuild/bbs-3.17-bioc/R/library/netZooR/extdata/expr4_matched.txt /home/biocbuild/bbs-3.17-bioc/R/library/netZooR/extdata/ppi_matched.txt False True False
+Normalizing networks ...
+  Elapsed time: 1.02 sec.
+Saving expression matrix and normalized networks ...
+  Elapsed time: 0.01 sec.
+Running PANDA algorithm ...
+step: 0, hamming: 0.6053860619186334
+step: 1, hamming: 0.2768074074257472
+step: 2, hamming: 0.1842826148018828
+step: 3, hamming: 0.13809031835591642
+step: 4, hamming: 0.10901383004024633
+step: 5, hamming: 0.08855267912448243
+step: 6, hamming: 0.07316734803528885
+step: 7, hamming: 0.06107513055321894
+step: 8, hamming: 0.051278890896493165
+step: 9, hamming: 0.0431865281425748
+step: 10, hamming: 0.03641682550464566
+step: 11, hamming: 0.03071053026348646
+step: 12, hamming: 0.025880776329931136
+step: 13, hamming: 0.021785907204273
+step: 14, hamming: 0.018313027819496168
+step: 15, hamming: 0.015369848478199444
+step: 16, hamming: 0.012878836764994505
+step: 17, hamming: 0.010774089974126216
+step: 18, hamming: 0.008998981832519974
+step: 19, hamming: 0.007504869482335955
+step: 20, hamming: 0.006249742108663955
+step: 21, hamming: 0.005197387578293079
+step: 22, hamming: 0.004316683483008586
+step: 23, hamming: 0.00358091580890214
+step: 24, hamming: 0.0029672377674210874
+step: 25, hamming: 0.0024561817866209012
+step: 26, hamming: 0.0020312026017894956
+step: 27, hamming: 0.0016782737075565705
+step: 28, hamming: 0.0013855418116878297
+step: 29, hamming: 0.001143015387416966
+step: 30, hamming: 0.000942295160851393
+Running panda took: 29.22 seconds!
+Rename the content of first two columns with prefix 'reg_' and 'tar_' as there are some duplicate node names between the first two columns
+...Finish PANDA...
+> control_all_panda_result <- pandaPy(expr_file = control_expression_file_path, 
++ motif_file= motif_file_path, ppi_file= ppi_file_path, modeProcess="legacy", remove_missing = TRUE )
+Use the legacy mode to pre-process the input dataset and keep only the matched TFs or Genes
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+      Vignettes contain introductory material; view with
+      'browseVignettes()'. To cite Bioconductor, see
+      'citation("Biobase")', and for packages 'citation("pkgname")'.
+  
+  Loading required package: yarn
+  Setting options('download.file.method.GEOquery'='auto')
+  Setting options('GEOquery.inmemory.gpl'=FALSE)
+  
+  
+  > 
+  > #download test data
+  > download.file('https://netzoo.s3.us-east-2.amazonaws.com/netZooR/example_datasets/ppi_medium.txt','testthat/ppi_medium.txt')
+  trying URL 'https://netzoo.s3.us-east-2.amazonaws.com/netZooR/example_datasets/ppi_medium.txt'
+  Content type 'text/plain' length 3674311 bytes (3.5 MB)
+  =========================Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘CONDOR.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 1 WARNING, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/netZooR.Rcheck/00check.log’
+for details.
+

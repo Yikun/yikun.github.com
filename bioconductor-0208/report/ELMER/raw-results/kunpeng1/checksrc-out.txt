@@ -1,0 +1,310 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:ELMER.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings ELMER_2.23.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/ELMER.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘ELMER/DESCRIPTION’ ... OK
+* this is package ‘ELMER’ version ‘2.23.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘ELMER’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... WARNING
+Missing or unexported object: 'TCGAbiolinks::GDCquery_Maf'
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+TCGA.pipe: warning in render_report(genome = genome, mode = mode, title
+  = paste0(disease, " report"), minSubgroupFrac = ifelse(mode ==
+  "supervised", 1, 0.2), mae = mae.path, direction = direction,
+  group.col = group.col, group1 = group1, group2 = group2, dir.out =
+  results.path, out_file = file.path(results.path, paste0(disease,
+  "_report.html"))): partial argument match of 'mae' to 'mae.file'
+Stat.nonpara: no visible global function definition for 'head'
+Stat.nonpara: no visible global function definition for 'tail'
+Stat.nonpara.permu: no visible global function definition for 'head'
+Stat.nonpara.permu: no visible global function definition for 'tail'
+TFsurvival.plot: no visible global function definition for 'head'
+TFsurvival.plot: no visible global function definition for 'tail'
+addMutCol: no visible binding for global variable 'Hugo_Symbol'
+calcDistNearestTSS: no visible binding for global variable
+  'DistanceTSS'
+get.top.tf.by.pval: no visible global function definition for 'head'
+getRegionNearGenes : f: no visible binding for global variable 'Side'
+getRegionNearGenes: no visible binding for global variable 'ID'
+getTFtargets: no visible binding for global variable 'TF'
+Undefined global functions or variables:
+  DistanceTSS Hugo_Symbol ID Side TF head tail
+Consider adding
+  importFrom("utils", "head", "tail")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... WARNING
+Codoc mismatches from documentation object 'render_report':
+render_report
+  Code: function(title = "Report", mae.file, group.col, group1, group2,
+                 direction, dir.out, genome = "hg38", mode =
+                 "supervised", minSubgroupFrac = 0.2, minMetdiff = 0.3,
+                 metfdr = 0.01, permu = 10000, rawpval = 0.01, pe =
+                 0.01, nprobes = 10, lower.OR = 1.1, out_file =
+                 file.path(getwd(), "report.html"), funcivar = FALSE)
+  Docs: function(title = "Report", mae.file, group.col, group1, group2,
+                 direction, dir.out, genome = "hg38", mode =
+                 "supervised", minSubgroupFrac = "20%", minMetdiff =
+                 "0.3", metfdr = "0.01", permu = "10000", rawpval =
+                 "0.01", pe = "0.01", nprobes = "10", lower.OR = "1.1",
+                 out_file = file.path(getwd(), "report.html"), funcivar
+                 = FALSE)
+  Mismatches in argument default values:
+    Name: 'minSubgroupFrac' Code: 0.2 Docs: "20%"
+
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘ELMER-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: TCGA.pipe
+> ### Title: ELMER analysis pipeline for TCGA data.
+> ### Aliases: TCGA.pipe
+> 
+> ### ** Examples
+> 
+>   data <- ELMER:::getdata("elmer.data.example")
+>   TCGA.pipe(
++     disease = "LUSC",
++     data = data,
++     analysis = c("diffMeth","pair", "motif","TF.search"), 
++     mode = "supervised",
++     group.col = "definition",
++     group1 = "Primary solid Tumor", 
++     group2 = "Solid Tissue Normal",
++     diff.dir = c("hypo"),
++     dir.out = "pipe",
++     sig.dif = 0.0001,
++     pvalue = 1.0,
++     min.incidence = 0,
++     lower.OR = 0.0
++   )
+=> supervised was selected: using all samples
+=> Analysis results wil be save in:  /home/biocbuild/bbs-3.17-bioc/meat/ELMER.Rcheck/Result/LUSC/definition_Primary solid Tumor_vs_Solid Tissue Normal/hypo
+Recording analysis information into: /home/biocbuild/bbs-3.17-bioc/meat/ELMER.Rcheck/Result/LUSC/definition_Primary solid Tumor_vs_Solid Tissue Normal/hypo/TCGA.pipe_records.txt
+----------------------------------------
+* Get differential DNA methylation loci
+----------------------------------------
+ELMER will search for probes hypomethylated in group Primary solid Tumor (n:226) compared to Solid Tissue Normal (n:8)
+ooo Arguments ooo
+o Number of probes: 101
+o Beta value difference cut-off: 1e-04
+o FDR cut-off: 1
+o Mode: unsupervised
+o % of samples per group in each comparison: 1
+o Min number of samples per group in each comparison: 5
+o Nb of samples group1 in each comparison: 226
+o Nb of samples group2 in each comparison: 8
+Output direction: /home/biocbuild/bbs-3.17-bioc/meat/ELMER.Rcheck/Result/LUSC/definition_Primary solid Tumor_vs_Solid Tissue Normal/hypo
+ooooooooooooooooo
+
+|                                                    |  0%                      
+|                                                    |0.990099% ~1 s remaining  
+|=                                                   |1.980198% ~0 s remaining  
+|=                                                   |2.970297% ~0 s remaining  
+|==                                                  |3.960396% ~0 s remaining  
+|==                                                  |4.950495% ~0 s remaining  
+|===                                                 |5.940594% ~0 s remaining  
+|===                                                 |6.930693% ~0 s remaining  
+|====                                                |7.920792% ~0 s remaining  
+|====                                                |8.910891% ~0 s remaining  
+|=====                                               |9.90099% ~0 s remaining   
+|=====                                               |10.89109% ~0 s remaining  
+|======                                              |11.88119% ~0 s remaining  
+|======                                              |12.87129% ~0 s remaining  
+|=======                                             |13.86139% ~0 s remaining  
+|=======                                             |14.85149% ~0 s remaining  
+|========                                            |15.84158% ~0 s remaining  
+|========                                            |16.83168% ~0 s remaining  
+|=========                                           |17.82178% ~0 s remaining  
+|=========                                           |18.81188% ~0 s remaining  
+|==========                                          |19.80198% ~0 s remaining  
+|==========                                          |20.79208% ~0 s remaining  
+|===========                                         |21.78218% ~0 s remaining  
+|===========                                         |22.77228% ~0 s remaining  
+|============                                        |23.76238% ~0 s remaining  
+|============                                        |24.75248% ~0 s remaining  
+|=============                                       |25.74257% ~0 s remaining  
+|=============                                       |26.73267% ~0 s remaining  
+|==============                                      |27.72277% ~0 s remaining  
+|==============                                      |28.71287% ~0 s remaining  
+|===============                                     |29.70297% ~0 s remaining  
+|===============                                     |30.69307% ~0 s remaining  
+|================                                    |31.68317% ~0 s remaining  
+|================                                    |32.67327% ~0 s remaining  
+|=================                                   |33.66337% ~0 s remaining  
+|==================                                  |34.65347% ~0 s remaining  
+|==================                                  |35.64356% ~0 s remaining  
+|===================                                 |36.63366% ~0 s remaining  
+|===================                                 |37.62376% ~0 s remaining  
+|====================                                |38.61386% ~0 s remaining  
+|====================                                |39.60396% ~0 s remaining  
+|=====================                               |40.59406% ~0 s remaining  
+|=====================                               |41.58416% ~0 s remaining  
+|======================                              |42.57426% ~0 s remaining  
+|======================                              |43.56436% ~0 s remaining  
+|=======================                             |44.55446% ~0 s remaining  
+|=======================                             |45.54455% ~0 s remaining  
+|========================                            |46.53465% ~0 s remaining  
+|========================                            |47.52475% ~0 s remaining  
+|=========================                           |48.51485% ~0 s remaining  
+|=========================                           |49.50495% ~0 s remaining  
+|==========================                          |50.49505% ~0 s remaining  
+|==========================                          |51.48515% ~0 s remaining  
+|===========================                         |52.47525% ~0 s remaining  
+|===========================                         |53.46535% ~0 s remaining  
+|============================                        |54.45545% ~0 s remaining  
+|============================                        |55.44554% ~0 s remaining  
+|=============================                       |56.43564% ~0 s remaining  
+|=============================                       |57.42574% ~0 s remaining  
+|==============================                      |58.41584% ~0 s remaining  
+|==============================                      |59.40594% ~0 s remaining  
+|===============================                     |60.39604% ~0 s remaining  
+|===============================                     |61.38614% ~0 s remaining  
+|================================                    |62.37624% ~0 s remaining  
+|================================                    |63.36634% ~0 s remaining  
+|=================================                   |64.35644% ~0 s remaining  
+|=================================                   |65.34653% ~0 s remaining  
+|==================================                  |66.33663% ~0 s remaining  
+|===================================                 |67.32673% ~0 s remaining  
+|===================================                 |68.31683% ~0 s remaining  
+|====================================                |69.30693% ~0 s remaining  
+|====================================                |70.29703% ~0 s remaining  
+|=====================================               |71.28713% ~0 s remaining  
+|=====================================               |72.27723% ~0 s remaining  
+|======================================              |73.26733% ~0 s remaining  
+|======================================              |74.25743% ~0 s remaining  
+|=======================================             |75.24752% ~0 s remaining  
+|=======================================             |76.23762% ~0 s remaining  
+|========================================            |77.22772% ~0 s remaining  
+|========================================            |78.21782% ~0 s remaining  
+|=========================================           |79.20792% ~0 s remaining  
+|=========================================           |80.19802% ~0 s remaining  
+|==========================================          |81.18812% ~0 s remaining  
+|==========================================          |82.17822% ~0 s remaining  
+|===========================================         |83.16832% ~0 s remaining  
+|===========================================         |84.15842% ~0 s remaining  
+|============================================        |85.14851% ~0 s remaining  
+|============================================        |86.13861% ~0 s remaining  
+|=============================================       |87.12871% ~0 s remaining  
+|=============================================       |88.11881% ~0 s remaining  
+|==============================================      |89.10891% ~0 s remaining  
+|==============================================      |90.09901% ~0 s remaining  
+|===============================================     |91.08911% ~0 s remaining  
+|===============================================     |92.07921% ~0 s remaining  
+|================================================    |93.06931% ~0 s remaining  
+|================================================    |94.05941% ~0 s remaining  
+|=================================================   |95.0495% ~0 s remaining   
+|=================================================   |96.0396% ~0 s remaining   
+|==================================================  |97.0297% ~0 s remaining   
+|==================================================  |98.0198% ~0 s remaining   
+|=================================================== |99.0099% ~0 s remaining   
+|====================================================|100% ~0 s remaining       
+|====================================================|100%                      Completed after 0 s 
+Saving results
+Saving file as: /home/biocbuild/bbs-3.17-bioc/meat/ELMER.Rcheck/Result/LUSC/definition_Primary solid Tumor_vs_Solid Tissue Normal/hypo/volcanoPlot.probes.hypo.png
+Number of relevant probes found: 76
+----------------
+* Predict pairs
+----------------
+Rows: 76 Columns: 4
+── Column specification ────────────────────────────────────────────────────────
+Delimiter: ","
+chr (1): probe
+dbl (3): pvalue, Primary.solid.Tumor_Minus_Solid.Tissue.Normal, adjust.p
+
+ℹ Use `spec()` to retrieve the full column specification for this data.
+ℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.
+Get nearby genes
+Searching for the 20 near genes
+Identifying gene position for each probe
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  
+  |                                                    |  0%                      
+  |=============                                       | 25% ~0 s remaining       
+  |==========================                          | 50% ~0 s remaining       
+  |=======================================             | 75% ~0 s remaining       
+  |====================================================|100% ~0 s remaining       
+  |====================================================|100%                      Completed after 0 s 
+  
+  |                                                    |  0%                      
+  |=============                                       | 25% ~0 s remaining       
+  |==========================                          | 50% ~0 s remaining       
+  |=======================================             | 75% ~0 s remaining       
+  |====================================================|100% ~0 s remaining       
+  |====================================================|100%                      Completed after 0 s 
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘analysis_data_input.Rmd’ using ‘UTF-8’... OK
+  ‘analysis_diff_meth.Rmd’ using ‘UTF-8’... OK
+  ‘analysis_get_pair.Rmd’ using ‘UTF-8’... OK
+  ‘analysis_gui.Rmd’ using ‘UTF-8’... OK
+  ‘analysis_motif_enrichment.Rmd’ using ‘UTF-8’... OK
+  ‘analysis_regulatory_tf.Rmd’ using ‘UTF-8’... OK
+  ‘index.Rmd’ using ‘UTF-8’... OK
+  ‘input.Rmd’ using ‘UTF-8’... OK
+  ‘pipe.Rmd’ using ‘UTF-8’... OK
+  ‘plots_TF.Rmd’ using ‘UTF-8’... OK
+  ‘plots_heatmap.Rmd’ using ‘UTF-8’... OK
+  ‘plots_motif_enrichment.Rmd’ using ‘UTF-8’... OK
+  ‘plots_scatter.Rmd’ using ‘UTF-8’... OK
+  ‘plots_schematic.Rmd’ using ‘UTF-8’... OK
+  ‘usecase.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ...

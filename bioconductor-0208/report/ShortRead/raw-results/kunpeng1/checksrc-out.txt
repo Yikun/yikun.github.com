@@ -1,0 +1,228 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:ShortRead.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings ShortRead_1.57.1.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/ShortRead.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘ShortRead/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘ShortRead’ version ‘1.57.1’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘ShortRead’ can be installed ... WARNING
+Found the following significant warnings:
+  readBfaToc.cc:35:19: warning: ignoring return value of ‘size_t fread(void*, size_t, size_t, FILE*)’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  readBfaToc.cc:36:19: warning: ignoring return value of ‘size_t fread(void*, size_t, size_t, FILE*)’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  readBfaToc.cc:37:19: warning: ignoring return value of ‘size_t fread(void*, size_t, size_t, FILE*)’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/ShortRead.Rcheck/00install.out’ for details.
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... NOTE
+  installed size is  7.8Mb
+  sub-directories of 1Mb or more:
+    R         2.2Mb
+    extdata   4.0Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Unexported objects imported by ':::' calls:
+  ‘Rsamtools:::.RsamtoolsFileList’ ‘Rsamtools:::.ppath’
+  ‘S4Vectors:::V_recycle’
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.plotCycleBaseCall: no visible binding for global variable ‘Base’
+flag,QAReadQuality: no visible binding for global variable ‘Score’
+flag,QAReadQuality: no visible binding for global variable ‘Id’
+flag,QAReadQuality: no visible binding for global variable ‘Density’
+report,QAFrequentSequence: no visible binding for global variable
+  ‘TopCount’
+report,QAFrequentSequence: no visible binding for global variable ‘Id’
+report,QANucleotideByCycle: no visible binding for global variable
+  ‘Base’
+report,QANucleotideUse: no visible binding for global variable
+  ‘Nucleotide’
+report,QAQualityUse: no visible binding for global variable ‘Count’
+report,QAQualityUse: no visible binding for global variable ‘Id’
+report,QAQualityUse: no visible binding for global variable ‘Quality’
+report,QAReadQuality: no visible binding for global variable ‘Id’
+report,QASequenceUse: no visible binding for global variable
+  ‘Occurrences’
+report,QASequenceUse: no visible binding for global variable ‘Id’
+report,QASequenceUse: no visible binding for global variable ‘Reads’
+Undefined global functions or variables:
+  Base Count Density Id Nucleotide Occurrences Quality Reads Score
+  TopCount
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in shell scripts ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... WARNING
+Note: information on .o files is not available
+File ‘/home/biocbuild/bbs-3.17-bioc/R/library/ShortRead/libs/ShortRead.so’:
+  Found ‘__sprintf_chk’, possibly from ‘sprintf’ (C)
+
+Compiled code should not call entry points which might terminate R nor
+write to stdout/stderr instead of to the console, nor use Fortran I/O
+nor system RNGs nor [v]sprintf. The detected symbols are linked into
+the code but might come from libraries and not actually be called.
+
+See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘ShortRead-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: qa2
+> ### Title: (Updated) quality assessment reports on short reads
+> ### Aliases: QAFastqSource QACollate QA QAFlagged QAFiltered
+> ###   QAAdapterContamination QAData QAFrequentSequence QANucleotideByCycle
+> ###   QANucleotideUse QAQualityByCycle QAQualityUse QAReadQuality
+> ###   QASequenceUse QACollate,QAFastqSource-method QACollate,missing-method
+> ###   qa2 qa2,FastqSampler-method qa2,QAAdapterContamination-method
+> ###   qa2,QACollate-method qa2,QAFastqSource-method
+> ###   qa2,QAFrequentSequence-method qa2,QANucleotideByCycle-method
+> ###   qa2,QANucleotideUse-method qa2,QAQualityByCycle-method
+> ###   qa2,QAQualityUse-method qa2,QAReadQuality-method
+> ###   qa2,QASequenceUse-method flag flag,.QA2-method
+> ###   flag,QAFrequentSequence-method flag,QAReadQuality-method
+> ###   flag,QASource-method report,QA-method
+> ###   report,QAAdapterContamination-method report,QAFiltered-method
+> ###   report,QAFlagged-method report,QAFrequentSequence-method
+> ###   report,QANucleotideByCycle-method report,QANucleotideUse-method
+> ###   report,QAQualityByCycle-method report,QAQualityUse-method
+> ###   report,QAReadQuality-method report,QASequenceUse-method
+> ###   report,QASource-method rbind,QASummary-method
+> ###   show,QAAdapterContamination-method show,QACollate-method
+> ###   show,QAFastqSource-method show,QAFrequentSequence-method
+> ###   show,QAReadQuality-method show,QASummary-method
+> ### Keywords: manip
+> 
+> ### ** Examples
+> 
+> dirPath <- system.file(package="ShortRead", "extdata", "E-MTAB-1147")
+> fls <- dir(dirPath, "fastq.gz", full=TRUE)
+> 
+> coll <- QACollate(QAFastqSource(fls), QAReadQuality(),
++     QAAdapterContamination(), QANucleotideUse(),
++     QAQualityUse(), QASequenceUse(),
++     QAFrequentSequence(n=10), QANucleotideByCycle(),
++     QAQualityByCycle())
+> x <- qa2(coll, BPPARAM=SerialParam(), verbose=TRUE)
+qa2,QACollate-method
+qa2,QACollate1-method
+qa2,QAFastqSource-method
+qa2,FastqSampler-method
+qa2,QAReadQuality-method
+qa2,QAAdapterContamination-method
+qa2,QANucleotideUse-method
+qa2,QAQualityUse-method
+qa2,QASequenceUse-method
+qa2,QAFrequentSequence-method
+qa2,QANucleotideByCycle-method
+qa2,QAQualityByCycle-method
+qa2,QACollate1-method
+qa2,QAFastqSource-method
+qa2,FastqSampler-method
+qa2,QAReadQuality-method
+qa2,QAAdapterContamination-method
+qa2,QANucleotideUse-method
+qa2,QAQualityUse-method
+qa2,QASequenceUse-method
+qa2,QAFrequentSequence-method
+qa2,QANucleotideByCycle-method
+qa2,QAQualityByCycle-method
+flag,QASource-method
+flag,QAReadQuality-method
+flag,ANY-method
+flag,ANY-method
+flag,ANY-method
+flag,ANY-method
+flag,ANY-method
+flag,ANY-method
+> 
+> res <- report(x)
+Warning in fun(key = base::quote(list(space = "top", lines = list(col = "#E41A1C",  :
+  not enough rows for columns
+Warning in fun(key = base::quote(list(space = "top", lines = list(col = "#E41A1C",  :
+  not enough rows for columns
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘ShortRead_unit_tests.R’
+ ERROR
+Running the tests in ‘tests/ShortRead_unit_tests.R’ failed.
+Last 13 lines of output:
+    FALSE 
+   
+  FAILURE in test_readPrb_input: Error in checkIdentical(36L, unique(width(obj))) : FALSE 
+   
+  
+  Test files with failing tests
+  
+     test_readPrb.R 
+       test_readPrb_consistent 
+       test_readPrb_input 
+  
+  
+  Error in BiocGenerics:::testPackage("ShortRead") : 
+    unit tests failed for package ShortRead
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘Overview.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 2 WARNINGs, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/ShortRead.Rcheck/00check.log’
+for details.
+

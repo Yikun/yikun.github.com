@@ -1,0 +1,516 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:EGSEA.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings EGSEA_1.27.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/EGSEA.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘EGSEA/DESCRIPTION’ ... OK
+* this is package ‘EGSEA’ version ‘1.27.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘EGSEA’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+buildGeneSetDBIdx: no visible binding for global variable ‘GOTERM’
+buildMSigDBIdx: no visible binding for global variable ‘msigdb’
+generateSummaryPlots: no visible binding for global variable ‘x.data’
+generateSummaryPlots: no visible binding for global variable ‘y.data’
+generateSummaryPlots: no visible binding for global variable ‘gsSize’
+generateSummaryPlots: no visible binding for global variable ‘id’
+generateSummaryPlots: no visible binding for global variable ‘sig’
+loadKeggData: no visible binding for global variable ‘kegg.pathways’
+Undefined global functions or variables:
+  GOTERM gsSize id kegg.pathways msigdb sig x.data y.data
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented data sets:
+  ‘arraydata’
+All user-level objects in a package should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... WARNING
+'library' or 'require' call not declared from: ‘Glimma’
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘EGSEA-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: EGSEAResults
+> ### Title: The EGSEAResults class
+> ### Aliases: EGSEAResults EGSEAResults-class $,EGSEAResults-method topSets
+> ###   topSets,EGSEAResults-method show,EGSEAResults-method
+> ###   summary,EGSEAResults-method limmaTopTable
+> ###   limmaTopTable,EGSEAResults-method generateReport
+> ###   generateReport,EGSEAResults-method getlimmaResults
+> ###   getlimmaResults,EGSEAResults-method plotHeatmap
+> ###   plotHeatmap,EGSEAResults-method plotSummaryHeatmap
+> ###   plotSummaryHeatmap,EGSEAResults-method plotPathway
+> ###   plotPathway,EGSEAResults-method plotMethods
+> ###   plotMethods,EGSEAResults-method plotSummary
+> ###   plotSummary,EGSEAResults-method plotGOGraph
+> ###   plotGOGraph,EGSEAResults-method plotBars plotBars,EGSEAResults-method
+> ###   showSetByName showSetByName,EGSEAResults-method showSetByID
+> ###   showSetByID,EGSEAResults-method getSetScores
+> ###   getSetScores,EGSEAResults-method
+> 
+> ### ** Examples
+> 
+> # Exampple of EGSEAResults
+> library(EGSEAdata)
+> data(il13.gsa)
+> gsa = il13.gsa
+> class(gsa)
+[1] "EGSEAResults"
+attr(,"package")
+[1] "EGSEA"
+> print(gsa$baseMethods)
+ [1] "camera"     "safe"       "gage"       "padog"      "plage"     
+ [6] "zscore"     "gsva"       "ssgsea"     "globaltest" "ora"       
+> 
+> # Example of topSets
+> library(EGSEAdata)
+> data(il13.gsa)
+> gsa = il13.gsa
+> class(gsa)
+[1] "EGSEAResults"
+attr(,"package")
+[1] "EGSEA"
+> topSets(gsa,  gs.label="kegg",contrast=1, number = 10)
+Extracting the top gene sets of the collection 
+KEGG Pathways for the contrast X24IL13-X24
+ Sorted by avg.rank
+ [1] "Amoebiasis"                                               
+ [2] "Asthma"                                                   
+ [3] "Intestinal immune network for IgA production"             
+ [4] "Endocrine and other factor-regulated calcium reabsorption"
+ [5] "Viral myocarditis"                                        
+ [6] "HTLV-I infection"                                         
+ [7] "Prion diseases"                                           
+ [8] "Proteoglycans in cancer"                                  
+ [9] "Hematopoietic cell lineage"                               
+[10] "Legionellosis"                                            
+> topSets(gsa,  gs.label=1, contrast=1, sort.by="ora", number = 10, 
++ names.only=FALSE)
+Extracting the top gene sets of the collection 
+c2 Curated Gene Sets for the contrast X24IL13-X24
+ Sorted by ora
+                                               Rank      p.value        p.adj
+TAKEDA_TARGETS_OF_NUP98_HOXA9_FUSION_10D_DN       1 2.084798e-49 3.901699e-46
+FULCHER_INFLAMMATORY_RESPONSE_LECTIN_VS_LPS_UP    2 5.752312e-28 1.957355e-25
+NABA_MATRISOME                                    3 2.503133e-24 4.461536e-22
+RUTELLA_RESPONSE_TO_HGF_UP                        4 7.905113e-33 4.931473e-30
+NABA_MATRISOME_ASSOCIATED                         5 2.007033e-61 7.512324e-58
+TAKEDA_TARGETS_OF_NUP98_HOXA9_FUSION_8D_DN        6 6.058174e-37 5.668936e-34
+MCLACHLAN_DENTAL_CARIES_UP                        7 4.443436e-34 3.326356e-31
+LENAOUR_DENDRITIC_CELL_MATURATION_UP              8 2.413176e-43 3.010840e-40
+RUTELLA_RESPONSE_TO_HGF_VS_CSF2RB_AND_IL4_UP      9 1.818059e-29 7.561105e-27
+ONDER_CDH1_TARGETS_2_DN                          10 7.407783e-31 3.961047e-28
+                                               vote.rank avg.rank med.rank
+TAKEDA_TARGETS_OF_NUP98_HOXA9_FUSION_10D_DN            5   1573.9   1061.5
+FULCHER_INFLAMMATORY_RESPONSE_LECTIN_VS_LPS_UP       355    815.8    403.5
+NABA_MATRISOME                                         5   1666.3   1495.0
+RUTELLA_RESPONSE_TO_HGF_UP                          3210   1519.6   1242.5
+NABA_MATRISOME_ASSOCIATED                              5   1292.7   1117.5
+TAKEDA_TARGETS_OF_NUP98_HOXA9_FUSION_8D_DN            10   1414.5   1343.5
+MCLACHLAN_DENTAL_CARIES_UP                            10   1509.0   1626.0
+LENAOUR_DENDRITIC_CELL_MATURATION_UP                  20    224.8     69.5
+RUTELLA_RESPONSE_TO_HGF_VS_CSF2RB_AND_IL4_UP          10    817.3    695.5
+ONDER_CDH1_TARGETS_2_DN                               10   1420.6   1561.0
+                                                 min.pvalue min.rank avg.logfc
+TAKEDA_TARGETS_OF_NUP98_HOXA9_FUSION_10D_DN    6.105360e-32        1  2.479176
+FULCHER_INFLAMMATORY_RESPONSE_LECTIN_VS_LPS_UP 6.316000e-28        2  1.733495
+NABA_MATRISOME                                 1.924738e-27        3  2.367135
+RUTELLA_RESPONSE_TO_HGF_UP                     4.873555e-27        4  1.743617
+NABA_MATRISOME_ASSOCIATED                      1.486914e-42        1  2.425162
+TAKEDA_TARGETS_OF_NUP98_HOXA9_FUSION_8D_DN     8.472735e-26        4  1.894696
+MCLACHLAN_DENTAL_CARIES_UP                     4.952318e-25        7  1.517220
+LENAOUR_DENDRITIC_CELL_MATURATION_UP           2.474903e-21        8  2.483170
+RUTELLA_RESPONSE_TO_HGF_VS_CSF2RB_AND_IL4_UP   1.277895e-20        9  1.535780
+ONDER_CDH1_TARGETS_2_DN                        2.310221e-19        6  1.578958
+                                               avg.logfc.dir direction
+TAKEDA_TARGETS_OF_NUP98_HOXA9_FUSION_10D_DN         2.832590        Up
+FULCHER_INFLAMMATORY_RESPONSE_LECTIN_VS_LPS_UP      1.924505        Up
+NABA_MATRISOME                                      2.669640        Up
+RUTELLA_RESPONSE_TO_HGF_UP                         -1.687618      Down
+NABA_MATRISOME_ASSOCIATED                           2.816744        Up
+TAKEDA_TARGETS_OF_NUP98_HOXA9_FUSION_8D_DN          1.881403        Up
+MCLACHLAN_DENTAL_CARIES_UP                         -1.380719      Down
+LENAOUR_DENDRITIC_CELL_MATURATION_UP                2.518874        Up
+RUTELLA_RESPONSE_TO_HGF_VS_CSF2RB_AND_IL4_UP       -1.639309      Down
+ONDER_CDH1_TARGETS_2_DN                            -1.465519      Down
+                                               significance camera safe gage
+TAKEDA_TARGETS_OF_NUP98_HOXA9_FUSION_10D_DN        81.26167   2822  891    2
+FULCHER_INFLAMMATORY_RESPONSE_LECTIN_VS_LPS_UP     30.91754    353  702 3389
+NABA_MATRISOME                                     36.48130   1131  704 3743
+RUTELLA_RESPONSE_TO_HGF_UP                         36.88600   3206  731   21
+NABA_MATRISOME_ASSOCIATED                         100.00000   1508  727    1
+TAKEDA_TARGETS_OF_NUP98_HOXA9_FUSION_8D_DN         45.46993   1856  831    7
+MCLACHLAN_DENTAL_CARIES_UP                         33.37908   1157  797    9
+LENAOUR_DENDRITIC_CELL_MATURATION_UP               70.83970     17  917   18
+RUTELLA_RESPONSE_TO_HGF_VS_CSF2RB_AND_IL4_UP       28.95774    263  732   33
+ONDER_CDH1_TARGETS_2_DN                            31.23164   1671 1451    6
+                                               padog plage zscore gsva ssgsea
+TAKEDA_TARGETS_OF_NUP98_HOXA9_FUSION_10D_DN        2  3310   3676 3536   1232
+FULCHER_INFLAMMATORY_RESPONSE_LECTIN_VS_LPS_UP   192  1161    441 1435    366
+NABA_MATRISOME                                     3  3161   1859 2109   3426
+RUTELLA_RESPONSE_TO_HGF_UP                       195  1754   2679 3227   3035
+NABA_MATRISOME_ASSOCIATED                          1  2680   2220 2350   3007
+TAKEDA_TARGETS_OF_NUP98_HOXA9_FUSION_8D_DN         4  2970   2005 2494   3497
+MCLACHLAN_DENTAL_CARIES_UP                       200  3031   2777 2796   2095
+LENAOUR_DENDRITIC_CELL_MATURATION_UP             193   756     17  183     28
+RUTELLA_RESPONSE_TO_HGF_VS_CSF2RB_AND_IL4_UP      10  1811   1769 1598   1289
+ONDER_CDH1_TARGETS_2_DN                            8  2245   2448 2736   2931
+                                               globaltest ora
+TAKEDA_TARGETS_OF_NUP98_HOXA9_FUSION_10D_DN           267   1
+FULCHER_INFLAMMATORY_RESPONSE_LECTIN_VS_LPS_UP        117   2
+NABA_MATRISOME                                        524   3
+RUTELLA_RESPONSE_TO_HGF_UP                            344   4
+NABA_MATRISOME_ASSOCIATED                             428   5
+TAKEDA_TARGETS_OF_NUP98_HOXA9_FUSION_8D_DN            475   6
+MCLACHLAN_DENTAL_CARIES_UP                           2221   7
+LENAOUR_DENDRITIC_CELL_MATURATION_UP                  111   8
+RUTELLA_RESPONSE_TO_HGF_VS_CSF2RB_AND_IL4_UP          659   9
+ONDER_CDH1_TARGETS_2_DN                               700  10
+> topSets(gsa,  gs.label="kegg",contrast=0, number = 10)
+Extracting the top gene sets of the collection 
+KEGG Pathways for the contrast comparison
+ Sorted by avg.rank
+ [1] "Asthma"                                      
+ [2] "Viral myocarditis"                           
+ [3] "Intestinal immune network for IgA production"
+ [4] "Amoebiasis"                                  
+ [5] "HTLV-I infection"                            
+ [6] "NOD-like receptor signaling pathway"         
+ [7] "Hematopoietic cell lineage"                  
+ [8] "Malaria"                                     
+ [9] "Legionellosis"                               
+[10] "Toll-like receptor signaling pathway"        
+> 
+> # Example of show
+> library(EGSEAdata)
+> data(il13.gsa)
+> gsa = il13.gsa
+> class(gsa)
+[1] "EGSEAResults"
+attr(,"package")
+[1] "EGSEA"
+> show(gsa)
+An object of class "EGSEAResults"
+	Total number of genes: 17343
+	Total number of samples: 8
+	Contrasts: X24IL13-X24, X24IL13Ant-X24IL13
+	Base GSE methods: camera (limma:3.31.10), safe (safe:3.15.0), gage (gage:2.25.0), padog (PADOG:1.17.0), plage (GSVA:1.23.3), zscore (GSVA:1.23.3), gsva (GSVA:1.23.3), ssgsea (GSVA:1.23.3), globaltest (globaltest:5.29.1), ora (stats:3.4.0)
+	P-values combining method: fisher
+	Sorting statistic: avg.rank
+	Organism: Homo sapiens
+	HTML report generated: Yes
+	HTML report directory: ./il13-egsea-report
+	Tested gene set collections: 
+		c2 Curated Gene Sets (c2): 3747 gene sets - Version: 5.2, Update date: 07 March 2017
+		c5 GO Gene Sets (c5): 6166 gene sets - Version: 5.2, Update date: 07 March 2017
+		KEGG Pathways (kegg): 203 gene sets - Version: NA, Update date: 07 March 2017
+	EGSEA version: 1.3.1
+	EGSEAdata version: 1.3.1
+Use summary(object) and topSets(object, ...) to explore this object.
+> 
+> # Example of summary
+> library(EGSEAdata)
+> data(il13.gsa)
+> gsa = il13.gsa
+> class(gsa)
+[1] "EGSEAResults"
+attr(,"package")
+[1] "EGSEA"
+> summary(gsa)
+**** Top 10 gene sets in the c2 Curated Gene Sets collection **** 
+** Contrast X24IL13-X24 **
+LU_IL4_SIGNALING | LIEN_BREAST_CARCINOMA_METAPLASTIC_VS_DUCTAL_UP
+LINDSTEDT_DENDRITIC_CELL_MATURATION_D | LENAOUR_DENDRITIC_CELL_MATURATION_UP
+REACTOME_PD1_SIGNALING | SCHOEN_NFKB_SIGNALING
+PID_NOTCH_PATHWAY | PID_INTEGRIN_A9B1_PATHWAY
+MAHADEVAN_IMATINIB_RESISTANCE_UP | LUI_THYROID_CANCER_CLUSTER_4
+
+** Contrast X24IL13Ant-X24IL13 **
+SCHOEN_NFKB_SIGNALING | GRAHAM_CML_QUIESCENT_VS_CML_DIVIDING_UP
+MAHADEVAN_IMATINIB_RESISTANCE_UP | DAZARD_UV_RESPONSE_CLUSTER_G28
+HAHTOLA_MYCOSIS_FUNGOIDES_CD4_UP | LU_IL4_SIGNALING
+TIAN_TNF_SIGNALING_VIA_NFKB | ZHAN_MULTIPLE_MYELOMA_DN
+LIANG_SILENCED_BY_METHYLATION_2 | REACTOME_PD1_SIGNALING
+
+** Comparison analysis ** 
+SCHOEN_NFKB_SIGNALING | LU_IL4_SIGNALING
+MAHADEVAN_IMATINIB_RESISTANCE_UP | REACTOME_PD1_SIGNALING
+LIEN_BREAST_CARCINOMA_METAPLASTIC_VS_DUCTAL_UP | LENAOUR_DENDRITIC_CELL_MATURATION_UP
+LUI_THYROID_CANCER_CLUSTER_4 | LINDSTEDT_DENDRITIC_CELL_MATURATION_D
+IIZUKA_LIVER_CANCER_EARLY_RECURRENCE | WU_HBX_TARGETS_3_DN
+
+**** Top 10 gene sets in the c5 GO Gene Sets collection **** 
+** Contrast X24IL13-X24 **
+GO_CLATHRIN_COATED_ENDOCYTIC_VESICLE_MEMBRANE | GO_CLATHRIN_COATED_VESICLE_MEMBRANE
+GO_CLATHRIN_COATED_ENDOCYTIC_VESICLE | GO_ICOSANOID_BIOSYNTHETIC_PROCESS
+GO_FATTY_ACID_DERIVATIVE_BIOSYNTHETIC_PROCESS | GO_UNSATURATED_FATTY_ACID_BIOSYNTHETIC_PROCESS
+GO_POSITIVE_REGULATION_OF_CYTOKINE_SECRETION | GO_MHC_CLASS_II_PROTEIN_COMPLEX
+GO_MHC_CLASS_II_RECEPTOR_ACTIVITY | GO_LEUKOTRIENE_METABOLIC_PROCESS
+
+** Contrast X24IL13Ant-X24IL13 **
+GO_CLATHRIN_COATED_ENDOCYTIC_VESICLE_MEMBRANE | GO_POSITIVE_REGULATION_OF_NF_KAPPAB_IMPORT_INTO_NUCLEUS
+GO_MHC_CLASS_II_PROTEIN_COMPLEX | GO_CLATHRIN_COATED_VESICLE_MEMBRANE
+GO_IGG_BINDING | GO_POSITIVE_REGULATION_OF_ACUTE_INFLAMMATORY_RESPONSE
+GO_CXCR_CHEMOKINE_RECEPTOR_BINDING | GO_CLATHRIN_COATED_ENDOCYTIC_VESICLE
+GO_POSITIVE_REGULATION_OF_INTERLEUKIN_1_SECRETION | GO_MHC_CLASS_II_RECEPTOR_ACTIVITY
+
+** Comparison analysis ** 
+GO_CLATHRIN_COATED_ENDOCYTIC_VESICLE_MEMBRANE | GO_CLATHRIN_COATED_VESICLE_MEMBRANE
+GO_CLATHRIN_COATED_ENDOCYTIC_VESICLE | GO_MHC_CLASS_II_PROTEIN_COMPLEX
+GO_POSITIVE_REGULATION_OF_NF_KAPPAB_IMPORT_INTO_NUCLEUS | GO_MHC_CLASS_II_RECEPTOR_ACTIVITY
+GO_POSITIVE_REGULATION_OF_CYTOKINE_SECRETION | GO_POSITIVE_REGULATION_OF_ACUTE_INFLAMMATORY_RESPONSE
+GO_IGG_BINDING | GO_ANTIGEN_BINDING
+
+**** Top 10 gene sets in the KEGG Pathways collection **** 
+** Contrast X24IL13-X24 **
+Amoebiasis | Asthma
+Intestinal immune network for IgA production | Endocrine and other factor-regulated calcium reabsorption
+Viral myocarditis | HTLV-I infection
+Prion diseases | Proteoglycans in cancer
+Hematopoietic cell lineage | Legionellosis
+
+** Contrast X24IL13Ant-X24IL13 **
+Malaria | Viral myocarditis
+NOD-like receptor signaling pathway | Toll-like receptor signaling pathway
+Asthma | Legionellosis
+Hematopoietic cell lineage | Rheumatoid arthritis
+HTLV-I infection | Melanoma
+
+** Comparison analysis ** 
+Asthma | Viral myocarditis
+Intestinal immune network for IgA production | Amoebiasis
+HTLV-I infection | NOD-like receptor signaling pathway
+Hematopoietic cell lineage | Malaria
+Legionellosis | Toll-like receptor signaling pathway
+
+> 
+> # Example of limmaTopTable
+> library(EGSEAdata)
+> data(il13.gsa)
+> gsa = il13.gsa
+> class(gsa)
+[1] "EGSEAResults"
+attr(,"package")
+[1] "EGSEA"
+> colnames(limmaTopTable(gsa))
+[1] "FeatureID" "Symbols"   "logFC"     "AveExpr"   "t"         "P.Value"  
+[7] "adj.P.Val" "B"        
+> head(limmaTopTable(gsa))
+      FeatureID Symbols     logFC  AveExpr         t      P.Value    adj.P.Val
+2208       2208   FCER2  5.818129 3.356316  24.97210 2.328014e-10 2.018738e-06
+30835     30835   CD209  3.882492 4.818066  25.93935 1.598970e-10 2.018738e-06
+2675       2675   GFRA2  3.277526 3.319754  22.93290 5.395423e-10 2.339320e-06
+3554       3554   IL1R1  2.303161 5.728493  22.98881 5.267500e-10 2.339320e-06
+55022     55022    PID1 -3.454681 4.012016 -21.56122 9.900617e-10 3.434128e-06
+7850       7850   IL1R2  3.336171 4.158437  20.19777 1.880207e-09 5.434739e-06
+             B
+2208  13.25669
+30835 14.52844
+2675  13.13380
+3554  13.62705
+55022 12.71054
+7850  12.26003
+> 
+> # Example of generateReport
+> library(EGSEAdata)
+> data(il13.gsa)
+> gsa = il13.gsa
+> # generateReport(gsa)
+> 
+> # Example of getlimmaResults
+> library(EGSEAdata)
+> data(il13.gsa)
+> gsa = il13.gsa
+> class(gsa)
+[1] "EGSEAResults"
+attr(,"package")
+[1] "EGSEA"
+> fit = getlimmaResults(gsa)
+> class(fit)
+[1] "MArrayLM"
+attr(,"package")
+[1] "limma"
+> names(fit)
+ [1] "coefficients"     "stdev.unscaled"   "sigma"            "df.residual"     
+ [5] "cov.coefficients" "rank"             "genes"            "Amean"           
+ [9] "method"           "design"           "contrasts"        "df.prior"        
+[13] "s2.prior"         "var.prior"        "proportion"       "s2.post"         
+[17] "t"                "df.total"         "p.value"          "lods"            
+[21] "F"                "F.p.value"       
+> 
+> # Example of plotHeatmap
+> library(EGSEAdata)
+> data(il13.gsa)
+> gsa = il13.gsa
+> class(gsa)
+[1] "EGSEAResults"
+attr(,"package")
+[1] "EGSEA"
+> plotHeatmap(gsa, "Asthma", gs.label="kegg")
+Generating heatmap for Asthma from the collection 
+KEGG Pathways and for the contrast X24IL13-X24
+> plotHeatmap(gsa, "Asthma", gs.label="kegg", contrast = "comparison", 
++ file.name = "asthma.hm.cmp")
+Generating heatmap for Asthma from the collection 
+KEGG Pathways and for the contrast comparison
+> 
+> # Example of plotSummaryHeatmap
+> library(EGSEAdata)
+> data(il13.gsa)
+> gsa = il13.gsa
+> class(gsa)
+[1] "EGSEAResults"
+attr(,"package")
+[1] "EGSEA"
+> plotSummaryHeatmap(gsa, gs.label="kegg")
+Generating summary heatmap for the collection KEGG Pathways
+sort.by: avg.rank, hm.vals: avg.rank, show.vals: 
+> 
+> # Example of plotPathway
+> library(EGSEAdata)
+> data(il13.gsa)
+> gsa = il13.gsa
+> class(gsa)
+[1] "EGSEAResults"
+attr(,"package")
+[1] "EGSEA"
+> plotPathway(gsa, gs.label="kegg", "Asthma")
+Generating pathway map for Asthma from the collection 
+KEGG Pathways and for the contrast X24IL13-X24
+[1] TRUE
+> plotPathway(gsa, gs.label="kegg", "Asthma", contrast="comparison", 
++ file.name = "asthma.map.cmp")
+Generating pathway map for Asthma from the collection 
+KEGG Pathways and for the contrast comparison
+[1] TRUE
+> 
+> # Example of plotMethods
+> library(EGSEAdata)
+> data(il13.gsa)
+> gsa = il13.gsa
+> class(gsa)
+[1] "EGSEAResults"
+attr(,"package")
+[1] "EGSEA"
+> plotMethods(gsa)
+Generating methods plot for the collection 
+c2 Curated Gene Sets and for the contrast X24IL13-X24
+character(0)
+> 
+> # Example of plotSummary
+> library(EGSEAdata)
+> data(il13.gsa)
+> gsa = il13.gsa
+> class(gsa)
+[1] "EGSEAResults"
+attr(,"package")
+[1] "EGSEA"
+> plotSummary(gsa)
+Generating Summary plots for the collection 
+c2 Curated Gene Sets and for the contrast X24IL13-X24
+> plotSummary(gsa, contrast=c(1,2), file.name = "summary.cmp")
+Generating Summary plots for the collection 
+c2 Curated Gene Sets and for the comparison X24IL13-X24 vs X24IL13Ant-X24IL13
+> 
+> # Example of plotGOGraph
+> library(EGSEAdata)
+> data(il13.gsa)
+> gsa = il13.gsa
+> class(gsa)
+[1] "EGSEAResults"
+attr(,"package")
+[1] "EGSEA"
+> plotGOGraph(gsa, sort.by="avg.rank")
+Generating GO Graphs for the collection c5 GO Gene Sets
+ and for the contrast X24IL13-X24 based on the avg.rank
+
+Building most specific GOs .....
+Loading required package: org.Hs.eg.db
+	( 11289 GO terms found. )
+
+Build GO DAG topology ..........
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘EGSEA.Rnw’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘EGSEA.Rnw’ using knitr
+Quitting from lines 364-371 (EGSEA.Rnw) 
+Error: processing vignette 'EGSEA.Rnw' failed with diagnostics:
+ERROR: One of the base methods failed on this dataset (safe).
+Remove it and try again.
+See error messages for more information.
+--- failed re-building ‘EGSEA.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘EGSEA.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 2 WARNINGs, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/EGSEA.Rcheck/00check.log’
+for details.
+

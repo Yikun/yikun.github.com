@@ -1,0 +1,122 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:PepsNMR.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings PepsNMR_1.17.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/PepsNMR.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘PepsNMR/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘PepsNMR’ version ‘1.17.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘PepsNMR’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... NOTE
+checkRd: (-1) Normalization.Rd:47: Escaped LaTeX specials: \&
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘PepsNMR-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: PepsNMR-package
+> ### Title: Metabolomic data pre-processing strategy for 1H NMR
+> ###   spectroscopic data
+> ### Aliases: PepsNMR-package PepsNMR
+> ### Keywords: package
+> 
+> ### ** Examples
+> 
+> path <-  system.file("extdata", package = "PepsNMRData")
+> dir(path)
+[1] "Group_HS.csv" "HumanSerum"  
+> 
+> fidList <- ReadFids(file.path(path, "HumanSerum"))
+> Fid_data <- fidList[["Fid_data"]]
+> Fid_info <- fidList[["Fid_info"]]
+> Fid_data <- GroupDelayCorrection(Fid_data, Fid_info)
+> Fid_data <- SolventSuppression(Fid_data)
+> Fid_data <- Apodization(Fid_data, Fid_info)
+> Fid_data <- ZeroFilling(Fid_data)
+> Spectrum_data <- FourierTransform(Fid_data, Fid_info)
+> Spectrum_data <- ZeroOrderPhaseCorrection(Spectrum_data)
+> Spectrum_data <- InternalReferencing(Spectrum_data, Fid_info)
+> Spectrum_data <- BaselineCorrection(Spectrum_data)
+> Spectrum_data <- NegativeValuesZeroing(Spectrum_data)
+> Spectrum_data <- Warping(Spectrum_data)
+Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘PepsNMR_minimal_example.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘PepsNMR_minimal_example.Rmd’ using rmarkdown
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/PepsNMR.Rcheck/vign_test/PepsNMR/vignettes/PepsNMR_minimal_example_files/figure-html/FIGRawFID-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/PepsNMR.Rcheck/vign_test/PepsNMR/vignettes/PepsNMR_minimal_example_files/figure-html/unnamed-chunk-6-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/PepsNMR.Rcheck/vign_test/PepsNMR/vignettes/PepsNMR_minimal_example_files/figure-html/unnamed-chunk-8-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/PepsNMR.Rcheck/vign_test/PepsNMR/vignettes/PepsNMR_minimal_example_files/figure-html/unnamed-chunk-10-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/PepsNMR.Rcheck/vign_test/PepsNMR/vignettes/PepsNMR_minimal_example_files/figure-html/unnamed-chunk-12-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/PepsNMR.Rcheck/vign_test/PepsNMR/vignettes/PepsNMR_minimal_example_files/figure-html/unnamed-chunk-14-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/PepsNMR.Rcheck/vign_test/PepsNMR/vignettes/PepsNMR_minimal_example_files/figure-html/unnamed-chunk-16-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/PepsNMR.Rcheck/vign_test/PepsNMR/vignettes/PepsNMR_minimal_example_files/figure-html/unnamed-chunk-17-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/PepsNMR.Rcheck/vign_test/PepsNMR/vignettes/PepsNMR_minimal_example_files/figure-html/unnamed-chunk-18-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/PepsNMR.Rcheck/vign_test/PepsNMR/vignettes/PepsNMR_minimal_example_files/figure-html/unnamed-chunk-20-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/PepsNMR.Rcheck/vign_test/PepsNMR/vignettes/PepsNMR_minimal_example_files/figure-html/unnamed-chunk-21-1.png" but not available.
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/PepsNMR.Rcheck/00check.log’
+for details.
+

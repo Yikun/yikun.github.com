@@ -1,0 +1,255 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:TBSignatureProfiler.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings TBSignatureProfiler_1.11.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/TBSignatureProfiler.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘TBSignatureProfiler/DESCRIPTION’ ... OK
+* this is package ‘TBSignatureProfiler’ version ‘1.11.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘TBSignatureProfiler’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘TBSignatureProfiler-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: signatureGeneHeatmap
+> ### Title: Plot a heatmap of a single signature score with individual gene
+> ###   expression levels.
+> ### Aliases: signatureGeneHeatmap
+> 
+> ### ** Examples
+> 
+> library(SummarizedExperiment)
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+> # Generate some artificial data that shows a difference in Zak_RISK_16
+> mat_testdata <- rbind(matrix(c(rnorm(80), rnorm(80) + 5), 16, 10,
++                              dimnames = list(TBsignatures$Zak_RISK_16,
++                                              paste0("sample", seq_len(10)))),
++                       matrix(rnorm(1000), 100, 10,
++                              dimnames = list(paste0("gene", seq_len(100)),
++                                              paste0("sample", seq_len(10)))))
+> 
+> # Create a SummarizedExperiment object that contains the data
+> testdataSE <- SummarizedExperiment(assays = SimpleList(data = mat_testdata),
++                                    colData = DataFrame(sample =
++                                                        c(rep("down", 5),
++                                                          rep("up", 5))))
+> # Run profiler using GSVA and ssGSEA on Zak_RISK_16
+> res <- runTBsigProfiler(testdataSE, useAssay = "data",
++                         signatures = TBsignatures["Zak_RISK_16"],
++                         algorithm = c("GSVA", "ssGSEA"), parallel.sz = 1,
++                         combineSigAndAlgorithm = TRUE)
+Parameter update_genes is TRUE. Gene names will be updated.
+Running GSVA
+Estimating GSVA scores for 1 gene sets.
+Estimating ECDFs with Gaussian kernels
+
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |======================================================================| 100%
+
+Running ssGSEA
+Estimating ssGSEA scores for 1 gene sets.
+[1] "Calculating ranks..."
+[1] "Calculating absolute values from ranks..."
+
+  |                                                                            
+  |                                                                      |   0%
+  |                                                                            
+  |=======                                                               |  10%
+  |                                                                            
+  |==============                                                        |  20%
+  |                                                                            
+  |=====================                                                 |  30%
+  |                                                                            
+  |============================                                          |  40%
+  |                                                                            
+  |===================================                                   |  50%
+  |                                                                            
+  |==========================================                            |  60%
+  |                                                                            
+  |=================================================                     |  70%
+  |                                                                            
+  |========================================================              |  80%
+  |                                                                            
+  |===============================================================       |  90%
+  |                                                                            
+  |======================================================================| 100%
+
+[1] "Normalizing..."
+> 
+> # Plot a heatmap of signature genes and pathway predictions
+> signatureGeneHeatmap(res, useAssay = "data",
++                      sigGenes = TBsignatures[["Zak_RISK_16"]],
++                      signatureColNames = c("GSVA_Zak_RISK_16",
++                                            "ssGSEA_Zak_RISK_16"),
++                      annotationColNames = c("sample"), showColumnNames = FALSE,
++                      name = "Zak_RISK_16")
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘packagecoverage.R’
+  Running ‘spelling.R’
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  Backtrace:
+      ▆
+   1. └─testthat::expect_output(...) at test-bootstrap.R:48:2
+   2.   └─testthat:::quasi_capture(...)
+   3.     ├─testthat (local) .capture(...)
+   4.     │ └─testthat::capture_output_lines(code, print, width = width)
+   5.     │   └─testthat:::eval_with_output(code, print = print, width = width)
+   6.     │     ├─withr::with_output_sink(path, withVisible(code))
+   7.     │     │ └─base::force(code)
+   8.     │     └─base::withVisible(code)
+   9.     └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+  
+  [ FAIL 1 | WARN 3 | SKIP 0 | PASS 141 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘tbspVignette.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘tbspVignette.Rmd’ using rmarkdown
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/TBSignatureProfiler.Rcheck/vign_test/TBSignatureProfiler/vignettes/tbspVignette_files/figure-html/all_sigs_heatmap-1.png" but not available.
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/TBSignatureProfiler.Rcheck/00check.log’
+for details.
+

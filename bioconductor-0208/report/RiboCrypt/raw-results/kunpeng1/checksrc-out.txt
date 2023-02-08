@@ -1,0 +1,132 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:RiboCrypt.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings RiboCrypt_1.5.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/RiboCrypt.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘RiboCrypt/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘RiboCrypt’ version ‘1.5.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘RiboCrypt’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+createSinglePlot: no visible binding for global variable ‘position’
+createSinglePlot: no visible binding for global variable ‘frame’
+getIndexes: no visible global function definition for ‘nrun’
+getPlotAnimate: no visible binding for global variable ‘position’
+getPlotAnimate: no visible binding for global variable ‘frame’
+getRelativeFrames: no visible binding for global variable ‘cum_width’
+getRelativeFrames: no visible binding for global variable ‘rel_frame’
+getRiboProfile: no visible binding for global variable ‘frame’
+getStackProfile: no visible global function definition for ‘.’
+getStackProfile: no visible binding for global variable ‘position’
+getStackProfile: no visible binding for global variable ‘frame’
+multiOmicsPlot_animate: no visible global function definition for
+  ‘wmsg’
+multiOmicsPlot_animate: no visible global function definition for ‘is’
+multiOmicsPlot_list: no visible global function definition for ‘wmsg’
+multiOmicsPlot_list: no visible global function definition for ‘is’
+nt_bar: no visible binding for global variable ‘y’
+Undefined global functions or variables:
+  . cum_width frame is nrun position rel_frame wmsg y
+Consider adding
+  importFrom("graphics", "frame")
+  importFrom("methods", "is")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘RiboCrypt-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: multiOmicsPlot_list
+> ### Title: Multi-omics plot using list input
+> ### Aliases: multiOmicsPlot_list
+> 
+> ### ** Examples
+> 
+> library(ORFik)
+> df <- ORFik.template.experiment()[3,] #Use third library in experiment only
+> if (requireNamespace("BSgenome.Hsapiens.UCSC.hg19")) {
++   cds <- loadRegion(df, "cds")
++   multiOmicsPlot_ORFikExp(extendLeaders(extendTrailers(cds[1], 30), 30), df = df,
++                         reference_sequence = BSgenome.Hsapiens.UCSC.hg19::Hsapiens,
++                         frames_type = "columns")
++ }
+Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘RiboCrypt_overview.rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘RiboCrypt_overview.rmd’ using rmarkdown
+Quitting from lines 73-77 (RiboCrypt_overview.rmd) 
+Error: processing vignette 'RiboCrypt_overview.rmd' failed with diagnostics:
+wrong args for environment subassignment
+--- failed re-building ‘RiboCrypt_overview.rmd’
+
+SUMMARY: processing the following file failed:
+  ‘RiboCrypt_overview.rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/RiboCrypt.Rcheck/00check.log’
+for details.
+

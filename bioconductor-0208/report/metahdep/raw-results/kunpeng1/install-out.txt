@@ -1,0 +1,44 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL metahdep
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘metahdep’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c metahdep.c -o metahdep.o
+In file included from metahdep.c:3:
+metahdep.c: In function ‘get_row_indices2’:
+/home/biocbuild/bbs-3.17-bioc/R/include/Rinternals.h:197:17: warning: passing argument 5 of ‘metan_binary_search_unique’ makes integer from pointer without a cast [-Wint-conversion]
+  197 | #define CHAR(x) R_CHAR(x)
+      |                 ^~~~~~~~~
+      |                 |
+      |                 const char *
+metahdep.c:471:107: note: in expansion of macro ‘CHAR’
+  471 |                                 index = metan_binary_search_unique(name_list, sort_index, R_old_names, j, CHAR(STRING_ELT(R_old_chipsets, j)), i);
+      |                                                                                                           ^~~~
+metahdep.c:372:103: note: expected ‘char’ but argument is of type ‘const char *’
+  372 | SEXP metan_binary_search_unique(SEXP name_list, SEXP sort_index, SEXP gene_name, int gene_index, char chipset_name, int study_num)
+      |                                                                                                  ~~~~~^~~~~~~~~~~~
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o metahdep.so metahdep.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-metahdep/00new/metahdep/libs
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (metahdep)

@@ -1,0 +1,194 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:geneXtendeR.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings geneXtendeR_1.25.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/geneXtendeR.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘geneXtendeR/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘geneXtendeR’ version ‘1.25.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘geneXtendeR’ can be installed ... WARNING
+Found the following significant warnings:
+  annotate.c:106:5: warning: ignoring return value of ‘fgets’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  annotate.c:116:5: warning: ignoring return value of ‘fgets’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  extract_number.c:98:5: warning: ignoring return value of ‘fgets’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  extract_number.c:108:5: warning: ignoring return value of ‘fgets’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  extract_peaks.c:107:5: warning: ignoring return value of ‘fgets’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  extract_peaks.c:117:5: warning: ignoring return value of ‘fgets’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/geneXtendeR.Rcheck/00install.out’ for details.
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... NOTE
+  installed size is 11.5Mb
+  sub-directories of 1Mb or more:
+    data      5.8Mb
+    doc       1.9Mb
+    extdata   3.5Mb
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Package listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘rtracklayer’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Namespaces in Imports field not imported from:
+  ‘BiocStyle’ ‘SnowballC’ ‘org.Rn.eg.db’
+  All declared Imports should be used.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.geneXtender: no visible binding for global variable ‘type’
+.geneXtender: no visible binding for global variable ‘seqid’
+.geneXtender: no visible binding for global variable ‘gene_id’
+.geneXtender: no visible binding for global variable ‘gene_name’
+annotate_n: no visible binding for global variable ‘..I’
+annotate_n: no visible binding for global variable ‘seqid’
+diffGO: no visible binding for global variable ‘rat’
+gene_annotate: no visible global function definition for ‘.’
+gene_annotate: no visible binding for global variable
+  ‘Distance-of-Gene-to-Nearest-Peak’
+gene_annotate: no visible global function definition for ‘sd’
+gene_annotate: no visible binding for global variable ‘Chromosome’
+gene_annotate: no visible binding for global variable ‘Gene-Start’
+gene_annotate: no visible binding for global variable ‘Gene-End’
+gene_annotate: no visible binding for global variable ‘Gene-ID’
+gene_annotate: no visible binding for global variable ‘Gene-Name’
+gene_annotate: no visible binding for global variable
+  ‘Peaks-on-Gene-Body’
+gene_annotate: no visible binding for global variable
+  ‘Number-of-Peaks-Associated-with-Gene’
+gene_lookup: no visible binding for global variable ‘gene_name_id’
+gene_lookup: no visible binding for global variable ‘gene_id’
+gene_lookup : internal_find: no visible binding for global variable
+  ‘Chromosome’
+gene_lookup : internal_find: no visible binding for global variable
+  ‘distance’
+gene_lookup : internal_find: no visible global function definition for
+  ‘na.omit’
+gene_lookup: no visible binding for global variable ‘..I’
+gene_lookup: no visible binding for global variable ‘distance’
+makeWordCloud: no visible binding for global variable ‘rat’
+meanPeakLength: no visible binding for global variable ‘rat’
+peaksInput: no visible binding for global variable ‘chr’
+peaksInput: no visible global function definition for ‘na.omit’
+peaksMerge: no visible binding for global variable ‘chr’
+peaksMerge: no visible binding for global variable ‘g’
+peaksMerge: no visible global function definition for ‘.’
+plotWordFreq : geneXtender: no visible binding for global variable
+  ‘type’
+plotWordFreq : geneXtender: no visible binding for global variable
+  ‘seqid’
+plotWordFreq : geneXtender: no visible binding for global variable
+  ‘gene_id’
+plotWordFreq : geneXtender: no visible binding for global variable
+  ‘gene_name’
+Undefined global functions or variables:
+  . ..I Chromosome Distance-of-Gene-to-Nearest-Peak Gene-End Gene-ID
+  Gene-Name Gene-Start Number-of-Peaks-Associated-with-Gene
+  Peaks-on-Gene-Body chr distance g gene_id gene_name gene_name_id
+  na.omit rat sd seqid type
+Consider adding
+  importFrom("stats", "na.omit", "sd")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... WARNING
+  LazyData DB of 5.8 MB without LazyDataCompression set
+  See §1.1.6 of 'Writing R Extensions'
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking installed files from ‘inst/doc’ ... OK
+* checking files in ‘vignettes’ ... NOTE
+Files named as vignettes but with no recognized vignette engine:
+   ‘vignettes/geneXtendeR.Rnw’
+(Is a VignetteBuilder field missing?)
+* checking examples ... ERROR
+Running examples in ‘geneXtendeR-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: barChart
+> ### Title: Produces bar charts.
+> ### Aliases: barChart
+> 
+> ### ** Examples
+> 
+> library(rtracklayer)
+> rat <- readGFF("ftp://ftp.ensembl.org/pub/release-84/gtf/rattus_norvegicus/Rattus_norvegicus.Rnor_6.0.84.gtf.gz")
+trying URL 'ftp://ftp.ensembl.org/pub/release-84/gtf/rattus_norvegicus/Rattus_norvegicus.Rnor_6.0.84.gtf.gz'
+Content type 'unknown' length 11705191 bytes (11.2 MB)
+==================================================
+> fpath <- system.file("extdata", "somepeaksfile.txt", package="geneXtendeR")
+> peaksInput(fpath)
+> barChart(rat, 1000, 3000, 100)
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  Loading required package: IRanges
+  Loading required package: GenomeInfoDb
+  Loading required package: GO.db
+  Loading required package: AnnotationDbi
+  Loading required package: Biobase
+  Welcome to Bioconductor
+  
+      Vignettes contain introductory material; view with
+      'browseVignettes()'. To cite Bioconductor, see
+      'citation("Biobase")', and for packages 'citation("pkgname")'.
+  
+  
+  > 
+  > test_check("geneXtendeR")
+  Killed
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 2 WARNINGs, 6 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/geneXtendeR.Rcheck/00check.log’
+for details.
+

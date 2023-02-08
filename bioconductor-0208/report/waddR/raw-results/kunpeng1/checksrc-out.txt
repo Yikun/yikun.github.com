@@ -1,0 +1,154 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:waddR.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings waddR_1.13.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/waddR.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘waddR/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘waddR’ version ‘1.13.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘waddR’ can be installed ... OK
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘waddR-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: wasserstein.sc
+> ### Title: Two-sample semi-parametric test for single-cell RNA-sequencing
+> ###   data to check for differences between two distributions using the
+> ###   2-Wasserstein distance
+> ### Aliases: wasserstein.sc wasserstein.sc,matrix,vector-method
+> ###   wasserstein.sc-method,matrix,vector,ANY,ANY,ANY-method
+> ###   wasserstein.sc,SingleCellExperiment,SingleCellExperiment-method
+> ###   wasserstein.sc,SingleCellExperiment,SingleCellExperiment,ANY,ANY,ANY-method
+> 
+> ### ** Examples
+> 
+> #simulate scRNA-seq data
+> set.seed(24)
+> nb.sim1<-rnbinom(n=(750*250),1,0.7)
+> dat1<-matrix(data=nb.sim1,nrow=750,ncol=250)
+> nb.sim2a<-rnbinom(n=(250*100),1,0.7)
+> dat2a<-matrix(data=nb.sim2a,nrow=250,ncol=100)
+> nb.sim2b<-rnbinom(n=(250*150),5,0.2)
+> dat2b<-matrix(data=nb.sim2b,nrow=250,ncol=150)
+> dat2<-cbind(dat2a,dat2b)
+> dat<-rbind(dat1,dat2)*0.25
+> #randomly shuffle the rows of the matrix to create the input matrix
+> set.seed(32)
+> dat<-dat[sample(nrow(dat)),]
+> condition<-c(rep("A",100),rep("B",150))  
+> 
+> #call wasserstein.sc with a matrix and a vector including conditions
+> #set seed for reproducibility
+> #two-stage method
+> wasserstein.sc(dat,condition,method="TS",permnum=10000,seed=24)
+Warning in parallel::mccollect(wait = FALSE, timeout = 1) :
+  1 parallel job did not deliver a result
+Error in reducer$value.cache[[as.character(idx)]] <- values : 
+  wrong args for environment subassignment
+Calls: wasserstein.sc ... .bploop_impl -> .collect_result -> .reducer_add -> .reducer_add
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘waddR.Rmd’ using ‘UTF-8’... OK
+  ‘wasserstein_metric.Rmd’ using ‘UTF-8’... OK
+  ‘wasserstein_singlecell.Rmd’ using ‘UTF-8’... OK
+  ‘wasserstein_test.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘waddR.Rmd’ using rmarkdown
+--- finished re-building ‘waddR.Rmd’
+
+--- re-building ‘wasserstein_metric.Rmd’ using rmarkdown
+--- finished re-building ‘wasserstein_metric.Rmd’
+
+--- re-building ‘wasserstein_singlecell.Rmd’ using rmarkdown
+Quitting from lines 92-94 (wasserstein_singlecell.Rmd) 
+Error: processing vignette 'wasserstein_singlecell.Rmd' failed with diagnostics:
+wrong args for environment subassignment
+--- failed re-building ‘wasserstein_singlecell.Rmd’
+
+--- re-building ‘wasserstein_test.Rmd’ using rmarkdown
+--- finished re-building ‘wasserstein_test.Rmd’
+
+SUMMARY: processing the following file failed:
+  ‘wasserstein_singlecell.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/waddR.Rcheck/00check.log’
+for details.
+

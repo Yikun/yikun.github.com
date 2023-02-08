@@ -1,0 +1,163 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL EBImage
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘EBImage’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c EBImage.c -o EBImage.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c clahe.c -o clahe.o
+clahe.c: In function ‘CLAHE’:
+clahe.c:223:33: warning: suggest parentheses around ‘+’ inside ‘>>’ [-Wparentheses]
+  223 |                 uiSubY = uiYSize+1 >> 1;        uiYU = uiNrY-1;  uiYB = uiYU;
+      |                          ~~~~~~~^~
+clahe.c:235:37: warning: suggest parentheses around ‘+’ inside ‘>>’ [-Wparentheses]
+  235 |                     uiSubX = uiXSize+1 >> 1;  uiXL = uiNrX - 1; uiXR = uiXL;
+      |                              ~~~~~~~^~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c distmap.cpp -o distmap.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c drawCircle.c -o drawCircle.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c floodFill.cpp -o floodFill.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c getFrames.c -o getFrames.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c haralick.c -o haralick.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c medianFilter.c -o medianFilter.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c morphology.cpp -o morphology.o
+morphology.cpp: In instantiation of ‘void compute_lookup_table_for_line_erode(type***, type*, int, int, chordSet*, PointXY) [with type = int]’:
+morphology.cpp:253:39:   required from ‘void erode_dilate(type*, type*, PointXY, int, int, chordSet*, type***) [with type = int]’
+morphology.cpp:340:27:   required from ‘void _morphology(type*, type*, PointXY, int, SEXP, int) [with type = int; SEXP = SEXPREC*]’
+morphology.cpp:374:25:   required from here
+morphology.cpp:196:14: warning: statement has no effect [-Wunused-value]
+  196 |         for (i; i < 0; ++i) {
+      |              ^
+morphology.cpp:199:14: warning: statement has no effect [-Wunused-value]
+  199 |         for (i; i < maxX; ++i) {
+      |              ^
+morphology.cpp:203:14: warning: statement has no effect [-Wunused-value]
+  203 |         for (i; i < size.x + set->maxXoffset; ++i) {
+      |              ^
+morphology.cpp: In instantiation of ‘void compute_lookup_table_for_line_dilate(type***, type*, int, int, chordSet*, PointXY) [with type = int]’:
+morphology.cpp:257:39:   required from ‘void erode_dilate(type*, type*, PointXY, int, int, chordSet*, type***) [with type = int]’
+morphology.cpp:340:27:   required from ‘void _morphology(type*, type*, PointXY, int, SEXP, int) [with type = int; SEXP = SEXPREC*]’
+morphology.cpp:374:25:   required from here
+morphology.cpp:163:14: warning: statement has no effect [-Wunused-value]
+  163 |         for (i; i < 0; ++i) {
+      |              ^
+morphology.cpp:166:14: warning: statement has no effect [-Wunused-value]
+  166 |         for (i; i < maxX; ++i) {
+      |              ^
+morphology.cpp:170:14: warning: statement has no effect [-Wunused-value]
+  170 |         for (i; i < size.x + set->maxXoffset; ++i) {
+      |              ^
+morphology.cpp: In instantiation of ‘void compute_lookup_table_for_line_erode(type***, type*, int, int, chordSet*, PointXY) [with type = double]’:
+morphology.cpp:253:39:   required from ‘void erode_dilate(type*, type*, PointXY, int, int, chordSet*, type***) [with type = double]’
+morphology.cpp:340:27:   required from ‘void _morphology(type*, type*, PointXY, int, SEXP, int) [with type = double; SEXP = SEXPREC*]’
+morphology.cpp:377:28:   required from here
+morphology.cpp:196:14: warning: statement has no effect [-Wunused-value]
+  196 |         for (i; i < 0; ++i) {
+      |              ^
+morphology.cpp:199:14: warning: statement has no effect [-Wunused-value]
+  199 |         for (i; i < maxX; ++i) {
+      |              ^
+morphology.cpp:203:14: warning: statement has no effect [-Wunused-value]
+  203 |         for (i; i < size.x + set->maxXoffset; ++i) {
+      |              ^
+morphology.cpp: In instantiation of ‘void compute_lookup_table_for_line_dilate(type***, type*, int, int, chordSet*, PointXY) [with type = double]’:
+morphology.cpp:257:39:   required from ‘void erode_dilate(type*, type*, PointXY, int, int, chordSet*, type***) [with type = double]’
+morphology.cpp:340:27:   required from ‘void _morphology(type*, type*, PointXY, int, SEXP, int) [with type = double; SEXP = SEXPREC*]’
+morphology.cpp:377:28:   required from here
+morphology.cpp:163:14: warning: statement has no effect [-Wunused-value]
+  163 |         for (i; i < 0; ++i) {
+      |              ^
+morphology.cpp:166:14: warning: statement has no effect [-Wunused-value]
+  166 |         for (i; i < maxX; ++i) {
+      |              ^
+morphology.cpp:170:14: warning: statement has no effect [-Wunused-value]
+  170 |         for (i; i < size.x + set->maxXoffset; ++i) {
+      |              ^
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c nativeRaster.c -o nativeRaster.o
+nativeRaster.c: In function ‘nativeRaster’:
+nativeRaster.c:38:7: warning: pointer targets in assignment from ‘int *’ to ‘uint32_t *’ {aka ‘unsigned int *’} differ in signedness [-Wpointer-sign]
+   38 |   out = INTEGER(res);
+      |       ^
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c normalize.c -o normalize.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c objects.c -o objects.o
+objects.c: In function ‘paintObjects’:
+objects.c:21:30: warning: unused variable ‘dp’ [-Wunused-variable]
+   21 |     double *obj, *src, *tgt, dp, val;
+      |                              ^~
+objects.c: In function ‘stackObjects’:
+objects.c:295:10: warning: ‘res’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  295 |   return res;
+      |          ^~~
+In file included from objects.h:5,
+                 from objects.c:1:
+/home/biocbuild/bbs-3.17-bioc/R/include/Rdefines.h:143:33: warning: ‘dim’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  143 | #define SET_DIM(x, n)           Rf_setAttrib(x, R_DimSymbol, n)
+      |                                 ^~~~~~~~~~~~
+objects.c:192:13: note: ‘dim’ was declared here
+  192 |   SEXP res, dim, xys, img;
+      |             ^~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c ocontour.c -o ocontour.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c propagate.cpp -o propagate.o
+propagate.cpp: In function ‘SEXPREC* propagate(SEXP, SEXP, SEXP, SEXP)’:
+propagate.cpp:174:31: warning: ‘mask’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  174 |     if (! mask_in[IJ(p.i, p.j)]) continue;
+      |                               ^
+propagate.cpp:197:8: note: ‘mask’ was declared here
+  197 |   int *mask;
+      |        ^~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c spatial.c -o spatial.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c thresh.cpp -o thresh.o
+thresh.cpp: In instantiation of ‘void _thresh(T*, int*, int, int, int, int, double) [with T = int]’:
+thresh.cpp:50:25:   required from here
+thresh.cpp:64:42: warning: unused variable ‘i’ [-Wunused-variable]
+   64 |     int xi, yi, u, k, l, ou, nu, ov, nv, i;
+      |                                          ^
+thresh.cpp: In instantiation of ‘void _thresh(T*, int*, int, int, int, int, double) [with T = double]’:
+thresh.cpp:53:28:   required from here
+thresh.cpp:64:42: warning: unused variable ‘i’ [-Wunused-variable]
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c tile.cpp -o tile.o
+tile.cpp: In function ‘SEXPREC* tile(SEXP, SEXP, SEXP)’:
+tile.cpp:24:17: warning: unused variable ‘ims’ [-Wunused-variable]
+   24 |   SEXP res, dm, ims;
+      |                 ^~~
+tile.cpp: In function ‘SEXPREC* untile(SEXP, SEXP, SEXP)’:
+tile.cpp:161:29: warning: unused variable ‘y’ [-Wunused-variable]
+  161 |   int nprotect=0, i, j, im, y, iim;
+      |                             ^
+tile.cpp:162:18: warning: unused variable ‘dat’ [-Wunused-variable]
+  162 |   SEXP res, dim, dat;
+      |                  ^~~
+tile.cpp:163:11: warning: unused variable ‘src’ [-Wunused-variable]
+  163 |   double *src, *tgt;
+      |           ^~~
+tile.cpp:163:17: warning: unused variable ‘tgt’ [-Wunused-variable]
+  163 |   double *src, *tgt;
+      |                 ^~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c tools.c -o tools.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c transpose.cpp -o transpose.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c watershed.cpp -o watershed.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o EBImage.so EBImage.o clahe.o distmap.o drawCircle.o floodFill.o getFrames.o haralick.o medianFilter.o morphology.o nativeRaster.o normalize.o objects.o ocontour.o propagate.o spatial.o thresh.o tile.o tools.o transpose.o watershed.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-EBImage/00new/EBImage/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a new generic function for ‘abind’ in package ‘EBImage’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (EBImage)

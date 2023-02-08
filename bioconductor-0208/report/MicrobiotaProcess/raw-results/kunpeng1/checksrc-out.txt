@@ -1,0 +1,152 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:MicrobiotaProcess.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings MicrobiotaProcess_1.11.3.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/MicrobiotaProcess.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘MicrobiotaProcess/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘MicrobiotaProcess’ version ‘1.11.3’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘MicrobiotaProcess’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘MicrobiotaProcess-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: mp_diff_analysis
+> ### Title: Differential expression analysis for MPSE or tbl_mpse object
+> ### Aliases: mp_diff_analysis mp_diff_analysis,MPSE-method
+> ###   mp_diff_analysis,MPSE mp_diff_analysis,tbl_mpse-method
+> ###   mp_diff_analysis,tbl_mpse mp_diff_analysis,grouped_df_mpse-method
+> ###   mp_diff_analysis,grouped_df_mpse
+> 
+> ### ** Examples
+> 
+> data(mouse.time.mpse)
+> mouse.time.mpse %<>%
++   mp_rrarefy() 
+> mouse.time.mpse
+# A MPSE-tibble (MPSE object) abstraction: 4,142 × 12
+# OTU=218 | Samples=19 | Assays=Abundance, RareAbundance | Taxonomy=Kingdom,
+#   Phylum, Class, Order, Family, Genus, Species
+   OTU    Sample Abundance RareA…¹ time  Kingdom Phylum Class Order Family Genus
+   <chr>  <chr>      <int>   <int> <chr> <chr>   <chr>  <chr> <chr> <chr>  <chr>
+ 1 OTU_1  F3D0         579     214 Early k__Bac… p__Ba… c__B… o__B… f__Mu… g__u…
+ 2 OTU_2  F3D0         345     116 Early k__Bac… p__Ba… c__B… o__B… f__Mu… g__u…
+ 3 OTU_3  F3D0         449     179 Early k__Bac… p__Ba… c__B… o__B… f__Mu… g__u…
+ 4 OTU_4  F3D0         430     167 Early k__Bac… p__Ba… c__B… o__B… f__Mu… g__u…
+ 5 OTU_5  F3D0         154      54 Early k__Bac… p__Ba… c__B… o__B… f__Ba… g__B…
+ 6 OTU_6  F3D0         470     174 Early k__Bac… p__Ba… c__B… o__B… f__Mu… g__u…
+ 7 OTU_7  F3D0         282     115 Early k__Bac… p__Ba… c__B… o__B… f__Mu… g__u…
+ 8 OTU_8  F3D0         184      74 Early k__Bac… p__Ba… c__B… o__B… f__Ri… g__A…
+ 9 OTU_9  F3D0          45      16 Early k__Bac… p__Ba… c__B… o__B… f__Mu… g__u…
+10 OTU_10 F3D0         158      59 Early k__Bac… p__Ba… c__B… o__B… f__Mu… g__u…
+# … with 4,132 more rows, 1 more variable: Species <chr>, and abbreviated
+#   variable name ¹​RareAbundance
+> mouse.time.mpse %<>%
++   mp_diff_analysis(.abundance=RareAbundance, 
++                    .group=time, 
++                    first.test.alpha=0.01,
++                    action="add") 
+> library(ggplot2)
+> p <- mouse.time.mpse %>% mp_plot_diff_res()
+Warning: Duplicated aesthetics after name standardisation: fill
+> p <- p + 
++      scale_fill_manual(
++        aesthetics = "fill_new", # The fill aes was renamed to "fill_new" for the abundance dotplot layer
++        values = c("skyblue", "orange")
++      )  + 
++      scale_fill_manual(
++        values=c("skyblue", "orange") # The LDA barplot layer
++      )
+Scale for fill_new is already present.
+Adding another scale for fill_new, which will replace the existing scale.
+> ### and the fill aes for hight light layer of tree was renamed to 'fill_new_new'
+> p <- p + 
++      scale_fill_manual(
++        aesthetics = "fill_new_new",
++        values = c("#E41A1C", "#377EB8", "#4DAF4A", 
++                   "#984EA3", "#FF7F00", "#FFFF33", 
++                   "#A65628", "#F781BF", "#999999")
++      )
+Scale for fill_new_new is already present.
+Adding another scale for fill_new_new, which will replace the existing scale.
+> p
+Warning: Duplicated aesthetics after name standardisation: fill_new
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘MicrobiotaProcess.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘MicrobiotaProcess.Rmd’ using rmarkdown
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/MicrobiotaProcess.Rcheck/00check.log’
+for details.
+

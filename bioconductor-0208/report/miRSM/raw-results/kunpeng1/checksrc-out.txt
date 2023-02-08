@@ -1,0 +1,143 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:miRSM.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings miRSM_1.17.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/miRSM.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘miRSM/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘miRSM’ version ‘1.17.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘miRSM’ can be installed ... OK
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Namespace in Imports field not imported from: ‘org.Hs.eg.db’
+  All declared Imports should be used.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... WARNING
+Killed
+Killed
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘miRSM-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: module_Validate
+> ### Title: module_Validate
+> ### Aliases: module_Validate
+> 
+> ### ** Examples
+> 
+> data(BRCASampleData)
+> modulegenes_WGCNA <- module_WGCNA(ceRExp, mRExp)
+   Power SFT.R.sq   slope truncated.R.sq mean.k. median.k. max.k.
+1      1  0.18600  0.4990         0.3700  312.00   371.000  461.0
+2      2  0.00831 -0.0737         0.0731  172.00   208.000  325.0
+3      3  0.10800 -0.2470        -0.0678  107.00   124.000  243.0
+4      4  0.27600 -0.3840         0.0718   70.50    76.000  187.0
+5      5  0.41300 -0.4960         0.3180   48.40    47.900  147.0
+6      6  0.60300 -0.5900         0.7090   34.20    30.600  117.0
+7      7  0.62000 -0.6640         0.8010   24.70    20.100   94.6
+8      8  0.62900 -0.7810         0.8280   18.20    13.600   77.5
+9      9  0.69900 -0.8980         0.8580   13.70     9.040   64.1
+10    10  0.79000 -0.9640         0.9300   10.40     6.120   53.4
+11    12  0.84500 -1.1200         0.9210    6.33     2.910   38.2
+12    14  0.88100 -1.1800         0.9390    4.05     1.500   28.4
+13    16  0.92800 -1.1600         0.9590    2.71     0.756   21.6
+14    18  0.96700 -1.1200         0.9810    1.88     0.399   16.7
+15    20  0.98600 -1.0900         0.9850    1.36     0.203   13.1
+..connectivity..
+..matrix multiplication (system BLAS)..
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘test_miRSM.R’
+ ERROR
+Running the tests in ‘tests/test_miRSM.R’ failed.
+Last 13 lines of output:
+  |....................###.....|  #       #     # ######    ###   #     # 
+  |....................###.....|                                          
+  |............................|                                          
+  +----------------------------+                                          
+  
+  Citation: S. Hochreiter et al.,
+  FABIA: Factor Analysis for Bicluster Acquisition,
+  Bioinformatics 26(12):1520-1527, 2010.
+  BibTex: enter 'toBibtex(citation("fabia"))'
+  
+  Homepage: http://www.bioinf.jku.at/software/fabia/fabia.html
+  
+  FABIA Package Version 2.45.0
+  
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘miRSM.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘miRSM.Rmd’ using rmarkdown
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs, 1 WARNING, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/miRSM.Rcheck/00check.log’
+for details.
+

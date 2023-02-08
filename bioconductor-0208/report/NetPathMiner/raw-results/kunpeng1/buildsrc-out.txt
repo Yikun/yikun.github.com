@@ -1,0 +1,814 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data NetPathMiner
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘NetPathMiner/DESCRIPTION’ ... OK
+* preparing ‘NetPathMiner’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* running ‘cleanup’
+* installing the package to build vignettes
+      -----------------------------------
+* installing *source* package ‘NetPathMiner’ ...
+** using staged installation
+'config' variable 'CPP' is defunct
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking how to run the C preprocessor... gcc -E
+checking for xmlParseFile in -lxml2... yes
+checking for readSBML in -lsbml... yes
+untarring boost include tree...
+libSBML found, finding configuration...
+pkg-config tool found
+libsbml.pc found. Using pkg-config to extract it.
+checking for xml2-config... /usr/bin/xml2-config
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I . -I/usr/local/include -DHAVE_XML -I/usr/include/libxml2 -DHAVE_SBML -I/usr/include/libxml2 -fPIC  -g -O2  -Wall  -c PathRanker.cpp -o PathRanker.o
+PathRanker.cpp:18: warning: ignoring ‘#pragma clang diagnostic’ [-Wunknown-pragmas]
+   18 | #pragma clang diagnostic push
+      | 
+PathRanker.cpp:19: warning: ignoring ‘#pragma clang diagnostic’ [-Wunknown-pragmas]
+   19 | #pragma clang diagnostic ignored "-Wunused-local-typedef"
+      | 
+PathRanker.cpp:29: warning: ignoring ‘#pragma clang diagnostic’ [-Wunknown-pragmas]
+   29 | #pragma clang diagnostic pop
+      | 
+PathRanker.cpp:17:32: warning: unknown option after ‘#pragma GCC diagnostic’ kind [-Wpragmas]
+   17 | #pragma GCC diagnostic ignored "-Wunused-local-typedef"
+      |                                ^~~~~~~~~~~~~~~~~~~~~~~~
+PathRanker.cpp:17:32: note: did you mean ‘-Wunused-local-typedefs’?
+In file included from ./boost/tuple/tuple.hpp:33,
+                 from ./boost/graph/graph_utility.hpp:19,
+                 from PathRanker.cpp:23:
+./boost/tuple/detail/tuple_basic.hpp: In function ‘typename boost::tuples::access_traits<typename boost::tuples::element<N, boost::tuples::cons<HT, TT> >::type>::const_type boost::tuples::get(const boost::tuples::cons<HT, TT>&)’:
+./boost/tuple/detail/tuple_basic.hpp:228:45: warning: typedef ‘cons_element’ locally defined but not used [-Wunused-local-typedefs]
+  228 |   typedef BOOST_DEDUCED_TYPENAME impl::type cons_element;
+      |                                             ^~~~~~~~~~~~
+In file included from ./boost/mpl/aux_/na_assert.hpp:23,
+                 from ./boost/mpl/arg.hpp:25,
+                 from ./boost/mpl/placeholders.hpp:24,
+                 from ./boost/iterator/iterator_categories.hpp:17,
+                 from ./boost/graph/graph_traits.hpp:25,
+                 from ./boost/graph/graph_utility.hpp:29,
+                 from PathRanker.cpp:23:
+./boost/mpl/assert.hpp: At global scope:
+./boost/mpl/assert.hpp:187:21: warning: unnecessary parentheses in declaration of ‘assert_arg’ [-Wparentheses]
+  187 | failed ************ (Pred::************
+      |                     ^~~~~~~~~~~~~~~~~~~
+  188 |       assert_arg( void (*)(Pred), typename assert_arg_pred<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  189 |     );
+      |     ~                
+./boost/mpl/assert.hpp:187:21: note: remove parentheses
+  187 | failed ************ (Pred::************
+      |                     ^~~~~~~~~~~~~~~~~~~
+      |                     -
+  188 |       assert_arg( void (*)(Pred), typename assert_arg_pred<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  189 |     );
+      |     ~                
+      |     -
+./boost/mpl/assert.hpp:192:21: warning: unnecessary parentheses in declaration of ‘assert_not_arg’ [-Wparentheses]
+  192 | failed ************ (boost::mpl::not_<Pred>::************
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  193 |       assert_not_arg( void (*)(Pred), typename assert_arg_pred_not<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  194 |     );
+      |     ~                
+./boost/mpl/assert.hpp:192:21: note: remove parentheses
+  192 | failed ************ (boost::mpl::not_<Pred>::************
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     -
+  193 |       assert_not_arg( void (*)(Pred), typename assert_arg_pred_not<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  194 |     );
+      |     ~                
+      |     -
+In file included from ./boost/mpl/aux_/integral_wrapper.hpp:22,
+                 from ./boost/mpl/int.hpp:20,
+                 from ./boost/type_traits/detail/template_arity_spec.hpp:10,
+                 from ./boost/type_traits/detail/type_trait_def.hpp:14,
+                 from ./boost/type_traits/add_const.hpp:16,
+                 from ./boost/type_traits/cv_traits.hpp:15,
+                 from ./boost/tuple/detail/tuple_basic.hpp:38,
+                 from ./boost/tuple/tuple.hpp:33,
+                 from ./boost/graph/graph_utility.hpp:19,
+                 from PathRanker.cpp:23:
+./boost/concept_check.hpp: In function ‘void boost::function_requires(Model*)’:
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check45’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:45:7: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+   45 |       BOOST_CONCEPT_ASSERT((Model));
+      |       ^~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp: In destructor ‘boost::AdaptableGenerator<Func, Return>::~AdaptableGenerator()’:
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check453’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:453:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  453 |           BOOST_CONCEPT_ASSERT((Convertible<result_type, Return>));
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp: In destructor ‘boost::AdaptableUnaryFunction<Func, Return, Arg>::~AdaptableUnaryFunction()’:
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check465’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:465:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  465 |           BOOST_CONCEPT_ASSERT((Convertible<result_type, Return>));
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check466’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:466:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  466 |           BOOST_CONCEPT_ASSERT((Convertible<Arg, argument_type>));
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp: In destructor ‘boost::AdaptableBinaryFunction<Func, Return, First, Second>::~AdaptableBinaryFunction()’:
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check484’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:484:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  484 |           BOOST_CONCEPT_ASSERT((Convertible<result_type, Return>));
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check485’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:485:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  485 |           BOOST_CONCEPT_ASSERT((Convertible<First, first_argument_type>));
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check486’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:486:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  486 |           BOOST_CONCEPT_ASSERT((Convertible<Second, second_argument_type>));
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp: In destructor ‘boost::InputIterator<TT>::~InputIterator()’:
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check517’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:517:9: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  517 |         BOOST_CONCEPT_ASSERT((SignedInteger<difference_type>));
+      |         ^~~~~~~~~~~~~~~~~~~~
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check518’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:518:9: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  518 |         BOOST_CONCEPT_ASSERT((Convertible<iterator_category, std::input_iterator_tag>));
+      |         ^~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp: In destructor ‘boost::ForwardIterator<TT>::~ForwardIterator()’:
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check548’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:548:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  548 |           BOOST_CONCEPT_ASSERT((Convertible<
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp: In destructor ‘boost::BidirectionalIterator<TT>::~BidirectionalIterator()’:
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check576’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:576:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  576 |           BOOST_CONCEPT_ASSERT((Convertible<
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp: In destructor ‘boost::RandomAccessIterator<TT>::~RandomAccessIterator()’:
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check606’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:606:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  606 |           BOOST_CONCEPT_ASSERT((Convertible<
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp: In destructor ‘boost::Container<C>::~Container()’:
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check653’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:653:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  653 |           BOOST_CONCEPT_ASSERT((InputIterator<const_iterator>));
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp: In destructor ‘boost::Mutable_Container<C>::~Mutable_Container()’:
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check680’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:680:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  680 |           BOOST_CONCEPT_ASSERT((
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check683’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:683:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  683 |           BOOST_CONCEPT_ASSERT((InputIterator<iterator>));
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp: In destructor ‘boost::ForwardContainer<C>::~ForwardContainer()’:
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check700’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:700:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  700 |           BOOST_CONCEPT_ASSERT((
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp: In destructor ‘boost::Mutable_ForwardContainer<C>::~Mutable_ForwardContainer()’:
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check713’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:713:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  713 |           BOOST_CONCEPT_ASSERT((
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp: In destructor ‘boost::ReversibleContainer<C>::~ReversibleContainer()’:
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check729’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:729:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  729 |           BOOST_CONCEPT_ASSERT((
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check733’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:733:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  733 |           BOOST_CONCEPT_ASSERT((BidirectionalIterator<const_reverse_iterator>));
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp: In destructor ‘boost::Mutable_ReversibleContainer<C>::~Mutable_ReversibleContainer()’:
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check755’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:755:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  755 |           BOOST_CONCEPT_ASSERT((Mutable_BidirectionalIterator<iterator>));
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check756’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:756:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  756 |           BOOST_CONCEPT_ASSERT((Mutable_BidirectionalIterator<reverse_iterator>));
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp: In destructor ‘boost::RandomAccessContainer<C>::~RandomAccessContainer()’:
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check773’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:773:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  773 |           BOOST_CONCEPT_ASSERT((
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp: In destructor ‘boost::Mutable_RandomAccessContainer<C>::~Mutable_RandomAccessContainer()’:
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check800’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:800:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  800 |           BOOST_CONCEPT_ASSERT((Mutable_RandomAccessIterator<typename self::iterator>));
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check801’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:801:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  801 |           BOOST_CONCEPT_ASSERT((Mutable_RandomAccessIterator<typename self::reverse_iterator>));
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp: In destructor ‘boost::AssociativeContainer<C>::~AssociativeContainer()’:
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check905’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:905:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  905 |           BOOST_CONCEPT_ASSERT((BinaryPredicate<key_compare,key_type,key_type>));
+      |           ^~~~~~~~~~~~~~~~~~~~
+./boost/concept/detail/general.hpp:71:20: warning: typedef ‘boost_concept_check908’ locally defined but not used [-Wunused-local-typedefs]
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |                    ^~~~~~~~~~~~~~~~~~~
+./boost/preprocessor/cat.hpp:29:34: note: in definition of macro ‘BOOST_PP_CAT_I’
+   29 | #    define BOOST_PP_CAT_I(a, b) a ## b
+      |                                  ^
+./boost/concept/detail/general.hpp:71:7: note: in expansion of macro ‘BOOST_PP_CAT’
+   71 |       BOOST_PP_CAT(boost_concept_check,__LINE__)
+      |       ^~~~~~~~~~~~
+./boost/concept/assert.hpp:44:5: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT_FN’
+   44 |     BOOST_CONCEPT_ASSERT_FN(void(*)ModelInParens)
+      |     ^~~~~~~~~~~~~~~~~~~~~~~
+./boost/concept_check.hpp:908:11: note: in expansion of macro ‘BOOST_CONCEPT_ASSERT’
+  908 |           BOOST_CONCEPT_ASSERT((BinaryPredicate<value_compare,value_type_,value_type_>));
+      |           ^~~~~~~~~~~~~~~~~~~~
+In file included from ./boost/smart_ptr/detail/shared_count.hpp:30,
+                 from ./boost/smart_ptr/shared_ptr.hpp:32,
+                 from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+./boost/smart_ptr/detail/sp_counted_impl.hpp: At global scope:
+./boost/smart_ptr/detail/sp_counted_impl.hpp:81:41: error: ‘boost::detail::sp_typeinfo’ has not been declared
+   81 |     virtual void * get_deleter( detail::sp_typeinfo const & )
+      |                                         ^~~~~~~~~~~
+./boost/smart_ptr/detail/sp_counted_impl.hpp:156:41: error: ‘boost::detail::sp_typeinfo’ has not been declared
+  156 |     virtual void * get_deleter( detail::sp_typeinfo const & ti )
+      |                                         ^~~~~~~~~~~
+./boost/smart_ptr/detail/sp_counted_impl.hpp: In member function ‘virtual void* boost::detail::sp_counted_impl_pd<P, D>::get_deleter(const int&)’:
+./boost/smart_ptr/detail/sp_counted_impl.hpp:158:39: error: expected primary-expression before ‘)’ token
+  158 |         return ti == BOOST_SP_TYPEID(D)? &reinterpret_cast<char&>( del ): 0;
+      |                                       ^
+./boost/smart_ptr/detail/sp_counted_impl.hpp:158:22: error: there are no arguments to ‘BOOST_SP_TYPEID’ that depend on a template parameter, so a declaration of ‘BOOST_SP_TYPEID’ must be available [-fpermissive]
+  158 |         return ti == BOOST_SP_TYPEID(D)? &reinterpret_cast<char&>( del ): 0;
+      |                      ^~~~~~~~~~~~~~~
+./boost/smart_ptr/detail/sp_counted_impl.hpp:158:22: note: (if you use ‘-fpermissive’, G++ will accept your code, but allowing the use of an undeclared name is deprecated)
+./boost/smart_ptr/detail/sp_counted_impl.hpp: At global scope:
+./boost/smart_ptr/detail/sp_counted_impl.hpp:235:41: error: ‘boost::detail::sp_typeinfo’ has not been declared
+  235 |     virtual void * get_deleter( detail::sp_typeinfo const & ti )
+      |                                         ^~~~~~~~~~~
+./boost/smart_ptr/detail/sp_counted_impl.hpp: In member function ‘virtual void* boost::detail::sp_counted_impl_pda<P, D, A>::get_deleter(const int&)’:
+./boost/smart_ptr/detail/sp_counted_impl.hpp:237:41: error: expected primary-expression before ‘)’ token
+  237 |         return ti == BOOST_SP_TYPEID( D )? &reinterpret_cast<char&>( d_ ): 0;
+      |                                         ^
+./boost/smart_ptr/detail/sp_counted_impl.hpp:237:22: error: there are no arguments to ‘BOOST_SP_TYPEID’ that depend on a template parameter, so a declaration of ‘BOOST_SP_TYPEID’ must be available [-fpermissive]
+  237 |         return ti == BOOST_SP_TYPEID( D )? &reinterpret_cast<char&>( d_ ): 0;
+      |                      ^~~~~~~~~~~~~~~
+In file included from ./boost/smart_ptr/shared_ptr.hpp:32,
+                 from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+./boost/smart_ptr/detail/shared_count.hpp: At global scope:
+./boost/smart_ptr/detail/shared_count.hpp:323:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  323 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./boost/config/no_tr1/memory.hpp:21,
+                 from ./boost/smart_ptr/shared_ptr.hpp:27,
+                 from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./boost/smart_ptr/shared_ptr.hpp:32,
+                 from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+./boost/smart_ptr/detail/shared_count.hpp:446:25: error: ‘sp_typeinfo’ has not been declared
+  446 |     void * get_deleter( sp_typeinfo const & ti ) const
+      |                         ^~~~~~~~~~~
+./boost/smart_ptr/detail/shared_count.hpp: In member function ‘void* boost::detail::shared_count::get_deleter(const int&) const’:
+./boost/smart_ptr/detail/shared_count.hpp:448:39: error: cannot convert ‘const int’ to ‘const sp_typeinfo_&’ {aka ‘const std::type_info&’}
+  448 |         return pi_? pi_->get_deleter( ti ): 0;
+      |                                       ^~
+      |                                       |
+      |                                       const int
+In file included from ./boost/smart_ptr/detail/sp_counted_base.hpp:60,
+                 from ./boost/smart_ptr/detail/shared_count.hpp:29,
+                 from ./boost/smart_ptr/shared_ptr.hpp:32,
+                 from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+/usr/include/boost/smart_ptr/detail/sp_counted_base_sync.hpp:119:54: note:   initializing argument 1 of ‘virtual void* boost::detail::sp_counted_base::get_deleter(const sp_typeinfo_&)’
+  119 |     virtual void * get_deleter( sp_typeinfo_ const & ti ) = 0;
+      |                                 ~~~~~~~~~~~~~~~~~~~~~^~
+In file included from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+./boost/smart_ptr/shared_ptr.hpp: At global scope:
+./boost/smart_ptr/shared_ptr.hpp:247:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  247 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./boost/config/no_tr1/memory.hpp:21,
+                 from ./boost/smart_ptr/shared_ptr.hpp:27,
+                 from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+./boost/smart_ptr/shared_ptr.hpp:446:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  446 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./boost/config/no_tr1/memory.hpp:21,
+                 from ./boost/smart_ptr/shared_ptr.hpp:27,
+                 from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+./boost/smart_ptr/shared_ptr.hpp:459:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  459 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./boost/config/no_tr1/memory.hpp:21,
+                 from ./boost/smart_ptr/shared_ptr.hpp:27,
+                 from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+./boost/smart_ptr/shared_ptr.hpp:525:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  525 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./boost/config/no_tr1/memory.hpp:21,
+                 from ./boost/smart_ptr/shared_ptr.hpp:27,
+                 from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+./boost/smart_ptr/shared_ptr.hpp:534:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  534 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./boost/config/no_tr1/memory.hpp:21,
+                 from ./boost/smart_ptr/shared_ptr.hpp:27,
+                 from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+./boost/smart_ptr/shared_ptr.hpp:700:50: error: ‘boost::detail::sp_typeinfo’ has not been declared
+  700 |     void * _internal_get_deleter( boost::detail::sp_typeinfo const & ti ) const BOOST_NOEXCEPT
+      |                                                  ^~~~~~~~~~~
+In file included from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+./boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+./boost/smart_ptr/shared_ptr.hpp:536:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  536 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./boost/config/no_tr1/memory.hpp:21,
+                 from ./boost/smart_ptr/shared_ptr.hpp:27,
+                 from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+./boost/smart_ptr/shared_ptr.hpp: In function ‘D* boost::detail::basic_get_deleter(const boost::shared_ptr<U>&)’:
+./boost/smart_ptr/shared_ptr.hpp:892:71: error: expected primary-expression before ‘)’ token
+  892 |     return static_cast<D *>( p._internal_get_deleter(BOOST_SP_TYPEID(D)) );
+      |                                                                       ^
+./boost/smart_ptr/shared_ptr.hpp:892:54: error: there are no arguments to ‘BOOST_SP_TYPEID’ that depend on a template parameter, so a declaration of ‘BOOST_SP_TYPEID’ must be available [-fpermissive]
+  892 |     return static_cast<D *>( p._internal_get_deleter(BOOST_SP_TYPEID(D)) );
+      |                                                      ^~~~~~~~~~~~~~~
+In file included from ./boost/shared_array.hpp:17,
+                 from ./boost/graph/detail/d_ary_heap.hpp:20,
+                 from ./boost/graph/named_function_params.hpp:24,
+                 from ./boost/graph/depth_first_search.hpp:21,
+                 from ./boost/graph/graph_utility.hpp:32,
+                 from PathRanker.cpp:23:
+./boost/smart_ptr/shared_array.hpp: At global scope:
+./boost/smart_ptr/shared_array.hpp:223:50: error: ‘boost::detail::sp_typeinfo’ has not been declared
+  223 |     void * _internal_get_deleter( boost::detail::sp_typeinfo const & ti ) const
+      |                                                  ^~~~~~~~~~~
+./boost/smart_ptr/shared_array.hpp: In function ‘D* boost::get_deleter(const boost::shared_array<T>&)’:
+./boost/smart_ptr/shared_array.hpp:283:74: error: expected primary-expression before ‘)’ token
+  283 |     return static_cast< D * >( p._internal_get_deleter( BOOST_SP_TYPEID(D) ) );
+      |                                                                          ^
+./boost/smart_ptr/shared_array.hpp:283:57: error: there are no arguments to ‘BOOST_SP_TYPEID’ that depend on a template parameter, so a declaration of ‘BOOST_SP_TYPEID’ must be available [-fpermissive]
+  283 |     return static_cast< D * >( p._internal_get_deleter( BOOST_SP_TYPEID(D) ) );
+      |                                                         ^~~~~~~~~~~~~~~
+In file included from ./boost/scoped_ptr.hpp:14,
+                 from ./boost/graph/adjacency_list.hpp:31,
+                 from PathRanker.cpp:24:
+./boost/smart_ptr/scoped_ptr.hpp: At global scope:
+./boost/smart_ptr/scoped_ptr.hpp:68:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   68 |     explicit scoped_ptr( std::auto_ptr<T> p ) BOOST_NOEXCEPT : px( p.release() )
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./boost/config/no_tr1/memory.hpp:21,
+                 from ./boost/smart_ptr/shared_ptr.hpp:27,
+                 from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./boost/graph/adjacency_list.hpp:246,
+                 from PathRanker.cpp:24:
+./boost/graph/detail/adjacency_list.hpp:278:12: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  278 |       std::auto_ptr<Property> m_property;
+      |            ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./boost/config/no_tr1/memory.hpp:21,
+                 from ./boost/smart_ptr/shared_ptr.hpp:27,
+                 from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:23:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+make: *** [/home/biocbuild/bbs-3.17-bioc/R/etc/Makeconf:198: PathRanker.o] Error 1
+ERROR: compilation failed for package ‘NetPathMiner’
+* removing ‘/tmp/RtmpsxQHnw/Rinst14acb23b5a5038/NetPathMiner’
+      -----------------------------------
+ERROR: package installation failed

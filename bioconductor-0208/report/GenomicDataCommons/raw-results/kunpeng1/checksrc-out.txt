@@ -1,0 +1,237 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:GenomicDataCommons.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings GenomicDataCommons_1.23.2.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/GenomicDataCommons.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘GenomicDataCommons/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘GenomicDataCommons’ version ‘1.23.2’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘GenomicDataCommons’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking R/sysdata.rda ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘GenomicDataCommons-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: filtering
+> ### Title: Manipulating GDCQuery filters
+> ### Aliases: filtering filter filter.GDCQuery get_filter
+> ###   get_filter.GDCQuery
+> 
+> ### ** Examples
+> 
+> # make a GDCQuery object to start
+> #
+> # Projects
+> #
+> pQuery = projects()
+> 
+> # check for the default fields
+> # so that we can use one of them to build a filter
+> default_fields(pQuery)
+ [1] "dbgap_accession_number" "disease_type"           "intended_release_date" 
+ [4] "name"                   "primary_site"           "project_autocomplete"  
+ [7] "project_id"             "releasable"             "released"              
+[10] "state"                 
+> pQuery = filter(pQuery,~ project_id == 'TCGA-LUAC')
+> get_filter(pQuery)
+$op
+[x] "="
+
+$content
+$content$field
+[1] "project_id"
+
+$content$value
+[1] "TCGA-LUAC"
+
+
+> 
+> #
+> # Files
+> #
+> fQuery = files()
+> default_fields(fQuery)
+ [1] "access"                         "acl"                           
+ [3] "average_base_quality"           "average_insert_size"           
+ [5] "average_read_length"            "channel"                       
+ [7] "chip_id"                        "chip_position"                 
+ [9] "contamination"                  "contamination_error"           
+[11] "created_datetime"               "data_category"                 
+[13] "data_format"                    "data_type"                     
+[15] "error_type"                     "experimental_strategy"         
+[17] "file_autocomplete"              "file_id"                       
+[19] "file_name"                      "file_size"                     
+[21] "imaging_date"                   "magnification"                 
+[23] "md5sum"                         "mean_coverage"                 
+[25] "msi_score"                      "msi_status"                    
+[27] "pairs_on_diff_chr"              "plate_name"                    
+[29] "plate_well"                     "platform"                      
+[31] "proc_internal"                  "proportion_base_mismatch"      
+[33] "proportion_coverage_10X"        "proportion_coverage_10x"       
+[35] "proportion_coverage_30X"        "proportion_coverage_30x"       
+[37] "proportion_reads_duplicated"    "proportion_reads_mapped"       
+[39] "proportion_targets_no_coverage" "read_pair_number"              
+[41] "revision"                       "stain_type"                    
+[43] "state"                          "state_comment"                 
+[45] "submitter_id"                   "tags"                          
+[47] "total_reads"                    "tumor_ploidy"                  
+[49] "tumor_purity"                   "type"                          
+[51] "updated_datetime"              
+> 
+> fQuery = filter(fQuery,~ data_format == 'VCF')
+> # OR
+> # with recent GenomicDataCommons versions:
+> #   no "~" needed
+> fQuery = filter(fQuery, data_format == 'VCF')
+> 
+> get_filter(fQuery)
+$op
+[1] "and"
+
+$content
+$content[[1]]
+$content[[1]]$op
+[x] "="
+
+$content[[1]]$content
+$content[[1]]$content$field
+[1] "data_format"
+
+$content[[1]]$content$value
+[1] "VCF"
+
+
+
+$content[[2]]
+$content[[2]]$op
+[x] "="
+
+$content[[2]]$content
+$content[[2]]$content$field
+[1] "data_format"
+
+$content[[2]]$content$value
+[1] "VCF"
+
+
+
+
+> 
+> fQuery = filter(fQuery,~ data_format == 'VCF'
++                 & experimental_strategy == 'WXS'
++                 & type == 'simple_somatic_mutation')
+> 
+> files() %>% filter(~ data_format == 'VCF'
++                    & experimental_strategy=='WXS'
++                    & type == 'simple_somatic_mutation') %>% count()
+[1] 63863
+>                    
+>                    
+> files() %>% filter( data_format == 'VCF'
++                    & experimental_strategy=='WXS'
++                    & type == 'simple_somatic_mutation') %>% count()
+[1] 63863
+> 
+> # Filters may be chained for the 
+> # equivalent query
+> # 
+> # When chained, filters are combined with logical AND
+> 
+> files() %>%
++   filter(~ data_format == 'VCF') %>%
++   filter(~ experimental_strategy == 'WXS') %>%
++   filter(~ type == 'simple_somatic_mutation') %>%
++   count()
+Error in curl::curl_fetch_memory(url, handle = handle) : 
+  Timeout was reached: [api.gdc.cancer.gov] SSL connection timeout
+Calls: %>% ... request_fetch -> request_fetch.write_memory -> <Anonymous>
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+   13. └─GenomicDataCommons:::response.GDCQuery(., size = 1)
+   14.   ├─jsonlite (local) response_handler(...)
+   15.   ├─httr::content(...)
+   16.   │ ├─base::stopifnot(is.response(x))
+   17.   │ └─httr:::is.response(x)
+   18.   └─GenomicDataCommons:::.gdc_post(...)
+   19.     └─httr::POST(...)
+   20.       └─httr:::request_perform(req, hu$handle$handle)
+   21.         ├─httr:::request_fetch(req$output, req$url, handle)
+   22.         └─httr:::request_fetch.write_memory(req$output, req$url, handle)
+   23.           └─curl::curl_fetch_memory(url, handle = handle)
+  
+  [ FAIL 1 | WARN 0 | SKIP 0 | PASS 57 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘overview.Rmd’ using ‘UTF-8’... OK
+  ‘questions-and-answers.Rmd’ using ‘UTF-8’... OK
+  ‘somatic_mutations.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/GenomicDataCommons.Rcheck/00check.log’
+for details.
+

@@ -1,0 +1,199 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:YAPSA.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings YAPSA_1.25.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/YAPSA.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘YAPSA/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘YAPSA’ version ‘1.25.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘YAPSA’ can be installed ... WARNING
+Found the following significant warnings:
+  Warning: replacing previous import ‘GenomicRanges::subtract’ by ‘magrittr::subtract’ when loading ‘YAPSA’
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/YAPSA.Rcheck/00install.out’ for details.
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... WARNING
+Loading required package: GenomicRanges
+Loading required package: methods
+Loading required package: stats4
+Loading required package: BiocGenerics
+Loading required package: utils
+Loading required package: graphics
+
+Attaching package: ‘graphics’
+
+The following object is masked from ‘package:stats4’:
+
+    plot
+
+Loading required package: stats
+
+Attaching package: ‘stats’
+
+The following objects are masked from ‘package:stats4’:
+
+    AIC, BIC, coef, confint, logLik, nobs, profile, update, vcov
+
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: ggplot2
+Loading required package: grid
+Found more than one class "atomicVector" in cache; using the first, from namespace 'Matrix'
+Also defined by ‘Rmpfr’
+Found more than one class "atomicVector" in cache; using the first, from namespace 'Matrix'
+Also defined by ‘Rmpfr’
+Found more than one class "atomicVector" in cache; using the first, from namespace 'Matrix'
+Also defined by ‘Rmpfr’
+Found more than one class "atomicVector" in cache; using the first, from namespace 'Matrix'
+Also defined by ‘Rmpfr’
+Found more than one class "atomicVector" in cache; using the first, from namespace 'Matrix'
+Also defined by ‘Rmpfr’
+Found more than one class "atomicVector" in cache; using the first, from namespace 'Matrix'
+Also defined by ‘Rmpfr’
+Found more than one class "atomicVector" in cache; using the first, from namespace 'Matrix'
+Also defined by ‘Rmpfr’
+Found more than one class "atomicVector" in cache; using the first, from namespace 'Matrix'
+Also defined by ‘Rmpfr’
+Killed
+
+It looks like this package (or one of its dependent packages) has an
+unstated dependence on a standard package.  All dependencies must be
+declared in DESCRIPTION.
+See section ‘The DESCRIPTION file’ in the ‘Writing R Extensions’
+manual.
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... NOTE
+Killed
+See chapter ‘System and foreign language interfaces’ in the ‘Writing R
+Extensions’ manual.
+* checking R code for possible problems ... NOTE
+read_list: no visible global function definition for 'detectCores'
+read_list: no visible global function definition for 'makeCluster'
+read_list: no visible global function definition for 'mclapply'
+read_list: no visible global function definition for 'stopCluster'
+Undefined global functions or variables:
+  detectCores makeCluster mclapply stopCluster
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... WARNING
+Killed
+Killed
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking installed files from ‘inst/doc’ ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘YAPSA-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: build_gene_list_for_pathway
+> ### Title: Build a gene list for a given pathway name
+> ### Aliases: build_gene_list_for_pathway
+> 
+> ### ** Examples
+> 
+>    species <- "hsa"
+>    gene_lists_meta_df <- data.frame(
++      name=c("BER","NHEJ","MMR"),
++      explanation=c("base excision repair",
++                    "non homologous end joining",
++                    "mismatch repair"))
+>    number_of_pathways <- dim(gene_lists_meta_df)[1]
+>    gene_lists_list <- list()
+>    for (i in seq_len(number_of_pathways)) {
++      temp_list <- 
++        build_gene_list_for_pathway(gene_lists_meta_df$explanation[i],
++                                    species)
++      gene_lists_list <- c(gene_lists_list,list(temp_list))
++    }
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘YAPSA.Rmd’ using ‘UTF-8’... OK
+  ‘vignette_confidenceIntervals.Rmd’ using ‘UTF-8’... OK
+  ‘vignette_exomes.Rmd’ using ‘UTF-8’... OK
+  ‘vignette_signature_specific_cutoffs.Rmd’ using ‘UTF-8’... OK
+  ‘vignette_stratifiedAnalysis.Rmd’ using ‘UTF-8’... OK
+  ‘vignettes_Indel.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 3 WARNINGs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/YAPSA.Rcheck/00check.log’
+for details.
+

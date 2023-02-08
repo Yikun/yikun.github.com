@@ -1,0 +1,58 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL netresponse
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘netresponse’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c netresponse.c -o netresponse.o
+netresponse.c: In function ‘mHPpost’:
+netresponse.c:264:15: warning: unused variable ‘prior_fields’ [-Wunused-variable]
+  264 |   const char *prior_fields[]={"Mumu","S2mu",
+      |               ^~~~~~~~~~~~
+netresponse.c: In function ‘mLogLambda’:
+netresponse.c:713:3: warning: ‘U_p’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  713 |   vdp_mk_log_lambda(Mumu, S2mu, Mubar, Mutilde,
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  714 |                     AlphaKsi, BetaKsi, KsiAlpha, KsiBeta,
+      |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  715 |                     post_gamma, log_lambda, prior_alpha,
+      |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  716 |                     U_p, U_hat,
+      |                     ~~~~~~~~~~~
+  717 |                     datalen, dim1, dim2, data1, data2,
+      |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  718 |                     Ns, ncentroids, implicitnoisevar);
+      |                     ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+netresponse.c:713:3: warning: ‘KsiBeta’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+netresponse.c:713:3: warning: ‘KsiAlpha’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+netresponse.c:713:3: warning: ‘BetaKsi’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+netresponse.c:713:3: warning: ‘AlphaKsi’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+netresponse.c:713:3: warning: ‘Mutilde’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+netresponse.c:713:3: warning: ‘Mubar’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+netresponse.c:713:3: warning: ‘S2mu’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+netresponse.c:713:3: warning: ‘Mumu’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o netresponse.so netresponse.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-netresponse/00new/netresponse/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (netresponse)

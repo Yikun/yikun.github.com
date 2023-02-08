@@ -1,0 +1,281 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:MethylSeekR.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings MethylSeekR_1.39.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/MethylSeekR.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘MethylSeekR/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘MethylSeekR’ version ‘1.39.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘MethylSeekR’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Description field: should contain one or more complete sentences.
+Package listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘parallel’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Namespace in Imports field not imported from: ‘geneplotter’
+  All declared Imports should be used.
+Package in Depends field not imported from: ‘rtracklayer’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+PMDviterbiSegmentation : <anonymous>: no visible global function
+  definition for ‘values’
+PMDviterbiSegmentation : <anonymous>: no visible global function
+  definition for ‘predict’
+PMDviterbiSegmentation : <anonymous>: no visible global function
+  definition for ‘Rle’
+PMDviterbiSegmentation : <anonymous>: no visible global function
+  definition for ‘runValue’
+calculateAlphaDistr : <anonymous>: no visible global function
+  definition for ‘Rle’
+calculateFDRs: no visible global function definition for ‘values’
+calculateFDRs: no visible global function definition for ‘queryHits’
+calculateFDRs: no visible global function definition for ‘values<-’
+calculateFDRs : <anonymous>: no visible global function definition for
+  ‘Rle’
+calculateFDRs : <anonymous>: no visible global function definition for
+  ‘values’
+calculateFDRs : <anonymous>: no visible global function definition for
+  ‘runValue’
+createGRangesObjectPMDSegmentation : <anonymous>: no visible global
+  function definition for ‘Rle’
+createGRangesObjectPMDSegmentation : <anonymous>: no visible global
+  function definition for ‘nrun’
+createGRangesObjectPMDSegmentation : <anonymous>: no visible global
+  function definition for ‘runValue’
+plotAlphaDistributionOneChr: no visible global function definition for
+  ‘values’
+plotFinalSegmentation: no visible global function definition for
+  ‘values’
+plotFinalSegmentation: no visible global function definition for ‘Rle’
+plotPMDSegmentation: no visible global function definition for ‘values’
+readMethylome: no visible global function definition for ‘values’
+removeSNPs: no visible global function definition for ‘queryHits’
+savePMDSegments: no visible global function definition for ‘values’
+saveUMRLMRSegments: no visible global function definition for ‘values’
+segmentUMRsLMRs: no visible global function definition for ‘values’
+segmentUMRsLMRs : <anonymous>: no visible global function definition
+  for ‘Rle’
+segmentUMRsLMRs : <anonymous>: no visible global function definition
+  for ‘values’
+segmentUMRsLMRs : <anonymous>: no visible global function definition
+  for ‘runValue’
+segmentUMRsLMRs: no visible global function definition for ‘queryHits’
+segmentUMRsLMRs: no visible global function definition for
+  ‘subjectHits’
+segmentUMRsLMRs: no visible global function definition for ‘Rle’
+segmentUMRsLMRs: no visible global function definition for ‘values<-’
+segmentUMRsLMRs: no visible global function definition for ‘DataFrame’
+segmentUMRsLMRs: no visible global function definition for
+  ‘colorRampPalette’
+trainPMDHMM: no visible global function definition for ‘values’
+Undefined global functions or variables:
+  DataFrame Rle colorRampPalette nrun predict queryHits runValue
+  subjectHits values values<-
+Consider adding
+  importFrom("grDevices", "colorRampPalette")
+  importFrom("stats", "predict")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘MethylSeekR-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: MethylSeekR-package
+> ### Title: Segmentation of Bis-seq methylation data
+> ### Aliases: MethylSeekR-package MethylSeekR
+> ### Keywords: package
+> 
+> ### ** Examples
+> 
+> 
+> library(MethylSeekR)
+> 
+> # get chromosome lengths
+> library("BSgenome.Hsapiens.UCSC.hg18")
+Loading required package: BSgenome
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+> sLengths=seqlengths(Hsapiens)
+> 
+> # read methylation data
+> methFname <- system.file("extdata", "Lister2009_imr90_hg18_chr22.tab",
++ package="MethylSeekR")
+> meth.gr <- readMethylome(FileName=methFname, seqLengths=sLengths)
+reading methylome data
+Read 200000 records
+> 
+> #read SNP data
+> snpFname <- system.file("extdata", "SNVs_hg18_chr22.tab",
++ package="MethylSeekR")
+> snps.gr <- readSNPTable(FileName=snpFname, seqLengths=sLengths)
+reading SNP table
+Read 11750 records
+> 
+> # remove SNPs
+> meth.gr <- removeSNPs(meth.gr, snps.gr)
+removing SNPs
+11604 (6.2%) CpGs removed
+> 
+> #calculate alpha distribution for one chromosome
+> plotAlphaDistributionOneChr(m=meth.gr, chr.sel="chr22", num.cores=1)
+determining alpha distribution for chromosome: chr22
+> 
+> #segment PMDs
+> PMDsegments.gr <- segmentPMDs(m=meth.gr, chr.sel="chr22", num.cores=1,
++ seqLengths=sLengths)
+training PMD-HMM on chromosome chr22
+performing viterbi segmentation
+creating GRanges object
+> 
+> #plot PMD segmentation examples
+> plotPMDSegmentation(m=meth.gr, segs=PMDsegments.gr, numRegions=1)
+> 
+> #save PMD segments
+> savePMDSegments(PMDs=PMDsegments.gr, GRangesFilename="PMDs.gr.rds",
++  TableFilename="PMDs.tab")
+> 
+> #load CpG islands
+> library(rtracklayer)
+> session <- browserSession()
+> genome(session) <- "hg18"
+> query <- ucscTableQuery(session, table = "cpgIslandExt")
+Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘MethylSeekR.Rnw’... failed to complete the test
+ ERROR
+Errors in running code in vignettes:
+when running code in ‘MethylSeekR.Rnw’
+  ...
+> plotAlphaDistributionOneChr(m = meth.gr, chr.sel = "chr22", 
++     num.cores = 1)
+determining alpha distribution for chromosome: chr22
+
+> PMDsegments.gr <- segmentPMDs(m = meth.gr, chr.sel = "chr22", 
++     seqLengths = sLengths, num.cores = 1)
+training PMD-HMM on chromosome chr22
+Killed
+
+... incomplete output.  Crash?
+
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘MethylSeekR.Rnw’ using Sweave
+Loading required package: rtracklayer
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: parallel
+Loading required package: mhsmm
+Loading required package: mvtnorm
+Loading required package: BSgenome
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+reading methylome data
+Read 200000 records
+reading SNP table
+Read 11750 records
+removing SNPs
+11604 (6.2%) CpGs removed
+determining alpha distribution for chromosome: chr22
+training PMD-HMM on chromosome chr22
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/MethylSeekR.Rcheck/00check.log’
+for details.
+

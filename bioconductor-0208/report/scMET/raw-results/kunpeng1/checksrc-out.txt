@@ -1,0 +1,202 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:scMET.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings scMET_1.1.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/scMET.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘scMET/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘scMET’ version ‘1.1.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘scMET’ can be installed ... OK
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... NOTE
+  installed size is 41.2Mb
+  sub-directories of 1Mb or more:
+    libs  39.8Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in shell scripts ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... NOTE
+GNU make is a SystemRequirements.
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘scMET-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: scmet_hvf
+> ### Title: Detect highly (or lowly) variable features with scMET
+> ### Aliases: scmet_hvf detect_hvf_lvf detect_hvf scmet_lvf scmet_hvf_lvf
+> ###   detect_lvf
+> 
+> ### ** Examples
+> 
+> # Fit scMET
+> obj <- scmet(Y = scmet_dt$Y, X = scmet_dt$X, L = 4, iter = 100)
+Sorting features.
+
+Total # of cells: 50.
+
+Total # of features: 150.
+
+Tue Feb  7 14:55:44 2023: Using EB to set model priors.
+
+Warning in checkwz(wz, M = M, trace = trace, wzepsilon = control$wzepsilon) :
+  12 diagonal elements of the working weights variable 'wz' have been replaced by 1.819e-12
+Warning in checkwz(wz, M = M, trace = trace, wzepsilon = control$wzepsilon) :
+  29 diagonal elements of the working weights variable 'wz' have been replaced by 1.819e-12
+Warning in checkwz(wz, M = M, trace = trace, wzepsilon = control$wzepsilon) :
+  13 diagonal elements of the working weights variable 'wz' have been replaced by 1.819e-12
+Warning in checkwz(wz, M = M, trace = trace, wzepsilon = control$wzepsilon) :
+  52 diagonal elements of the working weights variable 'wz' have been replaced by 1.819e-12
+Warning in vglm.fitter(x = x, y = y, w = w, offset = offset, Xm2 = Xm2,  :
+  some quantities such as z, residuals, SEs may be inaccurate due to convergence at a half-step
+Warning in checkwz(wz, M = M, trace = trace, wzepsilon = control$wzepsilon) :
+  5 diagonal elements of the working weights variable 'wz' have been replaced by 1.819e-12
+Warning in checkwz(wz, M = M, trace = trace, wzepsilon = control$wzepsilon) :
+  60 diagonal elements of the working weights variable 'wz' have been replaced by 1.819e-12
+Warning in vglm.fitter(x = x, y = y, w = w, offset = offset, Xm2 = Xm2,  :
+  iterations terminated because half-step sizes are very small
+Warning in vglm.fitter(x = x, y = y, w = w, offset = offset, Xm2 = Xm2,  :
+  some quantities such as z, residuals, SEs may be inaccurate due to convergence at a half-step
+Usin EB estimates as initial values for posterior inference.
+
+Tue Feb  7 14:55:53 2023: Finished EB.
+
+Tue Feb  7 14:55:53 2023: Starting inference.
+
+Small number of VB iterations. scMET might not converge.
+
+Chain 1: ------------------------------------------------------------
+Chain 1: EXPERIMENTAL ALGORITHM:
+Chain 1:   This procedure has not been thoroughly tested and may be unstable
+Chain 1:   or buggy. The interface is subject to change.
+Chain 1: ------------------------------------------------------------
+Chain 1: 
+Chain 1: 
+Chain 1: 
+Chain 1: Gradient evaluation took 0.001566 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 15.66 seconds.
+Chain 1: Adjust your expectations accordingly!
+Chain 1: 
+Chain 1: 
+Chain 1: Begin eta adaptation.
+Chain 1: Iteration:   1 / 250 [  0%]  (Adaptation)
+Chain 1: Iteration:  50 / 250 [ 20%]  (Adaptation)
+Chain 1: Iteration: 100 / 250 [ 40%]  (Adaptation)
+Chain 1: Iteration: 150 / 250 [ 60%]  (Adaptation)
+Chain 1: Iteration: 200 / 250 [ 80%]  (Adaptation)
+Chain 1: Success! Found best value [eta = 1] earlier than expected.
+Chain 1: 
+Chain 1: Begin stochastic gradient ascent.
+Chain 1:   iter             ELBO   delta_ELBO_mean   delta_ELBO_med   notes 
+Error : stan::variational::normal_meanfield::calc_grad: The number of dropped evaluations has reached its maximum amount (10). Your model may be either severely ill-conditioned or misspecified.
+Warning: Inference failed with seed: 1753232290
+ Reruning with different seed...
+
+Small number of VB iterations. scMET might not converge.
+
+Chain 1: ------------------------------------------------------------
+Chain 1: EXPERIMENTAL ALGORITHM:
+Chain 1:   This procedure has not been thoroughly tested and may be unstable
+Chain 1:   or buggy. The interface is subject to change.
+Chain 1: ------------------------------------------------------------
+Chain 1: 
+Chain 1: 
+Chain 1: 
+Chain 1: Gradient evaluation took 0.001682 seconds
+Chain 1: 1000 transitions using 10 leapfrog steps per transition would take 16.82 seconds.
+Chain 1: Adjust your expectations accordingly!
+Chain 1: 
+Chain 1: 
+Chain 1: Begin eta adaptation.
+Chain 1: Iteration:   1 / 250 [  0%]  (Adaptation)
+Chain 1: Iteration:  50 / 250 [ 20%]  (Adaptation)
+Chain 1: Iteration: 100 / 250 [ 40%]  (Adaptation)
+Chain 1: Iteration: 150 / 250 [ 60%]  (Adaptation)
+Chain 1: Iteration: 200 / 250 [ 80%]  (Adaptation)
+Chain 1: Success! Found best value [eta = 1] earlier than expected.
+Chain 1: 
+Chain 1: Begin stochastic gradient ascent.
+Chain 1:   iter             ELBO   delta_ELBO_mean   delta_ELBO_med   notes 
+Chain 1:    100        -8638.711             1.000            1.000
+Chain 1: Informational Message: The maximum number of iterations is reached! The algorithm may not have converged.
+Chain 1: This variational approximation is not guaranteed to be meaningful.
+Chain 1: 
+Chain 1: Drawing a sample of size 2000 from the approximate posterior... 
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘scMET_vignette.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/scMET.Rcheck/00check.log’
+for details.
+

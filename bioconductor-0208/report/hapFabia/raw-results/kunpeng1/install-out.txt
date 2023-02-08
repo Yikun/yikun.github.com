@@ -1,0 +1,158 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL hapFabia
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘hapFabia’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c interfaceR.c -o interfaceR.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c split_sparse_matrixB.c -o split_sparse_matrixB.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c vcftoFABIAB.c -o vcftoFABIAB.o
+vcftoFABIAB.c: In function ‘getdelimS’:
+vcftoFABIAB.c:50:7: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   50 |       if (ch == EOF)
+      |       ^~
+vcftoFABIAB.c:54:10: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   54 |          while (idx > *linebufsz - 2) {
+      |          ^~~~~
+In file included from /usr/include/string.h:535,
+                 from vcftoFABIAB.c:3:
+In function ‘strncat’,
+    inlined from ‘vcftoFABIAB’ at vcftoFABIAB.c:352:5:
+/usr/include/aarch64-linux-gnu/bits/string_fortified.h:138:10: warning: ‘__builtin_strncat’ output may be truncated copying 190 bytes from a string of length 1999999 [-Wstringop-truncation]
+  138 |   return __builtin___strncat_chk (__dest, __src, __len,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |                                   __glibc_objsize (__dest));
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+In function ‘strncat’,
+    inlined from ‘vcftoFABIAB’ at vcftoFABIAB.c:382:5:
+/usr/include/aarch64-linux-gnu/bits/string_fortified.h:138:10: warning: ‘__builtin_strncat’ output may be truncated copying 190 bytes from a string of length 19999 [-Wstringop-truncation]
+  138 |   return __builtin___strncat_chk (__dest, __src, __len,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |                                   __glibc_objsize (__dest));
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+In function ‘strncat’,
+    inlined from ‘vcftoFABIAB’ at vcftoFABIAB.c:394:5:
+/usr/include/aarch64-linux-gnu/bits/string_fortified.h:138:10: warning: ‘__builtin_strncat’ output may be truncated copying 19 bytes from a string of length 1999 [-Wstringop-truncation]
+  138 |   return __builtin___strncat_chk (__dest, __src, __len,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |                                   __glibc_objsize (__dest));
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+In function ‘strncat’,
+    inlined from ‘vcftoFABIAB’ at vcftoFABIAB.c:362:5:
+/usr/include/aarch64-linux-gnu/bits/string_fortified.h:138:10: warning: ‘__builtin_strncat’ output may be truncated copying 19 bytes from a string of length 1999 [-Wstringop-truncation]
+  138 |   return __builtin___strncat_chk (__dest, __src, __len,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |                                   __glibc_objsize (__dest));
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+In function ‘strncat’,
+    inlined from ‘vcftoFABIAB’ at vcftoFABIAB.c:372:5:
+/usr/include/aarch64-linux-gnu/bits/string_fortified.h:138:10: warning: ‘__builtin_strncat’ output may be truncated copying 19 bytes from a string of length 1999 [-Wstringop-truncation]
+  138 |   return __builtin___strncat_chk (__dest, __src, __len,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |                                   __glibc_objsize (__dest));
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+In function ‘strncat’,
+    inlined from ‘vcftoFABIAB’ at vcftoFABIAB.c:332:5:
+/usr/include/aarch64-linux-gnu/bits/string_fortified.h:138:10: warning: ‘__builtin_strncat’ output may be truncated copying 49 bytes from a string of length 4999 [-Wstringop-truncation]
+  138 |   return __builtin___strncat_chk (__dest, __src, __len,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |                                   __glibc_objsize (__dest));
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+In function ‘strncat’,
+    inlined from ‘vcftoFABIAB’ at vcftoFABIAB.c:342:5:
+/usr/include/aarch64-linux-gnu/bits/string_fortified.h:138:10: warning: ‘__builtin_strncat’ output may be truncated copying 190 bytes from a string of length 1999999 [-Wstringop-truncation]
+  138 |   return __builtin___strncat_chk (__dest, __src, __len,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |                                   __glibc_objsize (__dest));
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o hapFabia.so interfaceR.o split_sparse_matrixB.o vcftoFABIAB.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+gcc -c ./commandLine/split_sparse_matrix.c -o ./commandLine/split_sparse_matrix.o -g -O2  -Wall
+gcc -c split_sparse_matrixB.c -o ./commandLine/split_sparse_matrixB.o -g -O2  -Wall
+gcc ./commandLine/split_sparse_matrix.o ./commandLine/split_sparse_matrixB.o -o ./commandLine/split_sparse_matrix
+mv ./commandLine/split_sparse_matrix ../inst/commandLine/
+gcc -c ./commandLine/vcftoFABIA.c -o ./commandLine/vcftoFABIA.o -g -O2  -Wall
+gcc -c vcftoFABIAB.c -o ./commandLine/vcftoFABIAB.o -g -O2  -Wall
+vcftoFABIAB.c: In function ‘getdelimS’:
+vcftoFABIAB.c:50:7: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   50 |       if (ch == EOF)
+      |       ^~
+vcftoFABIAB.c:54:10: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+   54 |          while (idx > *linebufsz - 2) {
+      |          ^~~~~
+In file included from /usr/include/string.h:535,
+                 from vcftoFABIAB.c:3:
+In function ‘strncat’,
+    inlined from ‘vcftoFABIAB’ at vcftoFABIAB.c:352:5:
+/usr/include/aarch64-linux-gnu/bits/string_fortified.h:138:10: warning: ‘__builtin_strncat’ output may be truncated copying 190 bytes from a string of length 1999999 [-Wstringop-truncation]
+  138 |   return __builtin___strncat_chk (__dest, __src, __len,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |                                   __glibc_objsize (__dest));
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+In function ‘strncat’,
+    inlined from ‘vcftoFABIAB’ at vcftoFABIAB.c:382:5:
+/usr/include/aarch64-linux-gnu/bits/string_fortified.h:138:10: warning: ‘__builtin_strncat’ output may be truncated copying 190 bytes from a string of length 19999 [-Wstringop-truncation]
+  138 |   return __builtin___strncat_chk (__dest, __src, __len,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |                                   __glibc_objsize (__dest));
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+In function ‘strncat’,
+    inlined from ‘vcftoFABIAB’ at vcftoFABIAB.c:394:5:
+/usr/include/aarch64-linux-gnu/bits/string_fortified.h:138:10: warning: ‘__builtin_strncat’ output may be truncated copying 19 bytes from a string of length 1999 [-Wstringop-truncation]
+  138 |   return __builtin___strncat_chk (__dest, __src, __len,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |                                   __glibc_objsize (__dest));
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+In function ‘strncat’,
+    inlined from ‘vcftoFABIAB’ at vcftoFABIAB.c:362:5:
+/usr/include/aarch64-linux-gnu/bits/string_fortified.h:138:10: warning: ‘__builtin_strncat’ output may be truncated copying 19 bytes from a string of length 1999 [-Wstringop-truncation]
+  138 |   return __builtin___strncat_chk (__dest, __src, __len,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |                                   __glibc_objsize (__dest));
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+In function ‘strncat’,
+    inlined from ‘vcftoFABIAB’ at vcftoFABIAB.c:372:5:
+/usr/include/aarch64-linux-gnu/bits/string_fortified.h:138:10: warning: ‘__builtin_strncat’ output may be truncated copying 19 bytes from a string of length 1999 [-Wstringop-truncation]
+  138 |   return __builtin___strncat_chk (__dest, __src, __len,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |                                   __glibc_objsize (__dest));
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+In function ‘strncat’,
+    inlined from ‘vcftoFABIAB’ at vcftoFABIAB.c:332:5:
+/usr/include/aarch64-linux-gnu/bits/string_fortified.h:138:10: warning: ‘__builtin_strncat’ output may be truncated copying 49 bytes from a string of length 4999 [-Wstringop-truncation]
+  138 |   return __builtin___strncat_chk (__dest, __src, __len,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |                                   __glibc_objsize (__dest));
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+In function ‘strncat’,
+    inlined from ‘vcftoFABIAB’ at vcftoFABIAB.c:342:5:
+/usr/include/aarch64-linux-gnu/bits/string_fortified.h:138:10: warning: ‘__builtin_strncat’ output may be truncated copying 190 bytes from a string of length 1999999 [-Wstringop-truncation]
+  138 |   return __builtin___strncat_chk (__dest, __src, __len,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  139 |                                   __glibc_objsize (__dest));
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+gcc ./commandLine/vcftoFABIA.o ./commandLine/vcftoFABIAB.o -o ./commandLine/vcftoFABIA
+mv ./commandLine/vcftoFABIA ../inst/commandLine/
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-hapFabia/00new/hapFabia/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (hapFabia)

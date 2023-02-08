@@ -1,0 +1,163 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:RTCGA.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings RTCGA_1.29.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/RTCGA.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘RTCGA/DESCRIPTION’ ... OK
+* this is package ‘RTCGA’ version ‘1.29.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘RTCGA’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+availableDates: no visible binding for global variable ‘.’
+downloadTCGA: no visible binding for global variable ‘.’
+ggbiplot: no visible binding for global variable ‘xvar’
+ggbiplot: no visible binding for global variable ‘yvar’
+ggbiplot: no visible global function definition for ‘muted’
+ggbiplot: no visible binding for global variable ‘varname’
+ggbiplot: no visible binding for global variable ‘angle’
+ggbiplot: no visible binding for global variable ‘hjust’
+read.mutations: no visible binding for global variable ‘.’
+read.rnaseq: no visible binding for global variable ‘.’
+survivalTCGA: no visible binding for global variable ‘times’
+whichDateToUse: no visible binding for global variable ‘.’
+Undefined global functions or variables:
+  . angle hjust muted times varname xvar yvar
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... NOTE
+Unknown packages ‘RTCGA.rnaseq.20160128’, ‘RTCGA.clinical.20160128’, ‘RTCGA.mutations.20160128’, ‘RTCGA.CNV.20160128’, ‘RTCGA.RPPA.20160128’, ‘RTCGA.mRNA.20160128’, ‘RTCGA.miRNASeq.20160128’, ‘RTCGA.methylation.20160128’ in Rd xrefs
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘RTCGA-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: boxplotTCGA
+> ### Title: Create Boxplots for TCGA Datasets
+> ### Aliases: boxplotTCGA
+> 
+> ### ** Examples
+> 
+> library(RTCGA)
+> library(RTCGA.rnaseq)
+> # perfrom plot
+> library(dplyr)
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+> expressionsTCGA(ACC.rnaseq, BLCA.rnaseq, BRCA.rnaseq, OV.rnaseq,
++   extract.cols = "MET|4233") %>%
++   rename(cohort = dataset,
++   MET = `MET|4233`) %>%  
++   #cancer samples
++   filter(substr(bcr_patient_barcode, 14, 15) == "01") -> ACC_BLCA_BRCA_OV.rnaseq
+>   
+> 
+> boxplotTCGA(ACC_BLCA_BRCA_OV.rnaseq, "cohort", "MET")
+> boxplotTCGA(ACC_BLCA_BRCA_OV.rnaseq, "cohort", "log1p(MET)")
+> boxplotTCGA(ACC_BLCA_BRCA_OV.rnaseq, "reorder(cohort,log1p(MET), median)", "log1p(MET)")
+> boxplotTCGA(ACC_BLCA_BRCA_OV.rnaseq, "reorder(cohort,log1p(MET), max)", "log1p(MET)")
+> boxplotTCGA(ACC_BLCA_BRCA_OV.rnaseq, "reorder(cohort,log1p(MET), median)", "log1p(MET)",
++             xlab = "Cohort Type", ylab = "Logarithm of MET")
+> boxplotTCGA(ACC_BLCA_BRCA_OV.rnaseq, "reorder(cohort,log1p(MET), median)", "log1p(MET)", 
++             xlab = "Cohort Type", ylab = "Logarithm of MET", legend.title = "Cohorts")
+> boxplotTCGA(ACC_BLCA_BRCA_OV.rnaseq, "reorder(cohort,log1p(MET), median)", "log1p(MET)", 
++             xlab = "Cohort Type", ylab = "Logarithm of MET", 
++             legend.title = "Cohorts", legend = "bottom")
+> 
+> ## facet example
+> library(RTCGA.mutations)
+> library(dplyr)
+> mutationsTCGA(BRCA.mutations, OV.mutations, ACC.mutations, BLCA.mutations) %>% 
++   filter(Hugo_Symbol == 'TP53') %>%
++   filter(substr(bcr_patient_barcode, 14, 15) == "01") %>% # cancer tissue
++   mutate(bcr_patient_barcode = substr(bcr_patient_barcode, 1, 12)) -> 
++   ACC_BLCA_BRCA_OV.mutations
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  
+      I, expand.grid, unname
+  
+  Loading required package: IRanges
+  Loading required package: GenomeInfoDb
+  > #library(RTCGA.CNV)
+  > #library(RTCGA.PANCAN12)
+  > 
+  > test_check("RTCGA")
+  trying URL 'https://gdac.broadinstitute.org/runs/stddata__2015_06_01/data/ACC/20150601//gdac.broadinstitute.org_ACC.Merge_Clinical.Level_1.2015060100.0.0.tar.gz'
+  Content type 'application/x-gzip' length 151456 bytes (147 KB)
+  ==================================================
+  downloaded 147 KB
+  
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘RTCGA_Workflow.Rmd’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/RTCGA.Rcheck/00check.log’
+for details.
+

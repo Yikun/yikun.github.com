@@ -1,0 +1,64 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL methylKit
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘methylKit’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c methCall.cpp -o methCall.o
+methCall.cpp: In function ‘int process_sam(std::istream*, std::string&, std::string&, std::string&, int&, int&, int&, int, int, size_t&)’:
+methCall.cpp:687:39: warning: ‘CHGout’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  687 |       if(CHGstatus){ processCHmethHash(CHGmethHash,CHGout,mincov);}
+      |                      ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+methCall.cpp:686:39: warning: ‘CHHout’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  686 |       if(CHHstatus){ processCHmethHash(CHHmethHash,CHHout,mincov); }
+      |                      ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+methCall.cpp:685:39: warning: ‘out’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  685 |       if(CpGstatus){ processCGmethHash(CGmethHash,out,mincov);}
+      |                      ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+methCall.cpp: In function ‘int process_bam(std::string&, std::string&, std::string&, std::string&, int&, int&, int&, int, size_t&)’:
+methCall.cpp:1014:39: warning: ‘CHGout’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1014 |       if(CHGstatus){ processCHmethHash(CHGmethHash,CHGout,mincov);}
+      |                      ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+methCall.cpp:1013:39: warning: ‘CHHout’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1013 |       if(CHHstatus){ processCHmethHash(CHHmethHash,CHHout,mincov); }
+      |                      ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+methCall.cpp:1012:39: warning: ‘out’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1012 |       if(CpGstatus){ processCGmethHash(CGmethHash,out,mincov);}
+      |                      ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+methCall.cpp: In function ‘int process_single_bismark(std::istream*, std::string&, std::string&, std::string&, int&, int&, int&, size_t&)’:
+methCall.cpp:1244:39: warning: ‘CHGout’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1244 |       if(CHGstatus){ processCHmethHash(CHGmethHash,CHGout,mincov);}
+      |                      ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+methCall.cpp:1243:39: warning: ‘CHHout’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1243 |       if(CHHstatus){ processCHmethHash(CHHmethHash,CHHout,mincov); }
+      |                      ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+methCall.cpp:1242:39: warning: ‘out’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1242 |       if(CpGstatus){ processCGmethHash(CGmethHash,out,mincov);}
+      |                      ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o methylKit.so RcppExports.o methCall.o /home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/usrlib/libhts.a -lcurl -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-methylKit/00new/methylKit/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (methylKit)

@@ -1,0 +1,327 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:SplicingGraphs.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings SplicingGraphs_1.39.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/SplicingGraphs.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘SplicingGraphs/DESCRIPTION’ ... OK
+* this is package ‘SplicingGraphs’ version ‘1.39.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘SplicingGraphs’ can be installed ... WARNING
+Found the following significant warnings:
+  Warning: replacing previous import ‘IRanges::from’ by ‘Rgraphviz::from’ when loading ‘SplicingGraphs’
+  Warning: replacing previous import ‘IRanges::to’ by ‘Rgraphviz::to’ when loading ‘SplicingGraphs’
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/SplicingGraphs.Rcheck/00install.out’ for details.
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Packages listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘GenomicFeatures’ ‘GenomicAlignments’ ‘Rgraphviz’ ‘igraph’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+'library' or 'require' call to 'igraph' in package code.
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+':::' calls which should be '::':
+  'S4Vectors:::matchIntegerPairs' 'S4Vectors:::orderIntegerPairs'
+  'S4Vectors:::selfmatchIntegerPairs'
+  See the note in ?`:::` about the use of this operator.
+Unexported objects imported by ':::' calls:
+  'BiocGenerics:::testPackage' 'GenomicAlignments:::fillJunctionGaps'
+  'IRanges:::newCompressedList0' 'IRanges:::regroupBySupergroup'
+  'IRanges:::unlist_as_integer' 'S4Vectors:::setPrototypeFromObject'
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘reportReads’
+Undocumented S4 methods:
+  generic '[' and siglist 'SplicingGraphs,ANY,ANY,ANY'
+  generic 'reportReads' and siglist 'SplicingGraphs'
+  generic 'updateObject' and siglist 'SplicingGraphs'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Objects in \usage without \alias in documentation object 'countReads-methods':
+  ‘reportReads’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘SplicingGraphs-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: TSPCsg
+> ### Title: TSPC splicing graphs
+> ### Aliases: TSPCsg TSPC
+> 
+> ### ** Examples
+> 
+> ## Load SplicingGraphs object 'TSPCsg':
+> filepath <- system.file("extdata", "TSPCsg.rda", package="SplicingGraphs")
+> load(filepath)
+> TSPCsg
+SplicingGraphs object with 9 gene(s) and 33 transcript(s)
+> 
+> ## 'TSPCsg' has 1 element per gene and 'names(sg)' gives the gene ids.
+> names(TSPCsg)
+[1] "BAI1"      "CYB561"    "DAPL1"     "ITGB8"     "KIAA0319L" "LGSN"     
+[7] "MKRN3"     "ST14"      "TREM2"    
+> 
+> ## 1 splicing graph per gene. (Note that gene MUC16 was dropped
+> ## because transcripts T-4 and T-5 in this gene both have their
+> ## 2nd exon *inside* their 3rd exon. Splicing graph theory doesn't
+> ## apply in that case.)
+> 
+> ## Extract the edges of a given graph:
+> TSPCsgedges <- sgedges(TSPCsg["LGSN"])
+> TSPCsgedges
+DataFrame with 19 rows and 5 columns
+           from          to   sgedge_id ex_or_in            tx_id
+    <character> <character> <character> <factor>  <CharacterList>
+1             R           1    LGSN:R,1           T-1,T-2,T-3,...
+2             1           5    LGSN:1,5       ex         T-1,T-4n
+3             5           6    LGSN:5,6       in T-1,T-2,T-4n,...
+4             6           8    LGSN:6,8       ex T-1,T-2,T-4n,...
+5             8          11   LGSN:8,11       in          T-1,T-2
+...         ...         ...         ...      ...              ...
+15            6           7    LGSN:6,7       ex              T-3
+16            7           9    LGSN:7,9       in              T-3
+17            9          10   LGSN:9,10       ex    T-3,T-4n,T-5n
+18           10          11  LGSN:10,11       in    T-3,T-4n,T-5n
+19            8           9    LGSN:8,9       in        T-4n,T-5n
+> 
+> ## Plot the graph for a given gene:
+> plot(TSPCsg["LGSN"])  # or 'plot(sgraph(TSPCsgedges))'
+> 
+> ## The reads from all samples have been assigned to 'TSPCsg'.
+> ## Use countReads() to summarize by splicing graph edge:
+> counts <- countReads(TSPCsg)
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘run_unitTests.R’
+ ERROR
+Running the tests in ‘tests/run_unitTests.R’ failed.
+Last 13 lines of output:
+      from, to
+  
+  The following objects are masked from 'package:S4Vectors':
+  
+      from, to
+  
+  [1] TRUE
+  Warning messages:
+  1: replacing previous import 'IRanges::from' by 'Rgraphviz::from' when loading 'SplicingGraphs' 
+  2: replacing previous import 'IRanges::to' by 'Rgraphviz::to' when loading 'SplicingGraphs' 
+  > SplicingGraphs:::.test()
+  Import genomic features from the file as a GRanges object ... OK
+  Prepare the 'metadata' data frame ... OK
+  Make the TxDb object ... OK
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘SplicingGraphs.Rnw’ using ‘UTF-8’... failed
+ ERROR
+Errors in running code in vignettes:
+when running code in ‘SplicingGraphs.Rnw’
+  ...
+Warning: replacing previous import ‘IRanges::from’ by ‘Rgraphviz::from’ when loading ‘SplicingGraphs’
+Warning: replacing previous import ‘IRanges::to’ by ‘Rgraphviz::to’ when loading ‘SplicingGraphs’
+
+> sg <- SplicingGraphs(txdb)
+Warning in parallel::mccollect(wait = FALSE, timeout = 1) :
+  1 parallel job did not deliver a result
+
+  When sourcing ‘SplicingGraphs.R’:
+Error: wrong args for environment subassignment
+Execution halted
+
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘SplicingGraphs.Rnw’ using Sweave
+Loading required package: GenomicFeatures
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call, duplicated,
+    eval, evalq, get, grep, grepl, intersect, is.unsorted, lapply, mapply,
+    match, mget, order, paste, pmax, pmax.int, pmin, pmin.int, rank, rbind,
+    rownames, sapply, setdiff, sort, table, tapply, union, unique, unsplit,
+    which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: GenomicRanges
+Loading required package: AnnotationDbi
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with 'browseVignettes()'. To
+    cite Bioconductor, see 'citation("Biobase")', and for packages
+    'citation("pkgname")'.
+
+Loading required package: GenomicAlignments
+Loading required package: SummarizedExperiment
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘matrixStats’
+
+The following objects are masked from ‘package:Biobase’:
+
+    anyMissing, rowMedians
+
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse, colCounts,
+    colCummaxs, colCummins, colCumprods, colCumsums, colDiffs, colIQRDiffs,
+    colIQRs, colLogSumExps, colMadDiffs, colMads, colMaxs, colMeans2,
+    colMedians, colMins, colOrderStats, colProds, colQuantiles, colRanges,
+    colRanks, colSdDiffs, colSds, colSums2, colTabulates, colVarDiffs, colVars,
+    colWeightedMads, colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet, rowCollapse,
+    rowCounts, rowCummaxs, rowCummins, rowCumprods, rowCumsums, rowDiffs,
+    rowIQRDiffs, rowIQRs, rowLogSumExps, rowMadDiffs, rowMads, rowMaxs,
+    rowMeans2, rowMedians, rowMins, rowOrderStats, rowProds, rowQuantiles,
+    rowRanges, rowRanks, rowSdDiffs, rowSds, rowSums2, rowTabulates,
+    rowVarDiffs, rowVars, rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+The following object is masked from ‘package:Biobase’:
+
+    rowMedians
+
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: Rsamtools
+Loading required package: Rgraphviz
+Loading required package: graph
+
+Attaching package: ‘graph’
+
+The following object is masked from ‘package:Biostrings’:
+
+    complement
+
+Loading required package: grid
+
+Attaching package: ‘grid’
+
+The following object is masked from ‘package:Biostrings’:
+
+    pattern
+
+
+Attaching package: ‘Rgraphviz’
+
+The following objects are masked from ‘package:IRanges’:
+
+    from, to
+
+The following objects are masked from ‘package:S4Vectors’:
+
+    from, to
+
+Warning: replacing previous import ‘IRanges::from’ by ‘Rgraphviz::from’ when loading ‘SplicingGraphs’
+Warning: replacing previous import ‘IRanges::to’ by ‘Rgraphviz::to’ when loading ‘SplicingGraphs’
+Warning in parallel::mccollect(wait = FALSE, timeout = 1) :
+  1 parallel job did not deliver a result
+
+Error: processing vignette 'SplicingGraphs.Rnw' failed with diagnostics:
+ chunk 5 (label = SplicingGraphs_constructor) 
+Error in reducer$value.cache[[as.character(idx)]] <- values : 
+  wrong args for environment subassignment
+
+--- failed re-building ‘SplicingGraphs.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘SplicingGraphs.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs, 3 WARNINGs, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/SplicingGraphs.Rcheck/00check.log’
+for details.
+

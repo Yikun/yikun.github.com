@@ -1,0 +1,264 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:MEAT.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings MEAT_1.11.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/MEAT.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘MEAT/DESCRIPTION’ ... OK
+* this is package ‘MEAT’ version ‘1.11.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘MEAT’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is  5.9Mb
+  sub-directories of 1Mb or more:
+    data   5.7Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+Killed
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... WARNING
+Killed
+Killed
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... WARNING
+  LazyData DB of 5.7 MB without LazyDataCompression set
+  See §1.1.6 of 'Writing R Extensions'
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘MEAT-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: BMIQcalibration
+> ### Title: Calibrate methylation data to a gold standard.
+> ### Aliases: BMIQcalibration
+> 
+> ### ** Examples
+> 
+> # Load matrix of beta-values of two individuals from dataset GSE121961
+> data("GSE121961", envir = environment())
+> # Load phenotypes of the two individuals from dataset GSE121961
+> data("GSE121961_pheno", envir = environment())
+> 
+> # Create a SummarizedExperiment object to coordinate phenotypes and
+> # methylation into one object.
+> library(SummarizedExperiment)
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+> GSE121961_SE <- SummarizedExperiment(assays=list(beta=GSE121961),
++ colData=GSE121961_pheno)
+> 
+> # Run clean_beta() to clean the beta-matrix
+> GSE121961_SE_clean <- clean_beta(SE = GSE121961_SE, version = "MEAT2.0")
+-------------------Step 1-------------------------------
+Reducing your beta-matrix to the 18747 CpGs used to calibrate methylation profiles in MEAT2.0
+Your beta-matrix contains 18747 of the 18747 CpGs needed to calibrate methylation profiles.
+-------------------Step 2-------------------------------
+Checking for missing values in the beta-matrix.
+Your beta-matrix contains 70 missing values.
+Warning in knnimp(x, k, maxmiss = rowmax, maxp = maxp) :
+  35 rows with more than 50 % entries missing;
+ mean imputation used for these rows
+Cluster size 18712 broken into 13355 5357 
+Cluster size 13355 broken into 1809 11546 
+Cluster size 1809 broken into 872 937 
+Done cluster 872 
+Done cluster 937 
+Done cluster 1809 
+Cluster size 11546 broken into 4355 7191 
+Cluster size 4355 broken into 3154 1201 
+Cluster size 3154 broken into 1997 1157 
+Cluster size 1997 broken into 1497 500 
+Done cluster 1497 
+Done cluster 500 
+Done cluster 1997 
+Done cluster 1157 
+Done cluster 3154 
+Done cluster 1201 
+Done cluster 4355 
+Cluster size 7191 broken into 2960 4231 
+Cluster size 2960 broken into 1555 1405 
+Cluster size 1555 broken into 546 1009 
+Done cluster 546 
+Done cluster 1009 
+Done cluster 1555 
+Done cluster 1405 
+Done cluster 2960 
+Cluster size 4231 broken into 3042 1189 
+Cluster size 3042 broken into 2094 948 
+Cluster size 2094 broken into 1061 1033 
+Done cluster 1061 
+Done cluster 1033 
+Done cluster 2094 
+Done cluster 948 
+Done cluster 3042 
+Done cluster 1189 
+Done cluster 4231 
+Done cluster 7191 
+Done cluster 11546 
+Done cluster 13355 
+Cluster size 5357 broken into 3289 2068 
+Cluster size 3289 broken into 1295 1994 
+Done cluster 1295 
+Cluster size 1994 broken into 988 1006 
+Done cluster 988 
+Done cluster 1006 
+Done cluster 1994 
+Done cluster 3289 
+Cluster size 2068 broken into 1043 1025 
+Done cluster 1043 
+Done cluster 1025 
+Done cluster 2068 
+Done cluster 5357 
+-------------------Step 3-------------------------------
+Checking for the presence of 0 and 1.
+Your beta-matrix contains 0 0 values and 0 1 values.
+> 
+> # Run BMIQcalibration() to calibrate the clean beta-matrix
+> GSE121961_SE_calibrated <- BMIQcalibration(SE = GSE121961_SE_clean, version = "MEAT2.0")
+Fitting EM beta mixture to goldstandard probes.
+[1] Inf
+[1] 0.001738881
+[1] 0.00248846
+[1] 0.002669617
+[1] 0.002586372
+Done
+ii= 1
+Fitting EM beta mixture to input probes
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘MEAT.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘MEAT.Rmd’ using knitr
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 2 WARNINGs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/MEAT.Rcheck/00check.log’
+for details.
+

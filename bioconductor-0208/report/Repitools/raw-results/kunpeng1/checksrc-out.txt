@@ -1,0 +1,192 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:Repitools.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings Repitools_1.45.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/Repitools.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘Repitools/DESCRIPTION’ ... OK
+* this is package ‘Repitools’ version ‘1.45.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘Repitools’ can be installed ... OK
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... WARNING
+checkRd: (5) AdjustedCopyEstimate-class.Rd:16-34: \item in \describe must have non-empty label
+checkRd: (5) BayMethList-class.Rd:58-88: \item in \describe must have non-empty label
+checkRd: (5) ClusteredScoresList-class.Rd:29-50: \item in \describe must have non-empty label
+checkRd: (5) ClusteredScoresList-class.Rd:57-60: \item in \describe must have non-empty label
+checkRd: (5) ClusteredScoresList-class.Rd:61-64: \item in \describe must have non-empty label
+checkRd: (5) ClusteredScoresList-class.Rd:65-68: \item in \describe must have non-empty label
+checkRd: (5) ClusteredScoresList-class.Rd:75-78: \item in \describe must have non-empty label
+checkRd: (5) CopyEstimate-class.Rd:14-23: \item in \describe must have non-empty label
+checkRd: (5) GCAdjustParams-class.Rd:14-37: \item in \describe must have non-empty label
+checkRd: (5) ScoresList-class.Rd:24-27: \item in \describe must have non-empty label
+checkRd: (5) ScoresList-class.Rd:28-31: \item in \describe must have non-empty label
+checkRd: (5) ScoresList-class.Rd:32-35: \item in \describe must have non-empty label
+checkRd: (5) ScoresList-class.Rd:42-45: \item in \describe must have non-empty label
+checkRd: (5) ScoresList-class.Rd:46-49: \item in \describe must have non-empty label
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘Repitools-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: BayMethList
+> ### Title: Class '"BayMethList"'
+> ### Aliases: BayMethList BayMethList-class
+> ###   BayMethList,GRanges,matrix,matrix,numeric-method
+> ###   [,BayMethList,ANY,missing,ANY-method length length,BayMethList-method
+> ###   control control<- control,BayMethList-method
+> ###   control<-,BayMethList-method cpgDens cpgDens<-
+> ###   cpgDens,BayMethList-method cpgDens<-,BayMethList-method
+> ###   sampleInterest sampleInterest<- sampleInterest,BayMethList-method
+> ###   sampleInterest<-,BayMethList-method show,BayMethList-method windows
+> ###   windows<- windows,BayMethList-method windows<-,BayMethList-method
+> ###   fOffset fOffset<- fOffset,BayMethList-method
+> ###   fOffset<-,BayMethList-method priorTab priorTab<-
+> ###   priorTab,BayMethList-method priorTab<-,BayMethList-method methEst
+> ###   methEst<- methEst,BayMethList-method methEst<-,BayMethList-method
+> ###   maskEmpBayes maskEmpBayes<- maskEmpBayes,BayMethList-method
+> ###   maskEmpBayes<-,BayMethList-method ncontrol
+> ###   ncontrol,BayMethList-method nsampleInterest
+> ###   nsampleInterest,BayMethList-method
+> ### Keywords: classes
+> 
+> ### ** Examples
+> 
+>     if(require(BSgenome.Hsapiens.UCSC.hg18)){
++         windows <- genomeBlocks(Hsapiens, chrs="chr21", width=100, spacing=100)
++         cpgdens <- cpgDensityCalc(windows, organism=Hsapiens,  
++             w.function="linear", window=700)  
++         co <- matrix(rnbinom(length(windows), mu=10, size=2), ncol=1)
++         sI <- matrix(rnbinom(2*length(windows), mu=5, size=2), ncol=2)
++         bm <- BayMethList(windows=windows, control=co, sampleInterest=sI,
++             cpgDens=cpgdens)
++ 
++         cat("Number of genomic regions", length(bm), "\n")
++         cat("Number of fully methylated control samples:", ncontrol(bm), "\n")
++         cat("Number of samples of interest:", nsampleInterest(bm), "\n")
++         bm[2:20]
++     }
+Loading required package: BSgenome.Hsapiens.UCSC.hg18
+Loading required package: BSgenome
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: GenomicRanges
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: rtracklayer
+
+Attaching package: ‘rtracklayer’
+
+The following object is masked from ‘package:Repitools’:
+
+    blocks
+
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘tests.R’
+ ERROR
+Running the tests in ‘tests/tests.R’ failed.
+Last 13 lines of output:
+  > correctLookupTable[1, c(50, 51)] <- 1
+  > correctLookupTable[1, c(60, 61)] <- 4
+  > correctLookupTable[2, c(90, 91)] <- 2
+  > correctLookupTable[4, c(45, 46)] <- 1
+  > correctLookupTable[4, c(55, 56)] <- 4
+  > correctLookupTable[6, c(49, 50)] <- 6
+  > correctLookupTable[6, c(51, 52)] <- 7
+  > 
+  > if(!all(lookupTable == correctLookupTable, na.rm = TRUE))
+  +     stop("Error in makeWindowLookupTable function")
+  > cat("makeWindowLookupTable tested fine.\n")
+  makeWindowLookupTable tested fine.
+  > 
+  > cpgDensity <- cpgDensityCalc(genes, organism = Hsapiens, window = 500, w.function="linear")
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘Repitools_vignette.Rnw’ using ‘UTF-8’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 1 WARNING
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/Repitools.Rcheck/00check.log’
+for details.
+

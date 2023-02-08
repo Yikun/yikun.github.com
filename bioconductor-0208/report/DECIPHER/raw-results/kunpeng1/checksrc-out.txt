@@ -1,0 +1,778 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:DECIPHER.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings DECIPHER_2.27.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/DECIPHER.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘DECIPHER/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘DECIPHER’ version ‘2.27.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘DECIPHER’ can be installed ... OK
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... NOTE
+  installed size is 12.7Mb
+  sub-directories of 1Mb or more:
+    R         1.4Mb
+    data      7.3Mb
+    extdata   2.3Mb
+    libs      1.3Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+DesignSignatures: no visible binding for global variable ‘deltaHrules’
+FindGenes: no visible binding for global variable ‘deltaHrulesRNA’
+FindNonCoding: no visible binding for global variable ‘deltaHrulesRNA’
+LearnNonCoding: no visible binding for global variable ‘deltaHrulesRNA’
+PredictDBN: no visible binding for global variable ‘deltaHrulesRNA’
+TreeLine: multiple local function definitions for ‘.minimize’ with
+  different formal arguments
+Undefined global functions or variables:
+  deltaHrules deltaHrulesRNA
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘DECIPHER-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: LearnNonCoding
+> ### Title: Learn a Non-Coding RNA Model
+> ### Aliases: LearnNonCoding
+> 
+> ### ** Examples
+> 
+> # import a family of non-coding RNAs
+> fas_path <- system.file("extdata",
++ 	"IhtA.fas",
++ 	package="DECIPHER")
+> rna <- readRNAStringSet(fas_path)
+> rna
+RNAStringSet object of length 27:
+     width seq                                              names               
+ [1]   103 AAGAUGAUAUUCUGCGCCAUGGA...UGAUUGUUGUUUUCUUGGCUUU KE360988.1/6443-6...
+ [2]   105 AAGAUGAUAUUCUCCGCCGUGGA...AACUUUAUGUUUUCUUGGCUUU AE002161.1/54676-...
+ [3]   107 AAGUUGGUAUUCUAACGCCAUGG...UAUCUCCGGUUCUCUUGGCUUU AE001273.1/773281...
+ [4]   107 AAGUUGGUAUUCUAACGCCAUGG...UGUCUCCAGUUCUCUUGGCUUU AE002160.2/53054-...
+ [5]   103 AAGAUGAUAUUCUACGCCAUGGA...UGAUUGUUGUUUUCUUGGCUUU AE015925.1/52097-...
+ ...   ... ...
+[23]   107 AAGUUGGUAUUCUAACGCCAUGG...UAUCUCCGGUUCUCUUGGCUUU CP006674.1 Chlamy...
+[24]   103 AAGAUGAUAUUCUGCGCCAUGGA...UGAUUGUUGUUUUCUUGGCUUU KE356008.1 Chlamy...
+[25]   108 AAGUUGGUAUUCUAACGCCAUGG...UAUCUCCGGUUCUCUUGGCUUU CVNC01000001.1 Ch...
+[26]   103 AAGAUGAUAUUCUGCGCCAUGGA...UGAUUGUUGUUUUCUUGGCUUU AP006861.1 Chlamy...
+[27]   101 AAGAUGAUAUUCUACGCCAUGGA...AUGAUGUUGUUUUCUUGGCUUU CP015840.1 Chlamy...
+> 
+> # align the sequences
+> RNA <- AlignSeqs(rna)
+Determining distance matrix based on shared 7-mers:
+================================================================================
+
+Time difference of 0 secs
+
+Clustering into groups by similarity:
+================================================================================
+
+Time difference of 0.01 secs
+
+Aligning Sequences:
+================================================================================
+
+Time difference of 0.16 secs
+
+Iteration 1 of 2:
+
+Determining distance matrix based on alignment:
+================================================================================
+
+Time difference of 0 secs
+
+Reclustering into groups by similarity:
+================================================================================
+
+Time difference of 0.01 secs
+
+Realigning Sequences:
+================================================================================
+
+Time difference of 0.09 secs
+
+Iteration 2 of 2:
+
+Determining distance matrix based on alignment:
+================================================================================
+
+Time difference of 0 secs
+
+Reclustering into groups by similarity:
+================================================================================
+
+Time difference of 0.01 secs
+
+Realigning Sequences:
+================================================================================
+
+Time difference of 0.02 secs
+
+> RNA
+RNAStringSet object of length 27:
+     width seq                                              names               
+ [1]   113 AAGAUGAUAUUCUG-CGCCAUGG...GAUUGU-UGUUUUCUUGGCUUU KE360988.1/6443-6...
+ [2]   113 AAGAUGAUAUUCUC-CGCCGUGG...AACUUUAUGUUUUCUUGGCUUU AE002161.1/54676-...
+ [3]   113 AAGUUGGUAUUCUAACGCCAUGG...--UCUCCGGUUCUCUUGGCUUU AE001273.1/773281...
+ [4]   113 AAGUUGGUAUUCUAACGCCAUGG...--UCUCCAGUUCUCUUGGCUUU AE002160.2/53054-...
+ [5]   113 AAGAUGAUAUUCUA-CGCCAUGG...GAUUGU-UGUUUUCUUGGCUUU AE015925.1/52097-...
+ ...   ... ...
+[23]   113 AAGUUGGUAUUCUAACGCCAUGG...--UCUCCGGUUCUCUUGGCUUU CP006674.1 Chlamy...
+[24]   113 AAGAUGAUAUUCUG-CGCCAUGG...GAUUGU-UGUUUUCUUGGCUUU KE356008.1 Chlamy...
+[25]   113 AAGUUGGUAUUCUAACGCCAUGG...--UCUCCGGUUCUCUUGGCUUU CVNC01000001.1 Ch...
+[26]   113 AAGAUGAUAUUCUG-CGCCAUGG...GAUUGU-UGUUUUCUUGGCUUU AP006861.1 Chlamy...
+[27]   113 AAGAUGAUAUUCUA-CGCCAUGG...GAU-GU-UGUUUUCUUGGCUUU CP015840.1 Chlamy...
+> 
+> y <- LearnNonCoding(RNA)
+Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘ArtOfAlignmentInR.Rnw’... OK
+  ‘ClassifySequences.Rnw’... OK
+  ‘ClusteringSequences.Rnw’... OK
+  ‘DECIPHERing.Rnw’... OK
+  ‘DesignMicroarray.Rnw’... OK
+  ‘DesignPrimers.Rnw’... OK
+  ‘DesignProbes.Rnw’... OK
+  ‘DesignSignatures.Rnw’... OK
+  ‘FindChimeras.Rnw’... OK
+  ‘FindingGenes.Rnw’... OK
+  ‘FindingNonCodingRNAs.Rnw’... failed to complete the test
+  ‘GrowingTrees.Rnw’... OK
+  ‘RepeatRepeat.Rnw’... OK
+ ERROR
+Errors in running code in vignettes:
+when running code in ‘FindingNonCodingRNAs.Rnw’
+  ...
+
+> w <- which(t[, "leadingChar"] <= median(t[, "leadingChar"]) & 
++     t[, "trailingChar"] <= median(t[, "trailingChar"]))
+
+> RNA <- RemoveGaps(RNA[w], "common")
+
+> y <- LearnNonCoding(RNA)
+Killed
+
+... incomplete output.  Crash?
+
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘ArtOfAlignmentInR.Rnw’ using Sweave
+Loading required package: Biostrings
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: XVector
+Loading required package: GenomeInfoDb
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: RSQLite
+Loading required package: parallel
+--- finished re-building ‘ArtOfAlignmentInR.Rnw’
+
+--- re-building ‘ClassifySequences.Rnw’ using Sweave
+Loading required package: Biostrings
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: XVector
+Loading required package: GenomeInfoDb
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: RSQLite
+Loading required package: parallel
+Warning in par(p) : argument 1 does not name a graphical parameter
+--- finished re-building ‘ClassifySequences.Rnw’
+
+--- re-building ‘ClusteringSequences.Rnw’ using Sweave
+Loading required package: Biostrings
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: XVector
+Loading required package: GenomeInfoDb
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: RSQLite
+Loading required package: parallel
+--- finished re-building ‘ClusteringSequences.Rnw’
+
+--- re-building ‘DECIPHERing.Rnw’ using Sweave
+Loading required package: Biostrings
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: XVector
+Loading required package: GenomeInfoDb
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: RSQLite
+Loading required package: parallel
+--- finished re-building ‘DECIPHERing.Rnw’
+
+--- re-building ‘DesignMicroarray.Rnw’ using Sweave
+Loading required package: Biostrings
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: XVector
+Loading required package: GenomeInfoDb
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: RSQLite
+Loading required package: parallel
+--- finished re-building ‘DesignMicroarray.Rnw’
+
+--- re-building ‘DesignPrimers.Rnw’ using Sweave
+Loading required package: Biostrings
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: XVector
+Loading required package: GenomeInfoDb
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: RSQLite
+Loading required package: parallel
+--- finished re-building ‘DesignPrimers.Rnw’
+
+--- re-building ‘DesignProbes.Rnw’ using Sweave
+Loading required package: Biostrings
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: XVector
+Loading required package: GenomeInfoDb
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: RSQLite
+Loading required package: parallel
+--- finished re-building ‘DesignProbes.Rnw’
+
+--- re-building ‘DesignSignatures.Rnw’ using Sweave
+Loading required package: Biostrings
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: XVector
+Loading required package: GenomeInfoDb
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: RSQLite
+Loading required package: parallel
+--- finished re-building ‘DesignSignatures.Rnw’
+
+--- re-building ‘FindChimeras.Rnw’ using Sweave
+Loading required package: Biostrings
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: XVector
+Loading required package: GenomeInfoDb
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: RSQLite
+Loading required package: parallel
+--- finished re-building ‘FindChimeras.Rnw’
+
+--- re-building ‘FindingGenes.Rnw’ using Sweave
+Loading required package: Biostrings
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: XVector
+Loading required package: GenomeInfoDb
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: RSQLite
+Loading required package: parallel
+--- finished re-building ‘FindingGenes.Rnw’
+
+--- re-building ‘FindingNonCodingRNAs.Rnw’ using Sweave
+Loading required package: Biostrings
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: XVector
+Loading required package: GenomeInfoDb
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: RSQLite
+Loading required package: parallel
+Killed
+--- re-building ‘GrowingTrees.Rnw’ using Sweave
+Loading required package: Biostrings
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: XVector
+Loading required package: GenomeInfoDb
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: RSQLite
+Loading required package: parallel
+--- finished re-building ‘GrowingTrees.Rnw’
+
+--- re-building ‘RepeatRepeat.Rnw’ using Sweave
+Loading required package: Biostrings
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: XVector
+Loading required package: GenomeInfoDb
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: RSQLite
+Loading required package: parallel
+--- finished re-building ‘RepeatRepeat.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘FindingNonCodingRNAs.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/DECIPHER.Rcheck/00check.log’
+for details.
+

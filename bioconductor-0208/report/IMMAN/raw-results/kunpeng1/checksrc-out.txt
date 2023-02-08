@@ -1,0 +1,167 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:IMMAN.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings IMMAN_1.19.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/IMMAN.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘IMMAN/DESCRIPTION’ ... OK
+* this is package ‘IMMAN’ version ‘1.19.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘IMMAN’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+IMMAN: no visible binding for global variable ‘tem’
+IMMAN : <anonymous>: no visible binding for global variable ‘tem’
+Undefined global functions or variables:
+  tem
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘IMMAN-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: IMMAN
+> ### Title: Interlog protein network reconstruction by Mapping and Mining
+> ###   ANalysis
+> ### Aliases: IMMAN
+> 
+> ### ** Examples
+> 
+> 
+> data(FruitFly)
+> data(Celegance)
+> 
+> subFruitFly <- as.character(FruitFly$V1)[1:10]
+> subCelegance <- as.character(Celegance$V1)[1:10]
+> 
+> ProteinLists = list(subFruitFly, subCelegance)
+> 
+> List1_Species_ID = 7227  # taxonomy ID FruitFly
+> List2_Species_ID = 6239  # taxonomy ID Celegance
+> 
+> Species_IDs  = c(List1_Species_ID, List2_Species_ID)
+> 
+> identityU = 30
+> substitutionMatrix = "BLOSUM62"
+> gapOpening = -8
+> gapExtension = -8
+> NetworkShrinkage = FALSE
+> coverage = 1
+> BestHit = TRUE
+> score_threshold = 400
+> STRINGversion="11"
+> 
+> # Run the IMMAN function for the parameters
+> output = IMMAN(ProteinLists, fileNames=NULL, Species_IDs,
++               identityU, substitutionMatrix,
++               gapOpening, gapExtension, BestHit,
++               coverage, NetworkShrinkage,
++               score_threshold, STRINGversion,
++               InputDirectory = getwd())
+Step 1/4:Downloading amino acid sequences...
+Downloading amino acid sequences of List1
+Downloading amino acid sequences of List2
+Step 2/4: Alignment...
+Align List1 with List2
+Step 3/4: Detection in STRING...
+Detecting List1 in STRING
+trying URL 'https://stringdb-static.org/download/protein.aliases.v11.0/7227.protein.aliases.v11.0.txt.gz'
+Content type 'application/octet-stream' length 4188915 bytes (4.0 MB)
+==================================================
+downloaded 4.0 MB
+
+trying URL 'https://stringdb-static.org/download/protein.info.v11.0/7227.protein.info.v11.0.txt.gz'
+Content type 'application/octet-stream' length 687988 bytes (671 KB)
+==================================================
+downloaded 671 KB
+
+Detecting List2 in STRING
+trying URL 'https://stringdb-static.org/download/protein.aliases.v11.0/6239.protein.aliases.v11.0.txt.gz'
+Content type 'application/octet-stream' length 2902021 bytes (2.8 MB)
+==================================================
+downloaded 2.8 MB
+
+trying URL 'https://stringdb-static.org/download/protein.info.v11.0/6239.protein.info.v11.0.txt.gz'
+Content type 'application/octet-stream' length 675823 bytes (659 KB)
+==================================================
+downloaded 659 KB
+
+Step 4/4: Retrieving String Network...
+Retrieving List1
+trying URL 'https://stringdb-static.org/download/protein.links.v11.0/7227.protein.links.v11.0.txt.gz'
+Content type 'application/octet-stream' length 22010066 bytes (21.0 MB)
+==================================================
+downloaded 21.0 MB
+
+Retrieving List2
+trying URL 'https://stringdb-static.org/download/protein.links.v11.0/6239.protein.links.v11.0.txt.gz'
+Content type 'application/octet-stream' length 48132415 bytes (45.9 MB)
+===================Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘IMMAN.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/IMMAN.Rcheck/00check.log’
+for details.
+

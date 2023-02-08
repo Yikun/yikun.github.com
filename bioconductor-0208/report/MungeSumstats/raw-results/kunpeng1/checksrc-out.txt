@@ -1,0 +1,200 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:MungeSumstats.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings MungeSumstats_1.7.16.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/MungeSumstats.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘MungeSumstats/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘MungeSumstats’ version ‘1.7.16’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘MungeSumstats’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking R/sysdata.rda ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘MungeSumstats-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: format_sumstats
+> ### Title: Check that summary statistics from GWAS are in a homogeneous
+> ###   format
+> ### Aliases: format_sumstats
+> 
+> ### ** Examples
+> 
+> # Pass path to Educational Attainment Okbay sumstat file to a temp directory
+> 
+> eduAttainOkbayPth <- system.file("extdata", "eduAttainOkbay.txt",
++     package = "MungeSumstats"
++ )
+> 
+> ## Call uses reference genome as default with more than 2GB of memory,
+> ## which is more than what 32-bit Windows can handle so remove certain checks
+> ## Using dbSNP = 144 for speed as it's smaller but you should use 155 unless
+> ## you know what you are doing and need 144
+> 
+> is_32bit_windows <-
++     .Platform$OS.type == "windows" && .Platform$r_arch == "i386"
+> if (!is_32bit_windows) {
++     reformatted <- format_sumstats(
++         path = eduAttainOkbayPth,
++         ref_genome = "GRCh37",
++         dbSNP = 144
++     )
++ } else {
++     reformatted <- format_sumstats(
++         path = eduAttainOkbayPth,
++         ref_genome = "GRCh37",
++         on_ref_genome = FALSE,
++         strand_ambig_filter = FALSE,
++         bi_allelic_filter = FALSE,
++         allele_flip_check = FALSE,
++         dbSNP=144
++     )
++ }
+
+
+******::NOTE::******
+ - Formatted results will be saved to `tempdir()` by default.
+ - This means all formatted summary stats will be deleted upon ending the R session.
+ - To keep formatted summary stats, change `save_path`  ( e.g. `save_path=file.path('./formatted',basename(path))` ),   or make sure to copy files elsewhere after processing  ( e.g. `file.copy(save_path, './formatted/' )`.
+ ******************** 
+
+Formatted summary statistics will be saved to ==>  /tmp/Rtmp7ralhJ/file37909188de98d.tsv.gz
+Importing tabular file: /home/biocbuild/bbs-3.17-bioc/R/library/MungeSumstats/extdata/eduAttainOkbay.txt
+Checking for empty columns.
+Standardising column headers.
+First line of summary statistics file: 
+MarkerName	CHR	POS	A1	A2	EAF	Beta	SE	Pval	
+Summary statistics report:
+   - 93 rows
+   - 93 unique variants
+   - 70 genome-wide significant variants (P<5e-8)
+   - 20 chromosomes
+Checking for multi-GWAS.
+Checking for multiple RSIDs on one row.
+Checking SNP RSIDs.
+Checking for merged allele column.
+Checking A1 is uppercase
+Checking A2 is uppercase
+Ensuring all SNPs are on the reference genome.
+Loading SNPlocs data.
+Loading reference genome data.
+Preprocessing RSIDs.
+Validating RSIDs of 93 SNPs using BSgenome::snpsById...
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+     - 1 genome build(s)
+  Collecting metadata from Open GWAS.
+  Filtering metadata by substring criteria.
+  Filtering metadata by sample/case/control/SNP size criteria.
+  Excluding sample/case/control size with NAs.
+  Found 3 GWAS datasets matching search criteria across:
+     - 3 trait(s)
+     - 1 population(s)
+     - 2 category(ies)
+     - 2 subcategory(ies)
+     - 2 publication(s)
+     - 2 consortia(ium)
+     - 1 genome build(s)
+  Collecting metadata from Open GWAS.
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘MungeSumstats.Rmd’ using ‘UTF-8’... OK
+  ‘OpenGWAS.Rmd’ using ‘UTF-8’... OK
+  ‘docker.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/MungeSumstats.Rcheck/00check.log’
+for details.
+

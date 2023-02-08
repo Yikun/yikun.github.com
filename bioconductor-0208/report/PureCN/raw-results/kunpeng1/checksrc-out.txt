@@ -1,0 +1,143 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:PureCN.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings PureCN_2.5.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/PureCN.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘PureCN/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘PureCN’ version ‘2.5.0’
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Package which this enhances but not available for checking: ‘genomicsdb’
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘PureCN’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Killed
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘PureCN-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: callAmplificationsInLowPurity
+> ### Title: Calling of amplifications in low purity samples
+> ### Aliases: callAmplificationsInLowPurity
+> 
+> ### ** Examples
+> 
+> 
+> data(purecn.example.output)
+> normal.coverage.file <- system.file("extdata", "example_normal.txt.gz", 
++     package = "PureCN")
+> normal2.coverage.file <- system.file("extdata", "example_normal2.txt.gz", 
++     package = "PureCN")
+> normal.coverage.files <- c(normal.coverage.file, normal2.coverage.file)
+> normalDB <- createNormalDatabase(normal.coverage.files)
+INFO [2023-02-07 12:16:05] 576 on-target bins with low coverage in all samples.
+WARN [2023-02-07 12:16:05] You are likely not using the correct baits file!
+WARN [2023-02-07 12:16:05] Allosome coverage missing, cannot determine sex.
+WARN [2023-02-07 12:16:05] Allosome coverage missing, cannot determine sex.
+INFO [2023-02-07 12:16:05] Processing on-target regions...
+INFO [2023-02-07 12:16:06] Removing 930 intervals with low coverage in normalDB.
+INFO [2023-02-07 12:16:06] Removing 1 intervals with zero coverage in more than 3% of normalDB.
+> callAmplificationsInLowPurity(purecn.example.output, normalDB)["EIF2A", ]
+INFO [2023-02-07 12:16:09] Tumor/normal noise ratio: 19.041
+WARN [2023-02-07 12:16:09] Extensive noise in tumor compared to normals.
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  > 
+  > test_check("PureCN")
+  WARN [2023-02-07 12:16:41] Attempted adding gene symbols to intervals. Heuristics have been used to pick symbols for overlapping genes.
+  WARN [2023-02-07 12:16:41] Chromosome naming style of txdb file (UCSC) was different from interval file (Ensembl).
+  WARN [2023-02-07 12:16:48] Attempted adding gene symbols to intervals. Heuristics have been used to pick symbols for overlapping genes.
+  FATAL [2023-02-07 12:16:52] tumor.coverage.file and interval.file do not align. 
+  
+  FATAL [2023-02-07 12:16:52]  
+  
+  FATAL [2023-02-07 12:16:52] This is most likely a user error due to invalid input data or 
+  
+  FATAL [2023-02-07 12:16:52] parameters (PureCN 2.5.0). 
+  
+  WARN [2023-02-07 12:16:53] Cannot find all contig lengths while exporting interval file.
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘Quick.Rmd’ using ‘UTF-8’... OK
+  ‘PureCN.Rnw’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘Quick.Rmd’ using rmarkdown
+--- finished re-building ‘Quick.Rmd’
+
+--- re-building ‘PureCN.Rnw’ using knitr
+Killed
+SUMMARY: processing the following file failed:
+  ‘PureCN.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/PureCN.Rcheck/00check.log’
+for details.
+

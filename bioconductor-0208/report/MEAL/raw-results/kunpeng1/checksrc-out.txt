@@ -1,0 +1,258 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:MEAL.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings MEAL_1.29.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/MEAL.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘MEAL/DESCRIPTION’ ... OK
+* this is package ‘MEAL’ version ‘1.29.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘MEAL’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... NOTE
+File
+  LICENSE
+is not mentioned in the DESCRIPTION file.
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... NOTE
+Problems with news in ‘NEWS’:
+  Cannot process chunk/lines:
+    MAJOR CHANGES
+  Cannot process chunk/lines:
+    o Substitute AnalysisResults and AnalysisRegionResults by ResultSet.
+  Cannot process chunk/lines:
+    o Substitute MethylationSet by GenomicRatioSet.
+  Cannot process chunk/lines:
+    USER-VISIBLE CHANGES
+  Cannot process chunk/lines:
+    o Rename analysis functions.
+  Cannot process chunk/lines:
+    o Create wrappers for each DMR methd 
+  Cannot process chunk/lines:
+    NEW FEATURES
+  Cannot process chunk/lines:
+    o Add differences of variances analysis.
+  Cannot process chunk/lines:
+    o Add new plot to simultaneously show all results of the same region.
+  Cannot process chunk/lines:
+    NEW FEATURES
+  Cannot process chunk/lines:
+    o Add function to add matrices to MDS.
+  Cannot process chunk/lines:
+    o Add Methylation-SNPs correlation.
+  Cannot process chunk/lines:
+    USER-VISIBLE CHANGES
+  Cannot process chunk/lines:
+    o Move prepareMethylationSet from MultiDataSet to MEAL.
+  Cannot process chunk/lines:
+    o Defunct multiCorrMethExprs.
+  Cannot process chunk/lines:
+    BUGS FIXES
+  Cannot process chunk/lines:
+    o Solve a bug in DARegion when running DMRcate.
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Killed
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... WARNING
+Killed
+The argument of a replacement function which corresponds to the right
+hand side must be named ‘value’.
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+plotRegion: no visible global function definition for
+  ‘subsetByOverlaps’
+plotRegion: no visible global function definition for ‘mcols<-’
+runRDA: no visible global function definition for ‘rowData’
+runSVA: no visible global function definition for ‘resid’
+runSVA: no visible global function definition for ‘quantile’
+Undefined global functions or variables:
+  mcols<- quantile resid rowData subsetByOverlaps
+Consider adding
+  importFrom("stats", "quantile", "resid")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'getProbeResults'
+  ‘robust’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘MEAL-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plotRDA
+> ### Title: Plot RDA results
+> ### Aliases: plotRDA
+> 
+> ### ** Examples
+> 
+> if (require(minfiData)){
++ set <- ratioConvert(mapToGenome(MsetEx[1:10,]))
++ model <- model.matrix(~set$sex)
++ rda <- runRDA(set, model)
++ plotRDA(rda, pheno = data.frame(factor(set$sex)))
++ }
+Loading required package: minfiData
+Loading required package: minfi
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: SummarizedExperiment
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘matrixStats’
+
+The following object is masked from ‘package:MultiDataSet’:
+
+    rowRanges
+
+The following objects are masked from ‘package:Biobase’:
+
+    anyMissing, rowMedians
+
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+The following object is masked from ‘package:Biobase’:
+
+    rowMedians
+
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: bumphunter
+Loading required package: foreach
+Loading required package: iterators
+Loading required package: parallel
+Loading required package: locfit
+locfit 1.5-9.7 	 2023-01-02
+Loading required package: IlluminaHumanMethylation450kmanifest
+Loading required package: IlluminaHumanMethylation450kanno.ilmn12.hg19
+'nperm' >= set of all permutations: complete enumeration.
+Set of permutations < 'minperm'. Generating entire set.
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+      pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+      tapply, union, unique, unsplit, which.max, which.min
+  
+  Welcome to Bioconductor
+  
+      Vignettes contain introductory material; view with
+      'browseVignettes()'. To cite Bioconductor, see
+      'citation("Biobase")', and for packages 'citation("pkgname")'.
+  
+  Loading required package: MultiDataSet
+  Setting options('download.file.method.GEOquery'='auto')
+  Setting options('GEOquery.inmemory.gpl'=FALSE)
+  > 
+  > test_check("MEAL")
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘MEAL.Rmd’ using ‘UTF-8’... OK
+  ‘caseExample.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘MEAL.Rmd’ using rmarkdown
+Killed
+--- re-building ‘caseExample.Rmd’ using rmarkdown
+Killed
+SUMMARY: processing the following files failed:
+  ‘MEAL.Rmd’ ‘caseExample.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs, 2 WARNINGs, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/MEAL.Rcheck/00check.log’
+for details.
+

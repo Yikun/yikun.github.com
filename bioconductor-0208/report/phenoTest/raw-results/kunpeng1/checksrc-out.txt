@@ -1,0 +1,502 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:phenoTest.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings phenoTest_1.47.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/phenoTest.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘phenoTest/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘phenoTest’ version ‘1.47.0’
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  'Biobase', 'annotate', 'Heatplus', 'BMA', 'ggplot2', 'Hmisc'
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘phenoTest’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Title field: should not end in a period.
+Packages listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘annotate’ ‘GSEABase’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... NOTE
+Warning: no function found corresponding to methods exports from ‘phenoTest’ for: ‘show’
+
+A namespace must be able to be loaded with just the base namespace
+loaded: otherwise if the namespace gets loaded by a saved object, the
+session will be unable to start.
+
+Probably some imports need to be declared in the NAMESPACE file.
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+'library' or 'require' call to ‘ggplot2’ which was already attached by Depends.
+  Please remove these calls from your code.
+Namespace in Imports field not imported from: ‘annotate’
+  All declared Imports should be used.
+Packages in Depends field not imported from:
+  ‘BMA’ ‘Heatplus’ ‘annotate’ ‘ggplot2’ ‘methods’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+There are ::: calls to the package's namespace in its code. A package
+  almost never needs to use ::: for its own objects:
+  ‘sortDragHtmlTable’
+* checking S3 generic/method consistency ... NOTE
+Found the following apparent S3 methods exported but not registered:
+  plot.gseaData plot.gseaSignaturesSign plot.gseaSignaturesVar
+  summary.gseaData summary.gseaSignificanceSign
+  summary.gseaSignificanceVar
+See section ‘Registering S3 methods’ in the ‘Writing R Extensions’
+manual.
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+ClusterPhenoTest: no visible global function definition for ‘is’
+ClusterPhenoTest: no visible global function definition for ‘pData’
+ClusterPhenoTest : <anonymous>: no visible global function definition
+  for ‘pData’
+ClusterPhenoTest : <anonymous>: no visible global function definition
+  for ‘kruskal.test’
+ClusterPhenoTest : <anonymous>: no visible global function definition
+  for ‘chisq.test’
+ClusterPhenoTest: no visible global function definition for ‘p.adjust’
+ExpressionPhenoTest : mycoxph: no visible global function definition
+  for ‘coefficients’
+ExpressionPhenoTest : mycoxph: no visible global function definition
+  for ‘coef’
+ExpressionPhenoTest : mycoxph: no visible global function definition
+  for ‘anova’
+ExpressionPhenoTest : mycoxph: no visible global function definition
+  for ‘pData’
+ExpressionPhenoTest : mycoxph: no visible global function definition
+  for ‘bic.surv’
+ExpressionPhenoTest : postprobBic: no visible global function
+  definition for ‘BIC’
+ExpressionPhenoTest : postprobBic: no visible global function
+  definition for ‘lm’
+ExpressionPhenoTest: no visible global function definition for ‘is’
+ExpressionPhenoTest: no visible global function definition for ‘exprs’
+ExpressionPhenoTest: no visible global function definition for ‘pData’
+ExpressionPhenoTest: no visible global function definition for
+  ‘model.matrix’
+ExpressionPhenoTest : <anonymous>: no visible global function
+  definition for ‘pData’
+ExpressionPhenoTest: no visible global function definition for ‘coef’
+ExpressionPhenoTest: no visible binding for global variable ‘y’
+ExpressionPhenoTest: no visible global function definition for
+  ‘featureNames’
+ExpressionPhenoTest : <anonymous>: no visible global function
+  definition for ‘p.adjust’
+ExpressionPhenoTest: no visible global function definition for ‘new’
+ExpressionPhenoTest: no visible global function definition for
+  ‘annotation’
+barplotCI: no visible global function definition for ‘lm’
+barplotCI: no visible global function definition for ‘coef’
+barplotCI: no visible global function definition for ‘confint’
+checkGsetSimmetry: no visible global function definition for ‘pnorm’
+checkGsetSimmetry: no visible global function definition for ‘sd’
+epheno2html: no visible global function definition for ‘annotation’
+epheno2html: no visible global function definition for ‘featureNames’
+epheno2html : export2html: no visible global function definition for
+  ‘featureNames’
+epheno2html : export2html: no visible global function definition for
+  ‘annotation’
+epheno2html : export2html: no visible global function definition for
+  ‘write.csv’
+epheno2html : export2html: no visible global function definition for
+  ‘pData’
+epheno2html : export2html: no visible global function definition for
+  ‘exprs’
+epheno2html : export2html : myFun: no visible global function
+  definition for ‘png’
+epheno2html : export2html : myFun: no visible global function
+  definition for ‘featureNames’
+epheno2html : export2html : myFun: no visible global function
+  definition for ‘legend’
+epheno2html : export2html : myFun: no visible global function
+  definition for ‘dev.off’
+epheno2html : export2html : myFun: no visible global function
+  definition for ‘pData’
+epheno2html : export2html : myFun: no visible global function
+  definition for ‘exprs’
+epheno2html : export2html : myFun: no visible global function
+  definition for ‘boxplot’
+epheno2html : export2html : myFun: no visible global function
+  definition for ‘dotchart’
+eset2genelevel: no visible global function definition for ‘is’
+eset2genelevel: no visible global function definition for ‘annotation’
+eset2genelevel: no visible global function definition for
+  ‘featureNames<-’
+eset2genelevel: no visible global function definition for
+  ‘annotation<-’
+getChrWithMedVar: no visible global function definition for ‘quantile’
+getEsPositions: no visible global function definition for ‘is’
+getEsPositions: no visible global function definition for ‘annotation’
+getEsPositions: no visible global function definition for
+  ‘featureNames’
+getIndivPvals: no visible global function definition for ‘pnorm’
+getIndivPvals: no visible global function definition for ‘sd’
+getIndivPvals: no visible global function definition for ‘density’
+getIndivPvals: no visible global function definition for ‘approxfun’
+getIndivPvals: no visible global function definition for ‘integrate’
+getIndivPvals : getPval: no visible global function definition for
+  ‘density’
+getIndivPvals : getPval: no visible global function definition for
+  ‘approxfun’
+getIndivPvals : getPval: no visible global function definition for
+  ‘integrate’
+getIndivPvals : getPval: no visible global function definition for
+  ‘pnorm’
+getIndivPvals : getPval: no visible global function definition for ‘sd’
+getIndivPvals: no visible global function definition for ‘p.adjust’
+getPred: no visible global function definition for ‘predict’
+getSummary : getNesPval: no visible global function definition for
+  ‘density’
+getSummary : getNesPval: no visible global function definition for
+  ‘approxfun’
+getSummary : getNesPval: no visible global function definition for
+  ‘integrate’
+getSummary : gseaSignificance : getEsPval: no visible global function
+  definition for ‘density’
+getSummary : gseaSignificance : getEsPval: no visible global function
+  definition for ‘approxfun’
+getSummary : gseaSignificance : getEsPval: no visible global function
+  definition for ‘integrate’
+getSummary : <anonymous>: no visible global function definition for
+  ‘wilcox.test’
+getSummary: no visible global function definition for ‘p.adjust’
+getSummary: no visible global function definition for ‘is’
+gsea: no visible global function definition for ‘new’
+gsea.selGsets: no visible global function definition for ‘is’
+gsea.selGsets: no visible global function definition for ‘new’
+gsea.selVars: no visible global function definition for ‘new’
+gsea2html: no visible global function definition for ‘is’
+gsea2html: no visible global function definition for ‘annotation’
+gsea2html: no visible global function definition for ‘exprs’
+gsea2html: no visible global function definition for ‘pData’
+gsea2html: no visible global function definition for ‘featureNames’
+gsea2html: no visible global function definition for ‘Term’
+gsea2html: no visible global function definition for ‘png’
+gsea2html: no visible global function definition for ‘dev.off’
+pca: no visible global function definition for ‘prcomp’
+pca: no visible global function definition for ‘exprs’
+pca.2d: no visible global function definition for ‘is’
+pca.2d: no visible global function definition for ‘pData’
+pca.2d: no visible global function definition for ‘dist’
+pca.2d: no visible global function definition for ‘cov’
+pca.2d: no visible global function definition for ‘qplot’
+pca.2d: no visible binding for global variable ‘pc1’
+pca.2d: no visible binding for global variable ‘pc2’
+pca.2d: no visible global function definition for ‘geom_point’
+pca.2d: no visible global function definition for ‘coord_cartesian’
+pca.2d: no visible global function definition for ‘theme’
+pca.2d: no visible global function definition for ‘ggtitle’
+plot.gseaData: no visible global function definition for ‘is’
+plot.gseaSignaturesSign: no visible global function definition for ‘is’
+plot.gseaSignaturesVar: no visible global function definition for ‘is’
+plotCopyNumber: no visible global function definition for ‘par’
+plotCopyNumber: no visible global function definition for ‘layout’
+plotCopyNumber: no visible global function definition for ‘densCols’
+plotCopyNumber: no visible global function definition for ‘lines’
+plotCopyNumber: no visible global function definition for ‘abline’
+plotCopyNumber : <anonymous>: no visible global function definition for
+  ‘rect’
+plotCopyNumber : <anonymous>: no visible global function definition for
+  ‘rgb’
+plotGSEA : plot1.perm: no visible global function definition for
+  ‘approx’
+plotGSEA : plot1.perm: no visible global function definition for
+  ‘abline’
+plotGSEA : plot1.perm: no visible global function definition for ‘axis’
+plotGSEA : plot1.wilcox: no visible global function definition for
+  ‘density’
+plotGSEA : plot1.wilcox: no visible global function definition for
+  ‘abline’
+plotGSEA : plot2: no visible global function definition for ‘par’
+plotGSEA : plot2: no visible global function definition for ‘approx’
+plotGSEA : plot2: no visible global function definition for ‘abline’
+plotGSEA : plot2: no visible global function definition for ‘axis’
+plotGSEA : plot2: no visible global function definition for ‘polygon’
+plotGSEA : plot3: no visible global function definition for ‘par’
+plotGSEA : plot3: no visible global function definition for ‘quantile’
+plotGSEA : plot3: no visible global function definition for ‘image’
+plotGSEA : plot3: no visible global function definition for ‘rgb’
+plotGSEA : plot4: no visible global function definition for ‘par’
+plotGSEA : plot4: no visible global function definition for ‘axTicks’
+plotGSEA : plot4: no visible global function definition for ‘axis’
+plotGSEA : plot4: no visible global function definition for ‘densCols’
+plotGSEA : plot4: no visible global function definition for ‘abline’
+plotGSEA: no visible global function definition for ‘par’
+plotGSEA: no visible global function definition for ‘layout’
+plotGseaPreprocess: no visible global function definition for ‘is’
+preProcessX: no visible global function definition for ‘complete.cases’
+preProcessX: no visible global function definition for ‘median’
+qcPlot: no visible global function definition for ‘pdf’
+qcPlot: no visible global function definition for ‘densCols’
+qcPlot: no visible global function definition for ‘lm’
+qcPlot: no visible global function definition for ‘abline’
+qcPlot: no visible global function definition for ‘boxplot’
+qcPlot: no visible global function definition for ‘density’
+qcPlot: no visible global function definition for ‘lines’
+qcPlot: no visible global function definition for ‘dev.off’
+selSignatures: no visible global function definition for ‘is’
+smoothCoxph: no visible global function definition for ‘predict’
+smoothCoxph: no visible global function definition for ‘median’
+smoothCoxph: no visible global function definition for ‘lines’
+smoothCoxph: no visible global function definition for ‘abline’
+tellNumPerm: no visible global function definition for ‘is’
+write.html: no visible global function definition for ‘is’
+[,epheno-ANY-ANY-ANY: no visible global function definition for ‘is’
+[,epheno-ANY-ANY-ANY: no visible global function definition for
+  ‘featureNames’
+[,epheno-ANY-ANY-ANY: no visible global function definition for
+  ‘exprs<-’
+[,epheno-ANY-ANY-ANY: no visible global function definition for ‘exprs’
+[,epheno-ANY-ANY-ANY: no visible global function definition for ‘pData’
+[,epheno-ANY-ANY-ANY: no visible global function definition for ‘new’
+[,epheno-ANY-ANY-ANY: no visible global function definition for
+  ‘annotation’
+barplotSignatures,epheno-list : <anonymous>: no visible global function
+  definition for ‘featureNames’
+barplotSignatures,epheno-list : <anonymous> : <anonymous>: no visible
+  global function definition for ‘featureNames’
+barplotSignatures,epheno-list: no visible global function definition
+  for ‘abline’
+barplotSignatures,epheno-list : <anonymous>: no visible global function
+  definition for ‘wilcox.test’
+barplotSignatures,epheno-list: no visible global function definition
+  for ‘p.adjust’
+barplotSignatures,epheno-list: no visible global function definition
+  for ‘text’
+barplotSignatures,epheno-list: no visible global function definition
+  for ‘par’
+barplotSignifSignatures,epheno-list : <anonymous>: no visible global
+  function definition for ‘featureNames’
+barplotSignifSignatures,epheno-list : myFun1 : <anonymous>: no visible
+  global function definition for ‘featureNames’
+barplotSignifSignatures,epheno-list : myFun2: no visible global
+  function definition for ‘binom.test’
+barplotSignifSignatures,epheno-list : myFun3 : <anonymous>: no visible
+  global function definition for ‘chisq.test’
+barplotSignifSignatures,epheno-list : myFun4 : <anonymous>: no visible
+  global function definition for ‘chisq.test’
+barplotSignifSignatures,epheno-list: no visible global function
+  definition for ‘p.adjust’
+barplotSignifSignatures,epheno-list : <anonymous>: no visible global
+  function definition for ‘p.adjust’
+barplotSignifSignatures,epheno-list: no visible global function
+  definition for ‘barplot’
+barplotSignifSignatures,epheno-list: no visible global function
+  definition for ‘text’
+boxplotSignatures,epheno-list : <anonymous>: no visible global function
+  definition for ‘featureNames’
+boxplotSignatures,epheno-list: no visible global function definition
+  for ‘boxplot’
+boxplotSignatures,epheno-list: no visible global function definition
+  for ‘abline’
+boxplotSignatures,epheno-list : <anonymous>: no visible global function
+  definition for ‘wilcox.test’
+boxplotSignatures,epheno-list: no visible global function definition
+  for ‘text’
+boxplotSignatures,epheno-list: no visible global function definition
+  for ‘par’
+dim,epheno: no visible global function definition for ‘exprs’
+dim,epheno: no visible global function definition for ‘pData’
+export2CSV,epheno: no visible global function definition for ‘fData’
+export2CSV,epheno: no visible global function definition for
+  ‘featureNames’
+export2CSV,epheno: no visible global function definition for
+  ‘write.csv’
+getFc,epheno: no visible global function definition for ‘pData’
+getFc,epheno: no visible global function definition for ‘exprs’
+getHr,epheno: no visible global function definition for ‘pData’
+getHr,epheno: no visible global function definition for ‘exprs’
+getMeans,epheno: no visible global function definition for ‘pData’
+getMeans,epheno: no visible global function definition for ‘exprs’
+getPostProbs,epheno: no visible global function definition for ‘pData’
+getPostProbs,epheno: no visible global function definition for ‘exprs’
+getPvals,epheno: no visible global function definition for ‘pData’
+getPvals,epheno: no visible global function definition for ‘exprs’
+getSignif,epheno: no visible global function definition for ‘pData’
+getSignif,epheno: no visible global function definition for ‘exprs’
+getSummaryDif,epheno: no visible global function definition for ‘pData’
+getSummaryDif,epheno: no visible global function definition for ‘exprs’
+getVars2test,epheno: no visible global function definition for ‘pData’
+gseaSignatures,epheno-list: no visible global function definition for
+  ‘new’
+gseaSignatures,matrix-list: no visible global function definition for
+  ‘new’
+gseaSignatures,numeric-list: no visible global function definition for
+  ‘new’
+gseaSignificance,gseaSignaturesSign: no visible global function
+  definition for ‘is’
+gseaSignificance,gseaSignaturesSign: no visible global function
+  definition for ‘new’
+gseaSignificance,gseaSignaturesVar: no visible global function
+  definition for ‘new’
+heatmapPhenoTest,ExpressionSet-character: no visible global function
+  definition for ‘pData’
+heatmapPhenoTest,ExpressionSet-character: no visible global function
+  definition for ‘featureNames’
+heatmapPhenoTest,ExpressionSet-character: no visible global function
+  definition for ‘annotation’
+heatmapPhenoTest,ExpressionSet-character: no visible global function
+  definition for ‘exprs<-’
+heatmapPhenoTest,ExpressionSet-character: no visible global function
+  definition for ‘exprs’
+heatmapPhenoTest,ExpressionSet-character: no visible global function
+  definition for ‘hclust’
+heatmapPhenoTest,ExpressionSet-character: no visible global function
+  definition for ‘as.dist’
+heatmapPhenoTest,ExpressionSet-character: no visible global function
+  definition for ‘cor’
+heatmapPhenoTest,ExpressionSet-character: no visible global function
+  definition for ‘dist’
+heatmapPhenoTest,ExpressionSet-character: no visible global function
+  definition for ‘cutree’
+heatmapPhenoTest,ExpressionSet-character: no visible global function
+  definition for ‘model.matrix’
+heatmapPhenoTest,ExpressionSet-character: no visible global function
+  definition for ‘coef’
+heatmapPhenoTest,ExpressionSet-character: no visible global function
+  definition for ‘gray’
+heatmapPhenoTest,ExpressionSet-character: no visible global function
+  definition for ‘as.dendrogram’
+heatmapPhenoTest,ExpressionSet-character: no visible global function
+  definition for ‘par’
+heatmapPhenoTest,ExpressionSet-character: no visible global function
+  definition for ‘heatmap_plus’
+heatmapPhenoTest,ExpressionSet-character: no visible global function
+  definition for ‘pchisq’
+heatmapPhenoTest,ExpressionSet-character: no visible global function
+  definition for ‘text’
+heatmapPhenoTest,ExpressionSet-missing: no visible global function
+  definition for ‘featureNames’
+pAdjust,epheno: no visible global function definition for ‘pData’
+pAdjust,epheno: no visible global function definition for ‘new’
+pAdjust,epheno: no visible global function definition for ‘exprs’
+pAdjust,epheno : <anonymous>: no visible global function definition for
+  ‘p.adjust’
+pAdjust,epheno: no visible global function definition for ‘annotation’
+phenoClass,epheno: no visible global function definition for ‘pData’
+phenoNames,epheno: no visible global function definition for ‘pData’
+show,epheno: no visible global function definition for ‘featureNames’
+show,epheno: no visible global function definition for ‘annotation’
+usedGam,gseaData: no visible global function definition for ‘is’
+Undefined global functions or variables:
+  BIC Term abline annotation annotation<- anova approx approxfun
+  as.dendrogram as.dist axTicks axis barplot bic.surv binom.test
+  boxplot chisq.test coef coefficients complete.cases confint
+  coord_cartesian cor cov cutree densCols density dev.off dist dotchart
+  exprs exprs<- fData featureNames featureNames<- geom_point ggtitle
+  gray hclust heatmap_plus image integrate is kruskal.test layout
+  legend lines lm median model.matrix new p.adjust pData par pc1 pc2
+  pchisq pdf png pnorm polygon prcomp predict qplot quantile rect rgb
+  sd text theme wilcox.test write.csv y
+Consider adding
+  importFrom("grDevices", "densCols", "dev.off", "gray", "pdf", "png",
+             "rgb")
+  importFrom("graphics", "abline", "axTicks", "axis", "barplot",
+             "boxplot", "dotchart", "image", "layout", "legend", "lines",
+             "par", "polygon", "rect", "text")
+  importFrom("methods", "is", "new")
+  importFrom("stats", "BIC", "anova", "approx", "approxfun",
+             "as.dendrogram", "as.dist", "binom.test", "chisq.test",
+             "coef", "coefficients", "complete.cases", "confint", "cor",
+             "cov", "cutree", "density", "dist", "hclust", "integrate",
+             "kruskal.test", "lm", "median", "model.matrix", "p.adjust",
+             "pchisq", "pnorm", "prcomp", "predict", "quantile", "sd",
+             "wilcox.test")
+  importFrom("utils", "write.csv")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... NOTE
+checkRd: (-1) ClusterPhenoTest.Rd:30: Escaped LaTeX specials: \$ \$
+checkRd: (-1) ClusterPhenoTest.Rd:31: Escaped LaTeX specials: \$
+checkRd: (-1) ClusterPhenoTest.Rd:33: Escaped LaTeX specials: \$
+checkRd: (-1) heatmapPhenoTest.Rd:71: Escaped LaTeX specials: \$ \$
+checkRd: (-1) heatmapPhenoTest.Rd:72: Escaped LaTeX specials: \$
+checkRd: (-1) heatmapPhenoTest.Rd:73: Escaped LaTeX specials: \$
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... NOTE
+S3 methods shown with full name in documentation object 'plot.gseaData':
+  ‘plot.gseaData’
+
+S3 methods shown with full name in documentation object 'plot.gseaSignatures':
+  ‘plot.gseaSignaturesSign’
+
+S3 methods shown with full name in documentation object 'summary.gseaData':
+  ‘summary.gseaData’
+
+S3 methods shown with full name in documentation object 'summary.gseaSignificance':
+  ‘summary.gseaSignificanceSign’
+
+The \usage entries for S3 methods should use the \method markup and not
+their full name.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... WARNING
+Found the following significant warnings:
+
+  Warning: 'heatmap_plus' is deprecated.
+  Warning: 'oldCutplot.dendrogram' is deprecated.
+  Warning: 'oldPicketplot' is deprecated.
+Deprecated functions may be defunct as soon as of the next release of
+R.
+See ?Deprecated.
+Examples with CPU (user + system) or elapsed time > 5s
+                     user system elapsed
+ExpressionPhenoTest 6.319  0.056   6.376
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘phenoTest.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 WARNING, 8 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/phenoTest.Rcheck/00check.log’
+for details.
+
+

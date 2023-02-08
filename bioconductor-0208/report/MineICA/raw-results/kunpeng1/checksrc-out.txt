@@ -1,0 +1,927 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:MineICA.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings MineICA_1.39.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/MineICA.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘MineICA/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘MineICA’ version ‘1.39.0’
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  'BiocGenerics', 'Biobase', 'plyr', 'ggplot2', 'scales', 'foreach',
+  'xtable', 'biomaRt', 'gtools', 'GOstats', 'cluster', 'marray',
+  'mclust', 'RColorBrewer', 'colorspace', 'igraph', 'Rgraphviz',
+  'graph', 'annotate', 'Hmisc', 'fastICA', 'JADE'
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘MineICA’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Packages listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘biomaRt’ ‘GOstats’ ‘cluster’ ‘mclust’ ‘igraph’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... WARNING
+Namespace in Imports field not imported from: ‘lumiHumanAll.db’
+  All declared Imports should be used.
+Packages in Depends field not imported from:
+  ‘GOstats’ ‘Hmisc’ ‘JADE’ ‘RColorBrewer’ ‘Rgraphviz’ ‘annotate’
+  ‘biomaRt’ ‘cluster’ ‘colorspace’ ‘fastICA’ ‘foreach’ ‘ggplot2’
+  ‘graph’ ‘gtools’ ‘igraph’ ‘marray’ ‘mclust’ ‘methods’ ‘plyr’ ‘scales’
+  ‘xtable’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+Missing or unexported object: ‘GOstats::geneIdsByCategory’
+':::' calls which should be '::':
+  ‘Biobase:::annotation<-’ ‘Biobase:::validMsg’ ‘fpc:::pamk’
+  ‘lumi:::getChipInfo’ ‘mclust:::adjustedRandIndex’
+  See the note in ?`:::` about the use of this operator.
+Unexported object imported by a ':::' call: ‘Biobase:::isValidVersion’
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+addGenesToGoReport: no visible global function definition for
+  ‘conditional’
+addGenesToGoReport: no visible global function definition for
+  ‘sigCategories’
+annot2Color: no visible global function definition for ‘brewer.pal’
+annot2Color: no visible global function definition for ‘heat_hcl’
+annot2Color: no visible global function definition for ‘terrain_hcl’
+annot2Color: no visible global function definition for ‘cm.colors’
+annot2Color: no visible global function definition for ‘rainbow_hcl’
+annotFeatures: no visible global function definition for ‘na.omit’
+annotFeaturesComp: no visible global function definition for ‘getEG’
+annotFeaturesComp: no visible global function definition for
+  ‘getSYMBOL’
+annotFeaturesComp: no visible global function definition for ‘llply’
+annotFeaturesComp : <anonymous> : <anonymous>: no visible global
+  function definition for ‘median’
+annotFeaturesComp : <anonymous>: no visible binding for global variable
+  ‘median’
+annotFeaturesWithBiomaRt: no visible global function definition for
+  ‘useMart’
+annotFeaturesWithBiomaRt: no visible global function definition for
+  ‘listFilters’
+annotFeaturesWithBiomaRt: no visible global function definition for
+  ‘listAttributes’
+annotFeaturesWithBiomaRt: no visible global function definition for
+  ‘getBM’
+annotReciprocal: no visible global function definition for
+  ‘write.table’
+buildIcaSet: no visible global function definition for ‘new’
+buildIcaSet: no visible global function definition for ‘read.table’
+buildMineICAParams: no visible global function definition for ‘new’
+clusVarAnalysis : <anonymous> : <anonymous>: no visible global function
+  definition for ‘chisq.test’
+clusVarAnalysis : <anonymous> : <anonymous> : <anonymous>: no visible
+  global function definition for ‘chisq.test’
+clusVarAnalysis: no visible binding for global variable ‘p.adjust’
+clusVarAnalysis: no visible global function definition for ‘%do%’
+clusVarAnalysis: no visible global function definition for ‘foreach’
+clusVarAnalysis: no visible global function definition for ‘ggplot’
+clusVarAnalysis: no visible global function definition for ‘geom_bar’
+clusVarAnalysis: no visible global function definition for ‘aes’
+clusVarAnalysis: no visible binding for global variable ‘cluster’
+clusVarAnalysis: no visible global function definition for ‘xlab’
+clusVarAnalysis: no visible global function definition for ‘ggtitle’
+clusVarAnalysis: no visible global function definition for
+  ‘scale_fill_manual’
+clusVarAnalysis: no visible global function definition for ‘ggsave’
+clusVarAnalysis: no visible global function definition for
+  ‘write.table’
+clusterFastICARuns: no visible global function definition for ‘fastICA’
+clusterFastICARuns: no visible global function definition for ‘%dopar%’
+clusterFastICARuns: no visible global function definition for ‘foreach’
+clusterFastICARuns: no visible global function definition for ‘cor’
+clusterFastICARuns: no visible global function definition for ‘hclust’
+clusterFastICARuns: no visible global function definition for ‘as.dist’
+clusterFastICARuns: no visible global function definition for ‘cutree’
+clusterFastICARuns: no visible global function definition for ‘agnes’
+clusterFastICARuns: no visible global function definition for
+  ‘as.hclust’
+clusterFastICARuns: no visible global function definition for ‘pam’
+clusterFastICARuns: no visible global function definition for ‘kmeans’
+clusterSamplesByComp: no visible global function definition for ‘%do%’
+clusterSamplesByComp: no visible global function definition for
+  ‘foreach’
+clusterSamplesByComp: no visible global function definition for
+  ‘Mclust’
+clusterSamplesByComp: no visible global function definition for
+  ‘kmeans’
+clusterSamplesByComp: no visible global function definition for ‘pam’
+clusterSamplesByComp: no visible global function definition for ‘dist’
+clusterSamplesByComp: no visible global function definition for
+  ‘hclust’
+clusterSamplesByComp: no visible global function definition for
+  ‘cutree’
+clusterSamplesByComp: no visible global function definition for ‘agnes’
+clusterSamplesByComp: no visible global function definition for
+  ‘as.hclust’
+clusterSamplesByComp: no visible binding for global variable ‘cluster’
+clusterSamplesByComp: no visible global function definition for
+  ‘write.table’
+clusterSamplesByComp_multiple: no visible global function definition
+  for ‘%do%’
+clusterSamplesByComp_multiple: no visible global function definition
+  for ‘foreach’
+clusterSamplesByComp_multiple: no visible global function definition
+  for ‘aggregate’
+clusterSamplesByComp_multiple: no visible global function definition
+  for ‘write.table’
+compareAn: no visible global function definition for ‘combn’
+compareAn2graphfile : <anonymous>: no visible binding for global
+  variable ‘cor’
+compareAn2graphfile: no visible global function definition for
+  ‘write.table’
+compareGenes: no visible global function definition for ‘useMart’
+compareGenes: no visible global function definition for ‘%dopar%’
+compareGenes: no visible global function definition for ‘foreach’
+compareGenes: no visible global function definition for ‘llply’
+compareGenes: no visible binding for global variable ‘median’
+cor2An: no visible global function definition for ‘rcorr’
+cor2An : <anonymous>: no visible global function definition for
+  ‘cor.test’
+cor2An: no visible global function definition for ‘cor.test’
+correl2Comp: no visible global function definition for ‘cor.test’
+correl2Comp: no visible global function definition for ‘cor’
+doEnrichment: no visible global function definition for ‘na.omit’
+doEnrichment: no visible global function definition for ‘new’
+doEnrichment: no visible global function definition for ‘hyperGTest’
+heatmap.plus: no visible binding for global variable ‘dist’
+heatmap.plus: no visible binding for global variable ‘agnes’
+heatmap.plus : <anonymous>: no visible global function definition for
+  ‘reorder’
+heatmap.plus: no visible global function definition for ‘as.dendrogram’
+heatmap.plus: no visible global function definition for ‘as.hclust’
+heatmap.plus: no visible global function definition for
+  ‘order.dendrogram’
+heatmap.plus: no visible global function definition for ‘par’
+heatmap.plus: no visible global function definition for ‘layout’
+heatmap.plus: no visible global function definition for ‘axis’
+heatmap.plus: no visible global function definition for ‘quantile’
+heatmap.plus: no visible global function definition for ‘heat.colors’
+heatmap.plus: no visible global function definition for ‘mtext’
+heatmap.plus: no visible global function definition for ‘frame’
+heatmap.plus: no visible global function definition for ‘title’
+hypergeoAn: no visible global function definition for ‘na.omit’
+hypergeoAn: no visible global function definition for ‘llply’
+mergeGostatsResults: no visible global function definition for
+  ‘%dopar%’
+mergeGostatsResults: no visible global function definition for
+  ‘foreach’
+mergeGostatsResults : <anonymous>: no visible global function
+  definition for ‘%dopar%’
+mergeGostatsResults : <anonymous>: no visible global function
+  definition for ‘foreach’
+mergeGostatsResults : <anonymous>: no visible global function
+  definition for ‘xtable’
+mergeGostatsResults : <anonymous>: no visible global function
+  definition for ‘capture.output’
+mergeGostatsResults : <anonymous>: no visible global function
+  definition for ‘%do%’
+mergeGostatsResults: no visible global function definition for ‘xtable’
+mergeGostatsResults: no visible global function definition for
+  ‘capture.output’
+nbOccInComp: no visible global function definition for ‘read.table’
+nbOccInComp: no visible global function definition for ‘aggregate’
+nbOccInComp: no visible global function definition for ‘pdf’
+nbOccInComp: no visible global function definition for ‘dev.off’
+nbOccInComp: no visible global function definition for ‘%dopar%’
+nbOccInComp: no visible global function definition for ‘foreach’
+nbOccInComp: no visible global function definition for ‘xtable’
+nbOccInComp: no visible global function definition for ‘capture.output’
+nodeAttrs: no visible global function definition for ‘%do%’
+nodeAttrs: no visible global function definition for ‘foreach’
+nodeAttrs: no visible global function definition for ‘write.table’
+plotAllMix: no visible binding for global variable ‘Mclust’
+plotAllMix: no visible global function definition for ‘par’
+plotAllMix: no visible global function definition for ‘dev.off’
+plotCorGraph: no visible global function definition for ‘brewer.pal’
+plotCorGraph: no visible global function definition for ‘llply’
+plotCorGraph: no visible global function definition for ‘new’
+plotCorGraph: no visible global function definition for
+  ‘igraph.from.graphNEL’
+plotCorGraph: no visible global function definition for ‘V’
+plotCorGraph: no visible global function definition for ‘V<-’
+plotCorGraph: no visible global function definition for ‘E’
+plotCorGraph: no visible global function definition for ‘E<-’
+plotCorGraph: no visible global function definition for
+  ‘layout.fruchterman.reingold’
+plotCorGraph: no visible global function definition for ‘vcount’
+plotCorGraph: no visible global function definition for
+  ‘tkplot.fit.to.screen’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘ggplot’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘geom_density’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘aes’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘geom_point’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘scale_colour_gradientn’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘maPalette’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘scale_x_discrete’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘geom_hline’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘annotate’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘geom_histogram’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘scale_y_continuous’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘scale_x_continuous’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘geom_boxplot’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘theme_bw’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘geom_jitter’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘position_jitter’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘theme’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘element_text’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘unit’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘scale_linetype_manual’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘scale_fill_manual’
+plotDens2classInComp_plotOnly: no visible global function definition
+  for ‘ggtitle’
+plotDensAllAnnotInAllComp: no visible global function definition for
+  ‘%dopar%’
+plotDensAllAnnotInAllComp: no visible global function definition for
+  ‘foreach’
+plotDensOneAnnotInAllComp : vplayout: no visible global function
+  definition for ‘viewport’
+plotDensOneAnnotInAllComp: no visible global function definition for
+  ‘ggsave’
+plotMclust: no visible global function definition for ‘cdens’
+plotMclust: no visible global function definition for ‘points’
+plotMix: no visible global function definition for ‘shapiro.test’
+plotMix: no visible global function definition for ‘cdens’
+plotMix: no visible global function definition for ‘hist’
+plotMix: no visible global function definition for ‘points’
+plotMix : <anonymous>: no visible global function definition for
+  ‘points’
+plotMix: no visible global function definition for ‘lm’
+plotMix: no visible global function definition for ‘axis’
+plotNumVarComp: no visible global function definition for ‘ggplot’
+plotNumVarComp: no visible global function definition for ‘geom_point’
+plotNumVarComp: no visible global function definition for ‘aes’
+plotNumVarComp: no visible global function definition for ‘geom_smooth’
+plotNumVarComp: no visible binding for global variable ‘lm’
+plotNumVarComp: no visible global function definition for
+  ‘scale_colour_manual’
+plotNumVarComp: no visible global function definition for
+  ‘scale_shape_manual’
+plotNumVarComp: no visible global function definition for ‘ggtitle’
+plotNumVarComp: no visible global function definition for
+  ‘scale_colour_gradientn’
+plotNumVarComp: no visible global function definition for ‘maPalette’
+plotPos2classInComp: no visible global function definition for ‘pdf’
+plotPos2classInComp: no visible global function definition for ‘par’
+plotPos2classInComp: no visible global function definition for ‘hist’
+plotPos2classInComp: no visible global function definition for ‘lm’
+plotPos2classInComp: no visible global function definition for ‘axis’
+plotPos2classInComp: no visible global function definition for ‘abline’
+plotPos2classInComp: no visible global function definition for ‘legend’
+plotPos2classInComp: no visible global function definition for
+  ‘dev.off’
+plotPosAnnotInComp : <anonymous>: no visible global function definition
+  for ‘graphics.off’
+plotPosOneAnnotInComp_ggplot: no visible global function definition for
+  ‘pdf’
+plotPosOneAnnotInComp_ggplot : vplayout: no visible global function
+  definition for ‘viewport’
+plotPosOneAnnotInComp_ggplot: no visible global function definition for
+  ‘%dopar%’
+plotPosOneAnnotInComp_ggplot: no visible global function definition for
+  ‘foreach’
+plotPosOneAnnotInComp_ggplot: no visible global function definition for
+  ‘grid.newpage’
+plotPosOneAnnotInComp_ggplot: no visible global function definition for
+  ‘pushViewport’
+plotPosOneAnnotInComp_ggplot: no visible global function definition for
+  ‘viewport’
+plotPosOneAnnotInComp_ggplot: no visible global function definition for
+  ‘grid.layout’
+plotPosOneAnnotInComp_ggplot: no visible global function definition for
+  ‘dev.off’
+plotPosOneAnnotLevInComp_ggplot: no visible global function definition
+  for ‘ggplot’
+plotPosOneAnnotLevInComp_ggplot: no visible global function definition
+  for ‘geom_histogram’
+plotPosOneAnnotLevInComp_ggplot: no visible global function definition
+  for ‘aes’
+plotPosOneAnnotLevInComp_ggplot: no visible binding for global variable
+  ‘..count..’
+plotPosOneAnnotLevInComp_ggplot: no visible global function definition
+  for ‘scale_fill_manual’
+plotPosOneAnnotLevInComp_ggplot: no visible global function definition
+  for ‘theme’
+plotPosOneAnnotLevInComp_ggplot: no visible global function definition
+  for ‘element_text’
+plotPosOneAnnotLevInComp_ggplot: no visible global function definition
+  for ‘unit’
+plotPosOneAnnotLevInComp_ggplot: no visible global function definition
+  for ‘xlab’
+plotPosOneAnnotLevInComp_ggplot: no visible global function definition
+  for ‘geom_point’
+plotPosOneAnnotLevInComp_ggplot: no visible global function definition
+  for ‘scale_colour_gradientn’
+plotPosOneAnnotLevInComp_ggplot: no visible global function definition
+  for ‘maPalette’
+plotPosOneAnnotLevInComp_ggplot: no visible global function definition
+  for ‘geom_hline’
+plotPosOneAnnotLevInComp_ggplot: no visible global function definition
+  for ‘annotate’
+plotPosSamplesInComp: no visible global function definition for ‘pdf’
+plotPosSamplesInComp: no visible global function definition for ‘par’
+plotPosSamplesInComp : <anonymous>: no visible global function
+  definition for ‘chisq.test’
+plotPosSamplesInComp : <anonymous>: no visible global function
+  definition for ‘par’
+plotPosSamplesInComp : <anonymous>: no visible global function
+  definition for ‘hist’
+plotPosSamplesInComp : <anonymous>: no visible global function
+  definition for ‘lm’
+plotPosSamplesInComp : <anonymous>: no visible global function
+  definition for ‘axis’
+plotPosSamplesInComp : <anonymous>: no visible global function
+  definition for ‘legend’
+plotPosSamplesInComp : <anonymous>: no visible global function
+  definition for ‘abline’
+plotPosSamplesInComp : <anonymous>: no visible global function
+  definition for ‘points’
+plotPosSamplesInComp : <anonymous>: no visible global function
+  definition for ‘quantile’
+plotPosSamplesInComp : <anonymous>: no visible global function
+  definition for ‘maPalette’
+plotPosSamplesInComp : <anonymous>: no visible global function
+  definition for ‘maColorBar’
+plotPosSamplesInComp : <anonymous>: no visible global function
+  definition for ‘odd’
+plotPosSamplesInComp : <anonymous>: no visible global function
+  definition for ‘mtext’
+plotPosSamplesInComp : <anonymous>: no visible global function
+  definition for ‘title’
+plotPosSamplesInComp: no visible global function definition for
+  ‘dev.off’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘pdf’
+plotPosSamplesInComp_ggplot : vplayout: no visible global function
+  definition for ‘viewport’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘%dopar%’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘foreach’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘ggplot’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘geom_histogram’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘aes’
+plotPosSamplesInComp_ggplot: no visible binding for global variable
+  ‘..count..’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘theme’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘element_text’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘unit’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘xlab’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘ggtitle’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘geom_point’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘scale_colour_gradientn’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘maPalette’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘geom_hline’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘annotate’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘grid.newpage’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘pushViewport’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘viewport’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘grid.layout’
+plotPosSamplesInComp_ggplot: no visible global function definition for
+  ‘dev.off’
+plot_heatmapsOnSel: no visible global function definition for
+  ‘maPalette’
+plot_heatmapsOnSel: no visible global function definition for ‘%do%’
+plot_heatmapsOnSel: no visible global function definition for ‘foreach’
+plot_heatmapsOnSel: no visible global function definition for ‘pdf’
+plot_heatmapsOnSel: no visible global function definition for
+  ‘plot.new’
+plot_heatmapsOnSel: no visible global function definition for ‘legend’
+plot_heatmapsOnSel: no visible global function definition for ‘dev.off’
+plot_heatmapsOnSel: no visible global function definition for ‘%dopar%’
+plot_heatmapsOnSel: no visible global function definition for ‘par’
+plot_heatmapsOnSel: no visible global function definition for
+  ‘maColorBar’
+plot_heatmapsOnSel: no visible global function definition for ‘odd’
+qualVarAnalysis : <anonymous> : <anonymous>: no visible global function
+  definition for ‘wilcox.test’
+qualVarAnalysis : <anonymous> : <anonymous>: no visible global function
+  definition for ‘kruskal.test’
+qualVarAnalysis: no visible binding for global variable ‘p.adjust’
+qualVarAnalysis: no visible global function definition for ‘%dopar%’
+qualVarAnalysis: no visible global function definition for ‘foreach’
+qualVarAnalysis : <anonymous>: no visible global function definition
+  for ‘ggsave’
+quantVarAnalysis : <anonymous> : <anonymous>: no visible global
+  function definition for ‘cor.test’
+quantVarAnalysis: no visible binding for global variable ‘p.adjust’
+quantVarAnalysis: no visible global function definition for ‘%dopar%’
+quantVarAnalysis: no visible global function definition for ‘foreach’
+quantVarAnalysis : <anonymous>: no visible global function definition
+  for ‘ggsave’
+readA: no visible global function definition for ‘read.table’
+readS: no visible global function definition for ‘read.table’
+runAn: no visible global function definition for ‘useMart’
+runAn: no visible global function definition for ‘%do%’
+runAn: no visible global function definition for ‘foreach’
+runAn: no visible global function definition for ‘maPalette’
+runCompareIcaSets: no visible global function definition for ‘%do%’
+runCompareIcaSets: no visible global function definition for ‘foreach’
+runEnrich: no visible global function definition for ‘llply’
+runEnrich : <anonymous>: no visible global function definition for
+  ‘na.omit’
+runEnrich: no visible global function definition for ‘na.omit’
+runEnrich: no visible global function definition for ‘listFilters’
+runEnrich: no visible global function definition for ‘getBM’
+runICA: no visible global function definition for ‘JADE’
+runICA: no visible global function definition for ‘fastICA’
+subIcaSet: no visible global function definition for ‘validObject’
+wilcoxOrKruskalOnA: no visible global function definition for ‘%dopar%’
+wilcoxOrKruskalOnA: no visible global function definition for ‘foreach’
+wilcoxOrKruskalOnA: no visible global function definition for
+  ‘wilcox.test’
+wilcoxOrKruskalOnA: no visible global function definition for
+  ‘kruskal.test’
+writeGenes: no visible global function definition for ‘useMart’
+writeGenes: no visible global function definition for ‘listFilters’
+writeGenes: no visible global function definition for ‘listAttributes’
+writeGenes: no visible global function definition for ‘getBM’
+writeGenes: no visible global function definition for ‘xtable’
+writeGenes: no visible global function definition for ‘capture.output’
+writeGostatsHtmltable: no visible global function definition for
+  ‘xtable’
+writeGostatsHtmltable: no visible global function definition for
+  ‘capture.output’
+writeHtmlResTestsByAnnot: no visible global function definition for
+  ‘llply’
+writeHtmlResTestsByAnnot: no visible global function definition for
+  ‘xtable’
+writeHtmlResTestsByAnnot: no visible global function definition for
+  ‘capture.output’
+writeProjByComp: no visible global function definition for ‘useMart’
+writeProjByComp: no visible global function definition for ‘%do%’
+writeProjByComp: no visible global function definition for ‘foreach’
+writeRnkFiles : <anonymous>: no visible global function definition for
+  ‘write.table’
+A<-,IcaSet: no visible global function definition for ‘validObject’
+Afile<-,MineICAParams: no visible global function definition for
+  ‘validObject’
+S<-,IcaSet: no visible global function definition for ‘validObject’
+SByGene<-,IcaSet: no visible global function definition for
+  ‘validObject’
+Sfile<-,MineICAParams: no visible global function definition for
+  ‘validObject’
+[<-,IcaSet-ANY-ANY-ANY: no visible global function definition for
+  ‘validObject’
+[<-,MineICAParams-ANY-ANY-ANY: no visible global function definition
+  for ‘validObject’
+annot2col<-,MineICAParams: no visible global function definition for
+  ‘validObject’
+annotfile<-,MineICAParams: no visible global function definition for
+  ‘validObject’
+chipManu<-,IcaSet: no visible global function definition for
+  ‘validObject’
+chipVersion<-,IcaSet: no visible global function definition for
+  ‘validObject’
+compNames<-,IcaSet: no visible global function definition for
+  ‘validObject’
+dat<-,IcaSet: no visible global function definition for ‘validObject’
+datByGene<-,IcaSet: no visible global function definition for
+  ‘validObject’
+datfile<-,MineICAParams: no visible global function definition for
+  ‘validObject’
+genesPath<-,ANY: no visible global function definition for
+  ‘validObject’
+indComp<-,IcaSet: no visible global function definition for
+  ‘validObject’
+initialize,IcaSet: no visible global function definition for ‘new’
+initialize,IcaSet: no visible global function definition for ‘useMart’
+initialize,IcaSet: no visible global function definition for
+  ‘callNextMethod’
+mart<-,IcaSet: no visible global function definition for ‘validObject’
+organism<-,IcaSet: no visible global function definition for
+  ‘validObject’
+package<-,IcaSet: no visible global function definition for
+  ‘validObject’
+pvalCutoff<-,MineICAParams: no visible global function definition for
+  ‘validObject’
+refSamples<-,IcaSet: no visible global function definition for
+  ‘validObject’
+resPath<-,ANY: no visible global function definition for ‘validObject’
+sampleNames<-,IcaSet: no visible global function definition for
+  ‘callNextMethod’
+selCutoff<-,MineICAParams: no visible global function definition for
+  ‘validObject’
+selectContrib,IcaSet-numeric-character: no visible global function
+  definition for ‘%do%’
+selectContrib,IcaSet-numeric-character: no visible global function
+  definition for ‘foreach’
+selectContrib,IcaSet-numeric-character: no visible binding for global
+  variable ‘comp.proj’
+selectContrib,IcaSet-numeric-character: no visible binding for global
+  variable ‘cutt’
+selectContrib,list-numeric-ANY: no visible global function definition
+  for ‘%do%’
+selectContrib,list-numeric-ANY: no visible global function definition
+  for ‘foreach’
+setA<-,IcaSet: no visible global function definition for ‘validObject’
+setAfile<-,MineICAParams: no visible global function definition for
+  ‘validObject’
+setAnnot2col<-,MineICAParams: no visible global function definition for
+  ‘validObject’
+setAnnotation<-,IcaSet: no visible global function definition for
+  ‘validObject’
+setAnnotfile<-,MineICAParams: no visible global function definition for
+  ‘validObject’
+setChipManu<-,IcaSet: no visible global function definition for
+  ‘validObject’
+setChipVersion<-,IcaSet: no visible global function definition for
+  ‘validObject’
+setDatfile<-,MineICAParams: no visible global function definition for
+  ‘validObject’
+setGenesPath<-,ANY: no visible global function definition for
+  ‘validObject’
+setIndComp<-,IcaSet: no visible global function definition for
+  ‘validObject’
+setLabelsComp<-,IcaSet: no visible global function definition for
+  ‘validObject’
+setMart<-,IcaSet: no visible global function definition for
+  ‘validObject’
+setPackage<-,IcaSet: no visible global function definition for
+  ‘validObject’
+setPvalCutoff<-,MineICAParams: no visible global function definition
+  for ‘validObject’
+setRefSamples<-,IcaSet: no visible global function definition for
+  ‘validObject’
+setResPath<-,ANY: no visible global function definition for
+  ‘validObject’
+setSByGene<-,IcaSet: no visible global function definition for
+  ‘validObject’
+setSelCutoff<-,MineICAParams: no visible global function definition for
+  ‘validObject’
+setSfile<-,MineICAParams: no visible global function definition for
+  ‘validObject’
+setTypeID<-,IcaSet: no visible global function definition for
+  ‘validObject’
+setWitGenes<-,IcaSet: no visible global function definition for
+  ‘validObject’
+show,IcaSet: no visible global function definition for ‘callNextMethod’
+typeID<-,IcaSet: no visible global function definition for
+  ‘validObject’
+witGenes<-,IcaSet: no visible global function definition for
+  ‘validObject’
+Undefined global functions or variables:
+  %do% %dopar% ..count.. E E<- JADE Mclust V V<- abline aes aggregate
+  agnes annotate as.dendrogram as.dist as.hclust axis brewer.pal
+  callNextMethod capture.output cdens chisq.test cluster cm.colors
+  combn comp.proj conditional cor cor.test cutree cutt dev.off dist
+  element_text fastICA foreach frame geom_bar geom_boxplot geom_density
+  geom_histogram geom_hline geom_jitter geom_point geom_smooth getBM
+  getEG getSYMBOL ggplot ggsave ggtitle graphics.off grid.layout
+  grid.newpage hclust heat.colors heat_hcl hist hyperGTest
+  igraph.from.graphNEL kmeans kruskal.test layout
+  layout.fruchterman.reingold legend listAttributes listFilters llply
+  lm maColorBar maPalette median mtext na.omit new odd order.dendrogram
+  p.adjust pam par pdf plot.new points position_jitter pushViewport
+  quantile rainbow_hcl rcorr read.table reorder scale_colour_gradientn
+  scale_colour_manual scale_fill_manual scale_linetype_manual
+  scale_shape_manual scale_x_continuous scale_x_discrete
+  scale_y_continuous shapiro.test sigCategories terrain_hcl theme
+  theme_bw title tkplot.fit.to.screen unit useMart validObject vcount
+  viewport wilcox.test write.table xlab xtable
+Consider adding
+  importFrom("grDevices", "cm.colors", "dev.off", "graphics.off",
+             "heat.colors", "pdf")
+  importFrom("graphics", "abline", "axis", "frame", "hist", "layout",
+             "legend", "mtext", "par", "plot.new", "points", "title")
+  importFrom("methods", "callNextMethod", "new", "validObject")
+  importFrom("stats", "aggregate", "as.dendrogram", "as.dist",
+             "as.hclust", "chisq.test", "cor", "cor.test", "cutree",
+             "dist", "hclust", "kmeans", "kruskal.test", "lm", "median",
+             "na.omit", "order.dendrogram", "p.adjust", "quantile",
+             "reorder", "shapiro.test", "wilcox.test")
+  importFrom("utils", "capture.output", "combn", "read.table",
+             "write.table")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... WARNING
+Missing link or links in documentation object 'Alist.Rd':
+  ‘class-IcaSet’
+
+Missing link or links in documentation object 'Slist.Rd':
+  ‘class-IcaSet’
+
+Missing link or links in documentation object 'class-IcaSet.Rd':
+  ‘class-IcaSet’
+
+Missing link or links in documentation object 'getComp.Rd':
+  ‘class-IcaSet’
+
+Missing link or links in documentation object 'runAn.Rd':
+  ‘[Category:class-GOHyperGParams]{GOHyperGParams}’
+
+See section 'Cross-references' in the 'Writing R Extensions' manual.
+* checking for missing documentation entries ... WARNING
+Undocumented S4 classes:
+  ‘MineICAParams’
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘MineICA.Rnw’... failed to complete the test
+ ERROR
+Errors in running code in vignettes:
+when running code in ‘MineICA.Rnw’
+  ...
+
+> exprs(mainz) <- t(apply(exprs(mainz), 1, scale, scale = FALSE))
+
+> colnames(exprs(mainz)) <- sampleNames(mainz)
+
+> resJade <- runICA(X = exprs(mainz), nbComp = 5, method = "JADE", 
++     maxit = 10000)
+Killed
+
+... incomplete output.  Crash?
+
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘MineICA.Rnw’ using Sweave
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: Category
+Loading required package: stats4
+Loading required package: AnnotationDbi
+Loading required package: IRanges
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:plyr’:
+
+    rename
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+
+Attaching package: ‘IRanges’
+
+The following object is masked from ‘package:plyr’:
+
+    desc
+
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following object is masked from ‘package:S4Vectors’:
+
+    expand
+
+Loading required package: graph
+
+Attaching package: ‘graph’
+
+The following object is masked from ‘package:plyr’:
+
+    join
+
+
+
+Attaching package: ‘GOstats’
+
+The following object is masked from ‘package:AnnotationDbi’:
+
+    makeGOGraph
+
+Loading required package: limma
+
+Attaching package: ‘limma’
+
+The following object is masked from ‘package:BiocGenerics’:
+
+    plotMA
+
+Package 'mclust' version 6.0.0
+Type 'citation("mclust")' for citing this R package in publications.
+
+Attaching package: ‘igraph’
+
+The following objects are masked from ‘package:graph’:
+
+    degree, edges, intersection, union
+
+The following object is masked from ‘package:IRanges’:
+
+    union
+
+The following object is masked from ‘package:S4Vectors’:
+
+    union
+
+The following objects are masked from ‘package:BiocGenerics’:
+
+    normalize, path, union
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+Loading required package: grid
+
+Attaching package: ‘Rgraphviz’
+
+The following objects are masked from ‘package:IRanges’:
+
+    from, to
+
+The following objects are masked from ‘package:S4Vectors’:
+
+    from, to
+
+Loading required package: XML
+
+Attaching package: ‘XML’
+
+The following object is masked from ‘package:graph’:
+
+    addNode
+
+
+Attaching package: ‘annotate’
+
+The following object is masked from ‘package:Rgraphviz’:
+
+    toFile
+
+
+Attaching package: ‘gtools’
+
+The following object is masked from ‘package:igraph’:
+
+    permute
+
+Loading required package: Hmisc
+Loading required package: lattice
+Loading required package: survival
+Loading required package: Formula
+
+Attaching package: ‘Hmisc’
+
+The following object is masked from ‘package:AnnotationDbi’:
+
+    contents
+
+The following objects are masked from ‘package:xtable’:
+
+    label, label<-
+
+The following objects are masked from ‘package:plyr’:
+
+    is.discrete, summarize
+
+The following object is masked from ‘package:Biobase’:
+
+    contents
+
+The following objects are masked from ‘package:base’:
+
+    format.pval, units
+
+Loading required package: fastICA
+Loading required package: JADE
+Number of selected genes is 10000
+
+Max IQR is 0.89
+
+Loading required package: org.Hs.eg.db
+
+
+
+Error: processing vignette 'MineICA.Rnw' failed with diagnostics:
+ chunk 10 (label = mart) 
+Error in curl::curl_fetch_memory(url, handle = handle) : 
+  Timeout was reached: [www.ensembl.org:443] Operation timed out after 10001 milliseconds with 0 bytes received
+
+--- failed re-building ‘MineICA.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘MineICA.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 3 WARNINGs, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/MineICA.Rcheck/00check.log’
+for details.
+

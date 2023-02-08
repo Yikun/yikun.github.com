@@ -1,0 +1,207 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:NetSAM.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings NetSAM_1.39.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/NetSAM.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘NetSAM/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘NetSAM’ version ‘1.39.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘NetSAM’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘NetSAM-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: consensusNet
+> ### Title: Construction of a consensus coexpression network
+> ### Aliases: consensusNet
+> ### Keywords: methods
+> 
+> ### ** Examples
+> 
+>   inputMatDir <- system.file("extdata","exampleExpressionData.cct",package="NetSAM")
+>   data <- read.table(inputMatDir, header=TRUE, row.names=1, stringsAsFactors=FALSE)
+>   net <- consensusNet(data, organism="hsapiens",bootstrapNum=10, naPer=0.5, meanPer=0.8,varPer=0.8,method="rank_unsig",value=3/1000,pth=1e-6, nMatNet=2, nThreads=4)
+starting worker pid=3693495 on localhost:11443 at 10:12:57.026
+starting worker pid=3693496 on localhost:11443 at 10:12:57.074
+Creating random networks.....
+Loading required package: NetSAM
+Loading required package: seriation
+Loading required package: NetSAM
+Loading required package: seriation
+Loading required package: igraph
+Loading required package: igraph
+
+Attaching package: ‘igraph’
+
+The following object is masked from ‘package:seriation’:
+
+    permute
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+Loading required package: tools
+Loading required package: WGCNA
+Loading required package: dynamicTreeCut
+Loading required package: fastcluster
+
+Attaching package: ‘igraph’
+
+
+Attaching package: ‘fastcluster’
+
+The following object is masked from ‘package:stats’:
+
+    hclust
+
+The following object is masked from ‘package:seriation’:
+
+    permute
+
+The following objects are masked from ‘package:stats’:
+
+    decompose, spectrum
+
+The following object is masked from ‘package:base’:
+
+    union
+
+Loading required package: tools
+Loading required package: WGCNA
+Loading required package: dynamicTreeCut
+Loading required package: fastcluster
+
+Attaching package: ‘fastcluster’
+
+The following object is masked from ‘package:stats’:
+
+    hclust
+
+
+
+
+Attaching package: ‘WGCNA’
+
+
+Attaching package: ‘WGCNA’
+
+The following object is masked from ‘package:stats’:
+
+    cor
+
+The following object is masked from ‘package:stats’:
+
+    cor
+
+Loading required package: biomaRt
+Loading required package: biomaRt
+******************************************
+
+*            Welcome to NetSAM !         *
+
+******************************************
+
+loaded NetSAM and set parent environment
+******************************************
+
+*            Welcome to NetSAM !         *
+
+******************************************
+
+loaded NetSAM and set parent environment
+The input data contain 3899 ids and 90 samples. No missing values in the data.
+The input data contain 3899 ids and 90 samples. No missing values in the data.
+After removing ids based on parameters 'naPer', 'meanPer' and 'varPer', 2495 ids are remained!
+After removing ids based on parameters 'naPer', 'meanPer' and 'varPer', 2495 ids are remained!
+Allowing parallel execution with up to 7 working processes.
+Allowing parallel execution with up to 7 working processes.
+Calculating spearman correlation for each pair of ids...
+Calculating spearman correlation for each pair of ids...
+Base on rank-based method, an undirected network with 2265 nodes and 3731 edges was identified when selecting most similar 7 nodes.
+Base on rank-based method, an undirected network with 2262 nodes and 3857 edges was identified when selecting most similar 7 nodes.
+The input data contain 3899 ids and 90 samples. No missing values in the data.
+After removing ids based on parameters 'naPer', 'meanPer' and 'varPer', 2495 ids are remained!
+The input data contain 3899 ids and 90 samples. No missing values in the data.
+After removing ids based on parameters 'naPer', 'meanPer' and 'varPer', 2495 ids are remained!
+Allowing parallel execution with up to 7 working processes.
+Calculating spearman correlation for each pair of ids...
+Allowing parallel execution with up to 7 working processes.
+Calculating spearman correlation for each pair of ids...
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘runTests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘NetSAM.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/NetSAM.Rcheck/00check.log’
+for details.
+

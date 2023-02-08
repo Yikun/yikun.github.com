@@ -1,0 +1,184 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:GenProSeq.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings GenProSeq_1.3.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/GenProSeq.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘GenProSeq/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘GenProSeq’ version ‘1.3.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .BBSoptions
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘GenProSeq’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+fit_VAE: no visible binding for global variable ‘z_mean’
+fit_VAE: no visible binding for global variable ‘z_log_stddev’
+fit_VAE : vae_loss: no visible binding for global variable
+  ‘z_log_stddev’
+fit_VAE : vae_loss: no visible binding for global variable ‘z_mean’
+layer_embedding_token_position : <anonymous>: no visible global
+  function definition for ‘super’
+layer_embedding_token_position : <anonymous>: no visible binding for
+  global variable ‘self’
+layer_transformer_encoder : <anonymous>: no visible global function
+  definition for ‘super’
+layer_transformer_encoder : <anonymous>: no visible binding for global
+  variable ‘self’
+Undefined global functions or variables:
+  self super z_log_stddev z_mean
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘GenProSeq-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: VAE
+> ### Title: Variational autoencoder for generating protein sequences
+> ### Aliases: fit_VAE gen_VAE
+> 
+> ### ** Examples
+> 
+> if (keras::is_keras_available() & reticulate::py_available()) {
++     data("example_luxA")
++     label <- substr(example_luxA, 3, 3)
++     
++     # model parameters
++     length_seq <- 360
++     embedding_dim <- 8
++     batch_size <- 128
++     epochs <- 2
++     
++     # CVAE
++     VAE_result <- fit_VAE(prot_seq = example_luxA,
++                         label = label,
++                         length_seq = length_seq,
++                         embedding_dim = embedding_dim,
++                         embedding_args = list(iter = 20),
++                         intermediate_encoder_layers = list(layer_dense(units = 128),
++                                                             layer_dense(units = 16)),
++                         intermediate_decoder_layers = list(layer_dense(units = 16),
++                                                             layer_dense(units = 128)),
++                         prot_seq_val = example_luxA,
++                         label_val = label,
++                         epochs = epochs,
++                         batch_size = batch_size,
++                         use_generator = FALSE,
++                         optimizer = keras::optimizer_adam(clipnorm = 0.1),
++                         callbacks = keras::callback_early_stopping(
++                             monitor = "val_loss",
++                             patience = 10,
++                             restore_best_weights = TRUE))
++     gen_prot_VAE_I <- gen_VAE(VAE_result, label = rep("I", 100), num_seq = 100)
++     gen_prot_VAE_L <- gen_VAE(VAE_result, label = rep("L", 100), num_seq = 100)
++     
++     
++     ### from preprocessing
++     VAE_result2 <- fit_VAE(intermediate_encoder_layers = list(layer_dense(units = 128),
++                                                             layer_dense(units = 16)),
++                             intermediate_decoder_layers = list(layer_dense(units = 16),
++                                                             layer_dense(units = 128)),
++                             epochs = epochs, batch_size = batch_size,
++                             preprocessing = VAE_result$preprocessing,
++                             use_generator = FALSE,
++                             optimizer = keras::optimizer_adam(clipnorm = 0.1),
++                             callbacks = keras::callback_early_stopping(
++                                 monitor = "val_loss",
++                                 patience = 10,
++                                 restore_best_weights = TRUE))
++     gen_prot_VAE2_I <- gen_VAE(VAE_result2, label = rep("I", 100), num_seq = 100)
++     gen_prot_VAE2_L <- gen_VAE(VAE_result2, label = rep("L", 100), num_seq = 100)
++ }
+pre-processing...
+training...
+In training : Error: AttributeError: 'Adam' object has no attribute 'get_updates'
+
+
+/usr/local/lib/python3.10/dist-packages/keras/engine/training_v1.py:2357: UserWarning: `Model.state_updates` will be removed in a future version. This property should not be used in TensorFlow 2.0, as `updates` are applied automatically.
+  updates=self.state_updates,
+WARNING:tensorflow:OMP_NUM_THREADS is no longer used by the default Keras config. To configure the number of threads, use tf.config.threading APIs.
+2023-02-07 02:42:05.840527: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:357] MLIR V1 optimization pass is not enabled
+2023-02-07 02:42:05.864829: W tensorflow/c/c_api.cc:291] Operation '{name:'dense_50/bias/Assign' id:179 op device:{requested: '', assigned: ''} def:{{{node dense_50/bias/Assign}} = AssignVariableOp[_has_manual_control_dependencies=true, dtype=DT_FLOAT, validate_shape=false](dense_50/bias, dense_50/bias/Initializer/zeros)}}' was changed by setting attribute after it was run by a session. This mutation will have no effect, and will trigger an error in the future. Either don't modify nodes after running them or create a new session.
+generating...
+2023-02-07 02:42:15.219506: W tensorflow/c/c_api.cc:291] Operation '{name:'dense_50_1/BiasAdd' id:197 op device:{requested: '', assigned: ''} def:{{{node dense_50_1/BiasAdd}} = BiasAdd[T=DT_FLOAT, _has_manual_control_dependencies=true, data_format="NHWC"](dense_50_1/MatMul, dense_50_1/BiasAdd/ReadVariableOp)}}' was changed by setting attribute after it was run by a session. This mutation will have no effect, and will trigger an error in the future. Either don't modify nodes after running them or create a new session.
+post-processing...
+generating...
+post-processing...
+training...
+In training : Error: AttributeError: 'Adam' object has no attribute 'get_updates'
+
+
+2023-02-07 02:42:36.556905: W tensorflow/c/c_api.cc:291] Operation '{name:'dense_54/bias/Assign' id:432 op device:{requested: '', assigned: ''} def:{{{node dense_54/bias/Assign}} = AssignVariableOp[_has_manual_control_dependencies=true, dtype=DT_FLOAT, validate_shape=false](dense_54/bias, dense_54/bias/Initializer/zeros)}}' was changed by setting attribute after it was run by a session. This mutation will have no effect, and will trigger an error in the future. Either don't modify nodes after running them or create a new session.
+generating...
+2023-02-07 02:42:45.916929: W tensorflow/c/c_api.cc:291] Operation '{name:'dense_55_1/BiasAdd' id:475 op device:{requested: '', assigned: ''} def:{{{node dense_55_1/BiasAdd}} = BiasAdd[T=DT_FLOAT, _has_manual_control_dependencies=true, data_format="NHWC"](dense_55_1/MatMul, dense_55_1/BiasAdd/ReadVariableOp)}}' was changed by setting attribute after it was run by a session. This mutation will have no effect, and will trigger an error in the future. Either don't modify nodes after running them or create a new session.
+post-processing...
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘GenProSeq.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/GenProSeq.Rcheck/00check.log’
+for details.
+

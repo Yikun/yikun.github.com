@@ -1,0 +1,315 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:Rfastp.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings Rfastp_1.9.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/Rfastp.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘Rfastp/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘Rfastp’ version ‘1.9.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘Rfastp’ can be installed ... OK
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... NOTE
+  installed size is 11.9Mb
+  sub-directories of 1Mb or more:
+    extdata   2.1Mb
+    libs      9.7Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Title field: should not end in a period.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in shell scripts ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... NOTE
+GNU make is a SystemRequirements.
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... WARNING
+Note: information on .o files is not available
+File ‘/home/biocbuild/bbs-3.17-bioc/R/library/Rfastp/libs/Rfastp.so’:
+  Found ‘__sprintf_chk’, possibly from ‘sprintf’ (C)
+
+Compiled code should not call entry points which might terminate R nor
+write to stdout/stderr instead of to the console, nor use Fortran I/O
+nor system RNGs nor [v]sprintf. The detected symbols are linked into
+the code but might come from libraries and not actually be called.
+
+See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘Rfastp.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+--- re-building ‘Rfastp.Rmd’ using rmarkdown
+Detecting adapter sequence for read1...
+No adapter detected for read1
+
+[13:17:47] start to load data
+[13:17:47] all reads loaded, start to monitor thread status
+[13:17:47] thread 1 is processing the 9 / 11 pack
+[13:17:47] thread 2 is processing the 10 / 11 pack
+[13:17:47] thread 2 data processing completed
+[13:17:47] thread 2 finished
+[13:17:47] thread 3 data processing completed
+[13:17:47] thread 3 finished
+[13:17:47] thread 4 data processing completed
+[13:17:47] thread 4 finished
+[13:17:47] thread 1 data processing completed
+[13:17:47] thread 1 finished
+[13:17:48] /tmp/RtmpEvgzPf/file3c272a7897cd5a_se_R1.fastq.gz writer finished
+[13:17:48] start to generate reports
+
+Read1 before filtering:
+total reads: 10000
+total bases: 510000
+Q20 bases: 475322(93.2004%)
+Q30 bases: 449228(88.0839%)
+
+Read1 after filtering:
+total reads: 9479
+total bases: 483429
+Q20 bases: 469954(97.2126%)
+Q30 bases: 446249(92.3091%)
+
+Filtering result:
+reads passed filter: 9479
+reads failed due to low quality: 517
+reads failed due to too many N: 4
+reads failed due to too short: 0
+reads with adapter trimmed: 0
+bases trimmed due to adapters: 0
+
+Duplication rate (may be overestimated since this is SE data): 1.11726%
+Detecting adapter sequence for read1...
+No adapter detected for read1
+
+Detecting adapter sequence for read2...
+No adapter detected for read2
+
+[13:17:48] start to load data
+[13:17:48] all reads loaded, start to monitor thread status
+[13:17:48] thread 1 is processing the 0 / 2 pack
+[13:17:48] thread 2 is processing the 1 / 2 pack
+[13:17:48] thread 2 data processing completed
+[13:17:48] thread 2 finished
+[13:17:48] thread 1 data processing completed
+[13:17:48] thread 1 finished
+[13:17:48] /tmp/RtmpEvgzPf/file3c272a7897cd5a_pe_R2.fastq.gz writer finished
+[13:17:48] /tmp/RtmpEvgzPf/file3c272a7897cd5a_pe_R1.fastq.gz writer finished
+[13:17:48] start to generate reports
+
+Read1 before filtering:
+total reads: 1000
+total bases: 100000
+Q20 bases: 100000(100%)
+Q30 bases: 100000(100%)
+
+Read2 before filtering:
+total reads: 1000
+total bases: 100000
+Q20 bases: 100000(100%)
+Q30 bases: 100000(100%)
+
+Read1 after filtering:
+total reads: 1000
+total bases: 100000
+Q20 bases: 100000(100%)
+Q30 bases: 100000(100%)
+
+Read2 after filtering:
+total reads: 1000
+total bases: 100000
+Q20 bases: 100000(100%)
+Q30 bases: 100000(100%)
+
+Filtering result:
+reads passed filter: 2000
+reads failed due to low quality: 0
+reads failed due to too many N: 0
+reads failed due to too short: 0
+reads with adapter trimmed: 0
+bases trimmed due to adapters: 0
+
+Duplication rate: 0%
+
+Insert size peak (evaluated by paired-end reads): 100
+Detecting adapter sequence for read1...
+No adapter detected for read1
+
+Detecting adapter sequence for read2...
+No adapter detected for read2
+
+[13:17:49] start to load data
+[13:17:49] all reads loaded, start to monitor thread status
+[13:17:49] thread 1 is processing the 0 / 2 pack
+[13:17:49] thread 2 is processing the 1 / 2 pack
+[13:17:49] thread 2 data processing completed
+[13:17:49] thread 2 finished
+[13:17:49] thread 1 data processing completed
+[13:17:49] thread 1 finished
+[13:17:49] /tmp/RtmpEvgzPf/file3c272a7897cd5a_merged.fastq.gz writer finished
+[13:17:49] /tmp/RtmpEvgzPf/file3c272a7897cd5a_unpaired_R1.fastq.gz writer finished
+[13:17:49] /tmp/RtmpEvgzPf/file3c272a7897cd5a_merged.fastq.gz writer finished
+[13:17:49] /tmp/RtmpEvgzPf/file3c272a7897cd5a_unpaired_R2.fastq.gz writer finished
+[13:17:49] start to generate reports
+
+Read1 before filtering:
+total reads: 1000
+total bases: 100000
+Q20 bases: 100000(100%)
+Q30 bases: 100000(100%)
+
+Read2 before filtering:
+total reads: 1000
+total bases: 100000
+Q20 bases: 100000(100%)
+Q30 bases: 100000(100%)
+
+Merged and filtered:
+total reads: 1
+total bases: 100
+Q20 bases: 100(100%)
+Q30 bases: 100(100%)
+
+Filtering result:
+reads passed filter: 2000
+reads failed due to low quality: 0
+reads failed due to too many N: 0
+reads failed due to too short: 0
+reads with adapter trimmed: 0
+bases trimmed due to adapters: 0
+reads corrected by overlap analysis: 0
+bases corrected by overlap analysis: 0
+
+Duplication rate: 0%
+
+Insert size peak (evaluated by paired-end reads): 100
+
+Read pairs merged: 1
+% of original read pairs: 0.1%
+% in reads after filtering: 100%
+
+Detecting adapter sequence for read1...
+No adapter detected for read1
+
+Detecting adapter sequence for read2...
+No adapter detected for read2
+
+[13:17:49] start to load data
+[13:17:49] all reads loaded, start to monitor thread status
+[13:17:49] thread 2 is processing the 0 / 2 pack
+[13:17:49] thread 1 is processing the 1 / 2 pack
+[13:17:49] thread 1 data processing completed
+[13:17:49] thread 1 finished
+[13:17:49] thread 2 data processing completed
+[13:17:49] thread 2 finished
+[13:17:49] /tmp/RtmpEvgzPf/file3c272a7897cd5a_umi1_R2.fastq.gz writer finished
+[13:17:49] /tmp/RtmpEvgzPf/file3c272a7897cd5a_umi1_R1.fastq.gz writer finished
+[13:17:49] start to generate reports
+
+Read1 before filtering:
+total reads: 1000
+total bases: 100000
+Q20 bases: 100000(100%)
+Q30 bases: 100000(100%)
+
+Read2 before filtering:
+total reads: 1000
+total bases: 100000
+Q20 bases: 100000(100%)
+Q30 bases: 100000(100%)
+
+Read1 after filtering:
+total reads: 1000
+total bases: 83957
+Q20 bases: 83957(100%)
+Q30 bases: 83957(100%)
+
+Read2 after filtering:
+total reads: 1000
+total bases: 99941
+Q20 bases: 99941(100%)
+Q30 bases: 99941(100%)
+
+Filtering result:
+reads passed filter: 2000
+reads failed due to low quality: 0
+reads failed due to too many N: 0
+reads failed due to too short: 0
+reads with adapter trimmed: 2
+bases trimmed due to adapters: 102
+
+Duplication rate: 0%
+
+Insert size peak (evaluated by paired-end reads): 0
+Detecting adapter sequence for read1...
+No adapter detected for read1
+
+Detecting adapter sequence for read2...
+No adapter detected for read2
+
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 1 WARNING, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/Rfastp.Rcheck/00check.log’
+for details.
+

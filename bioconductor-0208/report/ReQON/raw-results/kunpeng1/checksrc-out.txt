@@ -1,0 +1,227 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:ReQON.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings ReQON_1.45.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/ReQON.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘ReQON/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘ReQON’ version ‘1.45.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘ReQON’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Packages in Depends field not imported from:
+  ‘Rsamtools’ ‘seqbias’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+FWSEplot: no visible global function definition for ‘title’
+FWSEplot: no visible global function definition for ‘rgb’
+FWSEplot: no visible global function definition for ‘points’
+QualFreqPlot: no visible global function definition for ‘title’
+ReQON: no visible global function definition for ‘glm.fit’
+ReQON: no visible global function definition for ‘binomial’
+ReadPosErrorPlot: no visible global function definition for ‘title’
+Undefined global functions or variables:
+  binomial glm.fit points rgb title
+Consider adding
+  importFrom("grDevices", "rgb")
+  importFrom("graphics", "points", "title")
+  importFrom("stats", "binomial", "glm.fit")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘ReQON-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: ReQON
+> ### Title: Recalibrating Quality Of Nucleotides
+> ### Aliases: ReQON
+> 
+> ### ** Examples
+> 
+> ## Read in sample data from seqbias package
+> library( ReQON )
+> library( seqbias )
+> library( Rsamtools )
+> ref_fn <- system.file( "extra/example.fa", package = "seqbias" )
+> ref_f <- FaFile( ref_fn )
+> open.FaFile( ref_f )
+> reads_fn <- system.file( "extra/example.bam", package = "seqbias" )
+> 
+> ## Set up file of reference sequence
+> seqs <- scanFa( ref_f )
+> len <- length( seqs[[1]] )
+> ref <- matrix( nrow = len, ncol = 3 )
+> ref[,1] <- rep( "seq1", len )
+> ref[,2] <- c( 1:len )
+> str <- toString( subseq( seqs[[1]], 1, len ) )
+> s <- strsplit( str, NULL )
+> ref[,3] <- s[[1]]
+> write.table( ref, file = "ref_seq.txt", sep = "\t", quote = FALSE,
++    row.names = FALSE, col.names = FALSE )
+> 
+> ## Recalibrate File
+> sorted <- sortBam( reads_fn, tempfile() )
+> indexBam( sorted )
+      /tmp/Rtmp71hRRf/file3c1a4646c9dbc5.bam 
+"/tmp/Rtmp71hRRf/file3c1a4646c9dbc5.bam.bai" 
+> reg <- paste( "seq1:1-", len, sep = "" )
+> diagnostics <- ReQON( sorted, "Recalibrated_example.bam", reg, 
++    RefSeq = "ref_seq.txt", nerr = 20, nraf = 0.25, 
++    plotname = "Recalibrated_example_plots.pdf" )
+
+Start time: Tue Feb  7 13:14:07 2023
+
+
+Reading in bam file
+[Tue Feb 07 13:14:09 UTC 2023] org.renci.sequencing.util.BAMUnpacker done
+Runtime.totalMemory()=262144000
+
+Number of bases in training set: 496485
+
+Determining Sequencing Errors 
+
+Training set error rate = 0.04211
+
+Number of bases in filtered training set: 488070
+
+Calculating Training Parameters 
+
+Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘ReQON.Rnw’... failed to complete the test
+ ERROR
+Errors in running code in vignettes:
+when running code in ‘ReQON.Rnw’
+  ...
+
+Training set error rate = 0.04211
+
+Number of bases in filtered training set: 488070
+
+Calculating Training Parameters 
+
+Killed
+
+... incomplete output.  Crash?
+
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘ReQON.Rnw’ using Sweave
+Loading required package: Rsamtools
+Loading required package: GenomeInfoDb
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomicRanges
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: seqbias
+
+Start time: Tue Feb  7 13:15:22 2023
+
+
+Reading in bam file
+[Tue Feb 07 13:15:25 UTC 2023] org.renci.sequencing.util.BAMUnpacker done
+Runtime.totalMemory()=262144000
+
+Number of bases in training set: 496485
+
+Determining Sequencing Errors 
+
+Training set error rate = 0.04211
+
+Number of bases in filtered training set: 488070
+
+Calculating Training Parameters 
+
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/ReQON.Rcheck/00check.log’
+for details.
+

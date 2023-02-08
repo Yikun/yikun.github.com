@@ -1,0 +1,211 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:preciseTAD.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings preciseTAD_1.9.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/preciseTAD.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘preciseTAD/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘preciseTAD’ version ‘1.9.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘preciseTAD’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... NOTE
+Found the following CITATION file in a non-standard place:
+  CITATION.cff
+Most likely ‘inst/CITATION’ should be used instead.
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘preciseTAD-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: TADrandomForest
+> ### Title: A wrapper function passed to 'caret::train' to apply a random
+> ###   forest classification algorithm built and tested on user-defined
+> ###   binned domain data from 'createTADdata'.
+> ### Aliases: TADrandomForest
+> 
+> ### ** Examples
+> 
+> # Read in ARROWHEAD-called TADs at 5kb
+> data(arrowhead_gm12878_5kb)
+> 
+> # Extract unique boundaries
+> bounds.GR <- extractBoundaries(domains.mat = arrowhead_gm12878_5kb,
++                                filter = FALSE,
++                                CHR = c("CHR21", "CHR22"),
++                                resolution = 5000)
+> 
+> # Read in GRangesList of 26 TFBS
+> data(tfbsList)
+> 
+> # Create the binned data matrix for CHR1 (training) and CHR22 (testing)
+> # using 5 kb binning, distance-type predictors from 26 different TFBS from
+> # the GM12878 cell line, and random under-sampling
+> tadData <- createTADdata(bounds.GR = bounds.GR,
++                          resolution = 5000,
++                          genomicElements.GR = tfbsList,
++                          featureType = "distance",
++                          resampling = "rus",
++                          trainCHR = "CHR21",
++                          predictCHR = "CHR22")
+> 
+> # Perform random forest using TADrandomForest by tuning mtry over 10 values
+> # using 3-fold CV
+> tadModel <- TADrandomForest(trainData = tadData[[1]],
++                             testData = tadData[[2]],
++                             tuneParams = list(mtry = c(2,5,8,10,13,16,18,21,24,26),
++                                             ntree = 500,
++                                             nodesize = 1),
++                             cvFolds = 3,
++                             cvMetric = "Accuracy",
++                             verbose = TRUE,
++                             model = TRUE,
++                             importances = TRUE,
++                             impMeasure = "MDA",
++                             performances = TRUE)
+Loading required package: ggplot2
+Loading required package: lattice
++ Fold1: mtry= 2, ntree=500, nodesize=1 
+- Fold1: mtry= 2, ntree=500, nodesize=1 
++ Fold1: mtry= 5, ntree=500, nodesize=1 
+- Fold1: mtry= 5, ntree=500, nodesize=1 
++ Fold1: mtry= 8, ntree=500, nodesize=1 
+- Fold1: mtry= 8, ntree=500, nodesize=1 
++ Fold1: mtry=10, ntree=500, nodesize=1 
+- Fold1: mtry=10, ntree=500, nodesize=1 
++ Fold1: mtry=13, ntree=500, nodesize=1 
+- Fold1: mtry=13, ntree=500, nodesize=1 
++ Fold1: mtry=16, ntree=500, nodesize=1 
+- Fold1: mtry=16, ntree=500, nodesize=1 
++ Fold1: mtry=18, ntree=500, nodesize=1 
+- Fold1: mtry=18, ntree=500, nodesize=1 
++ Fold1: mtry=21, ntree=500, nodesize=1 
+- Fold1: mtry=21, ntree=500, nodesize=1 
++ Fold1: mtry=24, ntree=500, nodesize=1 
+- Fold1: mtry=24, ntree=500, nodesize=1 
++ Fold1: mtry=26, ntree=500, nodesize=1 
+- Fold1: mtry=26, ntree=500, nodesize=1 
++ Fold2: mtry= 2, ntree=500, nodesize=1 
+- Fold2: mtry= 2, ntree=500, nodesize=1 
++ Fold2: mtry= 5, ntree=500, nodesize=1 
+- Fold2: mtry= 5, ntree=500, nodesize=1 
++ Fold2: mtry= 8, ntree=500, nodesize=1 
+- Fold2: mtry= 8, ntree=500, nodesize=1 
++ Fold2: mtry=10, ntree=500, nodesize=1 
+- Fold2: mtry=10, ntree=500, nodesize=1 
++ Fold2: mtry=13, ntree=500, nodesize=1 
+- Fold2: mtry=13, ntree=500, nodesize=1 
++ Fold2: mtry=16, ntree=500, nodesize=1 
+- Fold2: mtry=16, ntree=500, nodesize=1 
++ Fold2: mtry=18, ntree=500, nodesize=1 
+- Fold2: mtry=18, ntree=500, nodesize=1 
++ Fold2: mtry=21, ntree=500, nodesize=1 
+- Fold2: mtry=21, ntree=500, nodesize=1 
++ Fold2: mtry=24, ntree=500, nodesize=1 
+- Fold2: mtry=24, ntree=500, nodesize=1 
++ Fold2: mtry=26, ntree=500, nodesize=1 
+- Fold2: mtry=26, ntree=500, nodesize=1 
++ Fold3: mtry= 2, ntree=500, nodesize=1 
+- Fold3: mtry= 2, ntree=500, nodesize=1 
++ Fold3: mtry= 5, ntree=500, nodesize=1 
+- Fold3: mtry= 5, ntree=500, nodesize=1 
++ Fold3: mtry= 8, ntree=500, nodesize=1 
+- Fold3: mtry= 8, ntree=500, nodesize=1 
++ Fold3: mtry=10, ntree=500, nodesize=1 
+- Fold3: mtry=10, ntree=500, nodesize=1 
++ Fold3: mtry=13, ntree=500, nodesize=1 
+- Fold3: mtry=13, ntree=500, nodesize=1 
++ Fold3: mtry=16, ntree=500, nodesize=1 
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  - Fold3: mtry=21, ntree=500, nodesize=1 
+  + Fold3: mtry=24, ntree=500, nodesize=1 
+  - Fold3: mtry=24, ntree=500, nodesize=1 
+  + Fold3: mtry=26, ntree=500, nodesize=1 
+  - Fold3: mtry=26, ntree=500, nodesize=1 
+  Aggregating results
+  Selecting tuning parameters
+  Fitting mtry = 2, ntree = 500, nodesize = 1 on full training set
+  +(rfe) fit Fold1 size: 26 
+  -(rfe) fit Fold1 size: 26 
+  +(rfe) imp Fold1 
+  -(rfe) imp Fold1 
+  +(rfe) fit Fold1 size: 16 
+  -(rfe) fit Fold1 size: 16 
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘preciseTAD.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘preciseTAD.Rmd’ using rmarkdown
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/preciseTAD.Rcheck/00check.log’
+for details.
+

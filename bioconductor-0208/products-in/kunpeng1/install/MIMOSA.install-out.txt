@@ -1,0 +1,79 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL MIMOSA
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘MIMOSA’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include   `/home/biocbuild/bbs-3.17-bioc/R/bin/Rscript -e "RcppArmadillo:::CxxFlags()"`   -fPIC  -g -O2  -Wall  -c BetaMix.cpp -o BetaMix.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include   `/home/biocbuild/bbs-3.17-bioc/R/bin/Rscript -e "RcppArmadillo:::CxxFlags()"`   -fPIC  -g -O2  -Wall  -c MCMC.cpp -o MCMC.o
+MCMC.cpp: In function ‘SEXPREC* fitMCMC(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)’:
+MCMC.cpp:73:16: warning: suggest parentheses around comparison in operand of ‘|’ [-Wparentheses]
+   73 |         if(file==NULL|fileP==NULL){
+      |                ^
+MCMC.cpp:88:25: warning: comparison of integer expressions of different signedness: ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+   88 |         if(alphas.size()!=stim.ncol()){
+      |            ~~~~~~~~~~~~~^~~~~~~~~~~~~
+MCMC.cpp:189:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  189 |         for(int i=0;i<alphas.size();i++){
+      |                     ~^~~~~~~~~~~~~~
+MCMC.cpp:192:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  192 |         for(int i=0;i<alphau.size();i++){
+      |                     ~^~~~~~~~~~~~~~
+MCMC.cpp:524:38: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  524 |                         for(int j=0;j<p.size();j++){
+      |                                     ~^~~~~~~~~
+MCMC.cpp:544:42: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  544 |                         for(int obs=0;obs<alphas.size();obs++){
+      |                                       ~~~^~~~~~~~~~~~~~
+MCMC.cpp:547:42: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  547 |                         for(int obs=0;obs<alphau.size();obs++){
+      |                                       ~~~^~~~~~~~~~~~~~
+MCMC.cpp: In function ‘double lkbeta(const std::vector<double>&)’:
+MCMC.cpp:631:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  631 |         for(int i=0;i<alpha.size();i++){
+      |                     ~^~~~~~~~~~~~~
+MCMC.cpp: In function ‘void simZ(double&, std::vector<double>&, std::vector<double>&, std::vector<double>&, std::vector<double>&, std::vector<bool>&, int, int)’:
+MCMC.cpp:681:19: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  681 |         for(i=0;i < lnull.size(); i++){
+      |                 ~~^~~~~~~~~~~~~~
+MCMC.cpp: In function ‘double normconstIBeta(double, double, double, double)’:
+MCMC.cpp:815:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  815 |         for(int i=0;i<upper.size();i++){
+      |                     ~^~~~~~~~~~~~~
+MCMC.cpp: In function ‘double nc(double, double, double, double, double)’:
+MCMC.cpp:888:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  888 |         for(int i=0;i<(s.size()-1);i++){
+      |                     ~^~~~~~~~~~~~~
+MCMC.cpp:893:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  893 |         for(int i=0;i<s.size();i++){
+      |                     ~^~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c MIMOSA_init.c -o MIMOSA_init.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c betaintegral.c -o betaintegral.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include   `/home/biocbuild/bbs-3.17-bioc/R/bin/Rscript -e "RcppArmadillo:::CxxFlags()"`   -fPIC  -g -O2  -Wall  -c betaintegralRcpp.cpp -o betaintegralRcpp.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o MIMOSA.so BetaMix.o MCMC.o MIMOSA_init.o betaintegral.o betaintegralRcpp.o -O3 -lm -lstdc++ -I"/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include" -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-MIMOSA/00new/MIMOSA/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (MIMOSA)

@@ -1,0 +1,131 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:IMPCdata.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings IMPCdata_1.35.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/IMPCdata.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘IMPCdata/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘IMPCdata’ version ‘1.35.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘IMPCdata’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘IMPCdata-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: getAlleles
+> ### Title: Method "getAlleles"
+> ### Aliases: getAlleles
+> 
+> ### ** Examples
+> 
+>     listAlleles  <- getAlleles("RBRC","IMPC_001","IMPC_GRS_001","IMPC_GRS_003_001")
+[1] "https://www.ebi.ac.uk/mi/impc/solr/experiment/select?q=phenotyping_center:%22RBRC%22%20AND%20pipeline_stable_id:IMPC_001%20AND%20procedure_stable_id:IMPC_GRS_001%20AND%20parameter_stable_id:IMPC_GRS_003_001&rows=0&wt=json&facet=true&facet.mincount=1&facet.limit=-1&facet.field=allele_accession_id"
+>     for (alleleIndex in 1:min(length(listAlleles), 5)) {
++         print(paste(listAlleles[alleleIndex],"-",
++                         getName("allele_accession_id","allele_symbol",
++                         listAlleles[alleleIndex])))
++     }
+[1] "MGI:4362265 - Dnase1l2<tm1(KOMP)Wtsi>"
+Warning in file(con, "r") :
+  cannot open URL 'https://www.ebi.ac.uk/mi/impc/solr/experiment/select?q=allele_accession_id:MGI%5C:4399403&rows=0&wt=json&facet=true&facet.mincount=1&facet.limit=-1&facet.field=allele_symbol': HTTP status was '500 Internal Server Error'
+Error in file(con, "r") : 
+  cannot open the connection to 'https://www.ebi.ac.uk/mi/impc/solr/experiment/select?q=allele_accession_id:MGI%5C:4399403&rows=0&wt=json&facet=true&facet.mincount=1&facet.limit=-1&facet.field=allele_symbol'
+Calls: print ... paste -> getName -> fromJSON -> paste -> readLines -> file
+Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘IMPCdata.Rnw’... failed
+ ERROR
+Errors in running code in vignettes:
+when running code in ‘IMPCdata.Rnw’
+  ...
+
+> library(IMPCdata)
+
+> getPhenCenters()
+Warning in file(con, "r") :
+  cannot open URL 'https://www.ebi.ac.uk/mi/impc/solr/experiment/select?q=*:*&rows=0&wt=json&facet=true&facet.mincount=1&facet.limit=-1&facet.field=phenotyping_center': HTTP status was '500 Internal Server Error'
+
+  When sourcing ‘IMPCdata.R’:
+Error: cannot open the connection to 'https://www.ebi.ac.uk/mi/impc/solr/experiment/select?q=*:*&rows=0&wt=json&facet=true&facet.mincount=1&facet.limit=-1&facet.field=phenotyping_center'
+Execution halted
+
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘IMPCdata.Rnw’ using Sweave
+Warning in file(con, "r") :
+  cannot open URL 'https://www.ebi.ac.uk/mi/impc/solr/experiment/select?q=gene_accession_id:MGI%5C:1931466&rows=0&wt=json&facet=true&facet.mincount=1&facet.limit=-1&facet.field=gene_symbol': HTTP status was '500 Internal Server Error'
+
+Error: processing vignette 'IMPCdata.Rnw' failed with diagnostics:
+ chunk 2 
+Error in file(con, "r") : 
+  cannot open the connection to 'https://www.ebi.ac.uk/mi/impc/solr/experiment/select?q=gene_accession_id:MGI%5C:1931466&rows=0&wt=json&facet=true&facet.mincount=1&facet.limit=-1&facet.field=gene_symbol'
+
+--- failed re-building ‘IMPCdata.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘IMPCdata.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/IMPCdata.Rcheck/00check.log’
+for details.
+

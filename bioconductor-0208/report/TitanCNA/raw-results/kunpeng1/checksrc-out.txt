@@ -1,0 +1,250 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:TitanCNA.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings TitanCNA_1.37.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/TitanCNA.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘TitanCNA/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘TitanCNA’ version ‘1.37.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘TitanCNA’ can be installed ... WARNING
+Found the following significant warnings:
+  Warning: replacing previous import ‘GenomicRanges::shift’ by ‘data.table::shift’ when loading ‘TitanCNA’
+  Warning: replacing previous import ‘data.table::first’ by ‘dplyr::first’ when loading ‘TitanCNA’
+  Warning: replacing previous import ‘IRanges::desc’ by ‘dplyr::desc’ when loading ‘TitanCNA’
+  Warning: replacing previous import ‘IRanges::slice’ by ‘dplyr::slice’ when loading ‘TitanCNA’
+  Warning: replacing previous import ‘GenomeInfoDb::intersect’ by ‘dplyr::intersect’ when loading ‘TitanCNA’
+  Warning: replacing previous import ‘data.table::last’ by ‘dplyr::last’ when loading ‘TitanCNA’
+  Warning: replacing previous import ‘GenomicRanges::union’ by ‘dplyr::union’ when loading ‘TitanCNA’
+  Warning: replacing previous import ‘data.table::between’ by ‘dplyr::between’ when loading ‘TitanCNA’
+  Warning: replacing previous import ‘BiocGenerics::combine’ by ‘dplyr::combine’ when loading ‘TitanCNA’
+  Warning: replacing previous import ‘IRanges::collapse’ by ‘dplyr::collapse’ when loading ‘TitanCNA’
+  Warning: replacing previous import ‘GenomicRanges::setdiff’ by ‘dplyr::setdiff’ when loading ‘TitanCNA’
+  Warning: replacing previous import ‘dplyr::select’ by ‘VariantAnnotation::select’ when loading ‘TitanCNA’
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/TitanCNA.Rcheck/00install.out’ for details.
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... NOTE
+  installed size is  7.2Mb
+  sub-directories of 1Mb or more:
+    data      1.7Mb
+    extdata   4.9Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+Killed
+* checking Rd files ... NOTE
+prepare_Rd: correctCN.Rd:51-53: Dropping empty section \details
+* checking Rd metadata ... OK
+* checking Rd cross-references ... NOTE
+Package unavailable to check Rd xrefs: ‘list’
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘plotIdiogram.hg38’
+All user-level objects in a package should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘TitanCNA-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: runEMclonalCN
+> ### Title: Function to run the Expectation Maximization Algorithm in
+> ###   'TitanCNA'.
+> ### Aliases: runEMclonalCN
+> ### Keywords: manip iteration htest models multivariate
+> 
+> ### ** Examples
+> 
+> message('Running TITAN ...')
+Running TITAN ...
+> #### LOAD DATA ####
+> infile <- system.file("extdata", "test_alleleCounts_chr2.txt", 
++               package = "TitanCNA")
+> data <- loadAlleleCounts(infile)
+titan: Loading data /home/biocbuild/bbs-3.17-bioc/R/library/TitanCNA/extdata/test_alleleCounts_chr2.txt
+> 
+> #### LOAD PARAMETERS ####
+> message('titan: Loading default parameters')
+titan: Loading default parameters
+> numClusters <- 2
+> params <- loadDefaultParameters(copyNumber = 5, 
++               numberClonalClusters = numClusters, skew = 0.1)
+> 
+> #### READ COPY NUMBER FROM HMMCOPY FILE ####
+> message('titan: Correcting GC content and mappability biases...')
+titan: Correcting GC content and mappability biases...
+> tumWig <- system.file("extdata", "test_tum_chr2.wig", package = "TitanCNA")
+> normWig <- system.file("extdata", "test_norm_chr2.wig", package = "TitanCNA")
+> gc <- system.file("extdata", "gc_chr2.wig", package = "TitanCNA")
+> map <- system.file("extdata", "map_chr2.wig", package = "TitanCNA")
+> cnData <- correctReadDepth(tumWig, normWig, gc, map)
+Reading GC and mappability files
+Slurping: /home/biocbuild/bbs-3.17-bioc/R/library/TitanCNA/extdata/gc_chr2.wig
+Parsing: fixedStep chrom=2 start=1 step=1000 span=1000
+Sorting by decreasing chromosome size
+Slurping: /home/biocbuild/bbs-3.17-bioc/R/library/TitanCNA/extdata/map_chr2.wig
+Parsing: fixedStep chrom=2 start=1 step=1000 span=1000
+Sorting by decreasing chromosome size
+Loading tumour file:/home/biocbuild/bbs-3.17-bioc/R/library/TitanCNA/extdata/test_tum_chr2.wig
+Slurping: /home/biocbuild/bbs-3.17-bioc/R/library/TitanCNA/extdata/test_tum_chr2.wig
+Parsing: fixedStep chrom=2 start=1 step=1000 span=1000
+Sorting by decreasing chromosome size
+Loading normal file:/home/biocbuild/bbs-3.17-bioc/R/library/TitanCNA/extdata/test_norm_chr2.wig
+Slurping: /home/biocbuild/bbs-3.17-bioc/R/library/TitanCNA/extdata/test_norm_chr2.wig
+Parsing: fixedStep chrom=2 start=1 step=1000 span=1000
+Sorting by decreasing chromosome size
+Warning in .replace_seqlevels_style(x_seqlevels, value) :
+  found more than one best sequence renaming map compatible with seqname style "NCBI" for this object, using the first one
+Warning in .replace_seqlevels_style(x_seqlevels, value) :
+  found more than one best sequence renaming map compatible with seqname style "NCBI" for this object, using the first one
+Warning in .replace_seqlevels_style(x_seqlevels, value) :
+  found more than one best sequence renaming map compatible with seqname style "NCBI" for this object, using the first one
+Warning in .replace_seqlevels_style(x_seqlevels, value) :
+  found more than one best sequence renaming map compatible with seqname style "NCBI" for this object, using the first one
+Correcting Tumour
+Applying filter on data...
+Correcting for GC bias...
+Correcting for mappability bias...
+Warning in regularize.values(x, y, ties, missing(ties), na.rm = na.rm) :
+  collapsing to unique 'x' values
+Correcting Normal
+Applying filter on data...
+Correcting for GC bias...
+Correcting for mappability bias...
+Warning in regularize.values(x, y, ties, missing(ties), na.rm = na.rm) :
+  collapsing to unique 'x' values
+Normalizing Tumour by Normal
+> logR <- getPositionOverlap(data$chr, data$posn, cnData)
+> data$logR <- log(2^logR) #transform to natural log
+> 
+> #### FILTER DATA FOR DEPTH, MAPPABILITY, NA, etc ####
+> data <- filterData(data, 1:24, minDepth = 10, maxDepth = 200, map = NULL)
+Removed Chrs: 
+> 
+> #### EM (FWD-BACK) TO TRAIN PARAMETERS ####
+> #### Can use parallelization packages ####
+> K <- length(params$genotypeParams$alphaKHyper)
+> params$genotypeParams$alphaKHyper <- rep(500, K)
+> params$ploidyParams$phi_0 <- 1.5
+> convergeParams <- runEMclonalCN(data, params,
++                                 maxiter = 3, maxiterUpdate = 500, 
++                                 txnExpLen = 1e15, txnZstrength = 5e5, 
++                                 useOutlierState = FALSE, 
++                                 normalEstimateMethod = "map", 
++                                 estimateS = TRUE, estimatePloidy = TRUE)
+Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘TitanCNA.Rnw’ using ‘UTF-8’... OK
+ OK
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘TitanCNA.Rnw’ using Sweave
+Warning: replacing previous import ‘GenomicRanges::shift’ by ‘data.table::shift’ when loading ‘TitanCNA’
+Warning: replacing previous import ‘data.table::first’ by ‘dplyr::first’ when loading ‘TitanCNA’
+Warning: replacing previous import ‘IRanges::desc’ by ‘dplyr::desc’ when loading ‘TitanCNA’
+Warning: replacing previous import ‘IRanges::slice’ by ‘dplyr::slice’ when loading ‘TitanCNA’
+Warning: replacing previous import ‘GenomeInfoDb::intersect’ by ‘dplyr::intersect’ when loading ‘TitanCNA’
+Warning: replacing previous import ‘data.table::last’ by ‘dplyr::last’ when loading ‘TitanCNA’
+Warning: replacing previous import ‘GenomicRanges::union’ by ‘dplyr::union’ when loading ‘TitanCNA’
+Warning: replacing previous import ‘data.table::between’ by ‘dplyr::between’ when loading ‘TitanCNA’
+Warning: replacing previous import ‘BiocGenerics::combine’ by ‘dplyr::combine’ when loading ‘TitanCNA’
+Warning: replacing previous import ‘IRanges::collapse’ by ‘dplyr::collapse’ when loading ‘TitanCNA’
+Warning: replacing previous import ‘GenomicRanges::setdiff’ by ‘dplyr::setdiff’ when loading ‘TitanCNA’
+Warning: replacing previous import ‘dplyr::select’ by ‘VariantAnnotation::select’ when loading ‘TitanCNA’
+titan: Loading data /home/biocbuild/bbs-3.17-bioc/R/library/TitanCNA/extdata/test_alleleCounts_chr2.txt
+Reading GC and mappability files
+Slurping: /home/biocbuild/bbs-3.17-bioc/R/library/TitanCNA/extdata/gc_chr2.wig
+Parsing: fixedStep chrom=2 start=1 step=1000 span=1000
+Sorting by decreasing chromosome size
+Slurping: /home/biocbuild/bbs-3.17-bioc/R/library/TitanCNA/extdata/map_chr2.wig
+Parsing: fixedStep chrom=2 start=1 step=1000 span=1000
+Sorting by decreasing chromosome size
+Loading tumour file:/home/biocbuild/bbs-3.17-bioc/R/library/TitanCNA/extdata/test_tum_chr2.wig
+Slurping: /home/biocbuild/bbs-3.17-bioc/R/library/TitanCNA/extdata/test_tum_chr2.wig
+Parsing: fixedStep chrom=2 start=1 step=1000 span=1000
+Sorting by decreasing chromosome size
+Loading normal file:/home/biocbuild/bbs-3.17-bioc/R/library/TitanCNA/extdata/test_norm_chr2.wig
+Slurping: /home/biocbuild/bbs-3.17-bioc/R/library/TitanCNA/extdata/test_norm_chr2.wig
+Parsing: fixedStep chrom=2 start=1 step=1000 span=1000
+Sorting by decreasing chromosome size
+Warning in .replace_seqlevels_style(x_seqlevels, value) :
+  found more than one best sequence renaming map compatible with seqname style "NCBI" for this object, using the first one
+Warning in .replace_seqlevels_style(x_seqlevels, value) :
+  found more than one best sequence renaming map compatible with seqname style "NCBI" for this object, using the first one
+Warning in .replace_seqlevels_style(x_seqlevels, value) :
+  found more than one best sequence renaming map compatible with seqname style "NCBI" for this object, using the first one
+Warning in .replace_seqlevels_style(x_seqlevels, value) :
+  found more than one best sequence renaming map compatible with seqname style "NCBI" for this object, using the first one
+Correcting Tumour
+Applying filter on data...
+Correcting for GC bias...
+Correcting for mappability bias...
+Warning in regularize.values(x, y, ties, missing(ties), na.rm = na.rm) :
+  collapsing to unique 'x' values
+Correcting Normal
+Applying filter on data...
+Correcting for GC bias...
+Correcting for mappability bias...
+Warning in regularize.values(x, y, ties, missing(ties), na.rm = na.rm) :
+  collapsing to unique 'x' values
+Normalizing Tumour by Normal
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 2 WARNINGs, 6 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/TitanCNA.Rcheck/00check.log’
+for details.
+

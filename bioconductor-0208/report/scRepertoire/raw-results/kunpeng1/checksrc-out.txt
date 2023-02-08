@@ -1,0 +1,177 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:scRepertoire.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings scRepertoire_1.9.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘scRepertoire/DESCRIPTION’ ... OK
+* this is package ‘scRepertoire’ version ‘1.9.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘scRepertoire’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is  5.0Mb
+  sub-directories of 1Mb or more:
+    data   4.4Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... NOTE
+Problems with news in ‘NEWS’:
+  Cannot process chunk/lines:
+    CHANGES IN VERSION 1.3.2
+    # This is the new numbering scheme apologies - we are all up-to-date now and now cell ranger >= 5 will # work on bioconductor, so let's all just take that as a win.
+    * added dot.size parameter to scatterClonotype
+    * filteringMulti now subsets clonotypes with contains >=2, to prevent 2 of the same chains
+    * changed how coldata is added to SCE objects using merge instead of union
+    * Can now add BCR and TCR simultaneously by making large list
+    * scatter plotting code is not so ugly and allows for user to select dot.size as a variable on the x or y axis
+    * Removed regressClonotype function - too many dependencies required, adding an additional vignette to go through the process
+    * Added chain option to visualizations and combineExpression to allow users to facilitate single chains - removed chain option from combineTCR/BCR/TRUST4 (the combined object will have both chains no matter what)
+    * Added NA filter to combineTCR/BCR/TRUST4 for cell barcodes with only NA values
+    * Added NA filter to expression2List() for cells with NA clonotypes.
+    * Updated VizGene to order the genes automatically by highest to lowest variance
+    * Updated VizGene to pull the correct genes based on selection
+    * Updated parse method - old version had issue with place V-->J-->D in the TRB/Heavy chains 
+    * Simplified the clonalDiversity() to allow for more options in organizing plot and box plots. 
+    * CombineExpression() adds the groupBy variable to Frequency, allowing for multiple calculations to be saved in the meta data. 
+    * Default color scheme now uses viridis plasma, because it I am on transfusion medicine.
+  Cannot process chunk/lines:
+    CHANGES IN VERSION 1.2.2
+    # Working on renumbering versions for consistency - this is the new current dev branch
+    # The below have not been implemented into the master branch or the bioconductor version
+    * added the combineTRUST4 function to parse contigs from TUST4 pipeline
+    * added the filter of contigs by chain in the combineTCR, combineBCR, and combineTRUST4 functions
+    * no longer require the ID in the combineTCR/BCR/TRUST4 functions
+    * added jaccard index for overlap analysis
+    * replaced vizVgene with vizGene - allowing users to look at any gene in the combinedContig object
+    * Fixed coloring scale on the overlap analysis
+    * Added regressClonotype function using harmony to remove the clonotype effect on feature space
+    * allowed occupiedRepertoire to use proportion.
+    * added scatterClonotype function to Viz.R
+  Cannot process chunk/lines:
+    The first version of scRepertoire submitted to Bioconductor.
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                         user system elapsed
+combineBCR            137.805  0.390 126.185
+clonesizeDistribution  24.090  0.016  24.147
+clusterTCR             23.643  0.028  23.674
+clonalDiversity        15.686  0.052  15.762
+alluvialClonotypes     13.199  0.080  13.316
+vizGenes               10.356  2.034  30.659
+combineExpression      12.127  0.004  13.248
+occupiedscRepertoire   11.538  0.004  12.090
+combineTCR             10.640  0.706  13.426
+abundanceContig        11.227  0.048  11.290
+clonalOverlay          10.809  0.048  11.041
+clonalOverlap          10.748  0.004  10.802
+compareClonotypes      10.668  0.004  11.544
+subsetContig           10.630  0.008  12.069
+lengthContig           10.623  0.004  11.059
+quantContig            10.133  0.491  15.613
+getCirclize            10.603  0.012  11.136
+addVariable            10.540  0.068  10.743
+clonalHomeostasis      10.328  0.008  10.449
+highlightClonotypes     9.909  0.395  13.690
+expression2List        10.277  0.015  11.992
+scatterClonotype       10.259  0.000  11.178
+clonalProportion        9.949  0.000  10.006
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘vignette.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+--- re-building ‘vignette.Rmd’ using rmarkdown
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-11-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-13-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-14-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-14-2.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-15-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-16-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-16-2.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-17-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-18-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-19-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-19-2.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-20-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-20-2.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-21-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-21-2.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-22-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-23-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-24-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-25-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-26-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-26-2.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-30-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-31-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-32-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-33-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-33-2.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-34-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-35-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-35-2.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-36-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-36-2.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-37-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/vign_test/scRepertoire/vignettes/vignette_files/figure-html/unnamed-chunk-38-1.png" but not available.
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/00check.log’
+for details.
+

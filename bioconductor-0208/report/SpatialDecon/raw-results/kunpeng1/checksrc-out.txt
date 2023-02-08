@@ -1,0 +1,182 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:SpatialDecon.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings SpatialDecon_1.9.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/SpatialDecon.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘SpatialDecon/DESCRIPTION’ ... OK
+* this is package ‘SpatialDecon’ version ‘1.9.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘SpatialDecon’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+download_profile_matrix: no visible binding for global variable
+  ‘profile_matrix’
+Undefined global functions or variables:
+  profile_matrix
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘SpatialDecon-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: runspatialdecon
+> ### Title: Run spatialdecon
+> ### Aliases: runspatialdecon runspatialdecon,NanoStringGeoMxSet-method
+> ###   runspatialdecon,Seurat-method
+> 
+> ### ** Examples
+> 
+> 
+> ## GeoMxSet Object ##
+> library(GeomxTools)
+Loading required package: Biobase
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: NanoStringNCTools
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: ggplot2
+> datadir <- system.file("extdata", "DSP_NGS_Example_Data", package = "GeomxTools")
+> demoData <- readRDS(file.path(datadir, "/demoData.rds"))
+> 
+> demoData <- shiftCountsOne(demoData)
+> target_demoData <- aggregateCounts(demoData)
+> 
+> target_demoData <- normalize(target_demoData, "quant")
+> 
+> demoData <- runspatialdecon(object = target_demoData, 
++                             norm_elt = "exprs_norm",
++                             raw_elt = "exprs")
+> 
+> ## Seurat Object ##
+> # get dataset
+> con <- gzcon(url("https://github.com/almaan/her2st/raw/master/data/ST-cnts/G1.tsv.gz"))
+> txt <- readLines(con)
+> temp <- read.table(textConnection(txt), sep = "\t", header = TRUE, row.names = 1)
+> # parse data
+> raw = t(as.matrix(temp))
+> norm = sweep(raw, 2, colSums(raw), "/") * mean(colSums(raw))
+> x = as.numeric(substr(rownames(temp), 1, unlist(gregexpr("x", rownames(temp))) - 1))
+> y = -as.numeric(substr(rownames(temp), 
++                  unlist(gregexpr("x", rownames(temp))) + 1, nchar(rownames(temp))))
+> # put into a seurat object:
+> andersson_g1 = SeuratObject::CreateSeuratObject(counts = raw, assay="Spatial")
+> andersson_g1@meta.data$x = x
+> andersson_g1@meta.data$y = y
+> 
+> res <- runspatialdecon(andersson_g1)
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘SpatialDecon_vignette.Rmd’ using ‘UTF-8’... OK
+  ‘SpatialDecon_vignette_NSCLC.Rmd’ using ‘UTF-8’... OK
+  ‘SpatialDecon_vignette_ST.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘SpatialDecon_vignette.Rmd’ using rmarkdown
+Killed
+--- re-building ‘SpatialDecon_vignette_NSCLC.Rmd’ using rmarkdown
+Killed
+--- re-building ‘SpatialDecon_vignette_ST.Rmd’ using rmarkdown
+Killed
+SUMMARY: processing the following files failed:
+  ‘SpatialDecon_vignette.Rmd’ ‘SpatialDecon_vignette_NSCLC.Rmd’
+  ‘SpatialDecon_vignette_ST.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/SpatialDecon.Rcheck/00check.log’
+for details.
+

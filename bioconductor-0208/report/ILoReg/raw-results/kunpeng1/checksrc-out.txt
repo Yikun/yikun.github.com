@@ -1,0 +1,359 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:ILoReg.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings ILoReg_1.9.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/ILoReg.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘ILoReg/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘ILoReg’ version ‘1.9.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘ILoReg’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... WARNING
+Codoc mismatches from documentation object 'FindAllGeneMarkers':
+FindAllGeneMarkers.SingleCellExperiment
+  Code: function(object, clustering.type, test, log2fc.threshold,
+                 min.pct, min.diff.pct, min.cells.group,
+                 max.cells.per.cluster, return.thresh, only.pos)
+  Docs: function(object, clustering.type, test, log2fc.threshold,
+                 min.pct, min.diff.pct, min.cells.group,
+                 max.cells.per.cluster, pseudocount.use, return.thresh,
+                 only.pos)
+  Argument names in docs not in code:
+    pseudocount.use
+  Mismatches in argument names:
+    Position: 9 Code: return.thresh Docs: pseudocount.use
+    Position: 10 Code: only.pos Docs: return.thresh
+\S4method{FindAllGeneMarkers}{SingleCellExperiment}
+  Code: function(object, clustering.type = "manual", test = "wilcox",
+                 log2fc.threshold = 0.25, min.pct = 0.1, min.diff.pct =
+                 NULL, min.cells.group = 3, max.cells.per.cluster =
+                 NULL, return.thresh = 0.01, only.pos = FALSE)
+  Docs: function(object, clustering.type = "manual", test = "wilcox",
+                 log2fc.threshold = 0.25, min.pct = 0.1, min.diff.pct =
+                 NULL, min.cells.group = 3, max.cells.per.cluster =
+                 NULL, pseudocount.use = 1, return.thresh = 0.01,
+                 only.pos = FALSE)
+  Argument names in docs not in code:
+    pseudocount.use
+  Mismatches in argument names:
+    Position: 9 Code: return.thresh Docs: pseudocount.use
+    Position: 10 Code: only.pos Docs: return.thresh
+
+Codoc mismatches from documentation object 'FindGeneMarkers':
+FindGeneMarkers.SingleCellExperiment
+  Code: function(object, clusters.1, clusters.2, clustering.type, test,
+                 logfc.threshold, min.pct, min.diff.pct,
+                 min.cells.group, max.cells.per.cluster, return.thresh,
+                 only.pos)
+  Docs: function(object, clusters.1, clusters.2, clustering.type, test,
+                 logfc.threshold, min.pct, min.diff.pct,
+                 min.cells.group, max.cells.per.cluster,
+                 pseudocount.use, return.thresh, only.pos)
+  Argument names in docs not in code:
+    pseudocount.use
+  Mismatches in argument names:
+    Position: 11 Code: return.thresh Docs: pseudocount.use
+    Position: 12 Code: only.pos Docs: return.thresh
+\S4method{FindGeneMarkers}{SingleCellExperiment}
+  Code: function(object, clusters.1 = NULL, clusters.2 = NULL,
+                 clustering.type = "", test = "wilcox", logfc.threshold
+                 = 0.25, min.pct = 0.1, min.diff.pct = NULL,
+                 min.cells.group = 3, max.cells.per.cluster = NULL,
+                 return.thresh = 0.01, only.pos = FALSE)
+  Docs: function(object, clusters.1 = NULL, clusters.2 = NULL,
+                 clustering.type = "", test = "wilcox", logfc.threshold
+                 = 0.25, min.pct = 0.1, min.diff.pct = NULL,
+                 min.cells.group = 3, max.cells.per.cluster = NULL,
+                 pseudocount.use = 1, return.thresh = 0.01, only.pos =
+                 FALSE)
+  Argument names in docs not in code:
+    pseudocount.use
+  Mismatches in argument names:
+    Position: 11 Code: return.thresh Docs: pseudocount.use
+    Position: 12 Code: only.pos Docs: return.thresh
+
+Codoc mismatches from documentation object 'RunICP':
+RunICP
+  Code: function(normalized.data = NULL, k = 15, d = 0.3, r = 5, C = 5,
+                 reg.type = "L1", max.iter = 200, icp.batch.size = Inf)
+  Docs: function(normalized.data = NULL, k = 15, d = 0.3, r = 5, C = 5,
+                 reg.type = "L1", max.iter = 200)
+  Argument names in code not in docs:
+    icp.batch.size
+
+Codoc mismatches from documentation object 'RunParallelICP':
+RunParallelICP.SingleCellExperiment
+  Code: function(object, k, d, L, r, C, reg.type, max.iter, threads,
+                 icp.batch.size)
+  Docs: function(object, k, d, L, r, C, reg.type, max.iter, threads)
+  Argument names in code not in docs:
+    icp.batch.size
+\S4method{RunParallelICP}{SingleCellExperiment}
+  Code: function(object, k = 15, d = 0.3, L = 200, r = 5, C = 0.3,
+                 reg.type = "L1", max.iter = 200, threads = 0,
+                 icp.batch.size = Inf)
+  Docs: function(object, k = 15, d = 0.3, L = 200, r = 5, C = 0.3,
+                 reg.type = "L1", max.iter = 200, threads = 0)
+  Argument names in code not in docs:
+    icp.batch.size
+
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘ILoReg-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: MergeClusters
+> ### Title: Merge clusters
+> ### Aliases: MergeClusters MergeClusters.SingleCellExperiment
+> ###   MergeClusters,SingleCellExperiment-method
+> ### Keywords: clusters merge
+> 
+> ### ** Examples
+> 
+> library(SingleCellExperiment)
+Loading required package: SummarizedExperiment
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+> sce <- SingleCellExperiment(assays = list(logcounts = pbmc3k_500))
+> sce <- PrepareILoReg(sce)
+Data in `logcounts` slot already of `dgCMatrix` class...
+13865/13865 genes remain after filtering genes with only zero values.
+> ## These settings are just to accelerate the example, use the defaults.
+> sce <- RunParallelICP(sce,L=2,threads=1,C=0.1,k=5,r=1)
+Parallelism disabled, because threads = 1
+ICP run: 1
+probability matrix dimensions = 500 5
+EPOCH: 1
+current clustering = 105 95 90 102 108
+projected clustering = 86 134 104 102 74
+ARI=0.0404351245368042
+probability matrix dimensions = 500 5
+EPOCH: 2
+current clustering = 86 134 104 102 74
+projected clustering = 117 143 22 130 88
+ARI=0.268800805638721
+probability matrix dimensions = 500 5
+EPOCH: 3
+current clustering = 117 143 22 130 88
+projected clustering = 133 99 52 125 91
+ARI=0.606803019367055
+probability matrix dimensions = 500 5
+EPOCH: 4
+current clustering = 133 99 52 125 91
+projected clustering = 107 99 77 125 92
+ARI=0.703858233886247
+probability matrix dimensions = 500 5
+EPOCH: 5
+current clustering = 107 99 77 125 92
+projected clustering = 73 105 96 126 100
+ARI=0.724800059025053
+probability matrix dimensions = 500 5
+EPOCH: 6
+current clustering = 73 105 96 126 100
+projected clustering = 72 112 91 125 100
+ARI=0.837187412690967
+probability matrix dimensions = 500 5
+EPOCH: 7
+current clustering = 72 112 91 125 100
+projected clustering = 73 84 119 125 99
+ICP run: 2
+probability matrix dimensions = 500 5
+EPOCH: 1
+current clustering = 103 106 111 95 85
+projected clustering = 80 96 147 65 112
+ARI=0.0443816245637571
+probability matrix dimensions = 500 5
+EPOCH: 2
+current clustering = 80 96 147 65 112
+projected clustering = 75 99 141 72 113
+ARI=0.282817209367664
+probability matrix dimensions = 500 5
+EPOCH: 3
+current clustering = 75 99 141 72 113
+projected clustering = 95 54 142 77 132
+ARI=0.361774472317257
+probability matrix dimensions = 500 5
+EPOCH: 4
+current clustering = 95 54 142 77 132
+projected clustering = 109 52 141 85 113
+ARI=0.577691012423983
+probability matrix dimensions = 500 5
+EPOCH: 5
+current clustering = 109 52 141 85 113
+projected clustering = 113 69 166 86 66
+ARI=0.666679369785714
+probability matrix dimensions = 500 5
+EPOCH: 6
+current clustering = 113 69 166 86 66
+projected clustering = 112 77 149 80 82
+ARI=0.819134272608316
+probability matrix dimensions = 500 5
+EPOCH: 7
+current clustering = 112 77 149 80 82
+projected clustering = 107 90 158 74 71
+ARI=0.880327482285581
+probability matrix dimensions = 500 5
+EPOCH: 8
+current clustering = 107 90 158 74 71
+projected clustering = 108 95 153 74 70
+ARI=0.885574572197308
+probability matrix dimensions = 500 5
+EPOCH: 9
+current clustering = 108 95 153 74 70
+projected clustering = 110 110 153 72 55
+ARI=0.88870438897285
+probability matrix dimensions = 500 5
+EPOCH: 10
+current clustering = 110 110 153 72 55
+projected clustering = 109 121 145 71 54
+ARI=0.902084833011907
+Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘ILoReg.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘ILoReg.Rmd’ using rmarkdown
+Quitting from lines 86-94 (ILoReg.Rmd) 
+Error: processing vignette 'ILoReg.Rmd' failed with diagnostics:
+error reading from connection
+--- failed re-building ‘ILoReg.Rmd’
+
+SUMMARY: processing the following file failed:
+  ‘ILoReg.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 1 WARNING
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/ILoReg.Rcheck/00check.log’
+for details.
+

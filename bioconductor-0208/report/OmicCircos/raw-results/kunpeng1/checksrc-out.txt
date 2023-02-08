@@ -1,0 +1,143 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:OmicCircos.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings OmicCircos_1.37.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/OmicCircos.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘OmicCircos/DESCRIPTION’ ... OK
+* this is package ‘OmicCircos’ version ‘1.37.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘OmicCircos’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+circos: no visible global function definition for ‘rainbow’
+circos: no visible global function definition for ‘start’
+circos: no visible global function definition for ‘end’
+circos: no visible global function definition for ‘dist’
+circos: no visible global function definition for ‘hclust’
+circos: no visible global function definition for ‘colorRampPalette’
+circos: no visible global function definition for ‘na.omit’
+circos: no visible binding for global variable ‘quantile’
+circos : get.conf.int: no visible global function definition for
+  ‘t.test’
+circos : var1: no visible global function definition for ‘var’
+circos: no visible global function definition for ‘var’
+circos : sd1: no visible global function definition for ‘sd’
+circos: no visible global function definition for ‘sd’
+circos: no visible global function definition for ‘median’
+color.bar: no visible global function definition for ‘colorRampPalette’
+color.bar: no visible global function definition for ‘rect’
+color.bar: no visible global function definition for ‘text’
+color.bar: no visible global function definition for ‘segments’
+do.scale: no visible global function definition for ‘segments’
+do.scale: no visible global function definition for ‘text’
+draw.arc.pg: no visible global function definition for ‘polygon’
+draw.arc.s: no visible global function definition for ‘lines’
+draw.line: no visible global function definition for ‘segments’
+draw.line2: no visible global function definition for ‘segments’
+draw.line3: no visible global function definition for ‘segments’
+draw.link: no visible global function definition for ‘points’
+draw.link.pg: no visible global function definition for ‘polygon’
+draw.link2: no visible global function definition for ‘points’
+draw.point.w: no visible global function definition for ‘points’
+draw.text.rt: no visible global function definition for ‘text’
+draw.text.w: no visible global function definition for ‘text’
+heatmap.cluster: no visible global function definition for ‘dist’
+heatmap.cluster: no visible global function definition for ‘hclust’
+heatmap.cluster: no visible global function definition for ‘segments’
+heatmap.cluster: no visible global function definition for ‘text’
+sim.circos: no visible global function definition for ‘rnorm’
+segAnglePo,GRanges: no visible global function definition for ‘start’
+segAnglePo,GRanges: no visible global function definition for ‘end’
+segAnglePo,GRanges: no visible global function definition for ‘strand’
+segAnglePo,GRanges: no visible binding for global variable ‘seg’
+segAnglePo,GRanges: no visible binding for global variable
+  ‘angle.start’
+segAnglePo,GRanges: no visible binding for global variable ‘angle.end’
+Undefined global functions or variables:
+  angle.end angle.start colorRampPalette dist end hclust lines median
+  na.omit points polygon quantile rainbow rect rnorm sd seg segments
+  start strand t.test text var
+Consider adding
+  importFrom("grDevices", "colorRampPalette", "rainbow")
+  importFrom("graphics", "lines", "points", "polygon", "rect",
+             "segments", "text")
+  importFrom("stats", "dist", "end", "hclust", "median", "na.omit",
+             "quantile", "rnorm", "sd", "start", "t.test", "var")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Documented arguments not in \usage in documentation object 'circos':
+  ‘...’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+            user system elapsed
+sim.circos 1.913  0.932    6.82
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘OmicCircos_vignette.Rnw’ using ‘UTF-8’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 WARNING, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/OmicCircos.Rcheck/00check.log’
+for details.
+
+

@@ -1,0 +1,148 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:CAGEr.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings CAGEr_2.5.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/CAGEr.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘CAGEr/DESCRIPTION’ ... OK
+* this is package ‘CAGEr’ version ‘2.5.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘CAGEr’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘CAGEr-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: clusterCTSS
+> ### Title: Cluster CTSSs into tag clusters
+> ### Aliases: clusterCTSS clusterCTSS,CAGEexp-method
+> 
+> ### ** Examples
+> 
+> 
+> # Using 'distclu', notice argument 'maxDist'
+> ce <- clusterCTSS( exampleCAGEexp, threshold = 50, thresholdIsTpm = TRUE
++            , nrPassThreshold = 1, method = "distclu", maxDist = 20
++            , removeSingletons = TRUE, keepSingletonsAbove = 100)
+
+Filtering out CTSSs below threshold...
+Clustering...
+	-> Zf.unfertilized.egg
+	-> Zf.high
+	-> Zf.30p.dome
+	-> Zf.prim6.rep1
+	-> Zf.prim6.rep2
+> tagClustersGR(ce, "Zf.30p.dome")
+TagClusters object with 88 ranges and 4 metadata columns:
+     seqnames            ranges strand |            score   nr_ctss
+        <Rle>         <IRanges>  <Rle> |            <Rle> <integer>
+   1    chr17 26453632-26453722      + | 1194.07800791544        14
+   2    chr17 26564522-26564589      + | 1505.62283034387        15
+   3    chr17 26564610-26564614      + | 180.571402714547         3
+   4    chr17 26595639-26595805      + | 7099.05702175236        36
+   5    chr17 26596033-26596070      + | 490.202040074153         8
+  ..      ...               ...    ... .              ...       ...
+  84    chr17 31802467-31802468      + | 77.0002365314291         2
+  85    chr17          32249369      + | 103.571166183118         1
+  86    chr17 32364966-32364987      + | 128.575090100563         3
+  87    chr17 32566467-32566493      + | 128.446193727075         3
+  88    chr17 32706111-32706247      + | 9235.46741649492        53
+     dominant_ctss tpm.dominant_ctss
+         <integer>             <Rle>
+   1      26453701  393.295792264432
+   2      26564585   287.56899462406
+   3      26564610  103.571166183118
+   4      26595750   2804.3982647548
+   5      26596070  129.738486436885
+  ..           ...               ...
+  84      31802467  51.4459571956458
+  85      32249369  103.571166183118
+  86      32364987   77.466531428997
+  87      32566467  51.4459571956458
+  88      32706231  1085.31882195528
+  -------
+  seqinfo: 26 sequences (1 circular) from danRer7 genome
+> 
+> # Using 'paraclu', notice arguments 'maxLength' and 'minStability'
+> ce <- clusterCTSS( exampleCAGEexp, threshold = 50, thresholdIsTpm = TRUE
++            , nrPassThreshold = 1, method = "paraclu"
++            , removeSingletons = TRUE, keepSingletonsAbove = 100
++            , maxLength = 500, minStability = 1
++            , reduceToNonoverlapping = TRUE)
+
+Filtering out CTSSs below threshold...
+Clustering...
+	-> Zf.unfertilized.egg
+	-> Zf.high
+	-> Zf.30p.dome
+	-> Zf.prim6.rep1
+	-> Zf.prim6.rep2
+Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘CAGE_Resources.Rmd’ using ‘UTF-8’... OK
+  ‘CAGEexp.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/CAGEr.Rcheck/00check.log’
+for details.
+

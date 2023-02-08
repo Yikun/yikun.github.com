@@ -1,0 +1,159 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:MutationalPatterns.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings MutationalPatterns_3.9.1.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/MutationalPatterns.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘MutationalPatterns/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘MutationalPatterns’ version ‘3.9.1’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘MutationalPatterns’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘MutationalPatterns-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: context_potential_damage_analysis
+> ### Title: Potential damage analysis for the supplied mutational contexts
+> ### Aliases: context_potential_damage_analysis
+> 
+> ### ** Examples
+> 
+> 
+> ## See the 'mut_matrix()' example for how we obtained the
+> ## mutation matrix information:
+> mut_mat <- readRDS(system.file("states/mut_mat_data.rds",
++   package = "MutationalPatterns"
++ ))
+> 
+> contexts <- rownames(mut_mat)
+> 
+> ## Load the corresponding reference genome.
+> ref_genome <- "BSgenome.Hsapiens.UCSC.hg19"
+> library(ref_genome, character.only = TRUE)
+Loading required package: BSgenome
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: rtracklayer
+> 
+> ## Load the transcription annotation database
+> ## You can obtain the database from the UCSC hg19 dataset using
+> ## Bioconductor:
+> # BiocManager::install("TxDb.Hsapiens.UCSC.hg19.knownGene")
+> library("TxDb.Hsapiens.UCSC.hg19.knownGene")
+Loading required package: GenomicFeatures
+Loading required package: AnnotationDbi
+> txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene
+> 
+> ## Here we will use the Entrez Gene IDs from several cancer
+> ## genes. In practice you might want to use larger gene lists,
+> ## but here we only use a few to keep the runtime low.
+> ## In this example we are using:
+> ## TP53, KRAS, NRAS, BRAF, BRCA2
+> gene_ids <- c(7157, 3845, 4893, 673, 675)
+> 
+> ## Run the function
+> context_potential_damage_analysis(contexts, txdb, ref_genome, gene_ids)
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  ')
+  
+  Attaching package: 'NMF'
+  
+  The following object is masked from 'package:S4Vectors':
+  
+      nrun
+  
+  The following object is masked from 'package:testthat':
+  
+      compare
+  
+  > 
+  > test_check("MutationalPatterns")
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘Introduction_to_MutationalPatterns.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘Introduction_to_MutationalPatterns.Rmd’ using rmarkdown
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/MutationalPatterns.Rcheck/vign_test/MutationalPatterns/vignettes/Introduction_to_MutationalPatterns_files/figure-html/combine_plot_spectrum-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/MutationalPatterns.Rcheck/vign_test/MutationalPatterns/vignettes/Introduction_to_MutationalPatterns_files/figure-html/combine_plot_spectrum_2-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/MutationalPatterns.Rcheck/vign_test/MutationalPatterns/vignettes/Introduction_to_MutationalPatterns_files/figure-html/plot_96_profile-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/MutationalPatterns.Rcheck/vign_test/MutationalPatterns/vignettes/Introduction_to_MutationalPatterns_files/figure-html/plot_profile_heatmap-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/MutationalPatterns.Rcheck/vign_test/MutationalPatterns/vignettes/Introduction_to_MutationalPatterns_files/figure-html/riverplot-1.png" but not available.
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/MutationalPatterns.Rcheck/00check.log’
+for details.
+

@@ -1,0 +1,138 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:omada.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings omada_1.1.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/omada.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘omada/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘omada’ version ‘1.1.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  'pdfCluster', 'kernlab', 'fpc', 'Rcpp', 'diceR', 'ggplot2',
+  'reshape', 'clusterCrit', 'clValid', 'glmnet', 'dplyr'
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘omada’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... NOTE
+File
+  LICENSE
+is not mentioned in the DESCRIPTION file.
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Packages in Depends field not imported from:
+  ‘Rcpp’ ‘clusterCrit’ ‘glmnet’ ‘kernlab’ ‘reshape’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+clusterVoting: no visible binding for global variable ‘k’
+clusterVoting: no visible binding for global variable ‘Frequency’
+clusteringMethodSelection: no visible binding for global variable
+  ‘value’
+clusteringMethodSelection: no visible binding for global variable
+  ‘methods’
+featureSelection: no visible binding for global variable ‘featureSet’
+featureSelection: no visible binding for global variable ‘means’
+geneSignatures: no visible global function definition for ‘where’
+geneSignatures: no visible binding for global variable ‘features’
+geneSignatures: no visible binding for global variable ‘value’
+geneSignatures: no visible binding for global variable ‘variable’
+Undefined global functions or variables:
+  Frequency featureSet features k means methods value variable where
+Consider adding
+  importFrom("utils", "methods")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                                                   user system elapsed
+get_feature_selection_scores                     55.993  0.120  56.142
+get_feature_selection_optimal_number_of_features 55.318  0.044  55.375
+get_partition_agreement_scores                   38.832  0.036  38.920
+get_cluster_voting_memberships                   37.720  1.086  45.345
+get_cluster_voting_k_votes                       38.067  0.304  41.571
+get_cluster_voting_scores                        38.292  0.049  38.343
+get_cluster_voting_metric_votes                  37.240  0.354  41.089
+plot_feature_selection                           37.236  0.064  37.358
+plot_partition_agreement                         37.131  0.056  37.222
+get_sample_memberships                           36.255  0.064  36.337
+plot_signature_feature                           36.225  0.056  36.291
+get_feature_selection_optimal_features           34.849  0.089  34.940
+get_signature_feature_coefs                      34.736  0.060  34.881
+omada                                            29.810  0.040  29.900
+plot_cluster_voting                              27.473  0.048  27.572
+get_optimal_number_of_features                   13.239  0.012  13.255
+get_optimal_features                             12.620  0.024  12.650
+plot_average_stabilities                         12.593  0.016  12.620
+get_optimal_memberships                          11.842  0.000  11.846
+get_optimal_parameter_used                       11.180  0.024  11.282
+get_optimal_stability_score                      10.371  0.020  10.402
+featureSelection                                  8.839  0.008   8.856
+get_average_feature_k_stabilities                 7.366  0.008   7.616
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘omada-vignette.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/omada.Rcheck/00check.log’
+for details.
+
+

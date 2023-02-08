@@ -1,0 +1,150 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:sSeq.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings sSeq_1.37.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/sSeq.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘sSeq/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘sSeq’ version ‘1.37.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘sSeq’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+'library' or 'require' call to ‘caTools’ which was already attached by Depends.
+  Please remove these calls from your code.
+Packages in Depends field not imported from:
+  ‘RColorBrewer’ ‘caTools’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+drawMA_vol: no visible global function definition for ‘par’
+drawMA_vol: no visible global function definition for ‘points’
+drawMA_vol: no visible global function definition for ‘abline’
+ecdfAUC: no visible global function definition for ‘ecdf’
+ecdfAUC: no visible global function definition for ‘trapz’
+ecdfAUC: no visible global function definition for ‘mtext’
+ecdfAUC: no visible global function definition for ‘axis’
+ecdfAUC: no visible global function definition for ‘box’
+ecdfAUC: no visible global function definition for ‘lines’
+ecdfAUC: no visible global function definition for ‘abline’
+ecdfAUC: no visible global function definition for ‘legend’
+exactNBtest1: no visible global function definition for ‘dnbinom’
+getAdjustDisp: no visible global function definition for ‘quantile’
+getAdjustDisp: no visible global function definition for ‘var’
+getNormFactor : <anonymous>: no visible global function definition for
+  ‘median’
+getQ: no visible global function definition for ‘quantile’
+getQ: no visible global function definition for ‘cov’
+getQ: no visible global function definition for ‘var’
+getQ: no visible global function definition for ‘abline’
+getQ: no visible global function definition for ‘mtext’
+getT: no visible global function definition for ‘quantile’
+getT: no visible global function definition for ‘sd’
+getT: no visible global function definition for ‘cov’
+getT: no visible global function definition for ‘var’
+getT: no visible global function definition for ‘mtext’
+getT: no visible global function definition for ‘axis’
+getT: no visible global function definition for ‘abline’
+getTgroup: no visible global function definition for ‘quantile’
+getTgroup: no visible global function definition for ‘cov’
+getTgroup: no visible global function definition for ‘var’
+getTgroup: no visible global function definition for ‘mtext’
+getTgroup: no visible global function definition for ‘box’
+getTgroup: no visible global function definition for ‘axis’
+getTgroup: no visible global function definition for ‘abline’
+nbinomTestForMatricesSH : int.func: no visible global function
+  definition for ‘median’
+nbinomTestForMatricesSH: no visible global function definition for
+  ‘dnbinom’
+nbinomTestForMatricesSH: no visible global function definition for
+  ‘pchisq’
+plotDispersion: no visible global function definition for ‘brewer.pal’
+plotDispersion: no visible global function definition for
+  ‘smoothScatter’
+plotDispersion: no visible binding for global variable ‘blues9’
+plotDispersion: no visible global function definition for ‘points’
+plotDispersion: no visible global function definition for ‘legend’
+rnbinomMV: no visible global function definition for ‘rnbinom’
+rowVars: no visible binding for global variable ‘var’
+sim: no visible global function definition for ‘rnorm’
+Undefined global functions or variables:
+  abline axis blues9 box brewer.pal cov dnbinom ecdf legend lines
+  median mtext par pchisq points quantile rnbinom rnorm sd
+  smoothScatter trapz var
+Consider adding
+  importFrom("grDevices", "blues9")
+  importFrom("graphics", "abline", "axis", "box", "legend", "lines",
+             "mtext", "par", "points", "smoothScatter")
+  importFrom("stats", "cov", "dnbinom", "ecdf", "median", "pchisq",
+             "quantile", "rnbinom", "rnorm", "sd", "var")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+               user system elapsed
+getTgroup    86.561  0.420  86.998
+nbTestSH     86.599  0.304  87.090
+sSeq-package 83.636  0.388  85.608
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘sSeq.Rnw’ using ‘UTF-8’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/sSeq.Rcheck/00check.log’
+for details.
+
+

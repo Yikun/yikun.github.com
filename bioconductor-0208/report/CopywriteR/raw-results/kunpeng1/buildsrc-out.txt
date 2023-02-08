@@ -1,0 +1,42 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data CopywriteR
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘CopywriteR/DESCRIPTION’ ... OK
+* preparing ‘CopywriteR’:
+* checking DESCRIPTION meta-information ... OK
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘CopywriteR.Rnw’ using Sweave
+Loading required package: BiocParallel
+Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,  :
+  pseudoinverse used at 0.979
+Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,  :
+  neighborhood radius 0.001
+Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,  :
+  reciprocal condition number  0
+Warning in simpleLoess(y, x, w, span, degree = degree, parametric = parametric,  :
+  There are other near singularities as well. 1e-06
+
+Error: processing vignette 'CopywriteR.Rnw' failed with diagnostics:
+ chunk 10 (label = CopywriteR) 
+Error in value[[3L]](cond) : 
+  The GC-content and mappability normalization did not work due to a
+  failure to calculate loesses. This can generally be solved by using
+  larger bin sizes. Stopping execution of the remaining part of the
+  script...
+
+--- failed re-building ‘CopywriteR.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘CopywriteR.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted

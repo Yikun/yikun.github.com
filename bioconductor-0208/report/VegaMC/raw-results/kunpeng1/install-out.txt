@@ -1,0 +1,62 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL VegaMC
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘VegaMC’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c run_vegaMC.c -o run_vegaMC.o
+run_vegaMC.c: In function ‘read_params’:
+run_vegaMC.c:618:18: warning: unused variable ‘brkt’ [-Wunused-variable]
+  618 |     char *elem, *brkt;
+      |                  ^~~~
+run_vegaMC.c: In function ‘load_data’:
+run_vegaMC.c:534:32: warning: ‘chr’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  534 |         temp_probe->chromosome = chr;
+      |         ~~~~~~~~~~~~~~~~~~~~~~~^~~~~
+run_vegaMC.c:535:30: warning: ‘position’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  535 |         temp_probe->position = position;
+      |         ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+run_vegaMC.c:564:14: warning: ‘first_probe’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  564 |     prev_chr = temp_probe->chromosome;
+      |     ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~
+run_vegaMC.c: In function ‘call_VegaMC’:
+run_vegaMC.c:466:38: warning: ‘first_seg’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  466 |             seg_chromosomes[j] = (tmp->chromosome) + 1;
+      |                                  ~~~~^~~~~~~~~~~~~
+run_vegaMC.c:435:32: warning: ‘prev_seg’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  435 |                 prev_seg->next = tmp;
+      |                 ~~~~~~~~~~~~~~~^~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c sort_data.c -o sort_data.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c vegaMC.c -o vegaMC.o
+vegaMC.c: In function ‘heap_delete’:
+vegaMC.c:235:10: warning: variable ‘deleted’ set but not used [-Wunused-but-set-variable]
+  235 |     node deleted;
+      |          ^~~~~~~
+vegaMC.c: In function ‘init_trivial_segmentation’:
+vegaMC.c:592:15: warning: variable ‘index’ set but not used [-Wunused-but-set-variable]
+  592 |     int i, j, index;
+      |               ^~~~~
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o VegaMC.so run_vegaMC.o sort_data.o vegaMC.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-VegaMC/00new/VegaMC/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (VegaMC)

@@ -1,0 +1,156 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL ternarynet
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘ternarynet’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c array.c -o array.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c gn.c -o gn.o
+gn.c: In function ‘score’:
+gn.c:486: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  486 | #pragma omp parallel for
+      | 
+gn.c:493: warning: ignoring ‘#pragma omp atomic’ [-Wunknown-pragmas]
+  493 | #pragma omp atomic
+      | 
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c gn_Rwrap.c -o gn_Rwrap.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c init.c -o init.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c tnetfit.cc -o tnetfit.o
+tnetfit.cc: In function ‘SEXPREC* tnetfit(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)’:
+tnetfit.cc:24:9: warning: variable ‘perturbationType’ set but not used [-Wunused-but-set-variable]
+   24 |     int perturbationType, scoreType, backupStage, maxStage, maxTransition;
+      |         ^~~~~~~~~~~~~~~~
+tnetfit.cc:24:27: warning: variable ‘scoreType’ set but not used [-Wunused-but-set-variable]
+   24 |     int perturbationType, scoreType, backupStage, maxStage, maxTransition;
+      |                           ^~~~~~~~~
+tnetfit.cc:24:38: warning: variable ‘backupStage’ set but not used [-Wunused-but-set-variable]
+   24 |     int perturbationType, scoreType, backupStage, maxStage, maxTransition;
+      |                                      ^~~~~~~~~~~
+tnetfit.cc:73:39: warning: unused variable ‘tempi’ [-Wunused-variable]
+   73 |     int nOutcomes=3, l0, stage_count, tempi, jtrans, nTransition;
+      |                                       ^~~~~
+tnetfit.cc:311:19: warning: ‘newScore’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  311 |     SET_VECTOR_ELT(Routput, 10, ScalarReal(newScore));
+      |     ~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+tnetfit.cc:207:32: warning: ‘muci_old’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  207 |             convergence = (muci-muci_old)/sigma0;
+      |                           ~~~~~^~~~~~~~~~
+tnetfit.cc:202:43: warning: ‘sigmaci’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  202 |           sigmaci = rho*sigmaRaw + (1-rho)*sigmaci;
+      |                                    ~~~~~~~^~~~~~~~
+tnetfit.cc:207:25: warning: ‘sigma0’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  207 |             convergence = (muci-muci_old)/sigma0;
+      |             ~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c tnetfuncs.cc -o tnetfuncs.o
+tnetfuncs.cc: In function ‘double AttractorDistanceForced(int, int, int, int, double, int*, int*, int*, const double*, const int*)’:
+tnetfuncs.cc:427:5: warning: unused variable ‘tableWidth’ [-Wunused-variable]
+  427 | int tableWidth = powi(nOutcomes,maxDegree);
+      |     ^~~~~~~~~~
+tnetfuncs.cc:435:5: warning: unused variable ‘ipause’ [-Wunused-variable]
+  435 | int ipause;
+      |     ^~~~~~
+tnetfuncs.cc: In function ‘double initialTemp(double, int, int, int, int, int, double, double, double, int, const double*, int*, int*, int*, const double*, const int*)’:
+tnetfuncs.cc:517:13: warning: unused variable ‘ipause’ [-Wunused-variable]
+  517 |         int ipause;
+      |             ^~~~~~
+tnetfuncs.cc:521:21: warning: unused variable ‘i’ [-Wunused-variable]
+  521 |         int m1, m2, i;
+      |                     ^
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c tnetpost.cc -o tnetpost.o
+tnetpost.cc: In function ‘SEXPREC* tnetpost(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)’:
+tnetpost.cc:25:9: warning: unused variable ‘ipause’ [-Wunused-variable]
+   25 |     int ipause;
+      |         ^~~~~~
+tnetpost.cc:27:9: warning: unused variable ‘m0fit’ [-Wunused-variable]
+   27 |     int m0fit;
+      |         ^~~~~
+tnetpost.cc:28:32: warning: variable ‘minScore’ set but not used [-Wunused-but-set-variable]
+   28 |     double newScore, oldScore, minScore, finalScore;
+      |                                ^~~~~~~~
+tnetpost.cc:28:42: warning: unused variable ‘finalScore’ [-Wunused-variable]
+   28 |     double newScore, oldScore, minScore, finalScore;
+      |                                          ^~~~~~~~~~
+tnetpost.cc:30:9: warning: unused variable ‘l0’ [-Wunused-variable]
+   30 |     int l0, stage_count, tempi, jtrans, nTransition;
+      |         ^~
+tnetpost.cc:30:13: warning: unused variable ‘stage_count’ [-Wunused-variable]
+   30 |     int l0, stage_count, tempi, jtrans, nTransition;
+      |             ^~~~~~~~~~~
+tnetpost.cc:30:26: warning: unused variable ‘tempi’ [-Wunused-variable]
+   30 |     int l0, stage_count, tempi, jtrans, nTransition;
+      |                          ^~~~~
+tnetpost.cc:30:33: warning: unused variable ‘jtrans’ [-Wunused-variable]
+   30 |     int l0, stage_count, tempi, jtrans, nTransition;
+      |                                 ^~~~~~
+tnetpost.cc:30:41: warning: unused variable ‘nTransition’ [-Wunused-variable]
+   30 |     int l0, stage_count, tempi, jtrans, nTransition;
+      |                                         ^~~~~~~~~~~
+tnetpost.cc:36:21: warning: variable ‘xSeedFit’ set but not used [-Wunused-but-set-variable]
+   36 |     int m0, mdelta, xSeedFit;
+      |                     ^~~~~~~~
+tnetpost.cc:38:9: warning: variable ‘perturbationType’ set but not used [-Wunused-but-set-variable]
+   38 |     int perturbationType, scoreType, backupStage;
+      |         ^~~~~~~~~~~~~~~~
+tnetpost.cc:38:27: warning: variable ‘scoreType’ set but not used [-Wunused-but-set-variable]
+   38 |     int perturbationType, scoreType, backupStage;
+      |                           ^~~~~~~~~
+tnetpost.cc:38:38: warning: variable ‘backupStage’ set but not used [-Wunused-but-set-variable]
+   38 |     int perturbationType, scoreType, backupStage;
+      |                                      ^~~~~~~~~~~
+tnetpost.cc:39:9: warning: variable ‘maxStage’ set but not used [-Wunused-but-set-variable]
+   39 |     int maxStage, maxTransition;
+      |         ^~~~~~~~
+tnetpost.cc:39:19: warning: variable ‘maxTransition’ set but not used [-Wunused-but-set-variable]
+   39 |     int maxStage, maxTransition;
+      |                   ^~~~~~~~~~~~~
+tnetpost.cc:40:12: warning: variable ‘epsilon’ set but not used [-Wunused-but-set-variable]
+   40 |     double epsilon, chi0, delta, rho;
+      |            ^~~~~~~
+tnetpost.cc:40:21: warning: variable ‘chi0’ set but not used [-Wunused-but-set-variable]
+   40 |     double epsilon, chi0, delta, rho;
+      |                     ^~~~
+tnetpost.cc:40:27: warning: variable ‘delta’ set but not used [-Wunused-but-set-variable]
+   40 |     double epsilon, chi0, delta, rho;
+      |                           ^~~~~
+tnetpost.cc:40:34: warning: variable ‘rho’ set but not used [-Wunused-but-set-variable]
+   40 |     double epsilon, chi0, delta, rho;
+      |                                  ^~~
+In file included from tnetpost.cc:14:
+/home/biocbuild/bbs-3.17-bioc/R/include/Rmath.h:210:25: warning: variable ‘Rf_beta’ set but not used [-Wunused-but-set-variable]
+  210 | #define beta            Rf_beta
+      |                         ^~~~~~~
+tnetpost.cc:41:9: note: in expansion of macro ‘beta’
+   41 |     int beta;
+      |         ^~~~
+tnetpost.cc:44:9: warning: variable ‘ne’ set but not used [-Wunused-but-set-variable]
+   44 |     int ne, maxDegree;
+      |         ^~
+tnetpost.cc:150:10: warning: variable ‘minDump’ set but not used [-Wunused-but-set-variable]
+  150 |     bool minDump = true;
+      |          ^~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c util.c -o util.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o ternarynet.so array.o gn.o gn_Rwrap.o init.o tnetfit.o tnetfuncs.o tnetpost.o util.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-ternarynet/00new/ternarynet/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ternarynet)

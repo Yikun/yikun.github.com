@@ -1,0 +1,158 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:RiboProfiling.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings RiboProfiling_1.29.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/RiboProfiling.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘RiboProfiling/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘RiboProfiling’ version ‘1.29.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘RiboProfiling’ can be installed ... WARNING
+Found the following significant warnings:
+  Warning: replacing previous import ‘BiocGenerics::Position’ by ‘ggplot2::Position’ when loading ‘RiboProfiling’
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/RiboProfiling.Rcheck/00install.out’ for details.
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+applyShiftFeature: no visible global function definition for 'is'
+aroundPromoter: no visible global function definition for 'is'
+codonInfo: no visible global function definition for 'is'
+countShiftReads: no visible global function definition for 'is'
+histMatchLength: no visible global function definition for 'is'
+orfRelativePos: no visible global function definition for 'is'
+plotSummarizedCov: no visible global function definition for 'is'
+readStartCov: no visible global function definition for 'is'
+readsToStartOrEnd: no visible global function definition for 'is'
+riboSeqFromBAM: no visible global function definition for 'is'
+Undefined global functions or variables:
+  is
+Consider adding
+  importFrom("methods", "is")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘RiboProfiling-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: codonInfo
+> ### Title: Associates the read counts on codons with the codon type for
+> ###   each ORF.
+> ### Aliases: codonInfo
+> 
+> ### ** Examples
+> 
+> #for each codon in each ORF get the read coverage
+> #parameter listReadsCodon can be returned by the riboSeqFromBam function
+> #it corresponts to the 2nd element in the list returned by riboSeqFromBam
+> data(codonIndexCovCtrl)
+> listReadsCodon <- codonIndexCovCtrl
+> 
+> txdb <- TxDb.Hsapiens.UCSC.hg19.knownGene::TxDb.Hsapiens.UCSC.hg19.knownGene
+> 
+> #get the names of the ORFs
+> #grouped by transcript
+> cds <- GenomicFeatures::cdsBy(txdb, use.names=TRUE)
+> orfCoord <- cds[names(cds) %in% names(listReadsCodon)]
+> 
+> #get the genome, please check that the genome has the same seqlevels
+> genomeSeq <- BSgenome.Hsapiens.UCSC.hg19::BSgenome.Hsapiens.UCSC.hg19
+> #if not rename it
+> #gSeq <- GenomeInfoDb::renameSeqlevels(genomeSeq,
+> #sub("chr", "", GenomeInfoDb::seqlevels(genomeSeq)))
+> 
+> #codon frequency, coverage, and annotation
+> codonData <- codonInfo(listReadsCodon, genomeSeq, orfCoord)
+Warning in codonInfo(listReadsCodon, genomeSeq, orfCoord) :
+  Param motifSize should be an integer! Accepted values 3, 6 or 9. Default value is 3.
+
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  Loading required package: IRanges
+  Loading required package: XVector
+  Loading required package: GenomeInfoDb
+  
+  Attaching package: 'Biostrings'
+  
+  The following object is masked from 'package:base':
+  
+      strsplit
+  
+  Warning message:
+  replacing previous import 'BiocGenerics::Position' by 'ggplot2::Position' when loading 'RiboProfiling' 
+  > 
+  > test_check("RiboProfiling")
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘RiboProfiling.Rnw’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘RiboProfiling.Rnw’ using knitr
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs, 1 WARNING, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/RiboProfiling.Rcheck/00check.log’
+for details.
+

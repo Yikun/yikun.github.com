@@ -1,0 +1,157 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:VAExprs.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings VAExprs_1.5.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/VAExprs.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘VAExprs/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘VAExprs’ version ‘1.5.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘VAExprs’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+fit_vae: no visible binding for global variable ‘z_mean’
+fit_vae: no visible binding for global variable ‘z_log_stddev’
+fit_vae : vae_loss: no visible binding for global variable
+  ‘original_dim’
+fit_vae : vae_loss: no visible binding for global variable
+  ‘z_log_stddev’
+fit_vae : vae_loss: no visible binding for global variable ‘z_mean’
+Undefined global functions or variables:
+  original_dim z_log_stddev z_mean
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+            user system elapsed
+fit_vae   10.513  1.584  15.851
+plot_aug   7.895  0.137   8.008
+gen_exprs  7.399  0.037   7.293
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘VAExprs.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+--- re-building ‘VAExprs.Rmd’ using rmarkdown
+/usr/local/lib/python3.10/dist-packages/tensorflow_io/python/ops/__init__.py:98: UserWarning: unable to load libtensorflow_io_plugins.so: unable to open file: libtensorflow_io_plugins.so, from paths: ['/usr/local/lib/python3.10/dist-packages/tensorflow_io/python/ops/libtensorflow_io_plugins.so']
+caused by: ["[Errno 2] The file to load file system plugin from does not exist.: '/usr/local/lib/python3.10/dist-packages/tensorflow_io/python/ops/libtensorflow_io_plugins.so'"]
+  warnings.warn(f"unable to load libtensorflow_io_plugins.so: {e}")
+/usr/local/lib/python3.10/dist-packages/tensorflow_io/python/ops/__init__.py:104: UserWarning: file system plugins are not loaded: unable to open file: libtensorflow_io.so, from paths: ['/usr/local/lib/python3.10/dist-packages/tensorflow_io/python/ops/libtensorflow_io.so']
+caused by: ['/usr/local/lib/python3.10/dist-packages/tensorflow_io/python/ops/libtensorflow_io.so: cannot open shared object file: No such file or directory']
+  warnings.warn(f"file system plugins are not loaded: {e}")
+Train on 300 samples, validate on 300 samples
+Epoch 1/100
+WARNING:tensorflow:OMP_NUM_THREADS is no longer used by the default Keras config. To configure the number of threads, use tf.config.threading APIs.
+2023-02-07 18:42:24.762728: I tensorflow/compiler/mlir/mlir_graph_optimization_pass.cc:357] MLIR V1 optimization pass is not enabled
+2023-02-07 18:42:24.820531: W tensorflow/c/c_api.cc:291] Operation '{name:'training/Adam/z_mean/bias/v/Assign' id:540 op device:{requested: '', assigned: ''} def:{{{node training/Adam/z_mean/bias/v/Assign}} = AssignVariableOp[_has_manual_control_dependencies=true, dtype=DT_FLOAT, validate_shape=false](training/Adam/z_mean/bias/v, training/Adam/z_mean/bias/v/Initializer/zeros)}}' was changed by setting attribute after it was run by a session. This mutation will have no effect, and will trigger an error in the future. Either don't modify nodes after running them or create a new session.
+/usr/local/lib/python3.10/dist-packages/keras/engine/training_v1.py:2333: UserWarning: `Model.state_updates` will be removed in a future version. This property should not be used in TensorFlow 2.0, as `updates` are applied automatically.
+  updates = self.state_updates
+2023-02-07 18:42:25.268500: W tensorflow/c/c_api.cc:291] Operation '{name:'loss/mul' id:210 op device:{requested: '', assigned: ''} def:{{{node loss/mul}} = Mul[T=DT_FLOAT, _has_manual_control_dependencies=true](loss/mul/x, loss/dense_2_loss/value)}}' was changed by setting attribute after it was run by a session. This mutation will have no effect, and will trigger an error in the future. Either don't modify nodes after running them or create a new session.
+Epoch 2/100
+Epoch 3/100
+Epoch 4/100
+Epoch 5/100
+Epoch 6/100
+Epoch 7/100
+Epoch 8/100
+Epoch 9/100
+Epoch 10/100
+Epoch 11/100
+Epoch 12/100
+Epoch 13/100
+Epoch 14/100
+Epoch 15/100
+Epoch 16/100
+Epoch 17/100
+Epoch 18/100
+Epoch 19/100
+Epoch 20/100
+Epoch 21/100
+Epoch 22/100
+Epoch 23/100
+Epoch 24/100
+Epoch 25/100
+Epoch 26/100
+Epoch 27/100
+Epoch 28/100
+Epoch 29/100
+Epoch 30/100
+Epoch 31/100
+Epoch 32/100
+Epoch 33/100
+Epoch 34/100
+Epoch 35/100
+Epoch 36/100
+Epoch 37/100
+Epoch 38/100
+Epoch 39/100
+Epoch 40/100
+Epoch 41/100
+Epoch 42/100
+Epoch 43/100
+Epoch 44/100
+/usr/local/lib/python3.10/dist-packages/keras/engine/training_v1.py:2357: UserWarning: `Model.state_updates` will be removed in a future version. This property should not be used in TensorFlow 2.0, as `updates` are applied automatically.
+  updates=self.state_updates,
+2023-02-07 18:42:35.841361: W tensorflow/c/c_api.cc:291] Operation '{name:'z_mean/BiasAdd' id:49 op device:{requested: '', assigned: ''} def:{{{node z_mean/BiasAdd}} = BiasAdd[T=DT_FLOAT, _has_manual_control_dependencies=true, data_format="NHWC"](z_mean/MatMul, z_mean/BiasAdd/ReadVariableOp)}}' was changed by setting attribute after it was run by a session. This mutation will have no effect, and will trigger an error in the future. Either don't modify nodes after running them or create a new session.
+2023-02-07 18:42:37.401250: W tensorflow/c/c_api.cc:291] Operation '{name:'dense_2_1/Sigmoid' id:147 op device:{requested: '', assigned: ''} def:{{{node dense_2_1/Sigmoid}} = Sigmoid[T=DT_FLOAT, _has_manual_control_dependencies=true](dense_2_1/BiasAdd)}}' was changed by setting attribute after it was run by a session. This mutation will have no effect, and will trigger an error in the future. Either don't modify nodes after running them or create a new session.
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/VAExprs.Rcheck/00check.log’
+for details.
+

@@ -1,0 +1,329 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:enrichTF.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings enrichTF_1.15.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘enrichTF/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘enrichTF’ version ‘1.15.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘enrichTF’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+processing,TissueOpennessConserve: no visible global function
+  definition for ‘as’
+processing,TissueOpennessConserve: no visible binding for global
+  variable ‘X2’
+processing,TissueOpennessSpecificity: no visible global function
+  definition for ‘as’
+Undefined global functions or variables:
+  X2 as
+Consider adding
+  importFrom("methods", "as")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘enrichTF-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: Pipelines
+> ### Title: ready-to-use pipelines
+> ### Aliases: Pipelines PECA_TF_enrich GeneReguPipe
+> 
+> ### ** Examples
+> 
+> 
+> foregroundBedPath <- system.file(package = "enrichTF", "extdata","testregion.bed")
+> # This is the whole pipeline example.
+> PECA_TF_enrich(inputForegroundBed = foregroundBedPath, genome = "testgenome")
+Configure bsgenome ...
+Configure bsgenome finished
+Configure motifpwm ...
+Configure motifpwm finished
+Configure motifPWMOBJ ...
+Configure motifPWMOBJ finished
+Configure RE_gene_corr ...
+Configure RE_gene_corr finished
+Configure Enhancer_RE_gene_corr ...
+Configure Enhancer_RE_gene_corr finished
+Configure MotifTFTable ...
+Configure MotifTFTable finished
+Configure MotifWeights ...
+Configure MotifWeights finished
+Configure TFgeneRelMtx ...
+Configure TFgeneRelMtx finished
+Configure SampleName ...
+Configure SampleName finished
+Configure OpenRegion ...
+Configure OpenRegion finished
+Configure ConserveRegion ...
+Configure ConserveRegion finished
+Configure HOMER ...
+Configure HOMER finished
+Configure OrgDb ...
+Configure OrgDb finished
+>>>>>>==========================================================
+Step Name:pipe_UnzipAndMergeBed
+All Parameters for This Step:
+|Input:
+|    bedInput:
+|        "/home/biocbuild/bbs-3.17-bioc/R/library/enrichTF/extdata/testregion.bed"
+|Output:
+|    bedOutput:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/enrichTF-pipeline/Step_03_pipe_UnzipAndMergeBed/testregion.bed"
+|Other Parameters:
+__________________________________________
+Begin to check if it is finished...
+2023-02-07 01:00:25.026306
+New step. Start processing data: 
+processing file:
+source:/home/biocbuild/bbs-3.17-bioc/R/library/enrichTF/extdata/testregion.bed
+destination:/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/enrichTF-pipeline/Step_03_pipe_UnzipAndMergeBed/testregion.bed
+2023-02-07 01:00:25.049267
+processing finished
+[1] "2023-02-07 01:00:25 UTC"
+[1] "2023-02-07 01:00:25 UTC"
+[1] "2023-02-07 01:00:25 UTC"
+[1] "2023-02-07 01:00:25 UTC"
+[1] "2023-02-07 01:00:25 UTC"
+[1] "2023-02-07 01:00:25 UTC"
+All results have been saved.
+==========================================================<<<<<<
+ 
+>>>>>>==========================================================
+Step Name:pipe_GenBackground
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+All Parameters for This Step:
+|Input:
+|    inputForegroundBed:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/enrichTF-pipeline/Step_03_pipe_UnzipAndMergeBed/testregion.bed"
+|Output:
+|    outputForegroundBed:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/enrichTF-pipeline/Step_00_pipe_GenBackground/testregion.foreground.bed"
+|    outputBackgroundBed:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/enrichTF-pipeline/Step_00_pipe_GenBackground/testregion.background.bed"
+|    outputRegionBed:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/enrichTF-pipeline/Step_00_pipe_GenBackground/testregion.allregion.bed"
+|Other Parameters:
+|    bsgenome:
+|        An object of BSgenome
+|    regionLen:
+|        1000
+|    sampleNumb:
+|        0
+__________________________________________
+Begin to check if it is finished...
+[1] "2023-02-07 01:00:25 UTC"
+[1] "2023-02-07 01:00:25 UTC"
+[1] "2023-02-07 01:00:25 UTC"
+[1] "2023-02-07 01:00:25 UTC"
+[1] "2023-02-07 01:00:25 UTC"
+[1] "2023-02-07 01:00:25 UTC"
+2023-02-07 01:00:25.398235
+New step. Start processing data: 
+2023-02-07 01:00:25.660314
+processing finished
+[1] "2023-02-07 01:00:25 UTC"
+[1] "2023-02-07 01:00:25 UTC"
+[1] "2023-02-07 01:00:25 UTC"
+[1] "2023-02-07 01:00:25 UTC"
+[1] "2023-02-07 01:00:25 UTC"
+[1] "2023-02-07 01:00:25 UTC"
+All results have been saved.
+==========================================================<<<<<<
+ 
+>>>>>>==========================================================
+Step Name:pipe_RegionConnectTargetGene
+All Parameters for This Step:
+|Input:
+|    inputForegroundBed:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/enrichTF-pipeline/Step_00_pipe_GenBackground/testregion.foreground.bed"
+|    inputBackgroundBed:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/enrichTF-pipeline/Step_00_pipe_GenBackground/testregion.background.bed"
+|Output:
+|    outputForegroundBed:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/enrichTF-pipeline/Step_04_pipe_RegionConnectTargetGene/testregion.gene.foreground.bed"
+|    ouputForgroundGeneTxt:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/enrichTF-pipeline/Step_04_pipe_RegionConnectTargetGene/testregion.gene.foreground.txt"
+|    outputBackgroundBed:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/enrichTF-pipeline/Step_04_pipe_RegionConnectTargetGene/testregion.gene.background.bed"
+|    regularGeneCorrBed:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/refdir/testgenome/RE_gene_corr.bed"
+|    enhancerRegularGeneCorrBed:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/refdir/testgenome/Enhancer_RE_gene_corr.bed"
+|Other Parameters:
+__________________________________________
+Begin to check if it is finished...
+2023-02-07 01:00:25.706367
+New step. Start processing data: 
+2023-02-07 01:00:26.774771
+processing finished
+[1] "2023-02-07 01:00:26 UTC"
+[1] "2023-02-07 01:00:26 UTC"
+[1] "2023-02-07 01:00:26 UTC"
+[1] "2023-02-07 01:00:26 UTC"
+[1] "2023-02-07 01:00:26 UTC"
+[1] "2023-02-07 01:00:26 UTC"
+All results have been saved.
+==========================================================<<<<<<
+ 
+>>>>>>==========================================================
+Step Name:pipe_FindMotifsInRegions
+All Parameters for This Step:
+|Input:
+|    inputRegionBed:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/enrichTF-pipeline/Step_00_pipe_GenBackground/testregion.allregion.bed"
+|Output:
+|    outputRegionMotifBed:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/enrichTF-pipeline/Step_02_pipe_FindMotifsInRegions/testregion.region.motif.bed"
+|    outputMotifBed:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/enrichTF-pipeline/Step_02_pipe_FindMotifsInRegions/testregion.motif.bed"
+|Other Parameters:
+|    motifRc:
+|        "integrate"
+|    pwmObj:
+|        An object of PWMatrixList
+|    genome:
+|        "hg19"
+|    threads:
+|        2
+__________________________________________
+Begin to check if it is finished...
+[1] "2023-02-07 01:00:26 UTC"
+[1] "2023-02-07 01:00:26 UTC"
+[1] "2023-02-07 01:00:26 UTC"
+[1] "2023-02-07 01:00:26 UTC"
+[1] "2023-02-07 01:00:26 UTC"
+[1] "2023-02-07 01:00:26 UTC"
+The step:`pipe_FindMotifsInRegions` was finished. Nothing to do.
+If you need to redo or rerun this step,please call 'clearStepCache(YourStepObject)'or remove file: /home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/enrichTF-pipeline/Step_02_pipe_FindMotifsInRegions/pipeFrame.obj.936228c8.rds
+==========================================================<<<<<<
+ 
+>>>>>>==========================================================
+Step Name:pipe_TFsEnrichInRegions
+All Parameters for This Step:
+|Input:
+|    inputRegionBed:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/enrichTF-pipeline/Step_00_pipe_GenBackground/testregion.allregion.bed"
+|    inputRegionMotifBed:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/enrichTF-pipeline/Step_02_pipe_FindMotifsInRegions/testregion.region.motif.bed"
+|    inputForegroundGeneBed:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/enrichTF-pipeline/Step_04_pipe_RegionConnectTargetGene/testregion.gene.foreground.bed"
+|    inputBackgroundGeneBed:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/enrichTF-pipeline/Step_04_pipe_RegionConnectTargetGene/testregion.gene.background.bed"
+|    inputMotifWeights:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/refdir/testgenome/MotifWeights.RData"
+|    inputTFgeneRelMtx:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/refdir/testgenome/TFgeneRelMtx.RData"
+|    inputMotifTFTable:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/refdir/testgenome/MotifTFTable.RData"
+|Output:
+|    outputTFsEnrichTxt:
+|        "/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/enrichTF-pipeline/Step_05_pipe_TFsEnrichInRegions/testregion.PECA_TF_enrich.txt"
+|Other Parameters:
+__________________________________________
+Begin to check if it is finished...
+2023-02-07 01:00:26.872046
+New step. Start processing data: 
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘enrichTF.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘enrichTF.Rmd’ using rmarkdown
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/enrichTF.Rcheck/00check.log’
+for details.
+

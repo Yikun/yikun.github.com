@@ -1,0 +1,153 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:MBECS.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings MBECS_1.3.1.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/MBECS.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘MBECS/DESCRIPTION’ ... OK
+* this is package ‘MBECS’ version ‘1.3.1’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘MBECS’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... WARNING
+'::' or ':::' imports not declared from:
+  ‘ConQuR’ ‘caret’
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+externalPLSDA: no visible global function definition for ‘mbecsDeflate’
+mbecExplainedVariance: no visible global function definition for
+  ‘setNames’
+mbecPLSDA: no visible global function definition for ‘helpFactor’
+mbecPLSDA: no visible global function definition for ‘model.matrix’
+mbecPLSDA: no visible binding for global variable ‘.’
+mbecPLSDA: no visible binding for global variable ‘Freq’
+mbecPLSDA: no visible binding for global variable ‘weight’
+mbecPLSDA: no visible global function definition for ‘mbecsDeflate’
+Undefined global functions or variables:
+  . Freq helpFactor mbecsDeflate model.matrix setNames weight
+Consider adding
+  importFrom("stats", "model.matrix", "setNames")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... WARNING
+Codoc mismatches from documentation object 'mbecCorrection':
+mbecCorrection
+  Code: function(input.obj, model.vars = c("batch", "group"), method =
+                 c("lm", "lmm", "sva", "ruv2", "ruv4", "ruv3", "bmc",
+                 "bat", "rbe", "pn", "svd", "pls"), type = c("clr",
+                 "otu", "tss"), nc.features = NULL)
+  Docs: function(input.obj, model.vars = c("batch", "group"), method =
+                 c("lm", "lmm", "sva", "ruv2", "ruv4", "ruv3", "bmc",
+                 "bat", "rbe", "pn", "svd"), type = c("clr", "otu",
+                 "tss"), nc.features = NULL)
+  Mismatches in argument default values:
+    Name: 'method'
+    Code: c("lm", "lmm", "sva", "ruv2", "ruv4", "ruv3", "bmc", "bat", "rbe", 
+          "pn", "svd", "pls")
+    Docs: c("lm", "lmm", "sva", "ruv2", "ruv4", "ruv3", "bmc", "bat", "rbe", 
+          "pn", "svd")
+
+Codoc mismatches from documentation object 'mbecRunCorrections':
+mbecRunCorrections
+  Code: function(input.obj, model.vars = c("batch", "group"), type =
+                 "clr", method = c("ruv3", "bmc", "bat", "rbe", "pn",
+                 "svd", "pls"), nc.features = NULL)
+  Docs: function(input.obj, model.vars = c("batch", "group"), type =
+                 "clr", method = c("ruv3", "bmc", "bat", "rbe", "pn",
+                 "svd"), nc.features = NULL)
+  Mismatches in argument default values:
+    Name: 'method' Code: c("ruv3", "bmc", "bat", "rbe", "pn", "svd", "pls") Docs: c("ruv3", "bmc", "bat", "rbe", "pn", "svd")
+
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                        user system elapsed
+mbecModelVariance     20.855  0.480  22.597
+mbecVarianceStatsPlot 18.862  0.092  19.063
+mbecCorrection         7.519  0.089   7.684
+mbecReportPost         5.622  0.092   5.785
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  ══ Failed tests ════════════════════════════════════════════════════════════════
+  ── Error ('test-corrections.R:203'): mbecPLSDA works ───────────────────────────
+  Error in `helpFactor(tmp.meta, model.vars)`: could not find function "helpFactor"
+  Backtrace:
+      ▆
+   1. ├─testthat::evaluate_promise(...) at test-corrections.R:203:4
+   2. │ ├─withr::with_output_sink(...)
+   3. │ │ └─base::force(code)
+   4. │ ├─base::withCallingHandlers(...)
+   5. │ └─base::withVisible(code)
+   6. └─MBECS:::mbecPLSDA(input.obj = dummy.mbec, model.vars, type = "otu")
+  
+  [ FAIL 1 | WARN 101 | SKIP 4 | PASS 265 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘mbecs_vignette.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘mbecs_vignette.Rmd’ using knitr
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 2 WARNINGs, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/MBECS.Rcheck/00check.log’
+for details.
+

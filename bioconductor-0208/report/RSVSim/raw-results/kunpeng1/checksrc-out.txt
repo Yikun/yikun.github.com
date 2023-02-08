@@ -1,0 +1,174 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:RSVSim.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings RSVSim_1.39.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/RSVSim.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘RSVSim/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘RSVSim’ version ‘1.39.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘RSVSim’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+'library' or 'require' calls in package code:
+  ‘BSgenome.Hsapiens.UCSC.hg19’ ‘BSgenome.Hsapiens.UCSC.hg19.masked’
+  ‘MASS’ ‘rtracklayer’
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+Namespace in Imports field not imported from: ‘methods’
+  All declared Imports should be used.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.drawPos: no visible global function definition for ‘seqlevels’
+.drawPos: no visible global function definition for ‘queryHits’
+.getHG19: no visible binding for global variable
+  ‘BSgenome.Hsapiens.UCSC.hg19.masked’
+.getHG19: no visible binding for global variable ‘Hsapiens’
+.getHG19: no visible global function definition for ‘as’
+.getSVSizes: no visible global function definition for ‘rbeta’
+.loadFromBSGenome_TandemRepeats: no visible binding for global variable
+  ‘BSgenome.Hsapiens.UCSC.hg19.masked’
+.loadFromBSGenome_TandemRepeats: no visible global function definition
+  for ‘seqlevels<-’
+.loadFromBSGenome_TandemRepeats: no visible global function definition
+  for ‘as’
+.loadFromUCSC_RepeatMasks: no visible global function definition for
+  ‘browserSession’
+.loadFromUCSC_RepeatMasks: no visible global function definition for
+  ‘genome<-’
+.loadFromUCSC_RepeatMasks: no visible global function definition for
+  ‘ucscTableQuery’
+.loadFromUCSC_RepeatMasks: no visible global function definition for
+  ‘txtProgressBar’
+.loadFromUCSC_RepeatMasks: no visible global function definition for
+  ‘range<-’
+.loadFromUCSC_RepeatMasks: no visible global function definition for
+  ‘getTable’
+.loadFromUCSC_RepeatMasks: no visible global function definition for
+  ‘setTxtProgressBar’
+.loadFromUCSC_RepeatMasks: no visible global function definition for
+  ‘data’
+.loadFromUCSC_SegDups: no visible global function definition for
+  ‘browserSession’
+.loadFromUCSC_SegDups: no visible global function definition for
+  ‘genome<-’
+.loadFromUCSC_SegDups: no visible global function definition for
+  ‘getTable’
+.loadFromUCSC_SegDups: no visible global function definition for
+  ‘ucscTableQuery’
+.readRepeatMaskerOutput: no visible global function definition for
+  ‘read.table’
+.readRepeatMaskerOutput: no visible global function definition for
+  ‘data’
+.simInsertionPositions: no visible global function definition for
+  ‘txtProgressBar’
+.simInsertionPositions: no visible global function definition for
+  ‘seqlevels’
+.simInsertionPositions: no visible global function definition for
+  ‘setTxtProgressBar’
+.simPositions: no visible global function definition for
+  ‘txtProgressBar’
+.simPositions: no visible global function definition for
+  ‘setTxtProgressBar’
+.simTranslocationPositions: no visible global function definition for
+  ‘txtProgressBar’
+.simTranslocationPositions: no visible global function definition for
+  ‘seqlevels’
+.simTranslocationPositions: no visible global function definition for
+  ‘setTxtProgressBar’
+.subtractIntervals: no visible global function definition for
+  ‘seqlevels<-’
+.testSVSim: no visible global function definition for ‘metadata’
+compareSV,character-character: no visible global function definition
+  for ‘read.table’
+compareSV,character-data.frame: no visible global function definition
+  for ‘read.table’
+estimateSVSizes,numeric-numeric-ANY-ANY-missing: no visible global
+  function definition for ‘fitdistr’
+simulateSV,ANY: no visible global function definition for ‘data’
+simulateSV,ANY: no visible global function definition for
+  ‘txtProgressBar’
+simulateSV,ANY: no visible global function definition for
+  ‘setTxtProgressBar’
+simulateSV,ANY: no visible global function definition for ‘write.table’
+simulateSV,ANY: no visible global function definition for ‘metadata<-’
+Undefined global functions or variables:
+  BSgenome.Hsapiens.UCSC.hg19.masked Hsapiens as browserSession data
+  fitdistr genome<- getTable metadata metadata<- queryHits range<-
+  rbeta read.table seqlevels seqlevels<- setTxtProgressBar
+  txtProgressBar ucscTableQuery write.table
+Consider adding
+  importFrom("methods", "as")
+  importFrom("stats", "rbeta")
+  importFrom("utils", "data", "read.table", "setTxtProgressBar",
+             "txtProgressBar", "write.table")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+            user system elapsed
+simulateSV 8.990  0.388  11.941
+compareSVs 4.958  0.112   5.081
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘vignette.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/RSVSim.Rcheck/00check.log’
+for details.
+
+

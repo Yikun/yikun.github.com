@@ -1,0 +1,44 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL vsclust
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘vsclust’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c vsclust_algo.cpp -o vsclust_algo.o
+vsclust_algo.cpp: In function ‘void object_memberships(const NumericMatrix&, int, const NumericVector&, int, Rcpp::NumericMatrix&)’:
+vsclust_algo.cpp:115:12: warning: unused variable ‘epsilon’ [-Wunused-variable]
+  115 |     double epsilon = 0.00001;
+      |            ^~~~~~~
+vsclust_algo.cpp: In function ‘double c_plusplus_means(const NumericMatrix&, Rcpp::NumericMatrix&, Rcpp::NumericVector&, Rcpp::NumericVector&, int, int, double, int, Rcpp::NumericMatrix&, double, Rcpp::IntegerVector&, double, double)’:
+vsclust_algo.cpp:371:7: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+  371 |       if(verbose)
+      |       ^~
+vsclust_algo.cpp:374:9: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  374 |         ermin = new_fitness;
+      |         ^~~~~
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o vsclust.so RcppExports.o vsclust_algo.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-vsclust/00new/vsclust/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (vsclust)

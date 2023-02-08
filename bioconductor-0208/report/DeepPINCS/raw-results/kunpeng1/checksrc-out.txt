@@ -1,0 +1,308 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:DeepPINCS.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings DeepPINCS_1.7.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/DeepPINCS.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘DeepPINCS/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘DeepPINCS’ version ‘1.7.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘DeepPINCS’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+fit_cpi: no visible binding for global variable ‘compound’
+fit_cpi: no visible binding for global variable ‘compound_args’
+fit_cpi: no visible binding for global variable ‘protein’
+fit_cpi: no visible binding for global variable ‘protein_args’
+fit_cpi: no visible binding for global variable ‘max_atoms’
+gcn_in_out : initialize: no visible global function definition for
+  ‘super’
+gcn_in_out : call: no visible binding for global variable ‘self’
+gcn_in_out : <anonymous>: no visible binding for global variable ‘self’
+gcn_in_out: no visible binding for global variable ‘temp_units’
+multiple_sampling_generator : <anonymous>: no visible binding for
+  global variable ‘batch_start’
+Undefined global functions or variables:
+  batch_start compound compound_args max_atoms protein protein_args
+  self super temp_units
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+            user system elapsed
+cpi_model 19.289  1.173  23.347
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘DeepPINCS.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+--- re-building ‘DeepPINCS.Rmd’ using rmarkdown
+/usr/local/lib/python3.10/dist-packages/tensorflow_io/python/ops/__init__.py:98: UserWarning: unable to load libtensorflow_io_plugins.so: unable to open file: libtensorflow_io_plugins.so, from paths: ['/usr/local/lib/python3.10/dist-packages/tensorflow_io/python/ops/libtensorflow_io_plugins.so']
+caused by: ["[Errno 2] The file to load file system plugin from does not exist.: '/usr/local/lib/python3.10/dist-packages/tensorflow_io/python/ops/libtensorflow_io_plugins.so'"]
+  warnings.warn(f"unable to load libtensorflow_io_plugins.so: {e}")
+/usr/local/lib/python3.10/dist-packages/tensorflow_io/python/ops/__init__.py:104: UserWarning: file system plugins are not loaded: unable to open file: libtensorflow_io.so, from paths: ['/usr/local/lib/python3.10/dist-packages/tensorflow_io/python/ops/libtensorflow_io.so']
+caused by: ['/usr/local/lib/python3.10/dist-packages/tensorflow_io/python/ops/libtensorflow_io.so: cannot open shared object file: No such file or directory']
+  warnings.warn(f"file system plugins are not loaded: {e}")
+Epoch 1/20
+
+1/6 [====>.........................] - ETA: 12s - loss: 0.6912 - accuracy: 0.5156
+4/6 [===================>..........] - ETA: 0s - loss: 0.6930 - accuracy: 0.5039 
+6/6 [==============================] - 3s 130ms/step - loss: 0.6911 - accuracy: 0.5086 - val_loss: 0.6888 - val_accuracy: 0.4867
+Epoch 2/20
+
+1/6 [====>.........................] - ETA: 0s - loss: 0.6813 - accuracy: 0.5312
+4/6 [===================>..........] - ETA: 0s - loss: 0.6810 - accuracy: 0.5820
+6/6 [==============================] - 0s 42ms/step - loss: 0.6832 - accuracy: 0.5657 - val_loss: 0.6846 - val_accuracy: 0.5000
+Epoch 3/20
+
+1/6 [====>.........................] - ETA: 0s - loss: 0.6925 - accuracy: 0.5156
+4/6 [===================>..........] - ETA: 0s - loss: 0.6821 - accuracy: 0.5508
+6/6 [==============================] - 0s 43ms/step - loss: 0.6783 - accuracy: 0.5629 - val_loss: 0.6799 - val_accuracy: 0.5333
+Epoch 4/20
+
+1/6 [====>.........................] - ETA: 0s - loss: 0.6855 - accuracy: 0.4219
+3/6 [==============>...............] - ETA: 0s - loss: 0.6732 - accuracy: 0.5677
+5/6 [========================>.....] - ETA: 0s - loss: 0.6744 - accuracy: 0.5625
+6/6 [==============================] - 0s 47ms/step - loss: 0.6726 - accuracy: 0.5714 - val_loss: 0.6763 - val_accuracy: 0.5467
+Epoch 5/20
+
+1/6 [====>.........................] - ETA: 0s - loss: 0.6795 - accuracy: 0.5312
+3/6 [==============>...............] - ETA: 0s - loss: 0.6674 - accuracy: 0.5365
+5/6 [========================>.....] - ETA: 0s - loss: 0.6659 - accuracy: 0.5906
+6/6 [==============================] - 0s 39ms/step - loss: 0.6672 - accuracy: 0.5800 - val_loss: 0.6716 - val_accuracy: 0.5400
+Epoch 6/20
+
+1/6 [====>.........................] - ETA: 0s - loss: 0.6597 - accuracy: 0.5938
+3/6 [==============>...............] - ETA: 0s - loss: 0.6592 - accuracy: 0.5885
+5/6 [========================>.....] - ETA: 0s - loss: 0.6627 - accuracy: 0.5938
+6/6 [==============================] - 0s 45ms/step - loss: 0.6614 - accuracy: 0.5943 - val_loss: 0.6663 - val_accuracy: 0.5400
+Epoch 7/20
+
+1/6 [====>.........................] - ETA: 0s - loss: 0.6698 - accuracy: 0.5781
+4/6 [===================>..........] - ETA: 0s - loss: 0.6527 - accuracy: 0.6406
+6/6 [==============================] - 0s 42ms/step - loss: 0.6547 - accuracy: 0.6171 - val_loss: 0.6602 - val_accuracy: 0.5733
+Epoch 8/20
+
+1/6 [====>.........................] - ETA: 0s - loss: 0.6394 - accuracy: 0.6250
+3/6 [==============>...............] - ETA: 0s - loss: 0.6502 - accuracy: 0.6198
+6/6 [==============================] - ETA: 0s - loss: 0.6494 - accuracy: 0.6286
+6/6 [==============================] - 0s 43ms/step - loss: 0.6494 - accuracy: 0.6286 - val_loss: 0.6520 - val_accuracy: 0.6800
+Epoch 9/20
+
+1/6 [====>.........................] - ETA: 0s - loss: 0.6539 - accuracy: 0.6250
+3/6 [==============>...............] - ETA: 0s - loss: 0.6441 - accuracy: 0.6354
+6/6 [==============================] - ETA: 0s - loss: 0.6398 - accuracy: 0.6571
+6/6 [==============================] - 0s 43ms/step - loss: 0.6398 - accuracy: 0.6571 - val_loss: 0.6457 - val_accuracy: 0.6267
+Epoch 10/20
+
+1/6 [====>.........................] - ETA: 0s - loss: 0.6575 - accuracy: 0.6094
+4/6 [===================>..........] - ETA: 0s - loss: 0.6386 - accuracy: 0.6602
+6/6 [==============================] - 0s 35ms/step - loss: 0.6312 - accuracy: 0.6914 - val_loss: 0.6361 - val_accuracy: 0.6867
+Epoch 11/20
+
+1/6 [====>.........................] - ETA: 0s - loss: 0.6364 - accuracy: 0.6719
+4/6 [===================>..........] - ETA: 0s - loss: 0.6191 - accuracy: 0.6953
+6/6 [==============================] - 0s 41ms/step - loss: 0.6224 - accuracy: 0.7029 - val_loss: 0.6280 - val_accuracy: 0.6867
+Epoch 12/20
+
+1/6 [====>.........................] - ETA: 0s - loss: 0.6026 - accuracy: 0.7812
+3/6 [==============>...............] - ETA: 0s - loss: 0.6216 - accuracy: 0.7031
+5/6 [========================>.....] - ETA: 0s - loss: 0.6131 - accuracy: 0.7156
+6/6 [==============================] - 0s 46ms/step - loss: 0.6116 - accuracy: 0.7143 - val_loss: 0.6170 - val_accuracy: 0.7067
+Epoch 13/20
+
+1/6 [====>.........................] - ETA: 0s - loss: 0.5951 - accuracy: 0.7344
+4/6 [===================>..........] - ETA: 0s - loss: 0.6049 - accuracy: 0.6992
+6/6 [==============================] - 0s 40ms/step - loss: 0.5993 - accuracy: 0.7229 - val_loss: 0.6074 - val_accuracy: 0.7200
+Epoch 14/20
+
+1/6 [====>.........................] - ETA: 0s - loss: 0.5932 - accuracy: 0.7812
+3/6 [==============>...............] - ETA: 0s - loss: 0.5930 - accuracy: 0.7500
+5/6 [========================>.....] - ETA: 0s - loss: 0.5872 - accuracy: 0.7469
+6/6 [==============================] - 0s 44ms/step - loss: 0.5869 - accuracy: 0.7400 - val_loss: 0.5945 - val_accuracy: 0.7200
+Epoch 15/20
+
+1/6 [====>.........................] - ETA: 0s - loss: 0.5622 - accuracy: 0.7500
+3/6 [==============>...............] - ETA: 0s - loss: 0.5791 - accuracy: 0.7552
+5/6 [========================>.....] - ETA: 0s - loss: 0.5707 - accuracy: 0.7750
+6/6 [==============================] - 0s 46ms/step - loss: 0.5710 - accuracy: 0.7657 - val_loss: 0.5824 - val_accuracy: 0.7533
+Epoch 16/20
+
+1/6 [====>.........................] - ETA: 0s - loss: 0.5771 - accuracy: 0.6875
+3/6 [==============>...............] - ETA: 0s - loss: 0.5729 - accuracy: 0.7500
+6/6 [==============================] - ETA: 0s - loss: 0.5551 - accuracy: 0.7857
+6/6 [==============================] - 0s 44ms/step - loss: 0.5551 - accuracy: 0.7857 - val_loss: 0.5676 - val_accuracy: 0.7467
+Epoch 17/20
+
+1/6 [====>.........................] - ETA: 0s - loss: 0.5369 - accuracy: 0.8125
+3/6 [==============>...............] - ETA: 0s - loss: 0.5380 - accuracy: 0.7917
+5/6 [========================>.....] - ETA: 0s - loss: 0.5365 - accuracy: 0.8031
+6/6 [==============================] - 0s 37ms/step - loss: 0.5378 - accuracy: 0.8000 - val_loss: 0.5533 - val_accuracy: 0.7467
+Epoch 18/20
+
+1/6 [====>.........................] - ETA: 0s - loss: 0.5664 - accuracy: 0.7812
+3/6 [==============>...............] - ETA: 0s - loss: 0.5257 - accuracy: 0.8073
+5/6 [========================>.....] - ETA: 0s - loss: 0.5207 - accuracy: 0.8156
+6/6 [==============================] - 0s 38ms/step - loss: 0.5187 - accuracy: 0.8143 - val_loss: 0.5389 - val_accuracy: 0.7733
+Epoch 19/20
+
+1/6 [====>.........................] - ETA: 0s - loss: 0.5485 - accuracy: 0.7500
+3/6 [==============>...............] - ETA: 0s - loss: 0.5121 - accuracy: 0.8177
+5/6 [========================>.....] - ETA: 0s - loss: 0.5044 - accuracy: 0.8313
+6/6 [==============================] - 0s 38ms/step - loss: 0.5002 - accuracy: 0.8400 - val_loss: 0.5246 - val_accuracy: 0.7733
+Epoch 20/20
+
+1/6 [====>.........................] - ETA: 0s - loss: 0.5107 - accuracy: 0.8281
+4/6 [===================>..........] - ETA: 0s - loss: 0.4844 - accuracy: 0.8320
+6/6 [==============================] - 0s 37ms/step - loss: 0.4804 - accuracy: 0.8429 - val_loss: 0.5126 - val_accuracy: 0.7800
+
+1/5 [=====>........................] - ETA: 1s
+5/5 [==============================] - 0s 7ms/step
+Epoch 1/20
+
+ 1/11 [=>............................] - ETA: 16s - loss: 0.7081 - accuracy: 0.5312
+11/11 [==============================] - 2s 35ms/step - loss: 0.6809 - accuracy: 0.5600 - val_loss: 0.6352 - val_accuracy: 0.6533
+Epoch 2/20
+
+ 1/11 [=>............................] - ETA: 0s - loss: 0.6408 - accuracy: 0.7031
+11/11 [==============================] - 0s 9ms/step - loss: 0.5953 - accuracy: 0.7371 - val_loss: 0.5950 - val_accuracy: 0.6833
+Epoch 3/20
+
+ 1/11 [=>............................] - ETA: 0s - loss: 0.5139 - accuracy: 0.8281
+11/11 [==============================] - 0s 9ms/step - loss: 0.5250 - accuracy: 0.7871 - val_loss: 0.5789 - val_accuracy: 0.6933
+Epoch 4/20
+
+ 1/11 [=>............................] - ETA: 0s - loss: 0.4839 - accuracy: 0.7656
+11/11 [==============================] - 0s 8ms/step - loss: 0.4616 - accuracy: 0.8243 - val_loss: 0.5629 - val_accuracy: 0.7067
+Epoch 5/20
+
+ 1/11 [=>............................] - ETA: 0s - loss: 0.5126 - accuracy: 0.7500
+11/11 [==============================] - 0s 9ms/step - loss: 0.4007 - accuracy: 0.8600 - val_loss: 0.5533 - val_accuracy: 0.7267
+Epoch 6/20
+
+ 1/11 [=>............................] - ETA: 0s - loss: 0.3586 - accuracy: 0.8750
+11/11 [==============================] - 0s 9ms/step - loss: 0.3514 - accuracy: 0.8829 - val_loss: 0.5455 - val_accuracy: 0.7200
+Epoch 7/20
+
+ 1/11 [=>............................] - ETA: 0s - loss: 0.3416 - accuracy: 0.8906
+11/11 [==============================] - 0s 9ms/step - loss: 0.3063 - accuracy: 0.9086 - val_loss: 0.5345 - val_accuracy: 0.7367
+Epoch 8/20
+
+ 1/11 [=>............................] - ETA: 0s - loss: 0.2492 - accuracy: 0.9531
+11/11 [==============================] - 0s 8ms/step - loss: 0.2663 - accuracy: 0.9171 - val_loss: 0.5454 - val_accuracy: 0.7367
+Epoch 9/20
+
+ 1/11 [=>............................] - ETA: 0s - loss: 0.2201 - accuracy: 0.9375
+11/11 [==============================] - 0s 8ms/step - loss: 0.2316 - accuracy: 0.9414 - val_loss: 0.5387 - val_accuracy: 0.7400
+Epoch 10/20
+
+ 1/11 [=>............................] - ETA: 0s - loss: 0.2225 - accuracy: 0.9688
+11/11 [==============================] - 0s 10ms/step - loss: 0.2022 - accuracy: 0.9471 - val_loss: 0.5452 - val_accuracy: 0.7467
+Epoch 11/20
+
+ 1/11 [=>............................] - ETA: 0s - loss: 0.1459 - accuracy: 1.0000
+11/11 [==============================] - 0s 9ms/step - loss: 0.1765 - accuracy: 0.9600 - val_loss: 0.5429 - val_accuracy: 0.7433
+Epoch 12/20
+
+ 1/11 [=>............................] - ETA: 0s - loss: 0.1910 - accuracy: 0.9688
+11/11 [==============================] - 0s 8ms/step - loss: 0.1554 - accuracy: 0.9700 - val_loss: 0.5483 - val_accuracy: 0.7533
+Epoch 13/20
+
+ 1/11 [=>............................] - ETA: 0s - loss: 0.1433 - accuracy: 0.9531
+11/11 [==============================] - 0s 9ms/step - loss: 0.1366 - accuracy: 0.9729 - val_loss: 0.5587 - val_accuracy: 0.7567
+Epoch 14/20
+
+ 1/11 [=>............................] - ETA: 0s - loss: 0.1096 - accuracy: 1.0000
+11/11 [==============================] - 0s 8ms/step - loss: 0.1198 - accuracy: 0.9786 - val_loss: 0.5648 - val_accuracy: 0.7667
+Epoch 15/20
+
+ 1/11 [=>............................] - ETA: 0s - loss: 0.0971 - accuracy: 0.9844
+11/11 [==============================] - 0s 8ms/step - loss: 0.1056 - accuracy: 0.9800 - val_loss: 0.5671 - val_accuracy: 0.7700
+Epoch 16/20
+
+ 1/11 [=>............................] - ETA: 0s - loss: 0.1195 - accuracy: 0.9844
+11/11 [==============================] - 0s 10ms/step - loss: 0.0938 - accuracy: 0.9871 - val_loss: 0.5904 - val_accuracy: 0.7700
+Epoch 17/20
+
+ 1/11 [=>............................] - ETA: 0s - loss: 0.0837 - accuracy: 1.0000
+11/11 [==============================] - 0s 9ms/step - loss: 0.0841 - accuracy: 0.9914 - val_loss: 0.5866 - val_accuracy: 0.7600
+Epoch 18/20
+
+ 1/11 [=>............................] - ETA: 0s - loss: 0.0602 - accuracy: 1.0000
+11/11 [==============================] - 0s 9ms/step - loss: 0.0753 - accuracy: 0.9929 - val_loss: 0.5918 - val_accuracy: 0.7633
+Epoch 19/20
+
+ 1/11 [=>............................] - ETA: 0s - loss: 0.0906 - accuracy: 1.0000
+11/11 [==============================] - 0s 9ms/step - loss: 0.0668 - accuracy: 0.9929 - val_loss: 0.6118 - val_accuracy: 0.7667
+Epoch 20/20
+
+ 1/11 [=>............................] - ETA: 0s - loss: 0.0602 - accuracy: 0.9844
+11/11 [==============================] - 0s 9ms/step - loss: 0.0595 - accuracy: 0.9929 - val_loss: 0.6219 - val_accuracy: 0.7667
+
+ 1/10 [==>...........................] - ETA: 1s
+10/10 [==============================] - 0s 2ms/step
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/DeepPINCS.Rcheck/00check.log’
+for details.
+

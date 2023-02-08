@@ -1,0 +1,152 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:RnBeads.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings RnBeads_2.17.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/RnBeads.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘RnBeads/DESCRIPTION’ ... OK
+* this is package ‘RnBeads’ version ‘2.17.0’
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  'BiocGenerics', 'S4Vectors', 'GenomicRanges', 'MASS', 'cluster',
+  'ff', 'fields', 'ggplot2', 'gplots', 'grid', 'gridExtra', 'limma',
+  'matrixStats', 'illuminaio', 'methylumi', 'plyr'
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .travis.yml
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘RnBeads’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is  5.5Mb
+  sub-directories of 1Mb or more:
+    R     3.1Mb
+    bin   1.0Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Package listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘qvalue’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... NOTE
+Warning: no function found corresponding to methods exports from ‘RnBeads’ for: ‘samples’
+
+A namespace must be able to be loaded with just the base namespace
+loaded: otherwise if the namespace gets loaded by a saved object, the
+session will be unable to start.
+
+Probably some imports need to be declared in the NAMESPACE file.
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Killed
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+Killed
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘RnBeads-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: rnb.execute.pOOBAH
+> ### Title: rnb.execute.pOOBAH
+> ### Aliases: rnb.execute.pOOBAH
+> 
+> ### ** Examples
+> 
+> library(RnBeads.hg19) 
+> data(small.example.object)
+> filtered <- rnb.execute.pOOBAH(rnb.set.example)
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘runTests.R’
+ ERROR
+Running the tests in ‘tests/runTests.R’ failed.
+Last 13 lines of output:
+  2023-02-07 13:54:58     1.4  STATUS                 STARTED Computing Differential Methylation Table
+  2023-02-07 13:54:58     1.4    INFO                     Conducting differential analysis using limma
+  2023-02-07 13:54:58     1.4  STATUS                 COMPLETED Computing Differential Methylation Table
+  2023-02-07 13:54:58     1.4  STATUS                 STARTED Computing Differential Methylation Tables (Region Level)
+  2023-02-07 13:55:00     1.4  STATUS                     Computed table for tiling
+  2023-02-07 13:55:00     1.4  STATUS                     Computed table for genes
+  2023-02-07 13:55:00     1.4  STATUS                     Computed table for promoters
+  2023-02-07 13:55:00     1.4  STATUS                     Computed table for cpgislands
+  2023-02-07 13:55:00     1.4  STATUS                 COMPLETED Computing Differential Methylation Tables (Region Level)
+  2023-02-07 13:55:00     1.4  STATUS             COMPLETED Comparing: KOSR vs. TeSR (based on Treatment)
+  2023-02-07 13:55:00     1.4  STATUS         COMPLETED Computing differential methylation tables
+  2023-02-07 13:55:00     1.4  STATUS     COMPLETED Testing function: rnb.execute.computeDiffMeth
+  2023-02-07 13:55:00     1.4  STATUS     STARTED Testing function: diffVar
+  2023-02-07 13:55:01     1.4  STATUS         STARTED diffVar method
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘RnBeads.Rnw’... failed to complete the test
+  ‘RnBeads_Annotations.Rnw’... OK
+ ERROR
+Errors in running code in vignettes:
+when running code in ‘RnBeads.Rnw’
+  ...
+8  hiPS_17b_p35_TeSR   hiPS_17b     TRUE
+9       hiPS_27b_p31   hiPS_27b     TRUE
+10    hES_HUES64_p19 hES_HUES64    FALSE
+11 hiPS_17b_p35_KOSR   hiPS_17b     TRUE
+12        hES_H9_p58     hES_H9    FALSE
+
+> Mint <- M(rnb.set.example, row.names = TRUE)
+Killed
+
+... incomplete output.  Crash?
+
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs, 7 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/RnBeads.Rcheck/00check.log’
+for details.
+

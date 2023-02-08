@@ -1,0 +1,142 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:SPsimSeq.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings SPsimSeq_1.9.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/SPsimSeq.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘SPsimSeq/DESCRIPTION’ ... OK
+* this is package ‘SPsimSeq’ version ‘1.9.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘SPsimSeq’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘SPsimSeq-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: SPsimSeq
+> ### Title: A function to simulate bulk or single cell RNA sequencing data
+> ### Aliases: SPsimSeq
+> 
+> ### ** Examples
+> 
+> #----------------------------------------------------------------
+> # Example 1: simulating bulk RNA-seq
+> 
+> # load the Zhang bulk RNA-seq data (availabl with the package)
+> data("zhang.data.sub")
+> 
+> zhang.counts <- zhang.data.sub$counts
+> MYCN.status  <- zhang.data.sub$MYCN.status
+> 
+> # We simulate only a single data (n.sim = 1) with the following property
+> # - 1000 genes ( n.genes = 1000)
+> # - 40 samples (tot.samples = 40)
+> # - the samples are equally divided into 2 groups each with 90 samples
+> #   (group.config = c(0.5, 0.5))
+> # - all samples are from a single batch (batch = NULL, batch.config = 1)
+> # - we add 10% DE genes (pDE = 0.1)
+> # - the DE genes have a log-fold-change of at least 0.5 in
+> #   the source data (lfc.thrld = 0.5)
+> # - we do not model the zeroes separately, they are the part of density
+> #    estimation (model.zero.prob = FALSE)
+> 
+> # simulate data
+> set.seed(6452)
+> sim.data.bulk <- SPsimSeq(n.sim = 1, s.data = zhang.counts,
++                           group = MYCN.status, n.genes = 1000, batch.config = 1,
++                           group.config = c(0.5, 0.5), tot.samples = 40,
++                           pDE = 0.1, lfc.thrld = 0.5, result.format = "list")
+Estimating featurewise correlations ...
+Selecting candidate DE genes ...
+Note: The number of DE genes detected in the source data is 32 and the number of DE genes required to be included in the simulated data is 100. Therefore, candidiate DE genes are sampled with replacement.
+Estimating densities ...
+Configuring design ...
+Simulating data ...
+ ...1 of 1
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Complete output:
+  > library(testthat)
+  > library(SPsimSeq)
+  
+  > test_check("SPsimSeq")
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘SPsimSeq.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘SPsimSeq.Rmd’ using rmarkdown
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/SPsimSeq.Rcheck/vign_test/SPsimSeq/vignettes/SPsimSeq_files/figure-html/comparison-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/SPsimSeq.Rcheck/vign_test/SPsimSeq/vignettes/SPsimSeq_files/figure-html/meanvariancetrend-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.17-bioc/meat/SPsimSeq.Rcheck/vign_test/SPsimSeq/vignettes/SPsimSeq_files/figure-html/correlation-1.png" but not available.
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/SPsimSeq.Rcheck/00check.log’
+for details.
+

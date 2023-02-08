@@ -1,0 +1,333 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:GenomeInfoDb.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings GenomeInfoDb_1.35.15.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/GenomeInfoDb.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘GenomeInfoDb/DESCRIPTION’ ... OK
+* this is package ‘GenomeInfoDb’ version ‘1.35.15’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘GenomeInfoDb’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is  5.2Mb
+  sub-directories of 1Mb or more:
+    extdata   3.7Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... NOTE
+Problems with news in ‘NEWS’:
+  Cannot process chunk/lines:
+    NEW FEATURES
+  Cannot process chunk/lines:
+    SIGNIFICANT USER-VISIBLE CHANGES
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Unexported object imported by a ':::' call: ‘utils:::.roman2numeric’
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... WARNING
+checkRd: (5) GenomeDescription-class.Rd:53-58: \item in \describe must have non-empty label
+checkRd: (5) GenomeDescription-class.Rd:59-63: \item in \describe must have non-empty label
+checkRd: (5) GenomeDescription-class.Rd:64-70: \item in \describe must have non-empty label
+checkRd: (5) GenomeDescription-class.Rd:71-75: \item in \describe must have non-empty label
+checkRd: (5) GenomeDescription-class.Rd:76-79: \item in \describe must have non-empty label
+checkRd: (5) GenomeDescription-class.Rd:80-88: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:83-93: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:101-104: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:105-115: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:116-119: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:120-123: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:124-149: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:150-153: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:154-157: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:158-162: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:170-178: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:186-189: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:226-249: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:250-256: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:257-262: \item in \describe must have non-empty label
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘GenomeInfoDb-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: seqlevelsStyle
+> ### Title: Conveniently rename the seqlevels of an object according to a
+> ###   given style
+> ### Aliases: seqlevelsStyle seqlevelsStyle<- seqlevelsStyle,ANY-method
+> ###   seqlevelsStyle<-,ANY-method seqlevelsStyle,Seqinfo-method
+> ###   seqlevelsStyle<-,Seqinfo-method seqlevelsStyle,character-method
+> ###   seqlevelsStyle<-,character-method genomeStyles extractSeqlevels
+> ###   extractSeqlevelsByGroup mapSeqlevels seqlevelsInGroup
+> 
+> ### ** Examples
+> 
+> ## ---------------------------------------------------------------------
+> ## seqlevelsStyle() getter and setter
+> ## ---------------------------------------------------------------------
+> 
+> ## On a character vector:
+> x <- paste0("chr", 1:5)
+> seqlevelsStyle(x)
+[1] "UCSC"
+> seqlevelsStyle(x) <- "NCBI"
+> x
+[1] "1" "2" "3" "4" "5"
+> 
+> ## On a GRanges object:
+> library(GenomicRanges)
+> gr <- GRanges(rep(c("chr2", "chr3", "chrM"), 2), IRanges(1:6, 10))
+> 
+> seqlevelsStyle(gr)
+[1] "UCSC"
+> seqlevelsStyle(gr) <- "NCBI"
+> gr
+GRanges object with 6 ranges and 0 metadata columns:
+      seqnames    ranges strand
+         <Rle> <IRanges>  <Rle>
+  [1]        2      1-10      *
+  [2]        3      2-10      *
+  [3]       MT      3-10      *
+  [4]        2      4-10      *
+  [5]        3      5-10      *
+  [6]       MT      6-10      *
+  -------
+  seqinfo: 3 sequences from an unspecified genome; no seqlengths
+> 
+> seqlevelsStyle(gr)
+[1] "NCBI"    "Ensembl"
+> seqlevelsStyle(gr) <- "dbSNP"
+> gr
+GRanges object with 6 ranges and 0 metadata columns:
+      seqnames    ranges strand
+         <Rle> <IRanges>  <Rle>
+  [1]      ch2      1-10      *
+  [2]      ch3      2-10      *
+  [3]     chMT      3-10      *
+  [4]      ch2      4-10      *
+  [5]      ch3      5-10      *
+  [6]     chMT      6-10      *
+  -------
+  seqinfo: 3 sequences from an unspecified genome; no seqlengths
+> 
+> seqlevelsStyle(gr)
+[1] "dbSNP"
+> seqlevelsStyle(gr) <- "UCSC"
+> gr
+GRanges object with 6 ranges and 0 metadata columns:
+      seqnames    ranges strand
+         <Rle> <IRanges>  <Rle>
+  [1]     chr2      1-10      *
+  [2]     chr3      2-10      *
+  [3]     chrM      3-10      *
+  [4]     chr2      4-10      *
+  [5]     chr3      5-10      *
+  [6]     chrM      6-10      *
+  -------
+  seqinfo: 3 sequences from an unspecified genome; no seqlengths
+> 
+> ## In general the seqlevelsStyle() setter doesn't know how to rename
+> ## scaffolds. However, if the genome is specified, it's very likely
+> ## that seqlevelsStyle() will be able to take advantage of that:
+> gr <- GRanges(rep(c("2", "Y", "Hs6_111610_36"), 2), IRanges(1:6, 10))
+> genome(gr) <- "NCBI36"
+> seqlevelsStyle(gr) <- "UCSC"
+> gr
+GRanges object with 6 ranges and 0 metadata columns:
+           seqnames    ranges strand
+              <Rle> <IRanges>  <Rle>
+  [1]          chr2      1-10      *
+  [2]          chrY      2-10      *
+  [3] chr6_cox_hap1      3-10      *
+  [4]          chr2      4-10      *
+  [5]          chrY      5-10      *
+  [6] chr6_cox_hap1      6-10      *
+  -------
+  seqinfo: 3 sequences from hg18 genome; no seqlengths
+> 
+> ## On a Seqinfo object:
+> si <- si0 <- Seqinfo(genome="apiMel2")
+> si
+Seqinfo object with 17 sequences from apiMel2 genome:
+  seqnames seqlengths isCircular  genome
+  Group1     25433307      FALSE apiMel2
+  Group2     14233499      FALSE apiMel2
+  Group3     11790680      FALSE apiMel2
+  Group4     10665743      FALSE apiMel2
+  Group5     13312070      FALSE apiMel2
+  ...             ...        ...     ...
+  Group13     8846036      FALSE apiMel2
+  Group14     8017760      FALSE apiMel2
+  Group15     7326077      FALSE apiMel2
+  Group16     5608962      FALSE apiMel2
+  GroupUn   321143811      FALSE apiMel2
+> seqlevelsStyle(si) <- "NCBI"
+Warning in (function (seqlevels, genome, new_style)  :
+  cannot switch some apiMel2's seqlevels from UCSC to NCBI style
+> si
+Seqinfo object with 17 sequences from 2 genomes (Amel_2.0, apiMel2):
+  seqnames seqlengths isCircular   genome
+  LG1        25433307      FALSE Amel_2.0
+  LG2        14233499      FALSE Amel_2.0
+  LG3        11790680      FALSE Amel_2.0
+  LG4        10665743      FALSE Amel_2.0
+  LG5        13312070      FALSE Amel_2.0
+  ...             ...        ...      ...
+  LG13        8846036      FALSE Amel_2.0
+  LG14        8017760      FALSE Amel_2.0
+  LG15        7326077      FALSE Amel_2.0
+  LG16        5608962      FALSE Amel_2.0
+  GroupUn   321143811      FALSE  apiMel2
+> seqlevelsStyle(si) <- "RefSeq"
+Warning in (function (seqlevels, genome, new_style)  :
+  cannot switch apiMel2's seqlevels from UCSC to RefSeq style
+> si
+Seqinfo object with 17 sequences from 2 genomes (Amel_2.0, apiMel2):
+  seqnames    seqlengths isCircular   genome
+  NC_007070.1   25433307      FALSE Amel_2.0
+  NC_007071.1   14233499      FALSE Amel_2.0
+  NC_007072.1   11790680      FALSE Amel_2.0
+  NC_007073.1   10665743      FALSE Amel_2.0
+  NC_007074.1   13312070      FALSE Amel_2.0
+  ...                ...        ...      ...
+  NC_007082.1    8846036      FALSE Amel_2.0
+  NC_007083.1    8017760      FALSE Amel_2.0
+  NC_007084.1    7326077      FALSE Amel_2.0
+  NC_007085.1    5608962      FALSE Amel_2.0
+  GroupUn      321143811      FALSE  apiMel2
+> seqlevelsStyle(si) <- "UCSC"
+> stopifnot(identical(si0, si))
+> 
+> si <- si0 <- Seqinfo(genome="WBcel235")
+> si
+Seqinfo object with 7 sequences (1 circular) from WBcel235 genome:
+  seqnames seqlengths isCircular   genome
+  I          15072434      FALSE WBcel235
+  II         15279421      FALSE WBcel235
+  III        13783801      FALSE WBcel235
+  IV         17493829      FALSE WBcel235
+  V          20924180      FALSE WBcel235
+  X          17718942      FALSE WBcel235
+  MT            13794       TRUE WBcel235
+> seqlevelsStyle(si) <- "UCSC"
+> si
+Seqinfo object with 7 sequences (1 circular) from ce11 genome:
+  seqnames seqlengths isCircular genome
+  chrI       15072434      FALSE   ce11
+  chrII      15279421      FALSE   ce11
+  chrIII     13783801      FALSE   ce11
+  chrIV      17493829      FALSE   ce11
+  chrV       20924180      FALSE   ce11
+  chrX       17718942      FALSE   ce11
+  chrM          13794       TRUE   ce11
+> seqlevelsStyle(si) <- "RefSeq"
+> si
+Seqinfo object with 7 sequences (1 circular) from WBcel235 genome:
+  seqnames     seqlengths isCircular   genome
+  NC_003279.8    15072434      FALSE WBcel235
+  NC_003280.10   15279421      FALSE WBcel235
+  NC_003281.10   13783801      FALSE WBcel235
+  NC_003282.8    17493829      FALSE WBcel235
+  NC_003283.11   20924180      FALSE WBcel235
+  NC_003284.9    17718942      FALSE WBcel235
+  NC_001328.1       13794       TRUE WBcel235
+> seqlevelsStyle(si) <- "NCBI"
+> stopifnot(identical(si0, si))
+> 
+> si <- Seqinfo(genome="macFas5")
+> si
+Seqinfo object with 7601 sequences (1 circular) from macFas5 genome:
+  seqnames       seqlengths isCircular  genome
+  chr1            227556264      FALSE macFas5
+  chr2            192460366      FALSE macFas5
+  chr3            192294377      FALSE macFas5
+  chr4            170955103      FALSE macFas5
+  chr5            189454096      FALSE macFas5
+  ...                   ...        ...     ...
+  chrUn_KE147191       5581      FALSE macFas5
+  chrUn_KE147192      21004      FALSE macFas5
+  chrUn_KE147193       5184      FALSE macFas5
+  chrUn_KE147194       8082      FALSE macFas5
+  chrUn_KE147195       7181      FALSE macFas5
+> seqlevelsStyle(si) <- "NCBI"
+Error in download.file(url, destfile, quiet = TRUE) : 
+  download from 'https://ftp.ncbi.nlm.nih.gov/genomes/all/GCA/000/364/345/GCA_000364345.1_Macaca_fascicularis_5.0/GCA_000364345.1_Macaca_fascicularis_5.0_assembly_report.txt' failed
+Calls: seqlevelsStyle<- ... .fetch_assembly_report_from_url -> fetch_table_from_url
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘run_unitTests.R’
+ ERROR
+Running the tests in ‘tests/run_unitTests.R’ failed.
+Last 13 lines of output:
+  1 Test Suite : 
+  GenomeInfoDb RUnit Tests - 21 test functions, 1 error, 0 failures
+  ERROR in test_seqlevelsStyle_Seqinfo: Error in download.file(url, destfile, quiet = TRUE) : 
+    download from 'https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/002/195/GCF_000002195.1_Amel_2.0/GCF_000002195.1_Amel_2.0_assembly_report.txt' failed
+  
+  Test files with failing tests
+  
+     test_seqlevelsStyle.R 
+       test_seqlevelsStyle_Seqinfo 
+  
+  
+  Error in BiocGenerics:::testPackage("GenomeInfoDb") : 
+    unit tests failed for package GenomeInfoDb
+  Calls: <Anonymous> -> <Anonymous>
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘Accept-organism-for-GenomeInfoDb.Rmd’ using ‘UTF-8’... OK
+  ‘GenomeInfoDb.Rnw’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 1 WARNING, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/GenomeInfoDb.Rcheck/00check.log’
+for details.
+
