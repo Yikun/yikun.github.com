@@ -1,0 +1,85 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL HGC
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘HGC’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c HGC_unordered_map.cpp -o HGC_unordered_map.o
+HGC_unordered_map.cpp: In member function ‘void Graph::add_node(int)’:
+HGC_unordered_map.cpp:165:12: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::unordered_map<int, double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  165 |   if (node == adj.size()) {
+      |       ~~~~~^~~~~~~~~~~~~
+HGC_unordered_map.cpp: In member function ‘void Graph::add_edge(Edge)’:
+HGC_unordered_map.cpp:177:15: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::unordered_map<int, double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  177 |   if (e.node1 < adj.size() && e.node2 < adj.size()) {
+      |       ~~~~~~~~^~~~~~~~~~~~
+HGC_unordered_map.cpp:177:39: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::unordered_map<int, double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  177 |   if (e.node1 < adj.size() && e.node2 < adj.size()) {
+      |                               ~~~~~~~~^~~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c RHGC_unordered_map.cpp -o RHGC_unordered_map.o
+RHGC_unordered_map.cpp: In function ‘Rcpp::NumericMatrix HierarCluster_paris(Eigen::SparseMatrix<double, 0, int>)’:
+RHGC_unordered_map.cpp:35:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::unordered_map<int, double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   35 |         for (int i = 0; i < G.adj.size(); i++) {
+      |                         ~~^~~~~~~~~~~~~~
+RHGC_unordered_map.cpp:43:31: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::unordered_map<int, double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   43 |             for (int i = 0; i < G.adj.size(); i++) {
+      |                             ~~^~~~~~~~~~~~~~
+RHGC_unordered_map.cpp:133:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::vector<int> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  133 |         for (int i = 0; i < cc.size(); i++) {
+      |                         ~~^~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c RTime.cpp -o RTime.o
+RTime.cpp: In function ‘Rcpp::NumericMatrix HierarCluster_paris_time(Eigen::SparseMatrix<double, 0, int>)’:
+RTime.cpp:36:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::unordered_map<int, double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   36 |     for (int i = 0; i < G.adj.size(); i++) {
+      |                     ~~^~~~~~~~~~~~~~
+RTime.cpp:44:25: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::unordered_map<int, double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   44 |       for (int i = 0; i < G.adj.size(); i++) {
+      |                       ~~^~~~~~~~~~~~~~
+RTime.cpp:132:17: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  132 |   for(int i=0; i<chain_record.size(); i++){
+      |                ~^~~~~~~~~~~~~~~~~~~~
+RTime.cpp:135:17: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  135 |   for(int i=0; i<chain_record.size(); i++){
+      |                ~^~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c Rget_leaves.cpp -o Rget_leaves.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c snn.cpp -o snn.o
+snn.cpp: In function ‘std::vector<double> SNN_SmallestNonzero_Dist(Eigen::SparseMatrix<double, 0, int>, Eigen::MatrixXd, int, std::vector<double>)’:
+snn.cpp:96:13: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<long unsigned int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   96 |     if (n_i > nonzero_order.size()) n_i = nonzero_order.size();
+      |         ~~~~^~~~~~~~~~~~~~~~~~~~~~
+snn.cpp:98:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<long unsigned int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   98 |     for (int j = 0; j < nonzero_order.size(); ++j) {
+      |                     ~~^~~~~~~~~~~~~~~~~~~~~~
+snn.cpp:102:23: warning: comparison of integer expressions of different signedness: ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+  102 |       if(dists.size() < n_i  || nonzero[nonzero_order[j]] == nonzero[nonzero_order[n_i-1]]) {
+      |          ~~~~~~~~~~~~~^~~~~
+snn.cpp:114:22: warning: comparison of integer expressions of different signedness: ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+  114 |     if (dists.size() > n_i) {
+      |         ~~~~~~~~~~~~~^~~~~
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o HGC.so HGC_unordered_map.o RHGC_unordered_map.o RTime.o RcppExports.o Rget_leaves.o snn.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-HGC/00new/HGC/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (HGC)

@@ -1,0 +1,38 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data CancerInSilico
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘CancerInSilico/DESCRIPTION’ ... OK
+* preparing ‘CancerInSilico’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* installing the package to build vignettes
+      -----------------------------------
+* installing *source* package ‘CancerInSilico’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/BH/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c RunModel.cpp -o RunModel.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/BH/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/BH/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c test-runner.cpp -o test-runner.o
+In file included from /usr/include/signal.h:328,
+                 from Tests/catch.h:2070,
+                 from test-runner.cpp:2:
+Tests/catch.h:6473:33: error: size of array ‘altStackMem’ is not an integral constant-expression
+ 6473 |         static char altStackMem[SIGSTKSZ];
+      |                                 ^~~~~~~~
+Tests/catch.h:6524:45: error: size of array ‘altStackMem’ is not an integral constant-expression
+ 6524 |     char FatalConditionHandler::altStackMem[SIGSTKSZ] = {};
+      |                                             ^~~~~~~~
+make: *** [/home/biocbuild/bbs-3.17-bioc/R/etc/Makeconf:198: test-runner.o] Error 1
+ERROR: compilation failed for package ‘CancerInSilico’
+* removing ‘/tmp/Rtmpa38ABm/Rinst11cfb451b6b654/CancerInSilico’
+      -----------------------------------
+ERROR: package installation failed

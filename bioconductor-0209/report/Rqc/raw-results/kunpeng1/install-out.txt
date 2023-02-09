@@ -1,0 +1,40 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL Rqc
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘Rqc’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c RRDNA.cpp -o RRDNA.o
+RRDNA.cpp: In function ‘Rcpp::StringVector toRRDNA(Rcpp::StringVector)’:
+RRDNA.cpp:51:27: warning: comparison of integer expressions of different signedness: ‘R_len_t’ {aka ‘int’} and ‘std::__cxx11::basic_string<char>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   51 |             for (j = 0; j < dna.size(); j+=3)
+      |                         ~~^~~~~~~~~~~~
+RRDNA.cpp: In function ‘Rcpp::StringVector fromRRDNA(Rcpp::StringVector)’:
+RRDNA.cpp:102:22: warning: comparison of integer expressions of different signedness: ‘R_len_t’ {aka ‘int’} and ‘std::__cxx11::basic_string<char>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  102 |         for(j = 1; j < rrdna.size(); ++j) {
+      |                    ~~^~~~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o Rqc.so RRDNA.o RcppExports.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-Rqc/00new/Rqc/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (Rqc)

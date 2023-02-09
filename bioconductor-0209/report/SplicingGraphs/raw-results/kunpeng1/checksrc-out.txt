@@ -1,0 +1,128 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:SplicingGraphs.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings SplicingGraphs_1.39.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/SplicingGraphs.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘SplicingGraphs/DESCRIPTION’ ... OK
+* this is package ‘SplicingGraphs’ version ‘1.39.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘SplicingGraphs’ can be installed ... WARNING
+Found the following significant warnings:
+  Warning: replacing previous import ‘IRanges::from’ by ‘Rgraphviz::from’ when loading ‘SplicingGraphs’
+  Warning: replacing previous import ‘IRanges::to’ by ‘Rgraphviz::to’ when loading ‘SplicingGraphs’
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/SplicingGraphs.Rcheck/00install.out’ for details.
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Packages listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘GenomicFeatures’ ‘GenomicAlignments’ ‘Rgraphviz’ ‘igraph’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+'library' or 'require' call to 'igraph' in package code.
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+':::' calls which should be '::':
+  'S4Vectors:::matchIntegerPairs' 'S4Vectors:::orderIntegerPairs'
+  'S4Vectors:::selfmatchIntegerPairs'
+  See the note in ?`:::` about the use of this operator.
+Unexported objects imported by ':::' calls:
+  'BiocGenerics:::testPackage' 'GenomicAlignments:::fillJunctionGaps'
+  'IRanges:::newCompressedList0' 'IRanges:::regroupBySupergroup'
+  'IRanges:::unlist_as_integer' 'S4Vectors:::setPrototypeFromObject'
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘reportReads’
+Undocumented S4 methods:
+  generic '[' and siglist 'SplicingGraphs,ANY,ANY,ANY'
+  generic 'reportReads' and siglist 'SplicingGraphs'
+  generic 'updateObject' and siglist 'SplicingGraphs'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Objects in \usage without \alias in documentation object 'countReads-methods':
+  ‘reportReads’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                          user system elapsed
+plotTranscripts-methods 54.360  3.485  56.830
+toy_data                30.161  1.092  31.257
+countReads-methods       9.838  1.672  10.447
+sgedges-methods          7.077  1.910   7.855
+SplicingGraphs-class     7.415  1.253   7.619
+assignReads              6.017  1.241   6.271
+rsgedgesByGene-methods   5.067  1.710   5.607
+sgedgesByGene-methods    4.750  1.608   5.214
+bubbles-methods          4.837  1.492   5.314
+txpath-methods           4.645  1.591   5.049
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘run_unitTests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘SplicingGraphs.Rnw’ using ‘UTF-8’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 WARNINGs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/SplicingGraphs.Rcheck/00check.log’
+for details.
+
+

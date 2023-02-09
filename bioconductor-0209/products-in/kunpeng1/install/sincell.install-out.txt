@@ -1,0 +1,41 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL sincell
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘sincell’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c pseudoreplicatesbymodel.cpp -o pseudoreplicatesbymodel.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c pseudoreplicatesbynoise.cpp -o pseudoreplicatesbynoise.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c pseudoreplicatesbynoise_cv2.cpp -o pseudoreplicatesbynoise_cv2.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c sstalgorithm.cpp -o sstalgorithm.o
+sstalgorithm.cpp: In function ‘Rcpp::NumericVector sstalgorithm(Rcpp::NumericVector, int, Rcpp::NumericMatrix)’:
+sstalgorithm.cpp:28:10: warning: ‘disty’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   28 |   out[2] = disty;
+sstalgorithm.cpp:27:10: warning: ‘distx’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   27 |   out[1] = distx;
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o sincell.so RcppExports.o pseudoreplicatesbymodel.o pseudoreplicatesbynoise.o pseudoreplicatesbynoise_cv2.o sstalgorithm.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-sincell/00new/sincell/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (sincell)

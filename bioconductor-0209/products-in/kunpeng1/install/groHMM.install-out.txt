@@ -1,0 +1,108 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL groHMM
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘groHMM’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c AnnotateProbes.c -o AnnotateProbes.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c DecayAlgorithm.c -o DecayAlgorithm.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c MLEfit.c -o MLEfit.o
+In file included from MLEfit.c:43:
+hmmHeader.h:301:16: warning: ‘expSum’ defined but not used [-Wunused-function]
+  301 | static  double expSum(double *logValues, int length) {
+      |                ^~~~~~
+hmmHeader.h:281:16: warning: ‘MargainalizeSumLogProbOver’ defined but not used [-Wunused-function]
+  281 | static  double MargainalizeSumLogProbOver(int state, int position,
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c RegisterRRoutines.c -o RegisterRRoutines.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c Windowing.c -o Windowing.o
+Windowing.c: In function ‘WindowAnalysis’:
+Windowing.c:146:13: warning: unused variable ‘II’ [-Wunused-variable]
+  146 |         int II = 0;
+      |             ^~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c hmmEM.c -o hmmEM.o
+In file included from hmmEM.c:50:
+hmmHeader.h:301:16: warning: ‘expSum’ defined but not used [-Wunused-function]
+  301 | static  double expSum(double *logValues, int length) {
+      |                ^~~~~~
+hmmHeader.h:281:16: warning: ‘MargainalizeSumLogProbOver’ defined but not used [-Wunused-function]
+  281 | static  double MargainalizeSumLogProbOver(int state, int position,
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from hmmHeader.h:36,
+                 from hmmEM.c:50:
+UsefulValues.h:39:15: warning: ‘VERY_LARGE_DOUBLE_VALUE’ defined but not used [-Wunused-variable]
+   39 | static double VERY_LARGE_DOUBLE_VALUE = 1e20;
+      |               ^~~~~~~~~~~~~~~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c hmmFwBw.c -o hmmFwBw.o
+hmmFwBw.c: In function ‘forward’:
+hmmFwBw.c:142:7: warning: this ‘for’ clause does not guard... [-Wmisleading-indentation]
+  142 |       for(k=1; k<n; k++)
+      |       ^~~
+hmmFwBw.c:145:9: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘for’
+  145 |         for (k = 0; k<n; k++) {
+      |         ^~~
+In file included from hmmFwBw.c:45:
+At top level:
+hmmHeader.h:301:16: warning: ‘expSum’ defined but not used [-Wunused-function]
+  301 | static  double expSum(double *logValues, int length) {
+      |                ^~~~~~
+hmmHeader.h:281:16: warning: ‘MargainalizeSumLogProbOver’ defined but not used [-Wunused-function]
+  281 | static  double MargainalizeSumLogProbOver(int state, int position,
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from hmmHeader.h:36,
+                 from hmmFwBw.c:45:
+UsefulValues.h:39:15: warning: ‘VERY_LARGE_DOUBLE_VALUE’ defined but not used [-Wunused-variable]
+   39 | static double VERY_LARGE_DOUBLE_VALUE = 1e20;
+      |               ^~~~~~~~~~~~~~~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c hmmMiscFunctions.c -o hmmMiscFunctions.o
+hmmMiscFunctions.c: In function ‘SStatsNormExp’:
+hmmMiscFunctions.c:384:10: warning: unused variable ‘wi’ [-Wunused-variable]
+  384 |   double wi, *newEx;
+      |          ^~
+hmmMiscFunctions.c: In function ‘UpdateNormExp’:
+hmmMiscFunctions.c:417:10: warning: unused variable ‘epsilon’ [-Wunused-variable]
+  417 |   double epsilon=0.00001;
+      |          ^~~~~~~
+In file included from hmmHeader.h:36,
+                 from hmmMiscFunctions.c:43:
+At top level:
+UsefulValues.h:39:15: warning: ‘VERY_LARGE_DOUBLE_VALUE’ defined but not used [-Wunused-variable]
+   39 | static double VERY_LARGE_DOUBLE_VALUE = 1e20;
+      |               ^~~~~~~~~~~~~~~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c hmmViterbi.c -o hmmViterbi.o
+In file included from hmmViterbi.c:48:
+hmmHeader.h:301:16: warning: ‘expSum’ defined but not used [-Wunused-function]
+  301 | static  double expSum(double *logValues, int length) {
+      |                ^~~~~~
+hmmHeader.h:281:16: warning: ‘MargainalizeSumLogProbOver’ defined but not used [-Wunused-function]
+  281 | static  double MargainalizeSumLogProbOver(int state, int position,
+      |                ^~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from hmmHeader.h:36,
+                 from hmmViterbi.c:48:
+UsefulValues.h:39:15: warning: ‘VERY_LARGE_DOUBLE_VALUE’ defined but not used [-Wunused-variable]
+   39 | static double VERY_LARGE_DOUBLE_VALUE = 1e20;
+      |               ^~~~~~~~~~~~~~~~~~~~~~~
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o groHMM.so AnnotateProbes.o DecayAlgorithm.o MLEfit.o RegisterRRoutines.o Windowing.o hmmEM.o hmmFwBw.o hmmMiscFunctions.o hmmViterbi.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-groHMM/00new/groHMM/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (groHMM)

@@ -1,0 +1,58 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL GeneticsPed
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘GeneticsPed’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c ainverse.cc -o ainverse.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c eibd.cc -o eibd.o
+gfortran  -fPIC  -g -O2  -Wall -c ggmatmult.f -o ggmatmult.o
+gfortran  -fPIC  -g -O2  -Wall -c gpi.f -o gpi.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c inbreed.cc -o inbreed.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c inverseAdditive.cc -o inverseAdditive.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c meuwissen.cc -o meuwissen.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c pedSort.cc -o pedSort.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c pedtemplate.cc -o pedtemplate.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c register.cc -o register.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c sargolzaei.c -o sargolzaei.o
+sargolzaei.c: In function ‘sargolzaei’:
+sargolzaei.c:52:32: warning: ‘*Ped[S][0]’ may be used uninitialized [-Wmaybe-uninitialized]
+   52 |       rPed[rN][0] = Link[Ped[S][0]];
+      |                          ~~~~~~^~~
+sargolzaei.c:53:34: warning: ‘*Ped[D][1]’ may be used uninitialized [-Wmaybe-uninitialized]
+   53 |       rPed[rN++][1] = Link[Ped[D][1]];
+      |                            ~~~~~~^~~
+sargolzaei.c:58:32: warning: ‘*Ped[D][0]’ may be used uninitialized [-Wmaybe-uninitialized]
+   58 |       rPed[rN][0] = Link[Ped[D][0]];
+      |                          ~~~~~~^~~
+sargolzaei.c:59:34: warning: ‘*Ped[D][1]’ may be used uninitialized [-Wmaybe-uninitialized]
+   59 |       rPed[rN++][1] = Link[Ped[D][1]];
+      |                            ~~~~~~^~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c sortped.cc -o sortped.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o GeneticsPed.so ainverse.o eibd.o ggmatmult.o gpi.o inbreed.o inverseAdditive.o meuwissen.o pedSort.o pedtemplate.o register.o sargolzaei.o sortped.o -lgfortran -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-GeneticsPed/00new/GeneticsPed/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (GeneticsPed)

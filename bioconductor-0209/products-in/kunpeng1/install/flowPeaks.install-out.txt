@@ -1,0 +1,48 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL flowPeaks
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘flowPeaks’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   `gsl-config --cflags`  -fPIC  -g -O2  -Wall  -c Rpack.cpp -o Rpack.o
+Rpack.cpp: In function ‘void Rpack_relevel(int*, int*, int*, int*, int*, int*)’:
+Rpack.cpp:141:25: warning: comparison of integer expressions of different signedness: ‘std::map<int, int>::size_type’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+  141 |         if(levels.size()<(i+1)){
+      |            ~~~~~~~~~~~~~^~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   `gsl-config --cflags`  -fPIC  -g -O2  -Wall  -c Rregistrate.cpp -o Rregistrate.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   `gsl-config --cflags`  -fPIC  -g -O2  -Wall  -c VoronoiDiagramGenerator.cpp -o VoronoiDiagramGenerator.o
+VoronoiDiagramGenerator.cpp: In member function ‘void VoronoiDiagramGenerator::out_site(Site*)’:
+VoronoiDiagramGenerator.cpp:803:12: warning: suggest parentheses around operand of ‘!’ or change ‘&’ to ‘&&’ or ‘!’ to ‘~’ [-Wparentheses]
+  803 |         if(!triangulate & plot & !debug)
+      |            ^~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   `gsl-config --cflags`  -fPIC  -g -O2  -Wall  -c flowPeaks.cpp -o flowPeaks.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   `gsl-config --cflags`  -fPIC  -g -O2  -Wall  -c func_collect.cpp -o func_collect.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   `gsl-config --cflags`  -fPIC  -g -O2  -Wall  -c func_collect_supp.cpp -o func_collect_supp.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   `gsl-config --cflags`  -fPIC  -g -O2  -Wall  -c gvector_gmatrix.cpp -o gvector_gmatrix.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   `gsl-config --cflags`  -fPIC  -g -O2  -Wall  -c kd_tree.cpp -o kd_tree.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   `gsl-config --cflags`  -fPIC  -g -O2  -Wall  -c kmns.cpp -o kmns.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o flowPeaks.so Rpack.o Rregistrate.o VoronoiDiagramGenerator.o flowPeaks.o func_collect.o func_collect_supp.o gvector_gmatrix.o kd_tree.o kmns.o -L/usr/lib/aarch64-linux-gnu -lgsl -lgslcblas -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-flowPeaks/00new/flowPeaks/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (flowPeaks)

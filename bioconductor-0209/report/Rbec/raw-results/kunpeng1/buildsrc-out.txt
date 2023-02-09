@@ -1,0 +1,42 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data Rbec
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘Rbec/DESCRIPTION’ ... OK
+* preparing ‘Rbec’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* installing the package to build vignettes
+      -----------------------------------
+* installing *source* package ‘Rbec’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c RcppExports.cpp -o RcppExports.o
+In file included from ../inst/include/Rbec.h:7,
+                 from RcppExports.cpp:4:
+../inst/include/Rbec_RcppExports.h:14:14: warning: ‘void Rbec::{anonymous}::validateSignature(const char*)’ defined but not used [-Wunused-function]
+   14 |         void validateSignature(const char* sig) {
+      |              ^~~~~~~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c kmer_dist.cpp -o kmer_dist.o
+kmer_dist.cpp: In function ‘Rcpp::NumericVector kmer_dist(std::vector<std::__cxx11::basic_string<char> >, std::vector<std::__cxx11::basic_string<char> >, int)’:
+kmer_dist.cpp:33:16: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+   33 |   for(int i=0;i<nseqs;i++) {
+      |               ~^~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c rcpp_test.cpp -o rcpp_test.o
+rcpp_test.cpp:3:10: fatal error: emmintrin.h: No such file or directory
+    3 | #include "emmintrin.h"
+      |          ^~~~~~~~~~~~~
+compilation terminated.
+make: *** [/home/biocbuild/bbs-3.17-bioc/R/etc/Makeconf:198: rcpp_test.o] Error 1
+ERROR: compilation failed for package ‘Rbec’
+* removing ‘/tmp/RtmpKQzvcx/Rinst1a1b821dfbd3e1/Rbec’
+      -----------------------------------
+ERROR: package installation failed

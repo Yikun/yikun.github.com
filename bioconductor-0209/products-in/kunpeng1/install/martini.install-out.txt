@@ -1,0 +1,40 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL martini
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘martini’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppEigen/include' -I/usr/local/include   -std=c++11 -fopenmp -D_USE_KNETFILE -D_FILE_OFFSET_BITS=64 -U_FORTIFY_SOURCE -DBGZF_CACHE -I./lib `/home/biocbuild/bbs-3.17-bioc/R/bin/Rscript -e "Rcpp:::CxxFlags()"` -DEIGEN_PERMANENTLY_DISABLE_STUPID_WARNINGS -fopenmp -fPIC  -g -O2  -Wall  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppEigen/include' -I/usr/local/include   -std=c++11 -fopenmp -D_USE_KNETFILE -D_FILE_OFFSET_BITS=64 -U_FORTIFY_SOURCE -DBGZF_CACHE -I./lib `/home/biocbuild/bbs-3.17-bioc/R/bin/Rscript -e "Rcpp:::CxxFlags()"` -DEIGEN_PERMANENTLY_DISABLE_STUPID_WARNINGS -fopenmp -fPIC  -g -O2  -Wall  -c mincut.cpp -o mincut.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppEigen/include' -I/usr/local/include   -std=c++11 -fopenmp -D_USE_KNETFILE -D_FILE_OFFSET_BITS=64 -U_FORTIFY_SOURCE -DBGZF_CACHE -I./lib `/home/biocbuild/bbs-3.17-bioc/R/bin/Rscript -e "Rcpp:::CxxFlags()"` -DEIGEN_PERMANENTLY_DISABLE_STUPID_WARNINGS -fopenmp -fPIC  -g -O2  -Wall  -c lib/maxflow/maxflow.cpp -o lib/maxflow/maxflow.o
+ar -crus libmaxflow.a lib/maxflow/maxflow.o
+ar: `u' modifier ignored since `D' is the default (see `U')
+cp -r lib/maxflow "/home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-martini/00new/martini/include"
+mkdir -p "/home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-martini/00new/martini/usrlib"
+cp libmaxflow.a "/home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-martini/00new/martini/usrlib"
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o martini.so RcppExports.o mincut.o -pthread -fopenmp /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-martini/00new/martini/usrlib/libmaxflow.a -fopenmp -pthread -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-martini/00new/martini/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (martini)

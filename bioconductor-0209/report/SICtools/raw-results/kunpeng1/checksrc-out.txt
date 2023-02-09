@@ -1,0 +1,160 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:SICtools.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings SICtools_1.29.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/SICtools.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘SICtools/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘SICtools’ version ‘1.29.0’
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  'Rsamtools', 'doParallel', 'Biostrings', 'stringr', 'matrixStats',
+  'plyr', 'GenomicRanges', 'IRanges'
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .BBSoptions
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘SICtools’ can be installed ... WARNING
+Found the following significant warnings:
+  /usr/include/aarch64-linux-gnu/bits/string_fortified.h:95:10: warning: ‘__builtin_strncpy’ output truncated before terminating nul copying 4 bytes from a string of the same length [-Wstringop-truncation]
+  bam_index.c:178:42: warning: overflow in conversion from ‘uint32_t’ {aka ‘unsigned int’} to ‘int32_t’ {aka ‘int’} changes value from ‘last_bin = 4294967295’ to ‘-1’ [-Woverflow]
+  bam_index.c:335:9: warning: ignoring return value of ‘fread’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  bam_index.c:342:9: warning: ignoring return value of ‘fread’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  bam_index.c:355:17: warning: ignoring return value of ‘fread’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  bam_index.c:358:25: warning: ignoring return value of ‘fread’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  bam_index.c:362:25: warning: ignoring return value of ‘fread’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  bam_index.c:366:25: warning: ignoring return value of ‘fread’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  bam_index.c:376:17: warning: ignoring return value of ‘fread’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  bam_index.c:380:17: warning: ignoring return value of ‘fread’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  bam_md.c:214:35: warning: writing 1 byte into a region of size 0 [-Wstringop-overflow=]
+  razf.c:221:17: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  razf.c:234:25: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  razf.c:201:17: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  razf.c:804:25: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  razf.c:805:25: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  razf.c:808:25: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  razf.c:810:25: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  razf.c:258:25: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  razf.c:96:19: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  razf.c:99:17: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  razf.c:106:9: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  razf.c:107:9: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  knetfile.h:9:32: warning: ignoring return value of ‘write’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  errmod.c:79:15: warning: self-comparison always evaluates to false [-Wtautological-compare]
+  bam_tview_curses.c:66:9: warning: format not a string literal and no format arguments [-Wformat-security]
+  md5.c:155:26: warning: argument to ‘sizeof’ in ‘memset’ call is the same expression as the destination; did you mean to dereference it? [-Wsizeof-pointer-memaccess]
+  Warning: replacing previous import ‘plyr::count’ by ‘matrixStats::count’ when loading ‘SICtools’
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/SICtools.Rcheck/00install.out’ for details.
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... NOTE
+Problems with news in ‘NEWS’:
+  Cannot process chunk/lines:
+    FEATURES
+  Cannot process chunk/lines:
+    This package is to find SNV/Indel differences between two bam files with near relationship
+  Cannot process chunk/lines:
+    in a way of pairwise comparison thourgh each base position across the genome region of interest. 
+  Cannot process chunk/lines:
+    The difference is inferred by fisher test and euclidean distance, the input of which is the base
+  Cannot process chunk/lines:
+    count (A,T,G,C) in a given position and read counts for indels that span no less than 2bp on both 
+  Cannot process chunk/lines:
+    sides of indel region.
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.indelDiffFunc: no visible global function definition for ‘fisher.test’
+.indelDiffFunc: no visible global function definition for ‘dist’
+indelDiff: no visible global function definition for ‘read.delim’
+snpDiff : calcInfoRange : <anonymous>: no visible global function
+  definition for ‘fisher.test’
+snpDiff : calcInfoRange : <anonymous>: no visible global function
+  definition for ‘dist’
+Undefined global functions or variables:
+  dist fisher.test read.delim
+Consider adding
+  importFrom("stats", "dist", "fisher.test")
+  importFrom("utils", "read.delim")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking include directives in Makefiles ... OK
+* checking compiled code ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... WARNING
+Found the following significant warnings:
+
+  Warning: 'applyPileups' is deprecated.
+Deprecated functions may be defunct as soon as of the next release of
+R.
+See ?Deprecated.
+Examples with CPU (user + system) or elapsed time > 5s
+           user system elapsed
+indelDiff 4.664  0.031   5.491
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘runTests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘SICtools.Rmd’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 WARNINGs, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/SICtools.Rcheck/00check.log’
+for details.
+
+

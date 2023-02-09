@@ -1,0 +1,135 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:oppti.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings oppti_1.13.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/oppti.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘oppti/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘oppti’ version ‘1.13.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘oppti’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+License components which are templates and need '+ file LICENSE':
+  MIT
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+gqplot: no visible binding for global variable ‘variable2’
+gqplot: no visible binding for global variable ‘variable1’
+gqplot: no visible binding for global variable ‘cupper’
+gqplot: no visible binding for global variable ‘clower’
+markOut: no visible binding for global variable ‘data’
+per.test: no visible binding for global variable ‘oppti.result’
+per.test: no visible binding for global variable ‘weight’
+per.test: no visible binding for global variable ‘..density..’
+Undefined global functions or variables:
+  ..density.. clower cupper data oppti.result variable1 variable2
+  weight
+Consider adding
+  importFrom("utils", "data")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... WARNING
+Codoc mismatches from documentation object 'markOut':
+markOut
+  Code: function(dat, dat.imp, dat.imp.test, dat.dys, dys.sig.thr.upp,
+                 marker.proc.list = NULL, dataset = "", num.omit.fit =
+                 NULL, draw.sc = TRUE, draw.vi = TRUE, conf.int = 0.95,
+                 ylab = "Observed", xlab = "Inferred", cohort.name =
+                 NULL)
+  Docs: function(dat, dat.imp, dat.imp.test, dat.dys, dys.sig.thr.upp,
+                 marker.proc.list = NULL, dataset = "", num.omit.fit =
+                 NULL, draw.sc = TRUE, draw.vi = TRUE, conf.int = 0.95,
+                 ylab = "Observed", xlab = "Inferred")
+  Argument names in code not in docs:
+    cohort.name
+
+Codoc mismatches from documentation object 'oppti':
+oppti
+  Code: function(data, mad.norm = FALSE, cohort.names = NULL, panel =
+                 "global", panel.markers = NULL, tol.nas = 20, ku = 6,
+                 miss.pstat = 0.4, demo.panels = FALSE, save.data =
+                 FALSE, draw.sc.plots = FALSE, draw.vi.plots = FALSE,
+                 draw.sc.markers = NULL, draw.ou.plots = FALSE,
+                 draw.ou.markers = NULL, permutation.tests = TRUE,
+                 n.per.test = 10, draw.per.test = FALSE,
+                 plot.set.per.test = list(BRCA = c("ERBB2"), CCRCC =
+                 c("ERBB2", "TP53")), verbose = FALSE)
+  Docs: function(data, mad.norm = FALSE, cohort.names = NULL, panel =
+                 "global", panel.markers = NULL, tol.nas = 20, ku = 6,
+                 miss.pstat = 0.4, demo.panels = FALSE, save.data =
+                 FALSE, draw.sc.plots = FALSE, draw.vi.plots = FALSE,
+                 draw.sc.markers = NULL, draw.ou.plots = FALSE,
+                 draw.ou.markers = NULL, verbose = FALSE)
+  Argument names in code not in docs:
+    permutation.tests n.per.test draw.per.test plot.set.per.test
+  Mismatches in argument names:
+    Position: 16 Code: permutation.tests Docs: verbose
+
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+         user system elapsed
+markOut 6.697  0.057   6.753
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘test.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘analysis.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 WARNING, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/oppti.Rcheck/00check.log’
+for details.
+
+

@@ -1,0 +1,96 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data maanova
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘maanova/DESCRIPTION’ ... OK
+* preparing ‘maanova’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* installing the package to build vignettes
+      -----------------------------------
+* installing *source* package ‘maanova’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c makeratio.c -o makeratio.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c masvd.c -o masvd.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R/include/R_ext/Lapack.h:40,
+                 from masvd.h:1,
+                 from masvd.c:17:
+masvd.h:14:15: error: conflicting types for ‘dgesvd_’; have ‘void(const char *, const char *, const int *, const int *, double *, const int *, double *, double *, const int *, double *, const int *, double *, const int *, int *)’
+   14 | void F77_NAME(dgesvd)(const char *jobu, const char *jobvt,
+      |               ^~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+masvd.h:14:6: note: in expansion of macro ‘F77_NAME’
+   14 | void F77_NAME(dgesvd)(const char *jobu, const char *jobvt,
+      |      ^~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/Lapack.h:348:10: note: previous declaration of ‘dgesvd_’ with type ‘void(const char *, const char *, const int *, const int *, double *, const int *, double *, double *, const int *, double *, const int *, double *, const int *, int *, size_t,  size_t)’ {aka ‘void(const char *, const char *, const int *, const int *, double *, const int *, double *, double *, const int *, double *, const int *, double *, const int *, int *, long unsigned int,  long unsigned int)’}
+  348 | F77_NAME(dgesvd)(const char* jobu, const char* jobvt, const int* m,
+      |          ^~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/Lapack.h:348:1: note: in expansion of macro ‘F77_NAME’
+  348 | F77_NAME(dgesvd)(const char* jobu, const char* jobvt, const int* m,
+      | ^~~~~~~~
+masvd.c: In function ‘masvd’:
+masvd.c:68:18: error: too few arguments to function ‘dgesdd_’
+   68 |         F77_CALL(dgesdd)(CHAR(STRING_ELT(jobu, 0)),
+      |                  ^~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/Lapack.h:2397:10: note: declared here
+ 2397 | F77_NAME(dgesdd)(const char* jobz,
+      |          ^~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/Lapack.h:2397:1: note: in expansion of macro ‘F77_NAME’
+ 2397 | F77_NAME(dgesdd)(const char* jobz,
+      | ^~~~~~~~
+masvd.c:77:18: error: too few arguments to function ‘dgesdd_’
+   77 |         F77_CALL(dgesdd)(CHAR(STRING_ELT(jobu, 0)),
+      |                  ^~~~~~
+masvd.c:77:9: note: in expansion of macro ‘F77_CALL’
+   77 |         F77_CALL(dgesdd)(CHAR(STRING_ELT(jobu, 0)),
+      |         ^~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/Lapack.h:2397:10: note: declared here
+ 2397 | F77_NAME(dgesdd)(const char* jobz,
+      |          ^~~~~~
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R/include/R_ext/Lapack.h:2397:1: note: in expansion of macro ‘F77_NAME’
+ 2397 | F77_NAME(dgesdd)(const char* jobz,
+      | ^~~~~~~~
+masvd.c: At top level:
+masvd.c:114:9: warning: "/*" within comment [-Wcomment]
+  114 |         /* work on a copy of x */
+      |          
+masvd.c:154:1: warning: "/*" within comment [-Wcomment]
+  154 | /*#ifndef IEEE_754
+      |  
+masvd.c:161:5: warning: "/*" within comment [-Wcomment]
+  161 |     /* work on a copy of x */
+      |      
+masvd.c:165:9: warning: "/*" within comment [-Wcomment]
+  165 |         /* ask for optimal size of work array */
+      |          
+masvd.c:189:9: warning: "/*" within comment [-Wcomment]
+  189 |         /* ask for optimal size of work array */
+      |          
+make: *** [/home/biocbuild/bbs-3.17-bioc/R/etc/Makeconf:191: masvd.o] Error 1
+ERROR: compilation failed for package ‘maanova’
+* removing ‘/tmp/RtmpFp08wm/Rinst16abc7457b6354/maanova’
+      -----------------------------------
+ERROR: package installation failed

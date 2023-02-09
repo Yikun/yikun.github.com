@@ -1,0 +1,40 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL MassSpecWavelet
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘MassSpecWavelet’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c find_local_maximum.c -o find_local_maximum.o
+find_local_maximum.c: In function ‘localMaximumSlidingWindow’:
+find_local_maximum.c:493:17: warning: ‘kmax’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  493 |             outi[kmax] = 1;
+      |                 ^
+find_local_maximum.c:471:17: warning: ‘kmax’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  471 |             outi[kmax] = 1;
+      |                 ^
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c init.c -o init.o
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o MassSpecWavelet.so find_local_maximum.o init.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-MassSpecWavelet/00new/MassSpecWavelet/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (MassSpecWavelet)

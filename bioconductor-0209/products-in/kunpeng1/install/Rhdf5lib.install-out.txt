@@ -1,0 +1,989 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL Rhdf5lib
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘Rhdf5lib’ ...
+** using staged installation
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ -std=gnu++14 accepts -g... yes
+COMPILER = gcc
+checking whether C compiler accepts -w... yes
+checking whether to use -Wl,-rpath setting... yes
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for zlib.h... yes
+checking szlib.h usability... yes
+checking szlib.h presence... yes
+checking for szlib.h... yes
+checking libaec.h usability... yes
+checking libaec.h presence... yes
+checking for libaec.h... yes
+checking for SZ_BufftoBuffCompress in -lsz... yes
+checking for aec_buffer_encode in -lsz... yes
+checking curl/curl.h usability... yes
+checking curl/curl.h presence... yes
+checking for curl/curl.h... yes
+checking openssl/evp.h usability... yes
+checking openssl/evp.h presence... yes
+checking for openssl/evp.h... yes
+checking openssl/hmac.h usability... yes
+checking openssl/hmac.h presence... yes
+checking for openssl/hmac.h... yes
+checking openssl/sha.h usability... yes
+checking openssl/sha.h presence... yes
+checking for openssl/sha.h... yes
+checking for curl_global_init in -lcurl... yes
+checking for EVP_sha256 in -lcrypto... yes
+S3_VFD=--enable-ros3-vfd
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gunzip -dc hdf5small_cxx_hl_1.10.7.tar.gz | tar xf -;
+cd hdf5; \
+./configure --with-pic --enable-shared=no --enable-cxx --enable-hl \
+--enable-tests=no --enable-tools=no \
+--with-szlib=yes --with-zlib=yes \
+--enable-ros3-vfd \
+--enable-sharedlib-rpath \
+CC='gcc' CXX='g++ -std=gnu++14' \
+CPPFLAGS='-I/usr/local/include' \
+CFLAGS='-g -O2 -Wall -w -fPIC' \
+CXXFLAGS='-w -g -O2 -Wall -fPIC'; \
+make lib
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking whether make supports nested variables... (cached) yes
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking build system type... aarch64-unknown-linux-gnu
+checking host system type... aarch64-unknown-linux-gnu
+checking shell variables initial values... done
+checking if basename works... yes
+checking if xargs works... yes
+checking for cached host... none
+checking for config aarch64-unknown-linux-gnu... no
+checking for config aarch64-unknown-linux-gnu... no
+checking for config unknown-linux-gnu... no
+checking for config unknown-linux-gnu... no
+checking for config aarch64-linux-gnu... no
+checking for config aarch64-linux-gnu... no
+checking for config aarch64-unknown... no
+checking for config linux-gnu... found
+compiler 'gcc' is GNU gcc-11.3.0
+compiler 'gfortran' is GNU gfortran-11.3.0
+compiler 'g++ -std=gnu++14' is GNU g++-11.3.0
+checking for config ./config/site-specific/host-kunpeng1... no
+checking for clang sanitizer checks... checking build mode... production
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether gcc understands -c and -o together... yes
+checking whether make supports the include directive... yes (GNU style)
+checking dependency style of gcc... gcc3
+checking if unsupported combinations of configure options are allowed... no
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for off_t... yes
+checking for size_t... yes
+checking for ssize_t... yes
+checking for ptrdiff_t... yes
+checking whether byte ordering is bigendian... no
+checking size of char... 1
+checking size of short... 2
+checking size of int... 4
+checking size of unsigned... 4
+checking size of long... 8
+checking size of long long... 8
+checking size of __int64... 0
+checking size of float... 4
+checking size of double... 8
+checking size of long double... 16
+checking size of __float128... 0
+checking size of _Quad... 0
+checking quadmath.h usability... no
+checking quadmath.h presence... no
+checking for quadmath.h... no
+checking maximum decimal precision for C... 36
+checking if Fortran interface enabled... no
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ -std=gnu++14 accepts -g... yes
+checking dependency style of g++ -std=gnu++14... gcc3
+checking how to run the C++ preprocessor... g++ -std=gnu++14 -E
+checking if c++ interface enabled... yes
+checking if g++ -std=gnu++14 needs old style header files in includes... no
+checking if g++ -std=gnu++14 can handle namespaces... yes
+checking if g++ -std=gnu++14 can handle static cast... yes
+checking if g++ -std=gnu++14 has offsetof extension... yes
+checking if the high-level library is enabled... yes
+checking for ar... ar
+checking whether make sets $(MAKE)... (cached) yes
+checking for tr... /usr/bin/tr
+checking if srcdir= and time commands work together... yes
+checking if Java JNI interface enabled... no
+checking if building tests is disabled... Building HDF5 tests is disabled
+checking if building tools is disabled... Building HDF5 tools is disabled
+checking how to print strings... printf
+checking for a sed that does not truncate output... /usr/bin/sed
+checking for fgrep... /usr/bin/grep -F
+checking for ld used by gcc... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking for BSD- or MS-compatible name lister (nm)... /usr/bin/nm -B
+checking the name lister (/usr/bin/nm -B) interface... BSD nm
+checking whether ln -s works... yes
+checking the maximum length of command line arguments... 1572864
+checking how to convert aarch64-unknown-linux-gnu file names to aarch64-unknown-linux-gnu format... func_convert_file_noop
+checking how to convert aarch64-unknown-linux-gnu file names to toolchain format... func_convert_file_noop
+checking for /usr/bin/ld option to reload object files... -r
+checking for objdump... objdump
+checking how to recognize dependent libraries... pass_all
+checking for dlltool... no
+checking how to associate runtime and link libraries... printf %s\n
+checking for archiver @FILE support... @
+checking for strip... strip
+checking for ranlib... ranlib
+checking command to parse /usr/bin/nm -B output from gcc object... ok
+checking for sysroot... no
+checking for a working dd... /usr/bin/dd
+checking how to truncate binary pipes... /usr/bin/dd bs=4096 count=1
+checking for mt... mt
+checking if mt is a manifest tool... no
+checking for dlfcn.h... yes
+checking for objdir... .libs
+checking if gcc supports -fno-rtti -fno-exceptions... yes
+checking for gcc option to produce PIC... -fPIC -DPIC
+checking if gcc PIC flag -fPIC -DPIC works... yes
+checking if gcc static flag -static works... yes
+checking if gcc supports -c -o file.o... yes
+checking if gcc supports -c -o file.o... (cached) yes
+checking whether the gcc linker (/usr/bin/ld) supports shared libraries... yes
+checking dynamic linker characteristics... GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking for shl_load... no
+checking for shl_load in -ldld... no
+checking for dlopen... yes
+checking whether a program can dlopen itself... yes
+checking whether a statically linked program can dlopen itself... no
+checking whether stripping libraries is possible... yes
+checking if libtool supports shared libraries... yes
+checking whether to build shared libraries... no
+checking whether to build static libraries... yes
+checking how to run the C++ preprocessor... g++ -std=gnu++14 -E
+checking for ld used by g++ -std=gnu++14... /usr/bin/ld
+checking if the linker (/usr/bin/ld) is GNU ld... yes
+checking whether the g++ -std=gnu++14 linker (/usr/bin/ld) supports shared libraries... yes
+checking for g++ -std=gnu++14 option to produce PIC... -fPIC -DPIC
+checking if g++ -std=gnu++14 PIC flag -fPIC -DPIC works... yes
+checking if g++ -std=gnu++14 static flag -static works... yes
+checking if g++ -std=gnu++14 supports -c -o file.o... yes
+checking if g++ -std=gnu++14 supports -c -o file.o... (cached) yes
+checking whether the g++ -std=gnu++14 linker (/usr/bin/ld) supports shared libraries... yes
+checking dynamic linker characteristics... (cached) GNU/Linux ld.so
+checking how to hardcode library paths into programs... immediate
+checking if we should install only statically linked executables... no
+checking if -Wl,-rpath should be used to link shared libs in nondefault directories... yes
+checking for ceil in -lm... yes
+checking for dlopen in -ldl... yes
+checking for ANSI C header files... (cached) yes
+checking whether time.h and sys/time.h may both be included... yes
+checking sys/resource.h usability... yes
+checking sys/resource.h presence... yes
+checking for sys/resource.h... yes
+checking sys/time.h usability... yes
+checking sys/time.h presence... yes
+checking for sys/time.h... yes
+checking for unistd.h... (cached) yes
+checking sys/ioctl.h usability... yes
+checking sys/ioctl.h presence... yes
+checking for sys/ioctl.h... yes
+checking for sys/stat.h... (cached) yes
+checking sys/socket.h usability... yes
+checking sys/socket.h presence... yes
+checking for sys/socket.h... yes
+checking for sys/types.h... (cached) yes
+checking sys/file.h usability... yes
+checking sys/file.h presence... yes
+checking for sys/file.h... yes
+checking stddef.h usability... yes
+checking stddef.h presence... yes
+checking for stddef.h... yes
+checking setjmp.h usability... yes
+checking setjmp.h presence... yes
+checking for setjmp.h... yes
+checking features.h usability... yes
+checking features.h presence... yes
+checking for features.h... yes
+checking dirent.h usability... yes
+checking dirent.h presence... yes
+checking for dirent.h... yes
+checking for stdint.h... (cached) yes
+checking stdbool.h usability... yes
+checking stdbool.h presence... yes
+checking for stdbool.h... yes
+checking netdb.h usability... yes
+checking netdb.h presence... yes
+checking for netdb.h... yes
+checking netinet/in.h usability... yes
+checking netinet/in.h presence... yes
+checking for netinet/in.h... yes
+checking arpa/inet.h usability... yes
+checking arpa/inet.h presence... yes
+checking for arpa/inet.h... yes
+checking io.h usability... no
+checking io.h presence... no
+checking for io.h... no
+checking winsock2.h usability... no
+checking winsock2.h presence... no
+checking for winsock2.h... no
+checking sys/timeb.h usability... yes
+checking sys/timeb.h presence... yes
+checking for sys/timeb.h... yes
+checking for _FILE_OFFSET_BITS value needed for large files... no
+checking size of int8_t... 1
+checking size of uint8_t... 1
+checking size of int_least8_t... 1
+checking size of uint_least8_t... 1
+checking size of int_fast8_t... 1
+checking size of uint_fast8_t... 1
+checking size of int16_t... 2
+checking size of uint16_t... 2
+checking size of int_least16_t... 2
+checking size of uint_least16_t... 2
+checking size of int_fast16_t... 8
+checking size of uint_fast16_t... 8
+checking size of int32_t... 4
+checking size of uint32_t... 4
+checking size of int_least32_t... 4
+checking size of uint_least32_t... 4
+checking size of int_fast32_t... 8
+checking size of uint_fast32_t... 8
+checking size of int64_t... 8
+checking size of uint64_t... 8
+checking size of int_least64_t... 8
+checking size of uint_least64_t... 8
+checking size of int_fast64_t... 8
+checking size of uint_fast64_t... 8
+checking size of size_t... 8
+checking size of ssize_t... 8
+checking size of ptrdiff_t... 8
+checking size of off_t... 8
+checking size of bool... 1
+checking size of time_t... 8
+checking if dev_t is scalar... yes
+checking for dmalloc library... suppressed
+checking zlib.h usability... yes
+checking zlib.h presence... yes
+checking for zlib.h... yes
+checking for compress2 in -lz... yes
+checking for compress2... yes
+checking szlib.h usability... yes
+checking szlib.h presence... yes
+checking for szlib.h... yes
+checking libaec.h usability... yes
+checking libaec.h presence... yes
+checking for libaec.h... yes
+checking for aec_encode in -laec... yes
+checking for SZ_BufftoBuffCompress in -lsz... yes
+checking for szlib encoder... yes
+checking for thread safe support... no
+checking whether CLOCK_MONOTONIC is declared... yes
+checking for tm_gmtoff in struct tm... yes
+checking for global timezone variable... yes
+checking for st_blocks in struct stat... no
+checking for _getvideoconfig... no
+checking for gettextinfo... no
+checking for GetConsoleScreenBufferInfo... no
+checking for getpwuid... yes
+checking for _scrsize... no
+checking for ioctl... yes
+checking for struct videoconfig... no
+checking for struct text_info... no
+checking for TIOCGWINSZ... yes
+checking for TIOCGETD... yes
+checking for library containing clock_gettime... none required
+checking for alarm... yes
+checking for clock_gettime... yes
+checking for difftime... yes
+checking for fcntl... yes
+checking for flock... yes
+checking for fork... yes
+checking for frexpf... yes
+checking for frexpl... yes
+checking for gethostname... yes
+checking for getrusage... yes
+checking for gettimeofday... yes
+checking for lstat... yes
+checking for rand_r... yes
+checking for random... yes
+checking for setsysinfo... no
+checking for signal... yes
+checking for longjmp... yes
+checking for setjmp... yes
+checking for siglongjmp... yes
+checking for sigsetjmp... no
+checking for sigprocmask... yes
+checking for snprintf... yes
+checking for srandom... yes
+checking for strdup... yes
+checking for symlink... yes
+checking for system... yes
+checking for strtoll... yes
+checking for strtoull... yes
+checking for tmpfile... yes
+checking for asprintf... yes
+checking for vasprintf... yes
+checking for vsnprintf... yes
+checking for waitpid... yes
+checking for roundf... yes
+checking for lroundf... yes
+checking for llroundf... yes
+checking for round... yes
+checking for lround... yes
+checking for llround... yes
+checking for an ANSI C-conforming const... yes
+checking if the compiler understands  __inline__... yes
+checking if the compiler understands __inline... yes
+checking if the compiler understands inline... yes
+checking for __attribute__ extension... yes
+checking for __func__ extension... yes
+checking for __FUNCTION__ extension... yes
+checking for C99 designated initialization support... yes
+checking how to print long long... %ld and %lu
+checking enable debugging symbols... no
+checking enable asserts... no
+checking enable developer warnings... no
+checking profiling... no
+checking optimization level... high
+checking enable file locking... best-effort
+checking for internal debug output... none
+checking whether function stack tracking is enabled... no
+checking for API tracing... no
+checking whether a memory checking tool will be used... no
+checking whether internal memory allocation sanity checking is used... no
+checking for parallel support files... skipped
+checking whether O_DIRECT is declared... yes
+checking for posix_memalign... yes
+checking if the direct I/O virtual file driver (VFD) is enabled... no
+checking if the Mirror virtual file driver (VFD) is enabled... no
+checking curl/curl.h usability... yes
+checking curl/curl.h presence... yes
+checking for curl/curl.h... yes
+checking openssl/evp.h usability... yes
+checking openssl/evp.h presence... yes
+checking for openssl/evp.h... yes
+checking openssl/hmac.h usability... yes
+checking openssl/hmac.h presence... yes
+checking for openssl/hmac.h... yes
+checking openssl/sha.h usability... yes
+checking openssl/sha.h presence... yes
+checking for openssl/sha.h... yes
+checking for curl_global_init in -lcurl... yes
+checking for EVP_sha256 in -lcrypto... yes
+checking if the Read-Only S3 virtual file driver (VFD) is enabled... yes
+checking for libhdfs... suppressed
+checking for custom examples path definition... ${prefix}/share/hdf5_examples
+checking for custom plugin default path definition... /usr/local/hdf5/lib/plugin
+checking whether exception handling functions is checked during data conversions... yes
+checking whether data accuracy is guaranteed during data conversions... yes
+checking if the machine has window style path name... no
+checking if using special algorithm to convert long double to (unsigned) long values... no
+checking if using special algorithm to convert (unsigned) long to long double values... no
+checking if correctly converting long double to (unsigned) long long values... yes
+checking if correctly converting (unsigned) long long to long double values... yes
+checking if the system is IBM ppc64le and cannot correctly convert some long double values... no
+checking additional programs should be built... no
+checking if deprecated public symbols are available... yes
+checking which version of public symbols to use by default... v110
+checking whether to perform strict file format checks... no
+checking for pread... yes
+checking for pwrite... yes
+checking whether to use pread/pwrite instead of read/write in certain VFDs... yes
+checking whether to have library information embedded in the executables... yes
+checking if alignment restrictions are strictly enforced... no
+configure: creating ./config.lt
+config.lt: creating libtool
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating src/libhdf5.settings
+config.status: creating Makefile
+config.status: creating src/Makefile
+config.status: creating utils/Makefile
+config.status: creating utils/mirror_vfd/Makefile
+config.status: creating bin/h5cc
+config.status: creating bin/Makefile
+config.status: creating c++/Makefile
+config.status: creating c++/src/Makefile
+config.status: creating c++/src/h5c++
+config.status: creating hl/Makefile
+config.status: creating hl/src/Makefile
+config.status: creating hl/c++/Makefile
+config.status: creating hl/c++/src/Makefile
+config.status: creating src/H5config.h
+config.status: executing pubconf commands
+creating src/H5pubconf.h
+Post process src/libhdf5.settings
+config.status: executing depfiles commands
+config.status: executing libtool commands
+config.status: executing .classes commands
+	    SUMMARY OF THE HDF5 CONFIGURATION
+	    =================================
+
+General Information:
+-------------------
+                   HDF5 Version: 1.10.7
+                  Configured on: Wed Feb  8 12:18:17 UTC 2023
+                  Configured by: biocbuild@kunpeng1
+                    Host system: aarch64-unknown-linux-gnu
+              Uname information: Linux kunpeng1 5.15.0-58-generic #64-Ubuntu SMP Thu Jan 5 12:06:43 UTC 2023 aarch64 aarch64 aarch64 GNU/Linux
+                       Byte sex: little-endian
+             Installation point: /home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/hdf5
+
+Compiling Options:
+------------------
+                     Build Mode: production
+              Debugging Symbols: no
+                        Asserts: no
+                      Profiling: no
+             Optimization Level: high
+
+Linking Options:
+----------------
+                      Libraries: static
+  Statically Linked Executables: 
+                        LDFLAGS: 
+                     H5_LDFLAGS: 
+                     AM_LDFLAGS: 
+                Extra libraries: -lcrypto -lcurl -lsz -laec -lz -ldl -lm 
+                       Archiver: ar
+                       AR_FLAGS: cr
+                         Ranlib: ranlib
+
+Languages:
+----------
+                              C: yes
+                     C Compiler: /usr/bin/gcc
+                       CPPFLAGS: -I/usr/local/include
+                    H5_CPPFLAGS: -D_GNU_SOURCE -D_POSIX_C_SOURCE=200809L   -DNDEBUG -UH5_DEBUG_API
+                    AM_CPPFLAGS: 
+                        C Flags: -g -O2 -Wall -w -fPIC
+                     H5 C Flags:  -std=c99  -Wno-c++-compat -Wno-format-nonliteral -Wshadow -Wundef -Wwrite-strings -Wlarger-than=2560 -Wlogical-op -Wframe-larger-than=16384 -Wpacked-bitfield-compat -Wsync-nand -Wdouble-promotion -Wtrampolines -Wstack-usage=8192 -Wmaybe-uninitialized -Wdate-time -Warray-bounds=2 -Wc99-c11-compat -Wduplicated-cond -Whsa -Wnormalized -Wunused-const-variable -Walloca -Walloc-zero -Wduplicated-branches -Wimplicit-fallthrough=5 -Wrestrict -Wattribute-alias -Wshift-overflow=2 -Wattribute-alias=2 -Wmissing-profile -fstdarg-opt -s -Wno-aggregate-return -Wno-inline -Wno-missing-format-attribute -Wno-missing-noreturn -Wno-overlength-strings -Wno-jump-misses-init -Wno-suggest-attribute=const -Wno-suggest-attribute=noreturn -Wno-suggest-attribute=pure -Wno-suggest-attribute=format -Wno-suggest-attribute=cold -Wno-suggest-attribute=malloc -O3  -Werror=bad-function-cast -Werror=declaration-after-statement -Werror=implicit-function-declaration -Werror=missing-declarations -Werror=missing-prototypes -Werror=nested-externs -Werror=old-style-definition -Werror=packed -Werror=pointer-sign -Werror=pointer-to-int-cast -Werror=redundant-decls -Werror=strict-prototypes -Werror=switch -Wunused-function -Wformat -Werror=incompatible-pointer-types -Werror=shadow -Wcast-function-type -Wmaybe-uninitialized
+                     AM C Flags: 
+               Shared C Library: no
+               Static C Library: yes
+
+
+                        Fortran: no
+
+                            C++: yes
+                   C++ Compiler: /usr/bin/g++ -std=gnu++14
+                      C++ Flags: -w -g -O2 -Wall -fPIC
+                   H5 C++ Flags:   -Wall -Wconversion -Wctor-dtor-privacy -Wextra -Wfloat-equal -Wformat=2 -Winit-self -Winvalid-pch -Wmissing-include-dirs -Wno-format-nonliteral -Wnon-virtual-dtor -Woverloaded-virtual -Wreorder -Wshadow -Wsign-promo -Wundef -Wwrite-strings -pedantic -Wlarger-than=2560 -Wlogical-op -Wframe-larger-than=16384 -Wpacked-bitfield-compat -Wsync-nand -Wdouble-promotion -Wtrampolines -Wstack-usage=8192 -Wmaybe-uninitialized -Wdate-time -Wopenmp-simd -Warray-bounds=2 -Wduplicated-cond -Whsa -Wnormalized -Wunused-const-variable -Walloca -Walloc-zero -Wduplicated-branches -Wimplicit-fallthrough=5 -Wrestrict -Wattribute-alias -Wshift-overflow=2 -Wattribute-alias=2 -Wmissing-profile -fstdarg-opt -s -O3  -Wcast-align -Wmissing-declarations -Werror=packed -Werror=redundant-decls -Werror=switch -Wunused-but-set-variable -Werror=unused-function -Werror=unused-variable -Wunused-parameter -Werror=shadow
+                   AM C++ Flags: 
+             Shared C++ Library: no
+             Static C++ Library: yes
+
+                           Java: no
+
+
+Features:
+---------
+                   Parallel HDF5: no
+Parallel Filtered Dataset Writes: no
+              Large Parallel I/O: no
+              High-level library: yes
+                Build HDF5 Tests: no
+                Build HDF5 Tools: no
+                    Threadsafety: no
+             Default API mapping: v110
+  With deprecated public symbols: yes
+          I/O filters (external): deflate(zlib),szip(encoder)
+                             MPE: no
+                      Direct VFD: no
+                      Mirror VFD: no
+              (Read-Only) S3 VFD: yes
+            (Read-Only) HDFS VFD: no
+                         dmalloc: no
+  Packages w/ extra debug output: none
+                     API tracing: no
+            Using memory checker: no
+ Memory allocation sanity checks: no
+          Function stack tracing: no
+                Use file locking: best-effort
+       Strict file format checks: no
+    Optimization instrumentation: no
+make[1]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5'
+for d in src . c++ hl; do                                \
+  if test $d != .; then                                        \
+   (cd $d && make  lib) || exit 1;            \
+  fi;                                                           \
+done
+make[2]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/src'
+make[3]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/src'
+  CC       H5.lo
+  CC       H5checksum.lo
+  CC       H5dbg.lo
+  CC       H5system.lo
+  CC       H5timer.lo
+  CC       H5trace.lo
+  CC       H5A.lo
+  CC       H5Abtree2.lo
+  CC       H5Adense.lo
+  CC       H5Adeprec.lo
+  CC       H5Aint.lo
+  CC       H5Atest.lo
+  CC       H5AC.lo
+  CC       H5ACdbg.lo
+  CC       H5ACproxy_entry.lo
+  CC       H5B.lo
+  CC       H5Bcache.lo
+  CC       H5Bdbg.lo
+  CC       H5B2.lo
+  CC       H5B2cache.lo
+  CC       H5B2dbg.lo
+  CC       H5B2hdr.lo
+  CC       H5B2int.lo
+  CC       H5B2internal.lo
+  CC       H5B2leaf.lo
+  CC       H5B2stat.lo
+  CC       H5B2test.lo
+  CC       H5C.lo
+  CC       H5Cdbg.lo
+  CC       H5Cepoch.lo
+  CC       H5Cimage.lo
+  CC       H5Clog.lo
+  CC       H5Clog_json.lo
+  CC       H5Clog_trace.lo
+  CC       H5Cprefetched.lo
+  CC       H5Cquery.lo
+  CC       H5Ctag.lo
+  CC       H5Ctest.lo
+  CC       H5CS.lo
+  CC       H5CX.lo
+  CC       H5D.lo
+  CC       H5Dbtree.lo
+  CC       H5Dbtree2.lo
+  CC       H5Dchunk.lo
+  CC       H5Dcompact.lo
+  CC       H5Dcontig.lo
+  CC       H5Ddbg.lo
+  CC       H5Ddeprec.lo
+  CC       H5Dearray.lo
+  CC       H5Defl.lo
+  CC       H5Dfarray.lo
+  CC       H5Dfill.lo
+  CC       H5Dint.lo
+  CC       H5Dio.lo
+  CC       H5Dlayout.lo
+  CC       H5Dnone.lo
+  CC       H5Doh.lo
+  CC       H5Dscatgath.lo
+  CC       H5Dselect.lo
+  CC       H5Dsingle.lo
+  CC       H5Dtest.lo
+  CC       H5Dvirtual.lo
+  CC       H5E.lo
+  CC       H5Edeprec.lo
+  CC       H5Eint.lo
+  CC       H5EA.lo
+  CC       H5EAcache.lo
+  CC       H5EAdbg.lo
+  CC       H5EAdblkpage.lo
+  CC       H5EAdblock.lo
+  CC       H5EAhdr.lo
+  CC       H5EAiblock.lo
+  CC       H5EAint.lo
+  CC       H5EAsblock.lo
+  CC       H5EAstat.lo
+  CC       H5EAtest.lo
+  CC       H5F.lo
+  CC       H5Faccum.lo
+  CC       H5Fcwfs.lo
+  CC       H5Fdbg.lo
+  CC       H5Fdeprec.lo
+  CC       H5Fefc.lo
+  CC       H5Ffake.lo
+  CC       H5Fint.lo
+  CC       H5Fio.lo
+  CC       H5Fmount.lo
+  CC       H5Fquery.lo
+  CC       H5Fsfile.lo
+  CC       H5Fspace.lo
+  CC       H5Fsuper.lo
+  CC       H5Fsuper_cache.lo
+  CC       H5Ftest.lo
+  CC       H5FA.lo
+  CC       H5FAcache.lo
+  CC       H5FAdbg.lo
+  CC       H5FAdblock.lo
+  CC       H5FAdblkpage.lo
+  CC       H5FAhdr.lo
+  CC       H5FAint.lo
+  CC       H5FAstat.lo
+  CC       H5FAtest.lo
+  CC       H5FD.lo
+  CC       H5FDcore.lo
+  CC       H5FDfamily.lo
+  CC       H5FDhdfs.lo
+  CC       H5FDint.lo
+  CC       H5FDlog.lo
+  CC       H5FDmulti.lo
+  CC       H5FDsec2.lo
+  CC       H5FDspace.lo
+  CC       H5FDsplitter.lo
+  CC       H5FDstdio.lo
+  CC       H5FDtest.lo
+  CC       H5FL.lo
+  CC       H5FO.lo
+  CC       H5FS.lo
+  CC       H5FScache.lo
+  CC       H5FSdbg.lo
+  CC       H5FSint.lo
+  CC       H5FSsection.lo
+  CC       H5FSstat.lo
+  CC       H5FStest.lo
+  CC       H5G.lo
+  CC       H5Gbtree2.lo
+  CC       H5Gcache.lo
+  CC       H5Gcompact.lo
+  CC       H5Gdense.lo
+  CC       H5Gdeprec.lo
+  CC       H5Gent.lo
+  CC       H5Gint.lo
+  CC       H5Glink.lo
+  CC       H5Gloc.lo
+  CC       H5Gname.lo
+  CC       H5Gnode.lo
+  CC       H5Gobj.lo
+  CC       H5Goh.lo
+  CC       H5Groot.lo
+  CC       H5Gstab.lo
+  CC       H5Gtest.lo
+  CC       H5Gtraverse.lo
+  CC       H5HF.lo
+  CC       H5HFbtree2.lo
+  CC       H5HFcache.lo
+  CC       H5HFdbg.lo
+  CC       H5HFdblock.lo
+  CC       H5HFdtable.lo
+  CC       H5HFhdr.lo
+  CC       H5HFhuge.lo
+  CC       H5HFiblock.lo
+  CC       H5HFiter.lo
+  CC       H5HFman.lo
+  CC       H5HFsection.lo
+  CC       H5HFspace.lo
+  CC       H5HFstat.lo
+  CC       H5HFtest.lo
+  CC       H5HFtiny.lo
+  CC       H5HG.lo
+  CC       H5HGcache.lo
+  CC       H5HGdbg.lo
+  CC       H5HGquery.lo
+  CC       H5HL.lo
+  CC       H5HLcache.lo
+  CC       H5HLdbg.lo
+  CC       H5HLint.lo
+  CC       H5HLprfx.lo
+  CC       H5HLdblk.lo
+  CC       H5HP.lo
+  CC       H5I.lo
+  CC       H5Itest.lo
+  CC       H5L.lo
+  CC       H5Lexternal.lo
+  CC       H5make_libsettings.o
+  CCLD     H5make_libsettings
+LD_LIBRARY_PATH="$LD_LIBRARY_PATH`echo  |                  \
+	sed -e 's/-L/:/g' -e 's/ //g'`"                               \
+ ./H5make_libsettings > H5lib_settings.c  ||                               \
+    (test $HDF5_Make_Ignore && echo "*** Error ignored") ||          \
+    (rm -f H5lib_settings.c ; exit 1)
+  CC       H5lib_settings.lo
+  CC       H5MF.lo
+  CC       H5MFaggr.lo
+  CC       H5MFdbg.lo
+  CC       H5MFsection.lo
+  CC       H5MM.lo
+  CC       H5MP.lo
+  CC       H5MPtest.lo
+  CC       H5O.lo
+  CC       H5Odeprec.lo
+  CC       H5Oainfo.lo
+  CC       H5Oalloc.lo
+  CC       H5Oattr.lo
+  CC       H5Oattribute.lo
+  CC       H5Obogus.lo
+  CC       H5Obtreek.lo
+  CC       H5Ocache.lo
+  CC       H5Ocache_image.lo
+  CC       H5Ochunk.lo
+  CC       H5Ocont.lo
+  CC       H5Ocopy.lo
+  CC       H5Odbg.lo
+  CC       H5Odrvinfo.lo
+  CC       H5Odtype.lo
+  CC       H5Oefl.lo
+  CC       H5Ofill.lo
+  CC       H5Oflush.lo
+  CC       H5Ofsinfo.lo
+  CC       H5Oginfo.lo
+  CC       H5Oint.lo
+  CC       H5Olayout.lo
+  CC       H5Olinfo.lo
+  CC       H5Olink.lo
+  CC       H5Omessage.lo
+  CC       H5Omtime.lo
+  CC       H5Oname.lo
+  CC       H5Onull.lo
+  CC       H5Opline.lo
+  CC       H5Orefcount.lo
+  CC       H5Osdspace.lo
+  CC       H5Oshared.lo
+  CC       H5Oshmesg.lo
+  CC       H5Ostab.lo
+  CC       H5Otest.lo
+  CC       H5Ounknown.lo
+  CC       H5P.lo
+  CC       H5Pacpl.lo
+  CC       H5Pdapl.lo
+  CC       H5Pdcpl.lo
+  CC       H5Pdeprec.lo
+  CC       H5Pdxpl.lo
+  CC       H5Pencdec.lo
+  CC       H5Pfapl.lo
+  CC       H5Pfcpl.lo
+  CC       H5Pfmpl.lo
+  CC       H5Pgcpl.lo
+  CC       H5Pint.lo
+  CC       H5Plapl.lo
+  CC       H5Plcpl.lo
+  CC       H5Pocpl.lo
+  CC       H5Pocpypl.lo
+  CC       H5Pstrcpl.lo
+  CC       H5Ptest.lo
+  CC       H5PB.lo
+  CC       H5PL.lo
+  CC       H5PLint.lo
+  CC       H5PLpath.lo
+  CC       H5PLplugin_cache.lo
+  CC       H5R.lo
+  CC       H5Rint.lo
+  CC       H5Rdeprec.lo
+  CC       H5UC.lo
+  CC       H5RS.lo
+  CC       H5S.lo
+  CC       H5Sall.lo
+  CC       H5Sdbg.lo
+  CC       H5Shyper.lo
+  CC       H5Snone.lo
+  CC       H5Spoint.lo
+  CC       H5Sselect.lo
+  CC       H5Stest.lo
+  CC       H5SL.lo
+  CC       H5SM.lo
+  CC       H5SMbtree2.lo
+  CC       H5SMcache.lo
+  CC       H5SMmessage.lo
+  CC       H5SMtest.lo
+  CC       H5ST.lo
+  CC       H5T.lo
+  CC       H5Tarray.lo
+  CC       H5Tbit.lo
+  CC       H5Tcommit.lo
+  CC       H5Tcompound.lo
+  CC       H5Tconv.lo
+  CC       H5Tcset.lo
+  CC       H5Tdbg.lo
+  CC       H5Tdeprec.lo
+  CC       H5Tenum.lo
+  CC       H5Tfields.lo
+  CC       H5Tfixed.lo
+  CC       H5Tfloat.lo
+  CC       H5detect.o
+  CCLD     H5detect
+LD_LIBRARY_PATH="$LD_LIBRARY_PATH`echo  |                  \
+	sed -e 's/-L/:/g' -e 's/ //g'`"                               \
+ ./H5detect > H5Tinit.c  ||                               \
+    (test $HDF5_Make_Ignore && echo "*** Error ignored") ||          \
+    (rm -f H5Tinit.c ; exit 1)
+  CC       H5Tinit.lo
+  CC       H5Tnative.lo
+  CC       H5Toffset.lo
+  CC       H5Toh.lo
+  CC       H5Topaque.lo
+  CC       H5Torder.lo
+  CC       H5Tpad.lo
+  CC       H5Tprecis.lo
+  CC       H5Tstrpad.lo
+  CC       H5Tvisit.lo
+  CC       H5Tvlen.lo
+  CC       H5TS.lo
+  CC       H5VM.lo
+  CC       H5WB.lo
+  CC       H5Z.lo
+  CC       H5Zdeflate.lo
+  CC       H5Zfletcher32.lo
+  CC       H5Znbit.lo
+  CC       H5Zshuffle.lo
+  CC       H5Zscaleoffset.lo
+  CC       H5Zszip.lo
+  CC       H5Ztrans.lo
+  CC       H5FDros3.lo
+  CC       H5FDs3comms.lo
+  CCLD     libhdf5.la
+make[3]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/src'
+make[2]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/src'
+make[2]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/c++'
+make[3]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/c++'
+make[3]: Nothing to be done for 'build-lib'.
+make[3]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/c++'
++ cd src
++ make lib
+make[3]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/c++/src'
+make[4]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/c++/src'
+  CXX      H5Exception.lo
+  CXX      H5IdComponent.lo
+  CXX      H5DataSpace.lo
+  CXX      H5PropList.lo
+  CXX      H5Library.lo
+  CXX      H5FaccProp.lo
+  CXX      H5FcreatProp.lo
+  CXX      H5LcreatProp.lo
+  CXX      H5LaccProp.lo
+  CXX      H5DaccProp.lo
+  CXX      H5DxferProp.lo
+  CXX      H5DcreatProp.lo
+  CXX      H5Location.lo
+  CXX      H5AbstractDs.lo
+  CXX      H5Attribute.lo
+  CXX      H5Object.lo
+  CXX      H5OcreatProp.lo
+  CXX      H5DataType.lo
+  CXX      H5AtomType.lo
+  CXX      H5PredType.lo
+  CXX      H5EnumType.lo
+  CXX      H5IntType.lo
+  CXX      H5FloatType.lo
+  CXX      H5StrType.lo
+  CXX      H5ArrayType.lo
+  CXX      H5VarLenType.lo
+  CXX      H5CompType.lo
+  CXX      H5DataSet.lo
+  CXX      H5CommonFG.lo
+  CXX      H5Group.lo
+  CXX      H5File.lo
+  CXXLD    libhdf5_cpp.la
+make[4]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/c++/src'
+make[3]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/c++/src'
+make[2]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/c++'
+make[2]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/hl'
+make[3]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/hl'
+make[3]: Nothing to be done for 'build-lib'.
+make[3]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/hl'
++ cd src
++ make lib
+make[3]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/hl/src'
+make[4]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/hl/src'
+  CC       H5DO.lo
+  CC       H5DS.lo
+  CC       H5IM.lo
+  CC       H5LT.lo
+  CC       H5LTanalyze.lo
+  CC       H5LTparse.lo
+  CC       H5PT.lo
+  CC       H5TB.lo
+  CC       H5LD.lo
+  CCLD     libhdf5_hl.la
+make[4]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/hl/src'
+make[3]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/hl/src'
++ cd c++
++ make lib
+make[3]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/hl/c++'
+make[4]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/hl/c++'
+make[4]: Nothing to be done for 'build-lib'.
+make[4]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/hl/c++'
++ cd src
++ make lib
+make[4]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/hl/c++/src'
+make[5]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/hl/c++/src'
+  CXX      H5PacketTable.lo
+  CXXLD    libhdf5_hl_cpp.la
+make[5]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/hl/c++/src'
+make[4]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/hl/c++/src'
+make[3]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/hl/c++'
+make[2]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5/hl'
+make[1]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rhdf5lib/src/hdf5'
+mkdir -p "/home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-Rhdf5lib/00new/Rhdf5lib/include"
+cp ""hdf5/src"/"*.h "/home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-Rhdf5lib/00new/Rhdf5lib/include"
+cp ""hdf5/c++/src"/"*.h "/home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-Rhdf5lib/00new/Rhdf5lib/include"
+cp ""hdf5/hl/src"/"*.h "/home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-Rhdf5lib/00new/Rhdf5lib/include"
+cp ""hdf5/hl/c++/src"/"*.h "/home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-Rhdf5lib/00new/Rhdf5lib/include"
+cp ""hdf5/src"/"libhdf5.settings "/home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-Rhdf5lib/00new/Rhdf5lib/include"
+mkdir -p "/home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-Rhdf5lib/00new/Rhdf5lib/lib/"
+cp ""hdf5/src/.libs/libhdf5.a"" "/home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-Rhdf5lib/00new/Rhdf5lib/lib/"
+cp ""hdf5/c++/src/.libs/libhdf5_cpp.a"" "/home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-Rhdf5lib/00new/Rhdf5lib/lib/"
+cp ""hdf5/hl/src/.libs/libhdf5_hl.a"" "/home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-Rhdf5lib/00new/Rhdf5lib/lib/"
+cp ""hdf5/hl/c++/src/.libs/libhdf5_hl_cpp.a"" "/home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-Rhdf5lib/00new/Rhdf5lib/lib/"
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I/home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-Rhdf5lib/00new/Rhdf5lib/include   -I/usr/local/include    -fPIC  -g -O2  -Wall -c Rhdf5lib.c -o Rhdf5lib.o
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o Rhdf5lib.so Rhdf5lib.o /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-Rhdf5lib/00new/Rhdf5lib/lib/libhdf5.a -lsz -laec -lz -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-Rhdf5lib/00new/Rhdf5lib/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (Rhdf5lib)
