@@ -1,0 +1,128 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:phantasus.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings phantasus_1.19.4.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/phantasus.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘phantasus/DESCRIPTION’ ... OK
+* this is package ‘phantasus’ version ‘1.19.4’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘phantasus’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is 28.9Mb
+  sub-directories of 1Mb or more:
+    testdata   5.0Mb
+    www       23.4Mb
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Unexported objects imported by ':::' calls:
+  'GEOquery:::.parseGPLTxt' 'GEOquery:::getDirListing'
+  'opencpu:::rookhandler' 'opencpu:::tmp_root' 'opencpu:::win_or_mac'
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+generatePreloadedSession: no visible binding for global variable 'es'
+generatePreloadedSession: no visible binding for global variable
+  'heatmapJson'
+getCountsMetaPart: no visible binding for global variable 'file_name'
+loadCounts: no visible global function definition for '.'
+loadCounts: no visible binding for global variable 'directory'
+loadCounts: no visible binding for global variable 'DT_counts_meta'
+loadCounts: no visible binding for global variable 'accession'
+loadCounts: no visible binding for global variable 'collection_type'
+loadCounts: no visible binding for global variable 'file_name'
+loadSession: no visible binding for global variable 'es'
+safeDownload: no visible binding for global variable 'tempDestFile'
+validateCountsCollection: no visible binding for global variable
+  'file_name'
+Undefined global functions or variables:
+  . DT_counts_meta accession collection_type directory es file_name
+  heatmapJson tempDestFile
+* checking Rd files ... NOTE
+prepare_Rd: convertByAnnotationDB.Rd:36-41: Dropping empty section \examples
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+        user system elapsed
+getGSE 5.822  0.997  56.185
+getES  2.083  0.351   7.010
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  Error in `curl::curl_fetch_memory(url, handle = handle)`: Error in the HTTP2 framing layer
+  Backtrace:
+      ▆
+   1. └─phantasus::getGSE(...) at testloadGEO.R:87:4
+   2.   └─phantasus:::checkGSEType(name, destdir)
+   3.     └─phantasus:::getBriefData(name, destDir)
+   4.       └─httr::GET(url)
+   5.         └─httr:::request_perform(req, hu$handle$handle)
+   6.           ├─httr:::request_fetch(req$output, req$url, handle)
+   7.           └─httr:::request_fetch.write_memory(req$output, req$url, handle)
+   8.             └─curl::curl_fetch_memory(url, handle = handle)
+  
+  [ FAIL 1 | WARN 0 | SKIP 0 | PASS 114 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘phantasus-tutorial.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/phantasus.Rcheck/00check.log’
+for details.
+

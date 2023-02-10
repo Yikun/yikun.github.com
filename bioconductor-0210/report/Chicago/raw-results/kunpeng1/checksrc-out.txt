@@ -1,0 +1,136 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:Chicago.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings Chicago_1.27.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/Chicago.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘Chicago/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘Chicago’ version ‘1.27.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘Chicago’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘Chicago-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: normaliseOtherEnds
+> ### Title: Normalise Other Ends
+> ### Aliases: normaliseOtherEnds
+> 
+> ### ** Examples
+> 
+> ##FIXME: example can be run by loading data package if it is installed, once it exists
+> 
+> if("PCHiCdata" %in% rownames(installed.packages()))
++ {
++   library(PCHiCdata)
++   data(smESC)
++   
++   ##modifiy smESC to use correct design directory
++   designDir <- file.path(system.file("extdata", package="PCHiCdata"), "mm9TestDesign")
++   smESC <- modifySettings(cd=smESC, designDir=designDir)
++   
++   ##normalise here...
++   normaliseOtherEnds(smESC)
++   
++ } else {
++   warning("Please install the PCHiCdata package to run this example.")
++ }
+Warning: settings are not checked for consistency with the original ones.
+Locating <baitmapfile>.baitmap in /home/biocbuild/bbs-3.17-bioc/R/library/PCHiCdata/extdata/mm9TestDesign...
+Found mm9_chr18and19.baitmap
+Locating <rmapfile>.rmap in /home/biocbuild/bbs-3.17-bioc/R/library/PCHiCdata/extdata/mm9TestDesign...
+Found mm9_chr18and19.rmap
+Locating <nperbinfile>.npb in /home/biocbuild/bbs-3.17-bioc/R/library/PCHiCdata/extdata/mm9TestDesign...
+Found mm9_chr18and19.npb
+Locating <nbaitsperbinfile>.nbpb in /home/biocbuild/bbs-3.17-bioc/R/library/PCHiCdata/extdata/mm9TestDesign...
+Found mm9_chr18and19.nbpb
+Locating <proxOEfile>.poe in /home/biocbuild/bbs-3.17-bioc/R/library/PCHiCdata/extdata/mm9TestDesign...
+Found mm9_chr18and19.poe
+Checking the design files...
+Reading the settings from NPB file header...
+Checking the integrity of the NPB file...
+Reading NPerBin file...
+Checking the integrity of the NBPB file...
+Reading NBaitsPerBin file...
+Preprocessing input...
+Computing trans-counts...
+Filtering out 5 other ends with top 0.01% number of trans-interactions
+Binning...
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘Chicago.Rmd’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘Chicago.Rmd’ using rmarkdown
+Read 4 items
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/Chicago.Rcheck/00check.log’
+for details.
+

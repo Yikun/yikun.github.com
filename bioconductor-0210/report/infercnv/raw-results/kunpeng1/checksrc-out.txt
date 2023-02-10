@@ -1,0 +1,289 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:infercnv.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings infercnv_1.15.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/infercnv.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘infercnv/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘infercnv’ version ‘1.15.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘infercnv’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Unexported object imported by a ':::' call: ‘HiddenMarkov:::makedensity’
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'run'
+  ‘per_chr_hmm_subclusters_references’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘infercnv-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: inferCNVBayesNet
+> ### Title: inferCNVBayesNet: Run Bayesian Network Mixture Model To Obtain
+> ###   Posterior Probabilities For HMM Predicted States
+> ### Aliases: inferCNVBayesNet
+> 
+> ### ** Examples
+> 
+> data(infercnv_data_example)
+> data(infercnv_annots_example)
+> data(infercnv_genes_example)
+> data(HMM_states)
+> 
+> infercnv_object_example <- infercnv::CreateInfercnvObject(raw_counts_matrix=infercnv_data_example, 
++                                                           gene_order_file=infercnv_genes_example,
++                                                           annotations_file=infercnv_annots_example,
++                                                           ref_group_names=c("normal"))
+INFO [2023-02-09 16:08:48] ::order_reduce:Start.
+INFO [2023-02-09 16:08:48] .order_reduce(): expr and order match.
+INFO [2023-02-09 16:08:48] ::process_data:order_reduce:Reduction from positional data, new dimensions (r,c) = 8252,20 Total=2817798 Min=0 Max=6927.
+INFO [2023-02-09 16:08:48] num genes removed taking into account provided gene ordering list: 2308 = 27.9689772176442% removed.
+INFO [2023-02-09 16:08:48] -filtering out cells < 100 or > Inf, removing 0 % of cells
+WARN [2023-02-09 16:08:48] Please use "options(scipen = 100)" before running infercnv if you are using the analysis_mode="subclusters" option or you may encounter an error while the hclust is being generated.
+INFO [2023-02-09 16:08:48] validating infercnv_obj
+>           
+> out_dir = tempfile()
+> infercnv_object_example <- infercnv::run(infercnv_object_example,
++                                          cutoff=1,
++                                          out_dir=out_dir, 
++                                          cluster_by_groups=TRUE,
++                                          analysis_mode="samples",
++                                          denoise=TRUE,
++                                          HMM=TRUE,
++                                          num_threads=2,
++                                          no_plot=TRUE)
+INFO [2023-02-09 16:08:48] ::process_data:Start
+INFO [2023-02-09 16:08:48] Creating output path /tmp/Rtmp8eSgjD/file3acab73ed4197f
+INFO [2023-02-09 16:08:48] Checking for saved results.
+INFO [2023-02-09 16:08:48] 
+
+	STEP 1: incoming data
+
+INFO [2023-02-09 16:08:48] 
+
+	STEP 02: Removing lowly expressed genes
+
+INFO [2023-02-09 16:08:48] ::above_min_mean_expr_cutoff:Start
+INFO [2023-02-09 16:08:48] Removing 1161 genes from matrix as below mean expr threshold: 1
+INFO [2023-02-09 16:08:48] validating infercnv_obj
+INFO [2023-02-09 16:08:48] There are 4783 genes and 20 cells remaining in the expr matrix.
+INFO [2023-02-09 16:08:48] Removed 170 genes having fewer than 3 min cells per gene = 3.55425 % genes removed here
+INFO [2023-02-09 16:08:48] validating infercnv_obj
+INFO [2023-02-09 16:08:48] 
+
+	STEP 03: normalization by sequencing depth
+
+INFO [2023-02-09 16:08:48] normalizing counts matrix by depth
+INFO [2023-02-09 16:08:48] Computed total sum normalization factor as median libsize: 102587.500000
+INFO [2023-02-09 16:08:48] Adding h-spike
+INFO [2023-02-09 16:08:48] -hspike modeling of normal
+INFO [2023-02-09 16:10:07] validating infercnv_obj
+INFO [2023-02-09 16:10:07] normalizing counts matrix by depth
+INFO [2023-02-09 16:10:07] Using specified normalization factor: 102587.500000
+INFO [2023-02-09 16:10:08] 
+
+	STEP 04: log transformation of data
+
+INFO [2023-02-09 16:10:08] transforming log2xplus1()
+INFO [2023-02-09 16:10:08] -mirroring for hspike
+INFO [2023-02-09 16:10:08] transforming log2xplus1()
+INFO [2023-02-09 16:10:09] 
+
+	STEP 08: removing average of reference data (before smoothing)
+
+INFO [2023-02-09 16:10:09] ::subtract_ref_expr_from_obs:Start inv_log=FALSE, use_bounds=TRUE
+INFO [2023-02-09 16:10:09] subtracting mean(normal) per gene per cell across all data
+INFO [2023-02-09 16:10:12] -subtracting expr per gene, use_bounds=TRUE
+INFO [2023-02-09 16:10:12] -mirroring for hspike
+INFO [2023-02-09 16:10:12] ::subtract_ref_expr_from_obs:Start inv_log=FALSE, use_bounds=TRUE
+INFO [2023-02-09 16:10:12] subtracting mean(normal) per gene per cell across all data
+INFO [2023-02-09 16:10:15] -subtracting expr per gene, use_bounds=TRUE
+INFO [2023-02-09 16:10:18] 
+
+	STEP 09: apply max centered expression threshold: 3
+
+INFO [2023-02-09 16:10:18] ::process_data:setting max centered expr, threshold set to: +/-:  3
+INFO [2023-02-09 16:10:18] -mirroring for hspike
+INFO [2023-02-09 16:10:18] ::process_data:setting max centered expr, threshold set to: +/-:  3
+INFO [2023-02-09 16:10:20] 
+
+	STEP 10: Smoothing data per cell by chromosome
+
+INFO [2023-02-09 16:10:20] smooth_by_chromosome: chr: chr1
+INFO [2023-02-09 16:10:20] smooth_by_chromosome: chr: chr2
+INFO [2023-02-09 16:10:20] smooth_by_chromosome: chr: chr3
+INFO [2023-02-09 16:10:20] smooth_by_chromosome: chr: chr4
+INFO [2023-02-09 16:10:20] smooth_by_chromosome: chr: chr5
+INFO [2023-02-09 16:10:20] smooth_by_chromosome: chr: chr6
+INFO [2023-02-09 16:10:20] smooth_by_chromosome: chr: chr7
+INFO [2023-02-09 16:10:20] smooth_by_chromosome: chr: chr8
+INFO [2023-02-09 16:10:20] smooth_by_chromosome: chr: chr9
+INFO [2023-02-09 16:10:20] smooth_by_chromosome: chr: chr10
+INFO [2023-02-09 16:10:20] smooth_by_chromosome: chr: chr11
+INFO [2023-02-09 16:10:20] smooth_by_chromosome: chr: chr12
+INFO [2023-02-09 16:10:21] smooth_by_chromosome: chr: chr13
+INFO [2023-02-09 16:10:21] smooth_by_chromosome: chr: chr14
+INFO [2023-02-09 16:10:21] smooth_by_chromosome: chr: chr15
+INFO [2023-02-09 16:10:21] smooth_by_chromosome: chr: chr16
+INFO [2023-02-09 16:10:21] smooth_by_chromosome: chr: chr17
+INFO [2023-02-09 16:10:21] smooth_by_chromosome: chr: chr18
+INFO [2023-02-09 16:10:21] smooth_by_chromosome: chr: chr19
+INFO [2023-02-09 16:10:21] smooth_by_chromosome: chr: chr20
+INFO [2023-02-09 16:10:21] smooth_by_chromosome: chr: chr21
+INFO [2023-02-09 16:10:21] smooth_by_chromosome: chr: chr22
+INFO [2023-02-09 16:10:21] -mirroring for hspike
+INFO [2023-02-09 16:10:21] smooth_by_chromosome: chr: chrA
+INFO [2023-02-09 16:10:22] smooth_by_chromosome: chr: chr_0
+INFO [2023-02-09 16:10:22] smooth_by_chromosome: chr: chr_B
+INFO [2023-02-09 16:10:23] smooth_by_chromosome: chr: chr_0pt5
+INFO [2023-02-09 16:10:23] smooth_by_chromosome: chr: chr_C
+INFO [2023-02-09 16:10:24] smooth_by_chromosome: chr: chr_1pt5
+INFO [2023-02-09 16:10:25] smooth_by_chromosome: chr: chr_D
+INFO [2023-02-09 16:10:25] smooth_by_chromosome: chr: chr_2pt0
+INFO [2023-02-09 16:10:26] smooth_by_chromosome: chr: chr_E
+INFO [2023-02-09 16:10:26] smooth_by_chromosome: chr: chr_3pt0
+INFO [2023-02-09 16:10:26] smooth_by_chromosome: chr: chr_F
+INFO [2023-02-09 16:10:29] 
+
+	STEP 11: re-centering data across chromosome after smoothing
+
+INFO [2023-02-09 16:10:29] ::center_smooth across chromosomes per cell
+INFO [2023-02-09 16:10:29] -mirroring for hspike
+INFO [2023-02-09 16:10:29] ::center_smooth across chromosomes per cell
+INFO [2023-02-09 16:10:30] 
+
+	STEP 12: removing average of reference data (after smoothing)
+
+INFO [2023-02-09 16:10:31] ::subtract_ref_expr_from_obs:Start inv_log=FALSE, use_bounds=TRUE
+INFO [2023-02-09 16:10:31] subtracting mean(normal) per gene per cell across all data
+INFO [2023-02-09 16:10:33] -subtracting expr per gene, use_bounds=TRUE
+INFO [2023-02-09 16:10:33] -mirroring for hspike
+INFO [2023-02-09 16:10:33] ::subtract_ref_expr_from_obs:Start inv_log=FALSE, use_bounds=TRUE
+INFO [2023-02-09 16:10:33] subtracting mean(normal) per gene per cell across all data
+INFO [2023-02-09 16:10:36] -subtracting expr per gene, use_bounds=TRUE
+INFO [2023-02-09 16:10:38] 
+
+	STEP 14: invert log2(FC) to FC
+
+INFO [2023-02-09 16:10:38] invert_log2(), computing 2^x
+INFO [2023-02-09 16:10:38] -mirroring for hspike
+INFO [2023-02-09 16:10:38] invert_log2(), computing 2^x
+INFO [2023-02-09 16:10:40] 
+
+	STEP 15: Clustering samples (not defining tumor subclusters)
+
+INFO [2023-02-09 16:10:40] define_signif_tumor_subclusters(p_val=0.1
+INFO [2023-02-09 16:10:40] define_signif_tumor_subclusters(), tumor: tumor
+INFO [2023-02-09 16:10:40] cut tree into: 1 groups
+INFO [2023-02-09 16:10:40] -processing tumor,tumor_s1
+INFO [2023-02-09 16:10:40] define_signif_tumor_subclusters(), tumor: normal
+INFO [2023-02-09 16:10:40] cut tree into: 1 groups
+INFO [2023-02-09 16:10:40] -processing normal,normal_s1
+INFO [2023-02-09 16:10:40] -mirroring for hspike
+INFO [2023-02-09 16:10:40] define_signif_tumor_subclusters(p_val=0.1
+INFO [2023-02-09 16:10:40] define_signif_tumor_subclusters(), tumor: spike_tumor_cell_normal
+INFO [2023-02-09 16:10:41] cut tree into: 1 groups
+INFO [2023-02-09 16:10:41] -processing spike_tumor_cell_normal,spike_tumor_cell_normal_s1
+INFO [2023-02-09 16:10:41] define_signif_tumor_subclusters(), tumor: simnorm_cell_normal
+INFO [2023-02-09 16:10:41] cut tree into: 1 groups
+INFO [2023-02-09 16:10:41] -processing simnorm_cell_normal,simnorm_cell_normal_s1
+INFO [2023-02-09 16:10:43] 
+
+	STEP 17: HMM-based CNV prediction
+
+INFO [2023-02-09 16:10:43] predict_CNV_via_HMM_on_whole_tumor_samples
+INFO [2023-02-09 16:10:46] -done predicting CNV based on initial tumor subclusters
+INFO [2023-02-09 16:10:46] get_predicted_CNV_regions(subcluster)
+INFO [2023-02-09 16:10:46] -processing cell_group_name: tumor.tumor_s1, size: 10
+INFO [2023-02-09 16:10:53] -processing cell_group_name: normal.normal_s1, size: 10
+INFO [2023-02-09 16:11:02] -writing cell clusters file: /tmp/Rtmp8eSgjD/file3acab73ed4197f/17_HMM_predHMMi6.hmm_mode-samples.cell_groupings
+INFO [2023-02-09 16:11:02] -writing cnv regions file: /tmp/Rtmp8eSgjD/file3acab73ed4197f/17_HMM_predHMMi6.hmm_mode-samples.pred_cnv_regions.dat
+INFO [2023-02-09 16:11:02] -writing per-gene cnv report: /tmp/Rtmp8eSgjD/file3acab73ed4197f/17_HMM_predHMMi6.hmm_mode-samples.pred_cnv_genes.dat
+INFO [2023-02-09 16:11:02] -writing gene ordering info: /tmp/Rtmp8eSgjD/file3acab73ed4197f/17_HMM_predHMMi6.hmm_mode-samples.genes_used.dat
+INFO [2023-02-09 16:11:11] 
+
+	STEP 18: Run Bayesian Network Model on HMM predicted CNVs
+
+INFO [2023-02-09 16:11:12] Creating the following Directory:  /tmp/Rtmp8eSgjD/file3acab73ed4197f/BayesNetOutput.HMMi6.hmm_mode-samples
+INFO [2023-02-09 16:11:12] Initializing new MCM InferCNV Object.
+INFO [2023-02-09 16:11:12] validating infercnv_obj
+INFO [2023-02-09 16:11:12] Total CNV's:  14
+INFO [2023-02-09 16:11:12] Loading BUGS Model.
+INFO [2023-02-09 16:11:12] Running Sampling Using Parallel with  2 Cores
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘inferCNV.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 1 WARNING, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/infercnv.Rcheck/00check.log’
+for details.
+

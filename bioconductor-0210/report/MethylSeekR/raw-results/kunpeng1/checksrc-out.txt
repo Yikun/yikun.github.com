@@ -1,0 +1,150 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:MethylSeekR.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings MethylSeekR_1.39.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/MethylSeekR.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘MethylSeekR/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘MethylSeekR’ version ‘1.39.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘MethylSeekR’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Description field: should contain one or more complete sentences.
+Package listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘parallel’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Namespace in Imports field not imported from: ‘geneplotter’
+  All declared Imports should be used.
+Package in Depends field not imported from: ‘rtracklayer’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+PMDviterbiSegmentation : <anonymous>: no visible global function
+  definition for ‘values’
+PMDviterbiSegmentation : <anonymous>: no visible global function
+  definition for ‘predict’
+PMDviterbiSegmentation : <anonymous>: no visible global function
+  definition for ‘Rle’
+PMDviterbiSegmentation : <anonymous>: no visible global function
+  definition for ‘runValue’
+calculateAlphaDistr : <anonymous>: no visible global function
+  definition for ‘Rle’
+calculateFDRs: no visible global function definition for ‘values’
+calculateFDRs: no visible global function definition for ‘queryHits’
+calculateFDRs: no visible global function definition for ‘values<-’
+calculateFDRs : <anonymous>: no visible global function definition for
+  ‘Rle’
+calculateFDRs : <anonymous>: no visible global function definition for
+  ‘values’
+calculateFDRs : <anonymous>: no visible global function definition for
+  ‘runValue’
+createGRangesObjectPMDSegmentation : <anonymous>: no visible global
+  function definition for ‘Rle’
+createGRangesObjectPMDSegmentation : <anonymous>: no visible global
+  function definition for ‘nrun’
+createGRangesObjectPMDSegmentation : <anonymous>: no visible global
+  function definition for ‘runValue’
+plotAlphaDistributionOneChr: no visible global function definition for
+  ‘values’
+plotFinalSegmentation: no visible global function definition for
+  ‘values’
+plotFinalSegmentation: no visible global function definition for ‘Rle’
+plotPMDSegmentation: no visible global function definition for ‘values’
+readMethylome: no visible global function definition for ‘values’
+removeSNPs: no visible global function definition for ‘queryHits’
+savePMDSegments: no visible global function definition for ‘values’
+saveUMRLMRSegments: no visible global function definition for ‘values’
+segmentUMRsLMRs: no visible global function definition for ‘values’
+segmentUMRsLMRs : <anonymous>: no visible global function definition
+  for ‘Rle’
+segmentUMRsLMRs : <anonymous>: no visible global function definition
+  for ‘values’
+segmentUMRsLMRs : <anonymous>: no visible global function definition
+  for ‘runValue’
+segmentUMRsLMRs: no visible global function definition for ‘queryHits’
+segmentUMRsLMRs: no visible global function definition for
+  ‘subjectHits’
+segmentUMRsLMRs: no visible global function definition for ‘Rle’
+segmentUMRsLMRs: no visible global function definition for ‘values<-’
+segmentUMRsLMRs: no visible global function definition for ‘DataFrame’
+segmentUMRsLMRs: no visible global function definition for
+  ‘colorRampPalette’
+trainPMDHMM: no visible global function definition for ‘values’
+Undefined global functions or variables:
+  DataFrame Rle colorRampPalette nrun predict queryHits runValue
+  subjectHits values values<-
+Consider adding
+  importFrom("grDevices", "colorRampPalette")
+  importFrom("stats", "predict")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                              user system elapsed
+MethylSeekR-package         66.214  1.705  97.753
+plotPMDSegmentation         41.809  0.236  42.049
+savePMDSegments             39.961  0.156  40.119
+segmentPMDs                 39.833  0.151  39.988
+calculateFDRs               10.056  0.192  72.311
+plotAlphaDistributionOneChr  8.171  0.128   8.302
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘MethylSeekR.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/MethylSeekR.Rcheck/00check.log’
+for details.
+
+

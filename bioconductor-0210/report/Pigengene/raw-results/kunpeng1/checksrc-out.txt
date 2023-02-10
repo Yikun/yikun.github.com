@@ -1,0 +1,148 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:Pigengene.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings Pigengene_1.25.10.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/Pigengene.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘Pigengene/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘Pigengene’ version ‘1.25.10’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘Pigengene’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+'library' or 'require' calls in package code:
+  ‘AnnotationDbi’ ‘biomaRt’ ‘energy’ ‘org.Hs.eg.db’ ‘org.Mm.eg.db’
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+Found the following possibly unsafe calls:
+File ‘Pigengene/R/bn.calculation.R’:
+  assignInNamespace("supported.clusters", fixArgs, "bnlearn")
+
+compute.pigengene: no visible global function definition for ‘prcomp’
+one.step.pigengene: no visible binding for global variable
+  ‘org.Hs.eg.db’
+Undefined global functions or variables:
+  org.Hs.eg.db prcomp
+Consider adding
+  importFrom("stats", "prcomp")
+to your NAMESPACE file.
+* checking Rd files ... NOTE
+checkRd: (-1) get.enriched.pw.Rd:71: Escaped LaTeX specials: \_
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘Pigengene-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: gene.mapping
+> ### Title: Maps gene IDs
+> ### Aliases: gene.mapping
+> ### Keywords: misc
+> 
+> ### ** Examples
+> 
+>      library(org.Hs.eg.db)
+Loading required package: AnnotationDbi
+Loading required package: stats4
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: IRanges
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+
+>      g1 <- gene.mapping(ids="NM_001159995")
+Loading required package: org.Mm.eg.db
+
+'select()' returned 1:1 mapping between keys and columns
+>      print(g1)
+             input          output1 output2
+NM_001159995 "NM_001159995" "NRG1"  "NRG1" 
+> 
+>      ## Mapping to multiple convention
+>      library(org.Mm.eg.db)
+>      g2 <- gene.mapping(ids=c("NM_170730", "NM_001013580"),
++         inputType="REFSEQ", inputDb=org.Mm.eg.db,
++         outputType=c("SYMBOL","ENTREZID"),
++         outputDb=list(org.Hs.eg.db,org.Mm.eg.db), verbose=1)
+Mapping to:  org.Hs.eg.db-SYMBOL 
+'select()' returned 1:1 mapping between keys and columns
+Loading required package: biomaRt
+Warning: Ensembl will soon enforce the use of https.
+Ensure the 'host' argument includes "https://"
+Error in curl::curl_fetch_memory(url, handle = handle) : 
+  Timeout was reached: [www.ensembl.org:80] Operation timed out after 10000 milliseconds with 474718 bytes received
+Calls: gene.mapping ... request_fetch -> request_fetch.write_memory -> <Anonymous>
+Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘Pigengene_inference.Rnw’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/Pigengene.Rcheck/00check.log’
+for details.
+

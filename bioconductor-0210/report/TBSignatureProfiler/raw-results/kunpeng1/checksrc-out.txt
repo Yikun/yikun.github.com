@@ -1,0 +1,106 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:TBSignatureProfiler.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings TBSignatureProfiler_1.11.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/TBSignatureProfiler.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘TBSignatureProfiler/DESCRIPTION’ ... OK
+* this is package ‘TBSignatureProfiler’ version ‘1.11.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘TBSignatureProfiler’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                       user system elapsed
+bootstrapAUC         13.162  0.768  13.941
+signatureROCplot_CI   8.898  0.232   9.130
+signatureGeneHeatmap  5.282  0.088   5.370
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘packagecoverage.R’
+  Running ‘spelling.R’
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  Backtrace:
+      ▆
+   1. └─testthat::expect_output(...) at test-bootstrap.R:48:2
+   2.   └─testthat:::quasi_capture(...)
+   3.     ├─testthat (local) .capture(...)
+   4.     │ └─testthat::capture_output_lines(code, print, width = width)
+   5.     │   └─testthat:::eval_with_output(code, print = print, width = width)
+   6.     │     ├─withr::with_output_sink(path, withVisible(code))
+   7.     │     │ └─base::force(code)
+   8.     │     └─base::withVisible(code)
+   9.     └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+  
+  [ FAIL 1 | WARN 3 | SKIP 0 | PASS 141 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘tbspVignette.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/TBSignatureProfiler.Rcheck/00check.log’
+for details.
+

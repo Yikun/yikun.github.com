@@ -1,0 +1,299 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:contiBAIT.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings contiBAIT_1.27.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/contiBAIT.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘contiBAIT/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘contiBAIT’ version ‘1.27.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘contiBAIT’ can be installed ... OK
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... NOTE
+  installed size is  5.8Mb
+  sub-directories of 1Mb or more:
+    extdata   3.4Mb
+    libs      1.2Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+ideogramPlot.func: no visible binding for global variable ‘w’
+ideogramPlot.func: no visible binding for global variable ‘w2’
+makeChrTable: no visible global function definition for ‘queryHits’
+makeChrTable: no visible global function definition for ‘subjectHits’
+orderContigsGreedy: no visible global function definition for
+  ‘makeCluster’
+orderContigsGreedy: no visible global function definition for
+  ‘clusterCall’
+orderContigsGreedy: no visible global function definition for
+  ‘stopCluster’
+strandSeqFreqTable: no visible global function definition for
+  ‘queryHits’
+strandSeqFreqTable: no visible global function definition for
+  ‘subjectHits’
+ideogramPlot,StrandReadMatrix-StrandReadMatrix-ChrTable: no visible
+  binding for global variable ‘w’
+ideogramPlot,StrandReadMatrix-StrandReadMatrix-ChrTable: no visible
+  binding for global variable ‘w2’
+Undefined global functions or variables:
+  clusterCall makeCluster queryHits stopCluster subjectHits w w2
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Documented arguments not in \usage in documentation object 'plotLGDistances,LinkageGroupList,StrandStateMatrix-method':
+  ‘...’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘contiBAIT-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: contiBAIT
+> ### Title: contiBAIT - master function to process strand-seq libraries into
+> ###   ordered linkage groups
+> ### Aliases: contiBAIT
+> 
+> ### ** Examples
+> 
+> #Get a list of BAM files containing libraries for cells from the same organism, aligned to the same genome
+> #In this case these are the example BAM files provided with the package (hence the call to system.file);
+> data("exampleDividedChr")
+> library(BiocParallel)
+> 
+> example.dir <- file.path(system.file(package='contiBAIT'), 'extdata')
+> 
+> orderedContigs <- contiBAIT(path=example.dir, 
++ 							cluster=1, 
++ 							clusterParam=MulticoreParam(), 
++ 							filter=exampleDividedChr, 
++ 							pairedEnd=FALSE)
+RUNNING CONTIBAIT ON  35  BAM FILES!
+
+ PARAMETERS FOR BAM ANALYSIS: 
+----------------------------------
+     -> paired end data= FALSE 
+     -> mapping quality= 10 
+     -> bed filter= TRUE 
+     -> minimal reads required= 10 
+
+ PARAMETERS FOR CLUSTERING: 
+----------------------------------
+     -> number of reclusters= 1 
+     -> number of cores to use= 4 
+
+ ADDITIONAL PARAMETERS: 
+----------------------------------
+     -> saving intermediate files= FALSE 
+     -> creating analysis plots= FALSE 
+----------------------------------
+-> Creating read table from bam files [1/7]
+-> Counting number of fragments
+ -> 3089 fragments found
+-> Creating contig table for index StrandSeqTestData_1 [1/35]
+-> Creating contig table for index StrandSeqTestData_10 [2/35]
+-> Creating contig table for index StrandSeqTestData_11 [3/35]
+-> Creating contig table for index StrandSeqTestData_12 [4/35]
+-> Creating contig table for index StrandSeqTestData_13 [5/35]
+-> Creating contig table for index StrandSeqTestData_14 [6/35]
+-> Creating contig table for index StrandSeqTestData_15 [7/35]
+-> Creating contig table for index StrandSeqTestData_16 [8/35]
+-> Creating contig table for index StrandSeqTestData_17 [9/35]
+-> Creating contig table for index StrandSeqTestData_18 [10/35]
+-> Creating contig table for index StrandSeqTestData_19 [11/35]
+Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘contiBAIT.Rnw’... failed to complete the test
+ ERROR
+Errors in running code in vignettes:
+when running code in ‘contiBAIT.Rnw’
+  ...
+-> Creating contig table for index StrandSeqTestData_2 [12/35]
+-> Creating contig table for index StrandSeqTestData_20 [13/35]
+-> Creating contig table for index StrandSeqTestData_21 [14/35]
+-> Creating contig table for index StrandSeqTestData_22 [15/35]
+-> Creating contig table for index StrandSeqTestData_23 [16/35]
+-> Creating contig table for index StrandSeqTestData_24 [17/35]
+-> Creating contig table for index StrandSeqTestData_25 [18/35]
+Killed
+
+... incomplete output.  Crash?
+
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘contiBAIT.Rnw’ using Sweave
+Loading required package: BH
+Loading required package: Rsamtools
+Loading required package: GenomeInfoDb
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomicRanges
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+-> Creating chromosome table from /home/biocbuild/bbs-3.17-bioc/R/library/contiBAIT/extdata/StrandSeqTestData_1.bam
+-> Creating chromosome table from /home/biocbuild/bbs-3.17-bioc/R/library/contiBAIT/extdata/StrandSeqTestData_1.bam
+-> Counting number of fragments
+ -> 3089 fragments found
+-> Creating contig table for index StrandSeqTestData_1 [1/35]
+-> Creating contig table for index StrandSeqTestData_10 [2/35]
+-> Creating contig table for index StrandSeqTestData_11 [3/35]
+-> Creating contig table for index StrandSeqTestData_12 [4/35]
+-> Creating contig table for index StrandSeqTestData_13 [5/35]
+-> Creating contig table for index StrandSeqTestData_14 [6/35]
+-> Creating contig table for index StrandSeqTestData_15 [7/35]
+-> Creating contig table for index StrandSeqTestData_16 [8/35]
+-> Creating contig table for index StrandSeqTestData_17 [9/35]
+-> Creating contig table for index StrandSeqTestData_18 [10/35]
+-> Creating contig table for index StrandSeqTestData_19 [11/35]
+-> Creating contig table for index StrandSeqTestData_2 [12/35]
+-> Creating contig table for index StrandSeqTestData_20 [13/35]
+-> Creating contig table for index StrandSeqTestData_21 [14/35]
+-> Creating contig table for index StrandSeqTestData_22 [15/35]
+-> Creating contig table for index StrandSeqTestData_23 [16/35]
+-> Creating contig table for index StrandSeqTestData_24 [17/35]
+-> Creating contig table for index StrandSeqTestData_25 [18/35]
+-> Creating contig table for index StrandSeqTestData_26 [19/35]
+-> Creating contig table for index StrandSeqTestData_27 [20/35]
+-> Creating contig table for index StrandSeqTestData_28 [21/35]
+-> Creating contig table for index StrandSeqTestData_29 [22/35]
+-> Creating contig table for index StrandSeqTestData_3 [23/35]
+-> Creating contig table for index StrandSeqTestData_30 [24/35]
+-> Creating contig table for index StrandSeqTestData_31 [25/35]
+-> Creating contig table for index StrandSeqTestData_32 [26/35]
+-> Creating contig table for index StrandSeqTestData_33 [27/35]
+-> Creating contig table for index StrandSeqTestData_34 [28/35]
+-> Creating contig table for index StrandSeqTestData_35 [29/35]
+-> Creating contig table for index StrandSeqTestData_4 [30/35]
+-> Creating contig table for index StrandSeqTestData_5 [31/35]
+-> Creating contig table for index StrandSeqTestData_6 [32/35]
+-> Creating contig table for index StrandSeqTestData_7 [33/35]
+-> Creating contig table for index StrandSeqTestData_8 [34/35]
+-> Creating contig table for index StrandSeqTestData_9 [35/35]
+-> Checking for high quality libraries
+-> All libraries of good quality
+-> Computing QA measures for contigs and sorting by best quality first
+Reorienting fragments from LG1 (19) [1/5]
+ -> 0 fragments reoriented from 19 within LG1 (19)
+Reorienting fragments from LG2 (19) [2/5]
+ -> 0 fragments reoriented from 19 within LG2 (19)
+Reorienting fragments from LG3 (19) [3/5]
+ -> 0 fragments reoriented from 19 within LG3 (19)
+Reorienting fragments from LG4 (18) [4/5]
+ -> 0 fragments reoriented from 18 within LG4 (18)
+Reorienting fragments from LG5 (1) [5/5]
+ -> 0 fragments reoriented from 1 within LG5 (1)
+-> Ordering fragments in LG1
+     -> Found better ordering!
+ -> Processing 1
+`geom_smooth()` using formula = 'y ~ x'
+-> Ordering fragments in LG1
+     -> Found better ordering!
+     -> Found better ordering!
+-> Ordering fragments in LG2
+-> Ordering fragments in LG3
+-> Ordering fragments in LG4
+     -> Found better ordering!
+     -> Found better ordering!
+-> Ordering fragments in LG5
+-> Generating plotting data [1/1]
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 1 WARNING, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/contiBAIT.Rcheck/00check.log’
+for details.
+

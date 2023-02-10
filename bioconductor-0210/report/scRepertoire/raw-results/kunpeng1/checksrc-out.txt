@@ -1,0 +1,141 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:scRepertoire.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings scRepertoire_1.9.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘scRepertoire/DESCRIPTION’ ... OK
+* this is package ‘scRepertoire’ version ‘1.9.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘scRepertoire’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is  5.0Mb
+  sub-directories of 1Mb or more:
+    data   4.4Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... NOTE
+Problems with news in ‘NEWS’:
+  Cannot process chunk/lines:
+    CHANGES IN VERSION 1.3.2
+    # This is the new numbering scheme apologies - we are all up-to-date now and now cell ranger >= 5 will # work on bioconductor, so let's all just take that as a win.
+    * added dot.size parameter to scatterClonotype
+    * filteringMulti now subsets clonotypes with contains >=2, to prevent 2 of the same chains
+    * changed how coldata is added to SCE objects using merge instead of union
+    * Can now add BCR and TCR simultaneously by making large list
+    * scatter plotting code is not so ugly and allows for user to select dot.size as a variable on the x or y axis
+    * Removed regressClonotype function - too many dependencies required, adding an additional vignette to go through the process
+    * Added chain option to visualizations and combineExpression to allow users to facilitate single chains - removed chain option from combineTCR/BCR/TRUST4 (the combined object will have both chains no matter what)
+    * Added NA filter to combineTCR/BCR/TRUST4 for cell barcodes with only NA values
+    * Added NA filter to expression2List() for cells with NA clonotypes.
+    * Updated VizGene to order the genes automatically by highest to lowest variance
+    * Updated VizGene to pull the correct genes based on selection
+    * Updated parse method - old version had issue with place V-->J-->D in the TRB/Heavy chains 
+    * Simplified the clonalDiversity() to allow for more options in organizing plot and box plots. 
+    * CombineExpression() adds the groupBy variable to Frequency, allowing for multiple calculations to be saved in the meta data. 
+    * Default color scheme now uses viridis plasma, because it I am on transfusion medicine.
+  Cannot process chunk/lines:
+    CHANGES IN VERSION 1.2.2
+    # Working on renumbering versions for consistency - this is the new current dev branch
+    # The below have not been implemented into the master branch or the bioconductor version
+    * added the combineTRUST4 function to parse contigs from TUST4 pipeline
+    * added the filter of contigs by chain in the combineTCR, combineBCR, and combineTRUST4 functions
+    * no longer require the ID in the combineTCR/BCR/TRUST4 functions
+    * added jaccard index for overlap analysis
+    * replaced vizVgene with vizGene - allowing users to look at any gene in the combinedContig object
+    * Fixed coloring scale on the overlap analysis
+    * Added regressClonotype function using harmony to remove the clonotype effect on feature space
+    * allowed occupiedRepertoire to use proportion.
+    * added scatterClonotype function to Viz.R
+  Cannot process chunk/lines:
+    The first version of scRepertoire submitted to Bioconductor.
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                         user system elapsed
+combineBCR            140.496  0.480 118.287
+clonesizeDistribution  25.158  0.088  25.257
+clusterTCR             24.360  0.080  23.992
+clonalDiversity        16.352  0.196  16.575
+alluvialClonotypes     13.790  0.136  13.925
+combineTCR             11.532  0.636  12.168
+abundanceContig        11.691  0.140  11.833
+vizGenes               11.759  0.032  11.791
+getCirclize            11.320  0.020  11.341
+clonalOverlay          11.111  0.224  11.335
+occupiedscRepertoire   11.255  0.016  11.272
+clonalOverlap          10.924  0.288  11.226
+combineExpression      11.192  0.020  11.214
+addVariable            10.802  0.184  10.987
+quantContig            10.920  0.060  10.980
+compareClonotypes      10.877  0.052  10.931
+lengthContig           10.835  0.016  10.852
+expression2List        10.474  0.024  10.499
+clonalProportion       10.423  0.056  10.480
+scatterClonotype       10.329  0.052  10.386
+clonalHomeostasis      10.359  0.008  10.371
+highlightClonotypes    10.239  0.004  10.243
+subsetContig            9.995  0.028  10.025
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘vignette.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/scRepertoire.Rcheck/00check.log’
+for details.
+
+

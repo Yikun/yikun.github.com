@@ -1,0 +1,163 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:coMET.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings coMET_1.31.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/coMET.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘coMET/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘coMET’ version ‘1.31.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘coMET’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is 19.0Mb
+  sub-directories of 1Mb or more:
+    data      7.6Mb
+    extdata  10.7Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... NOTE
+File
+  LICENSE
+is not mentioned in the DESCRIPTION file.
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+draw.plot.annotation : <anonymous>: no visible global function
+  definition for 'ggplotGrob'
+draw.plot.annotation: no visible global function definition for
+  'viewTracks'
+draw.plot.annotation: no visible global function definition for
+  'trackList'
+eQTL: no visible binding for global variable 'chromosome_stop'
+eQTL: no visible binding for global variable 'chromosome_start'
+eQTL: no visible binding for global variable 'chromosome_name'
+eQTL_GTEx: no visible binding for global variable 'snp_pos'
+eQTL_GTEx: no visible binding for global variable 'snp_chrom'
+eQTL_GTEx: no visible binding for global variable 'gene_start'
+eQTL_GTEx: no visible binding for global variable 'gene_stop'
+eQTL_GTEx: no visible binding for global variable 'gene_chr'
+geneExpression_GTEx: no visible global function definition for 'as'
+metQTL: no visible binding for global variable 'chromosome_stop'
+metQTL: no visible binding for global variable 'chromosome_start'
+metQTL: no visible binding for global variable 'chromosome_name'
+pizza: no visible global function definition for 'par'
+pizza: no visible global function definition for 'plot.new'
+pizza: no visible global function definition for 'plot.window'
+pizza: no visible global function definition for 'polygon'
+pizza: no visible global function definition for 'lines'
+pizza: no visible global function definition for 'text'
+psiQTL_GTEx: no visible binding for global variable 'pos_snp'
+psiQTL_GTEx: no visible binding for global variable 'chr_snp'
+psiQTL_GTEx: no visible binding for global variable 'pos_middle_exon'
+psiQTL_GTEx: no visible binding for global variable 'chr_exon'
+Undefined global functions or variables:
+  as chr_exon chr_snp chromosome_name chromosome_start chromosome_stop
+  gene_chr gene_start gene_stop ggplotGrob lines par plot.new
+  plot.window polygon pos_middle_exon pos_snp snp_chrom snp_pos text
+  trackList viewTracks
+Consider adding
+  importFrom("graphics", "lines", "par", "plot.new", "plot.window",
+             "polygon", "text")
+  importFrom("methods", "as")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... NOTE
+checkRd: (-1) ChIPTF_ENCODE.Rd:36: Escaped LaTeX specials: \#
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘coMET-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: comet.web
+> ### Title: Visualize EWAS results in a genomic region of interest with
+> ###   predefined annotation tracks
+> ### Aliases: comet.web
+> ### Keywords: hplot
+> 
+> ### ** Examples
+> 
+> extdata <- system.file("extdata", package="coMET",mustWork=TRUE)
+> configfile <- file.path(extdata, "config_cyp1b1_zoom_4webserver.txt")
+> myinfofile <- file.path(extdata, "cyp1b1_infofile.txt")
+> myexpressfile <- file.path(extdata, "cyp1b1_infofile_exprGene_region.txt")
+> mycorrelation <- file.path(extdata, "cyp1b1_res37_rawMatrix.txt")
+> 
+> comet.web(config.file=configfile, mydata.file=myinfofile, cormatrix.file=mycorrelation,
++     mydata.large.file=myexpressfile, print.image=FALSE,verbose=FALSE)
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘runTests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘coMET.Rnw’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘coMET.Rnw’ using knitr
+Quitting from lines 337-345 (coMET.Rnw) 
+Error: processing vignette 'coMET.Rnw' failed with diagnostics:
+Could not resolve host: genome.ucsc.edu
+--- failed re-building ‘coMET.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘coMET.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/coMET.Rcheck/00check.log’
+for details.
+

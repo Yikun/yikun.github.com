@@ -1,0 +1,169 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:AlpsNMR.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings AlpsNMR_4.1.4.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/AlpsNMR.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘AlpsNMR/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘AlpsNMR’ version ‘4.1.4’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘AlpsNMR’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘AlpsNMR-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: bp_kfold_VIP_analysis
+> ### Title: K-fold bootstrap and permutation over PLS-VIP
+> ### Aliases: bp_kfold_VIP_analysis
+> 
+> ### ** Examples
+> 
+> # Data analysis for a table of integrated peaks
+> set.seed(42)
+> ## Generate an artificial nmr_dataset_peak_table:
+> ### Generate artificial metadata:
+> num_samples <- 64 # use an even number in this example
+> num_peaks <- 10
+> metadata <- data.frame(
++     NMRExperiment = as.character(1:num_samples),
++     Condition = sample(rep(c("A", "B"), times = num_samples / 2), num_samples)
++ )
+> 
+> ### The matrix with peaks
+> peak_means <- runif(n = num_peaks, min = 300, max = 600)
+> peak_sd <- runif(n = num_peaks, min = 30, max = 60)
+> peak_matrix <- mapply(function(mu, sd) rnorm(num_samples, mu, sd),
++     mu = peak_means, sd = peak_sd
++ )
+> colnames(peak_matrix) <- paste0("Peak", 1:num_peaks)
+> rownames(peak_matrix) <- paste0("Sample", 1:num_samples)
+> 
+> ## Artificial differences depending on the condition:
+> peak_matrix[metadata$Condition == "A", "Peak2"] <-
++     peak_matrix[metadata$Condition == "A", "Peak2"] + 70
+> 
+> peak_matrix[metadata$Condition == "A", "Peak6"] <-
++     peak_matrix[metadata$Condition == "A", "Peak6"] - 60
+> 
+> ### The nmr_dataset_peak_table
+> peak_table <- new_nmr_dataset_peak_table(
++     peak_table = peak_matrix,
++     metadata = list(external = metadata)
++ )
+> 
+> ## We will use bootstrap and permutation method for VIPs selection
+> ## in a a k-fold cross validation
+> bp_results <- bp_kfold_VIP_analysis(peak_table, # Data to be analized
++     y_column = "Condition", # Label
++     k = 2,
++     nbootstrap = 5
++ )
+Warning in perf.mixo_plsda(model, newdata = x_test) :
+  Values in '$choice.ncomp' will reflect component count with the minimum error rate rather than the best based on a one-way t.test
+Warning in perf.mixo_plsda(model, newdata = x_test) :
+  Values in '$choice.ncomp' will reflect component count with the minimum error rate rather than the best based on a one-way t.test
+
+Warning in perf.mixo_plsda(model, newdata = x_test) :
+  Values in '$choice.ncomp' will reflect component count with the minimum error rate rather than the best based on a one-way t.test
+Warning in perf.mixo_plsda(model, newdata = x_test) :
+  Values in '$choice.ncomp' will reflect component count with the minimum error rate rather than the best based on a one-way t.test
+Warning in perf.mixo_plsda(model, newdata = x_test) :
+  Values in '$choice.ncomp' will reflect component count with the minimum error rate rather than the best based on a one-way t.test
+
+Error: BiocParallel errors
+  1 remote errors, element index: 5
+  0 unevaluated and other errors
+  first remote error:
+Error in ncomp_opt[measure, ijk] <- which(t(rowMeans(mat.error.rate[[measure_i]][[ijk]])) == : number of items to replace is not a multiple of replacement length
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  ══ Failed tests ════════════════════════════════════════════════════════════════
+  ── Error ('test-nmr-data-analysis.R:65'): nmr_data_analysis works ──────────────
+  <dplyr:::mutate_error/rlang_error/error/condition>
+  Error in `dplyr::mutate(., auc_diff = .data$auc - dplyr::lag(.data$auc, 
+      default = 0), auc_diff_above_thres = .data$auc_diff > !!auc_threshold, 
+      still_improving = dplyr::cumall(.data$auc_diff_above_thres), 
+      good_ncomp = (.data$still_improving == TRUE & dplyr::lead(.data$still_improving, 
+          default = FALSE) == FALSE))`: ℹ In argument: `good_ncomp = (...)`.
+  ℹ In group 2: `cv_outer_iteration = 1`, `cv_inner_iteration = 2`.
+  Caused by error in `vec_c()`:
+  ! Can't convert `..2` <logical> to <vctrs_unspecified>.
+  
+  [ FAIL 1 | WARN 2 | SKIP 1 | PASS 90 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘Vig01-introduction-to-alpsnmr.Rmd’ using ‘UTF-8’... OK
+  ‘Vig01b-introduction-to-alpsnmr-old-api.Rmd’ using ‘UTF-8’... OK
+  ‘Vig02-handling-metadata-and-annotations.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/AlpsNMR.Rcheck/00check.log’
+for details.
+

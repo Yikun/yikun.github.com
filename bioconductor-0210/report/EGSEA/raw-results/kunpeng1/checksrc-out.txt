@@ -1,0 +1,196 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:EGSEA.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings EGSEA_1.27.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/EGSEA.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘EGSEA/DESCRIPTION’ ... OK
+* this is package ‘EGSEA’ version ‘1.27.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘EGSEA’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+buildGeneSetDBIdx: no visible binding for global variable ‘GOTERM’
+buildMSigDBIdx: no visible binding for global variable ‘msigdb’
+generateSummaryPlots: no visible binding for global variable ‘x.data’
+generateSummaryPlots: no visible binding for global variable ‘y.data’
+generateSummaryPlots: no visible binding for global variable ‘gsSize’
+generateSummaryPlots: no visible binding for global variable ‘id’
+generateSummaryPlots: no visible binding for global variable ‘sig’
+loadKeggData: no visible binding for global variable ‘kegg.pathways’
+Undefined global functions or variables:
+  GOTERM gsSize id kegg.pathways msigdb sig x.data y.data
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented data sets:
+  ‘arraydata’
+All user-level objects in a package should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... WARNING
+'library' or 'require' call not declared from: ‘Glimma’
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘EGSEA-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: egsea
+> ### Title: Core functions to perform ensemble of gene set enrichment
+> ###   analysis (EGSEA)
+> ### Aliases: egsea egsea,egsea-main egsea.cnt egsea.cnt,egsea-main
+> ###   egsea.ora egsea.ora,egsea-main egsea.cnt egsea.ma
+> ###   egsea.cnt,egsea-main
+> 
+> ### ** Examples
+> 
+> # Example of egsea
+> library(EGSEAdata)
+> data(il13.data)
+> v = il13.data$voom
+> contrasts = il13.data$contra
+> gs.annots = buildIdx(entrezIDs=rownames(v$E), species="human", 
++ msigdb.gsets="none", 
++          kegg.updated=FALSE, kegg.exclude = c("Metabolism"))
+[1] "Building KEGG pathways annotation object ... "
+> # set report = TRUE to generate the EGSEA interactive report
+> gsa = egsea(voom.results=v, contrasts=contrasts,  gs.annots=gs.annots, 
++          symbolsMap=v$genes, baseGSEAs=egsea.base()[-c(2,5,6,9,12)], 
++ 			display.top = 5, sort.by="avg.rank", 
++ 			report.dir="./il13-egsea-report", 
++          num.threads = 2, report = FALSE)
+EGSEA analysis has started
+##------ Thu Feb  9 14:47:20 2023 ------##
+Log fold changes are estimated using limma package ... 
+limma DE analysis is carried out ... 
+EGSEA is running on the provided data and kegg collection
+...safe*....zscore*..globaltest*camera*..gage*...gsva*..ora*
+##------ Thu Feb  9 14:47:34 2023 ------##
+EGSEA analysis took 13.906 seconds.
+EGSEA analysis has completed
+> topSets(gsa) 
+Extracting the top gene sets of the collection 
+KEGG Pathways for the contrast X24IL13-X24
+ Sorted by avg.rank
+ [1] "Intestinal immune network for IgA production"             
+ [2] "Asthma"                                                   
+ [3] "Amoebiasis"                                               
+ [4] "Hematopoietic cell lineage"                               
+ [5] "HTLV-I infection"                                         
+ [6] "Viral myocarditis"                                        
+ [7] "Malaria"                                                  
+ [8] "Endocrine and other factor-regulated calcium reabsorption"
+ [9] "Legionellosis"                                            
+[10] "Proteoglycans in cancer"                                  
+> 
+> # Example of egsea.cnt
+> library(EGSEAdata)
+> data(il13.data.cnt)
+> cnt = il13.data.cnt$counts
+> group = il13.data.cnt$group
+> design = il13.data.cnt$design
+> contrasts = il13.data.cnt$contra
+> genes = il13.data.cnt$genes
+> gs.annots = buildIdx(entrezIDs=rownames(cnt), species="human", 
++ msigdb.gsets="none",
++          kegg.updated=FALSE, kegg.exclude = c("Metabolism"))
+[1] "Building KEGG pathways annotation object ... "
+> # set report = TRUE to generate the EGSEA interactive report
+> gsa = egsea.cnt(counts=cnt, group=group, design=design, contrasts=contrasts, 
++          gs.annots=gs.annots, 
++          symbolsMap=genes, baseGSEAs=egsea.base()[-c(2,5,6,9,12)], 
++ display.top = 5,
++           sort.by="avg.rank", 
++ report.dir="./il13-egsea-cnt-report", 
++          num.threads = 2, report = FALSE)
+EGSEA analysis has started
+##------ Thu Feb  9 14:47:35 2023 ------##
+Log fold changes are estimated using limma package ... 
+limma DE analysis is carried out ... 
+EGSEA is running on the provided data and kegg collection
+...safe*..camera*..
+Error in runegsea(voom.results = voom.results, contrast = contrast, limma.tops = limma.tops,  : 
+  ERROR: One of the base methods failed on this dataset (camera).
+Remove it and try again.
+See error messages for more information.
+Calls: egsea.cnt -> egsea
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘EGSEA.Rnw’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘EGSEA.Rnw’ using knitr
+Quitting from lines 364-371 (EGSEA.Rnw) 
+Error: processing vignette 'EGSEA.Rnw' failed with diagnostics:
+ERROR: One of the base methods failed on this dataset (safe).
+Remove it and try again.
+See error messages for more information.
+--- failed re-building ‘EGSEA.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘EGSEA.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 2 WARNINGs, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/EGSEA.Rcheck/00check.log’
+for details.
+

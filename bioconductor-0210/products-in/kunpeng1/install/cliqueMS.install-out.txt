@@ -1,0 +1,53 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL cliqueMS
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘cliqueMS’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/BH/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include   -fopenmp  -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/BH/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include   -fopenmp  -fPIC  -g -O2  -Wall -c findAnnotationR.cpp -o findAnnotationR.o
+In file included from findAnnotationR.cpp:1:
+annotationCliqueMSR.h: In function ‘std::vector<std::pair<double, double> > sortMass(annotData&, int, std::unordered_map<double, std::pair<double, double> >, int)’:
+annotationCliqueMSR.h:440:11: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::pair<double, double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  440 |     if(id < allM.size()) // not add more masses in case that for that feature are less than "n" top masses
+      |        ~~~^~~~~~~~~~~~~
+annotationCliqueMSR.h: In function ‘std::unordered_set<double> getTopScoringMasses(annotData&, int, rawadList, int, int, double)’:
+annotationCliqueMSR.h:476:11: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::pair<double, double> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  476 |     if(id < allM.size()) // not add more masses in case that there are less than "n" top masses
+      |        ~~~^~~~~~~~~~~~~
+annotationCliqueMSR.h: In function ‘std::vector<int> sortAnnotations(std::unordered_map<int, Annotation>&, int)’:
+annotationCliqueMSR.h:725:11: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::pair<double, int> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  725 |     if(id < allAn.size() )
+      |        ~~~^~~~~~~~~~~~~~
+annotationCliqueMSR.h: In function ‘double computeMaxScore(std::vector<double>&, int, double)’:
+annotationCliqueMSR.h:747:46: warning: ‘completeroundscore’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  747 |   score = (completeround*completeroundscore) + remainderroundscore + (completeround*newmass);
+      |           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/BH/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include   -fopenmp  -fPIC  -g -O2  -Wall -c findCliquesR.cpp -o findCliquesR.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/BH/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I/usr/local/include   -fopenmp  -fPIC  -g -O2  -Wall -c findIsotopesR.cpp -o findIsotopesR.o
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o cliqueMS.so RcppExports.o findAnnotationR.o findCliquesR.o findIsotopesR.o -fopenmp -llapack -L/home/biocbuild/bbs-3.17-bioc/R/lib -lRblas -lgfortran -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-cliqueMS/00new/cliqueMS/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (cliqueMS)

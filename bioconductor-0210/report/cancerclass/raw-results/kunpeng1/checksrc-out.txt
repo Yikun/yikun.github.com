@@ -1,0 +1,171 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:cancerclass.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings cancerclass_1.43.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/cancerclass.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘cancerclass/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘cancerclass’ version ‘1.43.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘cancerclass’ can be installed ... OK
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Non-standard license specification:
+  GPL 3
+Standardizable: TRUE
+Standardized license specification:
+  GPL-3
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+'library' or 'require' call to ‘methods’ which was already attached by Depends.
+  Please remove these calls from your code.
+Packages in Depends field not imported from:
+  ‘Biobase’ ‘binom’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+File ‘cancerclass/R/cancerclass-internal.R’:
+  .onLoad calls:
+    require(methods)
+
+Package startup functions should not change the search path.
+See section ‘Good practice’ in '?.onAttach'.
+
+calc.auc: no visible global function definition for ‘integrate’
+calc.auc : <anonymous>: no visible global function definition for
+  ‘approx’
+calc.roc: no visible global function definition for ‘binom.confint’
+fit: no visible global function definition for ‘pData’
+fit: no visible global function definition for ‘featureData’
+fit: no visible global function definition for ‘exprs’
+fit: no visible binding for global variable ‘methods’
+get.prop: no visible global function definition for ‘binom.confint’
+loo: no visible global function definition for ‘pData’
+nvalidate: no visible global function definition for ‘pData’
+nvalidate: no visible global function definition for ‘featureData’
+nvalidate: no visible global function definition for ‘exprs’
+nvalidate: no visible binding for global variable ‘methods’
+prepare: no visible global function definition for ‘pData’
+prepare: no visible global function definition for ‘exprs’
+prepare: no visible global function definition for ‘exprs<-’
+validate: no visible global function definition for ‘pData’
+validate: no visible global function definition for ‘featureData’
+validate: no visible global function definition for ‘exprs’
+validate: no visible binding for global variable ‘methods’
+plot3d,nvalidation: no visible global function definition for ‘persp’
+plot3d,validation: no visible global function definition for ‘persp’
+plot,nvalidation: no visible global function definition for ‘grey’
+plot,nvalidation: no visible global function definition for ‘par’
+plot,nvalidation: no visible global function definition for ‘barplot’
+plot,nvalidation: no visible global function definition for ‘legend’
+plot,nvalidation : <anonymous>: no visible global function definition
+  for ‘quantile’
+plot,nvalidation: no visible global function definition for ‘abline’
+plot,nvalidation: no visible global function definition for ‘lines’
+plot,prediction: no visible global function definition for ‘t.test’
+plot,prediction: no visible global function definition for ‘par’
+plot,prediction: no visible global function definition for ‘hist’
+plot,prediction: no visible global function definition for ‘legend’
+plot,prediction: no visible global function definition for ‘barplot’
+plot,prediction: no visible global function definition for ‘lines’
+plot,prediction: no visible global function definition for ‘abline’
+plot,prediction: no visible global function definition for ‘glm’
+plot,prediction: no visible binding for global variable ‘binomial’
+plot,prediction: no visible global function definition for ‘pchisq’
+plot,prediction: no visible global function definition for ‘qnorm’
+plot,prediction: no visible global function definition for ‘points’
+plot,predictor: no visible global function definition for ‘barplot’
+plot,validation: no visible global function definition for ‘grey’
+plot,validation: no visible global function definition for ‘par’
+plot,validation: no visible global function definition for ‘barplot’
+plot,validation: no visible global function definition for ‘legend’
+plot,validation : <anonymous>: no visible global function definition
+  for ‘quantile’
+plot,validation: no visible global function definition for ‘abline’
+plot,validation: no visible global function definition for ‘lines’
+predict,predictor: no visible global function definition for ‘pData’
+predict,predictor: no visible global function definition for ‘exprs’
+summary,prediction: no visible global function definition for
+  ‘fisher.test’
+Undefined global functions or variables:
+  abline approx barplot binom.confint binomial exprs exprs<-
+  featureData fisher.test glm grey hist integrate legend lines methods
+  pData par pchisq persp points qnorm quantile t.test
+Consider adding
+  importFrom("grDevices", "grey")
+  importFrom("graphics", "abline", "barplot", "hist", "legend", "lines",
+             "par", "persp", "points")
+  importFrom("stats", "approx", "binomial", "fisher.test", "glm",
+             "integrate", "pchisq", "qnorm", "quantile", "t.test")
+  importFrom("utils", "methods")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+        user system elapsed
+GOLUB 33.961 15.287  76.383
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘vignette_cancerclass.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/cancerclass.Rcheck/00check.log’
+for details.
+
+

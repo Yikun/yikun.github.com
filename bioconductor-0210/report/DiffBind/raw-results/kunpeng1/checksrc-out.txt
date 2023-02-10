@@ -1,0 +1,332 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:DiffBind.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings DiffBind_3.9.5.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/DiffBind.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘DiffBind/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘DiffBind’ version ‘3.9.5’
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Package which this enhances but not available for checking: ‘XLConnect’
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘DiffBind’ can be installed ... OK
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... NOTE
+  installed size is  9.8Mb
+  sub-directories of 1Mb or more:
+    data    2.0Mb
+    extra   1.3Mb
+    libs    5.6Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... NOTE
+GNU make is a SystemRequirements.
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... WARNING
+Note: information on .o files is not available
+File ‘/home/biocbuild/bbs-3.17-bioc/R/library/DiffBind/libs/DiffBind.so’:
+  Found ‘__sprintf_chk’, possibly from ‘sprintf’ (C)
+  Found ‘abort’, possibly from ‘abort’ (C)
+  Found ‘exit’, possibly from ‘exit’ (C)
+  Found ‘stderr’, possibly from ‘stderr’ (C)
+  Found ‘stdout’, possibly from ‘stdout’ (C)
+
+Compiled code should not call entry points which might terminate R nor
+write to stdout/stderr instead of to the console, nor use Fortran I/O
+nor system RNGs nor [v]sprintf. The detected symbols are linked into
+the code but might come from libraries and not actually be called.
+
+See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘DiffBind-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: dba.plotHeatmap
+> ### Title: Draw a binding site heatmap
+> ### Aliases: dba.plotHeatmap
+> 
+> ### ** Examples
+> 
+> data(tamoxifen_peaks)
+> # peak overlap correlation heatmap
+> dba.plotHeatmap(tamoxifen)
+> 
+> data(tamoxifen_counts)
+> # counts correlation heatmap
+> dba.plotHeatmap(tamoxifen)
+> 
+> data(tamoxifen_analysis)
+> #correlation heatmap based on all normalized data
+> dba.plotHeatmap(tamoxifen,contrast=1,th=1)
+> 
+> #correlation heatmap based on DB sites only
+> dba.plotHeatmap(tamoxifen,contrast=1)
+> 
+> #binding heatmap based on DB sites
+> dba.plotHeatmap(tamoxifen,contrast=1,correlations=FALSE)
+> 
+> #binding heatmap based on 1,000 sites with highest variance
+> sites <- dba.plotHeatmap(tamoxifen,contrast=1,th=1,
++                          correlations=FALSE,sortFun=var)
+> sites
+GRanges object with 1000 ranges and 11 metadata columns:
+       seqnames            ranges strand |    MCF7r2    MCF7r1     T47D2
+          <Rle>         <IRanges>  <Rle> | <numeric> <numeric> <numeric>
+  1452    chr18 39529534-39529934      * |   3.90111   4.38612   2.58736
+    39    chr18     938750-939150      * |   4.61176   5.34021   3.29719
+  1890    chr18 50736261-50736661      * |   4.14241   1.97085   2.71149
+  1278    chr18 34274013-34274413      * |   4.02680   4.97085   3.21568
+   230    chr18   7559937-7560337      * |   4.61176   4.29278   2.44890
+   ...      ...               ...    ... .       ...       ...       ...
+  1820    chr18 47685298-47685698      * |   5.96555   6.72588   4.88215
+  2039    chr18 54909549-54909949      * |   7.41920   8.05853   6.02237
+   670    chr18 19992416-19992816      * |   4.24945   3.97085   2.93546
+  2250    chr18 59307145-59307545      * |   5.57107   6.59559   3.82782
+  1769    chr18 46523318-46523718      * |   7.24926   7.98601   5.17193
+           T47D1     MCF71     MCF72     MCF73    BT4742    BT4741     ZR752
+       <numeric> <numeric> <numeric> <numeric> <numeric> <numeric> <numeric>
+  1452   3.33342   3.80323   2.13093  0.790772  0.275007   3.62644   3.84699
+    39   4.33271   4.67751   2.71589  0.790772  2.601697   2.62527   4.87823
+  1890   2.01078   2.21723   2.13093  0.000000  2.865919   2.62527   4.59036
+  1278   3.59574   3.21723   3.45286  3.111031  4.739848   4.55213   7.59051
+   230   1.01436   1.22033   1.13093  3.111031  2.280956   1.30451   5.47346
+   ...       ...       ...       ...       ...       ...       ...       ...
+  1820   5.47021   8.13679   7.32039   7.76660   6.98117   7.08545   5.85524
+  2039   6.62556  10.31859   9.26501   9.59989   8.71531   9.43850   8.26040
+   670   3.81865   5.67723   5.03738   5.64731   4.60288   4.76341   4.51349
+  2250   5.18070   7.48470   7.25984   7.50359   6.32499   6.57092   6.20633
+  1769   6.50271  10.07280   8.82407   9.10219   7.44054   7.99757   8.19412
+           ZR751
+       <numeric>
+  1452   4.35896
+    39   5.39849
+  1890   5.09592
+  1278   8.42752
+   230   6.52904
+   ...       ...
+  1820   6.84737
+  2039   8.61537
+   670   5.18903
+  2250   7.29765
+  1769   9.01248
+  -------
+  seqinfo: 1 sequence from an unspecified genome; no seqlengths
+> 
+> data(tamoxifen_counts)
+> #Examples of  heatmaps using DB sites with different subsets of samples
+> #exclude T47D
+> tamoxifen <- dba.contrast(tamoxifen,design=FALSE,
++                           group1=tamoxifen$masks$Resistant,
++                           group2=c(3:5,10:11)) 
+> tamoxifen <- dba.analyze(tamoxifen)
+Normalize DESeq2 with defaults...
+Analyzing...
+converting counts to integer mode
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  
+  Attaching package: 'Biobase'
+  
+  The following object is masked from 'package:MatrixGenerics':
+  
+      rowMedians
+  
+  The following objects are masked from 'package:matrixStats':
+  
+      anyMissing, rowMedians
+  
+   >>> DiffBind 3.9.5
+  > 
+  > test_check("DiffBind")
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘DiffBind.Rnw’... failed to complete the test
+ ERROR
+Errors in running code in vignettes:
+when running code in ‘DiffBind.Rnw’
+  ...
+> blacklisted <- dba.blacklist(tamoxifen, Retrieve = DBA_BLACKLISTED_PEAKS)
+
+> tamoxifen <- dba.contrast(tamoxifen, design = "~Tissue + Condition")
+Computing results names...
+
+> tamoxifen <- dba.analyze(tamoxifen)
+Normalize DESeq2 with defaults...
+Killed
+
+... incomplete output.  Crash?
+
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘DiffBind.Rnw’ using Sweave
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: SummarizedExperiment
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+ >>> DiffBind 3.9.5
+BT4741 BT474 ER Resistant Full-Media 1 bed
+BT4742 BT474 ER Resistant Full-Media 2 bed
+MCF71 MCF7 ER Responsive Full-Media 1 bed
+MCF72 MCF7 ER Responsive Full-Media 2 bed
+MCF73 MCF7 ER Responsive Full-Media 3 bed
+T47D1 T47D ER Responsive Full-Media 1 bed
+T47D2 T47D ER Responsive Full-Media 2 bed
+MCF7r1 MCF7 ER Resistant Full-Media 1 bed
+MCF7r2 MCF7 ER Resistant Full-Media 2 bed
+ZR751 ZR75 ER Responsive Full-Media 1 bed
+ZR752 ZR75 ER Responsive Full-Media 2 bed
+Computing results names...
+Analyzing...
+gene-wise dispersion estimates
+mean-dispersion relationship
+final dispersion estimates
+Generating report-based DBA object...
+Replacing design and removing analysis.
+Computing results names...
+Analyzing...
+gene-wise dispersion estimates
+mean-dispersion relationship
+final dispersion estimates
+Normalize edgeR with defaults...
+Analyzing...
+Generating report-based DBA object...
+Computing results names...
+Analyzing...
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs, 1 WARNING, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/DiffBind.Rcheck/00check.log’
+for details.
+

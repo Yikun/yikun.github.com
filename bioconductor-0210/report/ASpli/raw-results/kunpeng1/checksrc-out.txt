@@ -1,0 +1,232 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:ASpli.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings ASpli_2.9.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/ASpli.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘ASpli/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘ASpli’ version ‘2.9.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘ASpli’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+Killed
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking installed files from ‘inst/doc’ ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘ASpli-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: ASpli-package
+> ### Title: Analysis of Alternative Splicing Using RNAseq
+> ### Aliases: ASpli-package ASpli
+> ### Keywords: RNA-seq alternative splicing analysis using bin coverage and
+> ###   junctions
+> 
+> ### ** Examples
+>  
+> library(GenomicFeatures)
+Loading required package: GenomeInfoDb
+Loading required package: GenomicRanges
+> gtfFileName <- aspliExampleGTF()
+> genomeTxDb <- makeTxDbFromGFF( gtfFileName )
+Import genomic features from the file as a GRanges object ... OK
+Prepare the 'metadata' data frame ... OK
+Make the TxDb object ... OK
+> features <- binGenome( genomeTxDb )
+* Number of extracted Genes = 10
+* Number of extracted Exon Bins = 38
+* Number of extracted intron bins = 34
+* Number of extracted trascripts = 25
+* Number of extracted junctions = 23
+* Number of AS bins (not include external) = 17
+* Number of AS bins (include external) = 17
+* Classified as: 
+	ES bins = 1	(6%)
+	IR bins = 3	(18%)
+	Alt5'ss bins = 2	(12%)
+	Alt3'ss bins = 2	(12%)
+	Multiple AS bins = 9	(53%)
+	classified as:
+			ES bins = 1	(11%)
+			IR bins = 4	(44%)
+			Alt5'ss bins = 2	(22%)
+			Alt3'ss bins = 1	(11%)
+
+Correcting Io ends, this might take a while...
+Genome binning completed
+> BAMFiles <- aspliExampleBamList()
+> targets <- data.frame( 
++   row.names = paste0('Sample',c(1:12)),
++   bam = BAMFiles,
++   f1 = c( 'A','A','A','A','A','A',
++           'B','B','B','B','B','B'),
++   f2 = c( 'C','C','C','D','D','D',
++           'C','C','C','D','D','D'),
++   stringsAsFactors = FALSE)
+>   getConditions(targets)
+[1] "A_C" "A_D" "B_C" "B_D"
+>   mBAMs <- data.frame(bam      = sub("_[02]","",targets$bam[c(1,4,7,10)]),
++                       condition= c("A_C","A_D","B_C","B_D"))
+> 
+> gbcounts  <- gbCounts( features = features, 
++                            targets = targets, 
++                            minReadLength = 100, maxISize = 50000,
++                            libType="SE", 
++                            strandMode=0)
+Summarizing Sample1
+ETA: 2 min
+Summarizing Sample2
+Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘ASpli.Rnw’... failed to complete the test
+ ERROR
+Errors in running code in vignettes:
+when running code in ‘ASpli.Rnw’
+  ...
+Import genomic features from the file as a GRanges object ... OK
+Prepare the 'metadata' data frame ... OK
+Make the TxDb object ... OK
+
+> features <- binGenome(genomeTxDb)
+* Number of extracted Genes = 10
+* Number of extracted Exon Bins = 38
+Killed
+
+... incomplete output.  Crash?
+
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘ASpli.Rnw’ using Sweave
+Loading required package: parallel
+Loading required package: edgeR
+Loading required package: limma
+Loading required package: AnnotationDbi
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following object is masked from ‘package:limma’:
+
+    plotMA
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: IRanges
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: GenomeInfoDb
+Loading required package: GenomicRanges
+Import genomic features from the file as a GRanges object ... OK
+Prepare the 'metadata' data frame ... OK
+Make the TxDb object ... OK
+* Number of extracted Genes = 10
+* Number of extracted Exon Bins = 38
+* Number of extracted intron bins = 34
+* Number of extracted trascripts = 25
+* Number of extracted junctions = 23
+* Number of AS bins (not include external) = 17
+* Number of AS bins (include external) = 17
+* Classified as: 
+	ES bins = 1	(6%)
+	IR bins = 3	(18%)
+	Alt5'ss bins = 2	(12%)
+	Alt3'ss bins = 2	(12%)
+	Multiple AS bins = 9	(53%)
+	classified as:
+			ES bins = 1	(11%)
+			IR bins = 4	(44%)
+			Alt5'ss bins = 2	(22%)
+			Alt3'ss bins = 1	(11%)
+
+Correcting Io ends, this might take a while...
+Genome binning completed
+Summarizing Sample1
+ETA: 1 min
+Summarizing Sample2
+ETA: 1 min
+Summarizing Sample3
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/ASpli.Rcheck/00check.log’
+for details.
+

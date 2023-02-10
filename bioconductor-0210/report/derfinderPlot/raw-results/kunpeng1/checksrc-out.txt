@@ -1,0 +1,165 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:derfinderPlot.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings derfinderPlot_1.33.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/derfinderPlot.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘derfinderPlot/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘derfinderPlot’ version ‘1.33.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘derfinderPlot’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘derfinderPlot-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plotCluster
+> ### Title: Plot the coverage information surrounding a region cluster
+> ### Aliases: plotCluster
+> 
+> ### ** Examples
+> 
+> ## Load data
+> library("derfinder")
+> 
+> ## Annotate the results with bumphunter::matchGenes()
+> library("bumphunter")
+Loading required package: S4Vectors
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: 'BiocGenerics'
+
+The following objects are masked from 'package:stats':
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from 'package:base':
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+
+Attaching package: 'S4Vectors'
+
+The following objects are masked from 'package:base':
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: GenomicRanges
+Loading required package: foreach
+Loading required package: iterators
+Loading required package: parallel
+Loading required package: locfit
+locfit 1.5-9.7 	 2023-01-02
+> library("TxDb.Hsapiens.UCSC.hg19.knownGene")
+Loading required package: GenomicFeatures
+Loading required package: AnnotationDbi
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+> library("org.Hs.eg.db")
+
+> genes <- annotateTranscripts(
++     txdb = TxDb.Hsapiens.UCSC.hg19.knownGene,
++     annotationPackage = "org.Hs.eg.db"
++ )
+Getting TSS and TSE.
+Getting CSS and CSE.
+Getting exons.
+Annotating genes.
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘test-all.R’
+ ERROR
+Running the tests in ‘tests/test-all.R’ failed.
+Complete output:
+  > ## Disable the tests if the system variable 'R_DISABLE_TESTS' is set to TRUE
+  > 
+  > flag <- as.logical(Sys.getenv("R_DISABLE_TESTS"))
+  > if (is.na(flag) | flag == FALSE) {
+  +     library("testthat")
+  +     test_check("derfinderPlot")
+  + }
+  Loading required package: derfinderPlot
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘derfinderPlot.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘derfinderPlot.Rmd’ using rmarkdown
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/derfinderPlot.Rcheck/00check.log’
+for details.
+

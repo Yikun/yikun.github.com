@@ -1,0 +1,38 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL deepSNV
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘deepSNV’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c bam2R.cpp -o bam2R.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c betabinom.c -o betabinom.o
+betabinom.c: In function ‘pbb’:
+betabinom.c:27:16: warning: unused variable ‘log’ [-Wunused-variable]
+   27 |         int i, log=0;
+      |                ^~~
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o deepSNV.so bam2R.o betabinom.o /home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/usrlib/libhts.a -lcurl -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-deepSNV/00new/deepSNV/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (deepSNV)

@@ -1,0 +1,465 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:DelayedArray.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings DelayedArray_0.25.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/DelayedArray.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘DelayedArray/DESCRIPTION’ ... OK
+* this is package ‘DelayedArray’ version ‘0.25.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  'stats4', 'Matrix', 'BiocGenerics', 'MatrixGenerics', 'S4Vectors',
+  'IRanges'
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘DelayedArray’ can be installed ... WARNING
+Found the following significant warnings:
+  compress_atomic_vector.c:66:16: warning: ‘ans’ is used uninitialized [-Wuninitialized]
+  compress_atomic_vector.c:73:16: warning: ‘ans’ is used uninitialized [-Wuninitialized]
+  compress_atomic_vector.c:85:16: warning: ‘ans’ is used uninitialized [-Wuninitialized]
+  compress_atomic_vector.c:92:16: warning: ‘ans’ is used uninitialized [-Wuninitialized]
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/DelayedArray.Rcheck/00install.out’ for details.
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Subdirectory 'inst/doc' contains invalid file names:
+  ‘02-Implementing_a_backend.Rmd’ ‘01-Working_with_large_arrays.Rnw’
+  ‘03-DelayedArray_HDF5Array_update.Rnw’
+  ‘02-Implementing_a_backend.html’ ‘01-Working_with_large_arrays.pdf’
+  ‘03-DelayedArray_HDF5Array_update.pdf’
+Please remove or rename the files.
+See section ‘Package subdirectories’ in the ‘Writing R Extensions’
+manual.
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘defaultMultAutoGrids’ ‘multGrids’
+Undocumented S4 methods:
+  generic '[' and siglist 'DelayedArray,ANY,ANY,ANY'
+  generic '[<-' and siglist 'DelayedArray,ANY,ANY,ANY'
+  generic 'crossprod' and siglist 'ANY,DelayedMatrix'
+  generic 'crossprod' and siglist 'DelayedMatrix,ANY'
+  generic 'crossprod' and siglist 'DelayedMatrix,DelayedMatrix'
+  generic 'crossprod' and siglist 'DelayedMatrix,missing'
+  generic 'tcrossprod' and siglist 'ANY,DelayedMatrix'
+  generic 'tcrossprod' and siglist 'DelayedMatrix,ANY'
+  generic 'tcrossprod' and siglist 'DelayedMatrix,DelayedMatrix'
+  generic 'tcrossprod' and siglist 'DelayedMatrix,missing'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘DelayedArray-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: RleArray-class
+> ### Title: RleArray objects
+> ### Aliases: class:RleArray RleArray-class RleArray
+> ###   DelayedArray,RleArraySeed-method coerce,RleArray,Rle-method
+> ###   class:RleMatrix RleMatrix-class RleMatrix matrixClass,RleArray-method
+> ###   coerce,RleArray,RleMatrix-method coerce,RleMatrix,RleArray-method
+> ###   coerce,ANY,RleMatrix-method coerce,RleList,RleArray-method
+> ###   coerce,RleMatrix,RleList-method coerce,DataFrame,RleArray-method
+> ###   coerce,RleMatrix,DataFrame-method
+> ###   coerce,DelayedMatrix,DataFrame-method
+> ###   write_block,RleRealizationSink-method
+> ###   coerce,RleRealizationSink,RleArray-method
+> ###   coerce,RleRealizationSink,DelayedArray-method
+> ###   coerce,ANY,RleArray-method coerce,DelayedArray,RleArray-method
+> ###   coerce,DelayedMatrix,RleMatrix-method
+> ### Keywords: classes methods
+> 
+> ### ** Examples
+> 
+> ## ---------------------------------------------------------------------
+> ## A. BASIC EXAMPLE
+> ## ---------------------------------------------------------------------
+> 
+> data <- Rle(sample(6L, 500000, replace=TRUE), 8)
+> a <- array(data, dim=c(50, 20, 4000))  # array() expands the Rle object
+>                                        # internally with as.vector()
+> 
+> A <- RleArray(data, dim=c(50, 20, 4000))  # Rle object is NOT expanded
+> A
+<50 x 20 x 4000> array of class RleArray and type "integer":
+,,1
+       [,1]  [,2]  [,3]  [,4] ... [,17] [,18] [,19] [,20]
+ [1,]     1     6     5     5   .     3     4     2     6
+ [2,]     1     6     5     5   .     3     4     2     6
+  ...     .     .     .     .   .     .     .     .     .
+[49,]     6     5     5     5   .     4     2     6     5
+[50,]     6     5     5     5   .     4     2     6     5
+
+...
+
+,,4000
+       [,1]  [,2]  [,3]  [,4] ... [,17] [,18] [,19] [,20]
+ [1,]     3     5     3     5   .     6     3     5     3
+ [2,]     3     5     3     5   .     6     3     5     3
+  ...     .     .     .     .   .     .     .     .     .
+[49,]     5     3     5     1   .     3     5     3     6
+[50,]     5     3     5     1   .     3     5     3     6
+
+> 
+> object.size(a)
+16000224 bytes
+> object.size(A)
+3335080 bytes
+> 
+> stopifnot(identical(a, as.array(A)))
+> 
+> as(A, "Rle")  # deconstruction
+integer-Rle of length 4000000 with 416534 runs
+  Lengths:  8  8  8  8  8  8  8  8 16  8 16 ... 16 16  8  8  8  8  8  8  8  8
+  Values :  1  4  1  2  5  3  6  2  3  1  5 ...  1  3  6  3  4  6  3  4  1  6
+> 
+> toto <- function(x) (5 * x[ , , 1] ^ 3 + 1L) * log(x[, , 2])
+> m1 <- toto(a)
+> head(m1)
+         [,1]   [,2]      [,3]     [,4]     [,5]     [,6]     [,7]     [,8]
+[1,] 10.75056 1187.6 433.91014   0.0000 56.83807 222.5002 352.6545 0.000000
+[2,] 10.75056 1187.6 433.91014   0.0000 56.83807 222.5002 352.6545 0.000000
+[3,] 10.75056 1187.6 433.91014 687.7313 56.83807 222.5002 352.6545 4.158883
+[4,] 10.75056 1187.6 433.91014 687.7313 56.83807 222.5002 352.6545 4.158883
+[5,] 10.75056 1187.6  73.46214 687.7313 56.83807 222.5002 352.6545 4.158883
+[6,] 10.75056 1187.6  73.46214 687.7313 56.83807 222.5002 352.6545 4.158883
+     [,9]    [,10]  [,11]    [,12]    [,13]    [,14]      [,15]    [,16]
+[1,]    0 1936.892 1187.6 0.000000 516.6296 1121.641 1936.89199 575.1548
+[2,]    0 1936.892 1187.6 0.000000 516.6296 1121.641 1936.89199 575.1548
+[3,]    0 1936.892 1187.6 6.591674 516.6296 1121.641 1936.89199 243.6793
+[4,]    0 1936.892 1187.6 6.591674 516.6296 1121.641 1936.89199 243.6793
+[5,]    0 1936.892    0.0 6.591674 516.6296 1121.641   28.41903 243.6793
+[6,]    0 1936.892    0.0 6.591674 516.6296 1121.641   28.41903 243.6793
+       [,17]    [,18]     [,19] [,20]
+[1,] 188.536 352.6545  56.83807     0
+[2,] 188.536 352.6545  56.83807     0
+[3,] 188.536 352.6545  56.83807     0
+[4,] 188.536 352.6545  56.83807     0
+[5,] 188.536 352.6545 149.41127     0
+[6,] 188.536 352.6545 149.41127     0
+> 
+> M1 <- toto(A)  # very fast! (operations are delayed)
+> M1
+<50 x 20> matrix of class DelayedMatrix and type "double":
+            [,1]       [,2]       [,3] ...     [,19]     [,20]
+ [1,]   10.75056 1187.59988  433.91014   .  56.83807   0.00000
+ [2,]   10.75056 1187.59988  433.91014   .  56.83807   0.00000
+ [3,]   10.75056 1187.59988  433.91014   .  56.83807   0.00000
+ [4,]   10.75056 1187.59988  433.91014   .  56.83807   0.00000
+ [5,]   10.75056 1187.59988   73.46214   . 149.41127   0.00000
+  ...          .          .          .   .         .         .
+[46,]   243.6793   867.8203     0.0000   .    0.0000  867.8203
+[47,]   243.6793   433.9101     0.0000   .    0.0000  867.8203
+[48,]   243.6793   433.9101     0.0000   .    0.0000  867.8203
+[49,]  1187.5999   433.9101     0.0000   .    0.0000  867.8203
+[50,]  1187.5999   433.9101     0.0000   .    0.0000  867.8203
+> 
+> stopifnot(identical(m1, as.array(M1)))
+> 
+> cs <- colSums(m1)
+> CS <- colSums(M1)
+> stopifnot(identical(cs, CS))
+> 
+> ## Coercing a DelayedMatrix object to DataFrame produces a DataFrame
+> ## object with Rle columns:
+> as(M1, "DataFrame")
+DataFrame with 50 rows and 20 columns
+                  V1               V2               V3               V4
+               <Rle>            <Rle>            <Rle>            <Rle>
+1   10.7505568153683 1187.59988405023 433.910135030526                0
+2   10.7505568153683 1187.59988405023 433.910135030526                0
+3   10.7505568153683 1187.59988405023 433.910135030526 687.731292706237
+4   10.7505568153683 1187.59988405023 433.910135030526 687.731292706237
+5   10.7505568153683 1187.59988405023 73.4621382383502 687.731292706237
+...              ...              ...              ...              ...
+46  243.679287815015 867.820270061051                0                0
+47  243.679287815015 433.910135030526                0                0
+48  243.679287815015 433.910135030526                0                0
+49  1187.59988405023 433.910135030526                0                0
+50  1187.59988405023 433.910135030526                0                0
+                  V5               V6               V7               V8
+               <Rle>            <Rle>            <Rle>            <Rle>
+1   56.8380688059155 222.500244959742 352.654544662463                0
+2   56.8380688059155 222.500244959742 352.654544662463                0
+3   56.8380688059155 222.500244959742 352.654544662463 4.15888308335967
+4   56.8380688059155 222.500244959742 352.654544662463 4.15888308335967
+5   56.8380688059155 222.500244959742 352.654544662463 4.15888308335967
+...              ...              ...              ...              ...
+46  4.15888308335967 1187.59988405023                0 218.883556091038
+47  4.15888308335967 352.654544662463                0 218.883556091038
+48  4.15888308335967 352.654544662463                0 218.883556091038
+49  222.500244959742 352.654544662463                0 218.883556091038
+50  222.500244959742 352.654544662463                0 218.883556091038
+                  V9              V10              V11              V12
+               <Rle>            <Rle>            <Rle>            <Rle>
+1                  0 1936.89198623553 1187.59988405023                0
+2                  0 1936.89198623553 1187.59988405023                0
+3                  0 1936.89198623553 1187.59988405023 6.59167373200866
+4                  0 1936.89198623553 1187.59988405023 6.59167373200866
+5                  0 1936.89198623553                0 6.59167373200866
+...              ...              ...              ...              ...
+46  73.4621382383502                0                0                0
+47  73.4621382383502 1187.59988405023                0                0
+48  73.4621382383502 1187.59988405023                0                0
+49  1936.89198623553 1187.59988405023                0                0
+50  1936.89198623553 1187.59988405023                0                0
+                 V13              V14              V15              V16
+               <Rle>            <Rle>            <Rle>            <Rle>
+1   516.629569891346 1121.64142773676 1936.89198623553 575.154789622206
+2   516.629569891346 1121.64142773676 1936.89198623553 575.154789622206
+3   516.629569891346 1121.64142773676 1936.89198623553 243.679287815015
+4   516.629569891346 1121.64142773676 1936.89198623553 243.679287815015
+5   516.629569891346 1121.64142773676 28.4190344029578 243.679287815015
+...              ...              ...              ...              ...
+46  4.15888308335967 243.679287815015 575.154789622206 188.536033112305
+47  4.15888308335967 1936.89198623553 575.154789622206 188.536033112305
+48  4.15888308335967 1936.89198623553 575.154789622206 188.536033112305
+49  1121.64142773676 1936.89198623553 575.154789622206 188.536033112305
+50  1121.64142773676 1936.89198623553 575.154789622206 188.536033112305
+                 V17              V18              V19              V20
+               <Rle>            <Rle>            <Rle>            <Rle>
+1   188.536033112305 352.654544662463 56.8380688059155                0
+2   188.536033112305 352.654544662463 56.8380688059155                0
+3   188.536033112305 352.654544662463 56.8380688059155                0
+4   188.536033112305 352.654544662463 56.8380688059155                0
+5   188.536033112305 352.654544662463 149.411271258863                0
+...              ...              ...              ...              ...
+46                 0 243.679287815015                0 867.820270061051
+47                 0 56.8380688059155                0 867.820270061051
+48                 0 56.8380688059155                0 867.820270061051
+49  352.654544662463 56.8380688059155                0 867.820270061051
+50  352.654544662463 56.8380688059155                0 867.820270061051
+> 
+> ## ---------------------------------------------------------------------
+> ## B. MAKING AN RleArray OBJECT FROM A LIST-LIKE OBJECT OF Rle OBJECTS
+> ## ---------------------------------------------------------------------
+> 
+> ## From a DataFrame object:
+> DF <- DataFrame(A=Rle(sample(3L, 100, replace=TRUE)),
++                 B=Rle(sample(3L, 100, replace=TRUE)),
++                 C=Rle(sample(3L, 100, replace=TRUE) - 0.5),
++                 row.names=sprintf("ID%03d", 1:100))
+> 
+> M2 <- RleArray(DF)
+> M2
+<100 x 3> matrix of class RleMatrix and type "double":
+        A   B   C
+ID001 1.0 3.0 1.5
+ID002 2.0 3.0 0.5
+ID003 3.0 3.0 0.5
+ID004 3.0 3.0 2.5
+ID005 3.0 1.0 1.5
+  ...   .   .   .
+ID096 2.0 3.0 2.5
+ID097 3.0 1.0 1.5
+ID098 1.0 1.0 2.5
+ID099 2.0 1.0 0.5
+ID100 2.0 3.0 2.5
+> 
+> A3 <- RleArray(DF, dim=c(25, 6, 2))
+> A3
+<25 x 6 x 2> array of class RleArray and type "double":
+,,1
+      [,1] [,2] [,3] [,4] [,5] [,6]
+ [1,]    1    3    2    2    3    3
+ [2,]    2    1    2    2    3    1
+  ...    .    .    .    .    .    .
+[24,]    1    3    2    2    3    1
+[25,]    3    3    2    2    3    2
+
+,,2
+      [,1] [,2] [,3] [,4] [,5] [,6]
+ [1,]  2.0  3.0  1.5  2.5  0.5  0.5
+ [2,]  3.0  3.0  0.5  1.5  0.5  2.5
+  ...    .    .    .    .    .    .
+[24,]  2.0  1.0  2.5  1.5  1.5  0.5
+[25,]  3.0  3.0  2.5  0.5  1.5  2.5
+
+> 
+> M4 <- RleArray(DF, dim=c(25, 12), dimnames=list(LETTERS[1:25], NULL))
+> M4
+<25 x 12> matrix of class RleMatrix and type "double":
+   [,1]  [,2]  [,3] ... [,11] [,12]
+A     1     3     2   .   0.5   0.5
+B     2     1     2   .   0.5   2.5
+C     3     1     1   .   0.5   0.5
+D     3     3     2   .   2.5   1.5
+E     3     1     2   .   2.5   0.5
+.     .     .     .   .     .     .
+U     2     2     3   .   0.5   2.5
+V     2     3     2   .   2.5   1.5
+W     3     3     2   .   0.5   2.5
+X     1     3     2   .   1.5   0.5
+Y     3     3     2   .   1.5   2.5
+> 
+> ## From an ordinary list:
+> ## If all the supplied Rle objects have the same length and if the 'dim'
+> ## argument is not specified, then the RleArray() constructor returns an
+> ## RleMatrix object with 1 column per Rle object. If the 'dimnames'
+> ## argument is not specified, then the names on the list are propagated
+> ## as the colnames of the returned object.
+> data <- as.list(DF)
+> M2b <- RleArray(data)
+> A3b <- RleArray(data, dim=c(25, 6, 2))
+> M4b <- RleArray(data, dim=c(25, 12), dimnames=list(LETTERS[1:25], NULL))
+> 
+> data2 <- list(Rle(sample(3L, 9, replace=TRUE)) * 11L,
++               Rle(sample(3L, 15, replace=TRUE)))
+> ## Not run: 
+> ##D   RleArray(data2)  # error! (cannot infer the dim)
+> ## End(Not run)
+> RleArray(data2, dim=c(4, 6))
+<4 x 6> matrix of class RleMatrix and type "integer":
+     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]   22   22   22    1    3    3
+[2,]   22   22    3    3    2    2
+[3,]   33   22    1    1    3    3
+[4,]   11   33    3    2    2    1
+> 
+> ## From an RleList object:
+> data <- RleList(data)
+> M2c <- RleArray(data)
+> A3c <- RleArray(data, dim=c(25, 6, 2))
+> M4c <- RleArray(data, dim=c(25, 12), dimnames=list(LETTERS[1:25], NULL))
+> 
+> data2 <- RleList(data2)
+> ## Not run: 
+> ##D   RleArray(data2)  # error! (cannot infer the dim)
+> ## End(Not run)
+> RleArray(data2, dim=4:2)
+<4 x 3 x 2> array of class RleArray and type "integer":
+,,1
+     [,1] [,2] [,3]
+[1,]   22   22   22
+[2,]   22   22    3
+[3,]   33   22    1
+[4,]   11   33    3
+
+,,2
+     [,1] [,2] [,3]
+[1,]    1    3    3
+[2,]    3    2    2
+[3,]    1    3    3
+[4,]    2    2    1
+
+> 
+> ## Sanity checks:
+> data0 <- as.vector(unlist(DF, use.names=FALSE))
+> m2 <- matrix(data0, ncol=3, dimnames=dimnames(M2))
+> stopifnot(identical(m2, as.matrix(M2)))
+> rownames(m2) <- NULL
+> stopifnot(identical(m2, as.matrix(M2b)))
+> stopifnot(identical(m2, as.matrix(M2c)))
+> a3 <- array(data0, dim=c(25, 6, 2))
+> stopifnot(identical(a3, as.array(A3)))
+> stopifnot(identical(a3, as.array(A3b)))
+> stopifnot(identical(a3, as.array(A3c)))
+> m4 <- matrix(data0, ncol=12, dimnames=dimnames(M4))
+> stopifnot(identical(m4, as.matrix(M4)))
+> stopifnot(identical(m4, as.matrix(M4b)))
+> stopifnot(identical(m4, as.matrix(M4c)))
+> 
+> ## ---------------------------------------------------------------------
+> ## C. COERCING FROM RleList OR DataFrame TO RleMatrix
+> ## ---------------------------------------------------------------------
+> 
+> ## Coercing an RleList object to RleMatrix only works if all the list
+> ## elements in the former have the same length.
+> x <- RleList(A=Rle(sample(3L, 20, replace=TRUE)),
++              B=Rle(sample(3L, 20, replace=TRUE)))
+> M <- as(x, "RleMatrix")
+> stopifnot(identical(x, as(M, "RleList")))
+> 
+> x <- DataFrame(A=x[[1]], B=x[[2]], row.names=letters[1:20])
+> M <- as(x, "RleMatrix")
+> stopifnot(identical(x, as(M, "DataFrame")))
+> 
+> ## ---------------------------------------------------------------------
+> ## D. CONSTRUCTING A LARGE RleArray OBJECT
+> ## ---------------------------------------------------------------------
+> 
+> ## The RleArray() constructor does not accept a "long" Rle object (i.e.
+> ## an object of length > .Machine$integer.max) at the moment:
+> ## Not run: 
+> ##D   RleArray(Rle(5, 3e9), dim=c(3, 1e9))  # error!
+> ## End(Not run)
+> 
+> ## The workaround is to supply a list of Rle objects instead:
+> 
+> toy_Rle <- function() {
++   run_lens <- c(sample(4), sample(rep(c(1:19, 40) * 3, 6e4)), sample(4))
++   run_vals <- sample(700, length(run_lens), replace=TRUE) / 5
++   Rle(run_vals, run_lens)
++ }
+> rle_list <- lapply(1:80, function(j) toy_Rle())  # takes about 20 sec.
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘run_unitTests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘02-Implementing_a_backend.Rmd’ using ‘UTF-8’... OK
+  ‘01-Working_with_large_arrays.Rnw’ using ‘UTF-8’... OK
+  ‘03-DelayedArray_HDF5Array_update.Rnw’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 3 WARNINGs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/DelayedArray.Rcheck/00check.log’
+for details.
+

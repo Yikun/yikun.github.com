@@ -1,0 +1,160 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:TPP.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings TPP_3.27.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/TPP.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘TPP/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘TPP’ version ‘3.27.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘TPP’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is 12.8Mb
+  sub-directories of 1Mb or more:
+    data           1.9Mb
+    example_data   8.0Mb
+    test_data      1.9Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... NOTE
+Problems with news in ‘NEWS’:
+  Cannot process chunk/lines:
+    Updated package vignette.
+  Cannot process chunk/lines:
+    Removed unit test that causes R CMD check to crash  since the latest update of package 'testthat'.
+  Cannot process chunk/lines:
+    Fixed bug in plotColors for the case when no comparisons are specified
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Namespace in Imports field not imported from: ‘broom’
+  All declared Imports should be used.
+Unexported objects imported by ':::' calls:
+  ‘doParallel:::.options’ ‘mefa:::rep.data.frame’
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+File ‘TPP/R/TPP.R’:
+  .onLoad calls:
+    packageStartupMessage(msgText, "\n")
+
+See section ‘Good practice’ in '?.onAttach'.
+
+fitSigmoidCCR: no visible global function definition for
+  ‘capture.output’
+modelSelector: no visible binding for global variable ‘testHypothesis’
+modelSelector: no visible binding for global variable ‘fitMetric’
+modelSelector: no visible binding for global variable ‘minMetric’
+plot_fSta_distribution: no visible binding for global variable
+  ‘..density..’
+plot_pVal_distribution: no visible binding for global variable
+  ‘..density..’
+tpp2dCreateTPPTRreference: no visible binding for global variable
+  ‘meltcurve_plot’
+tpp2dCreateTPPTRreference: no visible binding for global variable
+  ‘Protein_ID’
+tpp2dExport: no visible binding for global variable ‘temperature’
+tpp2dImport: no visible binding for global variable ‘temperature’
+tpp2dNormalize: no visible binding for global variable ‘temperature’
+Undefined global functions or variables:
+  ..density.. Protein_ID capture.output fitMetric meltcurve_plot
+  minMetric temperature testHypothesis
+Consider adding
+  importFrom("utils", "capture.output")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                                 user system elapsed
+analyzeTPPTR                   38.090  0.183  38.293
+tpptrSplineFitAndTest          27.232  0.217  34.823
+tpp2dCreateDRplots             17.653  0.090  17.744
+tpp2dSplineFitAndTest          16.495  0.149  16.644
+tpptrFTest                     16.232  0.186  23.966
+tpptrPlotSplines               16.144  0.150  23.664
+tppQCPlotsCorrelateExperiments 15.075  0.108  15.194
+tpp2dMerge2dRef                 8.167  0.131   8.297
+analyze2DTPP                    7.735  0.168   7.901
+tppccrPlotCurves                7.684  0.077   7.767
+tpp2dCurveFit                   7.585  0.074   7.658
+analyzeTPPCCR                   5.041  0.113   5.153
+tppccrResultTable               4.893  0.148   5.058
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  
+  [[3]]
+  
+  [[1]]
+  
+  [ FAIL 1 | WARN 37 | SKIP 0 | PASS 299 ]
+  
+  ══ Failed tests ════════════════════════════════════════════════════════════════
+  ── Failure ('test_extract_fit_factors.R:68'): allOk_values_H1 ──────────────────
+  `fctrs` not equal to `ref`.
+  Attributes: < Length mismatch: comparison on first 2 components >
+  
+  [ FAIL 1 | WARN 37 | SKIP 0 | PASS 299 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘NPARC_analysis_of_TPP_TR_data.Rnw’ using ‘UTF-8’... OK
+  ‘TPP_introduction_1D.Rnw’ using ‘UTF-8’... OK
+  ‘TPP_introduction_2D.Rnw’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/TPP.Rcheck/00check.log’
+for details.
+

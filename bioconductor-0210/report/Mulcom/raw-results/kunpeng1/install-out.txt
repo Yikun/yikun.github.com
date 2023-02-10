@@ -1,0 +1,43 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL Mulcom
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘Mulcom’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c mulLibs.cc -o mulLibs.o
+mulLibs.cc: In function ‘void Single_SimulationC(double*, double*, double*, double*, double*, double*, int*, int*, int*, int*, int*)’:
+mulLibs.cc:708:17: warning: statement has no effect [-Wunused-value]
+  708 |                 current_cluster ;
+      |                 ^~~~~~~~~~~~~~~
+mulLibs.cc: In function ‘void Complete_SimulationC(double*, int*, double*, double*, int*, int*, int*, int*, int*)’:
+mulLibs.cc:1022:45: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1022 |                         for ( int i = 0 ; i < sss2.size() ; i++ ) {
+      |                                           ~~^~~~~~~~~~~~~
+mulLibs.cc:1023:53: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+ 1023 |                                 for ( int j = 0 ; j < harmonic_means.size() ; j++ ) {
+      |                                                   ~~^~~~~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o Mulcom.so mulLibs.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-Mulcom/00new/Mulcom/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (Mulcom)

@@ -1,0 +1,434 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:GenomicFeatures.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings GenomicFeatures_1.51.4.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/GenomicFeatures.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘GenomicFeatures/DESCRIPTION’ ... OK
+* this is package ‘GenomicFeatures’ version ‘1.51.4’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  'BiocGenerics', 'S4Vectors', 'IRanges', 'GenomeInfoDb',
+  'GenomicRanges', 'AnnotationDbi'
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘GenomicFeatures’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+':::' call which should be '::': ‘rtracklayer:::tableNames’
+  See the note in ?`:::` about the use of this operator.
+Unexported objects imported by ':::' calls:
+  ‘AnnotationDbi:::.getMetaValue’ ‘AnnotationDbi:::.valid.colnames’
+  ‘AnnotationDbi:::.valid.metadata.table’
+  ‘AnnotationDbi:::.valid.table.colnames’ ‘AnnotationDbi:::dbEasyQuery’
+  ‘AnnotationDbi:::dbQuery’ ‘AnnotationDbi:::smartKeys’
+  ‘BiocGenerics:::testPackage’ ‘GenomeInfoDb:::check_tax_id’
+  ‘GenomeInfoDb:::getSeqlevelsReplacementMode’
+  ‘GenomeInfoDb:::lookup_organism_by_tax_id’
+  ‘GenomeInfoDb:::lookup_tax_id_by_organism’
+  ‘GenomeInfoDb:::make_circ_flags_from_circ_seqs’
+  ‘GenomeInfoDb:::normarg_new2old’
+  ‘GenomicRanges:::unsafe.transcriptLocs2refLocs’
+  ‘GenomicRanges:::unsafe.transcriptWidths’
+  ‘IRanges:::regroupBySupergroup’ ‘S4Vectors:::V_recycle’
+  ‘S4Vectors:::anyMissingOrOutside’ ‘S4Vectors:::decodeRle’
+  ‘S4Vectors:::extract_data_frame_rows’ ‘S4Vectors:::quick_togroup’
+  ‘biomaRt:::martBM’ ‘biomaRt:::martDataset’ ‘biomaRt:::martHost’
+  ‘rtracklayer:::resourceDescription’
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... WARNING
+checkRd: (5) FeatureDb-class.Rd:31-34: \item in \describe must have non-empty label
+checkRd: (5) TxDb-class.Rd:30-33: \item in \describe must have non-empty label
+checkRd: (5) TxDb-class.Rd:34-39: \item in \describe must have non-empty label
+checkRd: (5) TxDb-class.Rd:40-43: \item in \describe must have non-empty label
+checkRd: (5) TxDb-class.Rd:44-52: \item in \describe must have non-empty label
+checkRd: (5) TxDb-class.Rd:53-59: \item in \describe must have non-empty label
+checkRd: (5) TxDb-class.Rd:60-65: \item in \describe must have non-empty label
+checkRd: (5) TxDb-class.Rd:66-71: \item in \describe must have non-empty label
+checkRd: (5) TxDb-class.Rd:72-80: \item in \describe must have non-empty label
+checkRd: (5) select-methods.Rd:21-25: \item in \describe must have non-empty label
+checkRd: (5) select-methods.Rd:26-50: \item in \describe must have non-empty label
+checkRd: (5) select-methods.Rd:51-55: \item in \describe must have non-empty label
+checkRd: (5) select-methods.Rd:56-62: \item in \describe must have non-empty label
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘GenomicFeatures-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: mapToTranscripts
+> ### Title: Map range coordinates between transcripts and genome space
+> ### Aliases: coordinate-mapping mapToTranscripts
+> ###   mapToTranscripts,GenomicRanges,GenomicRanges-method
+> ###   mapToTranscripts,GenomicRanges,GRangesList-method
+> ###   mapToTranscripts,ANY,TxDb-method pmapToTranscripts
+> ###   pmapToTranscripts,GenomicRanges,GenomicRanges-method
+> ###   pmapToTranscripts,GenomicRanges,GRangesList-method
+> ###   pmapToTranscripts,GRangesList,GRangesList-method mapFromTranscripts
+> ###   mapFromTranscripts,GenomicRanges,GenomicRanges-method
+> ###   mapFromTranscripts,GenomicRanges,GRangesList-method
+> ###   pmapFromTranscripts
+> ###   pmapFromTranscripts,IntegerRanges,GenomicRanges-method
+> ###   pmapFromTranscripts,IntegerRanges,GRangesList-method
+> ###   pmapFromTranscripts,GenomicRanges,GenomicRanges-method
+> ###   pmapFromTranscripts,GenomicRanges,GRangesList-method
+> ### Keywords: methods utilities
+> 
+> ### ** Examples
+> 
+> ## ---------------------------------------------------------------------
+> ## A. Basic Use: Conversion between CDS and Exon coordinates and the
+> ##    genome
+> ## ---------------------------------------------------------------------
+> 
+> ## Gene "Dgkb" has ENTREZID "217480":
+> library(org.Mm.eg.db)
+
+> Dgkb_geneid <- get("Dgkb", org.Mm.egSYMBOL2EG)
+> 
+> ## The gene is on the positive strand, chromosome 12:
+> library(TxDb.Mmusculus.UCSC.mm10.knownGene)
+> txdb <- TxDb.Mmusculus.UCSC.mm10.knownGene
+> tx_by_gene <- transcriptsBy(txdb, by="gene")
+> Dgkb_transcripts <- tx_by_gene[[Dgkb_geneid]]
+> Dgkb_transcripts  # all 7 Dgkb transcripts are on chr12, positive strand
+GRanges object with 7 ranges and 2 metadata columns:
+      seqnames            ranges strand |     tx_id              tx_name
+         <Rle>         <IRanges>  <Rle> | <integer>          <character>
+  [1]    chr12 37817726-37982010      + |     94103 ENSMUST00000222337.1
+  [2]    chr12 37880174-38136840      + |     94104 ENSMUST00000221176.1
+  [3]    chr12 37880337-38632119      + |     94105 ENSMUST00000220990.1
+  [4]    chr12 37880547-38580923      + |     94106 ENSMUST00000221540.1
+  [5]    chr12 37880705-38634239      + |     94107 ENSMUST00000040500.8
+  [6]    chr12 37880716-38175084      + |     94108 ENSMUST00000221098.1
+  [7]    chr12 38019180-38174661      + |     94111 ENSMUST00000220606.1
+  -------
+  seqinfo: 66 sequences (1 circular) from mm10 genome
+> 
+> ## To map coordinates from local CDS or exon space to genome 
+> ## space use mapFromTranscripts().
+> 
+> ## When mapping CDS coordinates to genome space the 'transcripts'
+> ## argument is the collection of CDS regions by transcript.
+> coord <- GRanges("chr12", IRanges(4, width=1))
+> ## Get the names of the transcripts in the gene:
+> Dgkb_tx_names <- mcols(Dgkb_transcripts)$tx_name
+> Dgkb_tx_names
+[1] "ENSMUST00000222337.1" "ENSMUST00000221176.1" "ENSMUST00000220990.1"
+[4] "ENSMUST00000221540.1" "ENSMUST00000040500.8" "ENSMUST00000221098.1"
+[7] "ENSMUST00000220606.1"
+> ## Use these names to isolate the region of interest:
+> cds_by_tx <- cdsBy(txdb, "tx", use.names=TRUE)
+> Dgkb_cds_by_tx <- cds_by_tx[intersect(Dgkb_tx_names, names(cds_by_tx))]
+> ## Dgkb CDS grouped by transcript (no-CDS transcripts omitted):
+> Dgkb_cds_by_tx
+GRangesList object of length 4:
+$ENSMUST00000222337.1
+GRanges object with 1 range and 3 metadata columns:
+      seqnames            ranges strand |    cds_id    cds_name exon_rank
+         <Rle>         <IRanges>  <Rle> | <integer> <character> <integer>
+  [1]    chr12 37981941-37982010      + |    166108        <NA>         2
+  -------
+  seqinfo: 66 sequences (1 circular) from mm10 genome
+
+$ENSMUST00000221176.1
+GRanges object with 9 ranges and 3 metadata columns:
+      seqnames            ranges strand |    cds_id    cds_name exon_rank
+         <Rle>         <IRanges>  <Rle> | <integer> <character> <integer>
+  [1]    chr12 37981941-37982010      + |    166108        <NA>         2
+  [2]    chr12 38084167-38084243      + |    166109        <NA>         3
+  [3]    chr12 38087573-38087593      + |    166110        <NA>         4
+  [4]    chr12 38100364-38100517      + |    166111        <NA>         5
+  [5]    chr12 38114533-38114673      + |    166112        <NA>         6
+  [6]    chr12 38120606-38120655      + |    166113        <NA>         7
+  [7]    chr12 38124169-38124243      + |    166114        <NA>         8
+  [8]    chr12 38127264-38127383      + |    166115        <NA>         9
+  [9]    chr12 38136541-38136681      + |    166117        <NA>        10
+  -------
+  seqinfo: 66 sequences (1 circular) from mm10 genome
+
+...
+<2 more elements>
+> lengths(Dgkb_cds_by_tx)  # nb of CDS per transcript
+ENSMUST00000222337.1 ENSMUST00000221176.1 ENSMUST00000220990.1 
+                   1                    9                   24 
+ENSMUST00000040500.8 
+                  24 
+> ## A requirement for mapping from transcript space to genome space
+> ## is that seqnames in 'x' match the names in 'transcripts'.
+> names(Dgkb_cds_by_tx) <- rep(seqnames(coord), length(Dgkb_cds_by_tx))
+> ## There are 6 results, one for each transcript.
+> mapFromTranscripts(coord, Dgkb_cds_by_tx)
+GRanges object with 4 ranges and 2 metadata columns:
+      seqnames    ranges strand |     xHits transcriptsHits
+         <Rle> <IRanges>  <Rle> | <integer>       <integer>
+  [1]    chr12  37981944      + |         1               1
+  [2]    chr12  37981944      + |         1               2
+  [3]    chr12  37981944      + |         1               3
+  [4]    chr12  37981944      + |         1               4
+  -------
+  seqinfo: 66 sequences from an unspecified genome; no seqlengths
+> 
+> ## To map exon coordinates to genome space the 'transcripts'
+> ## argument is the collection of exon regions by transcript.
+> coord <- GRanges("chr12", IRanges(100, width=1))
+> ex_by_tx <- exonsBy(txdb, "tx", use.names=TRUE)
+> Dgkb_ex_by_tx <- ex_by_tx[Dgkb_tx_names]
+> names(Dgkb_ex_by_tx) <- rep(seqnames(coord), length(Dgkb_ex_by_tx))
+> ## Again the output has 6 results, one for each transcript.
+> mapFromTranscripts(coord, Dgkb_ex_by_tx)
+GRanges object with 7 ranges and 2 metadata columns:
+      seqnames    ranges strand |     xHits transcriptsHits
+         <Rle> <IRanges>  <Rle> | <integer>       <integer>
+  [1]    chr12  37817825      + |         1               1
+  [2]    chr12  37880273      + |         1               2
+  [3]    chr12  37981772      + |         1               3
+  [4]    chr12  37880646      + |         1               4
+  [5]    chr12  37880804      + |         1               5
+  [6]    chr12  37880815      + |         1               6
+  [7]    chr12  38019279      + |         1               7
+  -------
+  seqinfo: 66 sequences from an unspecified genome; no seqlengths
+> 
+> ## To go the reverse direction and map from genome space to
+> ## local CDS or exon space, use mapToTranscripts().
+> 
+> ## Genomic position 37981944 maps to CDS position 4:
+> coord <- GRanges("chr12", IRanges(37981944, width=1))
+> mapToTranscripts(coord, Dgkb_cds_by_tx)
+GRanges object with 4 ranges and 2 metadata columns:
+      seqnames    ranges strand |     xHits transcriptsHits
+         <Rle> <IRanges>  <Rle> | <integer>       <integer>
+  [1]    chr12         4      + |         1               1
+  [2]    chr12         4      + |         1               2
+  [3]    chr12         4      + |         1               3
+  [4]    chr12         4      + |         1               4
+  -------
+  seqinfo: 1 sequence from an unspecified genome
+> 
+> ## Genomic position 37880273 maps to exon position 100:
+> coord <- GRanges("chr12", IRanges(37880273, width=1))
+> mapToTranscripts(coord, Dgkb_ex_by_tx)
+GRanges object with 1 range and 2 metadata columns:
+      seqnames    ranges strand |     xHits transcriptsHits
+         <Rle> <IRanges>  <Rle> | <integer>       <integer>
+  [1]    chr12       100      + |         1               2
+  -------
+  seqinfo: 1 sequence from an unspecified genome
+> 
+> 
+> ## The following examples use more than 2GB of memory, which is more
+> ## than what 32-bit Windows can handle:
+> is_32bit_windows <- .Platform$OS.type == "windows" &&
++                     .Platform$r_arch == "i386"
+> if (!is_32bit_windows) {
++ ## ---------------------------------------------------------------------
++ ## B. Map sequence locations in exons to the genome
++ ## ---------------------------------------------------------------------
++ 
++ ## NAGNAG alternative splicing plays an essential role in biological
++ ## processes and represents a highly adaptable system for
++ ## posttranslational regulation of gene function. The majority of
++ ## NAGNAG studies largely focus on messenger RNA. A study by Sun,
++ ## Lin, and Yan (http://www.hindawi.com/journals/bmri/2014/736798/)
++ ## demonstrated that NAGNAG splicing is also operative in large
++ ## intergenic noncoding RNA (lincRNA). One finding of interest was
++ ## that linc-POLR3G-10 exhibited two NAGNAG acceptors located in two
++ ## distinct transcripts: TCONS_00010012 and TCONS_00010010.
++ 
++ ## Extract the exon coordinates of TCONS_00010012 and TCONS_00010010:
++ lincrna <- c("TCONS_00010012", "TCONS_00010010")
++ library(TxDb.Hsapiens.UCSC.hg19.lincRNAsTranscripts)
++ txdb <- TxDb.Hsapiens.UCSC.hg19.lincRNAsTranscripts
++ exons <- exonsBy(txdb, by="tx", use.names=TRUE)[lincrna]
++ exons
++ 
++ ## The two NAGNAG acceptors were identified in the upstream region of
++ ## the fourth and fifth exons located in TCONS_00010012.
++ ## Extract the sequences for transcript TCONS_00010012:
++ library(BSgenome.Hsapiens.UCSC.hg19)
++ genome <- BSgenome.Hsapiens.UCSC.hg19
++ exons_seq <- getSeq(genome, exons[[1]])
++ 
++ ## TCONS_00010012 has 4 exons:
++ exons_seq
++ 
++ ## The most common triplet among the lincRNA sequences was CAG. Identify
++ ## the location of this pattern in all exons.
++ cag_loc <- vmatchPattern("CAG", exons_seq)
++ 
++ ## Convert the first occurance of CAG in each exon back to genome
++ ## coordinates.
++ first_loc <- do.call(c, sapply(cag_loc, "[", 1, simplify=TRUE))
++ pmapFromTranscripts(first_loc, exons[[1]])
++ 
++ ## ---------------------------------------------------------------------
++ ## C. Map dbSNP variants to CDS or cDNA coordinates
++ ## ---------------------------------------------------------------------
++ 
++ ## The GIPR gene encodes a G-protein coupled receptor for gastric
++ ## inhibitory polypeptide (GIP). Originally GIP was identified to
++ ## inhibited gastric acid secretion and gastrin release but was later
++ ## demonstrated to stimulate insulin release in the presence of elevated
++ ## glucose.
++ 
++ ## In this example 5 SNPs located in the GIPR gene are mapped to cDNA
++ ## coordinates. A list of SNPs in GIPR can be downloaded from dbSNP or
++ ## NCBI.
++ rsids <- c("rs4803846", "rs139322374", "rs7250736", "rs7250754",
++            "rs9749185")
++ 
++ ## Extract genomic coordinates with a SNPlocs package.
++ library(SNPlocs.Hsapiens.dbSNP144.GRCh38)
++ snps <- snpsById(SNPlocs.Hsapiens.dbSNP144.GRCh38, rsids)
++ 
++ ## Gene regions of GIPR can be extracted from a TxDb package of
++ ## compatible build. The TxDb package uses Entrez gene identifiers
++ ## and GIPR is a gene symbol. Let's first lookup its Entrez gene ID.
++ library(org.Hs.eg.db)
++ GIPR_geneid <- get("GIPR", org.Hs.egSYMBOL2EG)
++ 
++ ## The transcriptsBy() extractor returns a range for each transcript that
++ ## includes the UTR and exon regions (i.e., cDNA).
++ library(TxDb.Hsapiens.UCSC.hg38.knownGene)
++ txdb <- TxDb.Hsapiens.UCSC.hg38.knownGene
++ tx_by_gene <- transcriptsBy(txdb, "gene")
++ GIPR_transcripts <- tx_by_gene[GIPR_geneid]
++ GIPR_transcripts  # all 8 GIPR transcripts are on chr19, positive strand
++ 
++ ## Before mapping, the chromosome names (seqlevels) in the two
++ ## objects must be harmonized. The style is NCBI for 'snps' and
++ ## UCSC for 'GIPR_transcripts'.
++ seqlevelsStyle(snps)
++ seqlevelsStyle(GIPR_transcripts)
++ 
++ ## Modify the style (and genome) in 'snps' to match 'GIPR_transcripts'.
++ seqlevelsStyle(snps) <- seqlevelsStyle(GIPR_transcripts)
++ 
++ ## The 'GIPR_transcripts' object is a GRangesList of length 1. This single
++ ## list element contains the cDNA range for 8 different transcripts. To
++ ## map to each transcript individually 'GIPR_transcripts' must be unlisted
++ ## before mapping.
++ 
++ ## Map all 5 SNPS to all 8 transcripts:
++ mapToTranscripts(snps, unlist(GIPR_transcripts))
++ 
++ ## Map the first SNP to transcript "ENST00000590918.5" and the second to
++ ## "ENST00000263281.7".
++ pmapToTranscripts(snps[1:2], unlist(GIPR_transcripts)[1:2])
++ 
++ ## The cdsBy() extractor returns coding regions by gene or by transcript.
++ ## Extract the coding regions for transcript "ENST00000263281.7".
++ cds <- cdsBy(txdb, "tx", use.names=TRUE)["ENST00000263281.7"]
++ cds
++ 
++ ## The 'cds' object is a GRangesList of length 1 containing all CDS ranges
++ ## for the single transcript "ENST00000263281.7".
++ 
++ ## To map to the concatenated group of ranges leave 'cds' as a GRangesList.
++ mapToTranscripts(snps, cds)
++ 
++ ## Only the second SNP could be mapped. Unlisting the 'cds' object maps
++ ## the SNPs to the individual cds ranges (vs the concatenated range).
++ mapToTranscripts(snps[2], unlist(cds))
++ 
++ ## The location is the same because the SNP hit the first CDS range. If
++ ## the transcript were on the "-" strand the difference in concatenated
++ ## vs non-concatenated position would be more obvious.
++ 
++ ## Change strand:
++ strand(cds) <- strand(snps) <- "-"
++ mapToTranscripts(snps[2], unlist(cds))
++ }
+Loading required package: BSgenome
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: rtracklayer
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘run_unitTests.R’
+ ERROR
+Running the tests in ‘tests/run_unitTests.R’ failed.
+Last 13 lines of output:
+  In addition: Warning messages:
+  1: In .get_cds_IDX(mcols0$type, mcols0$phase) :
+    The "phase" metadata column contains non-NA values for features of type
+    exon. This information was ignored.
+  2: In .get_cds_IDX(mcols0$type, mcols0$phase) :
+    The "phase" metadata column contains non-NA values for features of type
+    stop_codon. This information was ignored.
+  3: In .get_cds_IDX(mcols0$type, mcols0$phase) :
+    The "phase" metadata column contains non-NA values for features of type
+    stop_codon. This information was ignored.
+  4: In (function (seqlevels, genome, new_style)  :
+    cannot switch some hg19's seqlevels from UCSC to NCBI style
+  5: In (function (seqlevels, genome, new_style)  :
+    cannot switch some hg19's seqlevels from UCSC to NCBI style
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘GenomicFeatures.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 1 WARNING, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/GenomicFeatures.Rcheck/00check.log’
+for details.
+

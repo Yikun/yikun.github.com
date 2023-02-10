@@ -1,0 +1,206 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:easyRNASeq.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings easyRNASeq_2.35.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/easyRNASeq.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘easyRNASeq/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘easyRNASeq’ version ‘2.35.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Files named as vignettes but with no recognized vignette engine:
+   ‘inst/doc/01-Introduction.Rmd’
+   ‘inst/doc/02-AnnotParam.Rmd’
+   ‘inst/doc/03-SyntheticTranscripts.Rmd’
+   ‘inst/doc/04-BamParam.Rmd’
+   ‘inst/doc/05-RnaSeqParam.Rmd’
+   ‘inst/doc/06-simpleRNASeq.Rmd’
+   ‘inst/doc/07-cleanUp.Rmd’
+   ‘inst/doc/08-Session-Info.Rmd’
+   ‘inst/doc/09-Acknowledgments.Rmd’
+   ‘inst/doc/10-Foonotes.Rmd’
+   ‘inst/doc/11-Images.Rmd’
+   ‘inst/doc/12-Appendix.Rmd’
+(Is a VignetteBuilder field missing?)
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘easyRNASeq’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Namespace in Imports field not imported from: ‘locfit’
+  All declared Imports should be used.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.parallelize: no visible global function definition for ‘clusterApply’
+Undefined global functions or variables:
+  clusterApply
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in Makefiles ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking include directives in Makefiles ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘easyRNASeq-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: simpleRNASeq,BamFileList,RnaSeqParam-method
+> ### Title: simpleRNASeq method
+> ### Aliases: simpleRNASeq,BamFileList,RnaSeqParam-method simpleRNASeq
+> ### Keywords: methods
+> 
+> ### ** Examples
+> 
+> 
+> # the data
+> tdir <- tutorialData()
+> annot <- fetchData("Drosophila_melanogaster.BDGP5.77.with-chr.gtf.gz")
+> 
+>  # create the BamFileList, get the BAM and BAI index files from the Bioc cache
+>  filenames <- dir(tdir,pattern="[A,T].*\\.bam$",full.names=TRUE)
+>  indexnames <- sapply(paste0(sub(".*_","",basename(filenames)),".bai"),fetchData)
+>  bamFiles <- getBamFileList(filenames,indexnames)
+> 
+>   # create the AnnotParam
+>   annotParam <- AnnotParam(annot,type="gtf")
+> 
+>   # create the RnaSeqParam
+>   rnaSeqParam <- RnaSeqParam(annotParam=annotParam)
+> 
+>   # get a RangedSummarizedExperiment containing the counts table
+>   sexp <- simpleRNASeq(
++     bamFiles=bamFiles,
++     param=rnaSeqParam,
++     verbose=TRUE
++   )
+==========================
+simpleRNASeq version 2.35.0
+==========================
+Creating a RangedSummarizedExperiment.
+==========================
+Processing the alignments.
+==========================
+Pre-processing 4 BAM files.
+Validating the BAM files.
+Extracted 15 reference sequences information.
+Extracting parameter from 2baec124f7afe7_ACTAGC.bam
+Extracting parameter from 2baec1607f22_TTGCGA.bam
+Extracting parameter from 2baec164bab29e_ATGGCT.bam
+Extracting parameter from 2baec175d93bd9_ACACTG.bam
+Found 4 single-end BAM files.
+Found 0 paired-end BAM files.
+Bam file: 2baec124f7afe7_ACTAGC.bam has reads of length 30bp
+Bam file: 2baec1607f22_TTGCGA.bam has reads of length 30bp
+Bam file: 2baec164bab29e_ATGGCT.bam has reads of length 30bp
+Bam file: 2baec175d93bd9_ACACTG.bam has reads of length 30bp
+Warning in FUN(X[[i]], ...) :
+  Bam file: 2baec124f7afe7_ACTAGC.bam is considered unstranded.
+Warning in FUN(X[[i]], ...) :
+  Bam file: 2baec124f7afe7_ACTAGC.bam Strandedness could not be determined using 14772 regions spanning 1023473 bp on either strand at a 90% cutoff; 76.6 percent appear to be stranded.
+Warning in FUN(X[[i]], ...) :
+  Bam file: 2baec1607f22_TTGCGA.bam is considered unstranded.
+Warning in FUN(X[[i]], ...) :
+  Bam file: 2baec1607f22_TTGCGA.bam Strandedness could not be determined using 19659 regions spanning 1381886 bp on either strand at a 90% cutoff; 73.37 percent appear to be stranded.
+Warning in FUN(X[[i]], ...) :
+  Bam file: 2baec164bab29e_ATGGCT.bam is considered unstranded.
+Warning in FUN(X[[i]], ...) :
+  Bam file: 2baec164bab29e_ATGGCT.bam Strandedness could not be determined using 18462 regions spanning 1280337 bp on either strand at a 90% cutoff; 74.26 percent appear to be stranded.
+Warning in FUN(X[[i]], ...) :
+  Bam file: 2baec175d93bd9_ACACTG.bam is considered unstranded.
+Warning in FUN(X[[i]], ...) :
+  Bam file: 2baec175d93bd9_ACACTG.bam Strandedness could not be determined using 18615 regions spanning 1300192 bp on either strand at a 90% cutoff; 73.67 percent appear to be stranded.
+Warning in simpleRNASeq(bamFiles = bamFiles, param = rnaSeqParam, verbose = TRUE) :
+  You provided an incorrect BAM parameter; 'paired' should be set to 'FALSE'.
+Warning in simpleRNASeq(bamFiles = bamFiles, param = rnaSeqParam, verbose = TRUE) :
+  As of version 2.15.5, easyRNASeq assumes that, if the data is strand specific, the sequencing was done using a protocol such as the Illumina TruSeq, where the reverse strand is quantified - i.e. the strandProtocol argument of the BamParam class defaults to 'reverse'.
+Streaming 2baec124f7afe7_ACTAGC.bam
+Read 42698 reads
+Streaming 2baec1607f22_TTGCGA.bam
+Read 60740 reads
+Streaming 2baec164bab29e_ATGGCT.bam
+Read 55414 reads
+Streaming 2baec175d93bd9_ACACTG.bam
+Read 56643 reads
+Bam file: 2baec124f7afe7_ACTAGC.bam has 42698 reads.
+Bam file: 2baec1607f22_TTGCGA.bam has 60740 reads.
+Bam file: 2baec164bab29e_ATGGCT.bam has 55414 reads.
+Bam file: 2baec175d93bd9_ACACTG.bam has 56643 reads.
+==========================
+Processing the annotation
+==========================
+Validating the annotation source
+Read 1000 records
+Validated a datasource of type gtf
+Fetching the annotation
+Retrieving annotation from a gtf datasource
+Warning in readGff3(datasource(obj), quiet = !verbose) :
+  'readGff3' has changed to closed interval conventions!
+Use 'isRightOpen=TRUE' to restore the previous behavior
+that allowed for zero-length features. Alternatively, use
+the readZeroLengthFeaturesGff3 function instead.
+You can turn off this warning by setting 'quiet=TRUE'
+Read 471303 records
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘runTests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘simpleRNASeq.Rmd’ using ‘UTF-8’... OK
+  ‘easyRNASeq.Rnw’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/easyRNASeq.Rcheck/00check.log’
+for details.
+

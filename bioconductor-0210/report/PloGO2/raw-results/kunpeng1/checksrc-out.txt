@@ -1,0 +1,157 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:PloGO2.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings PloGO2_1.11.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/PloGO2.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘PloGO2/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘PloGO2’ version ‘1.11.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘PloGO2’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+Children: no visible global function definition for ‘Ontology’
+ExcelToPloGO: no visible binding for global variable ‘Term’
+ExcelToPloGO: no visible binding for global variable ‘Ontology’
+GOGraphWrapper: no visible global function definition for ‘Ontology’
+GOParent: no visible global function definition for ‘Ontology’
+GOTermList: no visible global function definition for ‘Ontology’
+PloGO: no visible global function definition for ‘read.delim’
+PloGO: no visible global function definition for ‘unzip’
+PloGO: no visible global function definition for ‘read.csv’
+PloPathway: no visible global function definition for ‘unzip’
+PloPathway : <anonymous>: no visible global function definition for
+  ‘read.table’
+PloPathway: no visible global function definition for ‘read.csv’
+abundancePlot: no visible binding for global variable ‘eps’
+aggregateAbundance : <anonymous>: no visible global function definition
+  for ‘Term’
+aggregateAbundance : <anonymous>: no visible global function definition
+  for ‘aggregate’
+annotationPlot : <anonymous>: no visible global function definition for
+  ‘Term’
+compareAnnot: no visible global function definition for ‘fisher.test’
+compareAnnot : <anonymous>: no visible global function definition for
+  ‘Term’
+compareAnnot: no visible global function definition for ‘p.adjust’
+countAndAbundance: no visible global function definition for ‘par’
+countAndAbundance: no visible global function definition for ‘barplot’
+countAndAbundance: no visible global function definition for ‘axTicks’
+countAndAbundance: no visible global function definition for ‘axis’
+countAndAbundance: no visible global function definition for ‘title’
+genAnnotationFiles: no visible global function definition for
+  ‘read.csv’
+genAnnotationFiles: no visible global function definition for
+  ‘write.table’
+genWegoFile: no visible global function definition for ‘useMart’
+genWegoFile: no visible global function definition for ‘useDataset’
+genWegoFile: no visible global function definition for ‘getBM’
+genWegoFile: no visible global function definition for ‘aggregate’
+genWegoFile: no visible global function definition for ‘write.table’
+getGoID: no visible binding for global variable ‘Term’
+getUniprotBatch: no visible binding for global variable ‘IDList’
+inGraph: no visible global function definition for ‘nodes’
+plotAbundanceBar: no visible global function definition for ‘par’
+plotAbundanceBar: no visible global function definition for ‘barplot’
+plotAbundanceBar: no visible global function definition for ‘rainbow’
+plotAbundanceBar: no visible global function definition for ‘legend’
+plotMat: no visible global function definition for ‘colorRampPalette’
+plotMat : <anonymous>: no visible global function definition for ‘Term’
+processAnnotFile: no visible global function definition for ‘read.csv’
+processGoFile : <anonymous>: no visible global function definition for
+  ‘Term’
+processGoFile: no visible global function definition for ‘read.csv’
+processPathFile: no visible global function definition for ‘read.csv’
+read.annot.file: no visible global function definition for ‘read.table’
+read.annot.file: no visible global function definition for ‘aggregate’
+tabulateAnnot : <anonymous>: no visible global function definition for
+  ‘Term’
+writeGOannot: no visible global function definition for ‘read.csv’
+writeGOannot: no visible global function definition for ‘write.csv’
+writeGOannot: no visible global function definition for ‘write.table’
+Undefined global functions or variables:
+  IDList Ontology Term aggregate axTicks axis barplot colorRampPalette
+  eps fisher.test getBM legend nodes p.adjust par rainbow read.csv
+  read.delim read.table title unzip useDataset useMart write.csv
+  write.table
+Consider adding
+  importFrom("grDevices", "colorRampPalette", "rainbow")
+  importFrom("graphics", "axTicks", "axis", "barplot", "legend", "par",
+             "title")
+  importFrom("stats", "aggregate", "fisher.test", "p.adjust")
+  importFrom("utils", "read.csv", "read.delim", "read.table", "unzip",
+             "write.csv", "write.table")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking R/sysdata.rda ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                    user system elapsed
+PloGO             53.845  0.645  54.626
+writeAnnotation   28.741  0.104  28.847
+abundancePlot     27.937  0.319  28.257
+processAnnotation 26.521  0.132  26.672
+getGoID           26.220  0.132  26.354
+processGoFile     15.505  0.052  15.558
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘PloGO2_vignette.Rnw’... OK
+  ‘PloGO2_with_WGNCA_vignette.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/PloGO2.Rcheck/00check.log’
+for details.
+
+

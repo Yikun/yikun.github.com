@@ -1,0 +1,46 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL celda
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘celda’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppEigen/include' -I/usr/local/include   -fopenmp  -fPIC  -g -O2  -Wall -c DecontX.cpp -o DecontX.o
+DecontX.cpp: In function ‘Eigen::SparseMatrix<double, 0, int> calculateNativeMatrix(const Eigen::MappedSparseMatrix<double>&, const NumericVector&, const NumericMatrix&, const NumericMatrix&, const IntegerVector&, const double&)’:
+DecontX.cpp:321:10: warning: variable ‘x’ set but not used [-Wunused-but-set-variable]
+  321 |   double x;
+      |          ^
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppEigen/include' -I/usr/local/include   -fopenmp  -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppEigen/include' -I/usr/local/include   -fopenmp  -fPIC  -g -O2  -Wall -c cG_calcGibbsProbY.cpp -o cG_calcGibbsProbY.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppEigen/include' -I/usr/local/include   -fopenmp  -fPIC  -g -O2  -Wall -c eigenMatMultInt.cpp -o eigenMatMultInt.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppEigen/include' -I/usr/local/include   -fopenmp  -fPIC  -g -O2  -Wall -c matrixNorm.cpp -o matrixNorm.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c matrixSums.c -o matrixSums.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppEigen/include' -I/usr/local/include   -fopenmp  -fPIC  -g -O2  -Wall -c matrixSumsSparse.cpp -o matrixSumsSparse.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppEigen/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c perplexity.c -o perplexity.o
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o celda.so DecontX.o RcppExports.o cG_calcGibbsProbY.o eigenMatMultInt.o matrixNorm.o matrixSums.o matrixSumsSparse.o perplexity.o -fopenmp -llapack -L/home/biocbuild/bbs-3.17-bioc/R/lib -lRblas -lgfortran -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-celda/00new/celda/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (celda)
