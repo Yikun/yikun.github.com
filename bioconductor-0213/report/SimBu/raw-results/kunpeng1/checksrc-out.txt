@@ -1,0 +1,228 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:SimBu.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings SimBu_1.1.3.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/SimBu.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘SimBu/DESCRIPTION’ ... OK
+* this is package ‘SimBu’ version ‘1.1.3’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .BBSoptions
+  .pre-commit-config.yaml
+  .prettierignore
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘SimBu’ can be installed ... NOTE
+Found the following notes/warnings:
+  Non-staged installation was used
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/SimBu.Rcheck/00install.out’ for details.
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in shell scripts ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘SimBu-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: dataset_h5ad
+> ### Title: Build SummarizedExperiment using a h5ad file for the counts
+> ### Aliases: dataset_h5ad
+> 
+> ### ** Examples
+> 
+> h5 <- system.file("extdata", "anndata.h5ad", package = "SimBu")
+> ds_h5ad <- SimBu::dataset_h5ad(
++   h5ad_file_counts = h5,
++   name = "h5ad_dataset",
++   cell_id_col = "id", # this will use the 'id' column of the metadata as cell identifiers
++   cell_type_col = "group", # this will use the 'group' column of the metadata as cell type info
++   cells_in_obs = TRUE
++ ) # in case your cell information is stored in the var layer, switch to FALSE
+Warning in check_forbidden_install("Python packages") :
+  cannot install Python packages during R CMD check
++ '/home/biocbuild/.cache/R/basilisk/1.11.2/0/bin/conda' 'create' '--yes' '--prefix' '/home/biocbuild/.cache/R/basilisk/1.11.2/SimBu/1.1.3/SimBu_env_1_1_1' 'python=3.9' '--quiet' '-c' 'conda-forge'
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/.cache/R/basilisk/1.11.2/SimBu/1.1.3/SimBu_env_1_1_1
+
+  added / updated specs:
+    - python=3.9
+
+
+The following NEW packages will be INSTALLED:
+
+  _openmp_mutex      conda-forge/linux-aarch64::_openmp_mutex-4.5-2_gnu
+  bzip2              conda-forge/linux-aarch64::bzip2-1.0.8-hf897c2e_4
+  ca-certificates    conda-forge/linux-aarch64::ca-certificates-2022.12.7-h4fd8a4c_0
+  ld_impl_linux-aar~ conda-forge/linux-aarch64::ld_impl_linux-aarch64-2.40-h2d8c526_0
+  libffi             conda-forge/linux-aarch64::libffi-3.4.2-h3557bc0_5
+  libgcc-ng          conda-forge/linux-aarch64::libgcc-ng-12.2.0-h607ecd0_19
+  libgomp            conda-forge/linux-aarch64::libgomp-12.2.0-h607ecd0_19
+  libnsl             conda-forge/linux-aarch64::libnsl-2.0.0-hf897c2e_0
+  libsqlite          conda-forge/linux-aarch64::libsqlite-3.40.0-hf9034f9_0
+  libuuid            conda-forge/linux-aarch64::libuuid-2.32.1-hf897c2e_1000
+  libzlib            conda-forge/linux-aarch64::libzlib-1.2.13-h4e544f5_4
+  ncurses            conda-forge/linux-aarch64::ncurses-6.3-headf329_1
+  openssl            conda-forge/linux-aarch64::openssl-3.0.8-hb4cce97_0
+  pip                conda-forge/noarch::pip-23.0-pyhd8ed1ab_0
+  python             conda-forge/linux-aarch64::python-3.9.16-hb363c5e_0_cpython
+  readline           conda-forge/linux-aarch64::readline-8.1.2-h38e3740_0
+  setuptools         conda-forge/noarch::setuptools-67.1.0-pyhd8ed1ab_0
+  tk                 conda-forge/linux-aarch64::tk-8.6.12-hd8af866_0
+  tzdata             conda-forge/noarch::tzdata-2022g-h191b570_0
+  wheel              conda-forge/noarch::wheel-0.38.4-pyhd8ed1ab_0
+  xz                 conda-forge/linux-aarch64::xz-5.2.6-h9cdd2b7_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
++ '/home/biocbuild/.cache/R/basilisk/1.11.2/0/bin/conda' 'install' '--yes' '--prefix' '/home/biocbuild/.cache/R/basilisk/1.11.2/SimBu/1.1.3/SimBu_env_1_1_1' 'python=3.9'
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/.cache/R/basilisk/1.11.2/SimBu/1.1.3/SimBu_env_1_1_1
+
+  added / updated specs:
+    - python=3.9
+
+
+The following packages will be UPDATED:
+
+  ca-certificates    conda-forge::ca-certificates-2022.12.~ --> pkgs/main::ca-certificates-2023.01.10-hd43f75c_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==> WARNING: A newer version of conda exists. <==
+  current version: 4.12.0
+  latest version: 23.1.0
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
++ '/home/biocbuild/.cache/R/basilisk/1.11.2/0/bin/conda' 'install' '--yes' '--prefix' '/home/biocbuild/.cache/R/basilisk/1.11.2/SimBu/1.1.3/SimBu_env_1_1_1' '-c' 'conda-forge' 'python=3.9' 'python=3.9' 'anndata=0.7.6' 'h5py=3.2.1' 'hdf5=1.10.6' 'natsort=7.1.1' 'numpy=1.20.2' 'packaging=20.9' 'pandas=1.2.4' 'scipy=1.6.3' 'sqlite=3.35.5'
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with initial frozen solve. Retrying with flexible solve.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... failed with initial frozen solve. Retrying with flexible solve.
+
+PackagesNotFoundError: The following packages are not available from current channels:
+
+  - anndata=0.7.6
+
+Current channels:
+
+  - https://conda.anaconda.org/conda-forge/linux-aarch64
+  - https://conda.anaconda.org/conda-forge/noarch
+  - https://repo.anaconda.com/pkgs/main/linux-aarch64
+  - https://repo.anaconda.com/pkgs/main/noarch
+  - https://repo.anaconda.com/pkgs/r/linux-aarch64
+  - https://repo.anaconda.com/pkgs/r/noarch
+
+To search for alternate channels that may provide the conda package you're
+looking for, navigate to
+
+    https://anaconda.org
+
+and use the search bar at the top of the page.
+
+
+Error: one or more Python packages failed to install [error code 1]
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+       ▆
+    1. ├─testthat::expect_s4_class(...) at test_dataset.R:77:2
+    2. │ └─testthat::quasi_label(enquo(object), arg = "object")
+    3. │   └─rlang::eval_bare(expr, quo_get_env(quo))
+    4. └─SimBu::dataset_h5ad(...)
+    5.   └─SimBu:::h5ad_to_adata(h5ad_file_counts, cells_in_obs)
+    6.     └─basilisk::basiliskStart(SimBu_env)
+    7.       └─basilisk::obtainEnvironmentPath(env)
+    8.         └─basilisk::setupBasiliskEnv(...)
+    9.           └─reticulate::conda_install(...)
+   10.             └─reticulate:::stopf(fmt, result)
+  
+  [ FAIL 1 | WARN 1 | SKIP 0 | PASS 28 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘SimBu.Rmd’ using ‘UTF-8’... OK
+  ‘sfaira_vignette.Rmd’ using ‘UTF-8’... OK
+  ‘simulator_scaling_factors.Rmd’ using ‘UTF-8’... OK
+  ‘simulator_input_output.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/SimBu.Rcheck/00check.log’
+for details.
+

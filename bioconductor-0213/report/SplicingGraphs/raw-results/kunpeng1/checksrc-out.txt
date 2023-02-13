@@ -1,0 +1,445 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:SplicingGraphs.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings SplicingGraphs_1.39.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/SplicingGraphs.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘SplicingGraphs/DESCRIPTION’ ... OK
+* this is package ‘SplicingGraphs’ version ‘1.39.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘SplicingGraphs’ can be installed ... WARNING
+Found the following significant warnings:
+  Warning: replacing previous import ‘IRanges::from’ by ‘Rgraphviz::from’ when loading ‘SplicingGraphs’
+  Warning: replacing previous import ‘IRanges::to’ by ‘Rgraphviz::to’ when loading ‘SplicingGraphs’
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/SplicingGraphs.Rcheck/00install.out’ for details.
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Packages listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘GenomicFeatures’ ‘GenomicAlignments’ ‘Rgraphviz’ ‘igraph’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+'library' or 'require' call to 'igraph' in package code.
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+':::' calls which should be '::':
+  'S4Vectors:::matchIntegerPairs' 'S4Vectors:::orderIntegerPairs'
+  'S4Vectors:::selfmatchIntegerPairs'
+  See the note in ?`:::` about the use of this operator.
+Unexported objects imported by ':::' calls:
+  'BiocGenerics:::testPackage' 'GenomicAlignments:::fillJunctionGaps'
+  'IRanges:::newCompressedList0' 'IRanges:::regroupBySupergroup'
+  'IRanges:::unlist_as_integer' 'S4Vectors:::setPrototypeFromObject'
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘reportReads’
+Undocumented S4 methods:
+  generic '[' and siglist 'SplicingGraphs,ANY,ANY,ANY'
+  generic 'reportReads' and siglist 'SplicingGraphs'
+  generic 'updateObject' and siglist 'SplicingGraphs'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Objects in \usage without \alias in documentation object 'countReads-methods':
+  ‘reportReads’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘SplicingGraphs-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plotTranscripts-methods
+> ### Title: Plot a set of transcripts along genomic coordinates.
+> ### Aliases: plotTranscripts-methods plotTranscripts
+> ###   plotTranscripts,GRangesList-method plotTranscripts,TxDb-method
+> ###   plotTranscripts,SplicingGraphs-method
+> 
+> ### ** Examples
+> 
+> ## ---------------------------------------------------------------------
+> ## A. PLOT TRANSCRIPTS
+> ## ---------------------------------------------------------------------
+> example(SplicingGraphs)  # create SplicingGraphs object 'sg'
+
+SplcnG> ## ---------------------------------------------------------------------
+SplcnG> ## 1. Load a toy gene model as a TxDb object
+SplcnG> ## ---------------------------------------------------------------------
+SplcnG> 
+SplcnG> library(GenomicFeatures)
+
+SplcnG> suppressWarnings(
+SplcnG+   toy_genes_txdb <- makeTxDbFromGFF(toy_genes_gff())
+SplcnG+ )
+Import genomic features from the file as a GRanges object ... OK
+Prepare the 'metadata' data frame ... OK
+Make the TxDb object ... OK
+
+SplcnG> ## ---------------------------------------------------------------------
+SplcnG> ## 2. Compute all the splicing graphs (1 graph per gene) and return them
+SplcnG> ##    in a SplicingGraphs object
+SplcnG> ## ---------------------------------------------------------------------
+SplcnG> 
+SplcnG> ## Extract the exons grouped by transcript:
+SplcnG> ex_by_tx <- exonsBy(toy_genes_txdb, by="tx", use.names=TRUE)
+
+SplcnG> ## Extract the transcripts grouped by gene:
+SplcnG> tx_by_gn <- transcriptsBy(toy_genes_txdb, by="gene")
+
+SplcnG> sg <- SplicingGraphs(ex_by_tx, tx_by_gn)
+
+SplcnG> sg
+SplicingGraphs object with 5 gene(s) and 13 transcript(s)
+
+SplcnG> ## Alternatively 'sg' can be constructed directly from the TxDb
+SplcnG> ## object:
+SplcnG> sg2 <- SplicingGraphs(toy_genes_txdb)  # same as 'sg'
+
+SplcnG> sg2
+SplicingGraphs object with 5 gene(s) and 13 transcript(s)
+
+SplcnG> ## Note that because SplicingGraphs objects have a slot that is an
+SplcnG> ## environment (for caching the bubbles), they cannot be compared with
+SplcnG> ## 'identical()' (will always return FALSE). 'all.equal()' should be
+SplcnG> ## used instead:
+SplcnG> stopifnot(isTRUE(all.equal(sg2, sg)))
+
+SplcnG> ## 'sg' has 1 element per gene and 'names(sg)' gives the gene ids:
+SplcnG> length(sg)
+[1] 5
+
+SplcnG> names(sg)
+[1] "geneA" "geneB" "geneC" "geneD" "geneE"
+
+SplcnG> ## ---------------------------------------------------------------------
+SplcnG> ## 3. Basic manipulation of a SplicingGraphs object
+SplcnG> ## ---------------------------------------------------------------------
+SplcnG> 
+SplcnG> ## Basic accessors:
+SplcnG> seqnames(sg)
+geneA geneB geneC geneD geneE 
+ chrX  chrX  chrX  chrX  chrX 
+Levels: chrX
+
+SplcnG> strand(sg)
+geneA geneB geneC geneD geneE 
+    +     -     +     +     + 
+Levels: + - *
+
+SplcnG> seqinfo(sg)
+Seqinfo object with 1 sequence from an unspecified genome; no seqlengths:
+  seqnames seqlengths isCircular genome
+  chrX             NA         NA   <NA>
+
+SplcnG> ## Number of transcripts per gene:
+SplcnG> elementNROWS(sg)
+geneA geneB geneC geneD geneE 
+    2     2     3     4     2 
+
+SplcnG> ## The transcripts of a given gene can be extracted with [[. The result
+SplcnG> ## is an *unnamed* GRangesList object containing the exons grouped by
+SplcnG> ## transcript:
+SplcnG> sg[["geneD"]]
+GRangesList object of length 4:
+[[1]]
+GRanges object with 2 ranges and 5 metadata columns:
+      seqnames    ranges strand |   exon_id   exon_name exon_rank start_SSid
+         <Rle> <IRanges>  <Rle> | <integer> <character> <integer>  <integer>
+  [1]     chrX   601-630      + |        10         Dx2         1          1
+  [2]     chrX   666-675      + |        12         Dx4         2          5
+       end_SSid
+      <integer>
+  [1]         3
+  [2]         6
+  -------
+  seqinfo: 1 sequence from an unspecified genome; no seqlengths
+
+[[2]]
+GRanges object with 2 ranges and 5 metadata columns:
+      seqnames    ranges strand |   exon_id   exon_name exon_rank start_SSid
+         <Rle> <IRanges>  <Rle> | <integer> <character> <integer>  <integer>
+  [1]     chrX   601-620      + |         9         Dx1         1          1
+  [2]     chrX   651-700      + |        11         Dx3         2          4
+       end_SSid
+      <integer>
+  [1]         2
+  [2]         8
+  -------
+  seqinfo: 1 sequence from an unspecified genome; no seqlengths
+
+[[3]]
+GRanges object with 3 ranges and 5 metadata columns:
+      seqnames    ranges strand |   exon_id   exon_name exon_rank start_SSid
+         <Rle> <IRanges>  <Rle> | <integer> <character> <integer>  <integer>
+  [1]     chrX   601-620      + |         9         Dx1         1          1
+  [2]     chrX   666-675      + |        12         Dx4         2          5
+  [3]     chrX   691-700      + |        13         Dx5         3          7
+       end_SSid
+      <integer>
+  [1]         2
+  [2]         6
+  [3]         8
+  -------
+  seqinfo: 1 sequence from an unspecified genome; no seqlengths
+
+[[4]]
+GRanges object with 2 ranges and 5 metadata columns:
+      seqnames    ranges strand |   exon_id   exon_name exon_rank start_SSid
+         <Rle> <IRanges>  <Rle> | <integer> <character> <integer>  <integer>
+  [1]     chrX   601-630      + |        10         Dx2         1          1
+  [2]     chrX   651-700      + |        11         Dx3         2          4
+       end_SSid
+      <integer>
+  [1]         3
+  [2]         8
+  -------
+  seqinfo: 1 sequence from an unspecified genome; no seqlengths
+
+
+SplcnG> ## See '?plotTranscripts' for how to plot those transcripts.
+SplcnG> 
+SplcnG> ## The transcripts of all the genes can be extracted with unlist(). The
+SplcnG> ## result is a *named* GRangesList object containing the exons grouped
+SplcnG> ## by transcript. The names on the object are the gene ids:
+SplcnG> ex_by_tx <- unlist(sg)
+
+SplcnG> ex_by_tx
+GRangesList object of length 13:
+$geneA
+GRanges object with 1 range and 5 metadata columns:
+      seqnames    ranges strand |   exon_id   exon_name exon_rank start_SSid
+         <Rle> <IRanges>  <Rle> | <integer> <character> <integer>  <integer>
+  [1]     chrX     11-50      + |         2         Ax2         1          1
+       end_SSid
+      <integer>
+  [1]         3
+  -------
+  seqinfo: 1 sequence from an unspecified genome; no seqlengths
+
+$geneA
+GRanges object with 2 ranges and 5 metadata columns:
+      seqnames    ranges strand |   exon_id   exon_name exon_rank start_SSid
+         <Rle> <IRanges>  <Rle> | <integer> <character> <integer>  <integer>
+  [1]     chrX     11-40      + |         1         Ax1         1          1
+  [2]     chrX    71-100      + |         3         Ax3         2          4
+       end_SSid
+      <integer>
+  [1]         2
+  [2]         5
+  -------
+  seqinfo: 1 sequence from an unspecified genome; no seqlengths
+
+$geneB
+GRanges object with 2 ranges and 5 metadata columns:
+      seqnames    ranges strand |   exon_id   exon_name exon_rank start_SSid
+         <Rle> <IRanges>  <Rle> | <integer> <character> <integer>  <integer>
+  [1]     chrX   251-300      - |        23         Bx1         1          3
+  [2]     chrX   201-230      - |        20         Bx2         2          6
+       end_SSid
+      <integer>
+  [1]         1
+  [2]         4
+  -------
+  seqinfo: 1 sequence from an unspecified genome; no seqlengths
+
+...
+<10 more elements>
+> sg
+SplicingGraphs object with 5 gene(s) and 13 transcript(s)
+> 
+> ## 'sg' has 1 element per gene and 'names(sg)' gives the gene ids.
+> names(sg)
+[1] "geneA" "geneB" "geneC" "geneD" "geneE"
+> 
+> ## The transcripts of a given gene can be extracted with [[. The result
+> ## is an *unnamed* GRangesList object containing the exons grouped by
+> ## transcript:
+> sg[["geneD"]]
+GRangesList object of length 4:
+[[1]]
+GRanges object with 2 ranges and 5 metadata columns:
+      seqnames    ranges strand |   exon_id   exon_name exon_rank start_SSid
+         <Rle> <IRanges>  <Rle> | <integer> <character> <integer>  <integer>
+  [1]     chrX   601-630      + |        10         Dx2         1          1
+  [2]     chrX   666-675      + |        12         Dx4         2          5
+       end_SSid
+      <integer>
+  [1]         3
+  [2]         6
+  -------
+  seqinfo: 1 sequence from an unspecified genome; no seqlengths
+
+[[2]]
+GRanges object with 2 ranges and 5 metadata columns:
+      seqnames    ranges strand |   exon_id   exon_name exon_rank start_SSid
+         <Rle> <IRanges>  <Rle> | <integer> <character> <integer>  <integer>
+  [1]     chrX   601-620      + |         9         Dx1         1          1
+  [2]     chrX   651-700      + |        11         Dx3         2          4
+       end_SSid
+      <integer>
+  [1]         2
+  [2]         8
+  -------
+  seqinfo: 1 sequence from an unspecified genome; no seqlengths
+
+[[3]]
+GRanges object with 3 ranges and 5 metadata columns:
+      seqnames    ranges strand |   exon_id   exon_name exon_rank start_SSid
+         <Rle> <IRanges>  <Rle> | <integer> <character> <integer>  <integer>
+  [1]     chrX   601-620      + |         9         Dx1         1          1
+  [2]     chrX   666-675      + |        12         Dx4         2          5
+  [3]     chrX   691-700      + |        13         Dx5         3          7
+       end_SSid
+      <integer>
+  [1]         2
+  [2]         6
+  [3]         8
+  -------
+  seqinfo: 1 sequence from an unspecified genome; no seqlengths
+
+[[4]]
+GRanges object with 2 ranges and 5 metadata columns:
+      seqnames    ranges strand |   exon_id   exon_name exon_rank start_SSid
+         <Rle> <IRanges>  <Rle> | <integer> <character> <integer>  <integer>
+  [1]     chrX   601-630      + |        10         Dx2         1          1
+  [2]     chrX   651-700      + |        11         Dx3         2          4
+       end_SSid
+      <integer>
+  [1]         3
+  [2]         8
+  -------
+  seqinfo: 1 sequence from an unspecified genome; no seqlengths
+
+> plotTranscripts(sg[["geneD"]])  # requires the Gviz package
+  - plotting genomic range: from=591.1, to=709.9
+> 
+> ## The transcripts of all the genes can be extracted with unlist(). The
+> ## result is a *named* GRangesList object containing the exons grouped
+> ## by transcript. The names on the object are the gene ids:
+> ex_by_tx <- unlist(sg)
+> ex_by_tx
+GRangesList object of length 13:
+$geneA
+GRanges object with 1 range and 5 metadata columns:
+      seqnames    ranges strand |   exon_id   exon_name exon_rank start_SSid
+         <Rle> <IRanges>  <Rle> | <integer> <character> <integer>  <integer>
+  [1]     chrX     11-50      + |         2         Ax2         1          1
+       end_SSid
+      <integer>
+  [1]         3
+  -------
+  seqinfo: 1 sequence from an unspecified genome; no seqlengths
+
+$geneA
+GRanges object with 2 ranges and 5 metadata columns:
+      seqnames    ranges strand |   exon_id   exon_name exon_rank start_SSid
+         <Rle> <IRanges>  <Rle> | <integer> <character> <integer>  <integer>
+  [1]     chrX     11-40      + |         1         Ax1         1          1
+  [2]     chrX    71-100      + |         3         Ax3         2          4
+       end_SSid
+      <integer>
+  [1]         2
+  [2]         5
+  -------
+  seqinfo: 1 sequence from an unspecified genome; no seqlengths
+
+$geneB
+GRanges object with 2 ranges and 5 metadata columns:
+      seqnames    ranges strand |   exon_id   exon_name exon_rank start_SSid
+         <Rle> <IRanges>  <Rle> | <integer> <character> <integer>  <integer>
+  [1]     chrX   251-300      - |        23         Bx1         1          3
+  [2]     chrX   201-230      - |        20         Bx2         2          6
+       end_SSid
+      <integer>
+  [1]         1
+  [2]         4
+  -------
+  seqinfo: 1 sequence from an unspecified genome; no seqlengths
+
+...
+<10 more elements>
+> plotTranscripts(ex_by_tx)
+  - plotting genomic range: from=-77.9, to=988.9
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘run_unitTests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘SplicingGraphs.Rnw’ using ‘UTF-8’... failed to complete the test
+ ERROR
+Errors in running code in vignettes:
+when running code in ‘SplicingGraphs.Rnw’
+  ...
+...
+<1 more element>
+
+> pdf("3183-transcripts.pdf", width = 6, height = 3)
+
+> plotTranscripts(sg[["3183"]])
+  - plotting genomic range: from=21671261.8, to=21743672.2
+Killed
+
+... incomplete output.  Crash?
+
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 3 WARNINGs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/SplicingGraphs.Rcheck/00check.log’
+for details.
+

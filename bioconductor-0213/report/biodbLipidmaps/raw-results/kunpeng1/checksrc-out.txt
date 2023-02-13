@@ -1,0 +1,111 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:biodbLipidmaps.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings biodbLipidmaps_1.5.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/biodbLipidmaps.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘biodbLipidmaps/DESCRIPTION’ ... OK
+* this is package ‘biodbLipidmaps’ version ‘1.5.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘biodbLipidmaps’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                        user system elapsed
+LipidmapsStructureConn 2.809  0.252    6.72
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+      cch$saveContentToFile(request$toString(), cache.id = conn$getCacheId(), 
+          name = request.key, ext = "request")
+  }`: missing value where TRUE/FALSE needed
+  Backtrace:
+      ▆
+   1. ├─base::do.call(fct, params)
+   2. └─biodbLipidmaps (local) `<fn>`(conn = `<LpdmpsSC>`)
+   3.   └─conn$getEntryIds(2) at test_300_custom.R:2:4
+   4.     └─private$doGetEntryIds(max.results = max.results, ...)
+   5.       └─self$wsLmsdSearch(...)
+   6.         └─self$getBiodb()$getRequestScheduler()$sendRequest(request)
+  
+  [ FAIL 7 | WARN 0 | SKIP 0 | PASS 119 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘biodbLipidmaps.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘biodbLipidmaps.Rmd’ using rmarkdown
+Quitting from lines 65-67 (biodbLipidmaps.Rmd) 
+Error: processing vignette 'biodbLipidmaps.Rmd' failed with diagnostics:
+missing value where TRUE/FALSE needed
+--- failed re-building ‘biodbLipidmaps.Rmd’
+
+SUMMARY: processing the following file failed:
+  ‘biodbLipidmaps.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/biodbLipidmaps.Rcheck/00check.log’
+for details.
+

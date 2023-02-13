@@ -1,0 +1,303 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:lumi.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings lumi_2.51.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/lumi.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘lumi/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘lumi’ version ‘2.51.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘lumi’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... NOTE
+Problems with news in ‘NEWS’:
+  Cannot process chunk/lines:
+    release date: 04/23/2011
+    1. Adding supports for Infinium 450K methylation microarrays, which includes updating the color bias correction and other related functions.
+  Cannot process chunk/lines:
+    release date: 01/31/2011
+    1. Bug fix related with Methylation File GEO submission
+  Cannot process chunk/lines:
+    release date: 01/22/2011
+    1. Moved the MethyLumiM class and related methods from lumi to methylumi package
+    2. Add some methylation status estimation functions and updated vignette
+  Cannot process chunk/lines:
+    release date: 01/12/2011
+    1. Add methylated.N and unmethylated.N matrix to the assayData slot of the MethyLumiM class
+  Cannot process chunk/lines:
+    Thanks Tim Tiche, Jr. adding this!
+  Cannot process chunk/lines:
+    release date: 01/03/2011
+    1. Add controlData slot to the MethyLumiM class
+    2. Update functions handling controlData, which include: addControlData2methyLumiM, estimateMethylationBG, getControlType, plotControlData and lumiMethyR
+  Cannot process chunk/lines:
+    release date: 12/29/2010
+    1. Add functions of estimating methylation status
+  Cannot process chunk/lines:
+    release date: 12/21/2010
+  Cannot process chunk/lines:
+    Multiple minor updates, which includes 
+    1. vignettes of methylation analysis
+    2. annotation field of example.lumi dataset
+    3. detectionCall for methylation data
+    4. Auto check of parameter validation of lumiExpresso 
+  Cannot process chunk/lines:
+    release date: 11/08/2010
+    1. Multiple updates related with methylation analysis
+    2. Update of GEO submission file, make it be able to create GEO submission file based on a data matrix
+    3. Update of getChipInfo to make it be able to check based on address IDs
+  Cannot process chunk/lines:
+    release data: 10/11/2010
+    1. Add a treatment and control example dataset
+    2. many updates of vignette 
+    3. Add lumiMethyR function to wrap the methylumiR function from methylumi package
+    4. add the addColorChannelInfo function in case of no color channel information was included in the data.
+  Cannot process chunk/lines:
+    release data: 09/22/2010
+    1. Enable lumiMethyB, lumiMethyC and lumiMethyN to run user defined functions
+    2. update of vignette 
+  Cannot process chunk/lines:
+    release data: 09/17/2010
+    1. Major update of the package by adding many functions related with Illumina Methylation microarray analysis.
+    2. Add the vignette of analyzing Illumina Infinium methylation microarray data 
+  Cannot process chunk/lines:
+    release data: 08/28/2010
+    1. Import several classes and functions from methylumi package for methylation analysis
+    2. Organize all generic functions together in a new file: AllGnereics.R
+  Cannot process chunk/lines:
+    release data: 08/25/2010
+    1. Add na.rm setting to lumiB, lumiT and lumiN
+    (Thanks Wieliang Qiu from Harvard reporting this!)
+  Cannot process chunk/lines:
+    release data: 08/16/2010
+    1. Add Illumina Methylation data analysis components
+    2. Change the package dependence as NameSpaces
+  Cannot process chunk/lines:
+    Sorry, many many updates and fixes not reported here ...
+  Cannot process chunk/lines:
+    release data: 02/08/2008
+    1. The default normalization method is changed as 'quantile' instead of 'rsn'.
+    2. update lumiR for the changes of BeadStudio output.
+  Cannot process chunk/lines:
+    release data: 02/03/2008
+    1. lumiR can also input the annotation information outputted by BeadStuio
+    2. Add plot functions dealing with the control probe data outputted by BeadStudio.
+  Cannot process chunk/lines:
+    release data: 12/05/2007
+    1. Add functions dealing with the control probe data outputted by BeadStudio.
+    2. Extended VST algorithm for processing the Affymetrix data.
+    3. Add SSN (simple scaling normalization) algorithm for conservative normalization.
+    4. other updates of help and vignette
+  Cannot process chunk/lines:
+    release data: 09/30/2007
+    1. update the code to make vst accept negative values.
+    2. fixed bug of combine and subset functions dealing with controlData slot
+    3. add bg.Adjust background adjustment function to deal with the control probe information
+    4. add lumiR.batch function to input multiple files in batch
+    5. remove stdCorrection parameter from lumiR to lumiT, which converts the standard error of the mean to standard deviation in variance stabilization.
+    6. other small updates of help and vignette
+  Cannot process chunk/lines:
+    Thanks Wei Shi and Gordon Smith for reporting problems and suggestions for improvements.
+  Cannot process chunk/lines:
+    release data: 08/25/2007
+    1. Updated the vst function in version 1.3.25. (estimate the c3 based on the background probes).
+    2. Updated the inverseVST and other related functions to allow the recover to the raw scale of the preprocessed data.
+    3. Added the evaluation of VST vignette
+    3. Updated the lumi vignette
+  Cannot process chunk/lines:
+    release data: 07/11/2007
+    1. Add the correction of the STDEV column values of the BeadStudio output file (transfer the standard error of the mean as the standard deviation).
+    2. Updated the vignette.
+  Cannot process chunk/lines:
+    Thanks Gordon Smith provided the information of STDEV column of BeadStudio output file.
+  Cannot process chunk/lines:
+    release data: 06/29/2007
+    1. Updated the vignette with added performance evaluation section.
+    2. Added "dec" option in lumiR function
+    3. Add density funciton
+    4. Allow user to select and customize the input columns of BeadStudio output files
+  Cannot process chunk/lines:
+    Thanks Renee McElhaney for checking the vignette, Martin Morgan, Ingrid H. G. Østense and Michal Blazejczyk for the suggestion or reporting problems.
+  Cannot process chunk/lines:
+    release data: 06/16/2007
+  Cannot process chunk/lines:
+    Add the annotation library information when run addNuId2lumi function.
+  Cannot process chunk/lines:
+    Thanks Vincent Carey (Harvard) for the suggestion.
+  Cannot process chunk/lines:
+    release date: 04/22/2007-06/15/2007
+  Cannot process chunk/lines:
+    Major updates:
+    1. All the major functions compatible with ExpressionSet class
+    2. presentCount was removed from the featureData. use detectionCall function to estimate presentCount
+    3. lumiR function now allows user to select the input data columns
+    4. Add lumiB function for background correction
+    5. lumiExpresso function to encapsulate all preprocessing functions
+    6. Vignette tutorial has major updates.
+  Cannot process chunk/lines:
+    Thanks Ryan Gordon, DeokHoon Kim, Danilo Licastro, Matthias Kohl, Ezhou Lori Long (NIH), Sean Davis (NIH) and others for the suggestions and reporting problems.
+  Cannot process chunk/lines:
+    release date: 04/22/2007
+    1. Major updates of the vignette.
+    2. A simpleOutput option was added for the lumiT function.
+    3. Added nuID and targetID/probeID mapping functions.
+  Cannot process chunk/lines:
+    release date: 04/17/2007
+    1. Updated lumiR function for better robustness.
+    2. Added subset parameter to all plot functions.
+    3. Add 'forcePositive' method to the lumiB function to avoid negative values.
+    4. Other related updates.
+  Cannot process chunk/lines:
+    release date: 04/12/2007
+    1. Fixed the bug of combine function.
+  Cannot process chunk/lines:
+    Thanks Jiexin Zhang (M.D. Anderson Cancer Center) finding the bug.
+  Cannot process chunk/lines:
+    release date: 04/11/2007
+    1. Updated lumiR to compatible with BeadStudio output file without header
+  Cannot process chunk/lines:
+    release date: 03/24/2007
+    1. Updated lumiR to compatible with BeadStudio 3.0 output format
+    2. Removed LumiQC class and added QC slot in the LumiBatch class
+    3. Updated the functions related with updates 1 and 2
+  Cannot process chunk/lines:
+    Thanks Sean Davis (NIH) and Michael Stevens (Washington University) for providing BeadStudio 3.0 files and testing.
+  Cannot process chunk/lines:
+    release date: 03/20/2007
+    1. Updated lumiN.rsn to allow the targetArray to be vector or LumiBatch object with one sample
+    2. Update the help documents
+  Cannot process chunk/lines:
+    Thanks Jiexin Zhang (M.D. Anderson Cancer Center) providing the suggestion of targetArray.
+  Cannot process chunk/lines:
+    release date: 03/18/2007
+    1. Updated lumiN to make it accept ExpressionSet inherited object or data matrix
+    2. Update the some help files
+  Cannot process chunk/lines:
+    release date: 02/20/2007
+    1. Updated the vignette and lumiN.rsn function
+  Cannot process chunk/lines:
+    release date: 02/15/2007
+    1. Updated the combine method of LumiBatch class, addNuId2lumi, lumiR for better adaptiveness.
+  Cannot process chunk/lines:
+    release date: 02/14/2007
+    1. Updated lumiR function to allow directly adding nuID when reading the data;
+    2. Updated addNuId2lumi to add the tracking history:
+  Cannot process chunk/lines:
+    release date: 02/08/2007
+    1. Updated lumiR function to make it compatible with R 2.5;
+    2. Updated addNuId2lumi and lumiN function to fix some typos.
+  Cannot process chunk/lines:
+    Thanks Jean-Eudes DAZARD (Case Western Reserve University) reporting this problem.
+  Cannot process chunk/lines:
+    release date: 01/21/2007
+    1. Updated lumiR and addNuId2lumi functions to allow them mapping TargetId or ProbeId to nuID;
+  Cannot process chunk/lines:
+    release date: 01/01/2007
+    1. Changed the S3 function "plot.lumiQC" as the S4 function "plot" with signature "LumiQC, missing";
+    2. Added S4 function "hist" with signature "ExpressionSet";
+    3. Added rownames duplication checking code in the "addNuId2lumi" and "lumiR" functions;
+    4. Added varMetadata information in the LumiBatch object produced in "lumiR" function;
+    5. Updated the help and tutorial files.
+  Cannot process chunk/lines:
+    Thanks Kevin Coombes (M.D. Anderson Cancer Center) for the testing and suggestions of the lumi package.
+  Cannot process chunk/lines:
+    release date: 12/11/2006
+    1. Updated the summary (show) functions of LumiBatch and LumiQC objects;
+    2. Added subsetting code for the LumiQC and LumiBatch objects;
+    3. Updated the help and tutorial files.
+  Cannot process chunk/lines:
+    Thanks Peter Bram (Leiden University Medical Center) for the testing and suggestions of the lumi package.
+  Cannot process chunk/lines:
+    First release date: 12/05/2006
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... WARNING
+'::' or ':::' imports not declared from:
+  ‘IRanges’ ‘bigmemoryExtras’
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... NOTE
+checkRd: (-1) addNuID2lumi.Rd:21: Escaped LaTeX specials: \_ \_ \_
+checkRd: (-1) getChipInfo.Rd:22: Escaped LaTeX specials: \_ \_ \_ \_
+checkRd: (-1) getNuIDMappingInfo.Rd:17: Escaped LaTeX specials: \_
+checkRd: (-1) lumiR.Rd:22: Escaped LaTeX specials: \_
+checkRd: (-1) lumiR.Rd:34: Escaped LaTeX specials: \_
+checkRd: (-1) lumiR.Rd:36: Escaped LaTeX specials: \_ \_ \_ \_ \_ \_
+checkRd: (-1) lumiR.Rd:40: Escaped LaTeX specials: \_ \_ \_ \_ \_ \_ \_ \_ \_ \_ \_ \_ \_ \_ \_ \_ \_ \_ \_ \_
+checkRd: (-1) lumiR.batch.Rd:24: Escaped LaTeX specials: \_ \_ \_ \_ \_
+checkRd: (-1) nuID2EntrezID.Rd:19: Escaped LaTeX specials: \_
+checkRd: (-1) nuID2IlluminaID.Rd:21: Escaped LaTeX specials: \_ \_
+checkRd: (-1) nuID2RefSeqID.Rd:19: Escaped LaTeX specials: \_
+checkRd: (-1) produceGEOSampleInfoTemplate.Rd:18: Escaped LaTeX specials: \_ \_
+checkRd: (-1) produceGEOSampleInfoTemplate.Rd:18: Escaped LaTeX specials: \#
+checkRd: (-1) produceGEOSubmissionFile.Rd:23: Escaped LaTeX specials: \_ \_ \_ \_
+checkRd: (-1) produceMethylationGEOSubmissionFile.Rd:23: Escaped LaTeX specials: \_ \_ \_ \_
+checkRd: (-1) seq2id.Rd:18: Escaped LaTeX specials: \_
+* checking Rd metadata ... OK
+* checking Rd cross-references ... WARNING
+Unknown package ‘bigmemoryExtras’ in Rd xrefs
+Missing link or links in documentation object 'lumiN.Rd':
+  ‘[vsn]{vsn}’
+
+See section 'Cross-references' in the 'Writing R Extensions' manual.
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... WARNING
+Files in the 'vignettes' directory but no files in 'inst/doc':
+  ‘IlluminaAnnotation.R’ ‘IlluminaAnnotation.pdf’ ‘lumi.R’ ‘lumi.pdf’
+  ‘lumi_VST_evaluation.R’ ‘lumi_VST_evaluation.pdf’
+  ‘methylationAnalysis.R’ ‘methylationAnalysis.pdf’
+Package has no Sweave vignette sources and no VignetteBuilder field.
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                  user system elapsed
+lumiMethyStatus 83.883  0.444  84.330
+MAplot-methods   5.165  0.048   5.214
+plotGammaFit     5.141  0.015   5.157
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 WARNINGs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/lumi.Rcheck/00check.log’
+for details.
+
+

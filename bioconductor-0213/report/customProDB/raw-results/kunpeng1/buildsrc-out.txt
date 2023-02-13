@@ -1,0 +1,77 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data customProDB
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘customProDB/DESCRIPTION’ ... OK
+* preparing ‘customProDB’:
+* checking DESCRIPTION meta-information ... OK
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘customProDB.Rnw’ using Sweave
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: AnnotationDbi
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages
+    'citation("pkgname")'.
+
+Loading required package: biomaRt
+Build TranscriptDB object (txdb.sqlite) ... 
+Download the refGene table ... OK
+Download the hgFixed.refLink table ... OK
+Extract the 'transcripts' data frame ... OK
+Extract the 'splicings' data frame ... OK
+Download and preprocess the 'chrominfo' data frame ... OK
+Prepare the 'metadata' data frame ... OK
+Make the TxDb object ... OK
+ done
+Prepare gene/transcript/protein id mapping information (ids.RData) ... 
+Error: processing vignette 'customProDB.Rnw' failed with diagnostics:
+ chunk 4 (label = PrepareAnnoRef) 
+Error : Query execution was interrupted (max_statement_time exceeded) [1969]
+
+--- failed re-building ‘customProDB.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘customProDB.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted

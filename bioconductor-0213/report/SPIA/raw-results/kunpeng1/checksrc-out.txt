@@ -1,0 +1,173 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:SPIA.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings SPIA_2.51.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/SPIA.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘SPIA/DESCRIPTION’ ... OK
+* this is package ‘SPIA’ version ‘2.51.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘SPIA’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Package listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘graphics’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Package in Depends field not imported from: ‘KEGGgraph’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+combfunc: no visible global function definition for ‘na.omit’
+combfunc: no visible global function definition for ‘pnorm’
+combfunc: no visible global function definition for ‘qnorm’
+getP2: no visible global function definition for ‘qchisq’
+getP2: no visible global function definition for ‘pnorm’
+getP2: no visible global function definition for ‘qnorm’
+makeSPIAdata: no visible global function definition for ‘parseKGML’
+makeSPIAdata: no visible global function definition for ‘nodes’
+makeSPIAdata: no visible global function definition for ‘na.omit’
+makeSPIAdata: no visible global function definition for ‘edges’
+plotP: no visible global function definition for ‘na.omit’
+plotP: no visible global function definition for ‘pnorm’
+plotP: no visible global function definition for ‘qnorm’
+plotP: no visible global function definition for ‘text’
+spia: no visible global function definition for ‘pdf’
+spia: no visible global function definition for ‘par’
+spia: no visible global function definition for ‘phyper’
+spia: no visible global function definition for ‘median’
+spia: no visible global function definition for ‘sd’
+spia: no visible global function definition for ‘density’
+spia: no visible global function definition for ‘dev.off’
+spia: no visible global function definition for ‘p.adjust’
+Undefined global functions or variables:
+  density dev.off edges median na.omit nodes p.adjust par parseKGML pdf
+  phyper pnorm qchisq qnorm sd text
+Consider adding
+  importFrom("grDevices", "dev.off", "pdf")
+  importFrom("graphics", "par", "text")
+  importFrom("stats", "density", "median", "na.omit", "p.adjust",
+             "phyper", "pnorm", "qchisq", "qnorm", "sd")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                user system elapsed
+spia         368.426 33.110 435.574
+plotP         81.826  2.776  85.776
+makeSPIAdata   6.510  0.127   6.644
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘SPIA.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘SPIA.Rnw’ using Sweave
+Loading required package: KEGGgraph
+
+Attaching package: ‘KEGGgraph’
+
+The following object is masked from ‘package:graphics’:
+
+    plot
+
+The following object is masked from ‘package:base’:
+
+    plot
+
+Loading required package: AnnotationDbi
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: IRanges
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: org.Hs.eg.db
+
+
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/SPIA.Rcheck/00check.log’
+for details.
+
+

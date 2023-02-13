@@ -1,0 +1,47 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL ACME
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘ACME’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c windowChisq.c -o windowChisq.o
+windowChisq.c: In function ‘windowChisq’:
+windowChisq.c:58:21: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+   58 |           firstprobe>0) {
+      |           ~~~~~~~~~~^~
+windowChisq.c:63:20: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+   63 |           lastprobe<(na-1)) {
+      |           ~~~~~~~~~^~~~~~~
+windowChisq.c:21:11: warning: unused variable ‘xa’ [-Wunused-variable]
+   21 |   double *xa,*xlocations,*xchivals;
+      |           ^~
+windowChisq.c: At top level:
+windowChisq.c:86:20: warning: initialization of ‘void * (*)(void)’ from incompatible pointer type ‘struct SEXPREC * (*)(struct SEXPREC *, struct SEXPREC *, struct SEXPREC *, struct SEXPREC *, struct SEXPREC *)’ [-Wincompatible-pointer-types]
+   86 |     {"windowChisq",&windowChisq,5},
+      |                    ^
+windowChisq.c:86:20: note: (near initialization for ‘callMethods[0].fun’)
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o ACME.so windowChisq.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-ACME/00new/ACME/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ACME)

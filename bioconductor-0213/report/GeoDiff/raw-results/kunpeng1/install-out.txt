@@ -1,0 +1,62 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL GeoDiff
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘GeoDiff’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/roptim/include' -I/usr/local/include   -fopenmp  -fPIC  -g -O2  -Wall -c NBthDEOptPara.cpp -o NBthDEOptPara.o
+NBthDEOptPara.cpp: In member function ‘virtual double NBthDE_paranll::operator()(const vec&)’:
+NBthDEOptPara.cpp:34:9: warning: unused variable ‘m’ [-Wunused-variable]
+   34 |     int m = y.n_elem;
+      |         ^
+NBthDEOptPara.cpp: In member function ‘virtual void NBthDE_paranll::Gradient(const vec&, arma::vec&)’:
+NBthDEOptPara.cpp:85:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uword’ {aka ‘const unsigned int’} [-Wsign-compare]
+   85 |     for(int k = 0; k < y.n_elem; k++){
+      |                    ~~^~~~~~~~~~
+NBthDEOptPara.cpp:58:9: warning: unused variable ‘m’ [-Wunused-variable]
+   58 |     int m = y.n_elem;
+      |         ^
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/roptim/include' -I/usr/local/include   -fopenmp  -fPIC  -g -O2  -Wall -c NBthmDEGrad.cpp -o NBthmDEGrad.o
+NBthmDEGrad.cpp: In function ‘arma::vec NBthmDE_grad(arma::vec&, arma::mat&, arma::mat&, arma::vec&, arma::vec&, arma::vec&, arma::vec&, arma::mat&, double, double)’:
+NBthmDEGrad.cpp:34:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uword’ {aka ‘const unsigned int’} [-Wsign-compare]
+   34 |   for(int i = 0; i < y.n_elem; i++){
+      |                  ~~^~~~~~~~~~
+NBthmDEGrad.cpp: In function ‘arma::mat NBthmDE_gradM(arma::vec&, arma::mat&, arma::mat&, arma::vec&, arma::mat&, arma::vec&, arma::vec&, arma::mat&, double, double)’:
+NBthmDEGrad.cpp:90:24: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uword’ {aka ‘const unsigned int’} [-Wsign-compare]
+   90 |       for(int k = 0; k < y.n_elem; k++){
+      |                      ~~^~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/roptim/include' -I/usr/local/include   -fopenmp  -fPIC  -g -O2  -Wall -c NBthmDEMH.cpp -o NBthmDEMH.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/roptim/include' -I/usr/local/include   -fopenmp  -fPIC  -g -O2  -Wall -c NBthmDEOptPara.cpp -o NBthmDEOptPara.o
+NBthmDEOptPara.cpp: In member function ‘virtual void NBthmDE_fparanll::Gradient(const vec&, arma::vec&)’:
+NBthmDEOptPara.cpp:107:24: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const uword’ {aka ‘const unsigned int’} [-Wsign-compare]
+  107 |       for(int k = 0; k < y.n_elem; k++){
+      |                      ~~^~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/roptim/include' -I/usr/local/include   -fopenmp  -fPIC  -g -O2  -Wall -c NBthmDEOptU.cpp -o NBthmDEOptU.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/roptim/include' -I/usr/local/include   -fopenmp  -fPIC  -g -O2  -Wall -c PoisthNormOptPara.cpp -o PoisthNormOptPara.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/roptim/include' -I/usr/local/include   -fopenmp  -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/roptim/include' -I/usr/local/include   -fopenmp  -fPIC  -g -O2  -Wall -c dnbinom_mu_vec.cpp -o dnbinom_mu_vec.o
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o GeoDiff.so NBthDEOptPara.o NBthmDEGrad.o NBthmDEMH.o NBthmDEOptPara.o NBthmDEOptU.o PoisthNormOptPara.o RcppExports.o dnbinom_mu_vec.o -fopenmp -llapack -L/home/biocbuild/bbs-3.17-bioc/R/lib -lRblas -lgfortran -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-GeoDiff/00new/GeoDiff/libs
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (GeoDiff)

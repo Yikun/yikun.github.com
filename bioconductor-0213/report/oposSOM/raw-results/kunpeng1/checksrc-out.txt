@@ -1,0 +1,229 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:oposSOM.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings oposSOM_2.17.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/oposSOM.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘oposSOM/DESCRIPTION’ ... OK
+* this is package ‘oposSOM’ version ‘2.17.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘oposSOM’ can be installed ... OK
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... NOTE
+  installed size is 19.1Mb
+  sub-directories of 1Mb or more:
+    data  17.0Mb
+    libs   1.6Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Unexported object imported by a ':::' call: ‘tools:::makeLazyLoadDB’
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... WARNING
+plot:
+  function(x, ...)
+plot.psf.pathway.keggrest:
+  function(kegg.pathway, signal.values, signal.values.lim, main,
+           highlight.genes, color.palette)
+
+plot:
+  function(x, ...)
+plot.psf.titlepage:
+  function(env, psf.object, signal.values, bar.colors)
+
+sort:
+  function(x, decreasing, ...)
+sort.label:
+  function(x)
+
+See section ‘Generic functions and methods’ in the ‘Writing R
+Extensions’ manual.
+
+Found the following apparent S3 methods exported but not registered:
+  plot.psf.pathway.keggrest plot.psf.titlepage sort.label
+See section ‘Registering S3 methods’ in the ‘Writing R Extensions’
+manual.
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+psf.overview.heatmaps: warning in heatmap(x =
+  log1p(log1p(mean.psf.matrix)), cex.main = 2, col =
+  color.palette(1000), scale = "r", mar = c(10, 20), ColSideColors =
+  group.colors, cexDend = 0.6): partial argument match of 'mar' to
+  'margins'
+psf.overview.heatmaps: warning in heatmap(x =
+  log1p(log1p(mean.psf.matrix)), cex.main = 2, col =
+  color.palette(1000), scale = "r", mar = c(10, 20), ColSideColors =
+  group.colors, Colv = NA, cexDend = 0.6): partial argument match of
+  'mar' to 'margins'
+Smooth.Matrix: no visible binding for global variable ‘v’
+modules.relations: no visible global function definition for
+  ‘graph.empty’
+modules.relations: no visible global function definition for
+  ‘add_edges’
+pipeline.PSFcalculation: no visible binding for global variable
+  ‘kegg.collection’
+pipeline.checkInputParameters: no visible binding for global variable
+  ‘preferences’
+pipeline.diffExpressionStatistics : <anonymous>: no visible global
+  function definition for ‘t.test’
+pipeline.differenceAnalyses : <anonymous>: no visible global function
+  definition for ‘t.test’
+pipeline.groupAnalysis : <anonymous>: no visible global function
+  definition for ‘t.test’
+pipeline.htmlPsfAnalysis: no visible binding for global variable
+  ‘kegg.collection’
+pipeline.prepareAnnotation: no visible binding for global variable
+  ‘opossom.genesets’
+pipeline.sampleSimilarityAnalysisCor: no visible global function
+  definition for ‘get.edgelist’
+pipeline.topologyProfiles: no visible binding for global variable
+  ‘group.labels’
+plot.psf.pathway.keggrest: no visible global function definition for
+  ‘rasterImage’
+psf.report.sheets: no visible binding for global variable ‘kegg.data’
+Undefined global functions or variables:
+  add_edges get.edgelist graph.empty group.labels kegg.collection
+  kegg.data opossom.genesets preferences rasterImage t.test v
+Consider adding
+  importFrom("graphics", "rasterImage")
+  importFrom("stats", "t.test")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘GeneSet.Fisher’ ‘GeneSet.maxmean’ ‘Get.Running.Average’
+  ‘Quantile.Normalization’ ‘Sample.GSZ’ ‘Smooth.Matrix’
+  ‘_oposSOM_calculateDelta’ ‘_oposSOM_calculateEuclideanDistances’
+  ‘_oposSOM_calculateNeighborhoodMatrix’
+  ‘_oposSOM_matrixToCodebookMatrix’ ‘biomart.available’
+  ‘calculateDelta’ ‘calculateEuclideanDistances’
+  ‘calculateNeighborhoodMatrix’ ‘circle’ ‘col.pix’
+  ‘color.palette.discrete’ ‘color.palette.heatmaps’
+  ‘color.palette.portraits’ ‘get.beta.statistic’ ‘get.neighbors’
+  ‘heatmap’ ‘heatmap.A4’ ‘matrixToCodebookMatrix’ ‘modules.CSV.sheets’
+  ‘modules.chromosomes’ ‘modules.profiles’ ‘modules.relations’
+  ‘modules.report.sheets’ ‘newProgressBar’ ‘pathway.expression.mapping’
+  ‘pipeline.PSFcalculation’ ‘pipeline.PSFoutput’
+  ‘pipeline.affymetrixQualityCheck’ ‘pipeline.cancerHallmarks’
+  ‘pipeline.checkInputParameters’
+  ‘pipeline.chromosomeExpressionReports’
+  ‘pipeline.detectEnsemblDataset’ ‘pipeline.detectSpotsModules’
+  ‘pipeline.detectSpotsSamples’ ‘pipeline.diffExpressionStatistics’
+  ‘pipeline.differenceAnalyses’ ‘pipeline.entropyProfiles’
+  ‘pipeline.geneLists’ ‘pipeline.generateSOM’
+  ‘pipeline.genesetOverviews’ ‘pipeline.genesetProfilesAndMaps’
+  ‘pipeline.genesetStatisticModules’ ‘pipeline.genesetStatisticSamples’
+  ‘pipeline.groupAnalysis’ ‘pipeline.groupAssignment’
+  ‘pipeline.groupSpecificGenesets’ ‘pipeline.htmlDifferencesSummary’
+  ‘pipeline.htmlGenesetAnalysis’ ‘pipeline.htmlGroupSummary’
+  ‘pipeline.htmlModuleSummary’ ‘pipeline.htmlPsfAnalysis’
+  ‘pipeline.htmlSampleSummary’ ‘pipeline.htmlSummary’
+  ‘pipeline.moduleCorrelationMap’ ‘pipeline.patAssignment’
+  ‘pipeline.prepareAnnotation’ ‘pipeline.prepareIndata’
+  ‘pipeline.qualityCheck’ ‘pipeline.sampleExpressionPortraits’
+  ‘pipeline.sampleSimilarityAnalysisCor’
+  ‘pipeline.sampleSimilarityAnalysisED’
+  ‘pipeline.sampleSimilarityAnalysisICA’
+  ‘pipeline.sampleSimilarityAnalysisSOM’ ‘pipeline.summarySheetsGroups’
+  ‘pipeline.summarySheetsModules’ ‘pipeline.summarySheetsPATs’
+  ‘pipeline.summarySheetsSamples’ ‘pipeline.supportingMaps’
+  ‘pipeline.topologyProfiles’ ‘plot.psf.pathway.keggrest’
+  ‘plot.psf.titlepage’ ‘psf.flow’ ‘psf.overview.heatmaps’
+  ‘psf.report.sheets’ ‘radarchart’ ‘som.linear.init’
+  ‘som.linear.init.subdata’ ‘som.training’ ‘som.training.phase’
+  ‘sort.label’ ‘util.call’ ‘util.cat’ ‘util.fatal’ ‘util.info’
+  ‘util.load’ ‘util.log’ ‘util.progress’ ‘util.progress.terminate’
+  ‘util.save’ ‘util.warn’ ‘workspace.check’
+Undocumented data sets:
+  ‘hsa03320.RData’ ‘hsa04010.RData’ ‘hsa04012.RData’ ‘hsa04014.RData’
+  ‘hsa04015.RData’ ‘hsa04020.RData’ ‘hsa04022.RData’ ‘hsa04024.RData’
+  ‘hsa04062.RData’ ‘hsa04064.RData’ ‘hsa04066.RData’ ‘hsa04068.RData’
+  ‘hsa04070.RData’ ‘hsa04071.RData’ ‘hsa04072.RData’ ‘hsa04115.RData’
+  ‘hsa04150.RData’ ‘hsa04151.RData’ ‘hsa04152.RData’ ‘hsa04261.RData’
+  ‘hsa04310.RData’ ‘hsa04330.RData’ ‘hsa04340.RData’ ‘hsa04350.RData’
+  ‘hsa04370.RData’ ‘hsa04371.RData’ ‘hsa04390.RData’ ‘hsa04392.RData’
+  ‘hsa04550.RData’ ‘hsa04620.RData’ ‘hsa04621.RData’ ‘hsa04622.RData’
+  ‘hsa04625.RData’ ‘hsa04630.RData’ ‘hsa04657.RData’ ‘hsa04660.RData’
+  ‘hsa04662.RData’ ‘hsa04664.RData’ ‘hsa04668.RData’ ‘hsa04722.RData’
+  ‘hsa04723.RData’ ‘hsa04910.RData’ ‘hsa04912.RData’ ‘hsa04915.RData’
+  ‘hsa04917.RData’ ‘hsa04919.RData’ ‘hsa04920.RData’ ‘hsa04921.RData’
+  ‘hsa04922.RData’ ‘hsa04926.RData’ ‘hsa04933.RData’ ‘hsa05120.RData’
+  ‘kegg.collection.RData’
+All user-level objects in a package should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... WARNING
+Found the following file(s) containing GNU extensions:
+  src/Makevars
+Portable Makefiles do not use GNU extensions such as +=, :=, $(shell),
+$(wildcard), ifeq ... endif, .NOTPARALLEL See section ‘Writing portable
+packages’ in the ‘Writing R Extensions’ manual.
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                  user system elapsed
+oposSOM-package 45.364 47.112  52.641
+opossom.run     19.814  6.612  37.911
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘Vignette.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 WARNINGs, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/oposSOM.Rcheck/00check.log’
+for details.
+
+

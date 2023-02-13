@@ -1,0 +1,171 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:SpliceWiz.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings SpliceWiz_1.1.5.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/SpliceWiz.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘SpliceWiz/DESCRIPTION’ ... OK
+* this is package ‘SpliceWiz’ version ‘1.1.5’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘SpliceWiz’ can be installed ... OK
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... NOTE
+  installed size is 12.1Mb
+  sub-directories of 1Mb or more:
+    R      2.0Mb
+    libs   9.0Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in shell scripts ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘SpliceWiz-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: Build-Reference-methods
+> ### Title: Builds reference files used by SpliceWiz
+> ### Aliases: Build-Reference-methods getResources buildRef buildFullRef
+> ###   getNonPolyARef
+> 
+> ### ** Examples
+> 
+> # Quick runnable example: generate a reference using SpliceWiz's example genome
+> 
+> example_ref <- file.path(tempdir(), "Reference")
+> getResources(
++     reference_path = example_ref,
++     fasta = chrZ_genome(),
++     gtf = chrZ_gtf()
++ )
+Feb 11 22:50:50 Converting FASTA to local TwoBitFile...done
+Feb 11 22:50:51 Connecting to genome TwoBitFile...done
+Feb 11 22:50:51 Making local copy of GTF file...done
+> buildRef(
++     reference_path = example_ref
++ )
+Feb 11 22:50:51 Reference generated without non-polyA reference
+Feb 11 22:50:51 Reference generated without Mappability reference
+Feb 11 22:50:51 Reference generated without Blacklist exclusion
+Feb 11 22:50:51 Connecting to genome TwoBitFile...done
+Feb 11 22:50:51 Reading source GTF file...done
+Feb 11 22:50:51 Processing gtf file...
+...genes
+...transcripts
+...CDS
+...exons
+done
+Feb 11 22:50:55 Processing introns...
+...data
+...basic annotations
+...splice motifs
+...other info
+...defining flanking exon clusters
+done
+Feb 11 22:51:01 Generating processBAM reference
+...prepping data
+...determining measurable introns (directional)
+...determining measurable introns (non-directional)
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  Feb 11 22:52:11 Using MulticoreParam 1 threads
+  Feb 11 22:52:11 Validating Experiment; checking COV files...
+  Feb 11 22:52:11 Compiling Sample Stats
+  Feb 11 22:52:11 Compiling Junction List...merging...done
+  Feb 11 22:52:12 Compiling Junction Stats...merging...done
+  Feb 11 22:52:24 Compiling Intron Retention List...done
+  Feb 11 22:52:25 Compiling Tandem Junction List...merging...done
+  Feb 11 22:52:26 Tidying up splice junctions and intron retentions...
+  ...annotating splice junctions
+  ...looking for novel exons
+  Feb 11 22:52:33 Assembling novel splicing reference:
+  ...loading reference FASTA/GTF
+  ...injecting novel transcripts to GTF
+  ...processing GTF
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘SW_Cookbook.Rmd’ using ‘UTF-8’... OK
+  ‘SW_QuickStart.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘SW_Cookbook.Rmd’ using rmarkdown
+--- finished re-building ‘SW_Cookbook.Rmd’
+
+--- re-building ‘SW_QuickStart.Rmd’ using rmarkdown
+Killed
+SUMMARY: processing the following file failed:
+  ‘SW_QuickStart.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/SpliceWiz.Rcheck/00check.log’
+for details.
+

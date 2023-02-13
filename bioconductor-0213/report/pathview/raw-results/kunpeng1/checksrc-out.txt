@@ -1,0 +1,125 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:pathview.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings pathview_1.39.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/pathview.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘pathview/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘pathview’ version ‘1.39.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘pathview’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... WARNING
+'::' or ':::' import not declared from: ‘BiocManager’
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+File ‘pathview/R/zzz.R’:
+  .onLoad calls:
+    installed.packages()
+    packageStartupMessage(wordwrap(disclaimer, 80))
+
+Package startup functions should not call ‘installed.packages’.
+See section ‘Good practice’ in '?.onAttach'.
+
+Warning in formals(fun) : argument is not a function
+Warning in body(fun) : argument is not a function
+col.key: no visible binding for global variable ‘node.sizes’
+cpd2kegg: no visible binding for global variable ‘rn.list’
+cpdidmap: no visible binding for global variable ‘cpd.accs’
+cpdkegg2name: no visible binding for global variable ‘kegg.met’
+cpdname2kegg: no visible binding for global variable ‘cpd.names’
+download.kegg: no visible global function definition for
+  ‘download.file’
+eg2id: no visible binding for global variable ‘gene.idtype.list’
+geneannot.map: no visible binding for global variable ‘bods’
+id2eg: no visible binding for global variable ‘gene.idtype.list’
+kegg.species.code: no visible binding for global variable ‘korg.1’
+pathview: no visible binding for global variable ‘bods’
+pathview: no visible binding for global variable ‘gene.idtype.bods’
+pathview: no visible binding for global variable ‘rn.list’
+sim.mol.data: no visible binding for global variable ‘bods’
+sim.mol.data: no visible binding for global variable ‘gene.idtype.bods’
+sim.mol.data: no visible binding for global variable ‘cpd.accs’
+sim.mol.data: no visible binding for global variable ‘cpd.simtypes’
+sim.mol.data: no visible binding for global variable ‘rn.list’
+sim.mol.data: no visible binding for global variable ‘ko.ids’
+Undefined global functions or variables:
+  bods cpd.accs cpd.names cpd.simtypes download.file gene.idtype.bods
+  gene.idtype.list kegg.met ko.ids korg.1 node.sizes rn.list
+Consider adding
+  importFrom("utils", "download.file")
+to your NAMESPACE file.
+* checking Rd files ... NOTE
+checkRd: (-1) node.color.Rd:71: Escaped LaTeX specials: \#
+checkRd: (-1) pathview.Rd:204: Escaped LaTeX specials: \#
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+           user system elapsed
+pathview 15.566  1.834  21.967
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘runTests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘pathview.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 WARNING, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/pathview.Rcheck/00check.log’
+for details.
+
+

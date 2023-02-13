@@ -1,0 +1,123 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:SNPhood.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings SNPhood_1.29.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/SNPhood.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘SNPhood/DESCRIPTION’ ... OK
+* this is package ‘SNPhood’ version ‘1.29.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘SNPhood’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+BugReports field is not a suitable URL but appears to contain an email address
+  not specified by mailto: nor contained in < >
+   use the Contact field instead
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.calcBinomTestVector: no visible binding for global variable ‘pp’
+Undefined global functions or variables:
+  pp
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘SNPhood-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plotFDRResults
+> ### Title: Graphically summarize the results of the allelic bias analysis
+> ###   for a specific dataset and region.
+> ### Aliases: plotFDRResults
+> 
+> ### ** Examples
+> 
+> data(SNPhood.o, package="SNPhood")
+> SNPhood.o = testForAllelicBiases(SNPhood.o, readGroups = c("maternal", "paternal"))
+Warning in value[[3L]](cond) :
+  Could not obtain chromosome sizes using GenomeInfoDb, try fallback implementation...
+
+Test allelic bias for dataset GM10847
+ Calculating read overlaps for the background distribution... This may take a while
+ Read group maternal
+ Read group paternal
+ Calculate background distribution with 100 repetitions. This may take a while.
+Test allelic bias for dataset GM12890
+ Calculating read overlaps for the background distribution... This may take a while
+ Read group maternal
+ Read group paternal
+Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘IntroductionToSNPhood.Rmd’ using ‘UTF-8’... OK
+  ‘workflow.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘IntroductionToSNPhood.Rmd’ using rmarkdown
+--- finished re-building ‘IntroductionToSNPhood.Rmd’
+
+--- re-building ‘workflow.Rmd’ using rmarkdown
+Killed
+SUMMARY: processing the following file failed:
+  ‘workflow.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/SNPhood.Rcheck/00check.log’
+for details.
+

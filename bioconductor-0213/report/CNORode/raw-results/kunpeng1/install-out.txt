@@ -1,0 +1,123 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL CNORode
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘CNORode’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c FG_transfer_function.c -o FG_transfer_function.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c cvodea.c -o cvodea.o
+cvodea.c: In function ‘CVAhermiteStorePnt’:
+cvodea.c:2445:11: warning: variable ‘retval’ set but not used [-Wunused-but-set-variable]
+ 2445 |   int is, retval;
+      |           ^~~~~~
+cvodea.c: In function ‘CVArhsQ’:
+cvodea.c:2941:7: warning: variable ‘flag’ set but not used [-Wunused-but-set-variable]
+ 2941 |   int flag, retval;
+      |       ^~~~
+cvodea.c: In function ‘CVAhermiteGetY’:
+cvodea.c:2572:7: warning: ‘ySd0’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 2572 |       N_VLinearSum(ONE, YS[0][is], -delta, ySd0[is], YS[0][is]);
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cvodea.c:2591:5: warning: ‘yS0’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 2591 |     N_VLinearSum(ONE, yS0[is], factor1, ySd0[is], yS[is]);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cvodea.c: In function ‘CVodeB’:
+cvodea.c:1263:13: warning: ‘flag’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1263 |   int sign, flag;
+      |             ^~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c cvodea_io.c -o cvodea_io.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c cvodes.c -o cvodes.o
+cvodes.c: In function ‘cvHin’:
+cvodes.c:4318:7: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+ 4318 |       if (count1 <= 2)
+      |       ^~
+cvodes.c:4320:9: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+ 4320 |         if (retval == QRHSFUNC_RECVR) return(CV_REPTD_QRHSFUNC_ERR);
+      |         ^~
+cvodes.c: In function ‘cvQuadSensRhs1InternalDQ’:
+cvodes.c:8834:20: warning: variable ‘rDeltap’ set but not used [-Wunused-but-set-variable]
+ 8834 |   realtype Deltap, rDeltap;
+      |                    ^~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c cvodes_band.c -o cvodes_band.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c cvodes_bandpre.c -o cvodes_bandpre.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c cvodes_bbdpre.c -o cvodes_bbdpre.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c cvodes_dense.c -o cvodes_dense.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c cvodes_diag.c -o cvodes_diag.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c cvodes_direct.c -o cvodes_direct.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c cvodes_io.c -o cvodes_io.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c cvodes_spbcgs.c -o cvodes_spbcgs.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c cvodes_spgmr.c -o cvodes_spgmr.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c cvodes_spils.c -o cvodes_spils.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c cvodes_sptfqmr.c -o cvodes_sptfqmr.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c decimal2binary.c -o decimal2binary.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c findStates.c -o findStates.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c fnvector_serial.c -o fnvector_serial.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c getAdjacencyMatrix.c -o getAdjacencyMatrix.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c getNumBits.c -o getNumBits.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c getNumInputs.c -o getNumInputs.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c getStateIndex.c -o getStateIndex.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c getTruthTables.c -o getTruthTables.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c get_count_bits.c -o get_count_bits.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c get_input_index.c -o get_input_index.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c get_support_truth_tables.c -o get_support_truth_tables.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c get_truth_tables_index.c -o get_truth_tables_index.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c hill_function.c -o hill_function.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c linear_transfer_function.c -o linear_transfer_function.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c normHill.c -o normHill.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c normHill_mod.c -o normHill_mod.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c nvector_serial.c -o nvector_serial.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c printAdjMat.c -o printAdjMat.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c printInterMat.c -o printInterMat.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c printNminiTerms.c -o printNminiTerms.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c printTruthTables.c -o printTruthTables.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c rhsODE.c -o rhsODE.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c sim_logic_ode.c -o sim_logic_ode.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c simulateODE.c -o simulateODE.o
+simulateODE.c: In function ‘simulateODE’:
+simulateODE.c:37:21: warning: variable ‘counter’ set but not used [-Wunused-but-set-variable]
+   37 |         int i,j,neq,counter,flag;
+      |                     ^~~~~~~
+simulateODE.c:257:4: warning: ‘tout’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  257 |    rhsODEF(tout,y0,ydot0, data);
+      |    ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c sundials_band.c -o sundials_band.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c sundials_dense.c -o sundials_dense.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c sundials_direct.c -o sundials_direct.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c sundials_iterative.c -o sundials_iterative.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c sundials_math.c -o sundials_math.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c sundials_nvector.c -o sundials_nvector.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c sundials_spbcgs.c -o sundials_spbcgs.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c sundials_spgmr.c -o sundials_spgmr.o
+sundials_spgmr.c: In function ‘SpgmrFree’:
+sundials_spgmr.c:439:29: warning: variable ‘yg’ set but not used [-Wunused-but-set-variable]
+  439 |   realtype **Hes, *givens, *yg;
+      |                             ^~
+sundials_spgmr.c:439:20: warning: variable ‘givens’ set but not used [-Wunused-but-set-variable]
+  439 |   realtype **Hes, *givens, *yg;
+      |                    ^~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I./include  -fPIC  -g -O2  -Wall -c sundials_sptfqmr.c -o sundials_sptfqmr.o
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o CNORode.so FG_transfer_function.o cvodea.o cvodea_io.o cvodes.o cvodes_band.o cvodes_bandpre.o cvodes_bbdpre.o cvodes_dense.o cvodes_diag.o cvodes_direct.o cvodes_io.o cvodes_spbcgs.o cvodes_spgmr.o cvodes_spils.o cvodes_sptfqmr.o decimal2binary.o findStates.o fnvector_serial.o getAdjacencyMatrix.o getNumBits.o getNumInputs.o getStateIndex.o getTruthTables.o get_count_bits.o get_input_index.o get_support_truth_tables.o get_truth_tables_index.o hill_function.o linear_transfer_function.o normHill.o normHill_mod.o nvector_serial.o printAdjMat.o printInterMat.o printNminiTerms.o printTruthTables.o rhsODE.o sim_logic_ode.o simulateODE.o sundials_band.o sundials_dense.o sundials_direct.o sundials_iterative.o sundials_math.o sundials_nvector.o sundials_spbcgs.o sundials_spgmr.o sundials_sptfqmr.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-CNORode/00new/CNORode/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (CNORode)

@@ -1,0 +1,54 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL qpgraph
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘qpgraph’ ...
+** using staged installation
+checking for gcc... gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ANSI C... none needed
+checking build system type... aarch64-unknown-linux-gnu
+checking host system type... aarch64-unknown-linux-gnu
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I/usr/local/include -DUSE_FC_LEN_T  -I/usr/local/include   -g -O2 -Wall -Wall -pedantic -fPIC  -g -O2  -Wall -c cliquer.c -o cliquer.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I/usr/local/include -DUSE_FC_LEN_T  -I/usr/local/include   -g -O2 -Wall -Wall -pedantic -fPIC  -g -O2  -Wall -c graph.c -o graph.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I/usr/local/include -DUSE_FC_LEN_T  -I/usr/local/include   -g -O2 -Wall -Wall -pedantic -fPIC  -g -O2  -Wall -c qpgraph.c -o qpgraph.o
+qpgraph.c:24: warning: "USE_FC_LEN_T" redefined
+   24 | #define USE_FC_LEN_T
+      | 
+<command-line>: note: this is the location of the previous definition
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I/usr/local/include -DUSE_FC_LEN_T  -I/usr/local/include   -g -O2 -Wall -Wall -pedantic -fPIC  -g -O2  -Wall -c reorder.c -o reorder.o
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o qpgraph.so cliquer.o graph.o qpgraph.o reorder.o -llapack -L/home/biocbuild/bbs-3.17-bioc/R/lib -lRblas -lgfortran -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-qpgraph/00new/qpgraph/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a generic function for ‘det’ from package ‘Matrix’ in package ‘qpgraph’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (qpgraph)

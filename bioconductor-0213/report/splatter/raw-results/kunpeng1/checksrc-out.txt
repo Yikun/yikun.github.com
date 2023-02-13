@@ -1,0 +1,138 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:splatter.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings splatter_1.23.1.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/splatter.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘splatter/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘splatter’ version ‘1.23.1’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘splatter’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘splatter-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: scDDEstimate
+> ### Title: Estimate scDD simulation parameters
+> ### Aliases: scDDEstimate scDDEstimate.matrix
+> ###   scDDEstimate.SingleCellExperiment scDDEstimate.default
+> 
+> ### ** Examples
+> 
+> if (requireNamespace("scDD", quietly = TRUE)) {
++     library(scater)
++     set.seed(1)
++     sce <- mockSCE(ncells = 20, ngenes = 100)
++ 
++     colData(sce)$condition <- sample(1:2, ncol(sce), replace = TRUE)
++     params <- scDDEstimate(sce, condition = "condition")
++     params
++ }
+Loading required package: scuttle
+Loading required package: ggplot2
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘spelling.R’
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+   
+   
+  Minimum acceptance rate among nu[jk]'s: 0.370533
+  Average acceptance rate among nu[jk]'s: 0.451502
+  Maximum acceptance rate among nu[jk]'s: 0.492467
+   
+   
+  Minimum acceptance rate among theta[k]'s: 0.4586
+  Average acceptance rate among theta[k]'s: 0.464833
+  Maximum acceptance rate among theta[k]'s: 0.471067
+   
+   
+  -----------------------------------------------------
+   
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘splatPop.Rmd’ using ‘UTF-8’... OK
+  ‘splat_params.Rmd’ using ‘UTF-8’... OK
+  ‘splatter.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘splatPop.Rmd’ using rmarkdown
+Killed
+--- re-building ‘splat_params.Rmd’ using rmarkdown
+--- finished re-building ‘splat_params.Rmd’
+
+--- re-building ‘splatter.Rmd’ using rmarkdown
+--- finished re-building ‘splatter.Rmd’
+
+SUMMARY: processing the following file failed:
+  ‘splatPop.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/splatter.Rcheck/00check.log’
+for details.
+

@@ -1,0 +1,61 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL mitoClone2
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘mitoClone2’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -D_FILE_OFFSET_BITS=64 ../inst/SCITEpkg/*.cpp -o scite
+../inst/SCITEpkg/findBestTrees.cpp:56:8: warning: built-in function ‘gamma’ declared as non-function [-Wbuiltin-declaration-mismatch]
+   56 | double gamma = 1;
+      |        ^~~~~
+../inst/SCITEpkg/mcmcBinTreeMove.cpp: In function ‘int pickNodeToMove(int*, int)’:
+../inst/SCITEpkg/mcmcBinTreeMove.cpp:75:1: warning: control reaches end of non-void function [-Wreturn-type]
+   75 | }
+      | ^
+mkdir -p "/home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-mitoClone2/00new/mitoClone2/SCITE/"
+cp scite "/home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-mitoClone2/00new/mitoClone2/SCITE/"
+rm scite
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c bam2R_10x.cpp -o bam2R_10x.o
+bam2R_10x.cpp:6:2: warning: "/*" within comment [-Wcomment]
+    6 |  /**************************************************************************************
+      |   
+bam2R_10x.cpp:8:1: warning: "/*" within comment [-Wcomment]
+    8 | /**********************************************************************
+      |  
+bam2R_10x.cpp: In function ‘void bam2R_pileup_function(const bam_pileup1_t*, int, int, nttable_t&, std::map<std::__cxx11::basic_string<char>, std::vector<int> >&)’:
+bam2R_10x.cpp:75:17: warning: unused variable ‘bc_absent’ [-Wunused-variable]
+   75 |             int bc_absent;
+      |                 ^~~~~~~~~
+bam2R_10x.cpp: In function ‘SEXPREC* bam2R_10x(SEXP, SEXP, SEXP, SEXP, int*, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)’:
+bam2R_10x.cpp:158:16: warning: unused variable ‘iter’ [-Wunused-variable]
+  158 |     hts_itr_t *iter = NULL;
+      |                ^~~~
+bam2R_10x.cpp:161:9: warning: unused variable ‘c’ [-Wunused-variable]
+  161 |     int c = 0;
+      |         ^
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o mitoClone2.so bam2R_10x.o /home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/usrlib/libhts.a -lcurl -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-mitoClone2/00new/mitoClone2/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (mitoClone2)

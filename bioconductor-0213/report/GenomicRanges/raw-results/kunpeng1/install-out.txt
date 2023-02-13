@@ -1,0 +1,47 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL GenomicRanges
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘GenomicRanges’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c IRanges_stubs.c -o IRanges_stubs.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c R_init_GenomicRanges.c -o R_init_GenomicRanges.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c S4Vectors_stubs.c -o S4Vectors_stubs.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c transcript_utils.c -o transcript_utils.o
+transcript_utils.c: In function ‘tlocs2rlocs’:
+transcript_utils.c:143:45: warning: ‘end’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  143 |         return on_minus_strand ? end - tloc : start + tloc;
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+transcript_utils.c:120:31: note: ‘end’ was declared here
+  120 |         int nexons, j, start, end, width;
+      |                               ^~~
+transcript_utils.c:143:45: warning: ‘start’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  143 |         return on_minus_strand ? end - tloc : start + tloc;
+      |                ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+transcript_utils.c:120:24: note: ‘start’ was declared here
+  120 |         int nexons, j, start, end, width;
+      |                        ^~~~~
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o GenomicRanges.so IRanges_stubs.o R_init_GenomicRanges.o S4Vectors_stubs.o transcript_utils.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-GenomicRanges/00new/GenomicRanges/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (GenomicRanges)

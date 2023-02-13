@@ -1,0 +1,55 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data SAIGEgds
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘SAIGEgds/DESCRIPTION’ ... OK
+* preparing ‘SAIGEgds’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* installing the package to build vignettes
+      -----------------------------------
+* installing *source* package ‘SAIGEgds’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c SPATest.cpp -o SPATest.o
+SPATest.cpp:42:15: error: ‘COREARRAY_TARGET_CLONES’ does not name a type
+   42 | inline static COREARRAY_TARGET_CLONES
+      |               ^~~~~~~~~~~~~~~~~~~~~~~
+SPATest.cpp:56:15: error: ‘COREARRAY_TARGET_CLONES’ does not name a type
+   56 | inline static COREARRAY_TARGET_CLONES
+      |               ^~~~~~~~~~~~~~~~~~~~~~~
+SPATest.cpp:71:15: error: ‘COREARRAY_TARGET_CLONES’ does not name a type
+   71 | inline static COREARRAY_TARGET_CLONES
+      |               ^~~~~~~~~~~~~~~~~~~~~~~
+SPATest.cpp:93:9: error: expected initializer before ‘getroot_K1’
+   93 |         getroot_K1(const double g_pos, const double g_neg,
+      |         ^~~~~~~~~~
+SPATest.cpp:140:9: error: expected initializer before ‘getroot_K1_fast’
+  140 |         getroot_K1_fast(const double g_pos, const double g_neg, double &root,
+      |         ^~~~~~~~~~~~~~~
+SPATest.cpp:189:9: error: expected initializer before ‘get_saddle_prob’
+  189 |         get_saddle_prob(double t, size_t n_g, const double mu[], const double g[],
+      |         ^~~~~~~~~~~~~~~
+SPATest.cpp:212:9: error: expected initializer before ‘get_saddle_prob_fast’
+  212 |         get_saddle_prob_fast(double t, size_t n_nonzero, const double mu[],
+      |         ^~~~~~~~~~~~~~~~~~~~
+SPATest.cpp:238:9: error: expected initializer before ‘Saddle_Prob’
+  238 |         Saddle_Prob(double q, double m1, double var1, size_t n_g, const double mu[],
+      |         ^~~~~~~~~~~
+SPATest.cpp:300:9: error: expected initializer before ‘Saddle_Prob_Fast’
+  300 |         Saddle_Prob_Fast(double q, double m1, double var1, size_t n_g,
+      |         ^~~~~~~~~~~~~~~~
+make: *** [/home/biocbuild/bbs-3.17-bioc/R/etc/Makeconf:198: SPATest.o] Error 1
+ERROR: compilation failed for package ‘SAIGEgds’
+* removing ‘/tmp/Rtmp9oXUga/Rinst57942623fc3db/SAIGEgds’
+      -----------------------------------
+ERROR: package installation failed

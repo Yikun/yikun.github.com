@@ -1,0 +1,566 @@
+BODY {
+    background: #bddaf0; /* e4d6ea */
+    padding: 8px;
+    font-family: sans-serif;
+    font-size: 11pt;
+    color: #555;
+}
+
+H1 {
+    font-size: 18pt;
+    text-align: center;
+}
+H2 {
+    font-size: 15pt;
+    margin-top: 10px;
+    margin-bottom: 6px;
+    text-align: center;
+}
+H2 SPAN {
+    padding: 8px;
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 12px;
+}
+H3 {
+    font-size: 13pt;
+    margin-top: 2px;
+    margin-bottom: 3px;
+    text-align: center;
+}
+H4 {
+    font-size: 12pt;
+    margin-top: 0px;
+    margin-bottom: 2px;
+}
+
+P.time_stamp {
+    font-style: italic;
+    text-align: center;
+}
+
+TABLE.centered {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+TABLE.grid_layout {
+    border-spacing: 0px;
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+}
+TABLE.grid_layout TD {
+    vertical-align: top;
+    padding: 0px;
+}
+
+SPAN.filename {
+    font-family: monospace;
+    background: #445555;
+    color: #AADDDD;
+    padding: 3px;
+}
+SPAN.filename.fail {
+    background: #B33;
+}
+
+DIV.hscrollable {
+    overflow: auto;
+    white-space: nowrap;
+}
+TABLE.grid_layout DIV.hscrollable {
+    width: 550px;
+}
+
+
+/****************************************************************************
+ * Message of the day
+ */
+
+DIV.motd {
+    padding-top: 10px;
+    padding-bottom: 0px;
+    text-align: center;
+    /*font-weight: bold;*/
+}
+DIV.motd TABLE {
+    width: 80%;
+    margin: auto;
+    border: 1px dotted black;
+}
+
+
+/****************************************************************************
+ * svn info
+ */
+
+TABLE.svn_info {
+    margin-top: 2pt;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+DIV.svn_info TABLE.svn_info TD.svn_info {
+    background: #FFFFE0;
+    border: 0px;
+    border-radius: 12px;
+    padding: 8px;
+}
+TABLE.svn_info TR TD.svn_info {
+    background: #FFFFE0;
+    border: 1px solid #DCB;
+    padding: 0px;
+    padding-left: 2px;
+    padding-right: 2px;
+    text-align: left;
+}
+SPAN.svn_info {
+    color: #B44;
+}
+DIV.svn_info SPAN.svn_info {
+    font-weight: bold;
+}
+
+
+/****************************************************************************
+ * Table of build node specifications
+ */
+
+TABLE.node_specs {
+    border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
+    text-align: left;
+    font-size: smaller;
+}
+
+TABLE.node_specs TH,
+TABLE.node_specs TD {
+    border: 1px solid #555;
+    padding-left: 6px;
+    padding-right: 6px;
+}
+TABLE.node_specs TH {
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+TABLE.node_specs TD {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+/****************************************************************************
+ * Table of 'R CMD config' variables (on the NodeInfo pages)
+ */
+
+TABLE.Rconfig {
+    border-spacing: 1px;
+    font-family: monospace;
+}
+TABLE.Rconfig TD {
+    background: #FFF;
+}
+
+
+/****************************************************************************
+ * Glyph styles
+ */
+
+.glyph {
+    font-weight: bold;
+}
+.glyph.TIMEOUT {
+    background: #A08;
+    color: white;
+}
+.glyph.ERROR {
+    background: #B33;
+    color: white;
+}
+.glyph.WARNINGS {
+    background: #D82;
+    color: white;
+}
+.glyph.OK {
+    background: #282;
+    color: #DDD;
+}
+.glyph.NotNeeded {
+    background: #69C;
+    color: #EEE;
+}
+.glyph.NA {
+    background: #8AA;
+}
+
+P.noresult {
+    text-align: center;
+}
+P.noresult SPAN {
+    background: #8AA;
+    padding: 4pt;
+}
+
+TD.glyph_box,
+TD.glyph_explain {
+    border-bottom: 1px dotted #555;
+    vertical-align: middle;
+}
+TD.glyph_box {
+    padding: 0px;
+    height: 20px;
+}
+TD.glyph_explain {
+    padding-left: 4px;
+}
+
+TD.glyph_box TABLE {
+    border-spacing: 0px;
+    border-collapse: collapse;
+    width: 100%;
+    height: 100%;
+    border: 1px solid transparent;
+}
+TD.glyph_box.toggle TABLE {
+    cursor: pointer;
+}
+TD.glyph_box.toggle.mouseover TABLE {
+    border: 1px solid black;
+}
+TD.glyph_box TABLE TD {
+    padding: 0px;
+}
+
+
+/****************************************************************************
+ * List of glyph cards (gcards)
+ */
+
+TABLE.gcard_list {
+    width: 100%;
+    border-spacing: 0px;
+    border-collapse: collapse;
+}
+
+TABLE.gcard_list TD {
+    /*border: 1px solid black;*/
+    padding-left: 6px;
+    padding-top: 2px;
+    padding-bottom: 2px;
+}
+
+TABLE.gcard_list TR.header TD.leftmost,
+TABLE.gcard_list TR.header TD.rightmost {
+    width: 14px;
+}
+TABLE.compact.gcard_list TR.header TD.leftmost {
+    width: 28px;
+}
+TABLE.compact.gcard_list TR.header TD.rightmost {
+    width: 14px;
+}
+
+TABLE.gcard_list TR.vertical_space {
+    height: 10px;
+}
+TABLE.gcard_list TBODY.gcard_separator TR.vertical_space TD {
+    padding: 0px;
+}
+TABLE.gcard_list TBODY.gcard_separator TR.vertical_space {
+    height: 1px;
+}
+
+TABLE.gcard_list TR.header TD {
+    font-weight: bold;
+    /* font-style: italic; */
+    font-size: smaller;
+}
+
+TABLE.gcard_list TR.header TD.STAGE {
+    text-align: center;
+    width: 125px;
+}
+TABLE.gcard_list TD.status {
+    text-align: center;
+    padding: 0px;
+}
+
+TABLE.gcard_list TABLE.svn_info {
+    font-weight: normal;
+    font-size: smaller;
+    font-style: italic;
+}
+
+
+/****************************************************************************
+ * Quick stats
+ */
+
+THEAD.quickstats TR {
+    height: 32px;
+}
+THEAD.quickstats TR.header {
+    height: 22px;
+}
+
+TABLE.quickstats {
+    margin: auto;
+    border-collapse: collapse;
+    border-spacing: 0px;
+}
+TABLE.quickstats TR {
+    height: 24px;
+    text-align: center;
+}
+TABLE.quickstats TD {
+    width: 36px;
+}
+
+
+/****************************************************************************
+ * Glyph card (gcard)
+ */
+
+TBODY.gcard TD {
+    background: white;
+    border-left: 1px solid #DDD;
+}
+TBODY.gcard TD.leftmost {
+    border-left: 0px;
+}
+
+TBODY.gcard TR.header {
+    height: 20px;
+}
+TBODY.gcard TR.footer {
+    height: 6px;
+}
+TBODY.gcard TR.header TD {
+    color: #999;
+}
+TBODY.compact.gcard TR {
+    height: 24px;
+}
+TBODY.compact.gcard TD.row_number {
+    color: #999;
+    text-align: right;
+    padding-right: 4px;
+}
+TBODY.compact.gcard TR.even_row_number TD {
+    background: #EEE;
+}
+
+TBODY.gcard TR.header TD.top_left_corner {
+    border-top-left-radius: 12px;
+}
+TBODY.gcard TR.header TD.top_right_corner {
+    border-top-right-radius: 12px;
+}
+TBODY.gcard TD.bottom_left_corner {
+    border-bottom-left-radius: 12px;
+}
+TBODY.gcard TD.bottom_right_corner {
+    border-bottom-right-radius: 12px;
+}
+
+TBODY.compact.gcard TD.leftmost {
+    border-top-left-radius: 6px;
+    border-bottom-left-radius: 6px;
+}
+TBODY.compact.gcard TD.rightmost {
+    border-top-right-radius: 6px;
+    border-bottom-right-radius: 6px;
+}
+
+TBODY.gcard TD.STAGE.selected {
+    color: #555;
+    border-top: 3px solid #AAA;
+}
+TBODY.gcard TD.status A {
+    display: block;
+    text-decoration: none;
+}
+TBODY.gcard TD.status.selected A,
+TBODY.gcard TD.status A.mouseover {
+    border: 1px solid black;
+}
+
+/* By default, all gcards in THE_BIG_GCARD_LIST are filtered out. */
+#THE_BIG_GCARD_LIST TBODY.gcard,
+#THE_BIG_GCARD_LIST TBODY.gcard_separator,
+#THE_BIG_GCARD_LIST TBODY.collapsable_rows {
+    display: none;
+}
+#THE_BIG_GCARD_LIST.show_timeout_gcards  TBODY.gcard.timeout,
+#THE_BIG_GCARD_LIST.show_tiemout_gcards  TBODY.gcard_separator.timeout,
+#THE_BIG_GCARD_LIST.show_error_gcards    TBODY.gcard.error,
+#THE_BIG_GCARD_LIST.show_error_gcards    TBODY.gcard_separator.error,
+#THE_BIG_GCARD_LIST.show_warnings_gcards TBODY.gcard.warnings,
+#THE_BIG_GCARD_LIST.show_warnings_gcards TBODY.gcard_separator.warnings,
+#THE_BIG_GCARD_LIST.show_ok_gcards       TBODY.gcard.ok,
+#THE_BIG_GCARD_LIST.show_ok_gcards       TBODY.gcard_separator.ok,
+#THE_BIG_GCARD_LIST.show_ok_gcards       TBODY.collapsable_rows {
+    display: table-row-group;
+}
+
+
+/****************************************************************************
+ * ABC dispatcher
+ */
+
+TABLE.gcard_list TR.abc TD {
+    padding: 0px;
+}
+
+TABLE.big_letter {
+    border: 1px solid black;
+    font-weight: bold;
+    font-size: 16pt;
+    padding: 3px;
+}
+
+TABLE.abc_dispatcher {
+    font-family: monospace;
+    font-size: 12pt;
+    margin-right: 0px;
+    margin-left: auto;
+}
+
+TABLE.abc_dispatcher TD {
+    background: #EEE;
+    width: 22px;
+    text-align: center;
+}
+
+
+/****************************************************************************
+ * Node specific background colors
+ */
+
+/* nebbiolo1 (Ubuntu 20.04) */
+.nebbiolo1,
+.gcard TD.nebbiolo1 {
+    background: #DBEAFB;
+}
+.nebbiolo1.toned_down,
+TR.toned_down .nebbiolo1,
+TBODY.compact.gcard TR.even_row_number .nebbiolo1 {
+    background: #CBDAEB;
+}
+DIV.nebbiolo1 {
+    color: #005;
+}
+
+/* nebbiolo2 (Ubuntu 20.04) */
+.nebbiolo2,
+.gcard TD.nebbiolo2 {
+    background: #DDE8FD;
+}
+.nebbiolo2.toned_down,
+TR.toned_down .nebbiolo2,
+TBODY.compact.gcard TR.even_row_number .nebbiolo2 {
+    background: #CDD8ED;
+}
+DIV.nebbiolo2 {
+    color: #005;
+}
+
+/* riesling1 */
+.riesling1,
+.gcard TD.riesling1 {
+    background: #FAE0DE;
+}
+.riesling1.toned_down,
+TR.toned_down .riesling1,
+TBODY.compact.gcard TR.even_row_number .riesling1 {
+    background: #EAD0CE;
+}
+DIV.riesling1 {
+    color: #500;
+}
+
+/* palomino3 */
+.palomino3,
+.gcard TD.palomino3 {
+    background: #FAE0DE;
+}
+.palomino3.toned_down,
+TR.toned_down .palomino3,
+TBODY.compact.gcard TR.even_row_number .palomino3 {
+    background: #EAD0CE;
+}
+DIV.palomino3 {
+    color: #500;
+}
+
+/* palomino4 */
+.palomino4,
+.gcard TD.palomino4 {
+    background: #FAE0DE;
+}
+.palomino4.toned_down,
+TR.toned_down .palomino4,
+TBODY.compact.gcard TR.even_row_number .palomino4 {
+    background: #EAD0CE;
+}
+DIV.palomino4 {
+    color: #500;
+}
+
+/* merida1 */
+.merida1,
+.gcard TD.merida1 {
+    background: #DCEDEA;
+}
+.merida1.toned_down,
+TR.toned_down .merida1,
+TBODY.compact.gcard TR.even_row_number .merida1 {
+    background: #CCDDDA;
+}
+DIV.merida1 {
+    color: #050;
+}
+
+/* lconway */
+.lconway,
+.gcard TD.lconway {
+    background: #DCEDEA;
+}
+.lconway.toned_down,
+TR.toned_down .lconway,
+TBODY.compact.gcard TR.even_row_number .lconway {
+    background: #CCDDDA;
+}
+DIV.lconway {
+    color: #050;
+}
+
+/* kjohnson */
+.kjohnson,
+.gcard TD.kjohnson {
+    background: #DCEDEA;
+}
+.kjohnson.toned_down,
+TR.toned_down .kjohnson,
+TBODY.compact.gcard TR.even_row_number .kjohnson {
+    background: #CCDDDA;
+}
+DIV.kjohnson {
+    color: #050;
+}
+
+/* kjohnson2 */
+.kjohnson2,
+.gcard TD.kjohnson2 {
+    background: #DCEDEA;
+}
+.kjohnson2.toned_down,
+TR.toned_down .kjohnson2,
+TBODY.compact.gcard TR.even_row_number .kjohnson2 {
+    background: #CCDDDA;
+}
+DIV.kjohnson2 {
+    color: #050;
+}
+

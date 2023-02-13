@@ -1,0 +1,170 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:CRImage.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings CRImage_1.47.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/CRImage.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘CRImage/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘CRImage’ version ‘1.47.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘CRImage’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is  5.7Mb
+  sub-directories of 1Mb or more:
+    extdata   5.4Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+'library' or 'require' calls to packages already attached by Depends:
+  ‘DNAcopy’ ‘aCGH’
+  Please remove these calls from your code.
+':::' call which should be '::': ‘aCGH:::combine.func’
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+Phansalkar_threshold: no visible global function definition for ‘sd’
+SauvolaThreshold: no visible global function definition for ‘sd’
+calculateMeanStdTarget: no visible global function definition for ‘sd’
+calculateOtsu: no visible global function definition for ‘optimize’
+classificationAperio: no visible global function definition for
+  ‘write.table’
+classificationAperio: no visible global function definition for
+  ‘read.table’
+classifyCells: no visible global function definition for ‘predict’
+classifyPen: no visible global function definition for ‘predict’
+colorCorrection: no visible global function definition for ‘sd’
+correctCopyNumber : Myansari.test.default: no visible global function
+  definition for ‘complete.cases’
+correctCopyNumber : Myansari.test.default: no visible global function
+  definition for ‘pnorm’
+correctCopyNumber : Myansari.test.default : ccia: no visible global
+  function definition for ‘qnorm’
+correctCopyNumber : Myansari.test.default : ccia: no visible global
+  function definition for ‘uniroot’
+correctCopyNumber : Myansari.test.default: no visible global function
+  definition for ‘uniroot’
+correctCopyNumber: no visible global function definition for ‘quantile’
+correctCopyNumber: no visible global function definition for ‘median’
+determineCellularity: no visible global function definition for
+  ‘colorRampPalette’
+determineCellularity: no visible global function definition for
+  ‘col2rgb’
+findSlices: no visible global function definition for ‘cutree’
+findSlices: no visible global function definition for ‘hclust’
+findSlices: no visible global function definition for ‘dist’
+findSlices: no visible global function definition for ‘col2rgb’
+kernelSmoother: no visible global function definition for ‘dist’
+labelCells: no visible global function definition for ‘points’
+labelCells: no visible global function definition for ‘title’
+labelCells : refresh: no visible global function definition for
+  ‘points’
+labelCells : refresh: no visible global function definition for ‘title’
+labelCells : refresh: no visible global function definition for
+  ‘write.table’
+labelCells : keydown: no visible global function definition for
+  ‘write.table’
+labelCells : keydown: no visible global function definition for ‘title’
+labelCells : dragmousedown: no visible global function definition for
+  ‘grconvertX’
+labelCells : dragmousedown: no visible global function definition for
+  ‘grconvertY’
+labelCells : dragmousemove: no visible global function definition for
+  ‘grconvertX’
+labelCells : dragmousemove: no visible global function definition for
+  ‘grconvertY’
+labelCells : dragmousemove: no visible global function definition for
+  ‘lines’
+labelCells : dragmouseup: no visible global function definition for
+  ‘chull’
+labelCells : dragmouseup: no visible global function definition for
+  ‘grconvertX’
+labelCells : dragmouseup: no visible global function definition for
+  ‘grconvertY’
+labelCells: no visible global function definition for
+  ‘setGraphicsEventHandlers’
+labelCells: no visible global function definition for
+  ‘getGraphicsEvent’
+numberOfNeighbors: no visible global function definition for ‘dist’
+plotCorrectedCN: no visible global function definition for ‘par’
+plotCorrectedCN: no visible global function definition for ‘segments’
+plotCorrectedCN: no visible global function definition for ‘title’
+plotImage: no visible global function definition for ‘grey’
+plotImage: no visible global function definition for ‘rgb’
+processAperio: no visible global function definition for ‘write.table’
+processAperio: no visible global function definition for ‘col2rgb’
+segmentStructures: no visible global function definition for ‘predict’
+Undefined global functions or variables:
+  chull col2rgb colorRampPalette complete.cases cutree dist
+  getGraphicsEvent grconvertX grconvertY grey hclust lines median
+  optimize par pnorm points predict qnorm quantile read.table rgb sd
+  segments setGraphicsEventHandlers title uniroot write.table
+Consider adding
+  importFrom("grDevices", "chull", "col2rgb", "colorRampPalette",
+             "getGraphicsEvent", "grey", "rgb",
+             "setGraphicsEventHandlers")
+  importFrom("graphics", "grconvertX", "grconvertY", "lines", "par",
+             "points", "segments", "title")
+  importFrom("stats", "complete.cases", "cutree", "dist", "hclust",
+             "median", "optimize", "pnorm", "predict", "qnorm",
+             "quantile", "sd", "uniroot")
+  importFrom("utils", "read.table", "write.table")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘CRImage.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/CRImage.Rcheck/00check.log’
+for details.
+
+

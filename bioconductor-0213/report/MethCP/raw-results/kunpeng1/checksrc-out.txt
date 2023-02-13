@@ -1,0 +1,122 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:MethCP.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings MethCP_1.13.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/MethCP.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘MethCP/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘MethCP’ version ‘1.13.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘MethCP’ can be installed ... WARNING
+Found the following significant warnings:
+  Note: possible error in 'DMLtest(o, group1, group2, ': unused argument (BPPARAM = bpparam()) 
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/MethCP.Rcheck/00install.out’ for details.
+Information on the location(s) of code generating the ‘Note’s can be
+obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
+to ‘yes’.
+* checking installed package size ... NOTE
+  installed size is 17.4Mb
+  sub-directories of 1Mb or more:
+    extdata  16.9Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+calcLociStat : <anonymous>: possible error in DMLtest(o, group1,
+  group2, equal.disp = FALSE, smoothing = FALSE, BPPARAM = bpparam()):
+  unused argument (BPPARAM = bpparam())
+createBsseqObject: no visible binding for global variable ‘plogis’
+createBsseqObject: no visible global function definition for
+  ‘combineList’
+Undefined global functions or variables:
+  combineList plogis
+Consider adding
+  importFrom("stats", "plogis")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                         user system elapsed
+calcLociStatTimeCourse 12.119  2.897   2.837
+segmentMethCP           5.420  0.949   6.219
+getSigRegion            5.186  0.914   5.955
+calcLociStat            4.690  0.168  10.109
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+      rowMedians
+  
+  The following objects are masked from 'package:matrixStats':
+  
+      anyMissing, rowMedians
+  
+  [ FAIL 1 | WARN 0 | SKIP 0 | PASS 16 ]
+  
+  ══ Failed tests ════════════════════════════════════════════════════════════════
+  ── Failure ('test-MethCP.R:20'): methylKit ─────────────────────────────────────
+  `... <- NULL` did not produce any messages.
+  
+  [ FAIL 1 | WARN 0 | SKIP 0 | PASS 16 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘methcp.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 1 WARNING, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/MethCP.Rcheck/00check.log’
+for details.
+
