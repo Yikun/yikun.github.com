@@ -1,0 +1,115 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:GenomicFeatures.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings GenomicFeatures_1.51.4.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/GenomicFeatures.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘GenomicFeatures/DESCRIPTION’ ... OK
+* this is package ‘GenomicFeatures’ version ‘1.51.4’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  'BiocGenerics', 'S4Vectors', 'IRanges', 'GenomeInfoDb',
+  'GenomicRanges', 'AnnotationDbi'
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘GenomicFeatures’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+':::' call which should be '::': ‘rtracklayer:::tableNames’
+  See the note in ?`:::` about the use of this operator.
+Unexported objects imported by ':::' calls:
+  ‘AnnotationDbi:::.getMetaValue’ ‘AnnotationDbi:::.valid.colnames’
+  ‘AnnotationDbi:::.valid.metadata.table’
+  ‘AnnotationDbi:::.valid.table.colnames’ ‘AnnotationDbi:::dbEasyQuery’
+  ‘AnnotationDbi:::dbQuery’ ‘AnnotationDbi:::smartKeys’
+  ‘BiocGenerics:::testPackage’ ‘GenomeInfoDb:::check_tax_id’
+  ‘GenomeInfoDb:::getSeqlevelsReplacementMode’
+  ‘GenomeInfoDb:::lookup_organism_by_tax_id’
+  ‘GenomeInfoDb:::lookup_tax_id_by_organism’
+  ‘GenomeInfoDb:::make_circ_flags_from_circ_seqs’
+  ‘GenomeInfoDb:::normarg_new2old’
+  ‘GenomicRanges:::unsafe.transcriptLocs2refLocs’
+  ‘GenomicRanges:::unsafe.transcriptWidths’
+  ‘IRanges:::regroupBySupergroup’ ‘S4Vectors:::V_recycle’
+  ‘S4Vectors:::anyMissingOrOutside’ ‘S4Vectors:::decodeRle’
+  ‘S4Vectors:::extract_data_frame_rows’ ‘S4Vectors:::quick_togroup’
+  ‘biomaRt:::martBM’ ‘biomaRt:::martDataset’ ‘biomaRt:::martHost’
+  ‘rtracklayer:::resourceDescription’
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... WARNING
+checkRd: (5) FeatureDb-class.Rd:31-34: \item in \describe must have non-empty label
+checkRd: (5) TxDb-class.Rd:30-33: \item in \describe must have non-empty label
+checkRd: (5) TxDb-class.Rd:34-39: \item in \describe must have non-empty label
+checkRd: (5) TxDb-class.Rd:40-43: \item in \describe must have non-empty label
+checkRd: (5) TxDb-class.Rd:44-52: \item in \describe must have non-empty label
+checkRd: (5) TxDb-class.Rd:53-59: \item in \describe must have non-empty label
+checkRd: (5) TxDb-class.Rd:60-65: \item in \describe must have non-empty label
+checkRd: (5) TxDb-class.Rd:66-71: \item in \describe must have non-empty label
+checkRd: (5) TxDb-class.Rd:72-80: \item in \describe must have non-empty label
+checkRd: (5) select-methods.Rd:21-25: \item in \describe must have non-empty label
+checkRd: (5) select-methods.Rd:26-50: \item in \describe must have non-empty label
+checkRd: (5) select-methods.Rd:51-55: \item in \describe must have non-empty label
+checkRd: (5) select-methods.Rd:56-62: \item in \describe must have non-empty label
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                              user system  elapsed
+makeFeatureDbFromUCSC      151.046  4.277 1331.830
+coverageByTranscript       108.223  1.907  110.136
+coordinate-mapping-methods  67.590  3.163   80.612
+makeTxDbFromBiomart         58.854  4.552  250.051
+exonicParts                 55.989  0.424   56.415
+extractTranscriptSeqs       17.574  0.204   17.779
+makeTxDbFromUCSC            12.945  1.119  108.795
+transcriptLocs2refLocs      10.958  0.688   11.675
+makeTxDbFromGFF             10.230  0.456   10.688
+transcriptLengths            5.245  0.144    5.389
+makeTxDbFromGRanges          4.983  0.296    5.280
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘run_unitTests.R’

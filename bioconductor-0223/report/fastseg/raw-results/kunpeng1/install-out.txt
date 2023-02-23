@@ -1,0 +1,72 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL fastseg
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘fastseg’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c R_init_fastseg.c -o R_init_fastseg.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c segment.cpp -o segment.o
+segment.cpp: In function ‘SEXPREC* segment(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)’:
+segment.cpp:60:27: warning: variable ‘globalSd’ set but not used [-Wunused-but-set-variable]
+   60 |         double globalMean,globalSd,diff,M2,globalVariance;
+      |                           ^~~~~~~~
+segment.cpp:61:16: warning: variable ‘oldStatistic’ set but not used [-Wunused-but-set-variable]
+   61 |         double oldStatistic, meanLeft,meanRight,varLeft,varRight;
+      |                ^~~~~~~~~~~~
+segment.cpp:62:38: warning: variable ‘maxStatistic’ set but not used [-Wunused-but-set-variable]
+   62 |         double newStatistic,meanDiff,maxStatistic,DOF,a,b,eps1;
+      |                                      ^~~~~~~~~~~~
+segment.cpp:63:47: warning: variable ‘maxIdx’ set but not used [-Wunused-but-set-variable]
+   63 |         double newPValue, maxPValue,oldPValue,maxIdx;
+      |                                               ^~~~~~
+In file included from segment.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R/include/Rmath.h:210:25: warning: unused variable ‘Rf_beta’ [-Wunused-variable]
+  210 | #define beta            Rf_beta
+      |                         ^~~~~~~
+segment.cpp:65:16: note: in expansion of macro ‘beta’
+   65 |         double beta,nn;
+      |                ^~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c segmentCyberT.cpp -o segmentCyberT.o
+segmentCyberT.cpp: In function ‘SEXPREC* segmentCyberT(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)’:
+segmentCyberT.cpp:59:27: warning: variable ‘globalSd’ set but not used [-Wunused-but-set-variable]
+   59 |         double globalMean,globalSd,diff,M2,globalVariance;
+      |                           ^~~~~~~~
+segmentCyberT.cpp:60:16: warning: variable ‘oldStatistic’ set but not used [-Wunused-but-set-variable]
+   60 |         double oldStatistic,meanLeft,meanRight,varLeft,varRight;
+      |                ^~~~~~~~~~~~
+segmentCyberT.cpp:61:38: warning: variable ‘maxStatistic’ set but not used [-Wunused-but-set-variable]
+   61 |         double newStatistic,meanDiff,maxStatistic,DOF,a,b,eps1;
+      |                                      ^~~~~~~~~~~~
+In file included from segmentCyberT.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R/include/Rmath.h:210:25: warning: unused variable ‘Rf_beta’ [-Wunused-variable]
+  210 | #define beta            Rf_beta
+      |                         ^~~~~~~
+segmentCyberT.cpp:63:57: note: in expansion of macro ‘beta’
+   63 |         double newStatisticBptLeft,newStatisticBptRight,beta,nn;
+      |                                                         ^~~~
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o fastseg.so R_init_fastseg.o segment.o segmentCyberT.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-fastseg/00new/fastseg/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (fastseg)

@@ -1,0 +1,113 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:MSnID.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings MSnID_1.33.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/MSnID.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘MSnID/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘MSnID’ version ‘1.33.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘MSnID’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Namespaces in Imports field not imported from:
+  ‘BiocGenerics’ ‘BiocStyle’ ‘RUnit’ ‘ggplot2’ ‘msmsTests’ ‘xtable’
+  All declared Imports should be used.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.read_mzIDs.mzR.engine.single.file: no visible binding for global
+  variable ‘peptideRef’
+Undefined global functions or variables:
+  peptideRef
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                          user system elapsed
+fetch_conversion_table  12.749  1.127  21.235
+remap_accessions-method  6.319  0.868  10.829
+remap_fasta_entry_names  5.759  0.916   9.138
+optimize_filter          2.750  0.223  13.747
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘runTests.R’
+ ERROR
+Running the tests in ‘tests/runTests.R’ failed.
+Last 13 lines of output:
+   
+  1 Test Suite : 
+  MSnID RUnit Tests - 19 test functions, 0 errors, 1 failure
+  FAILURE in test_data_load: Error in checkIdentical(psms(msnidObj), psms(msnid2)) : FALSE 
+   
+  
+  Test files with failing tests
+  
+     test_data_load.R 
+       test_data_load 
+  
+  
+  Error in BiocGenerics:::testPackage("MSnID") : 
+    unit tests failed for package MSnID
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘handling_mods.Rnw’... OK
+  ‘msnid_vignette.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/MSnID.Rcheck/00check.log’
+for details.
+

@@ -1,0 +1,83 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL ncdfFlow
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘ncdfFlow’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/cpp11/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/BH/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhdf5lib/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c cpp11.cpp -o cpp11.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/cpp11/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/BH/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhdf5lib/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c hdfFlow.cpp -o hdfFlow.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R/library/BH/include/boost/mpl/aux_/na_assert.hpp:23,
+                 from /home/biocbuild/bbs-3.17-bioc/R/library/BH/include/boost/mpl/arg.hpp:25,
+                 from /home/biocbuild/bbs-3.17-bioc/R/library/BH/include/boost/mpl/placeholders.hpp:24,
+                 from /home/biocbuild/bbs-3.17-bioc/R/library/BH/include/boost/iterator/iterator_categories.hpp:16,
+                 from /home/biocbuild/bbs-3.17-bioc/R/library/BH/include/boost/iterator/iterator_facade.hpp:13,
+                 from /home/biocbuild/bbs-3.17-bioc/R/library/BH/include/boost/range/iterator_range_core.hpp:27,
+                 from /home/biocbuild/bbs-3.17-bioc/R/library/BH/include/boost/lexical_cast.hpp:30,
+                 from hdfFlow.cpp:13:
+/home/biocbuild/bbs-3.17-bioc/R/library/BH/include/boost/mpl/assert.hpp:194:21: warning: unnecessary parentheses in declaration of ‘assert_arg’ [-Wparentheses]
+  194 | failed ************ (Pred::************
+      |                     ^~~~~~~~~~~~~~~~~~~
+  195 |       assert_arg( void (*)(Pred), typename assert_arg_pred<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  196 |     );
+      |     ~                
+/home/biocbuild/bbs-3.17-bioc/R/library/BH/include/boost/mpl/assert.hpp:194:21: note: remove parentheses
+  194 | failed ************ (Pred::************
+      |                     ^~~~~~~~~~~~~~~~~~~
+      |                     -
+  195 |       assert_arg( void (*)(Pred), typename assert_arg_pred<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  196 |     );
+      |     ~                
+      |     -
+/home/biocbuild/bbs-3.17-bioc/R/library/BH/include/boost/mpl/assert.hpp:199:21: warning: unnecessary parentheses in declaration of ‘assert_not_arg’ [-Wparentheses]
+  199 | failed ************ (boost::mpl::not_<Pred>::************
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  200 |       assert_not_arg( void (*)(Pred), typename assert_arg_pred_not<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  201 |     );
+      |     ~                
+/home/biocbuild/bbs-3.17-bioc/R/library/BH/include/boost/mpl/assert.hpp:199:21: note: remove parentheses
+  199 | failed ************ (boost::mpl::not_<Pred>::************
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     -
+  200 |       assert_not_arg( void (*)(Pred), typename assert_arg_pred_not<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  201 |     );
+      |     ~                
+      |     -
+hdfFlow.cpp: In function ‘void readSlice_cpp(hid_t, hid_t, hid_t, std::vector<int>, int, int, double*, bool)’:
+hdfFlow.cpp:508:31: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+  508 |                 if(sampleIndx >= nSample)
+      |                    ~~~~~~~~~~~^~~~~~~~~~
+hdfFlow.cpp:493:21: warning: variable ‘status’ set but not used [-Wunused-but-set-variable]
+  493 |         herr_t      status;
+      |                     ^~~~~~
+mkdir -p "/home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-ncdfFlow/00new/ncdfFlow/lib"
+ar rs "/home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-ncdfFlow/00new/ncdfFlow/lib/libncdfFlow.a" cpp11.o hdfFlow.o
+ar: creating /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-ncdfFlow/00new/ncdfFlow/lib/libncdfFlow.a
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o ncdfFlow.so cpp11.o hdfFlow.o /home/biocbuild/bbs-3.17-bioc/R/library/Rhdf5lib/lib/libhdf5_cpp.a /home/biocbuild/bbs-3.17-bioc/R/library/Rhdf5lib/lib/libhdf5.a -lcrypto -lcurl -lsz -laec -lz -ldl -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-ncdfFlow/00new/ncdfFlow/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ncdfFlow)

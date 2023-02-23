@@ -1,0 +1,186 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:recount3.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings recount3_1.9.1.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/recount3.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘recount3/DESCRIPTION’ ... OK
+* this is package ‘recount3’ version ‘1.9.1’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘recount3’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘recount3-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: available_projects
+> ### Title: List available projects in recount3
+> ### Aliases: available_projects
+> 
+> ### ** Examples
+> 
+> 
+> ## Find all the human projects
+> human_projects <- available_projects()
+2023-02-22 11:07:33.20698 caching file sra.recount_project.MD.gz.
+2023-02-22 11:07:35.555139 caching file gtex.recount_project.MD.gz.
+2023-02-22 11:07:37.585956 caching file tcga.recount_project.MD.gz.
+> 
+> ## Explore the results
+> dim(human_projects)
+[1] 8742    6
+> head(human_projects)
+    project organism file_source     project_home project_type n_samples
+1 SRP107565    human         sra data_sources/sra data_sources       216
+2 SRP149665    human         sra data_sources/sra data_sources         4
+3 SRP017465    human         sra data_sources/sra data_sources        23
+4 SRP119165    human         sra data_sources/sra data_sources         6
+5 SRP133965    human         sra data_sources/sra data_sources        12
+6 SRP096765    human         sra data_sources/sra data_sources         7
+> 
+> ## How many are from a data source vs a compilation?
+> table(human_projects$project_type, useNA = "ifany")
+
+data_sources 
+        8742 
+> 
+> ## What are the unique file sources?
+> table(
++     human_projects$file_source[human_projects$project_type == "data_sources"]
++ )
+
+gtex  sra tcga 
+  32 8677   33 
+> 
+> ## Note that big projects are broken up to make them easier to access
+> ## For example, GTEx and TCGA are broken up by tissue
+> head(subset(human_projects, file_source == "gtex"))
+            project organism file_source      project_home project_type
+8678 ADIPOSE_TISSUE    human        gtex data_sources/gtex data_sources
+8679         MUSCLE    human        gtex data_sources/gtex data_sources
+8680   BLOOD_VESSEL    human        gtex data_sources/gtex data_sources
+8681          HEART    human        gtex data_sources/gtex data_sources
+8682          OVARY    human        gtex data_sources/gtex data_sources
+8683         UTERUS    human        gtex data_sources/gtex data_sources
+     n_samples
+8678      1293
+8679       881
+8680      1398
+8681       942
+8682       195
+8683       159
+> head(subset(human_projects, file_source == "tcga"))
+     project organism file_source      project_home project_type n_samples
+8710     ACC    human        tcga data_sources/tcga data_sources        79
+8711    BLCA    human        tcga data_sources/tcga data_sources       433
+8712    BRCA    human        tcga data_sources/tcga data_sources      1256
+8713    CESC    human        tcga data_sources/tcga data_sources       309
+8714    CHOL    human        tcga data_sources/tcga data_sources        45
+8715    COAD    human        tcga data_sources/tcga data_sources       546
+> 
+> ## Find all the mouse projects
+> mouse_projects <- available_projects(organism = "mouse")
+2023-02-22 11:07:51.032485 caching file sra.recount_project.MD.gz.
+> 
+> ## Explore the results
+> dim(mouse_projects)
+[1] 10088     6
+> head(mouse_projects)
+    project organism file_source     project_home project_type n_samples
+1 SRP170963    mouse         sra data_sources/sra data_sources       368
+2 SRP045763    mouse         sra data_sources/sra data_sources        22
+3 DRP005463    mouse         sra data_sources/sra data_sources        12
+4 SRP172863    mouse         sra data_sources/sra data_sources         8
+5 SRP186363    mouse         sra data_sources/sra data_sources        13
+6 SRP101363    mouse         sra data_sources/sra data_sources        22
+> 
+> ## How many are from a data source vs a compilation?
+> table(mouse_projects$project_type, useNA = "ifany")
+
+data_sources 
+       10088 
+> 
+> ## What are the unique file sources?
+> table(
++     mouse_projects$file_source[mouse_projects$project_type == "data_sources"]
++ )
+
+  sra 
+10088 
+> 
+> ## Use with a custom recount3_url:
+> available_projects(
++     recount3_url = "http://snaptron.cs.jhu.edu/data/temp/recount3test",
++     available_homes = "data_sources/sra"
++ )
+Warning: The 'url' <http://snaptron.cs.jhu.edu/data/temp/recount3test/human/data_sources/sra/metadata/sra.recount_project.MD.gz> does not exist or is not available.
+Error in file(file, "rt") : invalid 'description' argument
+Calls: available_projects ... available_samples -> lapply -> FUN -> read.table -> file
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘recount3-quickstart.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/recount3.Rcheck/00check.log’
+for details.
+

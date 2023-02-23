@@ -1,0 +1,64 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data ArrayExpressHTS
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘ArrayExpressHTS/DESCRIPTION’ ... OK
+* preparing ‘ArrayExpressHTS’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* installing the package to build vignettes
+      -----------------------------------
+* installing *source* package ‘ArrayExpressHTS’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c addXS.c -o addXS.o
+addXS.c: In function ‘addXS’:
+addXS.c:42:5: warning: implicit declaration of function ‘Rprintf’; did you mean ‘dprintf’? [-Wimplicit-function-declaration]
+   42 |     Rprintf("What?\n");
+      |     ^~~~~~~
+      |     dprintf
+In file included from /usr/include/string.h:535,
+                 from addXS.c:7:
+In function ‘strncpy’,
+    inlined from ‘pastefield’ at addXS.c:17:5:
+/usr/include/aarch64-linux-gnu/bits/string_fortified.h:95:10: warning: ‘__builtin_strncpy’ output truncated before terminating nul copying as many bytes from a string as its length [-Wstringop-truncation]
+   95 |   return __builtin___strncpy_chk (__dest, __src, __len,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   96 |                                   __glibc_objsize (__dest));
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+addXS.c: In function ‘pastefield’:
+addXS.c:14:19: note: length computed here
+   14 |     int length1 = strlen(text1);
+      |                   ^~~~~~~~~~~~~
+In file included from /usr/include/string.h:535,
+                 from addXS.c:7:
+In function ‘strncpy’,
+    inlined from ‘pastefield’ at addXS.c:18:5:
+/usr/include/aarch64-linux-gnu/bits/string_fortified.h:95:10: warning: ‘__builtin_strncpy’ output truncated before terminating nul copying as many bytes from a string as its length [-Wstringop-truncation]
+   95 |   return __builtin___strncpy_chk (__dest, __src, __len,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   96 |                                   __glibc_objsize (__dest));
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~
+addXS.c: In function ‘pastefield’:
+addXS.c:15:19: note: length computed here
+   15 |     int length2 = strlen(text2);
+      |                   ^~~~~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c bam_plbuf.c -o bam_plbuf.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c fltbam.c -o fltbam.o
+fltbam.c:2:10: fatal error: sam.h: No such file or directory
+    2 | #include "sam.h"
+      |          ^~~~~~~
+compilation terminated.
+make: *** [/home/biocbuild/bbs-3.17-bioc/R/etc/Makeconf:191: fltbam.o] Error 1
+ERROR: compilation failed for package ‘ArrayExpressHTS’
+* removing ‘/tmp/RtmpDqW7s4/Rinsta7b37c1a7d0a/ArrayExpressHTS’
+      -----------------------------------
+ERROR: package installation failed

@@ -1,0 +1,190 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data NetPathMiner
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘NetPathMiner/DESCRIPTION’ ... OK
+* preparing ‘NetPathMiner’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* running ‘cleanup’
+* installing the package to build vignettes
+      -----------------------------------
+* installing *source* package ‘NetPathMiner’ ...
+** using staged installation
+'config' variable 'CPP' is defunct
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking how to run the C preprocessor... gcc -E
+checking for xmlParseFile in -lxml2... yes
+checking for readSBML in -lsbml... yes
+untarring boost include tree...
+libSBML found, finding configuration...
+pkg-config tool found
+libsbml.pc found. Using pkg-config to extract it.
+checking for xml2-config... /usr/bin/xml2-config
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -I. -I/usr/local/include -DHAVE_XML -I/usr/include/libxml2 -DHAVE_SBML -I/usr/include/libxml2  -I/usr/local/include    -fPIC  -g -O2  -Wall  -c PathRanker.cpp -o PathRanker.o
+In file included from ./boost/mpl/aux_/na_assert.hpp:23,
+                 from ./boost/mpl/arg.hpp:25,
+                 from ./boost/mpl/placeholders.hpp:24,
+                 from ./boost/iterator/iterator_categories.hpp:17,
+                 from ./boost/graph/graph_traits.hpp:25,
+                 from ./boost/graph/graph_utility.hpp:29,
+                 from PathRanker.cpp:27:
+./boost/mpl/assert.hpp:187:21: warning: unnecessary parentheses in declaration of ‘assert_arg’ [-Wparentheses]
+  187 | failed ************ (Pred::************
+      |                     ^~~~~~~~~~~~~~~~~~~
+  188 |       assert_arg( void (*)(Pred), typename assert_arg_pred<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  189 |     );
+      |     ~                
+./boost/mpl/assert.hpp:187:21: note: remove parentheses
+  187 | failed ************ (Pred::************
+      |                     ^~~~~~~~~~~~~~~~~~~
+      |                     -
+  188 |       assert_arg( void (*)(Pred), typename assert_arg_pred<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  189 |     );
+      |     ~                
+      |     -
+./boost/mpl/assert.hpp:192:21: warning: unnecessary parentheses in declaration of ‘assert_not_arg’ [-Wparentheses]
+  192 | failed ************ (boost::mpl::not_<Pred>::************
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  193 |       assert_not_arg( void (*)(Pred), typename assert_arg_pred_not<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  194 |     );
+      |     ~                
+./boost/mpl/assert.hpp:192:21: note: remove parentheses
+  192 | failed ************ (boost::mpl::not_<Pred>::************
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     -
+  193 |       assert_not_arg( void (*)(Pred), typename assert_arg_pred_not<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  194 |     );
+      |     ~                
+      |     -
+In file included from ./boost/smart_ptr/detail/shared_count.hpp:30,
+                 from ./boost/smart_ptr/shared_ptr.hpp:32,
+                 from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:27:
+./boost/smart_ptr/detail/sp_counted_impl.hpp:81:41: error: ‘boost::detail::sp_typeinfo’ has not been declared
+   81 |     virtual void * get_deleter( detail::sp_typeinfo const & )
+      |                                         ^~~~~~~~~~~
+./boost/smart_ptr/detail/sp_counted_impl.hpp:156:41: error: ‘boost::detail::sp_typeinfo’ has not been declared
+  156 |     virtual void * get_deleter( detail::sp_typeinfo const & ti )
+      |                                         ^~~~~~~~~~~
+./boost/smart_ptr/detail/sp_counted_impl.hpp: In member function ‘virtual void* boost::detail::sp_counted_impl_pd<P, D>::get_deleter(const int&)’:
+./boost/smart_ptr/detail/sp_counted_impl.hpp:158:39: error: expected primary-expression before ‘)’ token
+  158 |         return ti == BOOST_SP_TYPEID(D)? &reinterpret_cast<char&>( del ): 0;
+      |                                       ^
+./boost/smart_ptr/detail/sp_counted_impl.hpp:158:22: error: there are no arguments to ‘BOOST_SP_TYPEID’ that depend on a template parameter, so a declaration of ‘BOOST_SP_TYPEID’ must be available [-fpermissive]
+  158 |         return ti == BOOST_SP_TYPEID(D)? &reinterpret_cast<char&>( del ): 0;
+      |                      ^~~~~~~~~~~~~~~
+./boost/smart_ptr/detail/sp_counted_impl.hpp:158:22: note: (if you use ‘-fpermissive’, G++ will accept your code, but allowing the use of an undeclared name is deprecated)
+./boost/smart_ptr/detail/sp_counted_impl.hpp: At global scope:
+./boost/smart_ptr/detail/sp_counted_impl.hpp:235:41: error: ‘boost::detail::sp_typeinfo’ has not been declared
+  235 |     virtual void * get_deleter( detail::sp_typeinfo const & ti )
+      |                                         ^~~~~~~~~~~
+./boost/smart_ptr/detail/sp_counted_impl.hpp: In member function ‘virtual void* boost::detail::sp_counted_impl_pda<P, D, A>::get_deleter(const int&)’:
+./boost/smart_ptr/detail/sp_counted_impl.hpp:237:41: error: expected primary-expression before ‘)’ token
+  237 |         return ti == BOOST_SP_TYPEID( D )? &reinterpret_cast<char&>( d_ ): 0;
+      |                                         ^
+./boost/smart_ptr/detail/sp_counted_impl.hpp:237:22: error: there are no arguments to ‘BOOST_SP_TYPEID’ that depend on a template parameter, so a declaration of ‘BOOST_SP_TYPEID’ must be available [-fpermissive]
+  237 |         return ti == BOOST_SP_TYPEID( D )? &reinterpret_cast<char&>( d_ ): 0;
+      |                      ^~~~~~~~~~~~~~~
+In file included from ./boost/smart_ptr/shared_ptr.hpp:32,
+                 from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:27:
+./boost/smart_ptr/detail/shared_count.hpp: At global scope:
+./boost/smart_ptr/detail/shared_count.hpp:446:25: error: ‘sp_typeinfo’ has not been declared
+  446 |     void * get_deleter( sp_typeinfo const & ti ) const
+      |                         ^~~~~~~~~~~
+./boost/smart_ptr/detail/shared_count.hpp: In member function ‘void* boost::detail::shared_count::get_deleter(const int&) const’:
+./boost/smart_ptr/detail/shared_count.hpp:448:39: error: cannot convert ‘const int’ to ‘const sp_typeinfo_&’ {aka ‘const std::type_info&’}
+  448 |         return pi_? pi_->get_deleter( ti ): 0;
+      |                                       ^~
+      |                                       |
+      |                                       const int
+In file included from ./boost/smart_ptr/detail/sp_counted_base.hpp:60,
+                 from ./boost/smart_ptr/detail/shared_count.hpp:29,
+                 from ./boost/smart_ptr/shared_ptr.hpp:32,
+                 from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:27:
+/usr/include/boost/smart_ptr/detail/sp_counted_base_sync.hpp:119:54: note:   initializing argument 1 of ‘virtual void* boost::detail::sp_counted_base::get_deleter(const sp_typeinfo_&)’
+  119 |     virtual void * get_deleter( sp_typeinfo_ const & ti ) = 0;
+      |                                 ~~~~~~~~~~~~~~~~~~~~~^~
+In file included from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:27:
+./boost/smart_ptr/shared_ptr.hpp: At global scope:
+./boost/smart_ptr/shared_ptr.hpp:700:50: error: ‘boost::detail::sp_typeinfo’ has not been declared
+  700 |     void * _internal_get_deleter( boost::detail::sp_typeinfo const & ti ) const BOOST_NOEXCEPT
+      |                                                  ^~~~~~~~~~~
+In file included from ./boost/shared_ptr.hpp:17,
+                 from ./boost/property_map/vector_property_map.hpp:14,
+                 from ./boost/property_map/property_map.hpp:844,
+                 from ./boost/graph/properties.hpp:19,
+                 from ./boost/graph/graph_utility.hpp:30,
+                 from PathRanker.cpp:27:
+./boost/smart_ptr/shared_ptr.hpp: In function ‘D* boost::detail::basic_get_deleter(const boost::shared_ptr<U>&)’:
+./boost/smart_ptr/shared_ptr.hpp:892:71: error: expected primary-expression before ‘)’ token
+  892 |     return static_cast<D *>( p._internal_get_deleter(BOOST_SP_TYPEID(D)) );
+      |                                                                       ^
+./boost/smart_ptr/shared_ptr.hpp:892:54: error: there are no arguments to ‘BOOST_SP_TYPEID’ that depend on a template parameter, so a declaration of ‘BOOST_SP_TYPEID’ must be available [-fpermissive]
+  892 |     return static_cast<D *>( p._internal_get_deleter(BOOST_SP_TYPEID(D)) );
+      |                                                      ^~~~~~~~~~~~~~~
+In file included from ./boost/shared_array.hpp:17,
+                 from ./boost/graph/detail/d_ary_heap.hpp:20,
+                 from ./boost/graph/named_function_params.hpp:24,
+                 from ./boost/graph/depth_first_search.hpp:21,
+                 from ./boost/graph/graph_utility.hpp:32,
+                 from PathRanker.cpp:27:
+./boost/smart_ptr/shared_array.hpp: At global scope:
+./boost/smart_ptr/shared_array.hpp:223:50: error: ‘boost::detail::sp_typeinfo’ has not been declared
+  223 |     void * _internal_get_deleter( boost::detail::sp_typeinfo const & ti ) const
+      |                                                  ^~~~~~~~~~~
+./boost/smart_ptr/shared_array.hpp: In function ‘D* boost::get_deleter(const boost::shared_array<T>&)’:
+./boost/smart_ptr/shared_array.hpp:283:74: error: expected primary-expression before ‘)’ token
+  283 |     return static_cast< D * >( p._internal_get_deleter( BOOST_SP_TYPEID(D) ) );
+      |                                                                          ^
+./boost/smart_ptr/shared_array.hpp:283:57: error: there are no arguments to ‘BOOST_SP_TYPEID’ that depend on a template parameter, so a declaration of ‘BOOST_SP_TYPEID’ must be available [-fpermissive]
+  283 |     return static_cast< D * >( p._internal_get_deleter( BOOST_SP_TYPEID(D) ) );
+      |                                                         ^~~~~~~~~~~~~~~
+make: *** [/home/biocbuild/bbs-3.17-bioc/R/etc/Makeconf:198: PathRanker.o] Error 1
+ERROR: compilation failed for package ‘NetPathMiner’
+* removing ‘/tmp/RtmptieVSa/Rinst1f7d2953e3c3e/NetPathMiner’
+      -----------------------------------
+ERROR: package installation failed

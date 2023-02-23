@@ -1,0 +1,142 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:SMAP.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings SMAP_1.63.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/SMAP.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘SMAP/DESCRIPTION’ ... OK
+* this is package ‘SMAP’ version ‘1.63.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘SMAP’ can be installed ... OK
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Description field: should contain one or more complete sentences.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+'library' or 'require' call to ‘methods’ which was already attached by Depends.
+  Please remove these calls from your code.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+File ‘SMAP/R/AllClasses.R’:
+  .onLoad calls:
+    require("methods", quietly = TRUE)
+
+Package startup functions should not change the search path.
+See section ‘Good practice’ in '?.onAttach'.
+
+.draw.dist,gaussparam: no visible global function definition for
+  ‘abline’
+plot,SMAPObservations-missing: no visible global function definition
+  for ‘par’
+plot,SMAPObservations-missing: no visible global function definition
+  for ‘points’
+plot,SMAPObservations-missing: no visible global function definition
+  for ‘abline’
+plot,SMAPObservations-missing: no visible global function definition
+  for ‘box’
+plot,SMAPObservations-missing: no visible global function definition
+  for ‘axis’
+profilePlot,SMAPProfile: no visible global function definition for
+  ‘par’
+profilePlot,SMAPProfile: no visible global function definition for
+  ‘points’
+profilePlot,SMAPProfile: no visible global function definition for
+  ‘abline’
+profilePlot,SMAPProfile: no visible global function definition for
+  ‘box’
+profilePlot,SMAPProfile: no visible global function definition for
+  ‘axis’
+profilePlot,SMAPProfiles: no visible global function definition for
+  ‘par’
+profilePlot,SMAPProfiles: no visible global function definition for
+  ‘abline’
+profilePlot,SMAPProfiles: no visible global function definition for
+  ‘box’
+profilePlot,SMAPProfiles: no visible global function definition for
+  ‘axis’
+Undefined global functions or variables:
+  abline axis box par points
+Consider adding
+  importFrom("graphics", "abline", "axis", "box", "par", "points")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+      user system elapsed
+smap 6.965  0.032   6.997
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘SMAP.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘SMAP.Rnw’ using Sweave
+Error: processing vignette 'SMAP.Rnw' failed with diagnostics:
+cannot open file 'figs/fig-003.pdf'
+--- failed re-building ‘SMAP.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘SMAP.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 5 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/SMAP.Rcheck/00check.log’
+for details.
+
+

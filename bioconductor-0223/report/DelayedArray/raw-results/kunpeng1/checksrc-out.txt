@@ -1,0 +1,128 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:DelayedArray.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings DelayedArray_0.25.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/DelayedArray.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘DelayedArray/DESCRIPTION’ ... OK
+* this is package ‘DelayedArray’ version ‘0.25.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  'stats4', 'Matrix', 'BiocGenerics', 'MatrixGenerics', 'S4Vectors',
+  'IRanges'
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘DelayedArray’ can be installed ... WARNING
+Found the following significant warnings:
+  compress_atomic_vector.c:66:16: warning: ‘ans’ is used uninitialized [-Wuninitialized]
+  compress_atomic_vector.c:73:16: warning: ‘ans’ is used uninitialized [-Wuninitialized]
+  compress_atomic_vector.c:85:16: warning: ‘ans’ is used uninitialized [-Wuninitialized]
+  compress_atomic_vector.c:92:16: warning: ‘ans’ is used uninitialized [-Wuninitialized]
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/DelayedArray.Rcheck/00install.out’ for details.
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... WARNING
+Subdirectory 'inst/doc' contains invalid file names:
+  ‘02-Implementing_a_backend.Rmd’ ‘01-Working_with_large_arrays.Rnw’
+  ‘03-DelayedArray_HDF5Array_update.Rnw’
+  ‘02-Implementing_a_backend.html’ ‘01-Working_with_large_arrays.pdf’
+  ‘03-DelayedArray_HDF5Array_update.pdf’
+Please remove or rename the files.
+See section ‘Package subdirectories’ in the ‘Writing R Extensions’
+manual.
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘defaultMultAutoGrids’ ‘multGrids’
+Undocumented S4 methods:
+  generic '[' and siglist 'DelayedArray,ANY,ANY,ANY'
+  generic '[<-' and siglist 'DelayedArray,ANY,ANY,ANY'
+  generic 'crossprod' and siglist 'ANY,DelayedMatrix'
+  generic 'crossprod' and siglist 'DelayedMatrix,ANY'
+  generic 'crossprod' and siglist 'DelayedMatrix,DelayedMatrix'
+  generic 'crossprod' and siglist 'DelayedMatrix,missing'
+  generic 'tcrossprod' and siglist 'ANY,DelayedMatrix'
+  generic 'tcrossprod' and siglist 'DelayedMatrix,ANY'
+  generic 'tcrossprod' and siglist 'DelayedMatrix,DelayedMatrix'
+  generic 'tcrossprod' and siglist 'DelayedMatrix,missing'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                      user system elapsed
+RleArray-class      61.530  5.228  66.769
+DelayedMatrix-utils 21.298  1.692  22.992
+sparseMatrix-utils  12.026  0.776  12.803
+DelayedArray-utils  12.439  0.308  12.760
+DelayedArray-class   8.609  0.184   8.794
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘run_unitTests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘02-Implementing_a_backend.Rmd’ using ‘UTF-8’... OK
+  ‘01-Working_with_large_arrays.Rnw’ using ‘UTF-8’... OK
+  ‘03-DelayedArray_HDF5Array_update.Rnw’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 WARNINGs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/DelayedArray.Rcheck/00check.log’
+for details.
+
+

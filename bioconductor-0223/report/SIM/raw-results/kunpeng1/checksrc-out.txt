@@ -1,0 +1,139 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:SIM.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings SIM_1.69.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/SIM.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘SIM/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘SIM’ version ‘1.69.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘SIM’ can be installed ... OK
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+'library' or 'require' call to ‘biomaRt’ in package code.
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+Package in Depends field not imported from: ‘quantreg’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+File ‘SIM/R/zzz.R’:
+  .onAttach calls:
+    library.dynam("SIM", pkg, lib)
+
+See section ‘Good practice’ in '?.onAttach'.
+
+dependent.heatmap: warning in get(as.character(adjust[[2]]), env =
+  attr(adjust, ".Environment")): partial argument match of 'env' to
+  'envir'
+sim.plot.zoom.in: warning in eval(call, env = attr(call, "env")):
+  partial argument match of 'env' to 'envir'
+sim.update.chrom.table: warning in factor(table$name, level = c(1:22,
+  "X", "Y")): partial argument match of 'level' to 'levels'
+assemble.data: no visible binding for global variable ‘chrom.table’
+convertGenomicRegion: no visible binding for global variable
+  ‘chrom.table’
+dependent.heatmap: no visible global function definition for ‘strwidth’
+getoverlappingregions: no visible global function definition for
+  ‘useMart’
+getoverlappingregions: no visible global function definition for
+  ‘getBM’
+independent.heatmap: no visible global function definition for
+  ‘strwidth’
+link.metadata: no visible binding for global variable ‘expr.data’
+link.metadata: no visible binding for global variable ‘hgu133plus2CHR’
+link.metadata: no visible binding for global variable
+  ‘hgu133plus2CHRLOC’
+link.metadata: no visible binding for global variable
+  ‘hgu133plus2SYMBOL’
+plotCytobands: no visible binding for global variable ‘chrom.table’
+sim.plot.overlapping.indep.dep.features: no visible global function
+  definition for ‘box’
+sim.plot.pvals.on.genome: no visible binding for global variable
+  ‘chrom.table’
+sim.update.chrom.table: no visible global function definition for
+  ‘dbConnect’
+sim.update.chrom.table: no visible global function definition for
+  ‘MySQL’
+sim.update.chrom.table: no visible global function definition for
+  ‘dbGetQuery’
+Undefined global functions or variables:
+  MySQL box chrom.table dbConnect dbGetQuery expr.data getBM
+  hgu133plus2CHR hgu133plus2CHRLOC hgu133plus2SYMBOL strwidth useMart
+Consider adding
+  importFrom("graphics", "box", "strwidth")
+to your NAMESPACE file.
+* checking Rd files ... WARNING
+checkRd: (5) integrated.analysis.Rd:116: \item in \value must have non-empty label
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                     user system elapsed
+SIM-package         8.332  0.218   8.551
+integrated.analysis 6.709  0.064   6.773
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘SIM.Rnw’ using ‘latin1’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 WARNING, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/SIM.Rcheck/00check.log’
+for details.
+
+

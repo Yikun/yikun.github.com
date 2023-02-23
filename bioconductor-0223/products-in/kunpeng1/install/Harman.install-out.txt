@@ -1,0 +1,44 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL Harman
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘Harman’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_ARRAYALIGNEMT=4 -D_USE_RCPP=1 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   `/home/biocbuild/bbs-3.17-bioc/R/bin/Rscript -e "Rcpp:::CxxFlags()"` -I.  -fPIC  -g -O2  -Wall  -c Harman.cpp -o Harman.o
+Harman.cpp: In function ‘SEXPREC* HarmanMain(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)’:
+Harman.cpp:3008:3: warning: this ‘else’ clause does not guard... [-Wmisleading-indentation]
+ 3008 |   else
+      |   ^~~~
+Harman.cpp:3022:5: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘else’
+ 3022 |     std::vector<unsigned int>    tr_std_tmp     = Rcpp::as<std::vector<unsigned int> >(tr) ;
+      |     ^~~
+In file included from Harman.cpp:182:
+CSelectRandom.h: In instantiation of ‘std::vector<unsigned int>* CSelectRandom<T>::ReturnVectOf32bitIntegersInRange_CSTDLIB(size_t, size_t, size_t, size_t) [with T = double; size_t = long unsigned int]’:
+Harman.cpp:1764:79:   required from here
+CSelectRandom.h:943:48: warning: comparison of integer expressions of different signedness: ‘long long int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  943 |                                 while (currval < howManyIN)
+      |                                        ~~~~~~~~^~~~~~~~~~~
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o Harman.so Harman.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-Harman/00new/Harman/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (Harman)

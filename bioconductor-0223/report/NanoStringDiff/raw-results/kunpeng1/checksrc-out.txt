@@ -1,0 +1,153 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:NanoStringDiff.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings NanoStringDiff_1.29.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/NanoStringDiff.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘NanoStringDiff/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘NanoStringDiff’ version ‘1.29.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘NanoStringDiff’ can be installed ... OK
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+PlotsPositiveHousekeeping: no visible global function definition for
+  ‘read.table’
+PlotsPositiveHousekeeping: no visible global function definition for
+  ‘glm’
+PlotsPositiveHousekeeping: no visible global function definition for
+  ‘poisson’
+PlotsPositiveHousekeeping: no visible global function definition for
+  ‘rowVars’
+PlotsPositiveHousekeeping: no visible global function definition for
+  ‘par’
+PlotsPositiveHousekeeping: no visible global function definition for
+  ‘abline’
+PlotsPositiveHousekeeping: no visible global function definition for
+  ‘lm’
+PlotsPositiveHousekeeping: no visible global function definition for
+  ‘title’
+PlotsPositiveHousekeeping: no visible global function definition for
+  ‘textxy’
+compute.baseSigma: no visible global function definition for ‘IQR’
+createNanoStringSetFromCsv: no visible global function definition for
+  ‘read.table’
+est.dispersion : get.phihat: no visible global function definition for
+  ‘optimize’
+estNormalizationFactors: no visible global function definition for
+  ‘glm’
+estNormalizationFactors: no visible global function definition for
+  ‘poisson’
+estNormalizationFactors: no visible binding for global variable
+  ‘median’
+glm.LRT: no visible global function definition for ‘pchisq’
+glm.LRT: no visible global function definition for ‘p.adjust’
+glmfit.OneGroup : get.mu: no visible global function definition for
+  ‘optimize’
+glmfit.full: no visible global function definition for ‘lm’
+glmfit.full: no visible global function definition for ‘median’
+glmfit.full: no visible global function definition for ‘IQR’
+glmfit.full : get.phi: no visible global function definition for
+  ‘optimize’
+glmfit.full : get.beta.full: no visible global function definition for
+  ‘optim’
+glmfit.reduce: no visible global function definition for ‘lm’
+glmfit.reduce : get.beta.reduce: no visible global function definition
+  for ‘optim’
+rnegbinom: no visible global function definition for ‘rpois’
+rnegbinom: no visible global function definition for ‘rgamma’
+Undefined global functions or variables:
+  IQR abline glm lm median optim optimize p.adjust par pchisq poisson
+  read.table rgamma rowVars rpois textxy title
+Consider adding
+  importFrom("graphics", "abline", "par", "title")
+  importFrom("stats", "IQR", "glm", "lm", "median", "optim", "optimize",
+             "p.adjust", "pchisq", "poisson", "rgamma", "rpois")
+  importFrom("utils", "read.table")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘compute.baseSigma’ ‘est.dispersion’ ‘fun5’ ‘glmfit.OneGroup’
+  ‘glmfit.full’ ‘glmfit.reduce’ ‘rnegbinom’
+All user-level objects in a package should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking installed files from ‘inst/doc’ ... NOTE
+The following files look like leftovers/mistakes:
+  ‘NanoStringDiff.log’
+Please remove them from your package.
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+           user system elapsed
+glm.LRT 111.332  0.247 111.581
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘NanoStringDiff.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 WARNING, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/NanoStringDiff.Rcheck/00check.log’
+for details.
+
+

@@ -1,0 +1,43 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data biomvRCNS
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘biomvRCNS/DESCRIPTION’ ... OK
+* preparing ‘biomvRCNS’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* installing the package to build vignettes
+      -----------------------------------
+* installing *source* package ‘biomvRCNS’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c biomvRCNS.c -o biomvRCNS.o
+biomvRCNS.c: In function ‘forward’:
+biomvRCNS.c:153:43: error: ‘DOUBLE_XMIN’ undeclared (first use in this function); did you mean ‘DBL_MIN’?
+  153 |                         m_e(F, t, j, T)+= DOUBLE_XMIN;
+      |                                           ^~~~~~~~~~~
+      |                                           DBL_MIN
+biomvRCNS.c:153:43: note: each undeclared identifier is reported only once for each function it appears in
+biomvRCNS.c: In function ‘viterbi’:
+biomvRCNS.c:294:36: error: ‘DOUBLE_XMAX’ undeclared (first use in this function); did you mean ‘DBL_MAX’?
+  294 |         double obs, prod, maxprod=-DOUBLE_XMAX;
+      |                                    ^~~~~~~~~~~
+      |                                    DBL_MAX
+biomvRCNS.c: In function ‘logviterbi’:
+biomvRCNS.c:401:36: error: ‘DOUBLE_XMAX’ undeclared (first use in this function); did you mean ‘DBL_MAX’?
+  401 |         double obs, prod, maxprod=-DOUBLE_XMAX;
+      |                                    ^~~~~~~~~~~
+      |                                    DBL_MAX
+make: *** [/home/biocbuild/bbs-3.17-bioc/R/etc/Makeconf:191: biomvRCNS.o] Error 1
+ERROR: compilation failed for package ‘biomvRCNS’
+* removing ‘/tmp/RtmpxJ1Tak/Rinstb0b363155b84f/biomvRCNS’
+      -----------------------------------
+ERROR: package installation failed

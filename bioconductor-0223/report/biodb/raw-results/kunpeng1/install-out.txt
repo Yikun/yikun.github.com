@@ -1,0 +1,41 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL biodb
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘biodb’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c closeMatchPpm.cpp -o closeMatchPpm.o
+closeMatchPpm.cpp: In function ‘Rcpp::List closeMatchPpm(Rcpp::NumericVector, Rcpp::NumericVector, Rcpp::IntegerVector, Rcpp::IntegerVector, int, double, double)’:
+closeMatchPpm.cpp:251:9: warning: ‘void free(void*)’ called on pointer returned from a mismatched allocation function [-Wmismatched-new-delete]
+  251 |     free(pidxS);
+      |     ~~~~^~~~~~~
+closeMatchPpm.cpp:238:50: note: returned from ‘void* operator new [](std::size_t)’
+  238 |     tIdxStruct *pidxS = new tIdxStruct[x.length()];
+      |                                                  ^
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c test-100-ms_matching.cpp -o test-100-ms_matching.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c test-runner.cpp -o test-runner.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o biodb.so RcppExports.o closeMatchPpm.o test-100-ms_matching.o test-runner.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-biodb/00new/biodb/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (biodb)

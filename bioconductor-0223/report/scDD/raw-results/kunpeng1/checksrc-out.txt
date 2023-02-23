@@ -1,0 +1,154 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:scDD.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings scDD_1.23.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/scDD.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘scDD/DESCRIPTION’ ... OK
+* this is package ‘scDD’ version ‘1.23.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘scDD’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Namespaces in Imports field not imported from:
+  ‘grDevices’ ‘graphics’ ‘stats’
+  All declared Imports should be used.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+calcMV: no visible global function definition for ‘var’
+classifyDD: no visible global function definition for ‘quantile’
+classifyDD: no visible global function definition for ‘rt’
+classifyDD: no visible global function definition for ‘lm’
+classifyDD: no visible global function definition for ‘t.test’
+feDP: no visible global function definition for ‘runif’
+feDP: no visible global function definition for ‘lm’
+feDP: no visible global function definition for ‘t.test’
+feDP: no visible global function definition for ‘fisher.test’
+feDP: no visible global function definition for ‘p.adjust’
+findFC : createFindFC: no visible global function definition for
+  ‘quantile’
+findFC : createFindFC : f: no visible global function definition for
+  ‘runif’
+findFC: no visible global function definition for ‘par’
+findFC: no visible global function definition for ‘points’
+mclustRestricted: no visible global function definition for ‘runif’
+permMclustCov: no visible global function definition for ‘model.matrix’
+permMclustCov: no visible global function definition for ‘lm’
+permMclustCov : getPerm: no visible global function definition for
+  ‘residuals’
+permMclustGene: no visible global function definition for
+  ‘model.matrix’
+permMclustGene: no visible global function definition for ‘lm’
+permMclustGene: no visible global function definition for ‘residuals’
+scDD: no visible global function definition for ‘p.adjust’
+scDD : fishersCombinedPval: no visible global function definition for
+  ‘pchisq’
+sideHist : ggplotColours: no visible global function definition for
+  ‘hcl’
+sideHist: no visible global function definition for ‘hist’
+sideHist: no visible global function definition for ‘axis’
+sideHist: no visible global function definition for ‘rect’
+sideHist: no visible global function definition for ‘lines’
+sideHist: no visible global function definition for ‘density’
+simuDB: no visible global function definition for ‘rnbinom’
+simuDE: no visible global function definition for ‘rnbinom’
+simuDE: no visible global function definition for ‘var’
+simuDM: no visible global function definition for ‘rnbinom’
+simuDP: no visible global function definition for ‘rbinom’
+simuDP: no visible global function definition for ‘rnbinom’
+simulateSet: no visible global function definition for ‘pdf’
+simulateSet: no visible global function definition for ‘dev.off’
+simulateSet: no visible global function definition for ‘runif’
+singleCellSimu: no visible global function definition for ‘var’
+singleCellSimu: no visible global function definition for ‘lm’
+testKS : onegene: no visible global function definition for ‘ks.test’
+testKS: no visible global function definition for ‘p.adjust’
+testZeroes : onegene: no visible global function definition for
+  ‘binomial’
+validation : <anonymous>: no visible global function definition for
+  ‘var’
+validation: no visible binding for global variable ‘var’
+validation: no visible global function definition for ‘par’
+validation: no visible global function definition for ‘abline’
+validation: no visible global function definition for ‘points’
+Undefined global functions or variables:
+  abline axis binomial density dev.off fisher.test hcl hist ks.test
+  lines lm model.matrix p.adjust par pchisq pdf points quantile rbinom
+  rect residuals rnbinom rt runif t.test var
+Consider adding
+  importFrom("grDevices", "dev.off", "hcl", "pdf")
+  importFrom("graphics", "abline", "axis", "hist", "lines", "par",
+             "points", "rect")
+  importFrom("stats", "binomial", "density", "fisher.test", "ks.test",
+             "lm", "model.matrix", "p.adjust", "pchisq", "quantile",
+             "rbinom", "residuals", "rnbinom", "rt", "runif", "t.test",
+             "var")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+               user system elapsed
+scDD        122.195  4.535  42.782
+simulateSet  31.721  4.396  10.163
+results      13.911  1.884  13.201
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘scDD.Rnw’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/scDD.Rcheck/00check.log’
+for details.
+
+

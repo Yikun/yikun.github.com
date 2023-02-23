@@ -1,0 +1,127 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:LowMACA.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings LowMACA_1.29.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/LowMACA.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘LowMACA/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘LowMACA’ version ‘1.29.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘LowMACA’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘LowMACA-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: LowMACA-class
+> ### Title: Class '"LowMACA"'
+> ### Aliases: LowMACA-class alignSequences,LowMACA-method
+> ###   bpAll,LowMACA-method entropy,LowMACA-method
+> ###   getMutations,LowMACA-method lfm,LowMACA-method lmPlot,LowMACA-method
+> ###   mapMutations,LowMACA-method nullProfile,LowMACA-method
+> ###   parallelize,LowMACA-method parallelize<-,LowMACA-method
+> ###   lmAlignment,LowMACA-method lmMutations,LowMACA-method
+> ###   lmEntropy,LowMACA-method lmParams,LowMACA-method
+> ###   lmParams<-,LowMACA-method protter,LowMACA-method setup,LowMACA-method
+> ###   show,LowMACA-method lfmSingleSequence,LowMACA-method
+> ###   lmPlotSingleSequence,LowMACA-method
+> ### Keywords: classes
+> 
+> ### ** Examples
+> 
+> #ANALYSIS OF SOME OF THE PROTEINS THAT SHARE THE HOMEOBOX DOMAIN
+> #Genes to analyze
+> Genes <- c("ADNP","ALX1","ALX4","ARGFX","CDX4","CRX"
++   		,"CUX1","CUX2","DBX2","DLX5","DMBX1","DRGX"
++ 			,"DUXA","ESX1","EVX2","HDX","HLX","HNF1A"
++ 			,"HOXA1","HOXA2","HOXA3","HOXA5","HOXB1","HOXB3"
++ 			,"HOXD3","ISL1","ISX","LHX8")
+> #Pfam to analyze
+> Pfam <- "PF00046"
+> #Construct a new LowMACA object
+> lm <- newLowMACA(genes=Genes , pfam=Pfam)
+All Gene Symbols correct!
+> #Change some parameters
+> lmParams(lm)[['tumor_type']] <- c("skcm" , "stad" , "ucec" , "luad" , "lusc" , "coadread" , "brca")
+> lmParams(lm)[['min_mutation_number']] <- 1
+> lmParams(lm)[['density_bw']] <- 0
+> #Run if you have clustalo installed
+> lm <- setup(lm)
+Aligning sequences...
+Getting mutations from cancers studies...
+Warning in .service_validate_md5sum(api_reference_url, api_reference_md5sum,  :
+  service version differs from validated version
+    service url: https://www.cbioportal.org/api/api-docs
+    observed md5sum: 00c492f3a5315acbf137048d90391482
+    expected md5sum: 07ceb76cc5afcf54a9cf2e1a689b18f7
+ProfileId brca_mbcproject_wagle_2017 has no samples with mutations
+Error in curl::curl_fetch_memory(url, handle = handle) : 
+  Error in the HTTP2 framing layer
+Calls: setup ... request_fetch -> request_fetch.write_memory -> <Anonymous>
+Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘LowMACA.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/LowMACA.Rcheck/00check.log’
+for details.
+

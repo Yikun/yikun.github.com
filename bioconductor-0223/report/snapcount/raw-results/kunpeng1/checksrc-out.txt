@@ -1,0 +1,113 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:snapcount.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings snapcount_1.11.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/snapcount.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘snapcount/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘snapcount’ version ‘1.11.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘snapcount’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘snapcount-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: junction_intersection
+> ### Title: Get the intersection of junctions from 2 or more compilations
+> ###   which are on the same reference
+> ### Aliases: junction_intersection
+> 
+> ### ** Examples
+> 
+> # Using query builder wrappers
+> sb1 <- QueryBuilder(compilation = "gtex", regions = "chr1:1879786-1879786")
+> sb1 <- set_coordinate_modifier(sb1, Coordinates$EndIsExactOrWithin)
+> sb1 <- set_row_filters(sb1, strand == "-")
+> 
+> sb2 <- QueryBuilder(compilation = "tcga", regions = "chr1:1879786-1879786")
+> sb2 <- set_coordinate_modifier(sb2, Coordinates$EndIsExactOrWithin)
+> sb2 <- set_row_filters(sb2, strand == "-")
+> 
+> junction_intersection(sb1, sb2)
+Error in curl::curl_fetch_memory(url, handle = handle) : 
+  transfer closed with outstanding read data remaining
+Calls: junction_intersection ... request_fetch -> request_fetch.write_memory -> <Anonymous>
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+    1. └─snapcount::tissue_specificity(list(sb1, sb2)) at test-higher-level-functions.R:141:4
+    2.   └─base::lapply(...)
+    3.     └─snapcount (local) FUN(X[[i]], ...)
+    4.       └─snapcount:::tissue_specificity_per_group(g[[1]], g[[2]], name)
+    5.         └─snapcount:::get_compilation_metadata(group1[[1]]$compilation())
+    6.           └─snapcount:::submit_query(uri)
+    7.             └─httr::GET(uri)
+    8.               └─httr:::request_perform(req, hu$handle$handle)
+    9.                 ├─httr:::request_fetch(req$output, req$url, handle)
+   10.                 └─httr:::request_fetch.write_memory(req$output, req$url, handle)
+   11.                   └─curl::curl_fetch_memory(url, handle = handle)
+  
+  [ FAIL 1 | WARN 0 | SKIP 0 | PASS 79 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘snapcount_vignette.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ...

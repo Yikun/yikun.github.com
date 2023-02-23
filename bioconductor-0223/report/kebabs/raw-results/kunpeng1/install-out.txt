@@ -1,0 +1,97 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL kebabs
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘kebabs’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/XVector/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Biostrings/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c Biostrings_stubs.c -o Biostrings_stubs.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/XVector/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Biostrings/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c ByteStringVector.c -o ByteStringVector.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/XVector/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Biostrings/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c ExplicitRepC.cpp -o ExplicitRepC.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/XVector/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Biostrings/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c FeatureWeightsPosDepC.cpp -o FeatureWeightsPosDepC.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/XVector/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Biostrings/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c GappyPairC.cpp -o GappyPairC.o
+GappyPairC.cpp: In function ‘SEXPREC* gappyPairKernelMatrixC(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)’:
+GappyPairC.cpp:994:37: warning: ‘annX.ByteStringVector::ptr’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  994 |                 annptr = annX.ptr[iX];
+      |                          ~~~~~~~~~~~^
+GappyPairC.cpp:3407:28: note: ‘annX.ByteStringVector::ptr’ was declared here
+ 3407 |     ByteStringVector x, y, annX, annY, annCharset;
+      |                            ^~~~
+GappyPairC.cpp:1160:41: warning: ‘annY.ByteStringVector::ptr’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1160 |                     annptr = annY.ptr[iY];
+      |                              ~~~~~~~~~~~^
+GappyPairC.cpp:3407:34: note: ‘annY.ByteStringVector::ptr’ was declared here
+ 3407 |     ByteStringVector x, y, annX, annY, annCharset;
+      |                                  ^~~~
+GappyPairC.cpp:3472:34: warning: ‘y.ByteStringVector::ptr’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 3472 |                 getKMPosDistGappy(maxUIndex8, km, x, y, sizeX, sizeY, selX, selY, offsetX, offsetY,
+      |                 ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 3473 |                                   k, m, normalized, symmetric, reverseComplement, posSpec,
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 3474 |                                   distWeight, maxSeqLength, &alphaInf);
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+GappyPairC.cpp:3472:34: warning: ‘y.ByteStringVector::nchar’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/XVector/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Biostrings/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c IRanges_stubs.c -o IRanges_stubs.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/XVector/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Biostrings/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c KernelUtils.cpp -o KernelUtils.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/XVector/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Biostrings/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c MismatchC.cpp -o MismatchC.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/XVector/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Biostrings/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c MotifC.cpp -o MotifC.o
+MotifC.cpp: In function ‘void genPredProfileMotif(Rcpp::NumericMatrix, ByteStringVector, Rcpp::IntegerVector, int, ByteStringVector, ByteStringVector, int, bool, int, int, int, int, Rcpp::NumericMatrix, int, ByteStringVector, Rcpp::IntegerVector*, int, int, ByteStringVector, Rcpp::IntegerVector*, int, int, int, bool, bool, bool)’:
+MotifC.cpp:3677:18: warning: ‘keyPool’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 3677 |         pKeypool = keyPool;
+      |         ~~~~~~~~~^~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/XVector/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Biostrings/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c PredictionC.cpp -o PredictionC.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/XVector/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Biostrings/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c PredictionProfileC.cpp -o PredictionProfileC.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/XVector/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Biostrings/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c R_init_kebabs.cpp -o R_init_kebabs.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/XVector/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Biostrings/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c Rsvm.c -o Rsvm.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/XVector/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Biostrings/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c SparseMatrixHash.cpp -o SparseMatrixHash.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/XVector/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Biostrings/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c SpectrumC.cpp -o SpectrumC.o
+SpectrumC.cpp: In function ‘SEXPREC* spectrumKernelMatrixC(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)’:
+SpectrumC.cpp:679:37: warning: ‘annX.ByteStringVector::ptr’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  679 |                 annptr = annX.ptr[iX];
+      |                          ~~~~~~~~~~~^
+SpectrumC.cpp:3156:28: note: ‘annX.ByteStringVector::ptr’ was declared here
+ 3156 |     ByteStringVector x, y, annX, annY, annCharset;
+      |                            ^~~~
+SpectrumC.cpp:835:41: warning: ‘annY.ByteStringVector::ptr’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  835 |                     annptr = annY.ptr[iY];
+      |                              ~~~~~~~~~~~^
+SpectrumC.cpp:3156:34: note: ‘annY.ByteStringVector::ptr’ was declared here
+ 3156 |     ByteStringVector x, y, annX, annY, annCharset;
+      |                                  ^~~~
+SpectrumC.cpp:3220:33: warning: ‘y.ByteStringVector::ptr’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 3220 |                 getKMPosDistSpec(maxUIndex8, km, x, y, sizeX, sizeY, selX, selY, offsetX, offsetY,
+      |                 ~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 3221 |                                  k, normalized, symmetric, reverseComplement, posSpec, distWeight,
+      |                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+ 3222 |                                  maxSeqLength, &alphaInf);
+      |                                  ~~~~~~~~~~~~~~~~~~~~~~~~
+SpectrumC.cpp:3220:33: warning: ‘y.ByteStringVector::nchar’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/XVector/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Biostrings/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c SymmetricPairC.cpp -o SymmetricPairC.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/XVector/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Biostrings/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c Utils.cpp -o Utils.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/XVector/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Biostrings/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c XVector_stubs.c -o XVector_stubs.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DSTRICT_R_HEADERS -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/XVector/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Biostrings/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c svm.cpp -o svm.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o kebabs.so Biostrings_stubs.o ByteStringVector.o ExplicitRepC.o FeatureWeightsPosDepC.o GappyPairC.o IRanges_stubs.o KernelUtils.o MismatchC.o MotifC.o PredictionC.o PredictionProfileC.o R_init_kebabs.o Rsvm.o SparseMatrixHash.o SpectrumC.o SymmetricPairC.o Utils.o XVector_stubs.o svm.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-kebabs/00new/kebabs/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (kebabs)

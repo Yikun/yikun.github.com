@@ -1,0 +1,214 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:glmSparseNet.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings glmSparseNet_1.17.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/glmSparseNet.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘glmSparseNet/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘glmSparseNet’ version ‘1.17.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘glmSparseNet’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘glmSparseNet-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: biomart.load
+> ### Title: Common call to biomaRt to avoid repetitive code
+> ### Aliases: biomart.load
+> 
+> ### ** Examples
+> 
+> glmSparseNet:::biomart.load(
++     attributes = c("external_gene_name","ensembl_gene_id"), 
++     filters = "external_gene_name", 
++     values = c('MOB1A','RFLNB', 'SPIC', 'TP53'),
++     use.cache = TRUE,
++     verbose = FALSE
++ )
+Warning in curl.workaround({ :
+  There was an problem, calling the function with ssl_verifypeer to FALSE
+
+	 error: Timeout was reached: [www.ensembl.org:443] Operation timed out after 10001 milliseconds with 89756 bytes received
+Warning in force(expr) : restarting interrupted promise evaluation
+* Hostname www.ensembl.org was found in DNS cache
+*   Trying 193.62.193.83:443...
+* Connected to www.ensembl.org (193.62.193.83) port 443 (#1)
+* found 374 certificates in /etc/ssl/certs
+* GnuTLS ciphers: NORMAL:-ARCFOUR-128:-CTYPE-ALL:+CTYPE-X509:-VERS-SSL3.0
+* ALPN, offering h2
+* ALPN, offering http/1.1
+* SSL connection using TLS1.2 / ECDHE_RSA_AES_128_GCM_SHA256
+*   server certificate verification SKIPPED
+*   server certificate status verification SKIPPED
+*   common name: *.ensembl.org (matched)
+*   server certificate expiration date OK
+*   server certificate activation date OK
+*   certificate public key: RSA
+*   certificate version: #3
+*   subject: CN=*.ensembl.org
+*   start date: Tue, 26 Apr 2022 20:10:48 GMT
+*   expire date: Sun, 28 May 2023 20:10:48 GMT
+*   issuer: C=US,ST=Arizona,L=Scottsdale,O=GoDaddy.com\, Inc.,OU=http://certs.godaddy.com/repository/,CN=Go Daddy Secure Certificate Authority - G2
+* ALPN, server did not agree to a protocol
+> GET /info/website/archives/index.html?redirect=no HTTP/1.1
+Host: www.ensembl.org
+User-Agent: libcurl/7.81.0 r-curl/5.0.0 httr/1.4.4
+Accept-Encoding: deflate, gzip, br, zstd
+Cookie: ENSEMBL_HINX_SESSION=a0b7e0ee1b7961290c0c7e0a6444c8000fad3c9a681e36fd41bb482f; redirect_mirror=no
+Accept: application/json, text/xml, application/xml, */*
+
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< Date: Wed, 22 Feb 2023 05:54:32 GMT
+< Content-Type: text/html; charset=utf-8
+< Content-Length: 9154
+< Connection: keep-alive
+< Server: Apache
+< X-Frame-Options: SAMEORIGIN
+< Content-Security-Policy: frame-ancestors 'self'
+< Vary: Accept-Encoding
+< Content-Encoding: gzip
+< X-NGINX-MACHINE: wp-p1m2-35.ebi.ac.uk
+< 
+* Connection #1 to host www.ensembl.org left intact
+* Found bundle for host www.ensembl.org: 0xaaab0773a2a0 [serially]
+* Can not multiplex, even if we wanted to!
+* Re-using existing connection! (#1) with host www.ensembl.org
+* Connected to www.ensembl.org (193.62.193.83) port 443 (#1)
+> GET /biomart/martservice?redirect=no&type=datasets&requestid=biomaRt&mart=ENSEMBL_MART_ENSEMBL HTTP/1.1
+Host: www.ensembl.org
+User-Agent: libcurl/7.81.0 r-curl/5.0.0 httr/1.4.4
+Accept-Encoding: deflate, gzip, br, zstd
+Accept: application/json, text/xml, application/xml, */*
+Content-Type: text/plain
+
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< Date: Wed, 22 Feb 2023 05:54:35 GMT
+< Server: Apache
+< X-Frame-Options: SAMEORIGIN
+< Content-Security-Policy: frame-ancestors 'self'
+< Transfer-Encoding: chunked
+< Content-Type: text/plain; charset=utf-8
+< 
+* Connection #1 to host www.ensembl.org left intact
+* Found bundle for host www.ensembl.org: 0xaaab0773a2a0 [serially]
+* Can not multiplex, even if we wanted to!
+* Re-using existing connection! (#1) with host www.ensembl.org
+* Connected to www.ensembl.org (193.62.193.83) port 443 (#1)
+> GET /biomart/martservice?redirect=no&type=attributes&dataset=hsapiens_gene_ensembl&requestid=biomaRt&mart=ENSEMBL_MART_ENSEMBL&virtualSchema=default HTTP/1.1
+Host: www.ensembl.org
+User-Agent: libcurl/7.81.0 r-curl/5.0.0 httr/1.4.4
+Accept-Encoding: deflate, gzip, br, zstd
+Accept: application/json, text/xml, application/xml, */*
+Content-Type: text/plain
+
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< Date: Wed, 22 Feb 2023 05:54:39 GMT
+< Server: Apache
+< X-Frame-Options: SAMEORIGIN
+< Content-Security-Policy: frame-ancestors 'self'
+< Transfer-Encoding: chunked
+< Content-Type: text/plain; charset=utf-8
+< 
+* Operation timed out after 10001 milliseconds with 68094 bytes received
+* Closing connection 1
+Error in curl::curl_fetch_memory(url, handle = handle) : 
+  Timeout was reached: [www.ensembl.org:443] Operation timed out after 10001 milliseconds with 68094 bytes received
+Calls: <Anonymous> ... request_fetch -> request_fetch.write_memory -> <Anonymous>
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  x[2]: "ENSP00000299272"
+  y[2]: "ENSG00000166211"
+  
+  x[3]: "ENSP00000331915"
+  y[3]: "ENSG00000183688"
+  
+  x[4]: "ENSP00000361021"
+  y[4]: "ENSG00000171862"
+  
+  x[5]: "ENSP00000269305"
+  y[5]: "ENSG00000141510"
+  
+  [ FAIL 2 | WARN 6 | SKIP 0 | PASS 82 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘example_brca_logistic.Rmd’ using ‘UTF-8’... OK
+  ‘example_brca_protein-protein-interactions_survival.Rmd’ using ‘UTF-8’... OK
+  ‘example_brca_survival.Rmd’ using ‘UTF-8’... OK
+  ‘example_prad_survival.Rmd’ using ‘UTF-8’... OK
+  ‘example_skcm_survival.Rmd’ using ‘UTF-8’... OK
+  ‘separate2GroupsCox.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/glmSparseNet.Rcheck/00check.log’
+for details.
+

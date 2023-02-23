@@ -1,0 +1,143 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:pRoloc.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings pRoloc_1.39.1.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/pRoloc.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘pRoloc/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘pRoloc’ version ‘1.39.1’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘pRoloc’ can be installed ... OK
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+':::' calls which should be '::':
+  ‘MLInterfaces:::.macroF1’ ‘MLInterfaces:::.precision’
+  ‘MLInterfaces:::.recall’ ‘MLInterfaces:::es2df’
+  See the note in ?`:::` about the use of this operator.
+Unexported object imported by a ':::' call: ‘caret:::predict.plsda’
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+Found the following possibly unsafe calls:
+File ‘pRoloc/R/annotation.R’:
+  unlockBinding("params", .pRolocEnv)
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                         user system elapsed
+perTurboClassification 15.325  0.176  15.502
+plot2D                  9.908  0.185   7.410
+SpatProtVis-class       9.838  0.192  10.030
+nnetClassification      7.974  0.080   8.054
+svmClassification       7.583  0.076   7.659
+rfClassification        7.170  0.075   7.247
+ClustDistList-class     6.358  0.356  19.814
+ClustDist-class         6.197  0.389  15.480
+ksvmClassification      6.216  0.136   6.352
+clustDist               5.734  0.296  21.105
+addGoAnnotations        5.036  0.296  21.199
+AnnotationParams-class  0.386  0.055  22.175
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘v01-pRoloc-tutorial.Rmd’ using ‘UTF-8’... OK
+  ‘v02-pRoloc-ml.Rmd’ using ‘UTF-8’... OK
+  ‘v03-pRoloc-bayesian.Rmd’ using ‘UTF-8’... OK
+  ‘v04-pRoloc-goannotations.Rmd’ using ‘UTF-8’... OK
+  ‘v05-pRoloc-transfer-learning.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘v01-pRoloc-tutorial.Rmd’ using rmarkdown
+--- finished re-building ‘v01-pRoloc-tutorial.Rmd’
+
+--- re-building ‘v02-pRoloc-ml.Rmd’ using rmarkdown
+--- finished re-building ‘v02-pRoloc-ml.Rmd’
+
+--- re-building ‘v03-pRoloc-bayesian.Rmd’ using rmarkdown
+--- finished re-building ‘v03-pRoloc-bayesian.Rmd’
+
+--- re-building ‘v04-pRoloc-goannotations.Rmd’ using rmarkdown
+--- finished re-building ‘v04-pRoloc-goannotations.Rmd’
+
+--- re-building ‘v05-pRoloc-transfer-learning.Rmd’ using rmarkdown
+Quitting from lines 143-147 (v05-pRoloc-transfer-learning.Rmd) 
+Error: processing vignette 'v05-pRoloc-transfer-learning.Rmd' failed with diagnostics:
+Timeout was reached: [www.ensembl.org:80] Operation timed out after 10000 milliseconds with 265954 bytes received
+--- failed re-building ‘v05-pRoloc-transfer-learning.Rmd’
+
+SUMMARY: processing the following file failed:
+  ‘v05-pRoloc-transfer-learning.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/pRoloc.Rcheck/00check.log’
+for details.
+

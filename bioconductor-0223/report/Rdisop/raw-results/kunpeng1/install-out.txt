@@ -1,0 +1,184 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL Rdisop
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘Rdisop’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c disop.cpp -o disop.o
+In file included from ./imslib/src/ims/alphabet.h:8,
+                 from disop.cpp:18:
+./imslib/src/ims/element.h: In member function ‘ims::Element::mass_type ims::Element::getMass(ims::Element::size_type) const’:
+./imslib/src/ims/element.h:166:37: warning: comparison of integer expressions of different signedness: ‘int’ and ‘ims::IsotopeDistribution::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  166 |                     for (int i=0; i < IsotopeDistribution::SIZE; i++) {
+      |                                   ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from disop.cpp:28:
+./imslib/src/ims/decomp/decomputils.h: In function ‘std::pair<typename DecompositionWeights::alphabet_mass_type, typename DecompositionWeights::alphabet_mass_type> ims::DecompUtils::getMinMaxWeightsRoundingErrors(const DecompositionWeights&)’:
+./imslib/src/ims/decomp/decomputils.h:92:60: warning: typedef ‘weight_type’ locally defined but not used [-Wunused-local-typedefs]
+   92 |         typedef typename DecompositionWeights::weight_type weight_type;
+      |                                                            ^~~~~~~~~~~
+disop.cpp: In function ‘bool isValidMyNitrogenRule(const ims::ComposedElement&, int)’:
+disop.cpp:106:8: warning: unused variable ‘parityeven’ [-Wunused-variable]
+  106 |   bool parityeven = !parityodd;
+      |        ^~~~~~~~~~
+disop.cpp: In function ‘SEXPREC* decomposeIsotopes(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)’:
+disop.cpp:228:50: warning: comparison of integer expressions of different signedness: ‘std::vector<ims::IsotopeDistribution::Peak>::size_type’ {aka ‘long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  228 |         for (peaks_container::size_type i = 0; i < abundances.size(); ++i) {
+      |                                                ~~^~~~~~~~~~~~~~~~~~~
+disop.cpp:231:50: warning: comparison of integer expressions of different signedness: ‘std::vector<ims::IsotopeDistribution::Peak>::size_type’ {aka ‘long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  231 |         for (peaks_container::size_type i = 0; i < abundances.size(); ++i) {
+      |                                                ~~^~~~~~~~~~~~~~~~~~~
+disop.cpp:239:53: warning: comparison of integer expressions of different signedness: ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  239 |         for (masses_container::size_type mi = 0; mi < masses.size() && mi < abundances.size(); ++mi) {
+      |                                                  ~~~^~~~~~~~~~~~~~~
+disop.cpp:239:75: warning: comparison of integer expressions of different signedness: ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  239 |         for (masses_container::size_type mi = 0; mi < masses.size() && mi < abundances.size(); ++mi) {
+      |                                                                        ~~~^~~~~~~~~~~~~~~~~~~
+disop.cpp:191:13: warning: unused variable ‘number_molecules_shown’ [-Wunused-variable]
+  191 |         int number_molecules_shown = 100;
+      |             ^~~~~~~~~~~~~~~~~~~~~~
+disop.cpp:169:39: warning: typedef ‘mass_type’ locally defined but not used [-Wunused-local-typedefs]
+  169 |     typedef distribution_t::mass_type mass_type;
+      |                                       ^~~~~~~~~
+disop.cpp:171:47: warning: typedef ‘nominal_mass_type’ locally defined but not used [-Wunused-local-typedefs]
+  171 |     typedef distribution_t::nominal_mass_type nominal_mass_type;
+      |                                               ^~~~~~~~~~~~~~~~~
+disop.cpp:174:42: warning: typedef ‘decomposition_type’ locally defined but not used [-Wunused-local-typedefs]
+  174 |     typedef decompositions_t::value_type decomposition_type;
+      |                                          ^~~~~~~~~~~~~~~~~~
+disop.cpp: In function ‘SEXPREC* calculateScore(SEXP, SEXP, SEXP, SEXP)’:
+disop.cpp:390:53: warning: comparison of integer expressions of different signedness: ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  390 |         for (masses_container::size_type mi = 0; mi < masses.size() && mi < abundances.size(); ++mi)
+      |                                                  ~~~^~~~~~~~~~~~~~~
+disop.cpp:390:75: warning: comparison of integer expressions of different signedness: ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  390 |         for (masses_container::size_type mi = 0; mi < masses.size() && mi < abundances.size(); ++mi)
+      |                                                                        ~~~^~~~~~~~~~~~~~~~~~~
+disop.cpp:407:50: warning: comparison of integer expressions of different signedness: ‘std::vector<ims::IsotopeDistribution::Peak>::size_type’ {aka ‘long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  407 |         for (peaks_container::size_type i = 0; i < abundances.size(); ++i) {
+      |                                                ~~^~~~~~~~~~~~~~~~~~~
+disop.cpp:410:50: warning: comparison of integer expressions of different signedness: ‘std::vector<ims::IsotopeDistribution::Peak>::size_type’ {aka ‘long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  410 |         for (peaks_container::size_type i = 0; i < abundances.size(); ++i) {
+      |                                                ~~^~~~~~~~~~~~~~~~~~~
+disop.cpp:414:53: warning: comparison of integer expressions of different signedness: ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  414 |         for (masses_container::size_type mi = 0; mi < masses.size() && mi < abundances.size(); ++mi)
+      |                                                  ~~~^~~~~~~~~~~~~~~
+disop.cpp:414:75: warning: comparison of integer expressions of different signedness: ‘std::vector<double>::size_type’ {aka ‘long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  414 |         for (masses_container::size_type mi = 0; mi < masses.size() && mi < abundances.size(); ++mi)
+      |                                                                        ~~~^~~~~~~~~~~~~~~~~~~
+disop.cpp:377:43: warning: typedef ‘mass_type’ locally defined but not used [-Wunused-local-typedefs]
+  377 |         typedef distribution_t::mass_type mass_type;
+      |                                           ^~~~~~~~~
+disop.cpp: In function ‘SEXPREC* rlistScores(std::multimap<score_type, ims::ComposedElement, std::greater<score_type> >, int)’:
+disop.cpp:626:43: warning: typedef ‘scorer_type’ locally defined but not used [-Wunused-local-typedefs]
+  626 |     typedef DistributionProbabilityScorer scorer_type;
+      |                                           ^~~~~~~~~~~
+disop.cpp: In function ‘void initializeCHNOPS(alphabet_t&, int)’:
+disop.cpp:709:39: warning: typedef ‘elements_type’ locally defined but not used [-Wunused-local-typedefs]
+  709 |         typedef alphabet_t::container elements_type;
+      |                                       ^~~~~~~~~~~~~
+disop.cpp: In function ‘void initializeAlphabet(SEXP, alphabet_t&, int)’:
+disop.cpp:814:33: warning: typedef ‘elements_type’ locally defined but not used [-Wunused-local-typedefs]
+  814 |   typedef alphabet_t::container elements_type;
+      |                                 ^~~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/element.cpp -o imslib/src/ims/element.o
+In file included from imslib/src/ims/element.cpp:6:
+./imslib/src/ims/element.h: In member function ‘ims::Element::mass_type ims::Element::getMass(ims::Element::size_type) const’:
+./imslib/src/ims/element.h:166:37: warning: comparison of integer expressions of different signedness: ‘int’ and ‘ims::IsotopeDistribution::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  166 |                     for (int i=0; i < IsotopeDistribution::SIZE; i++) {
+      |                                   ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/composedelement.cpp -o imslib/src/ims/composedelement.o
+In file included from ./imslib/src/ims/composedelement.h:7,
+                 from imslib/src/ims/composedelement.cpp:8:
+./imslib/src/ims/element.h: In member function ‘ims::Element::mass_type ims::Element::getMass(ims::Element::size_type) const’:
+./imslib/src/ims/element.h:166:37: warning: comparison of integer expressions of different signedness: ‘int’ and ‘ims::IsotopeDistribution::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  166 |                     for (int i=0; i < IsotopeDistribution::SIZE; i++) {
+      |                                   ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/isotopedistribution.cpp -o imslib/src/ims/isotopedistribution.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/alphabet.cpp -o imslib/src/ims/alphabet.o
+In file included from ./imslib/src/ims/alphabet.h:8,
+                 from imslib/src/ims/alphabet.cpp:6:
+./imslib/src/ims/element.h: In member function ‘ims::Element::mass_type ims::Element::getMass(ims::Element::size_type) const’:
+./imslib/src/ims/element.h:166:37: warning: comparison of integer expressions of different signedness: ‘int’ and ‘ims::IsotopeDistribution::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  166 |                     for (int i=0; i < IsotopeDistribution::SIZE; i++) {
+      |                                   ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/weights.cpp -o imslib/src/ims/weights.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/distributedalphabet.cpp -o imslib/src/ims/distributedalphabet.o
+In file included from ./imslib/src/ims/alphabet.h:8,
+                 from ./imslib/src/ims/distributedalphabet.h:7,
+                 from imslib/src/ims/distributedalphabet.cpp:7:
+./imslib/src/ims/element.h: In member function ‘ims::Element::mass_type ims::Element::getMass(ims::Element::size_type) const’:
+./imslib/src/ims/element.h:166:37: warning: comparison of integer expressions of different signedness: ‘int’ and ‘ims::IsotopeDistribution::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  166 |                     for (int i=0; i < IsotopeDistribution::SIZE; i++) {
+      |                                   ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/transformation.cpp -o imslib/src/ims/transformation.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/isotopespecies.cpp -o imslib/src/ims/isotopespecies.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/base/parser/alphabettextparser.cpp -o imslib/src/ims/base/parser/alphabettextparser.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/base/parser/distributedalphabettextparser.cpp -o imslib/src/ims/base/parser/distributedalphabettextparser.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/base/parser/massestextparser.cpp -o imslib/src/ims/base/parser/massestextparser.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/base/parser/moleculesequenceparser.cpp -o imslib/src/ims/base/parser/moleculesequenceparser.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/base/parser/standardmoleculesequenceparser.cpp -o imslib/src/ims/base/parser/standardmoleculesequenceparser.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/base/parser/keggligandcompoundsparser.cpp -o imslib/src/ims/base/parser/keggligandcompoundsparser.o
+imslib/src/ims/base/parser/keggligandcompoundsparser.cpp: In member function ‘virtual void ims::KeggLigandCompoundsParser::parse(const sequence_type&)’:
+imslib/src/ims/base/parser/keggligandcompoundsparser.cpp:53:39: warning: suggest parentheses around ‘&&’ within ‘||’ [-Wparentheses]
+   53 |         for (;  letter_pos < last_pos &&
+      |                 ~~~~~~~~~~~~~~~~~~~~~~^~
+   54 |                         ( std::isalpha(sequence[letter_pos]) && std::isupper(sequence[letter_pos])) ||
+      |                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/base/parser/moleculeionchargemodificationparser.cpp -o imslib/src/ims/base/parser/moleculeionchargemodificationparser.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/calib/linepairstabber.cpp -o imslib/src/ims/calib/linepairstabber.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/calib/matchmatrix.cpp -o imslib/src/ims/calib/matchmatrix.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/calib/linearpointsetmatcher.cpp -o imslib/src/ims/calib/linearpointsetmatcher.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/decomp/realmassdecomposer.cpp -o imslib/src/ims/decomp/realmassdecomposer.o
+In file included from ./imslib/src/ims/alphabet.h:8,
+                 from ./imslib/src/ims/decomp/decomputils.h:12,
+                 from imslib/src/ims/decomp/realmassdecomposer.cpp:9:
+./imslib/src/ims/element.h: In member function ‘ims::Element::mass_type ims::Element::getMass(ims::Element::size_type) const’:
+./imslib/src/ims/element.h:166:37: warning: comparison of integer expressions of different signedness: ‘int’ and ‘ims::IsotopeDistribution::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  166 |                     for (int i=0; i < IsotopeDistribution::SIZE; i++) {
+      |                                   ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from imslib/src/ims/decomp/realmassdecomposer.cpp:9:
+./imslib/src/ims/decomp/decomputils.h: In function ‘std::pair<typename DecompositionWeights::alphabet_mass_type, typename DecompositionWeights::alphabet_mass_type> ims::DecompUtils::getMinMaxWeightsRoundingErrors(const DecompositionWeights&)’:
+./imslib/src/ims/decomp/decomputils.h:92:60: warning: typedef ‘weight_type’ locally defined but not used [-Wunused-local-typedefs]
+   92 |         typedef typename DecompositionWeights::weight_type weight_type;
+      |                                                            ^~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/utils/distribution.cpp -o imslib/src/ims/utils/distribution.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/distributionprobabilityscorer.cpp -o imslib/src/ims/distributionprobabilityscorer.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/characteralphabet.cpp -o imslib/src/ims/characteralphabet.o
+In file included from ./imslib/src/ims/alphabet.h:8,
+                 from ./imslib/src/ims/characteralphabet.h:6,
+                 from imslib/src/ims/characteralphabet.cpp:3:
+./imslib/src/ims/element.h: In member function ‘ims::Element::mass_type ims::Element::getMass(ims::Element::size_type) const’:
+./imslib/src/ims/element.h:166:37: warning: comparison of integer expressions of different signedness: ‘int’ and ‘ims::IsotopeDistribution::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  166 |                     for (int i=0; i < IsotopeDistribution::SIZE; i++) {
+      |                                   ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   -I./imslib/src/ -fPIC  -g -O2  -Wall  -c imslib/src/ims/nitrogenrulefilter.cpp -o imslib/src/ims/nitrogenrulefilter.o
+In file included from ./imslib/src/ims/composedelement.h:7,
+                 from ./imslib/src/ims/nitrogenrulefilter.h:4,
+                 from imslib/src/ims/nitrogenrulefilter.cpp:5:
+./imslib/src/ims/element.h: In member function ‘ims::Element::mass_type ims::Element::getMass(ims::Element::size_type) const’:
+./imslib/src/ims/element.h:166:37: warning: comparison of integer expressions of different signedness: ‘int’ and ‘ims::IsotopeDistribution::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  166 |                     for (int i=0; i < IsotopeDistribution::SIZE; i++) {
+      |                                   ~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o Rdisop.so disop.o imslib/src/ims/element.o imslib/src/ims/composedelement.o imslib/src/ims/isotopedistribution.o imslib/src/ims/alphabet.o imslib/src/ims/weights.o imslib/src/ims/distributedalphabet.o imslib/src/ims/transformation.o imslib/src/ims/isotopespecies.o imslib/src/ims/base/parser/alphabettextparser.o imslib/src/ims/base/parser/distributedalphabettextparser.o imslib/src/ims/base/parser/massestextparser.o imslib/src/ims/base/parser/moleculesequenceparser.o imslib/src/ims/base/parser/standardmoleculesequenceparser.o imslib/src/ims/base/parser/keggligandcompoundsparser.o imslib/src/ims/base/parser/moleculeionchargemodificationparser.o imslib/src/ims/calib/linepairstabber.o imslib/src/ims/calib/matchmatrix.o imslib/src/ims/calib/linearpointsetmatcher.o imslib/src/ims/decomp/realmassdecomposer.o imslib/src/ims/utils/distribution.o imslib/src/ims/distributionprobabilityscorer.o imslib/src/ims/characteralphabet.o imslib/src/ims/nitrogenrulefilter.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-Rdisop/00new/Rdisop/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (Rdisop)

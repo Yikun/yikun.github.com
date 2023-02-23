@@ -1,0 +1,136 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:GenomeInfoDb.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings GenomeInfoDb_1.35.15.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/GenomeInfoDb.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘GenomeInfoDb/DESCRIPTION’ ... OK
+* this is package ‘GenomeInfoDb’ version ‘1.35.15’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘GenomeInfoDb’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is  5.2Mb
+  sub-directories of 1Mb or more:
+    extdata   3.7Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... NOTE
+Problems with news in ‘NEWS’:
+  Cannot process chunk/lines:
+    NEW FEATURES
+  Cannot process chunk/lines:
+    SIGNIFICANT USER-VISIBLE CHANGES
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Unexported object imported by a ':::' call: ‘utils:::.roman2numeric’
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... WARNING
+checkRd: (5) GenomeDescription-class.Rd:53-58: \item in \describe must have non-empty label
+checkRd: (5) GenomeDescription-class.Rd:59-63: \item in \describe must have non-empty label
+checkRd: (5) GenomeDescription-class.Rd:64-70: \item in \describe must have non-empty label
+checkRd: (5) GenomeDescription-class.Rd:71-75: \item in \describe must have non-empty label
+checkRd: (5) GenomeDescription-class.Rd:76-79: \item in \describe must have non-empty label
+checkRd: (5) GenomeDescription-class.Rd:80-88: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:83-93: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:101-104: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:105-115: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:116-119: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:120-123: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:124-149: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:150-153: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:154-157: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:158-162: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:170-178: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:186-189: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:226-249: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:250-256: \item in \describe must have non-empty label
+checkRd: (5) Seqinfo-class.Rd:257-262: \item in \describe must have non-empty label
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                         user system elapsed
+loadTaxonomyDb          9.523  0.664  10.188
+GenomeDescription-class 9.135  0.272   9.411
+seqinfo                 6.371  0.196   6.588
+seqlevelsStyle          4.904  0.072  29.480
+getChromInfoFromUCSC    2.317  0.445   5.905
+getChromInfoFromEnsembl 0.987  0.130 115.326
+getChromInfoFromNCBI    0.894  0.130  12.794
+NCBI-utils              0.346  0.000  12.712
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘run_unitTests.R’
+ ERROR
+Running the tests in ‘tests/run_unitTests.R’ failed.
+Last 13 lines of output:
+  1 Test Suite : 
+  GenomeInfoDb RUnit Tests - 21 test functions, 1 error, 0 failures
+  ERROR in test_seqlevelsStyle_Seqinfo: Error in download.file(url, destfile, quiet = TRUE) : 
+    download from 'https://ftp.ncbi.nlm.nih.gov/genomes/all/GCF/000/215/625/GCF_000215625.1_MusPutFur1.0/GCF_000215625.1_MusPutFur1.0_assembly_report.txt' failed
+  
+  Test files with failing tests
+  
+     test_seqlevelsStyle.R 
+       test_seqlevelsStyle_Seqinfo 
+  
+  
+  Error in BiocGenerics:::testPackage("GenomeInfoDb") : 
+    unit tests failed for package GenomeInfoDb
+  Calls: <Anonymous> -> <Anonymous>
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘Accept-organism-for-GenomeInfoDb.Rmd’ using ‘UTF-8’... OK
+  ‘GenomeInfoDb.Rnw’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 1 WARNING, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/GenomeInfoDb.Rcheck/00check.log’
+for details.
+

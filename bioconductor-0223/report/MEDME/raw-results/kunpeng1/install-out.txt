@@ -1,0 +1,54 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL MEDME
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘MEDME’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c MEDMEweight.c -o MEDMEweight.o
+MEDMEweight.c: In function ‘MEDMEweight’:
+MEDMEweight.c:77:18: warning: ‘weight’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   77 |         MeDIPsum = MeDIPsum + MeDIP[j] * weight;
+      |         ~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+MEDMEweight.c:91:9: warning: ‘Max’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   91 |       if(AMSfinal[i] > Max) {AMSfinal[i] = Max;}
+      |         ^
+MEDMEweight.c:92:42: warning: ‘Min’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   92 |       if(AMSfinal[i] < Min) {AMSfinal[i] = Min;}
+      |                              ~~~~~~~~~~~~^~~~~
+MEDMEweight.c:90:33: warning: ‘E’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   90 |       AMSfinal[i] = pow(2, pow( pow(E,B) * (D - Mlim) / (Mlim - C), 1/B));
+      |                                 ^~~~~~~~
+MEDMEweight.c:90:47: warning: ‘D’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   90 |       AMSfinal[i] = pow(2, pow( pow(E,B) * (D - Mlim) / (Mlim - C), 1/B));
+      |                                            ~~~^~~~~~~
+MEDMEweight.c:90:63: warning: ‘C’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   90 |       AMSfinal[i] = pow(2, pow( pow(E,B) * (D - Mlim) / (Mlim - C), 1/B));
+      |                                                         ~~~~~~^~~~
+MEDMEweight.c:90:33: warning: ‘B’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   90 |       AMSfinal[i] = pow(2, pow( pow(E,B) * (D - Mlim) / (Mlim - C), 1/B));
+      |                                 ^~~~~~~~
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o MEDME.so MEDMEweight.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-MEDME/00new/MEDME/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (MEDME)

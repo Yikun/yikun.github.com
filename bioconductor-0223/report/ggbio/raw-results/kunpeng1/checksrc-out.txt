@@ -1,0 +1,188 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:ggbio.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings ggbio_1.47.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/ggbio.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘ggbio/DESCRIPTION’ ... OK
+* this is package ‘ggbio’ version ‘1.47.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘ggbio’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+':::' call which should be '::': 'ggplot2:::set_last_plot'
+  See the note in ?`:::` about the use of this operator.
+Unexported objects imported by ':::' calls:
+  'S4Vectors:::top_prenv' 'ggplot2:::add_ggplot' 'ggplot2:::cunion'
+  'ggplot2:::rescale01'
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.combineNames: no visible binding for global variable
+  '.layout_circle.stats'
+Ideogram: no visible global function definition for 'data'
+Ideogram: no visible binding for global variable 'ideoCyto'
+getNR: no visible global function definition for 'se'
+getNR: no visible global function definition for 'indexProbesProcessed'
+getNR: no visible global function definition for 'coefs'
+scale_x_sequnit: no visible binding for global variable '.x'
+autoplot,ExpressionSet: no visible binding for global variable
+  'variable'
+autoplot,RangedSummarizedExperiment: no visible binding for global
+  variable 'variable'
+autoplot,VCF: no visible binding for global variable 'stepping'
+autoplot,VCF: no visible binding for global variable 'value'
+autoplot,VRanges: no visible binding for global variable 'midpoint'
+autoplot,Views: no visible binding for global variable 'x'
+autoplot,Views: no visible binding for global variable 'value'
+geom_alignment,BamFile: no visible binding for global variable 'fl'
+geom_alignment,BamFile: no visible binding for global variable
+  'stepping'
+height,GGbio: no visible binding for global variable 'mt'
+height,Tracked: no visible binding for global variable 'mt'
+height,gg: no visible binding for global variable 'mt'
+layout_karyogram,GRanges: no visible binding for global variable
+  'gieStain'
+layout_karyogram,GRanges: no visible binding for global variable 'x'
+layout_karyogram,GRanges: no visible binding for global variable 'xend'
+layout_karyogram,GRanges: no visible binding for global variable 'y2'
+layout_karyogram,GRanges: no visible binding for global variable
+  'yend2'
+layout_karyogram,GRanges: no visible binding for global variable 'name'
+plotFragLength,character-GRanges: no visible binding for global
+  variable '.fragLength'
+plotSpliceSum,character-EnsDb: possible error in GRangesFilter(which,
+  condition = "overlapping"): unused argument (condition =
+  "overlapping")
+stat_mismatch,GRanges: no visible binding for global variable 'sts'
+stat_mismatch,GRanges: no visible binding for global variable 'eds'
+stat_mismatch,GRanges: no visible binding for global variable 'read'
+Undefined global functions or variables:
+  .fragLength .layout_circle.stats .x coefs data eds fl gieStain
+  ideoCyto indexProbesProcessed midpoint mt name read se stepping sts
+  value variable x xend y2 yend2
+Consider adding
+  importFrom("utils", "data")
+to your NAMESPACE file.
+* checking Rd files ... NOTE
+checkRd: (-1) autoplot-method.Rd:445: Escaped LaTeX specials: \~
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented S4 methods:
+  generic '+' and siglist 'Tracks,ANY'
+  generic '+' and siglist 'Tracks,Tracks'
+  generic '+' and siglist 'Tracks,cartesian'
+  generic '+' and siglist 'Tracks,position_c'
+  generic '+' and siglist 'Tracks,theme'
+  generic '+' and siglist 'Tracks,zoom'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... WARNING
+Codoc mismatches from documentation object 'geom_alignment':
+\S4method{geom_alignment}{GRanges}
+  Code: function(data, ..., xlab, ylab, main, facets = NULL, stat =
+                 c("stepping", "identity"), range.geom = c("rect",
+                 "arrowrect"), gap.geom = c("chevron", "arrow",
+                 "segment"), rect.height = NULL, group.selfish = TRUE)
+  Docs: function(data, ..., xlab, ylab, main, facets = NULL, stat =
+                 c("stepping", "identity"), range.geom = c("rect",
+                 "arrowrect"), gap.geom = c("chevron", "arrow",
+                 "segment"), rect.height = NULL, group.selfish = TRUE,
+                 label = TRUE)
+  Argument names in docs not in code:
+    label
+
+Codoc mismatches from documentation object 'ggsave':
+ggsave
+  Code: function(filename, plot = last_plot(), device = NULL, path =
+                 NULL, scale = 1, width = NA, height = NA, units =
+                 c("in", "cm", "mm"), dpi = 300, limitsize = TRUE, ...)
+  Docs: function(filename, plot = last_plot(), device =
+                 default_device(filename), path = NULL, scale = 1,
+                 width = par("din")[1], height = par("din")[2], units =
+                 c("in", "cm", "mm"), dpi = 300, limitsize = TRUE, ...)
+  Mismatches in argument default values:
+    Name: 'device' Code: NULL Docs: default_device(filename)
+    Name: 'width' Code: NA Docs: par("din")[1]
+    Name: 'height' Code: NA Docs: par("din")[2]
+
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in Makefiles ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking include directives in Makefiles ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                           user system elapsed
+autoplot-method         108.759  1.498 110.517
+geom_alignment-method    41.133  0.328  41.464
+tracks                   29.817  0.796  30.616
+layout_karyogram-method  21.592  0.104  21.698
+plotRangesLinkedToData   12.929  0.096  13.026
+stat_reduce-method       11.736  0.164  11.901
+ggplot-method             9.476  0.088   9.564
+stat_aggregate-method     9.112  0.088   9.202
+layout_circle-method      7.507  0.044   7.552
+plotGrandLinear           7.158  0.032   7.191
+geom_arrow-method         6.676  0.020   6.697
+stat_bin-method           5.976  0.032   6.008
+geom_chevron-method       5.997  0.008   6.005
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘test-all.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘ggbio.Rnw’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 WARNINGs, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/ggbio.Rcheck/00check.log’
+for details.
+
+

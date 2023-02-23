@@ -1,0 +1,134 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:PanViz.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings PanViz_1.1.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/PanViz.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘PanViz/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘PanViz’ version ‘1.1.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘PanViz’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking R/sysdata.rda ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘PanViz-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: decompose_IMON
+> ### Title: decompose_IMON
+> ### Aliases: decompose_IMON
+> 
+> ### ** Examples
+> 
+> data("er_snp_vector")
+> G <- PanViz::get_IMON(snp_list = er_snp_vector, ego = 5, save_file = FALSE)
+
+  |                                                                            
+  |                                                                      |   0%Error: HTTP failure: 500
+{"error":"error forwarding request","api-key":"190.92.221.13","type":"ip",
+"status":"ok"}
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+    3. │   └─rlang::eval_bare(expr, quo_get_env(quo))
+    4. └─PanViz::get_grouped_IMON(...)
+    5.   └─PanViz:::NCBI_dbSNP_query(snp_list, progress_bar)
+    6.     ├─base::tryCatch(...)
+    7.     │ └─base (local) tryCatchList(expr, classes, parentenv, handlers)
+    8.     │   └─base (local) tryCatchOne(expr, names, parentenv, handlers[[1L]])
+    9.     │     └─base (local) doTryCatch(return(expr), name, parentenv, handler)
+   10.     └─rentrez::entrez_summary(db = "snp", id = split_data[[i]])
+   11.       ├─base::do.call(make_entrez_query, args)
+   12.       └─rentrez (local) `<fn>`(...)
+   13.         └─rentrez:::entrez_check(response)
+  
+  [ FAIL 2 | WARN 21 | SKIP 0 | PASS 12 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘my-vignette.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘my-vignette.Rmd’ using rmarkdown
+Quitting from lines 75-80 (my-vignette.Rmd) 
+Error: processing vignette 'my-vignette.Rmd' failed with diagnostics:
+HTTP failure: 500
+{"error":"error forwarding request","api-key":"190.92.221.13","type":"ip",
+"status":"ok"}
+--- failed re-building ‘my-vignette.Rmd’
+
+SUMMARY: processing the following file failed:
+  ‘my-vignette.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/PanViz.Rcheck/00check.log’
+for details.
+

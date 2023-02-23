@@ -1,0 +1,67 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL FunChIP
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘FunChIP’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include   `/home/biocbuild/bbs-3.17-bioc/R/bin/Rscript -e "Rcpp:::CxxFlags()"` -fPIC  -g -O2  -Wall -c kmean_function.cpp -o kmean_function.o
+kmean_function.cpp: In function ‘SEXPREC* kmean_function(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)’:
+kmean_function.cpp:74:31: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+   74 |     for (unsigned int i =0 ; i<num_data; i++){
+      |                              ~^~~~~~~~~
+kmean_function.cpp:80:34: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+   80 |       for (unsigned int t =0 ; t < num_points; t++)
+      |                                ~~^~~~~~~~~~~~
+kmean_function.cpp: In function ‘SEXPREC* distance_matrix(SEXP, SEXP, SEXP, SEXP, SEXP)’:
+kmean_function.cpp:210:35: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  210 |         for (unsigned int i =0 ; i<num_data; i++){
+      |                                  ~^~~~~~~~~
+kmean_function.cpp:216:40: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  216 |             for (unsigned int t =0 ; t < num_points; t++)
+      |                                      ~~^~~~~~~~~~~~
+kmean_function.cpp: In function ‘void kma_discrete(std::vector<peak>&, const int&, std::vector<int>&, const double&, const double&, const int&, const char&, const double&, const double&, std::vector<int>&, std::vector<double>&, std::vector<int>&, const double&, const double&, int, char, char)’:
+kmean_function.cpp:638:51: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<peak>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  638 |   while( iter < iter_max and number_distances_low < dati.size()  and cluster_vuoti==0){  //and number_clusters_different > 0
+      |                              ~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~
+kmean_function.cpp:677:52: warning: suggest parentheses around comparison in operand of ‘&’ [-Wparentheses]
+  677 |       if ( (unsigned int)number_clusters_different == dati.size() & iter != 1)
+      |            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+kmean_function.cpp:681:31: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<peak>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  681 |       if (number_distances_low== dati.size())
+      |           ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~
+kmean_function.cpp: In function ‘void normalize_data(std::vector<int>&, std::vector<int>&, const int&)’:
+kmean_function.cpp:759:27: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘const int’ [-Wsign-compare]
+  759 |   for (unsigned int i=0; i<n_clust; i++)
+      |                          ~^~~~~~~~
+In file included from kmean_function.cpp:1:
+peak.h: In member function ‘std::vector<double> peak::area(int, char) const’:
+peak.h:154:46: warning: ‘D’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  154 |                 area_def[0] = sqrt(area[0]/2)/D;
+      |                               ~~~~~~~~~~~~~~~^~
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o FunChIP.so kmean_function.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-FunChIP/00new/FunChIP/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (FunChIP)

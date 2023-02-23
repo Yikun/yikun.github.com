@@ -1,0 +1,124 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL Rsubread
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘Rsubread’ ...
+** using staged installation
+@@@@@ The operating system is Linux.
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c HelperFunctions.c -o HelperFunctions.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c LRMbase-index.c -o LRMbase-index.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c LRMchro-event.c -o LRMchro-event.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c LRMfile-io.c -o LRMfile-io.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c LRMhashtable.c -o LRMhashtable.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c LRMhelper.c -o LRMhelper.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c LRMseek-zlib.c -o LRMseek-zlib.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c LRMsorted-hashtable.c -o LRMsorted-hashtable.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c R_wrapper.c -o R_wrapper.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c RsimReads.c -o RsimReads.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c SNPCalling.c -o SNPCalling.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c aligner.c -o aligner.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c atgcContent.c -o atgcContent.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c build-sam-index.c -o build-sam-index.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c cell-counts.c -o cell-counts.o
+cell-counts.c: In function ‘cellCounts_fetch_next_read_pair’:
+cell-counts.c:2270:171: warning: pointer targets in passing argument 3 of ‘cellCounts_copy_bin_to_textread’ differ in signedness [-Wpointer-sign]
+ 2270 |                         rl1 = cellCounts_copy_bin_to_textread(cct_context, thread_context -> bcl_input_local_readlane [posnumb], thread_context -> bcl_input_local_readbin[posnumb],
+      |                                                                                                                                  ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~
+      |                                                                                                                                                                           |
+      |                                                                                                                                                                           char *
+cell-counts.c:2201:101: note: expected ‘unsigned char *’ but argument is of type ‘char *’
+ 2201 | int cellCounts_copy_bin_to_textread(cellcounts_global_t * cct_context, int readlane, unsigned char* readbin, char * read_name, char * seq, char *qual, int * psread_lens, subread_read_number_t rno){
+      |                                                                                      ~~~~~~~~~~~~~~~^~~~~~~
+cell-counts.c: In function ‘cellCounts_merged_write_nozero_geneids_WRT’:
+cell-counts.c:4323:17: warning: unused variable ‘tv2’ [-Wunused-variable]
+ 4323 |         void ** tv2 = me->appendix3;
+      |                 ^~~
+cell-counts.c: In function ‘cellCounts_find_hits_for_mapped_section’:
+cell-counts.c:1617:19: warning: ‘search_start’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1617 |                 if(search_start>0xffffff00) return;
+      |                   ^
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c core-bigtable.c -o core-bigtable.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c core-indel.c -o core-indel.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c core-interface-aligner.c -o core-interface-aligner.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c core-interface-subjunc.c -o core-interface-subjunc.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c core-junction.c -o core-junction.o
+core-junction.c: In function ‘find_donor_receptor’:
+core-junction.c:2099:25: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+ 2099 |                         if(0&& FIXLENstrcmp("V0112_0155:7:1101:12618:2466#ACTTGA", rname) == 0)
+      |                         ^~
+core-junction.c:2103:33: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+ 2103 |                                 if( (end_site_mismatches + start_site_mismatches) * 500 + insertion_in_between_i < best_testing_score ){
+      |                                 ^~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c core.c -o core.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c detection-calls.c -o detection-calls.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c detectionCall.c -o detectionCall.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c detectionCallAnnotation.c -o detectionCallAnnotation.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c exon-algorithms.c -o exon-algorithms.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c exon-align-indel.c -o exon-align-indel.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c exon-align.c -o exon-align.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c flattenAnnotations.c -o flattenAnnotations.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c fullscan.c -o fullscan.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c fusion-align.c -o fusion-align.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c gen_rand_reads.c -o gen_rand_reads.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c gene-algorithms.c -o gene-algorithms.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c gene-value-index.c -o gene-value-index.o
+gene-value-index.c: In function ‘is_offset_in_chro’:
+gene-value-index.c:85:33: warning: this ‘if’ clause does not guard... [-Wmisleading-indentation]
+   85 |                                 if( pos < chros -> padding  || pos >= ( chros->read_offsets[n] - chros->read_offsets[n-1] - chros -> padding ))
+      |                                 ^~
+In file included from gene-value-index.h:24,
+                 from gene-value-index.c:25:
+subread.h:154:24: note: ...this statement, but the latter is misleadingly indented as if it were guarded by the ‘if’
+  154 | #define SUBREADprintf  msgqu_printf
+      |                        ^~~~~~~~~~~~
+gene-value-index.c:87:41: note: in expansion of macro ‘SUBREADprintf’
+   87 |                                         SUBREADprintf("INCHRO:%d ; POS:%d\n", ret, pos);
+      |                                         ^~~~~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c hashtable.c -o hashtable.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c index-builder.c -o index-builder.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c input-blc.c -o input-blc.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c input-files.c -o input-files.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c interval_merge.c -o interval_merge.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c long-hashtable.c -o long-hashtable.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c longread-mapping.c -o longread-mapping.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c mergeVCF.c -o mergeVCF.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c processExons.c -o processExons.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c propmapped.c -o propmapped.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c qualityScores.c -o qualityScores.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c read-repair.c -o read-repair.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c readSummary.c -o readSummary.o
+readSummary.c: In function ‘vote_and_add_count’:
+readSummary.c:4985:66: warning: ‘longest_overlap_score’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 4985 |                                         if(longest_overlap_score > scoring_numbers[score_x1]) scoring_numbers[score_x1] = 0;
+      |                                            ~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c removeDupReads.c -o removeDupReads.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c sam2bed.c -o sam2bed.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c sambam-file.c -o sambam-file.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c seek-zlib.c -o seek-zlib.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c sorted-hashtable.c -o sorted-hashtable.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c sublog.c -o sublog.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -DMAKE_FOR_EXON -D SUBREAD_VERSION="\"Rsubread 2.13.2\""  -fPIC  -g -O2  -Wall -c tx-unique.c -o tx-unique.o
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o Rsubread.so HelperFunctions.o LRMbase-index.o LRMchro-event.o LRMfile-io.o LRMhashtable.o LRMhelper.o LRMseek-zlib.o LRMsorted-hashtable.o R_wrapper.o RsimReads.o SNPCalling.o aligner.o atgcContent.o build-sam-index.o cell-counts.o core-bigtable.o core-indel.o core-interface-aligner.o core-interface-subjunc.o core-junction.o core.o detection-calls.o detectionCall.o detectionCallAnnotation.o exon-algorithms.o exon-align-indel.o exon-align.o flattenAnnotations.o fullscan.o fusion-align.o gen_rand_reads.o gene-algorithms.o gene-value-index.o hashtable.o index-builder.o input-blc.o input-files.o interval_merge.o long-hashtable.o longread-mapping.o mergeVCF.o processExons.o propmapped.o qualityScores.o read-repair.o readSummary.o removeDupReads.o sam2bed.o sambam-file.o seek-zlib.o sorted-hashtable.o sublog.o tx-unique.o -lz -lpthread -DMAKE_FOR_EXON -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-Rsubread/00new/Rsubread/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (Rsubread)
