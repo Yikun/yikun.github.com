@@ -1,0 +1,222 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:BSgenome.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings BSgenome_1.67.4.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/BSgenome.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘BSgenome/DESCRIPTION’ ... OK
+* this is package ‘BSgenome’ version ‘1.67.4’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  'BiocGenerics', 'S4Vectors', 'IRanges', 'GenomeInfoDb',
+  'GenomicRanges', 'Biostrings', 'rtracklayer'
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... NOTE
+Found the following non-portable file path:
+  BSgenome/inst/extdata/GentlemanLab/BSgenome.Gmellonella.NCBI.ASM364042v2-tools/fasta_to_sorted_2bit.R
+
+Tarballs are only required to store paths of up to 100 bytes and cannot
+store those of more than 256 bytes, with restrictions including to 100
+bytes for the final component.
+See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘BSgenome’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is  8.0Mb
+  sub-directories of 1Mb or more:
+    R         1.7Mb
+    extdata   6.0Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Packages listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘methods’ ‘BiocGenerics’ ‘S4Vectors’ ‘IRanges’ ‘GenomeInfoDb’ ‘GenomicRanges’ ‘Biostrings’ ‘rtracklayer’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... NOTE
+Found the following CITATION file in a non-standard place:
+  inst/extdata/GentlemanLab/BSgenome.Creinhardtii.JGI.v5.6-tools/CITATION
+Most likely ‘inst/CITATION’ should be used instead.
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+':::' calls which should be '::':
+  ‘S4Vectors:::makeClassinfoRowForCompactPrinting’
+  ‘S4Vectors:::makePrettyMatrixForCompactPrinting’
+  See the note in ?`:::` about the use of this operator.
+Unexported objects imported by ':::' calls:
+  ‘Biostrings:::toSeqSnippet’ ‘rtracklayer:::.DNAString_to_twoBit’
+  ‘rtracklayer:::.TwoBits_export’ ‘rtracklayer:::checkArgFormat’
+  ‘rtracklayer:::twoBitPath’
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... WARNING
+checkRd: (5) BSgenomeViews-class.Rd:155-161: \item in \describe must have non-empty label
+checkRd: (5) BSgenomeViews-class.Rd:162-165: \item in \describe must have non-empty label
+checkRd: (5) BSgenomeViews-class.Rd:172-176: \item in \describe must have non-empty label
+checkRd: (5) BSgenomeViews-class.Rd:177-181: \item in \describe must have non-empty label
+checkRd: (5) BSgenomeViews-class.Rd:182-184: \item in \describe must have non-empty label
+checkRd: (5) BSgenomeViews-class.Rd:185-187: \item in \describe must have non-empty label
+checkRd: (5) BSgenomeViews-class.Rd:188-193: \item in \describe must have non-empty label
+checkRd: (5) BSgenomeViews-class.Rd:194-197: \item in \describe must have non-empty label
+checkRd: (5) BSgenomeViews-class.Rd:198-200: \item in \describe must have non-empty label
+checkRd: (5) BSgenomeViews-class.Rd:201-206: \item in \describe must have non-empty label
+checkRd: (5) BSgenomeViews-class.Rd:213-218: \item in \describe must have non-empty label
+checkRd: (5) BSgenomeViews-class.Rd:219-222: \item in \describe must have non-empty label
+checkRd: (5) BSgenomeViews-class.Rd:223-225: \item in \describe must have non-empty label
+checkRd: (5) BSgenomeViews-class.Rd:231-233: \item in \describe must have non-empty label
+checkRd: (5) BSgenomeViews-class.Rd:234-236: \item in \describe must have non-empty label
+* checking Rd metadata ... OK
+* checking Rd cross-references ... WARNING
+Missing link or links in documentation object 'export-methods.Rd':
+  ‘[rtracklayer]{export}’
+
+See section 'Cross-references' in the 'Writing R Extensions' manual.
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘MaskedBSgenome’ ‘OnDiskLongTable’ ‘OnDiskLongTable_old’
+  ‘as.data.frame.BSgenomeViews’ ‘batchsizes’ ‘blocksizes’ ‘breakpoints’
+  ‘forgeMaskedBSgenomeDataPkg’
+  ‘getBatchesByOverlapsFromOnDiskLongTable’
+  ‘getBatchesBySeqnameFromOnDiskLongTable’
+  ‘getBatchesFromOnDiskLongTable’ ‘getBatchesFromOnDiskLongTable_old’
+  ‘getRowsByIdFromOnDiskLongTable’
+  ‘getRowsByIndexFromOnDiskLongTable_old’ ‘getRowsFromOnDiskLongTable’
+  ‘saveAsOnDiskLongTable_old’ ‘saveRowidsForOnDiskLongTable_old’
+  ‘spatialIndex’ ‘writeOnDiskLongTable’ ‘writeOnDiskLongTableRowids’
+Undocumented S4 classes:
+  ‘OnDiskLongTable_old’ ‘GRanges_OR_NULL’ ‘MaskedBSgenome’
+  ‘OnDiskLongTable’
+Undocumented S4 methods:
+  generic '[' and siglist 'XStringSet,GRangesList,ANY,ANY'
+  generic '[' and siglist 'XStringSet,GenomicRanges,ANY,ANY'
+  generic '[[' and siglist 'BSgenome,ANY,ANY'
+  generic 'batchsizes' and siglist 'OnDiskLongTable'
+  generic 'blocksizes' and siglist 'OnDiskLongTable_old'
+  generic 'breakpoints' and siglist 'OnDiskLongTable'
+  generic 'breakpoints' and siglist 'OnDiskLongTable_old'
+  generic 'coerce' and siglist 'RdsCollection,RdsNamedSequences'
+  generic 'dim' and siglist 'OnDiskLongTable'
+  generic 'dim' and siglist 'OnDiskLongTable_old'
+  generic 'dimnames' and siglist 'OnDiskLongTable'
+  generic 'dimnames' and siglist 'OnDiskLongTable_old'
+  generic 'dimnames' and siglist 'XtraSNPlocs'
+  generic 'extractAt' and siglist 'BSgenome'
+  generic 'forgeMaskedBSgenomeDataPkg' and siglist
+    'MaskedBSgenomeDataPkgSeed'
+  generic 'forgeMaskedBSgenomeDataPkg' and siglist 'character'
+  generic 'forgeMaskedBSgenomeDataPkg' and siglist 'list'
+  generic 'length' and siglist 'OnDiskNamedSequences'
+  generic 'names' and siglist 'FastaNamedSequences'
+  generic 'names' and siglist 'TwobitNamedSequences'
+  generic 'seqinfo' and siglist 'FastaNamedSequences'
+  generic 'seqinfo' and siglist 'RdaNamedSequences'
+  generic 'seqinfo' and siglist 'RdsNamedSequences'
+  generic 'seqinfo' and siglist 'TwobitNamedSequences'
+  generic 'seqnames' and siglist 'OnDiskNamedSequences'
+  generic 'show' and siglist 'OnDiskLongTable'
+  generic 'show' and siglist 'OnDiskLongTable_old'
+  generic 'show' and siglist 'OnDiskNamedSequences'
+  generic 'spatialIndex' and siglist 'OnDiskLongTable'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘BSgenome-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: SNPlocs-class
+> ### Title: SNPlocs objects
+> ### Aliases: class:SNPlocs SNPlocs-class SNPlocs class:ODLT_SNPlocs
+> ###   ODLT_SNPlocs-class ODLT_SNPlocs class:OldFashionSNPlocs
+> ###   OldFashionSNPlocs-class OldFashionSNPlocs provider,SNPlocs-method
+> ###   providerVersion,SNPlocs-method releaseDate,SNPlocs-method releaseName
+> ###   releaseName,SNPlocs-method referenceGenome
+> ###   referenceGenome,SNPlocs-method compatibleGenomes
+> ###   compatibleGenomes,SNPlocs-method organism,SNPlocs-method
+> ###   commonName,SNPlocs-method seqinfo,SNPlocs-method
+> ###   seqnames,SNPlocs-method new_ODLT_SNPlocs newSNPlocs
+> ###   show,SNPlocs-method snpcount snpcount,SNPlocs-method
+> ###   snpcount,ODLT_SNPlocs-method snpcount,OldFashionSNPlocs-method
+> ###   snplocs snplocs,SNPlocs-method snplocs,ODLT_SNPlocs-method
+> ###   snplocs,OldFashionSNPlocs-method snpsBySeqname
+> ###   snpsBySeqname,SNPlocs-method snpsBySeqname,ODLT_SNPlocs-method
+> ###   snpsBySeqname,OldFashionSNPlocs-method snpsByOverlaps
+> ###   snpsByOverlaps,SNPlocs-method snpsByOverlaps,ODLT_SNPlocs-method
+> ###   snpsByOverlaps,OldFashionSNPlocs-method snpsById
+> ###   snpsById,SNPlocs-method snpsById,ODLT_SNPlocs-method
+> ###   snpsById,OldFashionSNPlocs-method inferRefAndAltAlleles
+> ### Keywords: methods classes
+> 
+> ### ** Examples
+> 
+> library(SNPlocs.Hsapiens.dbSNP144.GRCh38)
+> snps <- SNPlocs.Hsapiens.dbSNP144.GRCh38
+> snpcount(snps)
+       1        2        3        4        5        6        7        8 
+10352408 11278817  9279095  8909116  8313890  7723096  7317091  7224402 
+       9       10       11       12       13       14       15       16 
+ 5748221  6180295  6402437  6203669  4456153  4205104  3796823  4463462 
+      17       18       19       20       21       22        X        Y 
+ 3802080  3530777  3107971  2979767  1761244  1821463  3979053   192585 
+      MT 
+    1760 
+> 
+> ## ---------------------------------------------------------------------
+> ## snpsBySeqname()
+> ## ---------------------------------------------------------------------
+> 
+> ## Get all SNPs located on chromosome 22 or MT:
+> snpsBySeqname(snps, c("22", "MT"))
+Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘BSgenomeForge.Rnw’ using ‘UTF-8’... OK
+  ‘GenomeSearching.Rnw’ using ‘UTF-8’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 3 WARNINGs, 6 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/BSgenome.Rcheck/00check.log’
+for details.
+

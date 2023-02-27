@@ -1,0 +1,147 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:cghMCR.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings cghMCR_1.57.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/cghMCR.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘cghMCR/DESCRIPTION’ ... OK
+* this is package ‘cghMCR’ version ‘1.57.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘cghMCR’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is 98.2Mb
+  sub-directories of 1Mb or more:
+    sampleData  97.1Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+'library' or 'require' call to ‘DNAcopy’ which was already attached by Depends.
+  Please remove these calls from your code.
+Packages in Depends field not imported from:
+  ‘CNTools’ ‘DNAcopy’ ‘limma’ ‘methods’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+There are ::: calls to the package's namespace in its code. A package
+  almost never needs to use ::: for its own objects:
+  ‘adjustSegments’ ‘alignGenes’ ‘drawSegs’ ‘getAdjustments’
+  ‘highlightChrom’ ‘markChrom’
+* checking S3 generic/method consistency ... NOTE
+Found the following apparent S3 methods exported but not registered:
+  plot.DNAcopy
+See section ‘Registering S3 methods’ in the ‘Writing R Extensions’
+manual.
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+SGOL: no visible global function definition for ‘segBy’
+SGOL: no visible global function definition for ‘rs’
+drawSegs : drawSegLine: no visible global function definition for
+  ‘lines’
+dropGenes: no visible global function definition for ‘approx’
+getAlteredSegs: no visible global function definition for ‘quantile’
+getLineData: no visible global function definition for ‘median’
+getSegData: no visible global function definition for ‘read.maimages’
+getSegData: no visible global function definition for
+  ‘normalizeWithinArrays’
+getSegData: no visible global function definition for
+  ‘backgroundCorrect’
+getSegData: no visible global function definition for ‘CNA’
+getSegData: no visible global function definition for ‘segment’
+getSegData: no visible global function definition for ‘smooth.CNA’
+highlightChrom: no visible global function definition for ‘polygon’
+markChrom: no visible global function definition for ‘polygon’
+plot.DNAcopy: no visible global function definition for ‘png’
+plot.DNAcopy: no visible global function definition for ‘par’
+plot.DNAcopy: no visible global function definition for ‘axis’
+plot.DNAcopy: no visible global function definition for ‘box’
+plot.DNAcopy: no visible global function definition for ‘points’
+plot.DNAcopy: no visible global function definition for ‘lines’
+plot.DNAcopy: no visible global function definition for ‘dev.off’
+plot.MCR: no visible global function definition for ‘png’
+plot.MCR: no visible global function definition for ‘par’
+plot.MCR: no visible global function definition for ‘dev.off’
+plotSGOL: no visible global function definition for ‘lines’
+plotSGOL: no visible global function definition for ‘axis’
+plotSGOL: no visible global function definition for ‘box’
+showMCR : <anonymous>: no visible global function definition for
+  ‘median’
+showMCR: no visible global function definition for ‘lines’
+showMCR: no visible global function definition for ‘median’
+showSegment : getMean: no visible global function definition for
+  ‘median’
+topGenes: no visible global function definition for ‘quantile’
+Undefined global functions or variables:
+  CNA approx axis backgroundCorrect box dev.off lines median
+  normalizeWithinArrays par png points polygon quantile read.maimages
+  rs segBy segment smooth.CNA
+Consider adding
+  importFrom("grDevices", "dev.off", "png")
+  importFrom("graphics", "axis", "box", "lines", "par", "points",
+             "polygon")
+  importFrom("stats", "approx", "median", "quantile")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented S4 methods:
+  generic '[' and siglist 'SGOL,ANY,ANY,ANY'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘findMCR.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 WARNING, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/cghMCR.Rcheck/00check.log’
+for details.
+
+

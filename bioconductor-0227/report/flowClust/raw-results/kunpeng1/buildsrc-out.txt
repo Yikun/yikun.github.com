@@ -1,0 +1,175 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data flowClust
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘flowClust/DESCRIPTION’ ... OK
+* preparing ‘flowClust’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* running ‘cleanup’
+* installing the package to build vignettes
+      -----------------------------------
+* installing *source* package ‘flowClust’ ...
+** using staged installation
+configure: Using bundled GSL.
+configure: Searching for the compilers specified by R.
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking how to run the C preprocessor... gcc -E
+untarring gsl...
+configure: Preparing to compile GSL.
+configure: Configuring bundled GSL.
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether to enable maintainer-specific portions of Makefiles... no
+checking whether make sets $(MAKE)... (cached) yes
+checking build system type... ./config.guess: unable to guess system type
+
+This script, last modified 2007-05-17, has failed to recognize
+the operating system you are using. It is advised that you
+download the most up to date version of the config scripts from
+
+  http://savannah.gnu.org/cgi-bin/viewcvs/*checkout*/config/config/config.guess
+and
+  http://savannah.gnu.org/cgi-bin/viewcvs/*checkout*/config/config/config.sub
+
+If the version you run (./config.guess) is already up to date, please
+send the following data and any information you think might be
+pertinent to <config-patches@gnu.org> in order to provide the needed
+information to handle your system.
+
+config.guess timestamp = 2007-05-17
+
+uname -m = aarch64
+uname -r = 5.15.0-60-generic
+uname -s = Linux
+uname -v = #66-Ubuntu SMP Fri Jan 20 14:34:57 UTC 2023
+
+/usr/bin/uname -p = aarch64
+/bin/uname -X     = 
+
+hostinfo               = 
+/bin/universe          = 
+/usr/bin/arch -k       = 
+/bin/arch              = aarch64
+/usr/bin/oslevel       = 
+/usr/convex/getsysinfo = 
+
+UNAME_MACHINE = aarch64
+UNAME_RELEASE = 5.15.0-60-generic
+UNAME_SYSTEM  = Linux
+UNAME_VERSION = #66-Ubuntu SMP Fri Jan 20 14:34:57 UTC 2023
+configure: error: cannot guess build type; you must specify one
+cp: will not overwrite just-created 'gsl/test.h' with 'roots/test.h'
+cp: will not overwrite just-created 'gsl/error.h' with 'specfunc/error.h'
+cp: will not overwrite just-created 'gsl/view.h' with 'vector/view.h'
+make: *** No rule to make target 'install'.  Stop.
+cp: cannot create directory '/tmp/RtmpwhHs97/Rbuild166cb15189f2bf/flowClust/src/gslbuild/include': No such file or directory
+configure: Using the following compilation and linking flags for flowClust
+configure:    PKG_CFLAGS= -I/tmp/RtmpwhHs97/Rbuild166cb15189f2bf/flowClust/src/gslbuild/include
+configure:    PKG_LIBS=
+configure:    FLOWCLUST_DEFS=-DGSL_MAJOR=1 -DGSL_MINOR=13 -DGSL_STATIC
+configure: Compiling using GSL version: '1.13.0'.
+configure: Using bundled GSL: 'yes'.
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I/tmp/RtmpwhHs97/Rbuild166cb15189f2bf/flowClust/src/gslbuild/include -DGSL_MAJOR=1 -DGSL_MINOR=13 -DGSL_STATIC -fPIC  -g -O2  -Wall -c BoxCox.c -o BoxCox.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I/tmp/RtmpwhHs97/Rbuild166cb15189f2bf/flowClust/src/gslbuild/include -DGSL_MAJOR=1 -DGSL_MINOR=13 -DGSL_STATIC -fPIC  -g -O2  -Wall -c BoxCoxPriors.c -o BoxCoxPriors.o
+BoxCoxPriors.c: In function ‘BoxCoxGradientPriors’:
+BoxCoxPriors.c:57:23: warning: unused variable ‘rowZ’ [-Wunused-variable]
+   57 |         rowPrecision, rowZ, rowLambda0;
+      |                       ^~~~
+BoxCoxPriors.c:33:31: warning: unused variable ‘kappa0’ [-Wunused-variable]
+   33 |         double *nu0 = p->nu0, kappa0 = p->kappa0;
+      |                               ^~~~~~
+BoxCoxPriors.c:32:14: warning: unused variable ‘itersolve’ [-Wunused-variable]
+   32 |         int *itersolve = p->itersolve;
+      |              ^~~~~~~~~
+BoxCoxPriors.c:31:13: warning: unused variable ‘iter’ [-Wunused-variable]
+   31 |         int iter = p->iter;
+      |             ^~~~
+BoxCoxPriors.c:28:13: warning: unused variable ‘model’ [-Wunused-variable]
+   28 |         int model = *p->model;
+      |             ^~~~~
+BoxCoxPriors.c:23:21: warning: unused variable ‘SumZlogY’ [-Wunused-variable]
+   23 |         gsl_vector *SumZlogY = p->SumZlogY;
+      |                     ^~~~~~~~
+BoxCoxPriors.c:15:21: warning: unused variable ‘Precision’ [-Wunused-variable]
+   15 |         gsl_matrix *Precision = p->Precision; // will be updated
+      |                     ^~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I/tmp/RtmpwhHs97/Rbuild166cb15189f2bf/flowClust/src/gslbuild/include -DGSL_MAJOR=1 -DGSL_MINOR=13 -DGSL_STATIC -fPIC  -g -O2  -Wall -c Nu.c -o Nu.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I/tmp/RtmpwhHs97/Rbuild166cb15189f2bf/flowClust/src/gslbuild/include -DGSL_MAJOR=1 -DGSL_MINOR=13 -DGSL_STATIC -fPIC  -g -O2  -Wall -c flowClust.c -o flowClust.o
+flowClust.c: In function ‘flowClust’:
+flowClust.c:48:9: warning: unused variable ‘matrixZUY2’ [-Wunused-variable]
+   48 |         matrixZUY2;
+      |         ^~~~~~~~~~
+flowClust.c:46:55: warning: unused variable ‘subRowZUY2’ [-Wunused-variable]
+   46 |         rowYTransS, rowZUY, subRowZUY, rowZ, rowZUY2, subRowZUY2;
+      |                                                       ^~~~~~~~~~
+flowClust.c:46:46: warning: unused variable ‘rowZUY2’ [-Wunused-variable]
+   46 |         rowYTransS, rowZUY, subRowZUY, rowZ, rowZUY2, subRowZUY2;
+      |                                              ^~~~~~~
+flowClust.c: In function ‘ECMUpdateSigmaG2’:
+flowClust.c:1111:13: warning: unused variable ‘i’ [-Wunused-variable]
+ 1111 |         int i=0;
+      |             ^
+At top level:
+flowClust.c:10:27: warning: ‘CEntries’ defined but not used [-Wunused-const-variable=]
+   10 | static const R_CMethodDef CEntries[] = { { "flowClust", (DL_FUNC) & flowClust,
+      |                           ^~~~~~~~
+flowClust.c: In function ‘flowClust’:
+flowClust.c:702:34: warning: ‘s3’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  702 |                         status = gsl_min_fminimizer_set(s3, &F3, *nu, *nuLow, *nuUp);
+      |                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+flowClust.c:647:57: warning: ‘s2’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  647 |                                                 nu_hi = gsl_root_fsolver_x_upper(s2);
+      |                                                         ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+flowClust.c:348:56: warning: ‘s’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  348 |                                                 x_hi = gsl_root_fsolver_x_upper(s);
+      |                                                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I/tmp/RtmpwhHs97/Rbuild166cb15189f2bf/flowClust/src/gslbuild/include -DGSL_MAJOR=1 -DGSL_MINOR=13 -DGSL_STATIC -fPIC  -g -O2  -Wall -c flowClustGaussian.c -o flowClustGaussian.o
+flowClustGaussian.c: In function ‘flowClustGaussian’:
+flowClustGaussian.c:207:56: warning: ‘s’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  207 |                                                 x_hi = gsl_root_fsolver_x_upper(s);
+      |                                                        ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   -I/tmp/RtmpwhHs97/Rbuild166cb15189f2bf/flowClust/src/gslbuild/include -DGSL_MAJOR=1 -DGSL_MINOR=13 -DGSL_STATIC -fPIC  -g -O2  -Wall -c ranMVNT.c -o ranMVNT.o
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o flowClust.so BoxCox.o BoxCoxPriors.o Nu.o flowClust.o flowClustGaussian.o ranMVNT.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /tmp/RtmpwhHs97/Rinst166cb14689c2ea/00LOCK-flowClust/00new/flowClust/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a new generic function for ‘Map’ in package ‘flowClust’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+Error: package or namespace load failed for ‘flowClust’ in dyn.load(file, DLLpath = DLLpath, ...):
+ unable to load shared object '/tmp/RtmpwhHs97/Rinst166cb14689c2ea/00LOCK-flowClust/00new/flowClust/libs/flowClust.so':
+  /tmp/RtmpwhHs97/Rinst166cb14689c2ea/00LOCK-flowClust/00new/flowClust/libs/flowClust.so: undefined symbol: gsl_min_fminimizer_brent
+Error: loading failed
+Execution halted
+ERROR: loading failed
+* removing ‘/tmp/RtmpwhHs97/Rinst166cb14689c2ea/flowClust’
+      -----------------------------------
+ERROR: package installation failed

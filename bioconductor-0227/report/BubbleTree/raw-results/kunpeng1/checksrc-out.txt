@@ -1,0 +1,150 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:BubbleTree.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings BubbleTree_2.29.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/BubbleTree.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘BubbleTree/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘BubbleTree’ version ‘2.29.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘BubbleTree’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is 23.8Mb
+  sub-directories of 1Mb or more:
+    data  23.4Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ...Warning in person1(given = given[[i]], family = family[[i]], middle = middle[[i]],  :
+  It is recommended to use ‘given’ instead of ‘middle’.
+ OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+annoByOverlap,Annotate: no visible binding for global variable
+  'queryHits'
+Undefined global functions or variables:
+  queryHits
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘BubbleTree-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: makeRBD
+> ### Title: makeRBD
+> ### Aliases: makeRBD makeRBD,RBD-method makeRBD
+> 
+> ### ** Examples
+> 
+> 
+> # load sample files
+> load(system.file("data", "cnv.gr.rda", package="BubbleTree"))
+> load(system.file("data", "snp.gr.rda", package="BubbleTree"))
+> 
+> # load annotations
+> load(system.file("data", "centromere.dat.rda", package="BubbleTree"))
+> load(system.file("data", "cyto.gr.rda", package="BubbleTree"))
+> load(system.file("data", "cancer.genes.minus2.rda", package="BubbleTree"))
+> load(system.file("data", "vol.genes.rda", package="BubbleTree"))
+> load(system.file("data", "gene.uni.clean.gr.rda", package="BubbleTree"))
+> 
+> 
+> # initialize RBD object
+> r <- new("RBD", unimodal.kurtosis=-0.1)
+> 
+> # create new RBD object with GenomicRanges objects for SNPs and CNVs
+> rbd <- makeRBD(r, snp.gr, cnv.gr)
+> head(rbd)
+  seqnames    start      end    width strand seg.id num.mark     lrr   kurtosis
+1     chr1    65625  2066855  2001231      *      1      548  0.1997  0.1830119
+2     chr1  2075796 38489397 36413602      *      2     5284 -0.4146 -1.9020390
+3     chr1 38511244 39761601  1250358      *      3       72 -0.0511 -2.0000000
+4     chr1 39763396 39982177   218782      *      4      112  0.0401 -0.9912620
+5     chr1 39988109 43905367  3917259      *      5      601  0.0372 -1.4809979
+6     chr1 43905709 44128685   222977      *      6       53  0.2822 -2.0000000
+      hds     hds.sd het.cnt   seg.size
+1 0.01220 0.05007095      71 0.24809178
+2 0.35600 0.06296830     501 2.39218420
+3 0.15555 0.03471894       2 0.03259600
+4 0.12060 0.06761821       4 0.05070489
+5 0.14560 0.06186714      47 0.27208605
+6 0.07280 0.05176022       2 0.02399428
+> 
+> # create a new prediction
+> btreepredictor <- new("BTreePredictor", rbd=rbd, max.ploidy=6, prev.grid=seq(0.2,1, by=0.01))
+> pred <- btpredict(btreepredictor)
+> 
+> # create rbd plot
+> btreeplotter <- new("BTreePlotter", max.ploidy=5, max.size=10)
+> btree <- drawBTree(btreeplotter, pred@rbd)
+Warning in drawBTree(btreeplotter, pred@rbd) :
+  More ploidy might be suggested: 1.6, 1.6, 2.2, 1.7, 1.9, 1.5, 1.7, 2.2, 1.9, 2.1, 1.7
+
+> print(btree)
+> 
+> # create rbd.adj plot
+> btreeplotter <- new("BTreePlotter", branch.col="gray50")
+> btree <- drawBTree(btreeplotter, pred@rbd.adj)
+Warning in drawBTree(btreeplotter, pred@rbd.adj) :
+  More ploidy might be suggested: 1.8, 1.9, 2.1, 2, 2.2, 2.9, 2.3, 2.6, 1.8, 1.9, 2, 2.3, 3, 2.6, 2.9, 2.3
+
+> print(btree)
+Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘BubbleTree-vignette.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/BubbleTree.Rcheck/00check.log’
+for details.
+

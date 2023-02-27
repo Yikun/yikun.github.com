@@ -1,0 +1,39 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL SAIGEgds
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘SAIGEgds’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c SPATest.cpp -o SPATest.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c saige_fitnull.cpp -o saige_fitnull.o
+saige_fitnull.cpp: In function ‘SEXPREC* saige_get_sparse(SEXP)’:
+saige_fitnull.cpp:256:17: warning: comparison of integer expressions of different signedness: ‘const size_t’ {aka ‘const long unsigned int’} and ‘R_len_t’ {aka ‘int’} [-Wsign-compare]
+  256 |         if (num > Rf_length(geno))
+      |             ~~~~^~~~~~~~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c saige_main.cpp -o saige_main.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppArmadillo/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c vectorization.cpp -o vectorization.o
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o SAIGEgds.so SPATest.o saige_fitnull.o saige_main.o vectorization.o -lm -llapack -L/home/biocbuild/bbs-3.17-bioc/R/lib -lRblas -lgfortran -lm -lgcc -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-SAIGEgds/00new/SAIGEgds/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (SAIGEgds)

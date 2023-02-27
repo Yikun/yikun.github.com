@@ -1,0 +1,166 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL fmcsR
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘fmcsR’ ...
+** using staged installation
+checking whether the C++ compiler works... yes
+checking for C++ compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C++ compiler... yes
+checking whether g++ -std=gnu++14 accepts -g... yes
+checking for gcc... gcc
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for stdbool.h that conforms to C99... yes
+checking for _Bool... yes
+checking for inline... inline
+checking for size_t... yes
+checking for alarm... yes
+configure: creating ./config.status
+config.status: creating src/Makevars
+config.status: creating config.h
+config.status: config.h is unchanged
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c MCS.cpp -o MCS.o
+MCS.cpp: In member function ‘void FMCS::MCS::calculate()’:
+MCS.cpp:108:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  108 |                 for (int i = 0; i < atomCountOne; ++i) {
+      |                                 ~~^~~~~~~~~~~~~~
+MCS.cpp:116:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  116 |                 for (int i = 0; i < atomCountTwo; ++i) {
+      |                                 ~~^~~~~~~~~~~~~~
+In file included from MCSCompound.h:15,
+                 from MCS.h:12,
+                 from MCS.cpp:3:
+MCSList.h: In instantiation of ‘bool FMCS::MCSList<T>::contains(const T&) const [with T = long unsigned int]’:
+MCS.cpp:381:44:   required from here
+MCSList.h:143:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  143 |         for (int i = 0; i < length; ++i) {
+      |                         ~~^~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c MCSCompound.cpp -o MCSCompound.o
+In file included from MCSCompound.cpp:5:
+MCSRingDetector.h: In constructor ‘FMCS::MCSRingDetector::Ring::Ring(const FMCS::MCSRingDetector::Edge&, const FMCS::MCSCompound*)’:
+MCSRingDetector.h:86:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   86 |                 for (int i = 0; i < this->vertexPath.size(); ++i) {
+      |                                 ~~^~~~~~~~~~~~~~~~~~~~~~~~~
+MCSRingDetector.h: In member function ‘int FMCS::MCSRingDetector::Ring::rightVertex(size_t) const’:
+MCSRingDetector.h:142:33: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  142 |                 if (vertexIndex < vertexPath.size()-1) {
+      |                     ~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+MCSCompound.cpp: In copy constructor ‘FMCS::MCSCompound::MCSCompound(const FMCS::MCSCompound&)’:
+MCSCompound.cpp:87:23: warning: ‘void* memcpy(void*, const void*, size_t)’ writing to an object of type ‘struct FMCS::MCSCompound::Atom’ with no trivial copy-assignment; use copy-assignment or copy-initialization instead [-Wclass-memaccess]
+   87 |                 memcpy(atoms, other.atoms, sizeof(Atom) * other.atomCount);
+      |                 ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from MCSCompound.cpp:4:
+MCSCompound.h:26:16: note: ‘struct FMCS::MCSCompound::Atom’ declared here
+   26 |         struct Atom {
+      |                ^~~~
+MCSCompound.cpp: In member function ‘const FMCS::MCSCompound& FMCS::MCSCompound::operator=(const FMCS::MCSCompound&)’:
+MCSCompound.cpp:123:19: warning: ‘void* memcpy(void*, const void*, size_t)’ writing to an object of type ‘struct FMCS::MCSCompound::Atom’ with no trivial copy-assignment; use copy-assignment or copy-initialization instead [-Wclass-memaccess]
+  123 |             memcpy(atoms, that.atoms, sizeof(Atom) * that.atomCount);
+      |             ~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from MCSCompound.cpp:4:
+MCSCompound.h:26:16: note: ‘struct FMCS::MCSCompound::Atom’ declared here
+   26 |         struct Atom {
+      |                ^~~~
+MCSCompound.cpp: In member function ‘void FMCS::MCSCompound::read(const string&)’:
+MCSCompound.cpp:157:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  157 |         for (int i = 0; i < bondCount; ++i) {
+      |                         ~~^~~~~~~~~~~
+MCSCompound.cpp: In member function ‘std::string FMCS::MCSCompound::subgraph(const size_t*, size_t, const string&) const’:
+MCSCompound.cpp:194:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  194 |         for (int i = 0; i < indexLength; ++i) {
+      |                         ~~^~~~~~~~~~~~~
+MCSCompound.cpp: In member function ‘const FMCS::MCSCompound::Bond* FMCS::MCSCompound::getBond(size_t, size_t) const’:
+MCSCompound.cpp:467:26: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  467 |         for(int i = 0; i < bondCount; ++i) {
+      |                        ~~^~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c MCSMap.cpp -o MCSMap.o
+In file included from MCSMap.h:8,
+                 from MCSMap.cpp:3:
+MCSList.h: In instantiation of ‘bool FMCS::MCSList<T>::contains(const T&) const [with T = long unsigned int]’:
+MCSMap.cpp:28:32:   required from here
+MCSList.h:143:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘const size_t’ {aka ‘const long unsigned int’} [-Wsign-compare]
+  143 |         for (int i = 0; i < length; ++i) {
+      |                         ~~^~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c MCSRingDetector.cpp -o MCSRingDetector.o
+In file included from MCSRingDetector.cpp:13:
+MCSRingDetector.h: In constructor ‘FMCS::MCSRingDetector::Ring::Ring(const FMCS::MCSRingDetector::Edge&, const FMCS::MCSCompound*)’:
+MCSRingDetector.h:86:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   86 |                 for (int i = 0; i < this->vertexPath.size(); ++i) {
+      |                                 ~~^~~~~~~~~~~~~~~~~~~~~~~~~
+MCSRingDetector.h: In member function ‘int FMCS::MCSRingDetector::Ring::rightVertex(size_t) const’:
+MCSRingDetector.h:142:33: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  142 |                 if (vertexIndex < vertexPath.size()-1) {
+      |                     ~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~
+MCSRingDetector.cpp: In member function ‘void FMCS::MCSRingDetector::sortVertexQueue()’:
+MCSRingDetector.cpp:93:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   93 |         for (int i = 0; i < vertexQueue.size(); ++i) {
+      |                         ~~^~~~~~~~~~~~~~~~~~~~
+MCSRingDetector.cpp:94:31: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+   94 |             for (int j = 0; j < queueSize-1-i; ++j ) {
+      |                             ~~^~~~~~~~~~~~~~~
+MCSRingDetector.cpp: In member function ‘void FMCS::MCSRingDetector::convert()’:
+MCSRingDetector.cpp:149:31: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  149 |             for (int j = 0; j < degree; ++j) {
+      |                             ~~^~~~~~~~
+MCSRingDetector.cpp: In member function ‘void FMCS::MCSRingDetector::detect()’:
+MCSRingDetector.cpp:175:13: warning: unused variable ‘aromaticCount’ [-Wunused-variable]
+  175 |         int aromaticCount = 0;
+      |             ^~~~~~~~~~~~~
+MCSRingDetector.cpp: In member function ‘bool FMCS::MCSRingDetector::Ring::isSp2Hybridized(size_t, int, bool&) const’:
+MCSRingDetector.cpp:194:19: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<int>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  194 |         if (level > vertexPath.size()) {
+      |             ~~~~~~^~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c fmcs_R_wrap.cpp -o fmcs_R_wrap.o
+fmcs_R_wrap.cpp: In function ‘void fmcs_R_wrap(const char**, const char**, int*, int*, int*, int*, int*, int*, int*, const char**, const char**, const char**, const char**, const char**)’:
+fmcs_R_wrap.cpp:74:45: warning: ‘runningMode’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   74 |             matchType, runningMode, *timeout);
+      |                                             ^
+fmcs_R_wrap.cpp:74:45: warning: ‘matchType’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c util.cpp -o util.o
+util.cpp: In function ‘std::string getUpper(const string&)’:
+util.cpp:11:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::__cxx11::basic_string<char>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   11 |     for (int i = 0; i < upper.length(); ++i) {
+      |                     ~~^~~~~~~~~~~~~~~~
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o fmcsR.so MCS.o MCSCompound.o MCSMap.o MCSRingDetector.o fmcs_R_wrap.o util.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-fmcsR/00new/fmcsR/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (fmcsR)

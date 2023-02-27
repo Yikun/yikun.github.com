@@ -1,0 +1,77 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data RGMQL
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘RGMQL/DESCRIPTION’ ... OK
+* preparing ‘RGMQL’:
+* checking DESCRIPTION meta-information ... OK
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘RGMQL-vignette.Rmd’ using rmarkdown
+Using Spark's default log4j profile: org/apache/spark/log4j-defaults.properties
+23/02/23 23:46:15 INFO SparkContext: Running Spark version 2.2.0
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.apache.hadoop.security.authentication.util.KerberosUtil (file:/home/biocbuild/bbs-3.17-bioc/R/library/RGMQLlib/extdata/java/GMQL.jar) to method sun.security.krb5.Config.getInstance()
+WARNING: Please consider reporting this to the maintainers of org.apache.hadoop.security.authentication.util.KerberosUtil
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+23/02/23 23:46:15 WARN NativeCodeLoader: Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+23/02/23 23:46:15 INFO SparkContext: Submitted application: GMQL-R
+23/02/23 23:46:15 INFO SecurityManager: Changing view acls to: biocbuild
+23/02/23 23:46:15 INFO SecurityManager: Changing modify acls to: biocbuild
+23/02/23 23:46:15 INFO SecurityManager: Changing view acls groups to: 
+23/02/23 23:46:15 INFO SecurityManager: Changing modify acls groups to: 
+23/02/23 23:46:15 INFO SecurityManager: SecurityManager: authentication disabled; ui acls disabled; users  with view permissions: Set(biocbuild); groups with view permissions: Set(); users  with modify permissions: Set(biocbuild); groups with modify permissions: Set()
+23/02/23 23:46:16 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+23/02/23 23:46:16 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+23/02/23 23:46:16 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+23/02/23 23:46:16 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+23/02/23 23:46:16 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+23/02/23 23:46:16 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+23/02/23 23:46:16 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+23/02/23 23:46:16 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+23/02/23 23:46:16 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+23/02/23 23:46:16 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+23/02/23 23:46:16 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+23/02/23 23:46:16 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+23/02/23 23:46:16 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+23/02/23 23:46:16 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+23/02/23 23:46:16 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+23/02/23 23:46:16 WARN Utils: Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+23/02/23 23:46:16 ERROR SparkContext: Error initializing SparkContext.
+java.net.BindException: Cannot assign requested address: Service 'sparkDriver' failed after 16 retries (on a random free port)! Consider explicitly setting the appropriate binding address for the service 'sparkDriver' (for example spark.driver.bindAddress for SparkDriver) to the correct binding address.
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:459)
+	at java.base/sun.nio.ch.Net.bind(Net.java:448)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:227)
+	at io.netty.channel.socket.nio.NioServerSocketChannel.doBind(NioServerSocketChannel.java:127)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.bind(AbstractChannel.java:501)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.bind(DefaultChannelPipeline.java:1218)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeBind(AbstractChannelHandlerContext.java:496)
+	at io.netty.channel.AbstractChannelHandlerContext.bind(AbstractChannelHandlerContext.java:481)
+	at io.netty.channel.DefaultChannelPipeline.bind(DefaultChannelPipeline.java:965)
+	at io.netty.channel.AbstractChannel.bind(AbstractChannel.java:210)
+	at io.netty.bootstrap.AbstractBootstrap$2.run(AbstractBootstrap.java:353)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:399)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:446)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$2.run(SingleThreadEventExecutor.java:131)
+	at io.netty.util.concurrent.DefaultThreadFactory$DefaultRunnableDecorator.run(DefaultThreadFactory.java:144)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+23/02/23 23:46:16 INFO SparkContext: Successfully stopped SparkContext
+Quitting from lines 250-251 (RGMQL-vignette.Rmd) 
+Error: processing vignette 'RGMQL-vignette.Rmd' failed with diagnostics:
+java.net.BindException: Cannot assign requested address: Service 'sparkDriver' failed after 16 retries (on a random free port)! Consider explicitly setting the appropriate binding address for the service 'sparkDriver' (for example spark.driver.bindAddress for SparkDriver) to the correct binding address.
+--- failed re-building ‘RGMQL-vignette.Rmd’
+
+SUMMARY: processing the following file failed:
+  ‘RGMQL-vignette.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted

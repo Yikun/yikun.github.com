@@ -1,0 +1,680 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>Build/check report for BioC 3.17 - CHECK results for IRanges on kunpeng1</TITLE>
+<LINK rel="stylesheet" href="../report.css" type="text/css">
+<SCRIPT type="text/javascript" src="../report.js"></SCRIPT>
+</HEAD>
+<BODY onLoad="initialize();">
+<TABLE class="grid_layout" style="width: 100%; background: #EEE;"><TR><TD style="text-align: left; padding: 5px; vertical-align: middle;"><I>Back to <B>Build/check report for BioC 3.17</B>:&nbsp;&nbsp;&nbsp;<A href="../">simplified</A>&nbsp;&nbsp;&nbsp;<A href="../long-report.html">long</A></I></TD><TD><TABLE class="abc_dispatcher"><TR><TD><A href="..#A">A</A></TD><TD><A href="..#B">B</A></TD><TD><A href="..#C">C</A></TD><TD><A href="..#D">D</A></TD><TD><A href="..#E">E</A></TD><TD><A href="..#F">F</A></TD><TD><A href="..#G">G</A></TD><TD><A href="..#H">H</A></TD><TD><B>[<A href="..#I">I</A>]</B></TD><TD><A href="..#J">J</A></TD><TD><A href="..#K">K</A></TD><TD><A href="..#L">L</A></TD><TD><A href="..#M">M</A></TD><TD><A href="..#N">N</A></TD><TD><A href="..#O">O</A></TD><TD><A href="..#P">P</A></TD><TD><A href="..#Q">Q</A></TD><TD><A href="..#R">R</A></TD><TD><A href="..#S">S</A></TD><TD><A href="..#T">T</A></TD><TD><A href="..#U">U</A></TD><TD><A href="..#V">V</A></TD><TD><A href="..#W">W</A></TD><TD><A href="..#X">X</A></TD><TD><A href="..#Y">Y</A></TD><TD><A href="..#Z">Z</A></TD></TR></TABLE></TD></TR></TABLE>
+<P class="time_stamp">
+This page was generated on 2023-02-27 02:34:36 -0000 (Mon, 27 Feb 2023).
+</P>
+<TABLE class="node_specs">
+<TR><TH>Hostname</TH><TH>OS</TH><TH>Arch&nbsp;(*)</TH><TH>R&nbsp;version</TH><TH style="text-align: right;">Installed&nbsp;pkgs</TH></TR>
+<TR class="kunpeng1"><TD><B><A href="../kunpeng1-NodeInfo.html"><B>kunpeng1</B></A></B></TD><TD>Linux&nbsp;(Ubuntu&nbsp;22.04.1&nbsp;LTS)</TD><TD>aarch64</TD><TD>R&nbsp;Under&nbsp;development&nbsp;(unstable)&nbsp;(2023-01-14&nbsp;r83615)&nbsp;--&nbsp;"Unsuffered&nbsp;Consequences"
+</TD><TD style="text-align: right;"><A href="../kunpeng1-R-instpkgs.html">4259</A></TD></TR>
+<TR><TD COLSPAN="5" style="font-size: smaller;"><I>Click on any hostname to see more info about the system (e.g. compilers) &nbsp;&nbsp;&nbsp;&nbsp; (*) as reported by 'uname -p', except on Windows and Mac OS X</I></TD></TR>
+</TABLE>
+<BR>
+<H2><SPAN class="kunpeng1">CHECK results for IRanges on kunpeng1</SPAN></H2>
+<BR>
+<DIV class="motd">
+<TABLE><TR><TD>
+To the developers/maintainers of the IRanges package:<BR>
+- Please allow up to 24 hours (and sometimes 48 hours) for your latest push to git@git.bioconductor.org:packages/IRanges.git to<BR>reflect on this report. See <A href="https://bioconductor.org/developers/how-to/troubleshoot-build-report/">How and When does the builder pull? When will my changes propagate?</A> for more information.<BR>
+- Make sure to <A href="../Renviron.bioc">use the following settings</A> in order to reproduce any error or warning you see on this page.<BR>
+</TD></TR></TABLE>
+</DIV>
+<P style="text-align: center;"><A href="raw-results/">raw results</A><P>
+<TABLE class="gcard_list">
+<TBODY class="gcard warnings">
+<TR class="header"><TD class="leftmost top_left_corner"></TD><TD>Package <B>984</B>/2169</TD><TD style="width: 75px;">Hostname</TD><TD style="width: 225px;">OS&nbsp;/&nbsp;Arch</TD><TD class="STAGE install">INSTALL</TD><TD class="STAGE buildsrc">BUILD</TD><TD class="STAGE checksrc selected">CHECK</TD><TD class="STAGE buildbin">BUILD BIN</TD><TD style="width: 12px;"></TD><TD class="rightmost top_right_corner"></TD></TR>
+<TR class="selected_row"><TD ROWSPAN="2" class="leftmost bottom_left_corner"></TD><TD ROWSPAN="1" style="vertical-align: top;"><B><A href="./">IRanges</A>&nbsp;2.33.0</B>&nbsp;&nbsp;<SPAN style="font-size: smaller; font-style: italic;">(<A href="/packages/3.17/IRanges">landing page</A>)</SPAN><BR>Hervé Pagès<BR><TABLE class="svn_info">
+<TR><TD class="svn_info">Snapshot&nbsp;Date:&nbsp;<SPAN class="svn_info">2023-02-23&nbsp;09:40:21&nbsp;-0000&nbsp;(Thu,&nbsp;23&nbsp;Feb&nbsp;2023)</SPAN></TD></TR>
+<TR><TD class="svn_info">git_url:&nbsp;<SPAN class="svn_info">https://git.bioconductor.org/packages/IRanges</SPAN></TD></TR>
+<TR><TD class="svn_info">git_branch:&nbsp;<SPAN class="svn_info">master</SPAN></TD></TR>
+<TR><TD class="svn_info">git_last_commit:&nbsp;<SPAN class="svn_info">517b720</SPAN></TD></TR>
+<TR><TD class="svn_info">git_last_commit_date:&nbsp;<SPAN class="svn_info">2022-11-01&nbsp;14:36:26&nbsp;-0000&nbsp;(Tue,&nbsp;01&nbsp;Nov&nbsp;2022)</SPAN></TD></TR>
+</TABLE>
+</TD><TD class="kunpeng1 selected"><B>kunpeng1</B></TD><TD class="kunpeng1"><SPAN style="font-size: smaller;">Linux&nbsp;(Ubuntu&nbsp;22.04.1&nbsp;LTS)&nbsp;/&nbsp;aarch64</SPAN></TD><TD class="status kunpeng1 install"><A href="./kunpeng1-install.html" onmouseover="add_class_mouseover(this);" onmouseout="remove_class_mouseover(this);"><SPAN class="glyph OK">&nbsp;&nbsp;OK&nbsp;&nbsp;</SPAN></A></TD><TD class="status kunpeng1 buildsrc"><A href="./kunpeng1-buildsrc.html" onmouseover="add_class_mouseover(this);" onmouseout="remove_class_mouseover(this);"><SPAN class="glyph OK">&nbsp;&nbsp;OK&nbsp;&nbsp;</SPAN></A></TD><TD class="status kunpeng1 checksrc selected"><A href="./kunpeng1-checksrc.html" onmouseover="add_class_mouseover(this);" onmouseout="remove_class_mouseover(this);"><SPAN class="glyph WARNINGS">&nbsp;&nbsp;WARNINGS&nbsp;&nbsp;</SPAN></A></TD><TD class="status kunpeng1"></TD><TD class="status kunpeng1"></TD><TD ROWSPAN="2" class="rightmost bottom_right_corner"></TD></TR>
+<TR class="footer"><TD COLSPAN="8"></TD></TR>
+</TBODY>
+</TABLE>
+<HR>
+<H3>Summary</H3>
+<DIV class="kunpeng1 hscrollable">
+<TABLE>
+<TR><TD><B>Package</B>: IRanges</TD></TR>
+<TR><TD><B>Version</B>: 2.33.0</TD></TR>
+<TR><TD><B>Command</B>: /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:IRanges.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings IRanges_2.33.0.tar.gz</TD></TR>
+<TR><TD><B>StartedAt</B>: 2023-02-24 13:03:06 -0000 (Fri, 24 Feb 2023)</TD></TR>
+<TR><TD><B>EndedAt</B>: 2023-02-24 13:07:31 -0000 (Fri, 24 Feb 2023)</TD></TR>
+<TR><TD><B>EllapsedTime</B>: 264.4 seconds</TD></TR>
+<TR><TD><B>RetCode</B>: 0</TD></TR>
+<TR><TD><B>Status</B>: <SPAN class="glyph WARNINGS">&nbsp;&nbsp;WARNINGS&nbsp;&nbsp;</SPAN></TD></TR>
+<TR><TD><B>CheckDir</B>: IRanges.Rcheck</TD></TR>
+<TR><TD><B>Warnings</B>: 6</TD></TR>
+</TABLE>
+</DIV>
+<HR>
+<H3>Command output</H3>
+<DIV class="kunpeng1 hscrollable">
+<PRE style="padding: 3px;">
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:IRanges.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings IRanges_2.33.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/IRanges.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘IRanges/DESCRIPTION’ ... OK
+* this is package ‘IRanges’ version ‘2.33.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘IRanges’ can be installed ... WARNING
+Found the following significant warnings:
+  NCList.c:674:37: warning: ‘%d’ directive writing between 1 and 11 bytes into a region of size 8 [-Wformat-overflow=]
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/IRanges.Rcheck/00install.out’ for details.
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+setCompressedListSummaryMethod : &lt;anonymous&gt;: no visible binding for
+  global variable ‘C_fun’
+setCompressedListWhichSummaryMethod : def: no visible binding for
+  global variable ‘C_fun’
+Undefined global functions or variables:
+  C_fun
+* checking Rd files ... WARNING
+checkRd: (5) AtomicList-class.Rd:191-193: \item in \describe must have non-empty label
+checkRd: (5) AtomicList-class.Rd:194-196: \item in \describe must have non-empty label
+checkRd: (5) AtomicList-class.Rd:197-199: \item in \describe must have non-empty label
+checkRd: (5) AtomicList-class.Rd:200-202: \item in \describe must have non-empty label
+checkRd: (5) AtomicList-class.Rd:203-205: \item in \describe must have non-empty label
+checkRd: (5) AtomicList-class.Rd:206-208: \item in \describe must have non-empty label
+checkRd: (5) AtomicList-class.Rd:209-212: \item in \describe must have non-empty label
+checkRd: (5) AtomicList-class.Rd:213-215: \item in \describe must have non-empty label
+checkRd: (5) AtomicList-class.Rd:221-226: \item in \describe must have non-empty label
+checkRd: (5) AtomicList-class.Rd:227-233: \item in \describe must have non-empty label
+checkRd: (5) AtomicList-class.Rd:234-240: \item in \describe must have non-empty label
+checkRd: (5) AtomicList-class.Rd:241-250: \item in \describe must have non-empty label
+checkRd: (5) AtomicList-class.Rd:251-253: \item in \describe must have non-empty label
+checkRd: (5) AtomicList-class.Rd:254-257: \item in \describe must have non-empty label
+checkRd: (5) AtomicList-class.Rd:258-261: \item in \describe must have non-empty label
+checkRd: (5) AtomicList-class.Rd:262-273: \item in \describe must have non-empty label
+checkRd: (5) AtomicList-class.Rd:289-291: \item in \describe must have non-empty label
+checkRd: (5) AtomicList-class.Rd:292-294: \item in \describe must have non-empty label
+checkRd: (5) AtomicList-class.Rd:295-297: \item in \describe must have non-empty label
+checkRd: (5) AtomicList-utils.Rd:214: \item in \describe must have non-empty label
+checkRd: (5) DataFrameList-class.Rd:146-147: \item in \describe must have non-empty label
+checkRd: (5) DataFrameList-class.Rd:148-151: \item in \describe must have non-empty label
+checkRd: (5) DataFrameList-class.Rd:156-157: \item in \describe must have non-empty label
+checkRd: (5) DataFrameList-class.Rd:158-159: \item in \describe must have non-empty label
+checkRd: (5) DataFrameList-class.Rd:160-166: \item in \describe must have non-empty label
+checkRd: (5) DataFrameList-class.Rd:167-169: \item in \describe must have non-empty label
+checkRd: (5) DataFrameList-class.Rd:178-186: \item in \describe must have non-empty label
+checkRd: (5) DataFrameList-class.Rd:187-192: \item in \describe must have non-empty label
+checkRd: (5) DataFrameList-class.Rd:198-199: \item in \describe must have non-empty label
+checkRd: (5) DataFrameList-class.Rd:200-209: \item in \describe must have non-empty label
+checkRd: (5) DataFrameList-class.Rd:218-221: \item in \describe must have non-empty label
+checkRd: (5) DataFrameList-class.Rd:222-225: \item in \describe must have non-empty label
+checkRd: (5) DataFrameList-class.Rd:231-235: \item in \describe must have non-empty label
+checkRd: (5) DataFrameList-class.Rd:242-246: \item in \describe must have non-empty label
+checkRd: (5) DataFrameList-class.Rd:247-253: \item in \describe must have non-empty label
+checkRd: (5) DataFrameList-class.Rd:254-257: \item in \describe must have non-empty label
+checkRd: (5) DataFrameList-class.Rd:258-264: \item in \describe must have non-empty label
+checkRd: (5) Grouping-class.Rd:206-209: \item in \describe must have non-empty label
+checkRd: (5) Grouping-class.Rd:210-213: \item in \describe must have non-empty label
+checkRd: (5) Grouping-class.Rd:214-217: \item in \describe must have non-empty label
+checkRd: (5) Grouping-class.Rd:222-226: \item in \describe must have non-empty label
+checkRd: (5) Grouping-class.Rd:227-235: \item in \describe must have non-empty label
+checkRd: (5) Grouping-class.Rd:260-265: \item in \describe must have non-empty label
+checkRd: (5) Grouping-class.Rd:266-271: \item in \describe must have non-empty label
+checkRd: (5) Grouping-class.Rd:276-285: \item in \describe must have non-empty label
+checkRd: (5) Grouping-class.Rd:286-291: \item in \describe must have non-empty label
+checkRd: (5) Grouping-class.Rd:307-310: \item in \describe must have non-empty label
+checkRd: (5) Grouping-class.Rd:311-314: \item in \describe must have non-empty label
+checkRd: (5) Grouping-class.Rd:315-325: \item in \describe must have non-empty label
+checkRd: (5) Grouping-class.Rd:337-347: \item in \describe must have non-empty label
+checkRd: (5) Grouping-class.Rd:379-405: \item in \describe must have non-empty label
+checkRd: (5) Grouping-class.Rd:406-432: \item in \describe must have non-empty label
+checkRd: (5) Grouping-class.Rd:433-440: \item in \describe must have non-empty label
+checkRd: (5) Hits-class-leftovers.Rd:45-47: \item in \describe must have non-empty label
+checkRd: (5) Hits-class-leftovers.Rd:48-49: \item in \describe must have non-empty label
+checkRd: (5) Hits-class-leftovers.Rd:50-53: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-class.Rd:108-111: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-class.Rd:112-116: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-class.Rd:117-121: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-class.Rd:122-125: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-class.Rd:126-129: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-class.Rd:130-133: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-class.Rd:134-141: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-class.Rd:142-150: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-class.Rd:151-154: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-class.Rd:155-160: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-class.Rd:161-168: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-class.Rd:169-173: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-class.Rd:174-182: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-class.Rd:183-195: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-class.Rd:196-202: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-class.Rd:203-213: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-class.Rd:214-217: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-class.Rd:218-228: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-class.Rd:269-272: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-class.Rd:273-277: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-comparison.Rd:123-168: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-comparison.Rd:169-177: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-comparison.Rd:178-184: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-comparison.Rd:185-189: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-comparison.Rd:190-199: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-comparison.Rd:200-207: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-comparison.Rd:208-213: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-comparison.Rd:214-218: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-comparison.Rd:219-223: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-comparison.Rd:224-229: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-comparison.Rd:230-234: \item in \describe must have non-empty label
+checkRd: (5) IPosRanges-comparison.Rd:235-239: \item in \describe must have non-empty label
+checkRd: (5) IRanges-class.Rd:70-74: \item in \describe must have non-empty label
+checkRd: (5) IRanges-class.Rd:75-82: \item in \describe must have non-empty label
+checkRd: (5) IRanges-class.Rd:83-87: \item in \describe must have non-empty label
+checkRd: (5) IRanges-class.Rd:93-99: \item in \describe must have non-empty label
+checkRd: (5) IRanges-class.Rd:105-108: \item in \describe must have non-empty label
+checkRd: (5) IRanges-class.Rd:109-112: \item in \describe must have non-empty label
+checkRd: (5) IRanges-constructor.Rd:86-138: \item in \describe must have non-empty label
+checkRd: (5) IRangesList-class.Rd:83-93: \item in \describe must have non-empty label
+checkRd: (5) IRangesList-class.Rd:100-106: \item in \describe must have non-empty label
+checkRd: (5) IRangesList-class.Rd:107-113: \item in \describe must have non-empty label
+checkRd: (5) IRangesList-class.Rd:114-118: \item in \describe must have non-empty label
+checkRd: (5) IRangesList-class.Rd:119-123: \item in \describe must have non-empty label
+checkRd: (5) IRangesList-class.Rd:128-132: \item in \describe must have non-empty label
+checkRd: (5) IRangesList-class.Rd:138-142: \item in \describe must have non-empty label
+checkRd: (5) IRangesList-class.Rd:143-147: \item in \describe must have non-empty label
+checkRd: (5) IntegerRangesList-class.Rd:87-90: \item in \describe must have non-empty label
+checkRd: (5) IntegerRangesList-class.Rd:91-94: \item in \describe must have non-empty label
+checkRd: (5) IntegerRangesList-class.Rd:95-98: \item in \describe must have non-empty label
+checkRd: (5) IntegerRangesList-class.Rd:99-102: \item in \describe must have non-empty label
+checkRd: (5) IntegerRangesList-class.Rd:109-115: \item in \describe must have non-empty label
+checkRd: (5) IntegerRangesList-class.Rd:121-124: \item in \describe must have non-empty label
+checkRd: (5) MaskCollection-class.Rd:87-90: \item in \describe must have non-empty label
+checkRd: (5) MaskCollection-class.Rd:91-96: \item in \describe must have non-empty label
+checkRd: (5) MaskCollection-class.Rd:97-101: \item in \describe must have non-empty label
+checkRd: (5) MaskCollection-class.Rd:102-105: \item in \describe must have non-empty label
+checkRd: (5) MaskCollection-class.Rd:106-109: \item in \describe must have non-empty label
+checkRd: (5) MaskCollection-class.Rd:110-114: \item in \describe must have non-empty label
+checkRd: (5) MaskCollection-class.Rd:120-129: \item in \describe must have non-empty label
+checkRd: (5) MaskCollection-class.Rd:137-141: \item in \describe must have non-empty label
+checkRd: (5) MaskCollection-class.Rd:142-146: \item in \describe must have non-empty label
+checkRd: (5) MaskCollection-class.Rd:147-151: \item in \describe must have non-empty label
+checkRd: (5) MaskCollection-class.Rd:152-157: \item in \describe must have non-empty label
+checkRd: (5) MaskCollection-class.Rd:158-161: \item in \describe must have non-empty label
+checkRd: (5) MaskCollection-class.Rd:170-174: \item in \describe must have non-empty label
+checkRd: (5) MaskCollection-class.Rd:175-179: \item in \describe must have non-empty label
+checkRd: (5) MaskCollection-class.Rd:180-183: \item in \describe must have non-empty label
+checkRd: (5) MaskCollection-class.Rd:191-195: \item in \describe must have non-empty label
+checkRd: (5) RangedSelection-class.Rd:38-41: \item in \describe must have non-empty label
+checkRd: (5) RangedSelection-class.Rd:47-51: \item in \describe must have non-empty label
+checkRd: (5) RangedSelection-class.Rd:58-61: \item in \describe must have non-empty label
+checkRd: (5) RangedSelection-class.Rd:62-64: \item in \describe must have non-empty label
+checkRd: (5) Rle-class-leftovers.Rd:29-32: \item in \describe must have non-empty label
+checkRd: (5) Rle-class-leftovers.Rd:33-36: \item in \describe must have non-empty label
+checkRd: (5) Rle-class-leftovers.Rd:44-56: \item in \describe must have non-empty label
+checkRd: (5) Rle-class-leftovers.Rd:57-61: \item in \describe must have non-empty label
+checkRd: (5) Rle-class-leftovers.Rd:62-66: \item in \describe must have non-empty label
+checkRd: (5) RleViewsList-class.Rd:32-38: \item in \describe must have non-empty label
+checkRd: (5) RleViewsList-class.Rd:39-41: \item in \describe must have non-empty label
+checkRd: (5) RleViewsList-class.Rd:49-52: \item in \describe must have non-empty label
+checkRd: (5) Vector-class-leftovers.Rd:33-36: \item in \describe must have non-empty label
+checkRd: (5) Vector-class-leftovers.Rd:37-43: \item in \describe must have non-empty label
+checkRd: (5) Vector-class-leftovers.Rd:53-64: \item in \describe must have non-empty label
+checkRd: (5) Vector-class-leftovers.Rd:72-79: \item in \describe must have non-empty label
+checkRd: (5) Vector-class-leftovers.Rd:85-88: \item in \describe must have non-empty label
+checkRd: (5) Views-class.Rd:55-73: \item in \describe must have non-empty label
+checkRd: (5) Views-class.Rd:81-84: \item in \describe must have non-empty label
+checkRd: (5) Views-class.Rd:94-97: \item in \describe must have non-empty label
+checkRd: (5) Views-class.Rd:103-105: \item in \describe must have non-empty label
+checkRd: (5) Views-class.Rd:106-115: \item in \describe must have non-empty label
+checkRd: (5) Views-class.Rd:121-124: \item in \describe must have non-empty label
+checkRd: (5) Views-class.Rd:130-135: \item in \describe must have non-empty label
+checkRd: (5) Views-class.Rd:136-142: \item in \describe must have non-empty label
+checkRd: (5) Views-class.Rd:143-148: \item in \describe must have non-empty label
+* checking Rd metadata ... OK
+* checking Rd cross-references ... WARNING
+Missing link or links in documentation object &#x27;IntegerRangesList-class.Rd&#x27;:
+  ‘[IRanges]{RangesList}’
+
+Missing link or links in documentation object &#x27;intra-range-methods.Rd&#x27;:
+  ‘RangesList’
+
+See section &#x27;Cross-references&#x27; in the &#x27;Writing R Extensions&#x27; manual.
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘%poutside%’ ‘%pover%’ ‘%pwithin%’ ‘cvg’ ‘heads’ ‘slidingIRanges’
+  ‘slidingViews’ ‘tails’ ‘windows’
+Undocumented S4 classes:
+  ‘BaseManyToManyGrouping’ ‘Pos’ ‘CompressedIntegerRangesList’
+  ‘IPosList’ ‘CompressedRangesList’ ‘SimpleIPosList’ ‘RangesList’
+  ‘CompressedPosList’ ‘CompressedIPosList’ ‘Ranges’ ‘SimplePosList’
+  ‘PosList’ ‘SimpleRangesList’
+Undocumented S4 methods:
+  generic &#x27;anyDuplicated&#x27; and siglist &#x27;RangesNSBS&#x27;
+  generic &#x27;as.factor&#x27; and siglist &#x27;ManyToOneGrouping&#x27;
+  generic &#x27;as.integer&#x27; and siglist &#x27;NormalIRanges&#x27;
+  generic &#x27;as.integer&#x27; and siglist &#x27;Pos&#x27;
+  generic &#x27;as.integer&#x27; and siglist &#x27;RangesNSBS&#x27;
+  generic &#x27;cbind&#x27; and siglist &#x27;Rle&#x27;
+  generic &#x27;cbind&#x27; and siglist &#x27;RleList&#x27;
+  generic &#x27;chartr&#x27; and siglist &#x27;ANY,ANY,CharacterList&#x27;
+  generic &#x27;chartr&#x27; and siglist &#x27;ANY,ANY,RleList&#x27;
+  generic &#x27;coerce&#x27; and siglist &#x27;ANY,IPosRanges&#x27;
+  generic &#x27;coerce&#x27; and siglist &#x27;AtomicList,RleViews&#x27;
+  generic &#x27;coerce&#x27; and siglist &#x27;IPosRanges,CompressedIntegerList&#x27;
+  generic &#x27;coerce&#x27; and siglist &#x27;IPosRanges,IntegerList&#x27;
+  generic &#x27;coerce&#x27; and siglist &#x27;IRanges,IPosList&#x27;
+  generic &#x27;coerce&#x27; and siglist &#x27;IntegerRanges,CompressedIPosList&#x27;
+  generic &#x27;coerce&#x27; and siglist &#x27;IntegerRanges,IPosList&#x27;
+  generic &#x27;coerce&#x27; and siglist &#x27;PartitioningByEnd,PartitioningMap&#x27;
+  generic &#x27;coerce&#x27; and siglist &#x27;factor,ManyToOneGrouping&#x27;
+  generic &#x27;commonColnames&lt;-&#x27; and siglist &#x27;SplitDataFrameList&#x27;
+  generic &#x27;cvg&#x27; and siglist &#x27;IntegerRanges&#x27;
+  generic &#x27;cvg&#x27; and siglist &#x27;IntegerRangesList&#x27;
+  generic &#x27;endsWith&#x27; and siglist &#x27;CharacterList&#x27;
+  generic &#x27;endsWith&#x27; and siglist &#x27;RleList&#x27;
+  generic &#x27;extractROWS&#x27; and siglist &#x27;CompressedList,ANY&#x27;
+  generic &#x27;extractROWS&#x27; and siglist &#x27;IPos,ANY&#x27;
+  generic &#x27;extractROWS&#x27; and siglist &#x27;MaskCollection,ANY&#x27;
+  generic &#x27;extractROWS&#x27; and siglist &#x27;NormalIRanges,ANY&#x27;
+  generic &#x27;extractROWS&#x27; and siglist &#x27;Partitioning,ANY&#x27;
+  generic &#x27;extractROWS&#x27; and siglist &#x27;Rle,RangesNSBS&#x27;
+  generic &#x27;extractROWS&#x27; and siglist &#x27;vector_OR_factor,RangesNSBS&#x27;
+  generic &#x27;getListElement&#x27; and siglist &#x27;CompressedList&#x27;
+  generic &#x27;getListElement&#x27; and siglist &#x27;CompressedNormalIRangesList&#x27;
+  generic &#x27;getListElement&#x27; and siglist &#x27;H2LGrouping&#x27;
+  generic &#x27;getListElement&#x27; and siglist &#x27;MaskCollection&#x27;
+  generic &#x27;getListElement&#x27; and siglist &#x27;NCLists&#x27;
+  generic &#x27;getListElement&#x27; and siglist &#x27;Partitioning&#x27;
+  generic &#x27;getListElement&#x27; and siglist &#x27;Views&#x27;
+  generic &#x27;gsub&#x27; and siglist &#x27;ANY,ANY,CharacterList&#x27;
+  generic &#x27;gsub&#x27; and siglist &#x27;ANY,ANY,RleList&#x27;
+  generic &#x27;ifelse2&#x27; and siglist &#x27;ANY,List,List&#x27;
+  generic &#x27;is.unsorted&#x27; and siglist &#x27;CompressedIntegerList&#x27;
+  generic &#x27;is.unsorted&#x27; and siglist &#x27;CompressedLogicalList&#x27;
+  generic &#x27;is.unsorted&#x27; and siglist &#x27;CompressedNumericList&#x27;
+  generic &#x27;isNormal&#x27; and siglist &#x27;IntegerRanges&#x27;
+  generic &#x27;length&#x27; and siglist &#x27;RangesNSBS&#x27;
+  generic &#x27;nchar&#x27; and siglist &#x27;CharacterList&#x27;
+  generic &#x27;nchar&#x27; and siglist &#x27;RleList&#x27;
+  generic &#x27;pcompareRecursively&#x27; and siglist &#x27;IPosRanges&#x27;
+  generic &#x27;range&#x27; and siglist &#x27;CompressedRleList&#x27;
+  generic &#x27;relist&#x27; and siglist &#x27;grouping,missing&#x27;
+  generic &#x27;replaceROWS&#x27; and siglist &#x27;IRanges&#x27;
+  generic &#x27;replaceROWS&#x27; and siglist &#x27;NormalIRanges&#x27;
+  generic &#x27;slidingWindows&#x27; and siglist &#x27;IntegerRanges&#x27;
+  generic &#x27;startsWith&#x27; and siglist &#x27;CharacterList&#x27;
+  generic &#x27;startsWith&#x27; and siglist &#x27;RleList&#x27;
+  generic &#x27;sub&#x27; and siglist &#x27;ANY,ANY,CharacterList&#x27;
+  generic &#x27;sub&#x27; and siglist &#x27;ANY,ANY,RleList&#x27;
+  generic &#x27;tile&#x27; and siglist &#x27;IntegerRanges&#x27;
+  generic &#x27;tolower&#x27; and siglist &#x27;CharacterList&#x27;
+  generic &#x27;tolower&#x27; and siglist &#x27;RleList&#x27;
+  generic &#x27;toupper&#x27; and siglist &#x27;CharacterList&#x27;
+  generic &#x27;toupper&#x27; and siglist &#x27;RleList&#x27;
+  generic &#x27;updateObject&#x27; and siglist &#x27;CompressedList&#x27;
+  generic &#x27;updateObject&#x27; and siglist &#x27;IPosRanges&#x27;
+  generic &#x27;whichFirstNotNormal&#x27; and siglist &#x27;IntegerRanges&#x27;
+  generic &#x27;windows&#x27; and siglist &#x27;list_OR_List&#x27;
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Documented arguments not in \usage in documentation object &#x27;nearest-methods&#x27;:
+  ‘hits’ ‘...’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... WARNING
+Note: information on .o files is not available
+File ‘/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/libs/IRanges.so’:
+  Found ‘__sprintf_chk’, possibly from ‘sprintf’ (C)
+
+Compiled code should not call entry points which might terminate R nor
+write to stdout/stderr instead of to the console, nor use Fortran I/O
+nor system RNGs nor [v]sprintf. The detected symbols are linked into
+the code but might come from libraries and not actually be called.
+
+See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time &gt; 5s
+             user system elapsed
+IPos-class 10.368  0.311  10.689
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘run_unitTests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘IRangesOverview.Rnw’ using ‘UTF-8’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 6 WARNINGs, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/IRanges.Rcheck/00check.log’
+for details.
+
+
+</PRE>
+</DIV><HR>
+<H3>Installation output</H3>
+<P><SPAN class="filename">IRanges.Rcheck/00install.out</SPAN></P>
+<DIV class="kunpeng1 hscrollable">
+<PRE style="padding: 3px;">
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL IRanges
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘IRanges’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I&quot;/home/biocbuild/bbs-3.17-bioc/R/include&quot; -DNDEBUG  -I&#x27;/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include&#x27; -I/usr/local/include    -fPIC  -g -O2  -Wall -c CompressedAtomicList_utils.c -o CompressedAtomicList_utils.o
+gcc -I&quot;/home/biocbuild/bbs-3.17-bioc/R/include&quot; -DNDEBUG  -I&#x27;/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include&#x27; -I/usr/local/include    -fPIC  -g -O2  -Wall -c CompressedIRangesList_class.c -o CompressedIRangesList_class.o
+gcc -I&quot;/home/biocbuild/bbs-3.17-bioc/R/include&quot; -DNDEBUG  -I&#x27;/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include&#x27; -I/usr/local/include    -fPIC  -g -O2  -Wall -c CompressedList_class.c -o CompressedList_class.o
+gcc -I&quot;/home/biocbuild/bbs-3.17-bioc/R/include&quot; -DNDEBUG  -I&#x27;/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include&#x27; -I/usr/local/include    -fPIC  -g -O2  -Wall -c Grouping_class.c -o Grouping_class.o
+gcc -I&quot;/home/biocbuild/bbs-3.17-bioc/R/include&quot; -DNDEBUG  -I&#x27;/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include&#x27; -I/usr/local/include    -fPIC  -g -O2  -Wall -c IPosRanges_comparison.c -o IPosRanges_comparison.o
+gcc -I&quot;/home/biocbuild/bbs-3.17-bioc/R/include&quot; -DNDEBUG  -I&#x27;/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include&#x27; -I/usr/local/include    -fPIC  -g -O2  -Wall -c IRanges_class.c -o IRanges_class.o
+gcc -I&quot;/home/biocbuild/bbs-3.17-bioc/R/include&quot; -DNDEBUG  -I&#x27;/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include&#x27; -I/usr/local/include    -fPIC  -g -O2  -Wall -c IRanges_constructor.c -o IRanges_constructor.o
+gcc -I&quot;/home/biocbuild/bbs-3.17-bioc/R/include&quot; -DNDEBUG  -I&#x27;/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include&#x27; -I/usr/local/include    -fPIC  -g -O2  -Wall -c NCList.c -o NCList.o
+NCList.c:1173:13: warning: ‘NCList_get_y_overlaps_rec’ defined but not used [-Wunused-function]
+ 1173 | static void NCList_get_y_overlaps_rec(const NCList *x_nclist,
+      |             ^~~~~~~~~~~~~~~~~~~~~~~~~
+NCList.c:202:22: warning: ‘next_top_down’ defined but not used [-Wunused-function]
+  202 | static const NCList *next_top_down(const NCList *nclist)
+      |                      ^~~~~~~~~~~~~
+NCList.c: In function ‘C_print_NCListAsINTSXP’:
+NCList.c:674:37: warning: ‘%d’ directive writing between 1 and 11 bytes into a region of size 8 [-Wformat-overflow=]
+  674 |                 sprintf(format, &quot;%c0%d%c&quot;, &#x27;%&#x27;, max_digits, &#x27;d&#x27;);
+      |                                     ^~
+NCList.c:674:33: note: directive argument in the range [-2147483647, 2147483647]
+  674 |                 sprintf(format, &quot;%c0%d%c&quot;, &#x27;%&#x27;, max_digits, &#x27;d&#x27;);
+      |                                 ^~~~~~~~~
+In file included from /usr/include/stdio.h:894,
+                 from /home/biocbuild/bbs-3.17-bioc/R/include/Rinternals.h:39,
+                 from /home/biocbuild/bbs-3.17-bioc/R/include/Rdefines.h:41,
+                 from /home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include/S4Vectors_defines.h:18,
+                 from ../inst/include/IRanges_defines.h:18,
+                 from IRanges.h:1,
+                 from NCList.c:5:
+/usr/include/aarch64-linux-gnu/bits/stdio2.h:38:10: note: ‘__builtin___sprintf_chk’ output between 5 and 15 bytes into a destination of size 10
+   38 |   return __builtin___sprintf_chk (__s, __USE_FORTIFY_LEVEL - 1,
+      |          ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   39 |                                   __glibc_objsize (__s), __fmt,
+      |                                   ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   40 |                                   __va_arg_pack ());
+      |                                   ~~~~~~~~~~~~~~~~~
+gcc -I&quot;/home/biocbuild/bbs-3.17-bioc/R/include&quot; -DNDEBUG  -I&#x27;/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include&#x27; -I/usr/local/include    -fPIC  -g -O2  -Wall -c R_init_IRanges.c -o R_init_IRanges.o
+gcc -I&quot;/home/biocbuild/bbs-3.17-bioc/R/include&quot; -DNDEBUG  -I&#x27;/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include&#x27; -I/usr/local/include    -fPIC  -g -O2  -Wall -c Ranges_class.c -o Ranges_class.o
+gcc -I&quot;/home/biocbuild/bbs-3.17-bioc/R/include&quot; -DNDEBUG  -I&#x27;/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include&#x27; -I/usr/local/include    -fPIC  -g -O2  -Wall -c RleViews_utils.c -o RleViews_utils.o
+gcc -I&quot;/home/biocbuild/bbs-3.17-bioc/R/include&quot; -DNDEBUG  -I&#x27;/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include&#x27; -I/usr/local/include    -fPIC  -g -O2  -Wall -c S4Vectors_stubs.c -o S4Vectors_stubs.o
+gcc -I&quot;/home/biocbuild/bbs-3.17-bioc/R/include&quot; -DNDEBUG  -I&#x27;/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include&#x27; -I/usr/local/include    -fPIC  -g -O2  -Wall -c SimpleIRangesList_class.c -o SimpleIRangesList_class.o
+gcc -I&quot;/home/biocbuild/bbs-3.17-bioc/R/include&quot; -DNDEBUG  -I&#x27;/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include&#x27; -I/usr/local/include    -fPIC  -g -O2  -Wall -c coverage_methods.c -o coverage_methods.o
+coverage_methods.c: In function ‘compute_coverage_from_IRanges_holder’:
+coverage_methods.c:579:35: warning: ‘x_end’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  579 |         if (*out_ranges_are_tiles &amp;&amp; x_end != cvg_len)
+      |             ~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~
+coverage_methods.c:495:28: note: ‘x_end’ was declared here
+  495 |             i, j, x_start, x_end, shift_elt, tmp;
+      |                            ^~~~~
+gcc -I&quot;/home/biocbuild/bbs-3.17-bioc/R/include&quot; -DNDEBUG  -I&#x27;/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include&#x27; -I/usr/local/include    -fPIC  -g -O2  -Wall -c extractListFragments.c -o extractListFragments.o
+extractListFragments.c: In function ‘C_find_partition_overlaps’:
+extractListFragments.c:66:33: warning: ‘split_partitions_buf’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   66 |                                 IntAE_insert_at(split_partitions_buf,
+      |                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   67 |                                         IntAE_get_nelt(split_partitions_buf),
+      |                                         ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+   68 |                                         q_prev_end);
+      |                                         ~~~~~~~~~~~
+gcc -I&quot;/home/biocbuild/bbs-3.17-bioc/R/include&quot; -DNDEBUG  -I&#x27;/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include&#x27; -I/usr/local/include    -fPIC  -g -O2  -Wall -c inter_range_methods.c -o inter_range_methods.o
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o IRanges.so CompressedAtomicList_utils.o CompressedIRangesList_class.o CompressedList_class.o Grouping_class.o IPosRanges_comparison.o IRanges_class.o IRanges_constructor.o NCList.o R_init_IRanges.o Ranges_class.o RleViews_utils.o S4Vectors_stubs.o SimpleIRangesList_class.o coverage_methods.o extractListFragments.o inter_range_methods.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-IRanges/00new/IRanges/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Creating a generic function for ‘drop’ from package ‘base’ in package ‘IRanges’
+Creating a generic function for ‘runmed’ from package ‘stats’ in package ‘IRanges’
+Creating a generic function for ‘chartr’ from package ‘base’ in package ‘IRanges’
+Creating a generic function for ‘toupper’ from package ‘base’ in package ‘IRanges’
+Creating a generic function for ‘tolower’ from package ‘base’ in package ‘IRanges’
+Creating a generic function for ‘sub’ from package ‘base’ in package ‘IRanges’
+Creating a generic function for ‘gsub’ from package ‘base’ in package ‘IRanges’
+Creating a generic function for ‘startsWith’ from package ‘base’ in package ‘IRanges’
+Creating a generic function for ‘endsWith’ from package ‘base’ in package ‘IRanges’
+Creating a generic function for ‘smoothEnds’ from package ‘stats’ in package ‘IRanges’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (IRanges)
+</PRE>
+</DIV><HR>
+<H3>Tests output</H3>
+<P><SPAN class="filename">IRanges.Rcheck/tests/run_unitTests.Rout</SPAN></P>
+<DIV class="kunpeng1 hscrollable">
+<PRE style="padding: 3px;">
+
+R Under development (unstable) (2023-01-14 r83615) -- &quot;Unsuffered Consequences&quot;
+Copyright (C) 2023 The R Foundation for Statistical Computing
+Platform: aarch64-unknown-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type &#x27;license()&#x27; or &#x27;licence()&#x27; for distribution details.
+
+R is a collaborative project with many contributors.
+Type &#x27;contributors()&#x27; for more information and
+&#x27;citation()&#x27; on how to cite R or R packages in publications.
+
+Type &#x27;demo()&#x27; for some demos, &#x27;help()&#x27; for on-line help, or
+&#x27;help.start()&#x27; for an HTML browser interface to help.
+Type &#x27;q()&#x27; to quit R.
+
+&gt; require(&quot;IRanges&quot;) || stop(&quot;unable to load IRanges package&quot;)
+Loading required package: IRanges
+Loading required package: BiocGenerics
+
+Attaching package: &#x27;BiocGenerics&#x27;
+
+The following objects are masked from &#x27;package:stats&#x27;:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from &#x27;package:base&#x27;:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: &#x27;S4Vectors&#x27;
+
+The following objects are masked from &#x27;package:base&#x27;:
+
+    I, expand.grid, unname
+
+[1] TRUE
+&gt; IRanges:::.test()
+
+
+RUNIT TEST PROTOCOL -- Fri Feb 24 13:06:45 2023 
+*********************************************** 
+Number of test functions: 98 
+Number of errors: 0 
+Number of failures: 0 
+
+ 
+1 Test Suite : 
+IRanges RUnit Tests - 98 test functions, 0 errors, 0 failures
+Number of test functions: 98 
+Number of errors: 0 
+Number of failures: 0 
+Warning messages:
+1: In recycleListElements(e1, en) :
+  Some element lengths are not multiples of their corresponding element length in e1
+2: In x + y :
+  longer object length is not a multiple of shorter object length
+3: In recycleListElements(e1, en) :
+  Some element lengths are not multiples of their corresponding element length in e1
+4: In x + y :
+  longer object length is not a multiple of shorter object length
+&gt; 
+&gt; proc.time()
+   user  system elapsed 
+119.856   0.142 120.003 
+</PRE>
+</DIV><HR>
+<H3>Example timings</H3>
+<P><SPAN class="filename">IRanges.Rcheck/IRanges-Ex.timings</SPAN></P>
+<DIV class="kunpeng1 hscrollable">
+<TABLE>
+<TR><TD>name</TD><TD style="text-align: right;">user</TD><TD style="text-align: right;">system</TD><TD style="text-align: right;">elapsed
+</TD><TR>
+<TR><TD>AtomicList-class</TD><TD style="text-align: right;">0.247</TD><TD style="text-align: right;">0.016</TD><TD style="text-align: right;">0.263</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>AtomicList-utils</TD><TD style="text-align: right;">0.055</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.056</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>CompressedList-class</TD><TD style="text-align: right;">0.039</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.039</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>DataFrameList-class</TD><TD style="text-align: right;">0.121</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.121</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>Grouping-class</TD><TD style="text-align: right;">0.052</TD><TD style="text-align: right;">0.004</TD><TD style="text-align: right;">0.056</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>Hits-class-leftovers</TD><TD style="text-align: right;">0.074</TD><TD style="text-align: right;">0.004</TD><TD style="text-align: right;">0.078</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>IPos-class</TD><TD style="text-align: right;">10.368</TD><TD style="text-align: right;"> 0.311</TD><TD style="text-align: right;">10.689</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>IPosRanges-class</TD><TD style="text-align: right;">0.049</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.049</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>IPosRanges-comparison</TD><TD style="text-align: right;">0.062</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.063</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>IRanges-class</TD><TD style="text-align: right;">3.238</TD><TD style="text-align: right;">0.024</TD><TD style="text-align: right;">3.262</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>IRanges-constructor</TD><TD style="text-align: right;">0.068</TD><TD style="text-align: right;">0.004</TD><TD style="text-align: right;">0.072</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>IRanges-utils</TD><TD style="text-align: right;">3.313</TD><TD style="text-align: right;">0.020</TD><TD style="text-align: right;">3.334</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>IRangesList-class</TD><TD style="text-align: right;">0.049</TD><TD style="text-align: right;">0.004</TD><TD style="text-align: right;">0.053</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>IntegerRangesList-class</TD><TD style="text-align: right;">0.081</TD><TD style="text-align: right;">0.004</TD><TD style="text-align: right;">0.085</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>MaskCollection-class</TD><TD style="text-align: right;">0.089</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.089</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>NCList-class</TD><TD style="text-align: right;">0.027</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.028</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>RangedSelection-class</TD><TD style="text-align: right;">0.022</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.022</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>Rle-class-leftovers</TD><TD style="text-align: right;">0.005</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.005</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>RleViews-class</TD><TD style="text-align: right;">0.055</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.055</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>RleViewsList-class</TD><TD style="text-align: right;">0.056</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.056</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>Views-class</TD><TD style="text-align: right;">0.05</TD><TD style="text-align: right;">0.00</TD><TD style="text-align: right;">0.05</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>ViewsList-class</TD><TD style="text-align: right;">0.002</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.002</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>coverage-methods</TD><TD style="text-align: right;">0.204</TD><TD style="text-align: right;">0.024</TD><TD style="text-align: right;">0.228</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>extractList</TD><TD style="text-align: right;">0.081</TD><TD style="text-align: right;">0.012</TD><TD style="text-align: right;">0.092</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>extractListFragments</TD><TD style="text-align: right;">0.785</TD><TD style="text-align: right;">0.088</TD><TD style="text-align: right;">0.873</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>findOverlaps-methods</TD><TD style="text-align: right;">0.377</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.378</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>inter-range-methods</TD><TD style="text-align: right;">0.828</TD><TD style="text-align: right;">0.019</TD><TD style="text-align: right;">0.846</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>intra-range-methods</TD><TD style="text-align: right;">0.599</TD><TD style="text-align: right;">0.020</TD><TD style="text-align: right;">0.619</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>multisplit</TD><TD style="text-align: right;">0.02</TD><TD style="text-align: right;">0.00</TD><TD style="text-align: right;">0.02</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>nearest-methods</TD><TD style="text-align: right;">0.149</TD><TD style="text-align: right;">0.008</TD><TD style="text-align: right;">0.157</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>range-squeezers</TD><TD style="text-align: right;">0</TD><TD style="text-align: right;">0</TD><TD style="text-align: right;">0</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>read.Mask</TD><TD style="text-align: right;">0.032</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.035</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>reverse-methods</TD><TD style="text-align: right;">0.067</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.067</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>setops-methods</TD><TD style="text-align: right;">0.276</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.276</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>slice-methods</TD><TD style="text-align: right;">0.014</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.014</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>view-summarization-methods</TD><TD style="text-align: right;">0.020</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.021</TD><TD style="text-align: right;">
+</TD><TR>
+</TABLE>
+</DIV></BODY>
+</HTML>

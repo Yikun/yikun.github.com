@@ -1,0 +1,416 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL dada2
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘dada2’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+In file included from ../inst/include/dada2.h:7,
+                 from RcppExports.cpp:4:
+../inst/include/dada2_RcppExports.h:14:14: warning: ‘void dada2::{anonymous}::validateSignature(const char*)’ defined but not used [-Wunused-function]
+   14 |         void validateSignature(const char* sig) {
+      |              ^~~~~~~~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c Rmain.cpp -o Rmain.o
+Rmain.cpp: In function ‘Rcpp::List dada_uniques(std::vector<std::__cxx11::basic_string<char> >, std::vector<int>, std::vector<bool>, Rcpp::NumericMatrix, Rcpp::NumericMatrix, int, int, int, bool, double, int, double, double, double, bool, int, double, int, int, bool, bool, bool, int, bool, bool, int, bool, bool)’:
+Rmain.cpp:71:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+   71 |     if(quals.nrow() != maxlen) {
+      |        ~~~~~~~~~~~~~^~~~~~~~~
+Rmain.cpp:82:8: warning: unused variable ‘HW_SSE’ [-Wunused-variable]
+   82 |   bool HW_SSE = false;
+      |        ^~~~~~
+Rmain.cpp:83:8: warning: unused variable ‘HW_SSE2’ [-Wunused-variable]
+   83 |   bool HW_SSE2 = false;
+      |        ^~~~~~~
+Rmain.cpp:84:8: warning: unused variable ‘HW_SSE3’ [-Wunused-variable]
+   84 |   bool HW_SSE3 = false;
+      |        ^~~~~~~
+Rmain.cpp: In function ‘B* run_dada(Raw**, int, Rcpp::NumericMatrix, int, int, int, int, bool, double, int, double, double, bool, int, double, int, int, bool, bool, bool, bool, bool, int, bool, bool)’:
+Rmain.cpp:316:22: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  316 |   while( (bb->nclust < max_clust) && (newi = b_bud(bb, min_fold, min_hamming, min_abund, verbose)) ) {
+      |           ~~~~~~~~~~~^~~~~~~~~~~
+Rmain.cpp: In function ‘Rcpp::List dada_uniques(std::vector<std::__cxx11::basic_string<char> >, std::vector<int>, std::vector<bool>, Rcpp::NumericMatrix, Rcpp::NumericMatrix, int, int, int, bool, double, int, double, double, double, bool, int, double, int, int, bool, bool, bool, int, bool, bool, int, bool, bool)’:
+Rmain.cpp:290:9: warning: ‘kord’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  290 |     free(kord);
+      |     ~~~~^~~~~~
+Rmain.cpp:289:9: warning: ‘k16’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  289 |     free(k16);
+      |     ~~~~^~~~~
+Rmain.cpp:288:9: warning: ‘k8’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  288 |     free(k8);
+      |     ~~~~^~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c chimera.cpp -o chimera.o
+chimera.cpp: In function ‘bool C_is_bimera(std::string, std::vector<std::__cxx11::basic_string<char> >, bool, int, int, int, int, int)’:
+chimera.cpp:25:12: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::__cxx11::basic_string<char> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   25 |   for(i=0;i<pars.size() && rval==false;i++) {
+      |           ~^~~~~~~~~~~~
+chimera.cpp:29:21: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::__cxx11::basic_string<char>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   29 |     if((left+right) >= sq.size()) { // Toss id/pure-shift/internal-indel "parents"
+      |        ~~~~~~~~~~~~~^~~~~~~~~~~~
+chimera.cpp:44:28: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::__cxx11::basic_string<char>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   44 |     if((max_right+max_left)>=sq.size()) {
+      |        ~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+chimera.cpp:48:39: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::__cxx11::basic_string<char>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   48 |       if((oo_max_left+oo_max_right_oo)>=sq.size() || (oo_max_left_oo+oo_max_right)>=sq.size()) {
+      |          ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+chimera.cpp:48:83: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::__cxx11::basic_string<char>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   48 |       if((oo_max_left+oo_max_right_oo)>=sq.size() || (oo_max_left_oo+oo_max_right)>=sq.size()) {
+      |                                                      ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~
+chimera.cpp: In function ‘void get_lr(char**, int&, int&, int&, int&, bool, int)’:
+chimera.cpp:231:33: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  231 |   while(al[0][pos] == '-' && pos<len) {
+      |                              ~~~^~~~
+chimera.cpp:237:12: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  237 |   while(pos<len && al[0][pos] == al[1][pos]) {
+      |         ~~~^~~~
+chimera.cpp:244:11: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  244 |     if(pos<len && al[0][pos] != '-') { left_oo++; }
+      |        ~~~^~~~
+chimera.cpp:245:14: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  245 |     while(pos<len && al[0][pos] == al[1][pos]) {
+      |           ~~~^~~~
+chimera.cpp:254:33: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  254 |   while(al[1][pos] == '-' && pos>+(len-max_shift)) {
+      |                              ~~~^~~~~~~~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c cluster.cpp -o cluster.o
+cluster.cpp: In function ‘void b_compare(B*, unsigned int, Rcpp::NumericMatrix, int, int, int, int, bool, double, int, bool, int, bool, bool, bool)’:
+cluster.cpp:17:23: warning: variable ‘cind’ set but not used [-Wunused-but-set-variable]
+   17 |   unsigned int index, cind, center_reads;
+      |                       ^~~~
+cluster.cpp: In function ‘void b_compare_parallel(B*, unsigned int, Rcpp::NumericMatrix, int, int, int, int, bool, double, int, bool, int, bool, bool, bool)’:
+cluster.cpp:166:16: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  166 |   for(row=0;row<errMat.nrow();row++) {
+      |             ~~~^~~~~~~~~~~~~~
+cluster.cpp:167:18: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  167 |     for(col=0;col<errMat.ncol();col++) {
+      |               ~~~^~~~~~~~~~~~~~
+cluster.cpp:156:23: warning: variable ‘cind’ set but not used [-Wunused-but-set-variable]
+  156 |   unsigned int index, cind, row, col, ncol;
+      |                       ^~~~
+cluster.cpp: In function ‘int b_bud(B*, double, int, int, bool)’:
+cluster.cpp:284:12: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+  284 |   for(i=0;i<b->nclust;i++) {
+      |           ~^~~~~~~~~~
+cluster.cpp:285:15: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+  285 |     for(r=1; r<b->bi[i]->nraw; r++) { // r=0 is the center
+      |              ~^~~~~~~~~~~~~~~
+cluster.cpp:288:21: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  288 |       if(raw->reads < min_abund) { continue; }
+      |          ~~~~~~~~~~~^~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c containers.cpp -o containers.o
+containers.cpp: In function ‘void b_free(B*)’:
+containers.cpp:141:16: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+  141 |   for(int i=0;i<b->nclust;i++) { bi_free(b->bi[i]); }
+      |               ~^~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c error.cpp -o error.o
+error.cpp: In function ‘Rcpp::DataFrame b_make_positional_substitution_df(B*, Sub**, unsigned int, Rcpp::NumericMatrix, bool)’:
+error.cpp:178:51: warning: variable ‘ncol’ set but not used [-Wunused-but-set-variable]
+  178 |   unsigned int i, pos, pos1, qind, j, r, s, nti0, ncol;
+      |                                                   ^~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c evaluate.cpp -o evaluate.o
+evaluate.cpp: In function ‘Rcpp::IntegerVector C_eval_pair(std::string, std::string)’:
+evaluate.cpp:88:36: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::__cxx11::basic_string<char>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   88 |   } while((s1gap || s2gap) && start<s1.size());
+      |                               ~~~~~^~~~~~~~~~
+evaluate.cpp: In function ‘Rcpp::CharacterVector C_pair_consensus(std::string, std::string, int, bool)’:
+evaluate.cpp:133:12: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::__cxx11::basic_string<char>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  133 |   for(i=0;i<s1.size();i++) {
+      |           ~^~~~~~~~~~
+evaluate.cpp:152:14: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::__cxx11::basic_string<char>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  152 |     for(i=0;i<s1.size();i++) {
+      |             ~^~~~~~~~~~
+evaluate.cpp:163:12: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::__cxx11::basic_string<char>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  163 |   for(i=0;i<s1.size();i++) {
+      |           ~^~~~~~~~~~
+evaluate.cpp: In function ‘Rcpp::NumericVector kmer_dist(std::vector<std::__cxx11::basic_string<char> >, std::vector<std::__cxx11::basic_string<char> >, int)’:
+evaluate.cpp:219:16: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  219 |   for(int i=0;i<nseqs;i++) {
+      |               ~^~~~~~
+evaluate.cpp: In function ‘Rcpp::NumericVector kord_dist(std::vector<std::__cxx11::basic_string<char> >, std::vector<std::__cxx11::basic_string<char> >, int, int)’:
+evaluate.cpp:243:16: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  243 |   for(int i=0;i<nseqs;i++) {
+      |               ~^~~~~~
+evaluate.cpp:255:16: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  255 |   for(int i=0;i<nseqs;i++) {
+      |               ~^~~~~~
+evaluate.cpp: In function ‘Rcpp::IntegerVector kmer_matches(std::vector<std::__cxx11::basic_string<char> >, std::vector<std::__cxx11::basic_string<char> >, int)’:
+evaluate.cpp:286:16: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  286 |   for(int i=0;i<nseqs;i++) {
+      |               ~^~~~~~
+evaluate.cpp:298:12: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  298 |   for(i=0;i<nseqs;i++) {
+      |           ~^~~~~~
+evaluate.cpp:310:14: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  310 |     for(j=0;j<klen_min;j++) {
+      |             ~^~~~~~~~~
+evaluate.cpp: In function ‘Rcpp::IntegerVector kdist_matches(std::vector<std::__cxx11::basic_string<char> >, std::vector<std::__cxx11::basic_string<char> >, int)’:
+evaluate.cpp:339:12: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  339 |   for(i=0;i<nseqs;i++) {
+      |           ~^~~~~~
+evaluate.cpp:348:14: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  348 |     for(j=0;j<n_kmers;j++) {
+      |             ~^~~~~~~~
+evaluate.cpp:327:10: warning: variable ‘len1’ set but not used [-Wunused-but-set-variable]
+  327 |   size_t len1 = 0, len2 = 0;
+      |          ^~~~
+evaluate.cpp:327:20: warning: variable ‘len2’ set but not used [-Wunused-but-set-variable]
+  327 |   size_t len1 = 0, len2 = 0;
+      |                    ^~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c filter.cpp -o filter.o
+filter.cpp: In function ‘Rcpp::IntegerVector C_matchRef(std::vector<std::__cxx11::basic_string<char> >, std::string, unsigned int, bool)’:
+filter.cpp:16:12: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+   16 |   for(i=0;i<len;i++) {
+      |           ~^~~~
+filter.cpp:20:12: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::__cxx11::basic_string<char> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+   20 |   for(i=0;i<seqs.size();i++) {
+      |           ~^~~~~~~~~~~~
+filter.cpp:24:14: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+   24 |     for(j=0;j<=(len-word_size);j++) {
+      |             ~^~~~~~~~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c kmers.cpp -o kmers.o
+kmers.cpp: In function ‘double kord_dist(uint16_t*, int, uint16_t*, int, int)’:
+kmers.cpp:110:12: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  110 |   for(i=0;i<klen;i++) {
+      |           ~^~~~~
+kmers.cpp: In function ‘void assign_kmer8(uint8_t*, const char*, int)’:
+kmers.cpp:162:8: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  162 |   if(k >= len || k < 3 || k > 8) { Rcpp::stop("Invalid kmer-size."); }
+      |      ~~^~~~~~
+kmers.cpp:174:13: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  174 |   for(i=0; i<klen; i++) {
+      |            ~^~~~~
+kmers.cpp: In function ‘void assign_kmer(uint16_t*, const char*, int)’:
+kmers.cpp:211:8: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  211 |   if(k >= len || k < 3 || k > 8) { Rcpp::stop("Invalid kmer-size."); }
+      |      ~~^~~~~~
+kmers.cpp:221:13: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  221 |   for(i=0; i<klen; i++) {
+      |            ~^~~~~
+kmers.cpp: In function ‘void assign_kmer_order(uint16_t*, char*, int)’:
+kmers.cpp:250:8: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  250 |   if(k >= len || k < 1 || k > 8) { Rcpp::stop("Invalid kmer-size."); }
+      |      ~~^~~~~~
+kmers.cpp:255:12: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  255 |   for(i=0;i<klen;i++) { kord[i] = 0; }
+      |           ~^~~~~
+kmers.cpp:257:13: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  257 |   for(i=0; i<klen; i++) {
+      |            ~^~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c misc.cpp -o misc.o
+misc.cpp: In function ‘void align_print(char**)’:
+misc.cpp:24:16: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+   24 |   for(int i=0;i<strlen(al0);i++) {
+      |               ~^~~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c nwalign_endsfree.cpp -o nwalign_endsfree.o
+nwalign_endsfree.cpp: In function ‘char** nwalign_endsfree(const char*, size_t, const char*, size_t, int (*)[4], int, int)’:
+nwalign_endsfree.cpp:89:17: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+   89 |   for (i = 0; i <= len1; i++) {
+      |               ~~^~~~~~~
+nwalign_endsfree.cpp:95:17: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+   95 |   for (j = 0; j <= len2; j++) {
+      |               ~~^~~~~~~
+nwalign_endsfree.cpp:114:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  114 |   if(band>=0 && (band<len1 || band<len2)) {
+      |                  ~~~~^~~~~
+nwalign_endsfree.cpp:114:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  114 |   if(band>=0 && (band<len1 || band<len2)) {
+      |                               ~~~~^~~~~
+nwalign_endsfree.cpp:115:14: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  115 |     for(i=0;i<=len1;i++) {
+      |             ~^~~~~~
+nwalign_endsfree.cpp:117:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  117 |       if(i+rband+1 <= len2) { d[i*ncol + i+rband+1] = -9999; }
+      |          ~~~~~~~~~~^~~~~~~
+nwalign_endsfree.cpp:122:17: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  122 |   for (i = 1; i <= len1; i++) {
+      |               ~~^~~~~~~
+nwalign_endsfree.cpp:125:24: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  125 |       r = i+rband; if(r>len2) { r = len2; }
+      |                       ~^~~~~
+nwalign_endsfree.cpp:130:13: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  130 |       if (i == len1) {
+      |           ~~^~~~~~~
+nwalign_endsfree.cpp:137:13: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  137 |       if (j == len2) {
+      |           ~~^~~~~~~
+nwalign_endsfree.cpp:201:13: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  201 |   for (i=0;i<len_al;i++) {
+      |            ~^~~~~~~
+nwalign_endsfree.cpp: In function ‘char** nwalign_endsfree_homo(const char*, size_t, const char*, size_t, int (*)[4], int, int, int)’:
+nwalign_endsfree.cpp:230:17: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  230 |   for (i=0,j=0;j<len1;j++) {
+      |                ~^~~~~
+nwalign_endsfree.cpp:231:10: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  231 |     if (j==len1-1 || s1[j]!=s1[j+1]) {
+      |         ~^~~~~~~~
+nwalign_endsfree.cpp:244:17: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  244 |   for (i=0,j=0;j<len2;j++) {
+      |                ~^~~~~
+nwalign_endsfree.cpp:245:10: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  245 |     if (j==len2-1 || s2[j]!=s2[j+1]) {
+      |         ~^~~~~~~~
+nwalign_endsfree.cpp:264:17: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  264 |   for (i = 0; i <= len1; i++) {
+      |               ~~^~~~~~~
+nwalign_endsfree.cpp:270:17: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  270 |   for (j = 0; j <= len2; j++) {
+      |               ~~^~~~~~~
+nwalign_endsfree.cpp:289:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  289 |   if(band>=0 && (band<len1 || band<len2)) {
+      |                  ~~~~^~~~~
+nwalign_endsfree.cpp:289:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  289 |   if(band>=0 && (band<len1 || band<len2)) {
+      |                               ~~~~^~~~~
+nwalign_endsfree.cpp:290:14: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  290 |     for(i=0;i<=len1;i++) {
+      |             ~^~~~~~
+nwalign_endsfree.cpp:292:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  292 |       if(i+rband+1 <= len2) { d[i*ncol + i+rband+1] = -9999; }
+      |          ~~~~~~~~~~^~~~~~~
+nwalign_endsfree.cpp:297:17: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  297 |   for (i = 1; i <= len1; i++) {
+      |               ~~^~~~~~~
+nwalign_endsfree.cpp:300:24: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  300 |       r = i+rband; if(r>len2) { r = len2; }
+      |                       ~^~~~~
+nwalign_endsfree.cpp:305:13: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  305 |       if (i == len1) {
+      |           ~~^~~~~~~
+nwalign_endsfree.cpp:314:13: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  314 |       if (j == len2) {
+      |           ~~^~~~~~~
+nwalign_endsfree.cpp:379:13: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  379 |   for (i=0;i<len_al;i++) {
+      |            ~^~~~~~~
+nwalign_endsfree.cpp: In function ‘char** nwalign(const char*, size_t, const char*, size_t, int (*)[4], int, int)’:
+nwalign_endsfree.cpp:419:17: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  419 |   for (i = 1; i <= len1; i++) {
+      |               ~~^~~~~~~
+nwalign_endsfree.cpp:425:17: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  425 |   for (j = 1; j <= len2; j++) {
+      |               ~~^~~~~~~
+nwalign_endsfree.cpp:444:22: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  444 |   if(band>=0 && (band<len1 || band<len2)) {
+      |                  ~~~~^~~~~
+nwalign_endsfree.cpp:444:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  444 |   if(band>=0 && (band<len1 || band<len2)) {
+      |                               ~~~~^~~~~
+nwalign_endsfree.cpp:445:14: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  445 |     for(i=0;i<=len1;i++) {
+      |             ~^~~~~~
+nwalign_endsfree.cpp:447:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  447 |       if(i+rband+1 <= len2) { d[i*ncol + i+rband+1] = -9999; }
+      |          ~~~~~~~~~~^~~~~~~
+nwalign_endsfree.cpp:452:17: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  452 |   for (i = 1; i <= len1; i++) {
+      |               ~~^~~~~~~
+nwalign_endsfree.cpp:455:24: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  455 |       r = i+rband; if(r>len2) { r = len2; }
+      |                       ~^~~~~
+nwalign_endsfree.cpp:522:13: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  522 |   for (i=0;i<len_al;i++) {
+      |            ~^~~~~~~
+nwalign_endsfree.cpp: In function ‘char** nwalign_gapless(const char*, size_t, const char*, size_t)’:
+nwalign_endsfree.cpp:548:17: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  548 |   for (int i=0;i<len_al;i++) {
+      |                ~^~~~~~~
+nwalign_endsfree.cpp:549:18: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  549 |     al[0][i] = i < len1 ? s1[i] : '-';
+      |                ~~^~~~~~
+nwalign_endsfree.cpp:550:18: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  550 |     al[1][i] = i < len2 ? s2[i] : '-';
+      |                ~~^~~~~~
+nwalign_endsfree.cpp: In function ‘Sub* sub_new(Raw*, Raw*, int, int, int, int, bool, double, int, bool, int, bool)’:
+nwalign_endsfree.cpp:658:16: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+  658 |       for(s=0;s<sub->nsubs;s++) {
+      |               ~^~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c nwalign_vectorized.cpp -o nwalign_vectorized.o
+nwalign_vectorized.cpp: In function ‘char** nwalign_vectorized2(const char*, size_t, const char*, size_t, int16_t, int16_t, int16_t, int16_t, int)’:
+nwalign_vectorized.cpp:96:27: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+   96 |   start_col = 1 + (1+(band<len1 ? band : len1))/2;
+      |                       ~~~~^~~~~
+nwalign_vectorized.cpp:125:26: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  125 |   while(row < (1 + (band < len1 ? band : len1))) {
+      |                     ~~~~~^~~~~~
+nwalign_vectorized.cpp:178:18: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  178 |     if(row==(band<len1 ? band : len1)) {
+      |              ~~~~^~~~~
+nwalign_vectorized.cpp:218:12: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘int’ [-Wsign-compare]
+  218 |     if(row < band && row < len1) { // upper tri for seq1
+      |        ~~~~^~~~~~
+nwalign_vectorized.cpp:75:21: warning: variable ‘end_col’ set but not used [-Wunused-but-set-variable]
+   75 |   size_t start_col, end_col;
+      |                     ^~~~~~~
+nwalign_vectorized.cpp: In function ‘Rcpp::CharacterVector C_nwvec(std::vector<std::__cxx11::basic_string<char> >, std::vector<std::__cxx11::basic_string<char> >, int16_t, int16_t, int16_t, int, bool)’:
+nwalign_vectorized.cpp:330:12: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<std::__cxx11::basic_string<char> >::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  330 |   for(i=0;i<s1.size();i++) {
+      |           ~^~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c pval.cpp -o pval.o
+pval.cpp: In function ‘double compute_lambda(Raw*, Sub*, Rcpp::NumericMatrix, bool, unsigned int)’:
+pval.cpp:121:12: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+  121 |   for(s=0;s<sub->nsubs;s++) {
+      |           ~^~~~~~~~~~~
+pval.cpp:123:25: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+  123 |     if(pos0 < 0 || pos0 >= sub->len0) { Rcpp::stop("CL: Bad pos0: %i (len0=%i).", pos0, sub->len0); }
+      |                    ~~~~~^~~~~~~~~~~~
+pval.cpp: In function ‘double compute_lambda_ts(Raw*, Sub*, unsigned int, double*, bool)’:
+pval.cpp:177:12: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+  177 |   for(s=0;s<sub->nsubs;s++) {
+      |           ~^~~~~~~~~~~
+pval.cpp:179:25: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+  179 |     if(pos0 < 0 || pos0 >= sub->len0) { Rcpp::stop("CL: Bad pos0: %i (len0=%i).", pos0, sub->len0); }
+      |                    ~~~~~^~~~~~~~~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/RcppParallel/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c taxonomy.cpp -o taxonomy.o
+taxonomy.cpp: In function ‘void tax_kvec(const char*, unsigned int, unsigned char*)’:
+taxonomy.cpp:48:23: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+   48 |     if(kmer>=0 && kmer<n_kmers) {
+      |                   ~~~~^~~~~~~~
+taxonomy.cpp: In function ‘int get_best_genus(int*, float*, unsigned int, unsigned int, unsigned int, float*)’:
+taxonomy.cpp:84:12: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+   84 |   for(g=0;g<ngenus;g++) {
+      |           ~^~~~~~~
+taxonomy.cpp: In member function ‘virtual void AssignParallel::operator()(std::size_t, std::size_t)’:
+taxonomy.cpp:145:31: warning: variable ‘boot_match’ set but not used [-Wunused-but-set-variable]
+  145 |     unsigned int boot, booti, boot_match, arraylen, arraylen_rc;
+      |                               ^~~~~~~~~~
+taxonomy.cpp: In function ‘Rcpp::List C_assign_taxonomy2(std::vector<std::__cxx11::basic_string<char> >, std::vector<std::__cxx11::basic_string<char> >, std::vector<std::__cxx11::basic_string<char> >, std::vector<int>, Rcpp::IntegerMatrix, bool, bool)’:
+taxonomy.cpp:222:45: warning: comparison of integer expressions of different signedness: ‘__gnu_cxx::__alloc_traits<std::allocator<int>, int>::value_type’ {aka ‘int’} and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  222 |     if(ref_to_genus[i]<0 || ref_to_genus[i] >= ngenus) {
+taxonomy.cpp:252:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  252 |     for(kmer=0;kmer<n_kmers;kmer++) {
+      |                ~~~~^~~~~~~~
+taxonomy.cpp:261:18: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  261 |   for(kmer=0;kmer<n_kmers;kmer++) {
+      |              ~~~~^~~~~~~~
+taxonomy.cpp:268:20: warning: comparison of integer expressions of different signedness: ‘int’ and ‘size_t’ {aka ‘long unsigned int’} [-Wsign-compare]
+  268 |     for(kmer=0;kmer<n_kmers;kmer++) {
+      |                ~~~~^~~~~~~~
+taxonomy.cpp:287:12: warning: comparison of integer expressions of different signedness: ‘size_t’ {aka ‘long unsigned int’} and ‘R_xlen_t’ {aka ‘long int’} [-Wsign-compare]
+  287 |   for(i=0;i<unifs.size();i++) { C_unifs[i] = unifs(i); }
+      |           ~^~~~~~~~~~~~~
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o dada2.so RcppExports.o Rmain.o chimera.o cluster.o containers.o error.o evaluate.o filter.o kmers.o misc.o nwalign_endsfree.o nwalign_vectorized.o pval.o taxonomy.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-dada2/00new/dada2/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (dada2)

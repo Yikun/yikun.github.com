@@ -1,0 +1,226 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL survcomp
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘survcomp’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c concordance.index.c -o concordance.index.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c foo_mrmr_ensemble_surv.cpp -o foo_mrmr_ensemble_surv.o
+foo_mrmr_ensemble_surv.cpp: In function ‘double get_correlation_ensemble(double*, int*, int, int, int)’:
+foo_mrmr_ensemble_surv.cpp:12:33: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+   12 |         for( unsigned int i=0; i< size; ++i ) {
+      |                                ~^~~~~~
+foo_mrmr_ensemble_surv.cpp:22:33: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+   22 |         for( unsigned int i=0; i< size; ++i ) {
+      |                                ~^~~~~~
+foo_mrmr_ensemble_surv.cpp: In function ‘double returnConcordanceIndexC(int*, int*, double*, int*, double*, int*, double*, int*, int*, int*, int, int*)’:
+foo_mrmr_ensemble_surv.cpp:106:24: warning: variable ‘uhs’ set but not used [-Wunused-but-set-variable]
+  106 |                 double uhs[Ns];
+      |                        ^~~
+foo_mrmr_ensemble_surv.cpp:107:24: warning: variable ‘rphs’ set but not used [-Wunused-but-set-variable]
+  107 |                 double rphs[Ns];
+      |                        ^~~~
+foo_mrmr_ensemble_surv.cpp: In function ‘void build_mim_cIndex_subset(double*, double*, int*, int, int, int*, int, int*, int*, int*, double*, int*, double*, int*, int*, int*, int*)’:
+foo_mrmr_ensemble_surv.cpp:202:32: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  202 |         for(unsigned int i=0; i< size_subset; ++i){
+      |                               ~^~~~~~~~~~~~~
+foo_mrmr_ensemble_surv.cpp:203:40: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  203 |                 for(unsigned int j=0; j< (nvar-1); ++j){
+      |                                       ~^~~~~~~~~~
+foo_mrmr_ensemble_surv.cpp:214:32: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  214 |         for(unsigned int i=0; i< nvar-1; ++i){
+      |                               ~^~~~~~~~
+foo_mrmr_ensemble_surv.cpp:216:42: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  216 |                 for(unsigned int j=i+1; j< nvar-1; ++j){
+      |                                         ~^~~~~~~~
+foo_mrmr_ensemble_surv.cpp:191:24: warning: unused variable ‘msurv_x’ [-Wunused-variable]
+  191 |         int *namat_x, *msurv_x, *ustrat_x, *cl2_x, *se_x, *strat_x;
+      |                        ^~~~~~~
+foo_mrmr_ensemble_surv.cpp:191:34: warning: unused variable ‘ustrat_x’ [-Wunused-variable]
+  191 |         int *namat_x, *msurv_x, *ustrat_x, *cl2_x, *se_x, *strat_x;
+      |                                  ^~~~~~~~
+foo_mrmr_ensemble_surv.cpp: In function ‘void bootstrap_tree(tree<int>&, tree<double>&, double*, int*, int, int, int, int*, int*, int*, double*, int*, double*, int*, int*, int*, int, int*)’:
+foo_mrmr_ensemble_surv.cpp:351:21: warning: unused variable ‘cnt_back’ [-Wunused-variable]
+  351 |                 int cnt_back=cnt2;
+      |                     ^~~~~~~~
+foo_mrmr_ensemble_surv.cpp:286:14: warning: unused variable ‘nsub’ [-Wunused-variable]
+  286 |         int  nsub, *prev_sel,nsamples_boot=nsamples,*to_remove;
+      |              ^~~~
+foo_mrmr_ensemble_surv.cpp: In function ‘void bootstrap_mrmr(double&, double&, double*, int*, int, int, int, int, int, int, int, int*, int*, int*, int*, double*, int*, double*, int*, int*, int*, int, int*)’:
+foo_mrmr_ensemble_surv.cpp:393:32: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  393 |         for(unsigned int k=0; k< rep_boot; ++k){
+      |                               ~^~~~~~~~~~
+foo_mrmr_ensemble_surv.cpp:396:39: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  396 |                 for(unsigned int i=1;i<= size_boot;++i){
+      |                                      ~^~~~~~~~~~~~
+foo_mrmr_ensemble_surv.cpp:400:41: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  400 |                 for( unsigned int i=0; i< size ; ++i ){
+      |                                        ~^~~~~~
+foo_mrmr_ensemble_surv.cpp:401:49: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  401 |                         for( unsigned int j=0; j< size ; ++j ){
+      |                                                ~^~~~~~
+foo_mrmr_ensemble_surv.cpp:412:31: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  412 |         for(unsigned int i=0;i< rep_boot;++i){
+      |                              ~^~~~~~~~~~
+foo_mrmr_ensemble_surv.cpp:419:31: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  419 |         for(unsigned int i=0;i< rep_boot;++i){
+      |                              ~^~~~~~~~~~
+foo_mrmr_ensemble_surv.cpp:387:17: warning: unused variable ‘mim’ [-Wunused-variable]
+  387 |         double *mim, *boot_val, *mat_info;
+      |                 ^~~
+foo_mrmr_ensemble_surv.cpp: In function ‘double mrnet_onegene(double*, int, int, int*, int, int)’:
+foo_mrmr_ensemble_surv.cpp:448:39: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  448 |                 for(unsigned int j=0;j< nbvar; j++){
+      |                                      ~^~~~~~~
+foo_mrmr_ensemble_surv.cpp:437:22: warning: variable ‘jmax’ set but not used [-Wunused-but-set-variable]
+  437 |         unsigned int jmax;
+      |                      ^~~~
+foo_mrmr_ensemble_surv.cpp:439:16: warning: unused variable ‘max_val’ [-Wunused-variable]
+  439 |         double max_val=-1000;
+      |                ^~~~~~~
+foo_mrmr_ensemble_surv.cpp: In function ‘int verify_equivalentset_nparents(tree<int>&, tree<int>::pre_order_iterator, tree<int>::pre_order_iterator, tree<double>&, int)’:
+foo_mrmr_ensemble_surv.cpp:467:14: warning: unused variable ‘found’ [-Wunused-variable]
+  467 |         bool found=false;
+      |              ^~~~~
+foo_mrmr_ensemble_surv.cpp: In function ‘void mrmr_ensemble_one_gene_remove(tree<int>&, tree<int>::pre_order_iterator, double*, int*, int, int, int, int, int, int, double, int*, int*, int*, double*, int*, double*, int*, int*, int*, int, int*)’:
+foo_mrmr_ensemble_surv.cpp:593:31: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  593 |         for(unsigned int i=1;i<= nsamples;++i){
+      |                              ~^~~~~~~~~~~
+foo_mrmr_ensemble_surv.cpp:596:33: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  596 |         for( unsigned int i=0; i< n; ++i ){
+      |                                ~^~~
+foo_mrmr_ensemble_surv.cpp:597:41: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  597 |                 for( unsigned int j=0; j< n; ++j ){
+      |                                        ~^~~
+foo_mrmr_ensemble_surv.cpp:604:31: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  604 |         for(unsigned int k=0;k< max_elements ;++k){
+      |                              ~^~~~~~~~~~~~~~
+foo_mrmr_ensemble_surv.cpp:646:48: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  646 |                         for (unsigned int i=0;i<=max_depth;++i){
+      |                                               ~^~~~~~~~~~~
+foo_mrmr_ensemble_surv.cpp:654:47: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  654 |                         for(unsigned int k=0;k< n;++k){
+      |                                              ~^~~
+foo_mrmr_ensemble_surv.cpp:657:47: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘const int’ [-Wsign-compare]
+  657 |                         for(unsigned int k=0;k<=max(res_tmp_new.depth(it_local),max_depth) ;++k){
+      |                                              ~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+foo_mrmr_ensemble_surv.cpp:661:47: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  661 |                         for(unsigned int k=0;k< n;++k){
+      |                                              ~^~~
+foo_mrmr_ensemble_surv.cpp:578:31: warning: unused variable ‘nsamples_boot’ [-Wunused-variable]
+  578 |         int  *nsub, *prev_sel,nsamples_boot=nsamples, tmp_val_max_ind, *prev_sel_tmp,*vec_sol_local,ndelete;
+      |                               ^~~~~~~~~~~~~
+foo_mrmr_ensemble_surv.cpp:578:55: warning: unused variable ‘tmp_val_max_ind’ [-Wunused-variable]
+  578 |         int  *nsub, *prev_sel,nsamples_boot=nsamples, tmp_val_max_ind, *prev_sel_tmp,*vec_sol_local,ndelete;
+      |                                                       ^~~~~~~~~~~~~~~
+foo_mrmr_ensemble_surv.cpp:578:73: warning: unused variable ‘prev_sel_tmp’ [-Wunused-variable]
+  578 |         int  *nsub, *prev_sel,nsamples_boot=nsamples, tmp_val_max_ind, *prev_sel_tmp,*vec_sol_local,ndelete;
+      |                                                                         ^~~~~~~~~~~~
+foo_mrmr_ensemble_surv.cpp:579:28: warning: unused variable ‘vec_sort’ [-Wunused-variable]
+  579 |         double *vec_mean, *vec_sort, *vec_sd,  *vec_local_max_mean, *vec_local_max_sd,tmp_val_max, *mrmr_vec_sort,*vec_sol_local_mrmr;
+      |                            ^~~~~~~~
+foo_mrmr_ensemble_surv.cpp:579:70: warning: variable ‘vec_local_max_sd’ set but not used [-Wunused-but-set-variable]
+  579 |         double *vec_mean, *vec_sort, *vec_sd,  *vec_local_max_mean, *vec_local_max_sd,tmp_val_max, *mrmr_vec_sort,*vec_sol_local_mrmr;
+      |                                                                      ^~~~~~~~~~~~~~~~
+foo_mrmr_ensemble_surv.cpp: In function ‘SEXPREC* mrmr_cIndex_ensemble_remove(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)’:
+foo_mrmr_ensemble_surv.cpp:786:31: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘const int’ [-Wsign-compare]
+  786 |         for(unsigned int i=0;i< *npredn;++i){
+      |                              ~^~~~~~~~~
+foo_mrmr_ensemble_surv.cpp:820:47: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  820 |                         for(unsigned int k=0;k<length_res_old;k++){
+      |                                              ~^~~~~~~~~~~~~~~
+foo_mrmr_ensemble_surv.cpp:834:39: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  834 |                 for(unsigned int k=0;k<length_res;k++){
+      |                                      ~^~~~~~~~~~~
+foo_mrmr_ensemble_surv.cpp:839:21: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  839 |                 if(i==(*npredn-1)){
+      |                    ~^~~~~~~~~~~~~
+foo_mrmr_ensemble_surv.cpp:843:47: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+  843 |                         for(unsigned int k=0;k<length_res;k++){
+      |                                              ~^~~~~~~~~~~
+foo_mrmr_ensemble_surv.cpp:801:27: warning: unused variable ‘cnt2’ [-Wunused-variable]
+  801 |                 int cnt=1,cnt2=0;
+      |                           ^~~~
+foo_mrmr_ensemble_surv.cpp:804:21: warning: unused variable ‘rootdepth’ [-Wunused-variable]
+  804 |                 int rootdepth=res_tree.depth(it_final);
+      |                     ^~~~~~~~~
+foo_mrmr_ensemble_surv.cpp:817:21: warning: unused variable ‘ind’ [-Wunused-variable]
+  817 |                 int ind=0;
+      |                     ^~~
+foo_mrmr_ensemble_surv.cpp:733:37: warning: unused variable ‘res_all’ [-Wunused-variable]
+  733 |         int *predn, *rep_boot,*res,*res_all,*res_all2, *namat;
+      |                                     ^~~~~~~
+foo_mrmr_ensemble_surv.cpp:733:46: warning: unused variable ‘res_all2’ [-Wunused-variable]
+  733 |         int *predn, *rep_boot,*res,*res_all,*res_all2, *namat;
+      |                                              ^~~~~~~~
+foo_mrmr_ensemble_surv.cpp:734:13: warning: unused variable ‘vec_tmp’ [-Wunused-variable]
+  734 |         int vec_tmp;
+      |             ^~~~~~~
+foo_mrmr_ensemble_surv.cpp:859:16: warning: ‘Rres’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  859 |         return Rres;
+      |                ^~~~
+foo_mrmr_ensemble_surv.cpp:821:43: warning: ‘res_old’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  821 |                                 res_all[k]=res_old[k];
+      |                                 ~~~~~~~~~~^~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c foo_mrmr_surv.cpp -o foo_mrmr_surv.o
+foo_mrmr_surv.cpp: In function ‘double get_correlation(double*, int*, int, int, int)’:
+foo_mrmr_surv.cpp:12:33: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+   12 |         for( unsigned int i=0; i< size; ++i ) {
+      |                                ~^~~~~~
+foo_mrmr_surv.cpp:22:33: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+   22 |         for( unsigned int i=0; i< size; ++i ) {
+      |                                ~^~~~~~
+foo_mrmr_surv.cpp: In function ‘void build_mim_subset(double*, double*, int*, int, int, int*, int)’:
+foo_mrmr_surv.cpp:49:32: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+   49 |         for(unsigned int i=0; i< size_subset; ++i){
+      |                               ~^~~~~~~~~~~~~
+foo_mrmr_surv.cpp:50:40: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+   50 |                 for(unsigned int j=0; j< nvar; ++j){
+      |                                       ~^~~~~~
+foo_mrmr_surv.cpp:56:32: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+   56 |         for(unsigned int i=0; i< nvar; ++i){
+      |                               ~^~~~~~
+foo_mrmr_surv.cpp:58:42: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘int’ [-Wsign-compare]
+   58 |                 for(unsigned int j=i+1; j< nvar; ++j){
+      |                                         ~^~~~~~
+foo_mrmr_surv.cpp: In function ‘double returnConcordanceIndexC(int*, int*, double*, int*, double*, int*, double*, int*, int*, int*, int*, int*)’:
+foo_mrmr_surv.cpp:146:24: warning: variable ‘uhs’ set but not used [-Wunused-but-set-variable]
+  146 |                 double uhs[Ns];
+      |                        ^~~
+foo_mrmr_surv.cpp:147:24: warning: variable ‘rphs’ set but not used [-Wunused-but-set-variable]
+  147 |                 double rphs[Ns];
+      |                        ^~~~
+foo_mrmr_surv.cpp: In function ‘SEXPREC* mrmr_cIndex(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)’:
+foo_mrmr_surv.cpp:301:32: warning: comparison of integer expressions of different signedness: ‘unsigned int’ and ‘const int’ [-Wsign-compare]
+  301 |         for(unsigned int i=0;i < *nsample; ++i){
+      |                              ~~^~~~~~~~~~
+foo_mrmr_surv.cpp:341:40: warning: comparison of integer expressions of different signedness: ‘int’ and ‘unsigned int’ [-Wsign-compare]
+  341 |                         for( int l=0; l<n; ++l )
+      |                                       ~^~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall  -c survcomp_init.cpp -o survcomp_init.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o survcomp.so concordance.index.o foo_mrmr_ensemble_surv.o foo_mrmr_surv.o survcomp_init.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-survcomp/00new/survcomp/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (survcomp)

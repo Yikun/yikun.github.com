@@ -1,0 +1,130 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:brainflowprobes.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings brainflowprobes_1.13.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/brainflowprobes.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘brainflowprobes/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘brainflowprobes’ version ‘1.13.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘brainflowprobes’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘brainflowprobes-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plot_coverage
+> ### Title: Plot coverage in nuclear and cytoplasmic RNA for candidate probe
+> ###   sequences.
+> ### Aliases: plot_coverage
+> 
+> ### ** Examples
+> 
+> 
+> ## Here we use the pre-saved example coverage data such that this example
+> ## will run fast!
+> plot_coverage("chr20:10286777-10288069:+",
++     COVERAGE = four_panels_example_cov
++ )
+snapshotDate(): 2022-12-16
+loading from cache
+require("GenomicRanges")
+snapshotDate(): 2022-12-16
+loading from cache
+2023-02-24 08:18:25.998069 annotateRegions: counting
+2023-02-24 08:18:28.5012 annotateRegions: annotating
+2023-02-24 08:18:28.77254 Completed! Check for /tmp/RtmpjEJFOX/regionCoverage_fractionedData.pdf.
+> 
+> ## Without using COVERAGE, this function reads BigWig files from the web
+> ## using rtracklayer and this functionality is not supported on Windows
+> ## machines.
+> if (.Platform$OS.type != "windows") {
++     plot_coverage("chr20:10286777-10288069:+",
++         PDF = "regionCoverage_fractionedData_fromScratch.pdf"
++     )
++ }
+snapshotDate(): 2022-12-16
+loading from cache
+snapshotDate(): 2022-12-16
+loading from cache
+2023-02-24 08:19:00.463721 annotateRegions: counting
+2023-02-24 08:19:01.274024 annotateRegions: annotating
+2023-02-24 08:19:01.466223 getRegionCoverage : attempting to load coverage data from 'files'.
+2023-02-24 08:19:01.485459 fullCoverage: processing chromosome chr20
+2023-02-24 08:19:01.519755 loadCoverage: finding chromosome lengths
+2023-02-24 08:19:03.214618 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br1113C1_polyA.bw
+2023-02-24 08:19:08.349384 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br1113N1_polyA.bw
+2023-02-24 08:19:11.773958 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br2046C_polyA.bw
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘brainflowprobes-vignette.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/brainflowprobes.Rcheck/00check.log’
+for details.
+

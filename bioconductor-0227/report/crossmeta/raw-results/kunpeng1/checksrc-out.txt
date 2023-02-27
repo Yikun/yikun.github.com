@@ -1,0 +1,160 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:crossmeta.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings crossmeta_1.25.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/crossmeta.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘crossmeta/DESCRIPTION’ ... OK
+* this is package ‘crossmeta’ version ‘1.25.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘crossmeta’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Namespaces in Imports field not imported from:
+  ‘RCurl’ ‘XML’
+  All declared Imports should be used.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking R/sysdata.rda ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+             user system elapsed
+diff_expr  19.275  0.484  19.766
+setup_prev  8.758  0.328   9.082
+es_meta     7.771  0.252   8.044
+get_raw     1.545  0.109   7.545
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘crossmeta-vignette.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+--- re-building ‘crossmeta-vignette.Rmd’ using rmarkdown
+add_sources             package:crossmeta              R Documentation
+
+_A_d_d _s_a_m_p_l_e _s_o_u_r_c_e _i_n_f_o_r_m_a_t_i_o_n _f_o_r _m_e_t_a-_a_n_a_l_y_s_i_s.
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     User selects a tissue source for each contrast and indicates any
+     sources that should be paired. This step is required if you would
+     like to perform source-specific effect-size/pathway meta-analyses.
+
+_U_s_a_g_e:
+
+     add_sources(diff_exprs, data_dir = getwd(), postfix = NULL)
+     
+_A_r_g_u_m_e_n_t_s:
+
+diff_exprs: Previous result of 'diff_expr', which can be reloaded using
+          'load_diff'.
+
+data_dir: String specifying directory of GSE folders.
+
+ postfix: Optional string to append to saved results. Useful if need to
+          run multiple meta-analyses on the same series but with
+          different contrasts.
+
+_D_e_t_a_i_l_s:
+
+     The *Sources* tab is used to add a source for each contrast. To do
+     so: click the relevant contrast rows, search for a source in the
+     _Sample source_ dropdown box, and then click the _Add_ button.
+
+     The *Pairs* tab is used to indicate sources that should be paired
+     (treated as the same source for subsequent effect-size and pathway
+     meta-analyses). To do so: select at least two sources from the
+     _Paired sources_ dropdown box, and then click the _Add_ button.
+
+     For each GSE, analysis results with added sources/pairs are saved
+     in the corresponding GSE folder (in 'data_dir') that was created
+     by 'get_raw'.
+
+_V_a_l_u_e:
+
+     Same as 'diff_expr' with added slots for each GSE in 'diff_exprs':
+
+ sources: Named vector specifying selected sample source for each
+          contrast.  Vector names identify the contrast.
+
+   pairs: List of character vectors indicating tissue sources that
+          should be treated as the same source for subsequent
+          effect-size and pathway meta-analyses.
+
+_E_x_a_m_p_l_e_s:
+
+     library(lydata)
+     
+     # load result of previous call to diff_expr:
+     data_dir  <- system.file("extdata", package = "lydata")
+     gse_names <- c("GSE9601", "GSE34817")
+     anals     <- load_diff(gse_names, data_dir)
+     
+     # run shiny GUI to add tissue sources
+     # anals <- add_sources(anals, data_dir)
+     
+
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/crossmeta.Rcheck/00check.log’
+for details.
+

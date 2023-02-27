@@ -1,0 +1,738 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:RnBeads.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings RnBeads_2.17.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/RnBeads.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘RnBeads/DESCRIPTION’ ... OK
+* this is package ‘RnBeads’ version ‘2.17.0’
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  'BiocGenerics', 'S4Vectors', 'GenomicRanges', 'MASS', 'cluster',
+  'ff', 'fields', 'ggplot2', 'gplots', 'grid', 'gridExtra', 'limma',
+  'matrixStats', 'illuminaio', 'methylumi', 'plyr'
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .travis.yml
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘RnBeads’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is  5.5Mb
+  sub-directories of 1Mb or more:
+    R     3.1Mb
+    bin   1.0Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Package listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘qvalue’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... NOTE
+Warning: no function found corresponding to methods exports from ‘RnBeads’ for: ‘samples’
+
+A namespace must be able to be loaded with just the base namespace
+loaded: otherwise if the namespace gets loaded by a saved object, the
+session will be unable to start.
+
+Probably some imports need to be declared in the NAMESPACE file.
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Package in Depends field not imported from: 'grid'
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+Unexported objects imported by ':::' calls:
+  'Gviz:::.getBMFeatureMap' 'doParallel:::.options'
+  'grDevices:::.smoothScatterCalcDensity'
+  'minfi:::.default.450k.annotation' 'minfi:::.extractFromRGSet450k'
+  'minfi:::.normalizeFunnorm450k'
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.stopImplicitCluster: no visible global function definition for
+  ‘stopCluster’
+MethyLumiSet2RnBeadSet: no visible global function definition for
+  ‘phenoData’
+MethyLumiSet2RnBeadSet: no visible global function definition for
+  ‘assayDataElementNames’
+MethyLumiSet2RnBeadSet: no visible global function definition for
+  ‘featureNames’
+MethyLumiSet2RnBeadSet: no visible global function definition for
+  ‘varLabels’
+MethyLumiSet2RnBeadSet: no visible global function definition for
+  ‘featureData’
+add.age.histogram: no visible binding for global variable ‘Age’
+add.age.histogram: no visible binding for global variable ‘..count..’
+add.age.histogram: no visible binding for global variable ‘..density..’
+add.agecomparison.plot: no visible global function definition for
+  ‘samples’
+add.agecomparison.plot: no visible binding for global variable ‘Sample’
+add.agecomparison.plot: no visible global function definition for
+  ‘%dopar%’
+add.agecomparison.plot: no visible global function definition for
+  ‘foreach’
+add.agecomparison.plot: no visible binding for global variable ‘i’
+add.combination.plot: no visible global function definition for
+  ‘samples’
+add.combination.plot: no visible binding for global variable
+  ‘Difference’
+add.combination.plot: no visible binding for global variable ‘Density’
+add.combination.plot: no visible binding for global variable ‘yint’
+add.combination.plot: no visible binding for global variable ‘Measure’
+add.error.plot: no visible binding for global variable ‘Value’
+add.error.plot: no visible binding for global variable ‘Sample’
+add.error.plot: no visible binding for global variable ‘Deviance’
+add.error.plot: no visible binding for global variable ‘yint’
+add.error.plot: no visible binding for global variable ‘Measure’
+add.negative.control.boxplot: no visible global function definition for
+  ‘samples’
+add.profile.plots: no visible global function definition for ‘mclapply’
+add.qc.barplots: no visible global function definition for ‘samples’
+add.quantile.plot: no visible binding for global variable ‘Difference’
+add.quantile.plot: no visible binding for global variable ‘..density..’
+add.quantile.plot: no visible binding for global variable ‘Sample’
+add.quantile.plot: no visible binding for global variable ‘Density’
+add.seq.coverage.histograms: no visible global function definition for
+  ‘samples’
+add.seq.coverage.plot: no visible global function definition for
+  ‘samples’
+add.seq.coverage.violins: no visible global function definition for
+  ‘samples’
+add.stratification.plot: no visible global function definition for
+  ‘%dopar%’
+add.stratification.plot: no visible global function definition for
+  ‘foreach’
+add.stratification.plot: no visible binding for global variable ‘Group’
+add.stratification.plot: no visible binding for global variable
+  ‘Increase’
+add.stratification.plot: no visible binding for global variable
+  ‘Predicted’
+add.stratification.plot: no visible binding for global variable
+  ‘Annotated’
+add.stratification.plot.immune: no visible global function definition
+  for ‘%dopar%’
+add.stratification.plot.immune: no visible global function definition
+  for ‘foreach’
+add.stratification.plot.immune: no visible binding for global variable
+  ‘Group’
+add.stratification.plot.immune: no visible binding for global variable
+  ‘Immune’
+addReportPlot.diffVar.volcano: no visible binding for global variable
+  ‘var.diff’
+addReportPlot.diffVar.volcano: no visible binding for global variable
+  ‘log10P’
+addReportPlot.diffVar.volcano: no visible binding for global variable
+  ‘combinedRank.var’
+addReportPlot.diffVar.volcano: no visible binding for global variable
+  ‘log10FDR’
+addReportPlots.diffMeth.bin.site.volcano: no visible binding for global
+  variable ‘mean.diff’
+addReportPlots.diffMeth.bin.site.volcano: no visible binding for global
+  variable ‘diffmeth.p.val’
+addReportPlots.diffMeth.bin.site.volcano: no visible binding for global
+  variable ‘combinedRank’
+addReportPlots.diffMeth.bin.site.volcano: no visible binding for global
+  variable ‘mean.quot.log2’
+addReportPlots.diffMeth.bin.site.volcano: no visible binding for global
+  variable ‘diffmeth.p.adj.fdr’
+agePredictorBiseq: no visible global function definition for
+  ‘impute.knn’
+agePredictorBiseq: no visible global function definition for ‘samples’
+agePredictorChip: no visible global function definition for
+  ‘impute.knn’
+append.cpg.stats: no visible global function definition for ‘%dopar%’
+append.cpg.stats: no visible global function definition for ‘foreach’
+append.cpg.stats: no visible binding for global variable ‘chrom’
+basic_combine: no visible global function definition for ‘samples’
+computeDiffTab.default.region: no visible global function definition
+  for ‘%dopar%’
+computeDiffTab.default.region: no visible global function definition
+  for ‘foreach’
+computeDiffTab.default.region: no visible binding for global variable
+  ‘i’
+computeDiffTab.default.site: no visible binding for global variable
+  ‘p.vals.t.na.adj’
+computeDiffTab.default.site : <anonymous>: no visible binding for
+  global variable ‘.inds.g2’
+computeDiffVar.bin.site: no visible binding for global variable
+  ‘p.vals.t.na.adj’
+computeDiffVar.bin.site : <anonymous>: no visible binding for global
+  variable ‘eps’
+computeDiffVar.bin.site : <anonymous>: no visible binding for global
+  variable ‘.inds.g2’
+computeDiffVar.default.region: no visible global function definition
+  for ‘%dopar%’
+computeDiffVar.default.region: no visible global function definition
+  for ‘foreach’
+computeDiffVar.default.region: no visible binding for global variable
+  ‘i’
+create.densityScatter: no visible binding for global variable
+  ‘..density..’
+create.diffMeth.diffVar.subsample: no visible binding for global
+  variable ‘..density..’
+create.ucsc.track.hub: no visible global function definition for
+  ‘samples’
+createPredictor : ret: no visible global function definition for
+  ‘impute.knn’
+cv.array: no visible global function definition for ‘impute.knn’
+data.frame2GRanges: no visible global function definition for
+  ‘seqlevels<-’
+data.frame2GRanges: no visible global function definition for
+  ‘genome<-’
+diffVar: no visible global function definition for ‘varFit’
+diffVar: no visible binding for global variable ‘group1’
+diffVar: no visible binding for global variable ‘group2’
+estimateProportionsCP: no visible global function definition for ‘lme’
+estimateProportionsCP: no visible global function definition for
+  ‘getVarCov’
+general.cv: no visible global function definition for ‘%dopar%’
+general.cv: no visible global function definition for ‘foreach’
+general.cv: no visible binding for global variable ‘i’
+get.adjustment.variables: no visible global function definition for
+  ‘samples’
+get.comparison.info : rm.na.from.adj.tab: no visible global function
+  definition for ‘samples’
+get.components.isva: no visible global function definition for ‘DoISVA’
+get.components.sva: no visible global function definition for ‘sva’
+get.cpg.stats: no visible global function definition for
+  ‘dinucleotideFrequency’
+get.cpg.stats: no visible global function definition for
+  ‘letterFrequency’
+get.dataset.matrix: no visible global function definition for ‘samples’
+get.diffmeth.tab.col.desc.list.txt: no visible binding for global
+  variable ‘report’
+get.diffmeth.tab.col.desc.list.txt: no visible binding for global
+  variable ‘refText’
+get.diffmeth.tab.col.desc.list.txt: no visible binding for global
+  variable ‘diffmeth’
+get.platform.tokens: no visible global function definition for
+  ‘setNames’
+getCGCounts: no visible global function definition for ‘seqlengths’
+getCGCounts : <anonymous>: no visible global function definition for
+  ‘ChrNumeric’
+getGLADProfiles: no visible global function definition for ‘samples’
+getGLADProfiles: no visible global function definition for ‘mclapply’
+getGLADProfiles : <anonymous>: no visible global function definition
+  for ‘as.profileCGH’
+getGLADProfiles : <anonymous>: no visible global function definition
+  for ‘daglad’
+getMergeList: no visible global function definition for ‘samples’
+groupPermutationP.site.parallel: no visible global function definition
+  for ‘%dopar%’
+groupPermutationP.site.parallel: no visible global function definition
+  for ‘foreach’
+iEVORA: no visible global function definition for ‘qvalue’
+imputation.low.memory.cpgs: no visible global function definition for
+  ‘samples’
+inferWBCbyLme: no visible global function definition for ‘lme’
+inferWBCbyLme: no visible global function definition for ‘getVarCov’
+intensities.by.color: no visible binding for global variable
+  ‘IlluminaHumanMethylationEPICmanifest’
+intensities.by.color: no visible binding for global variable
+  ‘IlluminaHumanMethylation450kmanifest’
+intensities.by.color: no visible global function definition for
+  ‘samples’
+knn.imputation: no visible global function definition for ‘impute.knn’
+limmaP: no visible binding for global variable ‘group1’
+limmaP: no visible binding for global variable ‘group2’
+loadLolaDbs: no visible global function definition for ‘loadRegionDB’
+loadLolaDbs: no visible global function definition for ‘mergeRegionDBs’
+locus.profile.get.base.tracks: no visible global function definition
+  for ‘useMart’
+locus.profile.get.base.tracks: no visible global function definition
+  for ‘IdeogramTrack’
+locus.profile.get.base.tracks: no visible global function definition
+  for ‘GenomeAxisTrack’
+locus.profile.get.base.tracks: no visible global function definition
+  for ‘BiomartGeneRegionTrack’
+locus.profile.get.base.tracks: no visible global function definition
+  for ‘UcscTrack’
+locus.profile.get.methylation.track.heatmap: no visible global function
+  definition for ‘DataTrack’
+locus.profile.get.methylation.track.smooth: no visible global function
+  definition for ‘DataTrack’
+methylumi.intensities.by.color: no visible global function definition
+  for ‘featureNames’
+methylumi.intensities.by.color: no visible binding for global variable
+  ‘IlluminaHumanMethylation450kmanifest’
+methylumi.intensities.by.color: no visible global function definition
+  for ‘assayDataElement’
+parallel.setup: no visible global function definition for
+  ‘registerDoParallel’
+parallel.setup: no visible global function definition for
+  ‘getDoParWorkers’
+performLolaEnrichment.diffMeth: no visible global function definition
+  for ‘runLOLA’
+performLolaEnrichment.diffVar: no visible global function definition
+  for ‘runLOLA’
+plot.heatmap.pc.correlations: no visible global function definition for
+  ‘melt’
+plot.heatmap.pc.correlations: no visible global function definition for
+  ‘grid.newpage’
+plot.heatmap.pc.correlations: no visible global function definition for
+  ‘grid.draw’
+plot.heatmap.pc.pvalues: no visible global function definition for
+  ‘melt’
+plot.heatmap.pc.pvalues: no visible global function definition for
+  ‘grid.newpage’
+plot.heatmap.pc.pvalues: no visible global function definition for
+  ‘grid.draw’
+plot.heatmap.rand: no visible global function definition for ‘melt’
+plot.heatmap.symm: no visible global function definition for ‘melt’
+plot.heatmap.symm: no visible global function definition for
+  ‘grid.newpage’
+plot.heatmap.symm: no visible global function definition for
+  ‘grid.draw’
+plotCGHProfile: no visible global function definition for ‘ChrNumeric’
+prepareGEOSampleInfoTemplate: no visible global function definition for
+  ‘samples’
+projectWBC: no visible global function definition for ‘solve.QP’
+read.GS.report: no visible global function definition for
+  ‘featureNames’
+read.idat.files: no visible binding for global variable ‘barcode’
+rnb.RnBSet.to.GRangesList: no visible global function definition for
+  ‘samples’
+rnb.RnBSet.to.bed: no visible global function definition for ‘samples’
+rnb.RnBSet.to.bedGraph: no visible global function definition for
+  ‘samples’
+rnb.bed.from.segmentation: no visible global function definition for
+  ‘samples’
+rnb.boxplot.from.segmentation: no visible global function definition
+  for ‘samples’
+rnb.boxplot.from.segmentation: no visible binding for global variable
+  ‘Segment’
+rnb.boxplot.from.segmentation: no visible binding for global variable
+  ‘AvgMeth’
+rnb.chromosome.lengths: no visible global function definition for
+  ‘seqlengths’
+rnb.combine.seq: no visible global function definition for ‘samples’
+rnb.enmix.oob: no visible global function definition for ‘%dopar%’
+rnb.enmix.oob: no visible global function definition for ‘foreach’
+rnb.execute.dreduction: no visible global function definition for
+  ‘samples’
+rnb.execute.filter.summary.internal: no visible global function
+  definition for ‘samples’
+rnb.execute.high.coverage.removal.internal: no visible global function
+  definition for ‘samples’
+rnb.execute.high.dpval.masking.internal: no visible global function
+  definition for ‘samples’
+rnb.execute.imputation: no visible global function definition for
+  ‘samples’
+rnb.execute.low.coverage.masking.internal: no visible global function
+  definition for ‘samples’
+rnb.execute.na.removal.internal: no visible global function definition
+  for ‘samples’
+rnb.execute.normalization: no visible global function definition for
+  ‘phenoData’
+rnb.execute.normalization: no visible global function definition for
+  ‘phenoData<-’
+rnb.execute.normalization: no visible global function definition for
+  ‘RGChannelSet’
+rnb.execute.normalization: no visible global function definition for
+  ‘preprocessSWAN’
+rnb.execute.normalization: no visible global function definition for
+  ‘getMeth’
+rnb.execute.normalization: no visible global function definition for
+  ‘getUnmeth’
+rnb.execute.normalization: no visible global function definition for
+  ‘featureNames’
+rnb.execute.normalization: no visible global function definition for
+  ‘samples’
+rnb.execute.normalization: no visible global function definition for
+  ‘mapToGenome’
+rnb.execute.normalization: no visible global function definition for
+  ‘addSex’
+rnb.execute.normalization: no visible global function definition for
+  ‘getSex’
+rnb.execute.normalization: no visible global function definition for
+  ‘getCN’
+rnb.execute.normalization.bmiq: no visible global function definition
+  for ‘%dopar%’
+rnb.execute.normalization.bmiq: no visible global function definition
+  for ‘foreach’
+rnb.execute.pOOBAH: no visible global function definition for ‘samples’
+rnb.execute.pOOBAH: no visible global function definition for ‘SigDF’
+rnb.execute.pOOBAH: no visible global function definition for ‘pOOBAH’
+rnb.execute.pOOBAH: no visible binding for global variable ‘sigset.l’
+rnb.execute.pOOBAH: no visible binding for global variable ‘pIG’
+rnb.execute.pOOBAH: no visible binding for global variable ‘pII’
+rnb.execute.pOOBAH: no visible binding for global variable ‘pIR’
+rnb.execute.quality: no visible global function definition for
+  ‘samples’
+rnb.execute.quality : <anonymous>: no visible global function
+  definition for ‘samples’
+rnb.execute.segmentation: no visible binding for global variable
+  ‘Hsapiens’
+rnb.execute.segmentation: no visible binding for global variable
+  ‘Mmusculus’
+rnb.execute.segmentation: no visible global function definition for
+  ‘seqlengths’
+rnb.execute.segmentation: no visible global function definition for
+  ‘browserSession’
+rnb.execute.segmentation: no visible global function definition for
+  ‘genome<-’
+rnb.execute.segmentation: no visible global function definition for
+  ‘ucscTableQuery’
+rnb.execute.segmentation: no visible global function definition for
+  ‘getTable’
+rnb.execute.segmentation: no visible global function definition for
+  ‘samples’
+rnb.execute.segmentation: no visible global function definition for
+  ‘readMethylome’
+rnb.execute.segmentation: no visible global function definition for
+  ‘readSNPTable’
+rnb.execute.segmentation: no visible global function definition for
+  ‘removeSNPs’
+rnb.execute.segmentation: no visible global function definition for
+  ‘segmentPMDs’
+rnb.execute.segmentation: no visible global function definition for
+  ‘plotAlphaDistributionOneChr’
+rnb.execute.segmentation: no visible global function definition for
+  ‘calculateFDRs’
+rnb.execute.segmentation: no visible global function definition for
+  ‘segmentUMRsLMRs’
+rnb.export.to.ewasher: no visible global function definition for
+  ‘samples’
+rnb.filter.dataset: no visible global function definition for ‘samples’
+rnb.final.segmentation: no visible global function definition for
+  ‘samples’
+rnb.get.reliability.counts.per.sample: no visible global function
+  definition for ‘samples’
+rnb.options.description.table.fromRd: no visible global function
+  definition for ‘Rd2HTML’
+rnb.options.description.table.fromRd: no visible binding for global
+  variable ‘xmlValue’
+rnb.plot.beta.density.group: no visible binding for global variable
+  ‘group’
+rnb.plot.biseq.coverage: no visible global function definition for
+  ‘samples’
+rnb.plot.biseq.coverage.hist: no visible global function definition for
+  ‘samples’
+rnb.plot.control.barplot: no visible global function definition for
+  ‘samples’
+rnb.plot.control.barplot: no visible binding for global variable
+  ‘Target’
+rnb.plot.control.barplot: no visible binding for global variable
+  ‘Index’
+rnb.plot.control.barplot: no visible binding for global variable ‘ID’
+rnb.plot.control.barplot: no visible binding for global variable
+  ‘Address’
+rnb.plot.control.barplot: no visible global function definition for
+  ‘grid.newpage’
+rnb.plot.control.barplot: no visible binding for global variable
+  ‘Intensity’
+rnb.plot.control.barplot: no visible global function definition for
+  ‘grid.draw’
+rnb.plot.control.boxplot: no visible global function definition for
+  ‘grid.newpage’
+rnb.plot.control.boxplot: no visible binding for global variable
+  ‘Probe’
+rnb.plot.control.boxplot: no visible binding for global variable
+  ‘Intensity’
+rnb.plot.control.boxplot: no visible global function definition for
+  ‘grid.draw’
+rnb.plot.ct.heatmap: no visible binding for global variable ‘x’
+rnb.plot.ct.heatmap: no visible binding for global variable ‘y’
+rnb.plot.ct.heatmap: no visible binding for global variable ‘v’
+rnb.plot.ct.heatmap: no visible global function definition for
+  ‘grid.newpage’
+rnb.plot.ct.heatmap: no visible global function definition for
+  ‘grid.draw’
+rnb.plot.dreduction: no visible global function definition for ‘tsne’
+rnb.plot.locus.profile: no visible global function definition for
+  ‘plotTracks’
+rnb.plot.marker.fstat: no visible binding for global variable ‘x’
+rnb.plot.marker.fstat: no visible binding for global variable ‘y’
+rnb.plot.marker.fstat: no visible global function definition for
+  ‘muted’
+rnb.plot.negative.boxplot: no visible global function definition for
+  ‘samples’
+rnb.plot.negative.boxplot: no visible binding for global variable
+  ‘numeric.names’
+rnb.plot.negative.boxplot: no visible binding for global variable
+  ‘type’
+rnb.plot.negative.boxplot: no visible binding for global variable
+  ‘types’
+rnb.plot.negative.boxplot: no visible global function definition for
+  ‘grid.newpage’
+rnb.plot.negative.boxplot: no visible binding for global variable
+  ‘Sample’
+rnb.plot.negative.boxplot: no visible binding for global variable
+  ‘Intensity’
+rnb.plot.negative.boxplot: no visible global function definition for
+  ‘grid.draw’
+rnb.plot.num.sites.covg: no visible global function definition for
+  ‘samples’
+rnb.plot.num.sites.covg : <anonymous>: no visible global function
+  definition for ‘samples’
+rnb.plot.num.sites.covg: no visible binding for global variable
+  ‘numSites’
+rnb.plot.num.sites.covg: no visible binding for global variable
+  ‘covgMedian’
+rnb.plot.num.sites.covg: no visible binding for global variable
+  ‘covgPercLow’
+rnb.plot.num.sites.covg: no visible binding for global variable
+  ‘covgPercUp’
+rnb.plot.num.sites.covg: no visible binding for global variable ‘comma’
+rnb.plot.region.profile.density: no visible binding for global variable
+  ‘relative.coord’
+rnb.plot.region.profile.density: no visible binding for global variable
+  ‘..density..’
+rnb.plot.region.profiles : <anonymous>: no visible global function
+  definition for ‘samples’
+rnb.plot.region.profiles: no visible binding for global variable
+  ‘relative.coord’
+rnb.plot.region.profiles: no visible binding for global variable
+  ‘group’
+rnb.plot.region.site.density: no visible binding for global variable
+  ‘relative.coord’
+rnb.plot.segmentation.distributions: no visible binding for global
+  variable ‘x2’
+rnb.plot.segmentation.distributions: no visible binding for global
+  variable ‘y2’
+rnb.plot.segmentation.distributions: no visible binding for global
+  variable ‘texthere’
+rnb.plot.segmentation.final: no visible global function definition for
+  ‘plotFinalSegmentation’
+rnb.plot.sentrix.distributions: no visible global function definition
+  for ‘samples’
+rnb.plot.sentrix.distributions: no visible binding for global variable
+  ‘Slide’
+rnb.plot.snp.boxplot: no visible binding for global variable ‘SNP’
+rnb.plot.snp.boxplot: no visible binding for global variable ‘bv’
+rnb.run.example: no visible global function definition for ‘install’
+rnb.run.preprocessing : logger.completed.filtering: no visible global
+  function definition for ‘samples’
+rnb.sample.summary.table: no visible global function definition for
+  ‘samples’
+rnb.section.ageprediction: no visible global function definition for
+  ‘samples’
+rnb.section.clustering : <anonymous> : <anonymous>: no visible global
+  function definition for ‘samples’
+rnb.section.clustering: no visible global function definition for
+  ‘samples’
+rnb.section.diffMeth.region: no visible global function definition for
+  ‘%dopar%’
+rnb.section.diffMeth.region: no visible global function definition for
+  ‘foreach’
+rnb.section.diffMeth.region: no visible binding for global variable ‘k’
+rnb.section.diffMeth.region : do.enrichment.table: no visible global
+  function definition for ‘sigCategories’
+rnb.section.diffMeth.region : do.enrichment.table.var: no visible
+  global function definition for ‘sigCategories’
+rnb.section.diffMeth.site: no visible global function definition for
+  ‘%dopar%’
+rnb.section.diffMeth.site: no visible global function definition for
+  ‘foreach’
+rnb.section.diffVar: no visible global function definition for
+  ‘%dopar%’
+rnb.section.diffVar: no visible global function definition for
+  ‘foreach’
+rnb.section.diffVar.region: no visible global function definition for
+  ‘%dopar%’
+rnb.section.diffVar.region: no visible global function definition for
+  ‘foreach’
+rnb.section.diffVar.region: no visible binding for global variable ‘k’
+rnb.section.import: no visible global function definition for ‘samples’
+rnb.section.import: no visible global function definition for
+  ‘phenoData’
+rnb.section.imputation: no visible global function definition for
+  ‘melt’
+rnb.section.locus.profiles: no visible global function definition for
+  ‘samples’
+rnb.section.locus.profiles : do.plots: no visible global function
+  definition for ‘plotTracks’
+rnb.section.locus.profiles: no visible global function definition for
+  ‘%dopar%’
+rnb.section.locus.profiles: no visible global function definition for
+  ‘foreach’
+rnb.section.na.removal: no visible global function definition for
+  ‘samples’
+rnb.section.normalization: no visible global function definition for
+  ‘samples’
+rnb.section.region.description: no visible binding for global variable
+  ‘size’
+rnb.section.region.description: no visible binding for global variable
+  ‘n.sites’
+rnb.section.region.profiles: no visible global function definition for
+  ‘samples’
+rnb.section.region.subsegmentation : get.summary.df.from.list: no
+  visible global function definition for ‘melt’
+rnb.section.region.subsegmentation: no visible binding for global
+  variable ‘region.size’
+rnb.section.region.subsegmentation: no visible binding for global
+  variable ‘is.subsegmentation’
+rnb.section.region.subsegmentation: no visible binding for global
+  variable ‘num.sites’
+rnb.section.sex.prediction: no visible global function definition for
+  ‘muted’
+rnb.step.betadistribution.internal: no visible global function
+  definition for ‘%dopar%’
+rnb.step.betadistribution.internal: no visible global function
+  definition for ‘foreach’
+rnb.step.cell.types: no visible global function definition for
+  ‘samples’
+rnb.step.clustering.internal: no visible global function definition for
+  ‘samples’
+rnb.step.dreduction: no visible global function definition for
+  ‘%dopar%’
+rnb.step.dreduction: no visible global function definition for
+  ‘foreach’
+rnb.step.dreduction: no visible binding for global variable ‘target’
+rnb.step.filter.summary.internal: no visible global function definition
+  for ‘percent_format’
+rnb.step.filter.summary.internal: no visible global function definition
+  for ‘samples’
+rnb.step.import: no visible global function definition for ‘samples’
+rnb.step.import: no visible global function definition for ‘phenoData’
+rnb.step.na.removal: no visible binding for global variable
+  ‘sites2ignore’
+rnb.step.na.removal.internal: no visible global function definition for
+  ‘samples’
+rnb.step.normalization: no visible global function definition for
+  ‘phenoData’
+robustHyperGResultSummary: no visible global function definition for
+  ‘sigCategories’
+robustHyperGResultSummary: no visible global function definition for
+  ‘pvalues’
+robustHyperGResultSummary: no visible global function definition for
+  ‘oddsRatios’
+robustHyperGResultSummary: no visible global function definition for
+  ‘expectedCounts’
+robustHyperGResultSummary: no visible global function definition for
+  ‘geneCounts’
+robustHyperGResultSummary: no visible global function definition for
+  ‘universeCounts’
+robustHyperGResultSummary: no visible binding for global variable
+  ‘Term’
+run.cross.validation: no visible global function definition for
+  ‘samples’
+run.cross.validation: no visible global function definition for ‘melt’
+run.cross.validation: no visible binding for global variable ‘Measure’
+run.cross.validation: no visible binding for global variable ‘Error’
+sampleCovgApply: no visible global function definition for ‘samples’
+set.covariates.ct: no visible global function definition for ‘samples’
+simpleGlmnet: no visible global function definition for ‘impute.knn’
+simpleGlmnet: no visible global function definition for ‘cv.glmnet’
+simpleGlmnet: no visible global function definition for ‘glmnet’
+simpleGlmnetBiseq: no visible global function definition for
+  ‘cv.glmnet’
+simpleGlmnetBiseq: no visible global function definition for ‘glmnet’
+simpleGlmnetEvaluate: no visible global function definition for
+  ‘cv.glmnet’
+simpleGlmnetEvaluate: no visible global function definition for
+  ‘glmnet’
+symmetric.melt: no visible global function definition for ‘melt’
+addDiffMethTable,RnBDiffMeth: no visible binding for global variable
+  ‘reg.type’
+coerce,RGChannelSet-RnBeadRawSet: no visible global function definition
+  for ‘getManifest’
+coerce,RGChannelSet-RnBeadRawSet: no visible global function definition
+  for ‘getGreen’
+coerce,RGChannelSet-RnBeadRawSet: no visible global function definition
+  for ‘getRed’
+coerce,RGChannelSet-RnBeadRawSet: no visible global function definition
+  for ‘pData’
+coerce,RnBeadRawSet-MethyLumiSet: no visible global function definition
+  for ‘featureData<-’
+coerce,RnBeadRawSet-MethyLumiSet: no visible global function definition
+  for ‘featureNames<-’
+coerce,RnBeadRawSet-RGChannelSet: no visible global function definition
+  for ‘RGChannelSet’
+join.diffMeth,RnBDiffMeth-RnBDiffMeth: no visible global function
+  definition for ‘clone’
+mask.sites.meth,RnBSet: no visible global function definition for
+  ‘samples’
+remove.samples,RnBSet: no visible global function definition for
+  ‘samples’
+remove.samples,RnBeadRawSet: no visible global function definition for
+  ‘samples’
+remove.samples,RnBeadSet: no visible global function definition for
+  ‘samples’
+remove.sites,RnBSet: no visible global function definition for
+  ‘samples’
+sampleCovgApply,RnBSet: no visible global function definition for
+  ‘samples’
+sampleMethApply,RnBSet: no visible global function definition for
+  ‘samples’
+summarize.regions,RnBSet: no visible global function definition for
+  ‘samples’
+summarize.regions,RnBSet: multiple local function definitions for
+  ‘aggr.f’ with different formal arguments
+updateMethylationSites,RnBSet: no visible global function definition
+  for ‘samples’
+Undefined global functions or variables:
+  %dopar% ..count.. ..density.. .inds.g2 Address Age Annotated AvgMeth
+  BiomartGeneRegionTrack ChrNumeric DataTrack Density Deviance
+  Difference DoISVA Error GenomeAxisTrack Group Hsapiens ID
+  IdeogramTrack IlluminaHumanMethylation450kmanifest
+  IlluminaHumanMethylationEPICmanifest Immune Increase Index Intensity
+  Measure Mmusculus Predicted Probe RGChannelSet Rd2HTML SNP Sample
+  Segment SigDF Slide Target Term UcscTrack Value addSex as.profileCGH
+  assayDataElement assayDataElementNames barcode browserSession bv
+  calculateFDRs chrom clone combinedRank combinedRank.var comma
+  covgMedian covgPercLow covgPercUp cv.glmnet daglad diffmeth
+  diffmeth.p.adj.fdr diffmeth.p.val dinucleotideFrequency eps
+  expectedCounts featureData featureData<- featureNames featureNames<-
+  foreach geneCounts genome<- getCN getDoParWorkers getGreen
+  getManifest getMeth getRed getSex getTable getUnmeth getVarCov glmnet
+  grid.draw grid.newpage group group1 group2 i impute.knn install
+  is.subsegmentation k letterFrequency lme loadRegionDB log10FDR log10P
+  mapToGenome mclapply mean.diff mean.quot.log2 melt mergeRegionDBs
+  muted n.sites num.sites numSites numeric.names oddsRatios
+  p.vals.t.na.adj pData pIG pII pIR pOOBAH percent_format phenoData
+  phenoData<- plotAlphaDistributionOneChr plotFinalSegmentation
+  plotTracks preprocessSWAN pvalues qvalue readMethylome readSNPTable
+  refText reg.type region.size registerDoParallel relative.coord
+  removeSNPs report runLOLA samples segmentPMDs segmentUMRsLMRs
+  seqlengths seqlevels<- setNames sigCategories sigset.l sites2ignore
+  size solve.QP stopCluster sva target texthere tsne type types
+  ucscTableQuery universeCounts useMart v var.diff varFit varLabels x
+  x2 xmlValue y y2 yint
+Consider adding
+  importFrom("stats", "setNames")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ...

@@ -1,0 +1,45 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL DirichletMultinomial
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘DirichletMultinomial’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   `gsl-config --cflags` -DR_DIRICHLETMULTINOMIAL -fPIC  -g -O2  -Wall -c R_init_DirichletMultinomial.c -o R_init_DirichletMultinomial.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   `gsl-config --cflags` -DR_DIRICHLETMULTINOMIAL -fPIC  -g -O2  -Wall -c dirichlet_fit.c -o dirichlet_fit.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include   `gsl-config --cflags` -DR_DIRICHLETMULTINOMIAL -fPIC  -g -O2  -Wall -c dirichlet_fit_main.c -o dirichlet_fit_main.o
+dirichlet_fit_main.c: In function ‘hessian’:
+dirichlet_fit_main.c:391:34: warning: ‘*’ in boolean context, suggest ‘&&’ instead [-Wint-in-bool-context]
+  391 |             adCJK0[j] += adPi[i] * n ? gsl_sf_psi(adAlpha[j] + n) : dPsiAlpha;
+      |                          ~~~~~~~~^~~
+dirichlet_fit_main.c:393:33: warning: ‘*’ in boolean context, suggest ‘&&’ instead [-Wint-in-bool-context]
+  393 |             adCJK[j] += adPi[i] * n ? gsl_sf_psi_1(adAlpha[j] + n): dPsi1Alpha;
+      |                         ~~~~~~~~^~~
+dirichlet_fit_main.c: In function ‘dirichlet_fit_main’:
+dirichlet_fit_main.c:542:17: warning: variable ‘status’ set but not used [-Wunused-but-set-variable]
+  542 |     int signum, status;
+      |                 ^~~~~~
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o DirichletMultinomial.so R_init_DirichletMultinomial.o dirichlet_fit.o dirichlet_fit_main.o -L/usr/lib/aarch64-linux-gnu -lgsl -lgslcblas -lm -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-DirichletMultinomial/00new/DirichletMultinomial/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (DirichletMultinomial)

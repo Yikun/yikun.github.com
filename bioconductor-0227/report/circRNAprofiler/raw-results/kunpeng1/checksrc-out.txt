@@ -1,0 +1,123 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:circRNAprofiler.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings circRNAprofiler_1.13.7.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/circRNAprofiler.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘circRNAprofiler/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘circRNAprofiler’ version ‘1.13.7’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘circRNAprofiler’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.getRBPmotifsAttract: no visible binding for global variable ‘Organism’
+.getRBPmotifsAttract: no visible binding for global variable
+  ‘Gene_name’
+.getRBPmotifsAttract: no visible binding for global variable ‘Motif’
+.getRBPmotifsMEME: no visible binding for global variable ‘path’
+.matchWithKnowRBPs: no visible binding for global variable ‘motif’
+.reshapeCounts: no visible binding for global variable ‘motif’
+.splitRBPs: no visible binding for global variable ‘motif’
+mergeMotifs: no visible binding for global variable ‘motif’
+Undefined global functions or variables:
+  Gene_name Motif Organism motif path
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘circRNAprofiler-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: liftBSJcoords
+> ### Title: LiftOver back-spliced junction coordinates
+> ### Aliases: liftBSJcoords
+> 
+> ### ** Examples
+> 
+> # Load a data frame containing detected back-spliced junctions
+> data("mergedBSJunctions")
+> 
+> # LiftOver the first 10 back-spliced junction coordinates
+> liftedBSJcoords <- liftBSJcoords(mergedBSJunctions[1:10,], map = "hg19ToMm9")
+snapshotDate(): 2022-12-16
+loading from cache
+require(“rtracklayer”)
+Error: failed to load resource
+  name: AH14155
+  title: hg19ToMm9.over.chain.gz
+  reason: incomplete block
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Complete output:
+  > library(testthat)
+  > library(circRNAprofiler)
+  > 
+  > test_check("circRNAprofiler")
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘circRNAprofiler.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/circRNAprofiler.Rcheck/00check.log’
+for details.
+

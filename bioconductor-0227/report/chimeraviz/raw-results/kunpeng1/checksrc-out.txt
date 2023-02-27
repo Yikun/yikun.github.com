@@ -1,0 +1,201 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:chimeraviz.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings chimeraviz_1.25.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/chimeraviz.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘chimeraviz/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘chimeraviz’ version ‘1.25.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  'Biostrings', 'GenomicRanges', 'IRanges', 'Gviz', 'S4Vectors',
+  'ensembldb', 'AnnotationFilter', 'data.table'
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘chimeraviz’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Namespace in Imports field not imported from: 'magick'
+  All declared Imports should be used.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+plot_fusion_transcript_with_protein_domain: no visible binding for
+  global variable 'protein_domain_location'
+Undefined global functions or variables:
+  protein_domain_location
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘chimeraviz-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plot_fusion
+> ### Title: Plot a fusion event with transcripts, coverage and ideograms.
+> ### Aliases: plot_fusion plot_fusion_separate plot_fusion_together
+> 
+> ### ** Examples
+> 
+> # Load data and example fusion event
+> defuse833ke <- system.file(
++   "extdata",
++   "defuse_833ke_results.filtered.tsv",
++   package="chimeraviz")
+> fusions <- import_defuse(defuse833ke, "hg19", 1)
+> fusion <- get_fusion_by_id(fusions, 5267)
+> # Load edb
+> edbSqliteFile <- system.file(
++   "extdata",
++   "Homo_sapiens.GRCh37.74.sqlite",
++   package="chimeraviz")
+> edb <- ensembldb::EnsDb(edbSqliteFile)
+> # bamfile with reads in the regions of this fusion event
+> bamfile5267 <- system.file(
++   "extdata",
++   "fusion5267and11759reads.bam",
++   package="chimeraviz")
+> # Temporary file to store the plot
+> pngFilename <- tempfile(
++   pattern = "fusionPlot",
++   fileext = ".png",
++   tmpdir = tempdir())
+> # Open device
+> png(pngFilename, width = 1000, height = 750)
+> # Plot!
+> plot_fusion(
++   fusion = fusion,
++   bamfile = bamfile5267,
++   edb = edb,
++   non_ucsc = TRUE)
+Fetching transcripts for gene partners..
+..transcripts fetched.
+Fusion is intrachromosomal..
+..but on different strands. Plot separate!
+Selecting transcripts for RCC1..
+..found transcripts of type exonBoundary
+Selecting transcripts for HENMT1..
+..found transcripts of type exonBoundary
+As HENMT1 is on the minus strand, the plot for this gene will be reversed
+> # Close device
+> dev.off()
+pdf 
+  2 
+> 
+> # Example using a .bedGraph file instead of a .bam file:
+> # Load data and example fusion event
+> defuse833ke <- system.file(
++   "extdata",
++   "defuse_833ke_results.filtered.tsv",
++   package="chimeraviz")
+> fusions <- import_defuse(defuse833ke, "hg19", 1)
+> fusion <- get_fusion_by_id(fusions, 5267)
+> # Load edb
+> edbSqliteFile <- system.file(
++   "extdata",
++   "Homo_sapiens.GRCh37.74.sqlite",
++   package="chimeraviz")
+> edb <- ensembldb::EnsDb(edbSqliteFile)
+> # bedgraphfile with coverage data from the regions of this fusion event
+> bedgraphfile <- system.file(
++   "extdata",
++   "fusion5267and11759reads.bedGraph",
++   package="chimeraviz")
+> # Temporary file to store the plot
+> pngFilename <- tempfile(
++   pattern = "fusionPlot",
++   fileext = ".png",
++   tmpdir = tempdir())
+> # Open device
+> png(pngFilename, width = 1000, height = 750)
+> # Plot!
+> plot_fusion(
++   fusion = fusion,
++   bedgraphfile = bedgraphfile,
++   edb = edb,
++   non_ucsc = TRUE)
+Fetching transcripts for gene partners..
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+      shift
+  
+  The following object is masked from 'package:IRanges':
+  
+      shift
+  
+  The following objects are masked from 'package:S4Vectors':
+  
+      first, second
+  
+  
+  
+  > 
+  > test_check("chimeraviz")
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘chimeraviz-vignette.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘chimeraviz-vignette.Rmd’ using rmarkdown
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/chimeraviz.Rcheck/00check.log’
+for details.
+

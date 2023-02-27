@@ -1,0 +1,560 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:ToxicoGx.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings ToxicoGx_2.3.1.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/ToxicoGx.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘ToxicoGx/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘ToxicoGx’ version ‘2.3.1’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘ToxicoGx’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+':::' call which should be '::': ‘CoreGx:::updateSampleId’
+  See the note in ?`:::` about the use of this operator.
+Missing object imported by a ':::' call: ‘CoreGx:::updateTreamentId’
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+computeLimmaDiffExpr,ToxicoSet: no visible global function definition
+  for ‘metadata<-’
+computeLimmaDiffExpr,ToxicoSet: no visible binding for global variable
+  ‘cell’
+Undefined global functions or variables:
+  cell metadata<-
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... NOTE
+  Note: found 47 marked UTF-8 strings
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘ToxicoGx-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: ToxicoSet-accessors
+> ### Title: Accessing and modifying information in a 'CoreSet'
+> ### Aliases: ToxicoSet-accessors drugInfo treatmentInfo,ToxicoSet-method
+> ###   treatmentInfo drugInfo<- treatmentInfo<-,ToxicoSet,data.frame-method
+> ###   treatmentInfo<- drugNames treatmentNames,ToxicoSet-method
+> ###   treatmentNames drugNames<-
+> ###   treatmentNames<-,ToxicoSet,character-method treatmentNames<-
+> ###   annotation,ToxicoSet-method annotation
+> ###   annotation<-,ToxicoSet,list-method annotation<-
+> ###   dateCreated,ToxicoSet-method dateCreated
+> ###   dateCreated<-,ToxicoSet,character-method
+> ###   dateCreated<-,ToxicoSet-method dateCreated<- name,ToxicoSet-method
+> ###   name name<-,ToxicoSet-method name<-,ToxicoSet,character-method name<-
+> ###   sampleInfo,ToxicoSet-method sampleInfo cellInfo,ToxicoSet-method
+> ###   cellInfo sampleInfo<-,ToxicoSet,data.frame-method sampleInfo<-
+> ###   cellInfo<-,ToxicoSet,data.frame-method cellInfo<-
+> ###   sampleNames,ToxicoSet-method sampleName,ToxicoSet-method sampleNames
+> ###   cellName,ToxicoSet-method cellNames
+> ###   sampleNames<-,ToxicoSet,character-method
+> ###   sampleNames<-,ToxicoSet,list-method sampleNames<-
+> ###   cellNames<-,ToxicoSet,list-method cellNames<-
+> ###   curation,ToxicoSet-method curation curation<-,ToxicoSet,list-method
+> ###   curation<- datasetType,ToxicoSet-method datasetType
+> ###   datasetType<-,ToxicoSet,character-method datasetType<-
+> ###   molecularProfiles,ToxicoSet-method molecularProfiles
+> ###   molecularProfiles<-,ToxicoSet,character,character,matrix-method
+> ###   molecularProfiles<-,ToxicoSet,character,missing,matrix-method
+> ###   molecularProfiles<-,ToxicoSet,missing,missing,list-method
+> ###   molecularProfiles<-,ToxicoSet,missing,missing,MutliAssayExperiment-method
+> ###   molecularProfiles<- featureInfo,ToxicoSet-method featureInfo
+> ###   featureInfo<-,ToxicoSet,character,data.frame-method
+> ###   featureInfo<-,ToxicoSet,character,DataFrame-method featureInfo<-
+> ###   phenoInfo,ToxicoSet,character-method phenoInfo
+> ###   phenoInfo<-,ToxicoSet,character,data.frame-method
+> ###   phenoInfo<-,ToxicoSet,character,DataFrame-method phenoInfo<-
+> ###   fNames,ToxicoSet,character-method fNames
+> ###   fNames<-,ToxicoSet,character,character-method fNames<-
+> ###   mDataNames,ToxicoSet-method mDataNames mDataNames<-,ToxicoSet-method
+> ###   mDataNames<-,ToxicoSet,ANY-method mDataNames<-
+> ###   molecularProfilesSlot,ToxicoSet-method
+> ###   moleculerProfilesSlot,ToxicoSet-method molecularProfilesSlot
+> ###   molecularProfilesSlot<-,ToxicoSet,list_OR_MAE-method
+> ###   molecularProfilesSlot<-,ToxicoSet,list-method
+> ###   molecularProfilesSlot<-ToxicoSet,MultiAssayExperiment-method
+> ###   molecularProfilesSlot<- sensitivityInfo,ToxicoSet-method
+> ###   sensitivityInfo,ToxicoSet,missing-method
+> ###   sensitivityInfo,ToxicoSet,character-method
+> ###   sensitivityInfo<-,ToxicoSet,data.frame-method
+> ###   sensitivityInfo<-,ToxicoSet,missing,data.frame-method
+> ###   sensitvityInfo<-,ToxicoSet,character,data.frame-method
+> ###   sensitivityMeasures,ToxicoSet-method
+> ###   sensitivityMeasures<-,ToxicoSet,character-method
+> ###   sensitivityProfiles,ToxicoSet-method
+> ###   sensitivityProfiles<-,ToxicoSet,data.frame-method
+> ###   sensitivityRaw,ToxicoSet-method
+> ###   sensitivityRaw<-,ToxicoSet,array-method
+> ###   treatmentResponse,ToxicoSet-method treatmentResponse sensitivitySlot
+> ###   treatmentResponse<-,ToxicoSet,list_OR_LongTable-method
+> ###   treatmentResponse<- treamentResponse<-,ToxicoSet,list-method
+> ###   treatmentResponse<-,ToxicoSet,LongTable-method sensitivitySlot<-
+> ###   sensNumber,ToxicoSet-method sensNumber
+> ###   sensNumber<-,ToxicoSet,matrix-method sensNumber<-
+> ###   pertNumber,ToxicoSet-method pertNumber
+> ###   pertNumber<-,ToxicoSet,array-method pertNumber<-
+> 
+> ### ** Examples
+> 
+> data(TGGATESsmall)
+> treatmentInfo(TGGATESsmall)
+                                                          treatmentid
+1-Naphthyl isothiocyanate                   1-Naphthyl isothiocyanate
+Phenylbutazone                                         Phenylbutazone
+Rifampicin                                                 Rifampicin
+Indomethacin                                             Indomethacin
+Chlorpromazine                                         Chlorpromazine
+Isoniazid                                                   Isoniazid
+Acetaminophen                                           Acetaminophen
+Clofibrate                                                 Clofibrate
+Carbon tetrachloride                             Carbon tetrachloride
+Phenobarbital                                           Phenobarbital
+Methapyrilene                                           Methapyrilene
+Ethionine                                                   Ethionine
+Carbamazepine                                           Carbamazepine
+Cimetidine                                                 Cimetidine
+Fluphenazine                                             Fluphenazine
+Pirinixic acid                                         Pirinixic acid
+Aspirin                                                       Aspirin
+Gemfibrozil                                               Gemfibrozil
+Labetalol                                                   Labetalol
+Hexachlorobenzene                                   Hexachlorobenzene
+Amiodarone                                                 Amiodarone
+Allopurinol                                               Allopurinol
+Benzbromarone                                           Benzbromarone
+Nitrofurantoin                                         Nitrofurantoin
+Diazepam                                                     Diazepam
+Griseofulvin                                             Griseofulvin
+Sulfasalazine                                           Sulfasalazine
+Bromobenzene                                             Bromobenzene
+Cyclophosphamide                                     Cyclophosphamide
+Omeprazole                                                 Omeprazole
+Allyl alcohol                                           Allyl alcohol
+Valproic acid                                           Valproic acid
+Diclofenac                                                 Diclofenac
+Propylthiouracil                                     Propylthiouracil
+2H-1-Benzopyran-2-one                           2H-1-Benzopyran-2-one
+Haloperidol                                               Haloperidol
+Tetracycline                                             Tetracycline
+Flutamide                                                   Flutamide
+Glyburide                                                   Glyburide
+Azathioprine                                             Azathioprine
+Perhexiline                                               Perhexiline
+Phenytoin                                                   Phenytoin
+Doxepin Hydrochloride                           Doxepin Hydrochloride
+Thioridazine                                             Thioridazine
+Methyltestosterone                                 Methyltestosterone
+Lomustine                                                   Lomustine
+Thioacetamide                                           Thioacetamide
+Xolegel                                                       Xolegel
+Ciprofloxacin                                           Ciprofloxacin
+Pemoline                                                     Pemoline
+Chlormezanone                                           Chlormezanone
+Metformin                                                   Metformin
+Tamoxifen                                                   Tamoxifen
+Ethinyl estradiol                                   Ethinyl estradiol
+Methyldopa                                                 Methyldopa
+Methimazole                                               Methimazole
+Monocrotaline                                           Monocrotaline
+Retinol                                                       Retinol
+Quinidine                                                   Quinidine
+Tacrine                                                       Tacrine
+Moxisylyte                                                 Moxisylyte
+Iproniazid                                                 Iproniazid
+Chloramphenicol                                       Chloramphenicol
+Nitrofurazone                                           Nitrofurazone
+Trimipramine                                             Trimipramine
+Amitriptyline                                           Amitriptyline
+Hydroxyzine                                               Hydroxyzine
+2-(4-Isobutylphenyl)propanoic acid 2-(4-Isobutylphenyl)propanoic acid
+Naproxen                                                     Naproxen
+Furosemide                                                 Furosemide
+Fenofibrate                                               Fenofibrate
+Chlorpropamide                                         Chlorpropamide
+Nicotinic acid                                         Nicotinic acid
+Erythromycin ethylsuccinate               Erythromycin ethylsuccinate
+Ethambutol                                                 Ethambutol
+Mefenamic acid                                         Mefenamic acid
+Pepcid                                                         Pepcid
+Ranitidine                                                 Ranitidine
+Tannic acid                                               Tannic acid
+Captopril                                                   Captopril
+Caffeine                                                     Caffeine
+Papaverine                                                 Papaverine
+Enalapril                                                   Enalapril
+Theophylline                                             Theophylline
+Sulindac                                                     Sulindac
+D-Penicillamine                                       D-Penicillamine
+Disopyramide                                             Disopyramide
+Mexiletine                                                 Mexiletine
+Acetazolamide                                           Acetazolamide
+Disulfiram                                                 Disulfiram
+Colchicine                                                 Colchicine
+Nifedipine                                                 Nifedipine
+Diltiazem                                                   Diltiazem
+Chlorpheniramine                                     Chlorpheniramine
+Tolbutamide                                               Tolbutamide
+Acarbose                                                     Acarbose
+Simvastatin                                               Simvastatin
+Meloxicam                                                   Meloxicam
+Chlormadinone                                           Chlormadinone
+Benziodarone                                             Benziodarone
+Ethionamide                                               Ethionamide
+Nimesulide                                                 Nimesulide
+Ethanol                                                       Ethanol
+Bucetin                                                       Bucetin
+acetamidofluorene                                   acetamidofluorene
+Ticlopidine                                               Ticlopidine
+Tiopronin                                                   Tiopronin
+Promethazine                                             Promethazine
+Sulpiride                                                   Sulpiride
+Dantrolene                                                 Dantrolene
+Clomipramine                                             Clomipramine
+Terbinafine                                               Terbinafine
+Lornoxicam                                                 Lornoxicam
+Danazol                                                       Danazol
+Etoposide                                                   Etoposide
+N-Phenylanthranilic acid                     N-Phenylanthranilic acid
+Ajmalin                                                       Ajmalin
+Phenacetin                                                 Phenacetin
+N-Nitrosodiethylamine                           N-Nitrosodiethylamine
+Alpidem                                                       Alpidem
+Venlafaxine                                               Venlafaxine
+Clozapine                                                   Clozapine
+Buspirone                                                   Buspirone
+Nefazodone                                                 Nefazodone
+Triazolam                                                   Triazolam
+Trimethadione                                           Trimethadione
+2-Bromoethylamine                                   2-Bromoethylamine
+Doxorubicin                                               Doxorubicin
+Cyclosporin A                                           Cyclosporin A
+Cycloheximide                                           Cycloheximide
+Phorone                                                       Phorone
+Bendazac                                                     Bendazac
+Buthionine sulfoximine                         Buthionine sulfoximine
+D-Galactosamine                                       D-Galactosamine
+Diethyl maleate                                       Diethyl maleate
+Rotenone                                                     Rotenone
+N,N'-Diphenylmethylenediamine           N,N'-Diphenylmethylenediamine
+butylated hydroxyanisole                     butylated hydroxyanisole
+Fungizone                                                   Fungizone
+2,4-Dinitrophenol                                   2,4-Dinitrophenol
+Fluoxetine hydrochloride                     Fluoxetine hydrochloride
+Dexamethasone                                           Dexamethasone
+2-Nitrofluorene                                       2-Nitrofluorene
+N-Methyl-N-nitrosourea                         N-Methyl-N-nitrosourea
+Acetamide                                                   Acetamide
+N-Nitrosomorpholine                               N-Nitrosomorpholine
+                                   treatmentid_abbr treatmentid_no
+1-Naphthyl isothiocyanate                      ANIT          00009
+Phenylbutazone                                  PhB          00011
+Rifampicin                                      RIF          00008
+Indomethacin                                     IM          00015
+Chlorpromazine                                  CPZ          00016
+Isoniazid                                      INAH          00002
+Acetaminophen                                  APAP          00001
+Clofibrate                                      CFB          00006
+Carbon tetrachloride                           CCL4          00003
+Phenobarbital                                    PB          00004
+Methapyrilene                                    MP          00025
+Ethionine                                        ET          00013
+Carbamazepine                                   CBZ          00018
+Cimetidine                                      CIM          00035
+Fluphenazine                                     FP          00037
+Pirinixic acid                                   WY          00030
+Aspirin                                         ASA          00014
+Gemfibrozil                                     GFZ          00031
+Labetalol                                       LBT          00040
+Hexachlorobenzene                               HCB          00022
+Amiodarone                                       AM          00033
+Allopurinol                                     APL          00028
+Benzbromarone                                   BBr          00021
+Nitrofurantoin                                  NFT          00020
+Diazepam                                        DZP          00023
+Griseofulvin                                     GF          00043
+Sulfasalazine                                    SS          00034
+Bromobenzene                                    BBZ          00032
+Cyclophosphamide                                CPA          00024
+Omeprazole                                      OPZ          00012
+Allyl alcohol                                    AA          00010
+Valproic acid                                   VPA          00005
+Diclofenac                                     DFNa          00019
+Propylthiouracil                                PTU          00029
+2H-1-Benzopyran-2-one                           CMA          00027
+Haloperidol                                     HPL          00036
+Tetracycline                                     TC          00048
+Flutamide                                        FT          00044
+Glyburide                                       GBC          00042
+Azathioprine                                    AZP          00046
+Perhexiline                                      PH          00045
+Phenytoin                                       PHE          00026
+Doxepin Hydrochloride                           ADP          00039
+Thioridazine                                    TRZ          00038
+Methyltestosterone                              MTS          00041
+Lomustine                                        LS          00049
+Thioacetamide                                   TAA          00017
+Xolegel                                          KC          00047
+Ciprofloxacin                                   CPX          00050
+Pemoline                                        PML          00051
+Chlormezanone                                   CMN          00052
+Metformin                                       MFM          00053
+Tamoxifen                                       TMX          00054
+Ethinyl estradiol                                EE          00055
+Methyldopa                                      MDP          00056
+Methimazole                                     MTZ          00057
+Monocrotaline                                   MCT          00058
+Retinol                                          VA          00059
+Quinidine                                       QND          00074
+Tacrine                                         TAC          00060
+Moxisylyte                                      MXS          00061
+Iproniazid                                      IPA          00062
+Chloramphenicol                                 CMP          00064
+Nitrofurazone                                   NFZ          00065
+Trimipramine                                    IMI          00069
+Amitriptyline                                   AMT          00070
+Hydroxyzine                                     HYZ          00071
+2-(4-Isobutylphenyl)propanoic acid              IBU          00072
+Naproxen                                        NPX          00073
+Furosemide                                      FUR          00078
+Fenofibrate                                     FFB          00079
+Chlorpropamide                                  CPP          00080
+Nicotinic acid                                  NIC          00081
+Erythromycin ethylsuccinate                     EME          00082
+Ethambutol                                      EBU          00083
+Mefenamic acid                                  MEF          00084
+Pepcid                                          FAM          00085
+Ranitidine                                      RAN          00086
+Tannic acid                                     TAN          00093
+Captopril                                       CAP          00094
+Caffeine                                        CAF          00097
+Papaverine                                      PAP          00098
+Enalapril                                       ENA          00095
+Theophylline                                    TEO          00096
+Sulindac                                        SUL          00100
+D-Penicillamine                                 PEN          00099
+Disopyramide                                    DIS          00102
+Mexiletine                                      MEX          00103
+Acetazolamide                                   ACZ          00108
+Disulfiram                                      DSF          00109
+Colchicine                                      COL          00113
+Nifedipine                                      NIF          00091
+Diltiazem                                       DIL          00092
+Chlorpheniramine                                CHL          00090
+Tolbutamide                                     TLB          00114
+Acarbose                                        ACA          00116
+Simvastatin                                     SST          00117
+Meloxicam                                       MLX          00124
+Chlormadinone                                   CLM          00126
+Benziodarone                                    BZD          00130
+Ethionamide                                     ETH          00135
+Nimesulide                                      NIM          00136
+Ethanol                                         ETN          00137
+Bucetin                                         BCT          00139
+acetamidofluorene                               AAF          00144
+Ticlopidine                                     TCP          00146
+Tiopronin                                       TIO          00104
+Promethazine                                    PMZ          00110
+Sulpiride                                       SLP          00115
+Dantrolene                                      DTL          00119
+Clomipramine                                    CPM          00121
+Terbinafine                                     TBF          00123
+Lornoxicam                                      LNX          00125
+Danazol                                         DNZ          00127
+Etoposide                                       ETP          00131
+N-Phenylanthranilic acid                       NPAA          00140
+Ajmalin                                         AJM          00118
+Phenacetin                                      PCT          00138
+N-Nitrosodiethylamine                           DEN          00145
+Alpidem                                         ADM          00171
+Venlafaxine                                     VLF          00172
+Clozapine                                       CZP          00174
+Buspirone                                       BPR          00173
+Nefazodone                                      NZD          00175
+Triazolam                                       TZM          00120
+Trimethadione                                   TMD          00122
+2-Bromoethylamine                               BEA          00134
+Doxorubicin                                     DOX          00149
+Cyclosporin A                                   CSA          00142
+Cycloheximide                                   CHX          00A01
+Phorone                                         PHO          00A03
+Bendazac                                        BDZ          00129
+Buthionine sulfoximine                          BSO          00A04
+D-Galactosamine                                 GaN          00A06
+Diethyl maleate                                 DEM          00A05
+Rotenone                                        ROT          00152
+N,N'-Diphenylmethylenediamine                  DAPM          00155
+butylated hydroxyanisole                        BHA          00156
+Fungizone                                       AMB          00157
+2,4-Dinitrophenol                               DNP          00154
+Fluoxetine hydrochloride                        FLX          00158
+Dexamethasone                                   DEX          00153
+2-Nitrofluorene                                 2NF          00160
+N-Methyl-N-nitrosourea                          MNU          00164
+Acetamide                                       AAA          00169
+N-Nitrosomorpholine                            NMOR          00163
+> 
+> treatmentInfo(TGGATESsmall) <- treatmentInfo(TGGATESsmall)
+> 
+> treatmentNames(TGGATESsmall)
+  [1] "1-Naphthyl isothiocyanate"          "Phenylbutazone"                    
+  [3] "Rifampicin"                         "Indomethacin"                      
+  [5] "Chlorpromazine"                     "Isoniazid"                         
+  [7] "Acetaminophen"                      "Clofibrate"                        
+  [9] "Carbon tetrachloride"               "Phenobarbital"                     
+ [11] "Methapyrilene"                      "Ethionine"                         
+ [13] "Carbamazepine"                      "Cimetidine"                        
+ [15] "Fluphenazine"                       "Pirinixic acid"                    
+ [17] "Aspirin"                            "Gemfibrozil"                       
+ [19] "Labetalol"                          "Hexachlorobenzene"                 
+ [21] "Amiodarone"                         "Allopurinol"                       
+ [23] "Benzbromarone"                      "Nitrofurantoin"                    
+ [25] "Diazepam"                           "Griseofulvin"                      
+ [27] "Sulfasalazine"                      "Bromobenzene"                      
+ [29] "Cyclophosphamide"                   "Omeprazole"                        
+ [31] "Allyl alcohol"                      "Valproic acid"                     
+ [33] "Diclofenac"                         "Propylthiouracil"                  
+ [35] "2H-1-Benzopyran-2-one"              "Haloperidol"                       
+ [37] "Tetracycline"                       "Flutamide"                         
+ [39] "Glyburide"                          "Azathioprine"                      
+ [41] "Perhexiline"                        "Phenytoin"                         
+ [43] "Doxepin Hydrochloride"              "Thioridazine"                      
+ [45] "Methyltestosterone"                 "Lomustine"                         
+ [47] "Thioacetamide"                      "Xolegel"                           
+ [49] "Ciprofloxacin"                      "Pemoline"                          
+ [51] "Chlormezanone"                      "Metformin"                         
+ [53] "Tamoxifen"                          "Ethinyl estradiol"                 
+ [55] "Methyldopa"                         "Methimazole"                       
+ [57] "Monocrotaline"                      "Retinol"                           
+ [59] "Quinidine"                          "Tacrine"                           
+ [61] "Moxisylyte"                         "Iproniazid"                        
+ [63] "Chloramphenicol"                    "Nitrofurazone"                     
+ [65] "Trimipramine"                       "Amitriptyline"                     
+ [67] "Hydroxyzine"                        "2-(4-Isobutylphenyl)propanoic acid"
+ [69] "Naproxen"                           "Furosemide"                        
+ [71] "Fenofibrate"                        "Chlorpropamide"                    
+ [73] "Nicotinic acid"                     "Erythromycin ethylsuccinate"       
+ [75] "Ethambutol"                         "Mefenamic acid"                    
+ [77] "Pepcid"                             "Ranitidine"                        
+ [79] "Tannic acid"                        "Captopril"                         
+ [81] "Caffeine"                           "Papaverine"                        
+ [83] "Enalapril"                          "Theophylline"                      
+ [85] "Sulindac"                           "D-Penicillamine"                   
+ [87] "Disopyramide"                       "Mexiletine"                        
+ [89] "Acetazolamide"                      "Disulfiram"                        
+ [91] "Colchicine"                         "Nifedipine"                        
+ [93] "Diltiazem"                          "Chlorpheniramine"                  
+ [95] "Tolbutamide"                        "Acarbose"                          
+ [97] "Simvastatin"                        "Meloxicam"                         
+ [99] "Chlormadinone"                      "Benziodarone"                      
+[101] "Ethionamide"                        "Nimesulide"                        
+[103] "Ethanol"                            "Bucetin"                           
+[105] "acetamidofluorene"                  "Ticlopidine"                       
+[107] "Tiopronin"                          "Promethazine"                      
+[109] "Sulpiride"                          "Dantrolene"                        
+[111] "Clomipramine"                       "Terbinafine"                       
+[113] "Lornoxicam"                         "Danazol"                           
+[115] "Etoposide"                          "N-Phenylanthranilic acid"          
+[117] "Ajmalin"                            "Phenacetin"                        
+[119] "N-Nitrosodiethylamine"              "Alpidem"                           
+[121] "Venlafaxine"                        "Clozapine"                         
+[123] "Buspirone"                          "Nefazodone"                        
+[125] "Triazolam"                          "Trimethadione"                     
+[127] "2-Bromoethylamine"                  "Doxorubicin"                       
+[129] "Cyclosporin A"                      "Cycloheximide"                     
+[131] "Phorone"                            "Bendazac"                          
+[133] "Buthionine sulfoximine"             "D-Galactosamine"                   
+[135] "Diethyl maleate"                    "Rotenone"                          
+[137] "N,N'-Diphenylmethylenediamine"      "butylated hydroxyanisole"          
+[139] "Fungizone"                          "2,4-Dinitrophenol"                 
+[141] "Fluoxetine hydrochloride"           "Dexamethasone"                     
+[143] "2-Nitrofluorene"                    "N-Methyl-N-nitrosourea"            
+[145] "Acetamide"                          "N-Nitrosomorpholine"               
+> 
+> treatmentNames(TGGATESsmall) <- treatmentNames(TGGATESsmall)
+> 
+> 
+> ## @annotation
+> 
+> annotation(TGGATESsmall)
+$name
+[1] "TGGATES Human LDH"
+
+$dateCreated
+[1] "Tue Mar 10 13:19:27 2020"
+
+$sessionInfo
+R version 3.6.2 (2019-12-12)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS High Sierra 10.13.6
+
+Matrix products: default
+BLAS:   /System/Library/Frameworks/Accelerate.framework/Versions/A/Frameworks/vecLib.framework/Versions/A/libBLAS.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/3.6/Resources/lib/libRlapack.dylibError in grepl(LAver, lapack, fixed = TRUE) : invalid 'pattern' argument
+Calls: <Anonymous> -> print.sessionInfo -> grepl
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘toxicoGxCaseStudies.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/ToxicoGx.Rcheck/00check.log’
+for details.
+

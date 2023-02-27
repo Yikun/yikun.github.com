@@ -1,0 +1,122 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:rWikiPathways.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings rWikiPathways_1.19.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/rWikiPathways.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘rWikiPathways/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘rWikiPathways’ version ‘1.19.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .travis.yml
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... NOTE
+Found the following non-portable file path:
+  rWikiPathways/docs/articles/rWikiPathways-and-BridgeDbR_files/accessible-code-block-0.0.1/empty-anchor.js
+
+Tarballs are only required to store paths of up to 100 bytes and cannot
+store those of more than 256 bytes, with restrictions including to 100
+bytes for the final component.
+See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘rWikiPathways’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+readPathwayGMT: no visible binding for global variable ‘pathway’
+Undefined global functions or variables:
+  pathway
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                              user system elapsed
+findPathwayIdsByLiterature   0.271  0.007  10.568
+findPathwayUrlsByLiterature  0.166  0.032  10.049
+findPathwaysByLiterature     0.170  0.003   9.166
+findPathwayNamesByLiterature 0.162  0.004   9.985
+listPathwayNames             0.012  0.001   6.741
+listPathwayUrls              0.013  0.000   9.123
+listPathways                 0.013  0.000   8.858
+listPathwayIds               0.007  0.004   6.632
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  ══ Failed tests ════════════════════════════════════════════════════════════════
+  ── Failure ('test-getXrefList.R:6'): get WP2338 Xrefs ──────────────────────────
+  "Q9UPY3" %in% xrefs is not TRUE
+  
+  `actual`:   FALSE
+  `expected`: TRUE 
+  ── Failure ('test-getXrefList.R:11'): get WP2338 (again) ───────────────────────
+  "Q9UPY3" %in% xrefs is not TRUE
+  
+  `actual`:   FALSE
+  `expected`: TRUE 
+  
+  [ FAIL 2 | WARN 0 | SKIP 0 | PASS 25 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘Overview.Rmd’ using ‘UTF-8’... OK
+  ‘Pathway-Analysis.Rmd’ using ‘UTF-8’... OK
+  ‘rWikiPathways-and-BridgeDbR.Rmd’ using ‘UTF-8’... OK
+  ‘rWikiPathways-and-RCy3.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/rWikiPathways.Rcheck/00check.log’
+for details.
+

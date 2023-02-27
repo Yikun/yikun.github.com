@@ -1,0 +1,52 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL GENIE3
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘GENIE3’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -Wall -c GENIE3.c -o GENIE3.o
+GENIE3.c: In function ‘find_the_best_threshold_multiregr’:
+GENIE3.c:1368:24: warning: ‘best_threshold’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1368 |     current_threshold.f=best_threshold;
+      |     ~~~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~
+GENIE3.c:1370:27: warning: ‘best_info’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1370 |     current_threshold_info=best_info;
+      |     ~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+GENIE3.c: In function ‘build_one_tree_ensemble’:
+GENIE3.c:1052:7: warning: ‘fp’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1052 |       write_one_tree(current_tree, fp);
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+GENIE3.c: In function ‘find_the_best_threshold_symb_multiregr’:
+GENIE3.c:1466:27: warning: ‘best_info’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1466 |     current_threshold_info=best_info;
+      |     ~~~~~~~~~~~~~~~~~~~~~~^~~~~~~~~~
+GENIE3.c: In function ‘compute_ltrees_variable_importance_multiregr_separate’:
+GENIE3.c:1762:10: warning: ‘flag_continue’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1762 |   return flag_continue;
+      |          ^~~~~~~~~~~~~
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o GENIE3.so GENIE3.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-GENIE3/00new/GENIE3/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+in method for ‘GENIE3’ with signature ‘"SummarizedExperiment"’: no definition for class “SummarizedExperiment”
+in method for ‘GENIE3’ with signature ‘"ExpressionSet"’: no definition for class “ExpressionSet”
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (GENIE3)

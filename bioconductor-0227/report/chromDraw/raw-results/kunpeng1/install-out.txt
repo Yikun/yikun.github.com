@@ -1,0 +1,122 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL chromDraw
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘chromDraw’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c chromDraw.cpp -o chromDraw.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c libBoard/src/Board.cpp -o libBoard/src/Board.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c libBoard/src/Color.cpp -o libBoard/src/Color.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c libBoard/src/PSFonts.cpp -o libBoard/src/PSFonts.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c libBoard/src/Path.cpp -o libBoard/src/Path.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c libBoard/src/Rect.cpp -o libBoard/src/Rect.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c libBoard/src/ShapeList.cpp -o libBoard/src/ShapeList.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c libBoard/src/Shapes.cpp -o libBoard/src/Shapes.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c libBoard/src/Tools.cpp -o libBoard/src/Tools.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c libBoard/src/Transforms.cpp -o libBoard/src/Transforms.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c chromDrawCPP/canvas.cpp -o chromDrawCPP/canvas.o
+chromDrawCPP/canvas.cpp: In member function ‘void canvas::lin_drawRectangleMarkSign(int, canvas::ELocationOnChromosome, int)’:
+chromDrawCPP/canvas.cpp:369:68: warning: ‘coordinate_y’ may be used uninitialized [-Wmaybe-uninitialized]
+  369 |         sheet.drawRectangle(last_x-0.5*sizefactor*MARK_WIDTHSIZE1, coordinate_y+0.5*sizefactor*MARK_HEIGHTSIZE1, sizefactor*MARK_WIDTHSIZE1, sizefactor*MARK_HEIGHTSIZE1);
+      |                                                                    ^~~~~~~~~~~~
+chromDrawCPP/canvas.cpp: In member function ‘void canvas::lin_drawEllipseMarkSign(int, canvas::ELocationOnChromosome, int)’:
+chromDrawCPP/canvas.cpp:446:26: warning: ‘coordinate_y’ may be used uninitialized [-Wmaybe-uninitialized]
+  446 |         sheet.drawEllipse(last_x,coordinate_y, sizefactor*MARK_WIDTHSIZE1/2.0,sizefactor*MARK_HEIGHTSIZE1);
+      |         ~~~~~~~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c chromDrawCPP/chBlock.cpp -o chromDrawCPP/chBlock.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c chromDrawCPP/chCentromere.cpp -o chromDrawCPP/chCentromere.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c chromDrawCPP/chromosome.cpp -o chromDrawCPP/chromosome.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c chromDrawCPP/chromosomeElement.cpp -o chromDrawCPP/chromosomeElement.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c chromDrawCPP/chromosomeMark.cpp -o chromDrawCPP/chromosomeMark.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c chromDrawCPP/chromosomeSign.cpp -o chromDrawCPP/chromosomeSign.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c chromDrawCPP/color.cpp -o chromDrawCPP/color.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c chromDrawCPP/colorPalette.cpp -o chromDrawCPP/colorPalette.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c chromDrawCPP/getOpts.cpp -o chromDrawCPP/getOpts.o
+chromDrawCPP/getOpts.cpp: In member function ‘char getOpts::getOptions(int, char**, char*, char**)’:
+chromDrawCPP/getOpts.cpp:47:22: warning: unused variable ‘x’ [-Wunused-variable]
+   47 |                 char x = argv[argcurent][1];
+      |                      ^
+chromDrawCPP/getOpts.cpp:48:22: warning: unused variable ‘y’ [-Wunused-variable]
+   48 |                 char y = argv[argcurent][2];
+      |                      ^
+chromDrawCPP/getOpts.cpp:49:22: warning: unused variable ‘o’ [-Wunused-variable]
+   49 |                 char o = optv[optcurent];
+      |                      ^
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c chromDrawCPP/ideogram.cpp -o chromDrawCPP/ideogram.o
+chromDrawCPP/ideogram.cpp: In member function ‘int ideogram::loadMatrix(std::string, std::string)’:
+chromDrawCPP/ideogram.cpp:70:13: warning: ‘retVal’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   70 |         int retVal;
+      |             ^~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c chromDrawCPP/karyotype.cpp -o chromDrawCPP/karyotype.o
+chromDrawCPP/karyotype.cpp: In member function ‘int karyotype::loadMatrix(std::ifstream*)’:
+chromDrawCPP/karyotype.cpp:266:49: warning: deleting object of polymorphic class type ‘chBlock’ which has non-virtual destructor might cause undefined behavior [-Wdelete-non-virtual-dtor]
+  266 |                                                 delete block;
+      |                                                 ^~~~~~~~~~~~
+chromDrawCPP/karyotype.cpp:274:41: warning: deleting object of polymorphic class type ‘chBlock’ which has non-virtual destructor might cause undefined behavior [-Wdelete-non-virtual-dtor]
+  274 |                                         delete block;
+      |                                         ^~~~~~~~~~~~
+chromDrawCPP/karyotype.cpp:315:41: warning: deleting object of polymorphic class type ‘chCentromere’ which has non-virtual destructor might cause undefined behavior [-Wdelete-non-virtual-dtor]
+  315 |                                         delete centromere;
+      |                                         ^~~~~~~~~~~~~~~~~
+chromDrawCPP/karyotype.cpp:421:49: warning: deleting object of polymorphic class type ‘markSign’ which has non-virtual destructor might cause undefined behavior [-Wdelete-non-virtual-dtor]
+  421 |                                                 delete mark;
+      |                                                 ^~~~~~~~~~~
+chromDrawCPP/karyotype.cpp:429:41: warning: deleting object of polymorphic class type ‘markSign’ which has non-virtual destructor might cause undefined behavior [-Wdelete-non-virtual-dtor]
+  429 |                                         delete mark;
+      |                                         ^~~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c chromDrawCPP/markSign.cpp -o chromDrawCPP/markSign.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c chromDrawCPP/parameters.cpp -o chromDrawCPP/parameters.o
+chromDrawCPP/parameters.cpp:66:63: warning: extra tokens at end of #ifdef directive
+   66 |                                                 #ifdef _WIN32 || _WIN64
+      |                                                               ^~
+chromDrawCPP/parameters.cpp:147:15: warning: extra tokens at end of #ifdef directive
+  147 | #ifdef _WIN32 || _WIN64
+      |               ^~
+chromDrawCPP/parameters.cpp:159:15: warning: extra tokens at end of #ifdef directive
+  159 | #ifdef _WIN32 || _WIN64
+      |               ^~
+chromDrawCPP/parameters.cpp: In member function ‘int parameters::loadArguments(int, char**)’:
+chromDrawCPP/parameters.cpp:42:37: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   42 |         char *paramsExpanded[10] = {"--help",
+      |                                     ^~~~~~~~
+chromDrawCPP/parameters.cpp:43:65: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   43 |                                                                 "--outputpath",
+      |                                                                 ^~~~~~~~~~~~~~
+chromDrawCPP/parameters.cpp:44:65: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   44 |                                                                 "--colorinputpath",
+      |                                                                 ^~~~~~~~~~~~~~~~~~
+chromDrawCPP/parameters.cpp:45:65: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   45 |                                                                 "--datainputpath",
+      |                                                                 ^~~~~~~~~~~~~~~~~
+chromDrawCPP/parameters.cpp:46:65: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   46 |                                                                 "--scale",
+      |                                                                 ^~~~~~~~~
+chromDrawCPP/parameters.cpp:47:65: warning: ISO C++ forbids converting a string constant to ‘char*’ [-Wwrite-strings]
+   47 |                                                                 "--format"};
+      |                                                                 ^~~~~~~~~~
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -isystem ./libBoard/include -isystem ./chromDrawCPP -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c R_init_chromDraw.cpp -o R_init_chromDraw.o
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o chromDraw.so chromDraw.o RcppExports.o ./libBoard/src/Board.o ./libBoard/src/Color.o ./libBoard/src/PSFonts.o ./libBoard/src/Path.o ./libBoard/src/Rect.o ./libBoard/src/ShapeList.o ./libBoard/src/Shapes.o ./libBoard/src/Tools.o ./libBoard/src/Transforms.o ./chromDrawCPP/canvas.o ./chromDrawCPP/chBlock.o ./chromDrawCPP/chCentromere.o ./chromDrawCPP/chromosome.o ./chromDrawCPP/chromosomeElement.o ./chromDrawCPP/chromosomeMark.o ./chromDrawCPP/chromosomeSign.o ./chromDrawCPP/color.o ./chromDrawCPP/colorPalette.o ./chromDrawCPP/getOpts.o ./chromDrawCPP/ideogram.o ./chromDrawCPP/karyotype.o ./chromDrawCPP/markSign.o ./chromDrawCPP/parameters.o ./R_init_chromDraw.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-chromDraw/00new/chromDraw/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (chromDraw)

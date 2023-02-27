@@ -1,0 +1,149 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:GDCRNATools.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings GDCRNATools_1.19.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/GDCRNATools.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘GDCRNATools/DESCRIPTION’ ... OK
+* this is package ‘GDCRNATools’ version ‘1.19.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘GDCRNATools’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... NOTE
+File
+  LICENSE
+is not mentioned in the DESCRIPTION file.
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+deAnalysislimma: warning in topTable(fit2, coef = 1, n = Inf): partial
+  argument match of 'n' to 'number'
+gdcDEAnalysis: warning in topTable(fit2, coef = 1, n = Inf): partial
+  argument match of 'n' to 'number'
+cleanMirFun: no visible global function definition for ‘read.table’
+cleanMirFun: no visible global function definition for ‘aggregate’
+downloadClientFun: no visible global function definition for
+  ‘download.file’
+downloadClientFun: no visible global function definition for ‘unzip’
+enrichBarPlotFun: no visible binding for global variable ‘Terms’
+enrichBarPlotFun: no visible binding for global variable ‘FDR’
+enrichBarPlotFun: no visible binding for global variable ‘Category’
+enrichBubblePlotFun: no visible binding for global variable ‘Terms’
+enrichBubblePlotFun: no visible binding for global variable
+  ‘foldEnrichment’
+enrichBubblePlotFun: no visible binding for global variable ‘FDR’
+enrichBubblePlotFun: no visible binding for global variable ‘Counts’
+gdcBarPlot: no visible binding for global variable ‘Regulation’
+gdcClinicalDownload: no visible global function definition for
+  ‘read.table’
+gdcClinicalDownload: no visible global function definition for
+  ‘write.table’
+gdcCorPlot: no visible global function definition for ‘cor.test’
+gdcDEAnalysis: no visible global function definition for ‘model.matrix’
+gdcDEAnalysis: no visible global function definition for ‘p.adjust’
+gdcGetURL: no visible global function definition for ‘URLencode’
+gdcKMPlot: no visible global function definition for ‘pchisq’
+gdcKMPlot: no visible global function definition for ‘qnorm’
+gdcRNADownload: no visible global function definition for ‘read.table’
+gdcRNADownload: no visible global function definition for ‘write.table’
+gdcRNAMerge : <anonymous>: no visible global function definition for
+  ‘read.table’
+gdcRNAMerge: no visible global function definition for ‘read.table’
+gdcRNAMerge : <anonymous>: no visible global function definition for
+  ‘read.delim’
+gdcRNAMerge: no visible global function definition for ‘read.delim’
+hyperTestFun: no visible global function definition for ‘phyper’
+kmTestFun: no visible global function definition for ‘pchisq’
+kmTestFun: no visible global function definition for ‘qnorm’
+manifestDownloadFun: no visible global function definition for
+  ‘read.table’
+mirCorTestFun: no visible global function definition for ‘cor.test’
+multiRegFun: no visible global function definition for ‘cor.test’
+Undefined global functions or variables:
+  Category Counts FDR Regulation Terms URLencode aggregate cor.test
+  download.file foldEnrichment model.matrix p.adjust pchisq phyper
+  qnorm read.delim read.table unzip write.table
+Consider adding
+  importFrom("stats", "aggregate", "cor.test", "model.matrix",
+             "p.adjust", "pchisq", "phyper", "qnorm")
+  importFrom("utils", "URLencode", "download.file", "read.delim",
+             "read.table", "unzip", "write.table")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking R/sysdata.rda ... NOTE
+  
+  Note: significantly better compression could be obtained
+        by using R CMD build --resave-data
+              old_size new_size compress
+  sysdata.rda    3.2Mb    1.6Mb    bzip2
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                     user system elapsed
+gdcRNAMerge         0.271  0.023   5.053
+gdcFilterDuplicate  0.215  0.008   5.543
+gdcFilterSampleType 0.216  0.004   5.062
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘index.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/GDCRNATools.Rcheck/00check.log’
+for details.
+
+
