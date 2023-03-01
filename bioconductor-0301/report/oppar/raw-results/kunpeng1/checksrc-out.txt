@@ -1,0 +1,154 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:oppar.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings oppar_1.27.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/oppar.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘oppar/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘oppar’ version ‘1.27.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘oppar’ can be installed ... OK
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... NOTE
+  installed size is  5.7Mb
+  sub-directories of 1Mb or more:
+    data   5.1Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... NOTE
+Problems with news in ‘NEWS’:
+  Cannot process chunk/lines:
+    Initial release
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+compute.gene.density : <anonymous>: no visible global function
+  definition for ‘ecdf’
+compute.geneset.es: no visible global function definition for
+  ‘txtProgressBar’
+compute.geneset.es: no visible global function definition for
+  ‘setTxtProgressBar’
+ks_test_m: no visible global function definition for
+  ‘setTxtProgressBar’
+plage: no visible global function definition for ‘txtProgressBar’
+plage : <anonymous>: no visible global function definition for ‘sd’
+plage : <anonymous>: no visible global function definition for
+  ‘setTxtProgressBar’
+plage: no visible global function definition for ‘setTxtProgressBar’
+ssgsea: no visible global function definition for ‘txtProgressBar’
+ssgsea : <anonymous>: no visible global function definition for
+  ‘setTxtProgressBar’
+ssgsea: no visible global function definition for ‘setTxtProgressBar’
+zscore: no visible global function definition for ‘txtProgressBar’
+zscore : <anonymous>: no visible global function definition for ‘sd’
+zscore : <anonymous>: no visible global function definition for
+  ‘setTxtProgressBar’
+zscore: no visible global function definition for ‘setTxtProgressBar’
+computeGeneSetsOverlap,list-ExpressionSet : <anonymous>: no visible
+  global function definition for ‘na.omit’
+computeGeneSetsOverlap,list-character : <anonymous>: no visible global
+  function definition for ‘na.omit’
+gsva,ExpressionSet-GeneSetCollection: no visible binding for global
+  variable ‘sd’
+gsva,ExpressionSet-GeneSetCollection : <anonymous>: no visible global
+  function definition for ‘na.omit’
+gsva,ExpressionSet-list: no visible binding for global variable ‘sd’
+gsva,ExpressionSet-list : <anonymous>: no visible global function
+  definition for ‘na.omit’
+gsva,matrix-GeneSetCollection: no visible binding for global variable
+  ‘sd’
+gsva,matrix-GeneSetCollection : <anonymous>: no visible global function
+  definition for ‘na.omit’
+gsva,matrix-list: no visible binding for global variable ‘sd’
+gsva,matrix-list : <anonymous>: no visible global function definition
+  for ‘na.omit’
+opa,matrix: no visible global function definition for ‘relevel’
+opa,matrix : <anonymous>: no visible global function definition for
+  ‘mad’
+opa,matrix : <anonymous>: no visible global function definition for
+  ‘median’
+opa,matrix : <anonymous>: no visible binding for global variable
+  ‘quantile’
+opa,matrix : <anonymous>: no visible global function definition for
+  ‘IQR’
+show,OPPARList: no visible global function definition for ‘head’
+Undefined global functions or variables:
+  IQR ecdf head mad median na.omit quantile relevel sd
+  setTxtProgressBar txtProgressBar
+Consider adding
+  importFrom("stats", "IQR", "ecdf", "mad", "median", "na.omit",
+             "quantile", "relevel", "sd")
+  importFrom("utils", "head", "setTxtProgressBar", "txtProgressBar")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... WARNING
+  LazyData DB of 5.1 MB without LazyDataCompression set
+  See §1.1.6 of 'Writing R Extensions'
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                   user system elapsed
+getSampleOutlier 23.850  0.396  24.248
+opa              21.827  0.160  21.988
+getSubtypeProbes 21.451  0.120  21.573
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘oppar.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 WARNING, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/oppar.Rcheck/00check.log’
+for details.
+
+

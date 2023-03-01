@@ -1,0 +1,148 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:chipseq.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings chipseq_1.49.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/chipseq.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘chipseq/DESCRIPTION’ ... OK
+* this is package ‘chipseq’ version ‘1.49.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘chipseq’ can be installed ... OK
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Description field: should contain one or more complete sentences.
+Packages listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘methods’ ‘BiocGenerics’ ‘IRanges’ ‘GenomicRanges’ ‘ShortRead’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.genomicContext: no visible global function definition for
+  ‘transcripts’
+.genomicContext: no visible global function definition for ‘cdsBy’
+.genomicContext: no visible global function definition for
+  ‘threeUTRsByTranscript’
+.genomicContext: no visible global function definition for
+  ‘fiveUTRsByTranscript’
+.genomicContext: no visible global function definition for
+  ‘intronsByTranscript’
+.nearestTss: no visible global function definition for ‘transcripts’
+.nearestTss: no visible global function definition for ‘seqlevels<-’
+.nearestTss: no visible global function definition for ‘seqlevels’
+applyPosByChrAndStrand: no visible global function definition for
+  ‘seqnames’
+correlation.estimate: no visible binding for global variable ‘mu’
+correlation.estimate: no visible binding for global variable ‘corr’
+correlationProfile : <anonymous>: no visible global function definition
+  for ‘subseq’
+coverage.estimate: no visible binding for global variable ‘mu’
+coverage.estimate: no visible binding for global variable ‘covered’
+islandDepthPlot: no visible binding for global variable ‘depth’
+islandDepthPlot : <anonymous>: no visible global function definition
+  for ‘panel.lines’
+islandDepthPlot : <anonymous>: no visible global function definition
+  for ‘panel.xyplot’
+laneSubsample: no visible global function definition for ‘seqnames’
+laneSubsample: no visible global function definition for ‘GRangesList’
+subsetSummary: no visible global function definition for ‘seqlengths’
+subsetSummary: no visible global function definition for ‘GRanges’
+subsetSummary: no visible global function definition for ‘seqnames’
+subsetSummary: no visible global function definition for ‘seqlengths<-’
+diffPeakSummary,RleViewsList-RleViewsList: no visible global function
+  definition for ‘GRanges’
+estimate.mean.fraglen,GRanges: no visible global function definition
+  for ‘seqnames’
+peakSummary,RleViewsList: no visible global function definition for
+  ‘GRanges’
+Undefined global functions or variables:
+  GRanges GRangesList cdsBy corr covered depth fiveUTRsByTranscript
+  intronsByTranscript mu panel.lines panel.xyplot seqlengths
+  seqlengths<- seqlevels seqlevels<- seqnames subseq
+  threeUTRsByTranscript transcripts
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented S4 methods:
+  generic 'densityCorr' and siglist 'GenomicRanges'
+  generic 'densityCorr' and siglist 'list'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... WARNING
+Codoc mismatches from documentation object 'estimate.mean.fraglen':
+densityCorr
+  Code: function(x, ...)
+  Docs: function(x, shift = seq(0, 500, 5), center = FALSE, width =
+                 seqLen * 2L, seqLen = 100L, maxDist = 500L, ...)
+  Argument names in docs not in code:
+    shift center width seqLen maxDist
+  Mismatches in argument names:
+    Position: 2 Code: ... Docs: shift
+
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... WARNING
+'library' or 'require' call not declared from: ‘BSgenome.Mmusculus.UCSC.mm9’
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                 user system elapsed
+diffPeakSummary 5.859  0.128   5.987
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘Workflow.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 WARNINGs, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/chipseq.Rcheck/00check.log’
+for details.
+
+

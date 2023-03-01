@@ -1,0 +1,109 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:RepViz.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings RepViz_1.15.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/RepViz.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘RepViz/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘RepViz’ version ‘1.15.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘RepViz’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... NOTE
+Problems with news in ‘NEWS’:
+  Cannot process chunk/lines:
+    CHANGES IN VERSION 0.99.26
+      RELEASE
+      + Correction of a visual bug that appeared when there is low signal. This was due to the fact that the coverage was stopping at the last read instead of at the end of the window. As the result the lines of signal on the plot appeared cutted.
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+unitTest: no visible global function definition for ‘is’
+Undefined global functions or variables:
+  is
+Consider adding
+  importFrom("methods", "is")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... WARNING
+Codoc mismatches from documentation object 'RepViz':
+RepViz
+  Code: function(region, genome = c("hg19", "hg38", "mm10"), BAM =
+                 NULL, BED = NULL, avgTrack = TRUE, geneTrack = TRUE,
+                 max = NULL, verbose = TRUE, cex = 1, col = NULL)
+  Docs: function(region, genome = c("hg19", "hg38", "mm10"), BAM =
+                 NULL, BED = NULL, avgTrack = TRUE, geneTrack = TRUE,
+                 max = NULL, verbose = TRUE, cex = 1)
+  Argument names in code not in docs:
+    col
+
+* checking Rd \usage sections ... WARNING
+Documented arguments not in \usage in documentation object 'RepViz':
+  ‘col’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... WARNING
+Found the following significant warnings:
+  Warning: working directory was changed to ‘/tmp/RtmpeeL6s0’, resetting
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘RepViz.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 WARNINGs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/RepViz.Rcheck/00check.log’
+for details.
+
+

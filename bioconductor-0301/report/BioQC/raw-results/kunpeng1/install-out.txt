@@ -1,0 +1,53 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL BioQC
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘BioQC’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG `/home/biocbuild/bbs-3.17-bioc/R/bin/Rscript -e 'Rcpp:::CxxFlags()'` -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c gini.c -o gini.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG `/home/biocbuild/bbs-3.17-bioc/R/bin/Rscript -e 'Rcpp:::CxxFlags()'` -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c init.c -o init.o
+g++ -std=gnu++14  -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG `/home/biocbuild/bbs-3.17-bioc/R/bin/Rscript -e 'Rcpp:::CxxFlags()'` -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall  -c read_gmt.cpp -o read_gmt.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG `/home/biocbuild/bbs-3.17-bioc/R/bin/Rscript -e 'Rcpp:::CxxFlags()'` -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c stat_rank.c -o stat_rank.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG `/home/biocbuild/bbs-3.17-bioc/R/bin/Rscript -e 'Rcpp:::CxxFlags()'` -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c wmw_test.c -o wmw_test.o
+wmw_test.c: In function ‘wmw_test_list’:
+wmw_test.c:118: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  118 | #pragma omp parallel for
+      | 
+wmw_test.c: In function ‘wmw_test’:
+wmw_test.c:168: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  168 | #pragma omp parallel for
+      | 
+wmw_test.c: In function ‘signed_wmw_test_list’:
+wmw_test.c:201: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  201 | #pragma omp parallel for
+      | 
+wmw_test.c: In function ‘signed_wmw_test’:
+wmw_test.c:270: warning: ignoring ‘#pragma omp parallel’ [-Wunknown-pragmas]
+  270 | #pragma omp parallel for
+      | 
+g++ -std=gnu++14 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o BioQC.so gini.o init.o read_gmt.o stat_rank.o wmw_test.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-BioQC/00new/BioQC/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (BioQC)

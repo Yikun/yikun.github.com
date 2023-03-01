@@ -1,0 +1,54 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL esATAC
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘esATAC’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DNDEBUG -DPLF_SYS_LINUX  -DR_EVN_FLAG -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c BedLine.cpp -o BedLine.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DNDEBUG -DPLF_SYS_LINUX  -DR_EVN_FLAG -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c BedUtils.cpp -o BedUtils.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DNDEBUG -DPLF_SYS_LINUX  -DR_EVN_FLAG -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c ChrDivi.cpp -o ChrDivi.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DNDEBUG -DPLF_SYS_LINUX  -DR_EVN_FLAG -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c CutCountPre.cpp -o CutCountPre.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DNDEBUG -DPLF_SYS_LINUX  -DR_EVN_FLAG -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c CutSiteCount.cpp -o CutSiteCount.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DNDEBUG -DPLF_SYS_LINUX  -DR_EVN_FLAG -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c LibComplexQC.cpp -o LibComplexQC.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DNDEBUG -DPLF_SYS_LINUX  -DR_EVN_FLAG -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DNDEBUG -DPLF_SYS_LINUX  -DR_EVN_FLAG -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c SortBed.cpp -o SortBed.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DNDEBUG -DPLF_SYS_LINUX  -DR_EVN_FLAG -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c rcpp_wrapper.cpp -o rcpp_wrapper.o
+rcpp_wrapper.cpp: In function ‘int CutSiteCount_wrapper(Rcpp::List)’:
+rcpp_wrapper.cpp:334:7: warning: variable ‘tmp_k’ set but not used [-Wunused-but-set-variable]
+  334 |   int tmp_k;
+      |       ^~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DNDEBUG -DPLF_SYS_LINUX  -DR_EVN_FLAG -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c renamer.cpp -o renamer.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -DNDEBUG -DPLF_SYS_LINUX  -DR_EVN_FLAG -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c sam2bed.cc -o sam2bed.o
+sam2bed.cc: In member function ‘int SamToBed::sam2bed(int, int, char**, int, bool, bool)’:
+sam2bed.cc:125:16: warning: unused variable ‘xspm’ [-Wunused-variable]
+  125 |     regmatch_t xspm[1];
+      |                ^~~~
+sam2bed.cc: In member function ‘int SamToBed::sam2bed_merge(int, int, char**, int, bool, bool, int, int, bool)’:
+sam2bed.cc:294:16: warning: unused variable ‘xspm’ [-Wunused-variable]
+  294 |     regmatch_t xspm[1];
+      |                ^~~~
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o esATAC.so BedLine.o BedUtils.o ChrDivi.o CutCountPre.o CutSiteCount.o LibComplexQC.o RcppExports.o SortBed.o rcpp_wrapper.o renamer.o sam2bed.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-esATAC/00new/esATAC/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (esATAC)

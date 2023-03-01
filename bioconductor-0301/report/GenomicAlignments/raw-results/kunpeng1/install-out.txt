@@ -1,0 +1,79 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL GenomicAlignments
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘GenomicAlignments’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c IRanges_stubs.c -o IRanges_stubs.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c R_init_GenomicAlignments.c -o R_init_GenomicAlignments.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c S4Vectors_stubs.c -o S4Vectors_stubs.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c cigar_utils.c -o cigar_utils.o
+cigar_utils.c: In function ‘cigar_ranges’:
+cigar_utils.c:676:30: warning: ‘f_elt’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  676 |                         f_elt++;
+      |                         ~~~~~^~
+cigar_utils.c:674:43: warning: ‘range_buf1’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  674 |                         *(breakpoint++) = IntPairAE_get_nelt(range_buf1);
+      |                                           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cigar_utils.c:674:37: warning: ‘breakpoint’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  674 |                         *(breakpoint++) = IntPairAE_get_nelt(range_buf1);
+      |                          ~~~~~~~~~~~^~~
+cigar_utils.c:626:29: warning: ‘flag_elt’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  626 |                         if (*flag_elt == NA_INTEGER) {
+      |                             ^~~~~~~~~
+cigar_utils.c: In function ‘cigar_width’:
+cigar_utils.c:708:29: warning: ‘flag_elt’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  708 |                         if (*flag_elt == NA_INTEGER) {
+      |                             ^~~~~~~~~
+cigar_utils.c: In function ‘cigar_narrow’:
+cigar_utils.c:883:20: warning: ‘Roffset’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  883 |                 if (offset == Roffset)
+      |                    ^
+cigar_utils.c:854:22: note: ‘Roffset’ was declared here
+  854 |         int Loffset, Roffset, buf_offset;
+      |                      ^~~~~~~
+cigar_utils.c:881:20: warning: ‘Loffset’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  881 |                 if (offset == Loffset)
+      |                    ^
+cigar_utils.c:854:13: note: ‘Loffset’ was declared here
+  854 |         int Loffset, Roffset, buf_offset;
+      |             ^~~~~~~
+cigar_utils.c: In function ‘cigar_qnarrow’:
+cigar_utils.c:1074:20: warning: ‘Roffset’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1074 |                 if (offset == Roffset)
+      |                    ^
+cigar_utils.c:1045:22: note: ‘Roffset’ was declared here
+ 1045 |         int Loffset, Roffset, buf_offset;
+      |                      ^~~~~~~
+cigar_utils.c:1072:20: warning: ‘Loffset’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1072 |                 if (offset == Loffset)
+      |                    ^
+cigar_utils.c:1045:13: note: ‘Loffset’ was declared here
+ 1045 |         int Loffset, Roffset, buf_offset;
+      |             ^~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c coordinate_mapping_methods.c -o coordinate_mapping_methods.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/S4Vectors/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/IRanges/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c encodeOverlaps_methods.c -o encodeOverlaps_methods.o
+gcc -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o GenomicAlignments.so IRanges_stubs.o R_init_GenomicAlignments.o S4Vectors_stubs.o cigar_utils.o coordinate_mapping_methods.o encodeOverlaps_methods.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-GenomicAlignments/00new/GenomicAlignments/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (GenomicAlignments)

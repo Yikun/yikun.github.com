@@ -1,0 +1,209 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:TCGAbiolinks.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings TCGAbiolinks_2.27.2.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/TCGAbiolinks.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘TCGAbiolinks/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘TCGAbiolinks’ version ‘2.27.2’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘TCGAbiolinks’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is  6.4Mb
+  sub-directories of 1Mb or more:
+    R      1.6Mb
+    data   4.5Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... NOTE
+Problems with news in ‘NEWS’:
+  Cannot process chunk/lines:
+    Changing chunks.per.download to files.per.chunk
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... WARNING
+'library' or 'require' call not declared from: ‘dplyr’
+'library' or 'require' calls in package code:
+  ‘dplyr’ ‘maftools’
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+GDCprepare_clinic: no visible binding for global variable
+  ‘bcr_patient_barcode’
+GDCprepare_clinic: no visible binding for global variable
+  ‘days_to_last_followup’
+GDCprepare_clinic: no visible binding for global variable
+  ‘vital_status’
+GDCquery : <anonymous>: no visible binding for global variable
+  ‘submitter_id’
+GDCquery : <anonymous>: no visible binding for global variable
+  ‘is_ffpe’
+GDCquery_clinic : <anonymous>: no visible binding for global variable
+  ‘submitter_id’
+TCGAanalyze_DEA: no visible binding for global variable ‘barcode’
+TCGAanalyze_DEA: no visible binding for global variable ‘clinical’
+TCGAquery_recount2: no visible binding for global variable ‘rse_gene’
+TCGAtumor_purity: no visible binding for global variable ‘Tumor.purity’
+TCGAvisualize_oncoprint: no visible binding for global variable ‘value’
+TCGAvisualize_starburst: no visible binding for global variable
+  ‘gene_name’
+TCGAvisualize_starburst: no visible binding for global variable
+  ‘geFDR2’
+TCGAvisualize_starburst: no visible binding for global variable ‘logFC’
+TCGAvisualize_starburst: no visible binding for global variable
+  ‘meFDR2’
+TCGAvisualize_starburst: no visible binding for global variable
+  ‘threshold.starburst’
+TCGAvisualize_starburst: no visible binding for global variable
+  ‘starburst.status’
+colDataPrepare: no visible binding for global variable
+  ‘sample_submitter_id’
+colDataPrepare: no visible binding for global variable ‘submitter_id’
+colDataPrepare: no visible binding for global variable ‘sample_type’
+readExonQuantification: no visible binding for global variable ‘exon’
+readExonQuantification: no visible binding for global variable
+  ‘coordinates’
+readGeneExpressionQuantification : <anonymous>: no visible binding for
+  '<<-' assignment to ‘assay.list’
+readGeneExpressionQuantification: no visible binding for global
+  variable ‘assay.list’
+readSingleCellAnalysis : <anonymous>: no visible global function
+  definition for ‘Read10X’
+Undefined global functions or variables:
+  Read10X Tumor.purity assay.list barcode bcr_patient_barcode clinical
+  coordinates days_to_last_followup exon geFDR2 gene_name is_ffpe logFC
+  meFDR2 rse_gene sample_submitter_id sample_type starburst.status
+  submitter_id threshold.starburst value vital_status
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking R/sysdata.rda ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                         user system elapsed
+TCGAanalyze_DEA        13.113  0.671  13.785
+getManifest            12.588  0.172  98.540
+TCGAanalyze_LevelTab    6.224  0.056   6.281
+GDCdownload             4.627  0.199  47.727
+matchedMetExp           2.712  0.088  29.904
+GDCprepare_clinic       2.489  0.173  35.531
+GDCquery                2.313  0.148  16.899
+GDCquery_clinic         2.075  0.156  21.107
+getDataCategorySummary  1.905  0.024  13.624
+getResults              1.806  0.072  18.637
+GDCquery_ATAC_seq       0.826  0.034   8.624
+getSampleFilesSummary   0.790  0.049   6.484
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘analysis.Rmd’ using ‘UTF-8’... OK
+  ‘casestudy.Rmd’ using ‘UTF-8’... OK
+  ‘classifiers.Rmd’ using ‘UTF-8’... OK
+  ‘clinical.Rmd’ using ‘UTF-8’... OK
+  ‘download_prepare.Rmd’ using ‘UTF-8’... OK
+  ‘extension.Rmd’ using ‘UTF-8’... OK
+  ‘index.Rmd’ using ‘UTF-8’... OK
+  ‘mutation.Rmd’ using ‘UTF-8’... OK
+  ‘query.Rmd’ using ‘UTF-8’... OK
+  ‘stemness_score.Rmd’ using ‘UTF-8’... OK
+  ‘subtypes.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+--- re-building ‘analysis.Rmd’ using rmarkdown
+--- finished re-building ‘analysis.Rmd’
+
+--- re-building ‘casestudy.Rmd’ using rmarkdown
+--- finished re-building ‘casestudy.Rmd’
+
+--- re-building ‘classifiers.Rmd’ using rmarkdown
+--- finished re-building ‘classifiers.Rmd’
+
+--- re-building ‘clinical.Rmd’ using rmarkdown
+--- finished re-building ‘clinical.Rmd’
+
+--- re-building ‘download_prepare.Rmd’ using rmarkdown
+--- finished re-building ‘download_prepare.Rmd’
+
+--- re-building ‘extension.Rmd’ using rmarkdown
+--- finished re-building ‘extension.Rmd’
+
+--- re-building ‘index.Rmd’ using rmarkdown
+--- finished re-building ‘index.Rmd’
+
+--- re-building ‘mutation.Rmd’ using rmarkdown
+--- finished re-building ‘mutation.Rmd’
+
+--- re-building ‘query.Rmd’ using rmarkdown
+--- finished re-building ‘query.Rmd’
+
+--- re-building ‘stemness_score.Rmd’ using rmarkdown
+--- finished re-building ‘stemness_score.Rmd’
+
+--- re-building ‘subtypes.Rmd’ using rmarkdown
+Quitting from lines 114-121 (subtypes.Rmd) 
+Error: processing vignette 'subtypes.Rmd' failed with diagnostics:
+object 'lgg.gbm.subtype' not found
+--- failed re-building ‘subtypes.Rmd’
+
+SUMMARY: processing the following file failed:
+  ‘subtypes.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 1 WARNING, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/TCGAbiolinks.Rcheck/00check.log’
+for details.
+

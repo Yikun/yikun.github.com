@@ -1,0 +1,595 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:wateRmelon.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings wateRmelon_2.5.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/wateRmelon.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘wateRmelon/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘wateRmelon’ version ‘2.5.0’
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  'Biobase', 'limma', 'matrixStats', 'methylumi', 'lumi', 'ROC',
+  'IlluminaHumanMethylation450kanno.ilmn12.hg19', 'illuminaio'
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘wateRmelon’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Package listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘Biobase’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... NOTE
+Problems with news in ‘NEWS’:
+  Cannot process chunk/lines:
+    1.19.1 Updated normalization methods to account for change in minfi MethylSet structure
+           and methods will return 'MethylSet' instead of beta matrix.
+  Cannot process chunk/lines:
+    1.3.1	Changed annotation method for tost() (minfi and methylumi methods.
+    	thanks to several users for bug reports!
+  Cannot process chunk/lines:
+    0.99.16	replaced dependency on ROCR with ROC (bioconductor) package
+    	seabird() no longer takes a vector for the stop argument
+  Cannot process chunk/lines:
+    0.99.15	codoc corrections.  
+    	temporarily removed dependency on ROCR (and thus gdata)
+  Cannot process chunk/lines:
+    0.99.14	MethylSet methods [dn]a[st]e[nt] now return objects containing 
+    	normalized intensities as well as betas
+    	fixed a bug in as.methylumi
+  Cannot process chunk/lines:
+    0.99.13	fixed swan wrapper generic and MethyLumiSet method bugs 
+  Cannot process chunk/lines:
+    0.99.12	methods d**** now have ... argument so that data without
+    	Sentrix IDs should work (thanks to Elodie Portales-Casamar
+    	for bug report).
+  Cannot process chunk/lines:
+    0.99.11	RGChannelSetExtended pfilter method bug fixed
+  Cannot process chunk/lines:
+    0.99.10	BioConductor submission
+  Cannot process chunk/lines:
+    0.9.8	MethyLumiSet methods now update history slot
+    	new MethyLumiSet method for pfilter
+    	RGtoy2 removed from data(minfitoy).  This is because minfi 
+    	now expects the manifest to be a package.
+    	swan function patched so that it can process subsets of array data
+    	(provided by Jovana Maksimovic).  Now works with melon data set.
+    	as.methylumi generic function added. Gets fData from 
+    	package:IlluminaHumanMethylation450k.db . The MethyLumiSet method 
+    	is useful for ensuring methylumi objects contain this data.
+    	Andrew Teschendorff's BMIQ function and a MethyLumiSet method
+    	added 
+    	minfi 1.4.0 has a changed manifest structure resulting in
+    	SNP probes being left out of the MethylSet.  This breaks genki()
+    	for the minfi objects and also the minfitoy data() set. 
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Packages in Depends field not imported from:
+  ‘IlluminaHumanMethylation450kanno.ilmn12.hg19’ ‘matrixStats’
+  ‘methylumi’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+Unexported objects imported by ':::' calls:
+  ‘minfi:::.annoGet’ ‘minfi:::.availableAnnotation’
+  ‘minfi:::.isRGOrStop’
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.adjusted_normalizeFunnorm450k : unbiased_normalizeQuantiles: no
+  visible global function definition for ‘colQuantiles’
+.adjusted_normalizeFunnorm450k: no visible global function definition
+  for ‘getMeth’
+.adjusted_normalizeFunnorm450k: no visible global function definition
+  for ‘getUnmeth’
+.adjusted_normalizeFunnorm450k: no visible global function definition
+  for ‘assay<-’
+.buildControlMatrix450k: no visible global function definition for
+  ‘colMeans2’
+.extractFromRGSet450k: no visible global function definition for
+  ‘getProbeInfo’
+.extractFromRGSet450k: no visible global function definition for
+  ‘getRed’
+.extractFromRGSet450k: no visible global function definition for
+  ‘getGreen’
+.extractFromRGSet450k: no visible global function definition for
+  ‘getOOB’
+.extractFromRGSet450k: no visible global function definition for
+  ‘colQuantiles’
+.getFunnormIndices: no visible global function definition for
+  ‘getProbeType’
+.getFunnormIndices: no visible global function definition for
+  ‘seqnames’
+.isMatrixBacked: no visible global function definition for ‘assays’
+.regularizeQuantiles: no visible global function definition for
+  ‘colCummaxs’
+.returnFit: no visible global function definition for ‘rowMeans2’
+IDATsToMatrices2: no visible global function definition for ‘.mclapply’
+NChannelSetToMethyLumiSet2: no visible global function definition for
+  ‘betas’
+NChannelSetToMethyLumiSet2: no visible global function definition for
+  ‘methylated’
+NChannelSetToMethyLumiSet2: no visible global function definition for
+  ‘unmethylated’
+NChannelSetToMethyLumiSet2: no visible global function definition for
+  ‘pval.detect<-’
+adjustedFunnorm: no visible global function definition for
+  ‘preprocessNoob’
+adjustedFunnorm: no visible global function definition for
+  ‘mapToGenome’
+adjustedFunnorm: no visible global function definition for ‘addSex’
+adjustedFunnorm: no visible global function definition for ‘getSex’
+adjustedFunnorm: no visible global function definition for ‘getCN’
+adjustedFunnorm: no visible global function definition for ‘assay<-’
+beadcount: no visible global function definition for ‘getNBeads’
+beadcount: no visible global function definition for ‘getProbeInfo’
+beadcount: no visible global function definition for ‘getManifestInfo’
+bgIntensitySwan.methylumi: no visible global function definition for
+  ‘colMedians’
+bscon_methy: no visible global function definition for
+  ‘intensitiesByChannel’
+bscon_methy: no visible global function definition for ‘QCdata’
+bscon_minfi : csp.green: no visible global function definition for
+  ‘getRed’
+bscon_minfi : csp.green: no visible global function definition for
+  ‘getGreen’
+bscon_minfi : csp.green : <anonymous>: no visible global function
+  definition for ‘getControlAddress’
+bscon_minfi : csp.red: no visible global function definition for
+  ‘getRed’
+bscon_minfi : csp.red: no visible global function definition for
+  ‘getGreen’
+bscon_minfi : csp.red : <anonymous>: no visible global function
+  definition for ‘getControlAddress’
+combo : <anonymous>: no visible global function definition for ‘QCdata’
+combo: no visible global function definition for ‘QCdata<-’
+dfort: no visible binding for global variable
+  ‘IlluminaHumanMethylation450kanno.ilmn12.hg19’
+estimateSex: no visible binding for global variable ‘sex_coef’
+estimateSex: no visible global function definition for ‘colSds’
+genall: no visible global function definition for ‘betas’
+generateManifest: no visible global function definition for
+  ‘getAnnotationObject’
+generateManifest: no visible global function definition for
+  ‘getAnnotation’
+generateManifest: no visible global function definition for
+  ‘getProbeInfo’
+getMethylationBeadMappers2 : <anonymous>: no visible binding for global
+  variable ‘hm27.ordering’
+getMethylationBeadMappers2 : <anonymous>: no visible binding for global
+  variable ‘hm450.ordering’
+getMethylationBeadMappers2 : <anonymous>: no visible binding for '<<-'
+  assignment to ‘epic.ordering’
+getMethylationBeadMappers2 : <anonymous>: no visible binding for global
+  variable ‘epic.ordering’
+getMethylationBeadMappers2 : <anonymous>: no visible binding for global
+  variable ‘hm27.controls’
+getMethylationBeadMappers2 : <anonymous>: no visible binding for global
+  variable ‘hm450.controls’
+getMethylationBeadMappers2 : <anonymous>: no visible binding for global
+  variable ‘epic.controls’
+getMethylumiBeta: no visible global function definition for
+  ‘unmethylated’
+getMethylumiBeta: no visible global function definition for
+  ‘methylated’
+got: no visible global function definition for ‘getProbeInfo’
+lumiMethyR2: no visible global function definition for ‘methylumiR’
+oxyscale: no visible global function definition for ‘betas’
+oxyscale: no visible global function definition for ‘betas<-’
+p_dfsfit: no visible global function definition for ‘mclapply’
+pipelineIlluminaMethylation.batch: no visible binding for global
+  variable ‘PATH_RES’
+pipelineIlluminaMethylation.batch: no visible binding for global
+  variable ‘probeAnnotationsCategory’
+preprocessIlluminaMethylation: no visible binding for global variable
+  ‘projectName’
+readEPIC: no visible binding for global variable ‘n.sd’
+sort_order: no visible binding for global variable ‘i’
+sort_order: no visible binding for global variable ‘n_1’
+uSexQNengine: no visible global function definition for ‘mclapply’
+BMIQ,MethyLumiSet : <anonymous>: no visible global function definition
+  for ‘warn’
+BMIQ,MethyLumiSet: no visible global function definition for ‘betas<-’
+BMIQ,MethylSet: no visible global function definition for ‘getBeta’
+BMIQ,MethylSet : <anonymous>: no visible global function definition for
+  ‘warn’
+adjustedDasen,MethyLumiSet: no visible global function definition for
+  ‘methylated’
+adjustedDasen,MethyLumiSet: no visible global function definition for
+  ‘unmethylated’
+adjustedDasen,MethyLumiSet: no visible binding for global variable ‘ds’
+adjustedDasen,MethyLumiSet: no visible global function definition for
+  ‘betas<-’
+adjustedDasen,MethyLumiSet: no visible global function definition for
+  ‘methylated<-’
+adjustedDasen,MethyLumiSet: no visible global function definition for
+  ‘unmethylated<-’
+adjustedDasen,MethylSet: no visible global function definition for
+  ‘getMeth’
+adjustedDasen,MethylSet: no visible global function definition for
+  ‘getUnmeth’
+adjustedDasen,MethylSet: no visible global function definition for
+  ‘getAnnotation’
+adjustedDasen,MethylSet: no visible global function definition for
+  ‘MethylSet’
+adjustedDasen,MethylSet: no visible global function definition for
+  ‘colData’
+adjustedDasen,MethylSet: no visible global function definition for
+  ‘metadata’
+adjustedDasen,RGChannelSet: no visible global function definition for
+  ‘preprocessRaw’
+agep,MethylSet: no visible global function definition for ‘getBeta’
+as.methylumi,MethyLumiSet: no visible global function definition for
+  ‘methylated’
+as.methylumi,MethyLumiSet: no visible global function definition for
+  ‘unmethylated’
+as.methylumi,MethyLumiSet: no visible global function definition for
+  ‘betas’
+as.methylumi,MethyLumiSet: no visible global function definition for
+  ‘pvals’
+as.methylumi,MethyLumiSet: no visible global function definition for
+  ‘QCdata’
+as.methylumi,MethylSet: no visible global function definition for
+  ‘getMeth’
+as.methylumi,MethylSet: no visible global function definition for
+  ‘getUnmeth’
+as.methylumi,MethylSet: no visible global function definition for
+  ‘getBeta’
+as.methylumi,MethylSet: no visible global function definition for
+  ‘getAnnotation’
+betaqn,MethyLumiSet: no visible global function definition for
+  ‘betas<-’
+betaqn,MethyLumiSet: no visible global function definition for ‘betas’
+betaqn,MethylSet: no visible global function definition for ‘getBeta’
+betaqn,RGChannelSet: no visible global function definition for
+  ‘getBeta’
+colnames,MethyLumiSet: no visible global function definition for
+  ‘methylated’
+danen,MethyLumiSet: no visible global function definition for
+  ‘methylated’
+danen,MethyLumiSet: no visible global function definition for
+  ‘unmethylated’
+danen,MethyLumiSet: no visible global function definition for ‘betas<-’
+danen,MethyLumiSet: no visible global function definition for
+  ‘methylated<-’
+danen,MethyLumiSet: no visible global function definition for
+  ‘unmethylated<-’
+danen,MethylSet: no visible global function definition for ‘getMeth’
+danen,MethylSet: no visible global function definition for ‘getUnmeth’
+danen,MethylSet: no visible global function definition for ‘MethylSet’
+danen,MethylSet: no visible global function definition for ‘colData’
+danen,MethylSet: no visible global function definition for ‘metadata’
+danen,RGChannelSet: no visible global function definition for
+  ‘preprocessRaw’
+danes,MethyLumiSet: no visible global function definition for
+  ‘methylated’
+danes,MethyLumiSet: no visible global function definition for
+  ‘unmethylated’
+danes,MethyLumiSet: no visible global function definition for ‘betas<-’
+danes,MethyLumiSet: no visible global function definition for
+  ‘methylated<-’
+danes,MethyLumiSet: no visible global function definition for
+  ‘unmethylated<-’
+danes,MethylSet: no visible global function definition for ‘getMeth’
+danes,MethylSet: no visible global function definition for ‘getUnmeth’
+danes,MethylSet: no visible global function definition for ‘MethylSet’
+danes,MethylSet: no visible global function definition for ‘colData’
+danes,MethylSet: no visible global function definition for ‘metadata’
+danes,RGChannelSet: no visible global function definition for
+  ‘preprocessRaw’
+danet,MethyLumiSet: no visible global function definition for
+  ‘methylated’
+danet,MethyLumiSet: no visible global function definition for
+  ‘unmethylated’
+danet,MethyLumiSet: no visible global function definition for ‘betas<-’
+danet,MethyLumiSet: no visible global function definition for
+  ‘methylated<-’
+danet,MethyLumiSet: no visible global function definition for
+  ‘unmethylated<-’
+danet,MethylSet: no visible global function definition for ‘getMeth’
+danet,MethylSet: no visible global function definition for ‘getUnmeth’
+danet,MethylSet: no visible global function definition for ‘MethylSet’
+danet,MethylSet: no visible global function definition for ‘colData’
+danet,MethylSet: no visible global function definition for ‘metadata’
+danet,RGChannelSet: no visible global function definition for
+  ‘preprocessRaw’
+dasen,MethyLumiSet: no visible global function definition for
+  ‘methylated’
+dasen,MethyLumiSet: no visible global function definition for
+  ‘unmethylated’
+dasen,MethyLumiSet: no visible global function definition for ‘betas<-’
+dasen,MethyLumiSet: no visible global function definition for
+  ‘methylated<-’
+dasen,MethyLumiSet: no visible global function definition for
+  ‘unmethylated<-’
+dasen,MethylSet: no visible global function definition for ‘getMeth’
+dasen,MethylSet: no visible global function definition for ‘getUnmeth’
+dasen,MethylSet: no visible global function definition for ‘MethylSet’
+dasen,MethylSet: no visible global function definition for ‘colData’
+dasen,MethylSet: no visible global function definition for ‘metadata’
+dasen,RGChannelSet: no visible global function definition for
+  ‘preprocessRaw’
+daten1,MethyLumiSet: no visible global function definition for
+  ‘methylated’
+daten1,MethyLumiSet: no visible global function definition for
+  ‘unmethylated’
+daten1,MethyLumiSet: no visible global function definition for
+  ‘betas<-’
+daten1,MethyLumiSet: no visible global function definition for
+  ‘methylated<-’
+daten1,MethyLumiSet: no visible global function definition for
+  ‘unmethylated<-’
+daten1,MethylSet: no visible global function definition for ‘getMeth’
+daten1,MethylSet: no visible global function definition for ‘getUnmeth’
+daten1,MethylSet: no visible global function definition for ‘MethylSet’
+daten1,MethylSet: no visible global function definition for ‘colData’
+daten1,MethylSet: no visible global function definition for ‘metadata’
+daten1,RGChannelSet: no visible global function definition for
+  ‘preprocessRaw’
+daten2,MethyLumiSet: no visible global function definition for
+  ‘methylated’
+daten2,MethyLumiSet: no visible global function definition for
+  ‘unmethylated’
+daten2,MethyLumiSet: no visible global function definition for
+  ‘betas<-’
+daten2,MethyLumiSet: no visible global function definition for
+  ‘methylated<-’
+daten2,MethyLumiSet: no visible global function definition for
+  ‘unmethylated<-’
+daten2,MethylSet: no visible global function definition for ‘getMeth’
+daten2,MethylSet: no visible global function definition for ‘getUnmeth’
+daten2,MethylSet: no visible global function definition for ‘MethylSet’
+daten2,MethylSet: no visible global function definition for ‘colData’
+daten2,MethylSet: no visible global function definition for ‘metadata’
+daten2,RGChannelSet: no visible global function definition for
+  ‘preprocessRaw’
+dmrse,MethylSet: no visible global function definition for ‘getBeta’
+dmrse,RGChannelSet: no visible global function definition for ‘getBeta’
+dmrse_col,MethylSet: no visible global function definition for
+  ‘getBeta’
+dmrse_col,RGChannelSet: no visible global function definition for
+  ‘getBeta’
+dmrse_row,MethylSet: no visible global function definition for
+  ‘getBeta’
+dmrse_row,RGChannelSet: no visible global function definition for
+  ‘getBeta’
+estimateCellCounts.wateRmelon,MethylSet: no visible global function
+  definition for ‘getManifest’
+estimateCellCounts.wateRmelon,MethylSet: no visible global function
+  definition for ‘getMeth’
+estimateCellCounts.wateRmelon,MethylSet: no visible global function
+  definition for ‘getUnmeth’
+estimateCellCounts.wateRmelon,MethylSet: no visible global function
+  definition for ‘getBeta’
+estimateCellCounts.wateRmelon,RGChannelSet: no visible global function
+  definition for ‘getManifest’
+estimateCellCounts.wateRmelon,RGChannelSet: no visible global function
+  definition for ‘preprocessRaw’
+estimateCellCounts.wateRmelon,RGChannelSet: no visible global function
+  definition for ‘getMeth’
+estimateCellCounts.wateRmelon,RGChannelSet: no visible global function
+  definition for ‘getUnmeth’
+estimateCellCounts.wateRmelon,RGChannelSet: no visible global function
+  definition for ‘getBeta’
+fuks,MethyLumiSet: no visible global function definition for ‘betas<-’
+fuks,MethyLumiSet: no visible global function definition for ‘betas’
+fuks,MethylSet: no visible global function definition for ‘getBeta’
+fuks,RGChannelSet: no visible global function definition for
+  ‘preprocessRaw’
+fuks,RGChannelSet: no visible global function definition for ‘getBeta’
+genki,MethyLumiSet: no visible global function definition for ‘betas’
+genki,MethylSet: no visible global function definition for ‘getBeta’
+genki,RGChannelSet: no visible global function definition for
+  ‘getSnpBeta’
+nanes,MethyLumiSet: no visible global function definition for
+  ‘methylated’
+nanes,MethyLumiSet: no visible global function definition for
+  ‘unmethylated’
+nanes,MethyLumiSet: no visible global function definition for ‘betas<-’
+nanes,MethyLumiSet: no visible global function definition for
+  ‘methylated<-’
+nanes,MethyLumiSet: no visible global function definition for
+  ‘unmethylated<-’
+nanes,MethylSet: no visible global function definition for ‘getMeth’
+nanes,MethylSet: no visible global function definition for ‘getUnmeth’
+nanes,MethylSet: no visible global function definition for ‘MethylSet’
+nanes,MethylSet: no visible global function definition for ‘colData’
+nanes,MethylSet: no visible global function definition for ‘metadata’
+nanes,RGChannelSet: no visible global function definition for
+  ‘preprocessRaw’
+nanet,MethyLumiSet: no visible global function definition for
+  ‘methylated’
+nanet,MethyLumiSet: no visible global function definition for
+  ‘unmethylated’
+nanet,MethyLumiSet: no visible global function definition for ‘betas<-’
+nanet,MethyLumiSet: no visible global function definition for
+  ‘methylated<-’
+nanet,MethyLumiSet: no visible global function definition for
+  ‘unmethylated<-’
+nanet,MethylSet: no visible global function definition for ‘getMeth’
+nanet,MethylSet: no visible global function definition for ‘getUnmeth’
+nanet,MethylSet: no visible global function definition for ‘MethylSet’
+nanet,MethylSet: no visible global function definition for ‘colData’
+nanet,MethylSet: no visible global function definition for ‘metadata’
+nanet,RGChannelSet: no visible global function definition for
+  ‘preprocessRaw’
+nasen,MethyLumiSet: no visible global function definition for
+  ‘methylated’
+nasen,MethyLumiSet: no visible global function definition for
+  ‘unmethylated’
+nasen,MethyLumiSet: no visible global function definition for ‘betas<-’
+nasen,MethyLumiSet: no visible global function definition for
+  ‘methylated<-’
+nasen,MethyLumiSet: no visible global function definition for
+  ‘unmethylated<-’
+nasen,MethylSet: no visible global function definition for ‘getMeth’
+nasen,MethylSet: no visible global function definition for ‘getUnmeth’
+nasen,MethylSet: no visible global function definition for ‘MethylSet’
+nasen,MethylSet: no visible global function definition for ‘colData’
+nasen,MethylSet: no visible global function definition for ‘metadata’
+nasen,RGChannelSet: no visible global function definition for
+  ‘preprocessRaw’
+naten,MethyLumiSet: no visible global function definition for
+  ‘methylated’
+naten,MethyLumiSet: no visible global function definition for
+  ‘unmethylated’
+naten,MethyLumiSet: no visible global function definition for ‘betas<-’
+naten,MethyLumiSet: no visible global function definition for
+  ‘methylated<-’
+naten,MethyLumiSet: no visible global function definition for
+  ‘unmethylated<-’
+naten,MethylSet: no visible global function definition for ‘getMeth’
+naten,MethylSet: no visible global function definition for ‘getUnmeth’
+naten,MethylSet: no visible global function definition for ‘MethylSet’
+naten,MethylSet: no visible global function definition for ‘colData’
+naten,MethylSet: no visible global function definition for ‘metadata’
+naten,RGChannelSet: no visible global function definition for
+  ‘preprocessRaw’
+outlyx,MethyLumiSet: no visible global function definition for ‘betas’
+outlyx,MethylSet: no visible global function definition for ‘getBeta’
+outlyx,RGChannelSet: no visible global function definition for
+  ‘getBeta’
+pfilter,MethyLumiSet: no visible global function definition for ‘betas’
+pfilter,MethyLumiSet: no visible global function definition for
+  ‘methylated’
+pfilter,MethyLumiSet: no visible global function definition for
+  ‘unmethylated’
+pfilter,MethyLumiSet: no visible global function definition for ‘pvals’
+pfilter,RGChannelSetExtended: no visible binding for global variable
+  ‘RGChannelSetExtended’
+pfilter,RGChannelSetExtended: no visible global function definition for
+  ‘preprocessRaw’
+pfilter,RGChannelSetExtended: no visible global function definition for
+  ‘detectionP’
+pfilter,RGChannelSetExtended: no visible global function definition for
+  ‘subsetByLoci’
+pwod,MethyLumiSet: no visible global function definition for ‘betas’
+pwod,MethyLumiSet: no visible global function definition for ‘betas<-’
+pwod,MethylSet: no visible global function definition for ‘getBeta’
+pwod,RGChannelSet: no visible global function definition for ‘getBeta’
+seabi,MethyLumiSet: no visible global function definition for ‘betas’
+seabi,MethylSet: no visible global function definition for ‘getBeta’
+seabi,RGChannelSet: no visible global function definition for ‘getBeta’
+swan,MethyLumiSet: no visible global function definition for
+  ‘methylated’
+swan,MethyLumiSet: no visible global function definition for
+  ‘unmethylated’
+swan,MethyLumiSet: no visible global function definition for
+  ‘intensitiesByChannel’
+swan,MethyLumiSet: no visible global function definition for ‘QCdata’
+swan,MethyLumiSet: no visible global function definition for ‘getBeta’
+swan,MethyLumiSet: no visible global function definition for ‘getMeth’
+swan,MethyLumiSet: no visible global function definition for
+  ‘getUnmeth’
+swan,MethyLumiSet: no visible global function definition for ‘betas’
+swan,RGChannelSet: no visible global function definition for
+  ‘preprocessSWAN’
+tost,MethyLumiSet: no visible global function definition for
+  ‘methylated’
+tost,MethyLumiSet: no visible global function definition for ‘betas<-’
+tost,MethyLumiSet: no visible global function definition for
+  ‘unmethylated’
+tost,MethyLumiSet: no visible global function definition for ‘pvals’
+tost,RGChannelSet: no visible global function definition for
+  ‘detectionP’
+tost,RGChannelSet: no visible global function definition for
+  ‘preprocessRaw’
+tost,RGChannelSet: no visible global function definition for ‘getMeth’
+tost,RGChannelSet: no visible global function definition for
+  ‘getUnmeth’
+uSexQN,MethyLumiSet: no visible global function definition for
+  ‘methylated’
+uSexQN,MethyLumiSet: no visible global function definition for
+  ‘unmethylated’
+uSexQN,MethyLumiSet: no visible global function definition for
+  ‘betas<-’
+uSexQN,MethyLumiSet: no visible global function definition for
+  ‘methylated<-’
+uSexQN,MethyLumiSet: no visible global function definition for
+  ‘unmethylated<-’
+uSexQN,MethylSet: no visible global function definition for ‘getMeth’
+uSexQN,MethylSet: no visible global function definition for ‘getUnmeth’
+uSexQN,MethylSet: no visible global function definition for
+  ‘getAnnotation’
+uSexQN,MethylSet: no visible global function definition for ‘MethylSet’
+uSexQN,MethylSet: no visible global function definition for ‘colData’
+uSexQN,MethylSet: no visible global function definition for ‘metadata’
+uSexQN,RGChannelSet: no visible global function definition for
+  ‘preprocessRaw’
+Undefined global functions or variables:
+  .mclapply IlluminaHumanMethylation450kanno.ilmn12.hg19 MethylSet
+  PATH_RES QCdata QCdata<- RGChannelSetExtended addSex assay<- assays
+  betas betas<- colCummaxs colData colMeans2 colMedians colQuantiles
+  colSds detectionP ds epic.controls epic.ordering getAnnotation
+  getAnnotationObject getBeta getCN getControlAddress getGreen
+  getManifest getManifestInfo getMeth getNBeads getOOB getProbeInfo
+  getProbeType getRed getSex getSnpBeta getUnmeth hm27.controls
+  hm27.ordering hm450.controls hm450.ordering i intensitiesByChannel
+  mapToGenome mclapply metadata methylated methylated<- methylumiR n.sd
+  n_1 preprocessNoob preprocessRaw preprocessSWAN
+  probeAnnotationsCategory projectName pval.detect<- pvals rowMeans2
+  seqnames sex_coef subsetByLoci unmethylated unmethylated<- warn
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+          user system elapsed
+sextest 10.591  0.119  10.712
+seabi    8.895  0.044   8.939
+metrics  6.520  0.132   6.652
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘wateRmelon.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 5 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/wateRmelon.Rcheck/00check.log’
+for details.
+
+

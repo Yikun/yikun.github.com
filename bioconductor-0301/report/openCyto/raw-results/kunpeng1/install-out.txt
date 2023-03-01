@@ -1,0 +1,78 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL openCyto
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘openCyto’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++17
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/cpp11/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/BH/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c Hungarian.cpp -o Hungarian.o
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/cpp11/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/BH/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c cpp11.cpp -o cpp11.o
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/cpp11/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/BH/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c misc.cpp -o misc.o
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/cpp11/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/BH/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c rlm.cpp -o rlm.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R/library/BH/include/boost/mpl/aux_/na_assert.hpp:23,
+                 from /home/biocbuild/bbs-3.17-bioc/R/library/BH/include/boost/mpl/arg.hpp:25,
+                 from /home/biocbuild/bbs-3.17-bioc/R/library/BH/include/boost/mpl/placeholders.hpp:24,
+                 from /home/biocbuild/bbs-3.17-bioc/R/library/BH/include/boost/accumulators/statistics/median.hpp:11,
+                 from rlm.cpp:8:
+/home/biocbuild/bbs-3.17-bioc/R/library/BH/include/boost/mpl/assert.hpp:194:21: warning: unnecessary parentheses in declaration of ‘assert_arg’ [-Wparentheses]
+  194 | failed ************ (Pred::************
+      |                     ^~~~~~~~~~~~~~~~~~~
+  195 |       assert_arg( void (*)(Pred), typename assert_arg_pred<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  196 |     );
+      |     ~                
+/home/biocbuild/bbs-3.17-bioc/R/library/BH/include/boost/mpl/assert.hpp:194:21: note: remove parentheses
+  194 | failed ************ (Pred::************
+      |                     ^~~~~~~~~~~~~~~~~~~
+      |                     -
+  195 |       assert_arg( void (*)(Pred), typename assert_arg_pred<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  196 |     );
+      |     ~                
+      |     -
+/home/biocbuild/bbs-3.17-bioc/R/library/BH/include/boost/mpl/assert.hpp:199:21: warning: unnecessary parentheses in declaration of ‘assert_not_arg’ [-Wparentheses]
+  199 | failed ************ (boost::mpl::not_<Pred>::************
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  200 |       assert_not_arg( void (*)(Pred), typename assert_arg_pred_not<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  201 |     );
+      |     ~                
+/home/biocbuild/bbs-3.17-bioc/R/library/BH/include/boost/mpl/assert.hpp:199:21: note: remove parentheses
+  199 | failed ************ (boost::mpl::not_<Pred>::************
+      |                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+      |                     -
+  200 |       assert_not_arg( void (*)(Pred), typename assert_arg_pred_not<Pred>::type )
+      |       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+  201 |     );
+      |     ~                
+      |     -
+rlm.cpp: In function ‘cpp11::list rlm_cpp(cpp11::doubles_matrix<>, cpp11::doubles, int)’:
+rlm.cpp:55:10: warning: ‘scale’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+   55 |   double scale;
+      |          ^~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/cpp11/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/BH/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c solve_LSAP.cpp -o solve_LSAP.o
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R/library/cpp11/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/BH/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c unlockNamespace.cpp -o unlockNamespace.o
+g++ -std=gnu++17 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o openCyto.so Hungarian.o cpp11.o misc.o rlm.o solve_LSAP.o unlockNamespace.o -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-openCyto/00new/openCyto/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (openCyto)

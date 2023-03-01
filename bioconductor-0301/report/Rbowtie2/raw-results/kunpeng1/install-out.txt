@@ -1,0 +1,99 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL Rbowtie2
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘Rbowtie2’ ...
+** using staged installation
+** libs
+mkdir -p ../inst
+(cd	adapterremoval && (make CXX="g++ -std=gnu++11" -f Makefile))
+make[1]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rbowtie2/src/adapterremoval'
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG  -c adapterset.cc 
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG  -c alignment.cc 
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG  -c argparse.cc 
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG  -c debug.cc 
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG  -c demultiplex.cc 
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG  -c fastq.cc 
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG  -c fastq_enc.cc 
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG  -c fastq_io.cc 
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG  -c linereader.cc 
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG  -c linereader_joined.cc 
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG  -c main_adapter_id.cc 
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG  -c main_adapter_rm.cc 
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG  -c main_demultiplex.cc 
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG  -c scheduler.cc 
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG  -c strutils.cc 
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG  -c threads.cc 
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG  -c timer.cc 
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG  -c trimmed_reads.cc 
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG  -c userconfig.cc 
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG  -c main.cc 
+g++ -std=gnu++11 -O3 -pthread -DNDEBUG   -o AdapterRemoval adapterset.o alignment.o argparse.o debug.o demultiplex.o fastq.o fastq_enc.o fastq_io.o linereader.o linereader_joined.o main_adapter_id.o main_adapter_rm.o main_demultiplex.o scheduler.o strutils.o threads.o timer.o trimmed_reads.o userconfig.o main.o
+mv AdapterRemoval ../../inst/
+make[1]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rbowtie2/src/adapterremoval'
+(cd	adapterremoval && (make clean_o -f Makefile))
+make[1]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rbowtie2/src/adapterremoval'
+rm -f *.o
+make[1]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rbowtie2/src/adapterremoval'
+(cd bowtie2-2.4.4 && (make CXX="g++" -f Makefile))
+make[1]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rbowtie2/src/bowtie2-2.4.4'
+g++ -O3  -funroll-loops -g3 -DCOMPILER_OPTIONS="\"-O3  -funroll-loops -g3 -std=c++11 -fopenmp-simd -DNO_SPINLOCK -DWITH_QUEUELOCK=1\"" -std=c++11 -fopenmp-simd -DNO_SPINLOCK -DWITH_QUEUELOCK=1 \
+	-fno-strict-aliasing -DBOWTIE2_VERSION="\"`cat BOWTIE2_VERSION`\"" -DBUILD_HOST="\"${HOSTNAME:-`hostname`}\"" -DBUILD_TIME="\"`date -u`\"" -DCOMPILER_VERSION="\"`g++ -v 2>&1 | tail -1`\"" -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE  -DBOWTIE_MM  -DBOWTIE2 -DNDEBUG -Wall \
+	-Ithird_party \
+	-o bowtie2-build-s bt2_build.cpp \
+	ccnt_lut.cpp ref_read.cpp alphabet.cpp shmem.cpp edit.cpp bt2_locks.cpp bt2_idx.cpp bt2_io.cpp bt2_util.cpp reference.cpp ds.cpp multikey_qsort.cpp limit.cpp random_source.cpp diff_sample.cpp bowtie_build_main.cpp \
+	 -lpthread -lz
+g++ -O3  -funroll-loops -g3 -DCOMPILER_OPTIONS="\"-O3  -funroll-loops -g3 -std=c++11 -fopenmp-simd -DNO_SPINLOCK -DWITH_QUEUELOCK=1\"" -std=c++11 -fopenmp-simd -DNO_SPINLOCK -DWITH_QUEUELOCK=1 \
+	-fno-strict-aliasing -DBOWTIE2_VERSION="\"`cat BOWTIE2_VERSION`\"" -DBUILD_HOST="\"${HOSTNAME:-`hostname`}\"" -DBUILD_TIME="\"`date -u`\"" -DCOMPILER_VERSION="\"`g++ -v 2>&1 | tail -1`\"" -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE  -DBOWTIE_MM  -DBOWTIE2 -DBOWTIE_64BIT_INDEX -DNDEBUG -Wall \
+	-Ithird_party \
+	-o bowtie2-build-l bt2_build.cpp \
+	ccnt_lut.cpp ref_read.cpp alphabet.cpp shmem.cpp edit.cpp bt2_locks.cpp bt2_idx.cpp bt2_io.cpp bt2_util.cpp reference.cpp ds.cpp multikey_qsort.cpp limit.cpp random_source.cpp diff_sample.cpp bowtie_build_main.cpp \
+	 -lpthread -lz
+g++ -O3  -funroll-loops -g3 -DCOMPILER_OPTIONS="\"-O3  -funroll-loops -g3 -std=c++11 -fopenmp-simd -DNO_SPINLOCK -DWITH_QUEUELOCK=1\"" -std=c++11 -fopenmp-simd -DNO_SPINLOCK -DWITH_QUEUELOCK=1 \
+	-fno-strict-aliasing -DBOWTIE2_VERSION="\"`cat BOWTIE2_VERSION`\"" -DBUILD_HOST="\"${HOSTNAME:-`hostname`}\"" -DBUILD_TIME="\"`date -u`\"" -DCOMPILER_VERSION="\"`g++ -v 2>&1 | tail -1`\"" -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE  -DBOWTIE_MM  -DBOWTIE2 -DNDEBUG -Wall \
+	-Ithird_party \
+	-o bowtie2-align-s bt2_search.cpp \
+	ccnt_lut.cpp ref_read.cpp alphabet.cpp shmem.cpp edit.cpp bt2_locks.cpp bt2_idx.cpp bt2_io.cpp bt2_util.cpp reference.cpp ds.cpp multikey_qsort.cpp limit.cpp random_source.cpp qual.cpp pat.cpp sam.cpp read_qseq.cpp aligner_seed_policy.cpp aligner_seed.cpp aligner_seed2.cpp aligner_sw.cpp aligner_sw_driver.cpp aligner_cache.cpp aligner_result.cpp ref_coord.cpp mask.cpp pe.cpp aln_sink.cpp dp_framer.cpp scoring.cpp presets.cpp unique.cpp simple_func.cpp random_util.cpp aligner_bt.cpp sse_util.cpp aligner_swsse.cpp outq.cpp aligner_swsse_loc_i16.cpp aligner_swsse_ee_i16.cpp aligner_swsse_loc_u8.cpp aligner_swsse_ee_u8.cpp aligner_driver.cpp bowtie_main.cpp \
+	 -lpthread -lz
+g++ -O3  -funroll-loops -g3 -DCOMPILER_OPTIONS="\"-O3  -funroll-loops -g3 -std=c++11 -fopenmp-simd -DNO_SPINLOCK -DWITH_QUEUELOCK=1\"" -std=c++11 -fopenmp-simd -DNO_SPINLOCK -DWITH_QUEUELOCK=1 \
+	-fno-strict-aliasing -DBOWTIE2_VERSION="\"`cat BOWTIE2_VERSION`\"" -DBUILD_HOST="\"${HOSTNAME:-`hostname`}\"" -DBUILD_TIME="\"`date -u`\"" -DCOMPILER_VERSION="\"`g++ -v 2>&1 | tail -1`\"" -D_LARGEFILE_SOURCE -D_FILE_OFFSET_BITS=64 -D_GNU_SOURCE  -DBOWTIE_MM  -DBOWTIE2 -DBOWTIE_64BIT_INDEX -DNDEBUG -Wall \
+	-Ithird_party \
+	-o bowtie2-align-l bt2_search.cpp \
+	ccnt_lut.cpp ref_read.cpp alphabet.cpp shmem.cpp edit.cpp bt2_locks.cpp bt2_idx.cpp bt2_io.cpp bt2_util.cpp reference.cpp ds.cpp multikey_qsort.cpp limit.cpp random_source.cpp qual.cpp pat.cpp sam.cpp read_qseq.cpp aligner_seed_policy.cpp aligner_seed.cpp aligner_seed2.cpp aligner_sw.cpp aligner_sw_driver.cpp aligner_cache.cpp aligner_result.cpp ref_coord.cpp mask.cpp pe.cpp aln_sink.cpp dp_framer.cpp scoring.cpp presets.cpp unique.cpp simple_func.cpp random_util.cpp aligner_bt.cpp sse_util.cpp aligner_swsse.cpp outq.cpp aligner_swsse_loc_i16.cpp aligner_swsse_ee_i16.cpp aligner_swsse_loc_u8.cpp aligner_swsse_ee_u8.cpp aligner_driver.cpp bowtie_main.cpp \
+	 -lpthread -lz
+make[1]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rbowtie2/src/bowtie2-2.4.4'
+(cd	bowtie2-2.4.4 && (make move -f Makefile))
+make[1]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rbowtie2/src/bowtie2-2.4.4'
+mv bowtie2-align-s ../../inst
+mv bowtie2-build-s ../../inst
+mv bowtie2-align-l ../../inst
+mv bowtie2-build-l ../../inst
+cp bowtie2 ../../inst
+cp bowtie2-build ../../inst
+make[1]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rbowtie2/src/bowtie2-2.4.4'
+(cd	bowtie2-2.4.4 && (make clean_dSYM -f Makefile))
+make[1]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rbowtie2/src/bowtie2-2.4.4'
+rm -rf *.dSYM
+make[1]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rbowtie2/src/bowtie2-2.4.4'
+g++ -shared -fPIC -o Rbowtie2.so  version_info.cpp
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-Rbowtie2/00new/Rbowtie2/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (Rbowtie2)

@@ -1,0 +1,235 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:ChromSCape.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings ChromSCape_1.9.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/ChromSCape.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘ChromSCape/DESCRIPTION’ ... OK
+* this is package ‘ChromSCape’ version ‘1.9.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .BBSoptions
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘ChromSCape’ can be installed ... OK
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... NOTE
+  installed size is  5.4Mb
+  sub-directories of 1Mb or more:
+    data   1.5Mb
+    www    2.1Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... WARNING
+'library' or 'require' call not declared from: ‘dplyr’
+'library' or 'require' call to ‘dplyr’ in package code.
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+bams_to_matrix_indexes: no visible binding for global variable
+  ‘files_dir_list’
+enrich_TF_ChEA3_genes: no visible binding for global variable
+  ‘CheA3_TF_nTargets’
+filter_correlated_cell_scExp: no visible binding for global variable
+  ‘run_tsne’
+generate_analysis: no visible global function definition for ‘head’
+generate_analysis: no visible binding for global variable ‘k’
+generate_analysis: no visible binding for global variable
+  ‘clusterConsensus’
+get_most_variable_cyto: no visible binding for global variable
+  ‘cytoBand’
+get_most_variable_cyto: no visible binding for global variable
+  ‘Fri_cyto’
+num_cell_after_QC_filt_scExp: no visible binding for global variable
+  ‘sample_id’
+num_cell_after_QC_filt_scExp: no visible binding for global variable
+  ‘total_counts’
+num_cell_scExp: no visible binding for global variable ‘sample_id’
+num_cell_scExp: no visible binding for global variable ‘total_counts’
+plot_correlation_PCA_scExp: no visible binding for global variable
+  ‘Component’
+plot_coverage_BigWig: no visible binding for global variable ‘molecule’
+plot_coverage_BigWig: no visible binding for global variable
+  ‘orientation’
+plot_coverage_BigWig: no visible binding for global variable ‘Gene’
+plot_gain_or_loss_barplots: no visible binding for global variable
+  ‘Gain_or_Loss’
+plot_gain_or_loss_barplots: no visible binding for global variable
+  ‘ncells’
+plot_gain_or_loss_barplots: no visible binding for global variable
+  ‘cytoBand’
+plot_most_contributing_features: no visible binding for global variable
+  ‘genes’
+plot_percent_active_feature_scExp: no visible binding for global
+  variable ‘group’
+plot_percent_active_feature_scExp: no visible binding for global
+  variable ‘percent_active’
+plot_pie_most_contributing_chr: no visible binding for global variable
+  ‘absolute_value’
+plot_reduced_dim_scExp: no visible binding for global variable ‘V1’
+plot_reduced_dim_scExp: no visible binding for global variable ‘V2’
+plot_reduced_dim_scExp: no visible binding for global variable
+  ‘cluster’
+plot_top_TF_scExp: no visible binding for global variable ‘TF’
+rebin_helper: no visible binding for global variable ‘new_row’
+rebin_helper: no visible binding for global variable ‘origin_value’
+rebin_matrix: no visible binding for global variable ‘group’
+subset_bam_call_peaks: no visible binding for global variable
+  ‘merged_bam’
+Undefined global functions or variables:
+  CheA3_TF_nTargets Component Fri_cyto Gain_or_Loss Gene TF V1 V2
+  absolute_value cluster clusterConsensus cytoBand files_dir_list genes
+  group head k merged_bam molecule ncells new_row orientation
+  origin_value percent_active run_tsne sample_id total_counts
+Consider adding
+  importFrom("utils", "head")
+to your NAMESPACE file.
+* checking Rd files ... NOTE
+prepare_Rd: raw_counts_to_sparse_matrix.Rd:6-8: Dropping empty section \source
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... WARNING
+Codoc mismatches from documentation object 'generate_analysis':
+generate_analysis
+  Code: function(input_data_folder, analysis_name = "Analysis_1",
+                 output_directory = "./", input_data_type = c("scBED",
+                 "DenseMatrix", "SparseMatrix", "scBAM")[1],
+                 feature_count_on = c("bins", "genebody", "peaks")[1],
+                 feature_count_parameter = 50000, rebin_sparse_matrix =
+                 FALSE, ref_genome = c("hg38", "mm10")[1], run =
+                 c("filter", "CNA", "cluster", "consensus", "coverage",
+                 "DA", "GSA", "report")[c(1, 3, 5, 6, 7, 8)],
+                 min_reads_per_cell = 1000, max_quantile_read_per_cell
+                 = 99, n_top_features = 40000, norm_type = "CPM",
+                 subsample_n = NULL, exclude_regions = NULL, n_clust =
+                 NULL, corr_threshold = 99, percent_correlation = 1,
+                 maxK = 10, qval.th = 0.1, logFC.th = 1,
+                 enrichment_qval = 0.1, doBatchCorr = FALSE, batch_sels
+                 = NULL, control_samples_CNA = NULL, genes_to_plot =
+                 c("Krt8", "Krt5", "Tgfb1", "Foxq1", "Cdkn2b",
+                 "Cdkn2a", "chr7:15000000-20000000"))
+  Docs: function(input_data_folder, analysis_name = "Analysis_1",
+                 output_directory = "./", input_data_type = c("scBED",
+                 "DenseMatrix", "SparseMatrix", "scBAM")[1],
+                 rebin_sparse_matrix = FALSE, feature_count_on =
+                 c("bins", "genebody", "peaks")[1],
+                 feature_count_parameter = 50000, ref_genome =
+                 c("hg38", "mm10")[1], run = c("filter", "CNA",
+                 "cluster", "consensus", "peak_call", "coverage", "DA",
+                 "GSA", "report")[c(1, 3, 6, 7, 8, 9)],
+                 min_reads_per_cell = 1000, max_quantile_read_per_cell
+                 = 99, n_top_features = 40000, norm_type = "CPM",
+                 subsample_n = NULL, exclude_regions = NULL, n_clust =
+                 NULL, corr_threshold = 99, percent_correlation = 1,
+                 maxK = 10, qval.th = 0.1, logFC.th = 1,
+                 enrichment_qval = 0.1, doBatchCorr = FALSE, batch_sels
+                 = NULL, control_samples_CNA = NULL, genes_to_plot =
+                 c("Krt8", "Krt5", "Tgfb1", "Foxq1", "Cdkn2b",
+                 "Cdkn2a", "chr7:15000000-20000000"))
+  Mismatches in argument names:
+    Position: 5 Code: feature_count_on Docs: rebin_sparse_matrix
+    Position: 6 Code: feature_count_parameter Docs: feature_count_on
+    Position: 7 Code: rebin_sparse_matrix Docs: feature_count_parameter
+  Mismatches in argument default values:
+    Name: 'run'
+    Code: c("filter", "CNA", "cluster", "consensus", "coverage", "DA", 
+          "GSA", "report")[c(1, 3, 5, 6, 7, 8)]
+    Docs: c("filter", "CNA", "cluster", "consensus", "peak_call", "coverage", 
+          "DA", "GSA", "report")[c(1, 3, 6, 7, 8, 9)]
+
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'rebin_matrix'
+  ‘rebin_function’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                                        user system elapsed
+plot_gain_or_loss_barplots            64.235  0.224  64.465
+get_pathway_mat_scExp                 54.190  1.468  55.665
+calculate_CNA                         32.117  1.663  33.782
+calculate_logRatio_CNA                31.465  1.220  32.686
+plot_reduced_dim_scExp_CNA            31.092  0.064  31.157
+calculate_cyto_mat                    30.428  0.568  30.998
+calculate_gain_or_loss                30.534  0.460  30.995
+get_most_variable_cyto                30.198  0.380  30.579
+get_cyto_features                     27.652  0.444  28.096
+num_cell_after_cor_filt_scExp         11.689  0.548  12.156
+filter_correlated_cell_scExp          11.086  1.041  12.072
+create_scDataset_raw                  10.653  0.480  11.134
+preprocessing_filtering_and_reduction 10.000  0.100  10.100
+CompareWilcox                          8.154  0.789   7.715
+differential_activation                7.775  0.220   7.995
+import_scExp                           7.282  0.100   7.382
+rebin_matrix                           6.978  0.192  24.103
+CompareedgeRGLM                        6.707  0.276   6.982
+plot_reduced_dim_scExp                 6.645  0.052   6.697
+enrich_TF_ChEA3_scExp                  1.398  0.128   7.508
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘vignette.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 WARNINGs, 5 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/ChromSCape.Rcheck/00check.log’
+for details.
+
+

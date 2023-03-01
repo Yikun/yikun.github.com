@@ -1,0 +1,197 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:RadioGx.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/library --timings RadioGx_2.3.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/RadioGx.Rcheck’
+* using R Under development (unstable) (2023-01-14 r83615)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.1 LTS
+* using session charset: UTF-8
+* checking for file ‘RadioGx/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘RadioGx’ version ‘2.3.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘RadioGx’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+RadioSet: no visible binding for global variable ‘treatment’
+RadioSet: no visible binding for global variable ‘curationTreatment’
+RadioSet: no visible binding for global variable ‘curationSample’
+Undefined global functions or variables:
+  curationSample curationTreatment treatment
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'RadioSet'
+  ‘name’ ‘molecularProfiles’ ‘cell’ ‘radiation’ ‘sensitivityInfo’
+  ‘sensitivityRaw’ ‘sensitivityProfiles’ ‘sensitivityN’ ‘perturbationN’
+  ‘curationCell’ ‘curationTissue’ ‘datasetType’ ‘verify’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... NOTE
+  Note: found 14 marked UTF-8 strings
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘RadioGx-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: RadioSet-accessors
+> ### Title: Accessing and modifying information in a 'RadioSet'
+> ### Aliases: RadioSet-accessors radiationInfo treatmentInfo,RadioSet-method
+> ###   treatmentInfo radiationInfo<-
+> ###   treatmentInfo<-,RadioSet,data.frame-method treatmentInfo<-
+> ###   radiationTypes treatmentNames,RadioSet-method treatmentNames
+> ###   radiationTypes<- treatmentNames<-,RadioSet,character-method
+> ###   treatmentNames<- annotation,RadioSet-method annotation
+> ###   annotation<-,RadioSet,list-method annotation<-
+> ###   dateCreated,RadioSet-method dateCreated
+> ###   dateCreated<-,RadioSet,character-method dateCreated<-,RadioSet-method
+> ###   dateCreated<- name,RadioSet-method name name<-,RadioSet-method
+> ###   name<-,RadioSet,character-method name<- sampleInfo,RadioSet-method
+> ###   sampleInfo cellInfo,RadioSet-method cellInfo
+> ###   sampleInfo<-,RadioSet,data.frame-method sampleInfo<-
+> ###   cellInfo<-,RadioSet,data.frame-method cellInfo<-
+> ###   sampleNames,RadioSet-method sampleName,RadioSet-method sampleNames
+> ###   cellName,RadioSet-method cellNames
+> ###   sampleNames<-,RadioSet,character-method
+> ###   sampleNames<-,RadioSet,list-method sampleNames<-
+> ###   cellNames<-,RadioSet,list-method cellNames<- curation,RadioSet-method
+> ###   curation curation<-,RadioSet,list-method curation<-
+> ###   datasetType,RadioSet-method datasetType
+> ###   datasetType<-,RadioSet,character-method datasetType<-
+> ###   molecularProfiles,RadioSet-method molecularProfiles
+> ###   molecularProfiles<-,RadioSet,character,character,matrix-method
+> ###   molecularProfiles<-,RadioSet,character,missing,matrix-method
+> ###   molecularProfiles<-,RadioSet,missing,missing,list-method
+> ###   molecularProfiles<-,RadioSet,missing,missing,MutliAssayExperiment-method
+> ###   molecularProfiles<- featureInfo,RadioSet-method featureInfo
+> ###   featureInfo<-,RadioSet,character,data.frame-method
+> ###   featureInfo<-,RadioSet,character,DataFrame-method featureInfo<-
+> ###   phenoInfo,RadioSet,character-method phenoInfo
+> ###   phenoInfo<-,RadioSet,character,data.frame-method
+> ###   phenoInfo<-,RadioSet,character,DataFrame-method phenoInfo<-
+> ###   fNames,RadioSet,character-method fNames
+> ###   fNames<-,RadioSet,character,character-method fNames<-
+> ###   mDataNames,RadioSet-method mDataNames mDataNames<-,RadioSet-method
+> ###   mDataNames<-,RadioSet,ANY-method mDataNames<-
+> ###   molecularProfilesSlot,RadioSet-method
+> ###   moleculerProfilesSlot,RadioSet-method molecularProfilesSlot
+> ###   molecularProfilesSlot<-,RadioSet,list_OR_MAE-method
+> ###   molecularProfilesSlot<-,RadioSet,list-method
+> ###   molecularProfilesSlot<-RadioSet,MultiAssayExperiment-method
+> ###   molecularProfilesSlot<- sensitivityInfo,RadioSet-method
+> ###   sensitivityInfo,RadioSet,missing-method
+> ###   sensitivityInfo,RadioSet,character-method
+> ###   sensitivityInfo<-,RadioSet,data.frame-method
+> ###   sensitivityInfo<-,RadioSet,missing,data.frame-method
+> ###   sensitvityInfo<-,RadioSet,character,data.frame-method
+> ###   sensitivityMeasures,RadioSet-method
+> ###   sensitivityMeasures<-,RadioSet,character-method
+> ###   sensitivityProfiles,RadioSet-method
+> ###   sensitivityProfiles<-,RadioSet,data.frame-method
+> ###   sensitivityRaw,RadioSet-method sensitivityRaw<-,RadioSet,array-method
+> ###   treatmentResponse,RadioSet-method treatmentResponse sensitivitySlot
+> ###   treatmentResponse<-,RadioSet,list_OR_LongTable-method
+> ###   treatmentResponse<- treamentResponse<-,RadioSet,list-method
+> ###   treatmentResponse<-,RadioSet,LongTable-method sensitivitySlot<-
+> ###   sensNumber,RadioSet-method sensNumber
+> ###   sensNumber<-,RadioSet,matrix-method sensNumber<-
+> ###   pertNumber,RadioSet-method pertNumber
+> ###   pertNumber<-,RadioSet,array-method pertNumber<-
+> 
+> ### ** Examples
+> 
+> data(clevelandSmall)
+> treatmentInfo(clevelandSmall)
+          treatmentid
+radiation   radiation
+> 
+> treatmentInfo(clevelandSmall) <- treatmentInfo(clevelandSmall)
+> 
+> treatmentNames(clevelandSmall)
+[1] "radiation"
+> 
+> treatmentNames(clevelandSmall) <- treatmentNames(clevelandSmall)
+> 
+> 
+> ## @annotation
+> 
+> annotation(clevelandSmall)
+$name
+[1] "Cleveland"
+
+$dateCreated
+[1] "Wed Oct 25 17:38:42 2017"
+
+$sessionInfo
+R version 3.4.0 (2017-04-21)
+Platform: x86_64-apple-darwin15.6.0 (64-bit)
+Running under: macOS Sierra 10.12.6
+
+Matrix products: default
+BLAS:   /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRblas.0.dylib 
+LAPACK: /Library/Frameworks/R.framework/Versions/3.4/Resources/lib/libRlapack.dylibError in grepl(LAver, lapack, fixed = TRUE) : invalid 'pattern' argument
+Calls: <Anonymous> -> print.sessionInfo -> grepl
+Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘RadioGx.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 1 WARNING, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/RadioGx.Rcheck/00check.log’
+for details.
+

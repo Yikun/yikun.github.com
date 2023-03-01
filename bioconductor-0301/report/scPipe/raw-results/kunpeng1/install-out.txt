@@ -1,0 +1,88 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL scPipe
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R/library’
+* installing *source* package ‘scPipe’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c FragmentThread.cpp -o FragmentThread.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c FragmentUtils.cpp -o FragmentUtils.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c Gene.cpp -o Gene.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c Interval.cpp -o Interval.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c ResizeArray.cpp -o ResizeArray.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c ThreadOutputFile.cpp -o ThreadOutputFile.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c Trie.cpp -o Trie.o
+Trie.cpp: In member function ‘void Trie::SeqMismatchAux(std::vector<MismatchResult>&, const string&, trie_node*, int, int, int) const’:
+Trie.cpp:265:35: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<trie_node*>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  265 |                 for (int i = 0; i < valid_nodes.size(); i++) {
+      |                                 ~~^~~~~~~~~~~~~~~~~~~~
+Trie.cpp:274:43: warning: comparison of integer expressions of different signedness: ‘int’ and ‘std::vector<trie_node*>::size_type’ {aka ‘long unsigned int’} [-Wsign-compare]
+  274 |                         for (int i = 0; i < valid_nodes.size(); i++) {
+      |                                         ~~^~~~~~~~~~~~~~~~~~~~
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c bam.c -o bam.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c cellbarcode.cpp -o cellbarcode.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c check_barcode_reads.cpp -o check_barcode_reads.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c detect_barcode.cpp -o detect_barcode.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c parsebam.cpp -o parsebam.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c parsecount.cpp -o parsecount.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c qc_per_bc_file_helper.cpp -o qc_per_bc_file_helper.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c rcpp_scPipe_func.cpp -o rcpp_scPipe_func.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c sc_atac_create_fragments.cpp -o sc_atac_create_fragments.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c test-cpp.cpp -o test-cpp.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c test-example.cpp -o test-example.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c test-fragmentThread.cpp -o test-fragmentThread.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c test-resizearray.cpp -o test-resizearray.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c test-runner.cpp -o test-runner.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c test-trie_matching.cpp -o test-trie_matching.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c transcriptmapping.cpp -o transcriptmapping.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c trimbarcode.cpp -o trimbarcode.o
+trimbarcode.cpp: In function ‘void paired_fastq_to_fastq(char*, char*, char*, read_s, filter_s, bool)’:
+trimbarcode.cpp:613:24: warning: ‘o_stream_gz’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  613 |             fq_gz_write(o_stream_gz, seq1, bc1_end); // write to gzipped fastq file
+      |             ~~~~~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+trimbarcode.cpp: In function ‘std::vector<int> sc_atac_paired_fastq_to_csv(char*, char*, char*, char*, char*, int, int, char*, bool, bool, bool, int, int, int, int, int, int)’:
+trimbarcode.cpp:1349:44: warning: ‘bc1_end’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1349 |         memmove(seq1->seq.s, seq1->seq.s + bc1_end, seq1->name.l - bc1_end);
+      |                                            ^~~~~~~
+trimbarcode.cpp:1408:57: warning: ‘seq3’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1408 |                 memcpy(subStr3 + id2_len + 1, seq3->seq.s + umi_start, umi_length);
+      |                                               ~~~~~~~~~~^
+trimbarcode.cpp:1500:16: warning: ‘fq3’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+ 1500 |         gzclose(fq3);
+      |         ~~~~~~~^~~~~
+trimbarcode.cpp: In function ‘std::vector<int> sc_atac_paired_fastq_to_fastq(const char*, std::vector<std::__cxx11::basic_string<char> >, const char*, const char*, const char*, bool, bool, bool, int, int, bool)’:
+trimbarcode.cpp:805:31: warning: ‘seq3’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  805 |             if((l3 = kseq_read(seq3)) < 0){
+      |                      ~~~~~~~~~^~~~~~
+trimbarcode.cpp:983:16: warning: ‘fq3’ may be used uninitialized in this function [-Wmaybe-uninitialized]
+  983 |         gzclose(fq3);
+      |         ~~~~~~~^~~~~
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c tsscreatebins.cpp -o tsscreatebins.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/zlibbioc/include' -I'/home/biocbuild/bbs-3.17-bioc/R/library/testthat/include' -I/usr/local/include    -fPIC  -g -O2  -Wall -c utils.cpp -o utils.o
+g++ -std=gnu++11 -shared -L/home/biocbuild/bbs-3.17-bioc/R/lib -L/usr/local/lib -o scPipe.so FragmentThread.o FragmentUtils.o Gene.o Interval.o RcppExports.o ResizeArray.o ThreadOutputFile.o Trie.o bam.o cellbarcode.o check_barcode_reads.o detect_barcode.o parsebam.o parsecount.o qc_per_bc_file_helper.o rcpp_scPipe_func.o sc_atac_create_fragments.o test-cpp.o test-example.o test-fragmentThread.o test-resizearray.o test-runner.o test-trie_matching.o transcriptmapping.o trimbarcode.o tsscreatebins.o utils.o /home/biocbuild/bbs-3.17-bioc/R/library/Rhtslib/usrlib/libhts.a -lcurl -L/home/biocbuild/bbs-3.17-bioc/R/lib -lR
+installing to /home/biocbuild/bbs-3.17-bioc/R/library/00LOCK-scPipe/00new/scPipe/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (scPipe)
