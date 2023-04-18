@@ -1,0 +1,162 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:brainflowprobes.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings brainflowprobes_1.13.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/brainflowprobes.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘brainflowprobes/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘brainflowprobes’ version ‘1.13.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘brainflowprobes’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... WARNING
+Killed
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘brainflowprobes-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: brainflowprobes_cov
+> ### Title: Extract coverage data for a set of regions
+> ### Aliases: brainflowprobes_cov
+> 
+> ### ** Examples
+> 
+> 
+> ## This function loads data from BigWig files using the rtracklayer package.
+> ## This functionality is not supported on Windows OS machines!
+> if (.Platform$OS.type != "windows") {
++ 
++     ## How long this takes to run will depend on your internet connection.
++     example_cov <- brainflowprobes_cov("chr20:10286777-10288069:+",
++         PD = lapply(brainflowprobes::pd, head, n = 2)
++     )
++ 
++     ## Output examination:
++     # A list with one element per element in brainflowprobes::pd
++     stopifnot(is.list(example_cov))
++     stopifnot(identical(
++         names(example_cov),
++         names(brainflowprobes::pd)
++     ))
++ 
++     # For each dataset, brainflowprobes_cov() returns a list of region
++     # coverage data.frames. In this example, there was a single input region.
++     stopifnot(all(
++         sapply(example_cov, length) ==
++             length(
++                 GenomicRanges::GRanges("chr20:10286777-10288069:+")
++             )
++     ))
++ 
++     # Then each data.frame itself has 1 row per genome base-pair in the region
++     stopifnot(
++         all(
++             sapply(example_cov, function(x) {
++                 nrow(x[[1]])
++             }) ==
++                 GenomicRanges::width(
++                     GenomicRanges::GRanges("chr20:10286777-10288069:+")
++                 )
++         )
++     )
++ 
++     # and one column per sample in the dataset unless you subsetted the data
++     # like we did earlier when creating "example_cov".
++     stopifnot(identical(
++         sapply(four_panels_example_cov, function(x) {
++             ncol(x[[1]])
++         }),
++         sapply(pd, nrow)
++     ))
++ }
+2023-03-24 22:28:46.418345 getRegionCoverage : attempting to load coverage data from 'files'.
+2023-03-24 22:28:46.463709 fullCoverage: processing chromosome chr20
+2023-03-24 22:28:46.525222 loadCoverage: finding chromosome lengths
+2023-03-24 22:28:48.781335 loadCoverage: loading BigWig file http://brain-flow-rna.s3.us-east-2.amazonaws.com/Sep/Br1113C1_polyA.bw
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Complete output:
+  > library(testthat)
+  > library(brainflowprobes)
+  > 
+  > test_check("brainflowprobes")
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘brainflowprobes-vignette.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘brainflowprobes-vignette.Rmd’ using rmarkdown
+Warning in `[[.bibentry`(bib, "brainflowprobes") :
+  subscript out of bounds
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs, 1 WARNING
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/brainflowprobes.Rcheck/00check.log’
+for details.
+

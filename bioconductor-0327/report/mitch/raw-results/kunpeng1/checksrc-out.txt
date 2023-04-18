@@ -1,0 +1,161 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:mitch.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings mitch_1.11.4.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/mitch.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘mitch/DESCRIPTION’ ... OK
+* this is package ‘mitch’ version ‘1.11.4’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘mitch’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘mitch-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: mitch
+> ### Title: mitch: An R package for multi-dimensional pathway enrichment
+> ###   analysis
+> ### Aliases: mitch
+> 
+> ### ** Examples
+> 
+> # Example workflow
+> # Import some gene sets
+> genesetsExample<-gmt_import(system.file('extdata/sample_genesets.gmt', 
++ package = 'mitch'))
+> # Load some edgeR tables (rna, k9a, k36a). 
+> data(rna,k9a,k36a)
+> # Create a list of differential profiles
+> myList<-list('rna'=rna,'k9a'=k9a,'k36a'=k36a)
+> # Import as edgeR table 
+> myImportedData<-mitch_import(myList,DEtype='edger')
+Note: Mean no. genes in input = 1000
+Note: no. genes in output = 1000
+Note: estimated proportion of input genes in output = 1
+> # Calculate enrichment using MANOVA
+> resExample<-mitch_calc(myImportedData,genesetsExample,priority='effect',
++ resrows=5,cores=2)
+Note: Enrichments with large effect sizes may not be 
+            statistically significant.
+> # Generate some high res plots in PDF format
+> mitch_plots(resExample,outfile='outres.pdf')
+Warning: The dot-dot notation (`..density..`) was deprecated in ggplot2 3.4.0.
+ℹ Please use `after_stat(density)` instead.
+ℹ The deprecated feature was likely used in the mitch package.
+  Please report the issue to the authors.
+Warning: Removed 396 rows containing missing values (`geom_tile()`).
+Warning: Removed 396 rows containing missing values (`geom_tile()`).
+Warning: Removed 396 rows containing missing values (`geom_tile()`).
+Warning: Removed 396 rows containing missing values (`geom_tile()`).
+Warning: Removed 396 rows containing missing values (`geom_tile()`).
+Warning: Removed 396 rows containing missing values (`geom_tile()`).
+Warning: Removed 396 rows containing missing values (`geom_tile()`).
+Warning: Removed 396 rows containing missing values (`geom_tile()`).
+Warning: Removed 396 rows containing missing values (`geom_tile()`).
+Warning: Removed 396 rows containing missing values (`geom_tile()`).
+Warning: Removed 396 rows containing missing values (`geom_tile()`).
+Warning: Removed 396 rows containing missing values (`geom_tile()`).
+Warning: Removed 396 rows containing missing values (`geom_tile()`).
+Warning: Removed 396 rows containing missing values (`geom_tile()`).
+Warning: Removed 396 rows containing missing values (`geom_tile()`).
+pdf 
+  2 
+> #' Generate a report of the analysis in HTML format
+> mitch_report(resExample,'outres.html')
+Dataset saved as " /tmp/RtmpbO1r7F/outres.rds ".
+
+
+processing file: mitch.Rmd
+Quitting from lines 936-1272 (mitch.Rmd) 
+Error in xtfrm.data.frame(x) : cannot xtfrm data frames
+Calls: mitch_report ... lapply -> FUN -> as.vector -> xtfrm -> xtfrm.data.frame
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘test-mitch.R’
+ ERROR
+Running the tests in ‘tests/test-mitch.R’ failed.
+Last 13 lines of output:
+              p-values), large effect sizes might be missed.
+  > mitch_plots(res,outfile="3d.pdf")
+  null device 
+            1 
+  There were 16 warnings (use warnings() to see them)
+  > if (file.exists("3d.html")) { unlink("3d.html") }
+  > mitch_report(res,"3d.html")
+  Dataset saved as " /tmp/RtmpqrPcNE/3d.rds ".
+  
+  
+  processing file: mitch.Rmd
+  Quitting from lines 936-1272 (mitch.Rmd) 
+  Error in xtfrm.data.frame(x) : cannot xtfrm data frames
+  Calls: mitch_report ... lapply -> FUN -> as.vector -> xtfrm -> xtfrm.data.frame
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘mitchWorkflow.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/mitch.Rcheck/00check.log’
+for details.
+

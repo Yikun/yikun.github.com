@@ -1,0 +1,81 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data sigPathway
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘sigPathway/DESCRIPTION’ ... OK
+* preparing ‘sigPathway’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* installing the package to build vignettes
+      -----------------------------------
+* installing *source* package ‘sigPathway’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c calc_gene_set_internal.c -o calc_gene_set_internal.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c calc_gene_set_stat.c -o calc_gene_set_stat.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c calc_probe_stat.c -o calc_probe_stat.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c calc_weights.c -o calc_weights.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c matrix_fn.c -o matrix_fn.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include/R.h:78,
+                 from sigPathway.h:18,
+                 from matrix_fn.c:13:
+matrix_fn.c: In function ‘matprod’:
+matrix_fn.c:28:16: error: too few arguments to function ‘dgemm_’
+   28 |       F77_CALL(dgemm)(transa, transb, &nrx, &ncy, &ncx, &one,
+      |                ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include/R_ext/BLAS.h:207:10: note: declared here
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      |          ^~~~~
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include/R_ext/BLAS.h:207:1: note: in expansion of macro ‘F77_NAME’
+  207 | F77_NAME(dgemm)(const char *transa, const char *transb, const int *m,
+      | ^~~~~~~~
+matrix_fn.c: In function ‘eigen’:
+matrix_fn.c:65:12: error: too few arguments to function ‘dsyevr_’
+   65 |   F77_CALL(dsyevr)(jobv, range, uplo, &n, rx, &n,
+      |            ^~~~~~
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include/R_ext/Lapack.h:1270:10: note: declared here
+ 1270 | F77_NAME(dsyevr)(const char* jobz, const char* range, const char* uplo,
+      |          ^~~~~~
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include/R_ext/Lapack.h:1270:1: note: in expansion of macro ‘F77_NAME’
+ 1270 | F77_NAME(dsyevr)(const char* jobz, const char* range, const char* uplo,
+      | ^~~~~~~~
+matrix_fn.c:77:12: error: too few arguments to function ‘dsyevr_’
+   77 |   F77_CALL(dsyevr)(jobv, range, uplo, &n, rx, &n,
+      |            ^~~~~~
+matrix_fn.c:77:3: note: in expansion of macro ‘F77_CALL’
+   77 |   F77_CALL(dsyevr)(jobv, range, uplo, &n, rx, &n,
+      |   ^~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include/R_ext/Lapack.h:1270:10: note: declared here
+ 1270 | F77_NAME(dsyevr)(const char* jobz, const char* range, const char* uplo,
+      |          ^~~~~~
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include/R_ext/RS.h:77:25: note: in definition of macro ‘F77_CALL’
+   77 | # define F77_CALL(x)    x ## _
+      |                         ^
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include/R_ext/Lapack.h:1270:1: note: in expansion of macro ‘F77_NAME’
+ 1270 | F77_NAME(dsyevr)(const char* jobz, const char* range, const char* uplo,
+      | ^~~~~~~~
+make: *** [/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/etc/Makeconf:191: matrix_fn.o] Error 1
+ERROR: compilation failed for package ‘sigPathway’
+* removing ‘/tmp/RtmpwktI5l/Rinst2f5b773b030a64/sigPathway’
+      -----------------------------------
+ERROR: package installation failed

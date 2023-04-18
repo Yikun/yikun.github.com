@@ -1,0 +1,232 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:ANCOMBC.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings ANCOMBC_2.1.2.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/ANCOMBC.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘ANCOMBC/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘ANCOMBC’ version ‘2.1.2’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘ANCOMBC’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘ANCOMBC-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: ancom
+> ### Title: Analysis of Composition of Microbiomes (ANCOM)
+> ### Aliases: ancom
+> 
+> ### ** Examples
+> 
+> library(ANCOMBC)
+> library(mia)
+Loading required package: SummarizedExperiment
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Loading required package: GenomicRanges
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+Loading required package: SingleCellExperiment
+Loading required package: TreeSummarizedExperiment
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: MultiAssayExperiment
+> data(atlas1006)
+> 
+> # subset to baseline
+> tse = atlas1006[, atlas1006$time == 0]
+> 
+> # run ancom function
+> set.seed(123)
+> out = ancom(data = tse, assay_name = "counts",
++             tax_level = "Family", phyloseq = NULL,
++             p_adj_method = "holm", prv_cut = 0.10, lib_cut = 1000,
++             main_var = "bmi_group", adj_formula = "age + nationality",
++             rand_formula = NULL, lme_control = NULL,
++             struc_zero = TRUE, neg_lb = TRUE, alpha = 0.05, n_cl = 1)
+> 
+> res = out$res
+> 
+> # to run ancom using the phyloseq object
+> tse_alt = agglomerateByRank(tse, "Family")
+> pseq = makePhyloseqFromTreeSummarizedExperiment(tse_alt)
+> set.seed(123)
+> out = ancom(data = NULL, assay_name = NULL,
++             tax_level = "Family", phyloseq = pseq,
++             p_adj_method = "holm", prv_cut = 0.10, lib_cut = 1000,
++             main_var = "bmi_group", adj_formula = "age + nationality",
++             rand_formula = NULL, lme_control = NULL,
++             struc_zero = TRUE, neg_lb = TRUE, alpha = 0.05, n_cl = 1)
+Killed
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Complete output:
+  > library("testthat")
+  > packageVersion("ANCOMBC")
+  [1] '2.1.2'
+  > test_check("ANCOMBC")
+  Loading required package: ANCOMBC
+  Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘ANCOM.Rmd’ using ‘UTF-8’... OK
+  ‘ANCOMBC.Rmd’ using ‘UTF-8’... OK
+  ‘ANCOMBC2.Rmd’ using ‘UTF-8’... OK
+  ‘SECOM.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘ANCOM.Rmd’ using rmarkdown
+Killed
+--- re-building ‘ANCOMBC.Rmd’ using rmarkdown
+--- finished re-building ‘ANCOMBC.Rmd’
+
+--- re-building ‘ANCOMBC2.Rmd’ using rmarkdown
+Killed
+--- re-building ‘SECOM.Rmd’ using rmarkdown
+Killed
+SUMMARY: processing the following files failed:
+  ‘ANCOM.Rmd’ ‘ANCOMBC2.Rmd’ ‘SECOM.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/ANCOMBC.Rcheck/00check.log’
+for details.
+

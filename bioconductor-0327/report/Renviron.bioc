@@ -1,0 +1,59 @@
+# ====================================================================
+# Environment variables used on the Bioconductor build machines to
+# control the behavior of R 4.3 for the BioC 3.17 builds
+# ====================================================================
+#
+# BIOCONDUCTOR PACKAGE DEVELOPERS/MAINTAINERS: Please use the settings
+# below on your machine when working on the devel branch of your
+# package. Also make sure to use a recent version of R 4.3. This
+# should allow you to reproduce any error or warning you see on the
+# Bioconductor build reports. The easiest way to use the settings
+# below is to add them to your .Renviron file. However, please note
+# that this will enable them for **any** R installation you have on
+# your system. To enable them for a particular R session only, put
+# them in a separate file (e.g. .Renviron.bioc, located in your home),
+# then start R with:
+#
+#     R_ENVIRON_USER=~/.Renviron.bioc R
+#
+# or:
+#
+#     R_ENVIRON_USER=~/.Renviron.bioc R CMD build ...
+#
+# or:
+#
+#     R_ENVIRON_USER=~/.Renviron.bioc R CMD check ...
+#
+# Alternatively, if you have write access to the R_HOME folder, you
+# can put them in R_HOME/etc/Renviron.site
+
+#_R_CHECK_TIMINGS_="0"
+_R_CHECK_EXECUTABLES_=false
+_R_CHECK_EXECUTABLES_EXCLUSIONS_=false
+_R_CHECK_LENGTH_1_CONDITION_=package:_R_CHECK_PACKAGE_NAME_,abort,verbose
+_R_CHECK_LENGTH_1_LOGIC2_=package:_R_CHECK_PACKAGE_NAME_,abort,verbose
+#_R_CHECK_LENGTH_1_CONDITION_=verbose
+#_R_CHECK_LENGTH_1_LOGIC2_=verbose
+_R_CHECK_NEWS_IN_PLAIN_TEXT_=true
+_R_CHECK_S3_METHODS_NOT_REGISTERED_=true
+#_R_S3_METHOD_LOOKUP_BASEENV_AFTER_GLOBALENV_=true
+#_R_CLASS_MATRIX_ARRAY_=true
+R_DEFAULT_INTERNET_TIMEOUT=3600
+
+# Package code can use this to detect that it's running on a Bioconductor
+# build machine.
+IS_BIOC_BUILD_MACHINE=true
+
+# Set the number of workers that BiocParallel back-ends should use by default.
+BIOCPARALLEL_WORKER_NUMBER=4
+
+# Setting OMP_THREAD_LIMIT to 2 apparently helps prevent a BayesSpace
+# TIMEOUT on Linux.
+OMP_THREAD_LIMIT=2
+# Setting **both** OMP_THREAD_LIMIT and OMP_NUM_THREADS to 2 apparently
+# helps prevent a snifter TIMEOUT on Mac.
+OMP_NUM_THREADS=2
+# The KMP_* settings apparently help prevent a velociraptor TIMEOUT on Mac.
+KMP_DEVICE_THREAD_LIMIT=2
+KMP_TEAMS_THREAD_LIMIT=2
+

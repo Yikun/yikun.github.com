@@ -1,0 +1,42 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL MIMOSA
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library’
+* installing *source* package ‘MIMOSA’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/RcppArmadillo/include' -I/usr/local/include   `/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/bin/Rscript -e "RcppArmadillo:::CxxFlags()"`   -fPIC  -g -O2  -c BetaMix.cpp -o BetaMix.o
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/RcppArmadillo/include' -I/usr/local/include   `/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/bin/Rscript -e "RcppArmadillo:::CxxFlags()"`   -fPIC  -g -O2  -c MCMC.cpp -o MCMC.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -c MIMOSA_init.c -o MIMOSA_init.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/RcppArmadillo/include' -I/usr/local/include    -fPIC  -g -O2  -c betaintegral.c -o betaintegral.o
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/RcppArmadillo/include' -I/usr/local/include   `/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/bin/Rscript -e "RcppArmadillo:::CxxFlags()"`   -fPIC  -g -O2  -c betaintegralRcpp.cpp -o betaintegralRcpp.o
+g++ -std=gnu++17 -shared -L/usr/local/lib -o MIMOSA.so BetaMix.o MCMC.o MIMOSA_init.o betaintegral.o betaintegralRcpp.o -O3 -lm -lstdc++ -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/RcppArmadillo/include"
+installing to /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/00LOCK-MIMOSA/00new/MIMOSA/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+Warning: Package 'MIMOSA' is deprecated and will be removed from Bioconductor
+  version 3.18
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+Warning: Package 'MIMOSA' is deprecated and will be removed from Bioconductor
+  version 3.18
+** testing if installed package keeps a record of temporary installation path
+* DONE (MIMOSA)

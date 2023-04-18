@@ -1,0 +1,261 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:orthogene.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings orthogene_1.5.1.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/orthogene.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘orthogene/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘orthogene’ version ‘1.5.1’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘orthogene’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... WARNING
+Missing or unexported objects:
+  ‘rphylopic::image_data’ ‘rphylopic::name_images’
+  ‘rphylopic::name_search’ ‘rphylopic::ubio_get’ ‘stats::pass’
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking R/sysdata.rda ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘orthogene-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plot_orthotree
+> ### Title: Create a phylogenetic tree of shared orthologs
+> ### Aliases: plot_orthotree
+> 
+> ### ** Examples
+> 
+> orthotree <- orthogene::plot_orthotree(species = c("human","monkey","mouse"),
++                                        scaling_factor = .3)
+Gathering ortholog reports.
+
+-- human
+Retrieving all genes using: homologene.
+Retrieving all organisms available in homologene.
+Mapping species name: human
+Common name mapping found for human
+1 organism identified from search: 9606
+Gene table with 19,129 rows retrieved.
+Returning all 19,129 genes from human.
+--
+
+=========== REPORT SUMMARY ===========
+
+19,129 / 19,129 (100%) target_species genes remain after ortholog conversion.
+19,129 / 19,129 (100%) reference_species genes remain after ortholog conversion.
+
+-- monkey
+Retrieving all genes using: homologene.
+Retrieving all organisms available in homologene.
+Mapping species name: monkey
+Common name mapping found for monkey
+1 organism identified from search: 9544
+Gene table with 16,843 rows retrieved.
+Returning all 16,843 genes from monkey.
+--
+Retrieving all genes using: homologene.
+Retrieving all organisms available in homologene.
+Mapping species name: human
+Common name mapping found for human
+1 organism identified from search: 9606
+Gene table with 19,129 rows retrieved.
+Returning all 19,129 genes from human.
+--
+Preparing gene_df.
+data.frame format detected.
+Extracting genes from Gene.Symbol.
+16,843 genes extracted.
+Converting monkey ==> human orthologs using: homologene
+Retrieving all organisms available in homologene.
+Mapping species name: monkey
+Common name mapping found for monkey
+1 organism identified from search: 9544
+Retrieving all organisms available in homologene.
+Mapping species name: human
+Common name mapping found for human
+1 organism identified from search: 9606
+Checking for genes without orthologs in human.
+Extracting genes from input_gene.
+15,675 genes extracted.
+Extracting genes from ortholog_gene.
+15,675 genes extracted.
+Checking for genes without 1:1 orthologs.
+Dropping 203 genes that have multiple input_gene per ortholog_gene (many:1).
+Dropping 221 genes that have multiple ortholog_gene per input_gene (1:many).
+Filtering gene_df with gene_map
+Adding input_gene col to gene_df.
+Adding ortholog_gene col to gene_df.
+
+=========== REPORT SUMMARY ===========
+
+Total genes dropped after convert_orthologs :
+   1,730 / 16,816 (10%)
+Total genes remaining after convert_orthologs :
+   15,086 / 16,816 (90%)
+--
+
+=========== REPORT SUMMARY ===========
+
+15,075 / 16,816 (89.65%) target_species genes remain after ortholog conversion.
+15,075 / 19,129 (78.81%) reference_species genes remain after ortholog conversion.
+
+-- mouse
+Retrieving all genes using: homologene.
+Retrieving all organisms available in homologene.
+Mapping species name: mouse
+Common name mapping found for mouse
+1 organism identified from search: 10090
+Gene table with 21,207 rows retrieved.
+Returning all 21,207 genes from mouse.
+--
+Retrieving all genes using: homologene.
+Retrieving all organisms available in homologene.
+Mapping species name: human
+Common name mapping found for human
+1 organism identified from search: 9606
+Gene table with 19,129 rows retrieved.
+Returning all 19,129 genes from human.
+--
+Preparing gene_df.
+data.frame format detected.
+Extracting genes from Gene.Symbol.
+21,207 genes extracted.
+Converting mouse ==> human orthologs using: homologene
+Retrieving all organisms available in homologene.
+Mapping species name: mouse
+Common name mapping found for mouse
+1 organism identified from search: 10090
+Retrieving all organisms available in homologene.
+Mapping species name: human
+Common name mapping found for human
+1 organism identified from search: 9606
+Checking for genes without orthologs in human.
+Extracting genes from input_gene.
+17,355 genes extracted.
+Extracting genes from ortholog_gene.
+17,355 genes extracted.
+Checking for genes without 1:1 orthologs.
+Dropping 131 genes that have multiple input_gene per ortholog_gene (many:1).
+Dropping 498 genes that have multiple ortholog_gene per input_gene (1:many).
+Filtering gene_df with gene_map
+Adding input_gene col to gene_df.
+Adding ortholog_gene col to gene_df.
+
+=========== REPORT SUMMARY ===========
+
+Total genes dropped after convert_orthologs :
+   4,725 / 21,207 (22%)
+Total genes remaining after convert_orthologs :
+   16,482 / 21,207 (78%)
+--
+
+=========== REPORT SUMMARY ===========
+
+16,482 / 21,207 (77.72%) target_species genes remain after ortholog conversion.
+16,482 / 19,129 (86.16%) reference_species genes remain after ortholog conversion.
+Loading required namespace: phytools
+Loading required namespace: TreeTools
+Importing tree from: TimeTree2022
+Mapping 3 species from `species`.
+Mapping 3 species from tree.
+--
+0/3 (0%) tips dropped from tree due to inability to standardise names with `map_species`.
+--
+0/3 (0%) tips dropped from tree according to overlap with selected `species`.
+Loading required namespace: rphylopic
+Gathering phylopic silhouettes.
+Mus musculus
+Homo sapiens
+Macaca mulatta
+Error in data.table::setnames(res, "string", "species") : 
+  Items of 'old' not found in column names: [string]. Consider skip_absent=TRUE.
+Calls: <Anonymous> -> gather_images -> <Anonymous>
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  WARNING: Species 'monkeytypo' not found in taxa dict.
+  [ FAIL 1 | WARN 0 | SKIP 0 | PASS 138 ]
+  
+  ══ Failed tests ════════════════════════════════════════════════════════════════
+  ── Error ('test-plot_orthotree.R:5:3'): plot_orthotree works ───────────────────
+  Error in `data.table::setnames(res, "string", "species")`: Items of 'old' not found in column names: [string]. Consider skip_absent=TRUE.
+  Backtrace:
+      ▆
+   1. └─orthogene::plot_orthotree(species = species, method = "homologene") at test-plot_orthotree.R:5:2
+   2.   └─orthogene:::gather_images(...)
+   3.     └─data.table::setnames(res, "string", "species")
+  
+  [ FAIL 1 | WARN 0 | SKIP 0 | PASS 138 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘docker.Rmd’ using ‘UTF-8’... OK
+  ‘infer_species.Rmd’ using ‘UTF-8’... OK
+  ‘orthogene.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 1 WARNING
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/orthogene.Rcheck/00check.log’
+for details.
+

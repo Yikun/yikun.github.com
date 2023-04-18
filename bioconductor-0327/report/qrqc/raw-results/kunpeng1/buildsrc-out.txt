@@ -1,0 +1,97 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data qrqc
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘qrqc/DESCRIPTION’ ... OK
+* preparing ‘qrqc’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* installing the package to build vignettes
+      -----------------------------------
+* installing *source* package ‘qrqc’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -c R_init_io.c -o R_init_io.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -c io.c -o io.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include/R.h:78,
+                 from io.c:7:
+io.c: In function ‘hash_seq_kmers’:
+io.c:222:39: error: ‘SINT_MAX’ undeclared (first use in this function); did you mean ‘WINT_MAX’?
+  222 |   char *a_kmer = Calloc(k + 2 + log10(SINT_MAX), char), *start_ptr;
+      |                                       ^~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include/R_ext/RS.h:53:56: note: in definition of macro ‘Calloc’
+   53 | #define Calloc(n, t)   (t *) R_chk_calloc( (R_SIZE_T) (n), sizeof(t) )
+      |                                                        ^
+io.c:222:39: note: each undeclared identifier is reported only once for each function it appears in
+  222 |   char *a_kmer = Calloc(k + 2 + log10(SINT_MAX), char), *start_ptr;
+      |                                       ^~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include/R_ext/RS.h:53:56: note: in definition of macro ‘Calloc’
+   53 | #define Calloc(n, t)   (t *) R_chk_calloc( (R_SIZE_T) (n), sizeof(t) )
+      |                                                        ^
+io.c: In function ‘summarize_file’:
+io.c:33:25: warning: initialization of ‘struct gzFile_s **’ from incompatible pointer type ‘gzFile’ {aka ‘struct gzFile_s *’} [-Wincompatible-pointer-types]
+   33 | #define FILE_OPEN(x, m) (gzopen(x, m))
+      |                         ^
+io.c:348:19: note: in expansion of macro ‘FILE_OPEN’
+  348 |   FILE_TYPE *fp = FILE_OPEN(CHAR(STRING_ELT(filename, 0)), "r");
+      |                   ^~~~~~~~~
+io.c:351:21: warning: passing argument 1 of ‘kseq_init’ from incompatible pointer type [-Wincompatible-pointer-types]
+  351 |   block = kseq_init(fp);
+      |                     ^~
+      |                     |
+      |                     struct gzFile_s **
+In file included from io.c:12:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include/htslib/kseq.h:165:40: note: expected ‘gzFile’ {aka ‘struct gzFile_s *’} but argument is of type ‘struct gzFile_s **’
+  165 |         SCOPE kseq_t *kseq_init(type_t fd)                                                                      \
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include/htslib/kseq.h:237:9: note: in expansion of macro ‘__KSEQ_BASIC’
+  237 |         __KSEQ_BASIC(SCOPE, type_t)                                     \
+      |         ^~~~~~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include/htslib/kseq.h:240:35: note: in expansion of macro ‘KSEQ_INIT2’
+  240 | #define KSEQ_INIT(type_t, __read) KSEQ_INIT2(static, type_t, __read)
+      |                                   ^~~~~~~~~~
+io.c:35:1: note: in expansion of macro ‘KSEQ_INIT’
+   35 | KSEQ_INIT(gzFile, gzread)
+      | ^~~~~~~~~
+io.c:453:21: warning: passing argument 1 of ‘kseq_init’ from incompatible pointer type [-Wincompatible-pointer-types]
+  453 |   block = kseq_init(fp);
+      |                     ^~
+      |                     |
+      |                     struct gzFile_s **
+In file included from io.c:12:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include/htslib/kseq.h:165:40: note: expected ‘gzFile’ {aka ‘struct gzFile_s *’} but argument is of type ‘struct gzFile_s **’
+  165 |         SCOPE kseq_t *kseq_init(type_t fd)                                                                      \
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include/htslib/kseq.h:237:9: note: in expansion of macro ‘__KSEQ_BASIC’
+  237 |         __KSEQ_BASIC(SCOPE, type_t)                                     \
+      |         ^~~~~~~~~~~~
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include/htslib/kseq.h:240:35: note: in expansion of macro ‘KSEQ_INIT2’
+  240 | #define KSEQ_INIT(type_t, __read) KSEQ_INIT2(static, type_t, __read)
+      |                                   ^~~~~~~~~~
+io.c:35:1: note: in expansion of macro ‘KSEQ_INIT’
+   35 | KSEQ_INIT(gzFile, gzread)
+      | ^~~~~~~~~
+io.c:454:14: warning: passing argument 1 of ‘gzclose’ from incompatible pointer type [-Wincompatible-pointer-types]
+  454 |   FILE_CLOSE(fp);
+      |              ^~
+      |              |
+      |              struct gzFile_s **
+io.c:34:32: note: in definition of macro ‘FILE_CLOSE’
+   34 | #define FILE_CLOSE(x) (gzclose(x))
+      |                                ^
+In file included from /usr/include/zlib.h:34,
+                 from io.c:31:
+/usr/include/zlib.h:1631:32: note: expected ‘gzFile’ {aka ‘struct gzFile_s *’} but argument is of type ‘struct gzFile_s **’
+ 1631 | ZEXTERN int ZEXPORT    gzclose OF((gzFile file));
+      |                                ^~
+make: *** [/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/etc/Makeconf:191: io.o] Error 1
+ERROR: compilation failed for package ‘qrqc’
+* removing ‘/tmp/RtmpvNCWKs/Rinst2abd8f3a00724f/qrqc’
+      -----------------------------------
+ERROR: package installation failed

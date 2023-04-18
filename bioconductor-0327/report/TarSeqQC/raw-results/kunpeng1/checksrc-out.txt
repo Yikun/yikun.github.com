@@ -1,0 +1,207 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:TarSeqQC.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings TarSeqQC_1.29.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/TarSeqQC.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘TarSeqQC/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘TarSeqQC’ version ‘1.29.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘TarSeqQC’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+plotNtdPercentage,TargetExperiment: no visible global function
+  definition for ‘path’
+plotRegion,TargetExperiment: no visible global function definition for
+  ‘path’
+readFrequencies,TargetExperiment: no visible global function definition
+  for ‘path’
+Undefined global functions or variables:
+  path
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘TarSeqQC-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: TargetExperiment-class
+> ### Title: TargetExperiment S4 class implementation in R
+> ### Aliases: TargetExperiment-class
+> 
+> ### ** Examples
+> 
+> ## Defining bam file, bed file and fasta file names and paths
+> bamFile<-system.file("extdata", "mybam.bam", package="TarSeqQC", 
++     mustWork=TRUE)
+> bedFile<-system.file("extdata", "mybed.bed", package="TarSeqQC",
++     mustWork=TRUE)
+> fastaFile<-system.file("extdata", "myfasta.fa", package="TarSeqQC", 
++     mustWork=TRUE)
+> 
+> ## Creating a TargetExperiment object
+> 
+> # Defining feature parameter
+> feature<-"amplicon"
+> # Defining attribute parameter
+> attribute<-"coverage"
+> ampliPanel<-TargetExperiment(bedFile, bamFile, fastaFile, attribute=attribute,
++     feature=feature)
+> 
+> ## Alternative object creation
+> # Creating the TargetExperiment object
+> ampliPanel<-TargetExperiment(bedFile, bamFile, fastaFile)
+Warning in .local(.Object, ...) : The 'attribute' slot is empty
+Warning in .local(.Object, ...) : The 'feature' slot is empty
+> # Set feature slot value
+> setFeature(ampliPanel)<-"amplicon"
+> # Set attribute slot value
+> setAttribute(ampliPanel)<-"coverage"
+> # Set pileupP slot value in order to set the maximum depth at 1000
+> setPileupP(ampliPanel)<-PileupParam(max_depth=1000)
+> # Set the featurePanel slot but now using the new pileupP definition
+> setFeaturePanel(ampliPanel)<-buildFeaturePanel(ampliPanel)
+> ## Early exploration
+> # show/print
+> ampliPanel
+TargetExperiment 
+amplicon panel: 
+	GRanges object with 3 ranges and 6 metadata columns:
+        seqnames    ranges strand |        gene        gc  coverage sdCoverage
+           <Rle> <IRanges>  <Rle> | <character> <numeric> <numeric>  <numeric>
+  AMPL1     chr1   463-551      * |       gene1     0.674       320         19
+  AMPL2     chr1 1553-1603      * |       gene2     0.451       550         90
+  AMPL3     chr1 3766-3814      * |       gene2     0.531       455         12
+        medianCounts IQRCounts
+           <numeric> <numeric>
+  AMPL1          326        24
+  AMPL2          574        14
+  AMPL3          463        27
+  -------
+  seqinfo: 4 sequences from an unspecified genome; no seqlengths
+
+gene panel: 
+	GRanges object with 3 ranges and 4 metadata columns:
+        seqnames    ranges strand | medianCounts IQRCounts  coverage sdCoverage
+           <Rle> <IRanges>  <Rle> |    <numeric> <numeric> <numeric>  <numeric>
+  gene1     chr1   463-551      * |          326         0       320          0
+  gene2     chr1 1553-3814      * |          518        56       502         67
+  gene3     chr3      1-59      * |            0         0         0          0
+  -------
+  seqinfo: 4 sequences from an unspecified genome; no seqlengths
+
+selected attribute: 
+	 coverage 
+> # summary
+> summary(ampliPanel)
+         Min. 1st Qu. Median Mean 3rd Qu. Max.
+gene        0     261    328  312     396  502
+amplicon    0     143    288  316     472  931
+> # summary at feature level
+> summaryFeatureLev(ampliPanel)
+         Min. 1st Qu. Median Mean 3rd Qu. Max.
+amplicon    0     143    288  316     472  931
+> # summary at gene level
+> summaryGeneLev(ampliPanel)
+     Min. 1st Qu. Median Mean 3rd Qu. Max.
+gene    0     261    328  312     396  502
+> # attribute boxplot and density plot exploration
+> g<-plotAttrExpl(ampliPanel,level="feature",join=TRUE, log=FALSE, color="blue")
+Warning: The `<scale>` argument of `guides()` cannot be `FALSE`. Use "none" instead as
+of ggplot2 3.3.4.
+ℹ The deprecated feature was likely used in the TarSeqQC package.
+  Please report the issue to the authors.
+> if(interactive()){
++ x11(type="cairo");g
++ }
+> # explore amplicon length distribution
+> g<-plotMetaDataExpl(ampliPanel, "length", log=FALSE, join=FALSE, color=
++ "blueviolet")
+> if(interactive()){
++ g
++ }
+> # explore gene's relative frequencies
+> g<-plotMetaDataExpl(ampliPanel, "gene", abs=FALSE)
+> if(interactive()){
++ g
++ }
+> ## Deep exploration and Quality Control
+> myfrequencies<-readFrequencies(ampliPanel)
+> g<-plotInOutFeatures(readFrequencies(ampliPanel))
+> if(interactive()){
++ g
++ }
+> # definition of the interval extreme values
+> attributeThres<-c(0,1,50,200,500, Inf)
+> # plot panel overview
+> g<-plot(ampliPanel, attributeThres, chrLabels =TRUE)
+Error in aggregate.formula(formula = xmin ~ seqnames, data = df_panel,  : 
+  argument 'x' is  missing -- it has been renamed from 'formula'
+Calls: plot -> plot -> .local -> aggregate -> aggregate.formula
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘runTests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘TarSeqQC-vignette.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/TarSeqQC.Rcheck/00check.log’
+for details.
+

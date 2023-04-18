@@ -1,0 +1,2214 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL DNABarcodes
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library’
+* installing *source* package ‘DNABarcodes’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c DNABarcodes_init.c -o DNABarcodes_init.o
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c analyse_barcodes.cpp -o analyse_barcodes.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:17,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from analyse_barcodes.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/detail/shared_count.hpp:361:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  361 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from analyse_barcodes.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from analyse_barcodes.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:250:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  250 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from analyse_barcodes.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from analyse_barcodes.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:507:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  507 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from analyse_barcodes.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from analyse_barcodes.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:520:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  520 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from analyse_barcodes.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from analyse_barcodes.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:603:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  603 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from analyse_barcodes.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from analyse_barcodes.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:612:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  612 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from analyse_barcodes.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from analyse_barcodes.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:614:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  614 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from analyse_barcodes.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c barcode_set_distances.cpp -o barcode_set_distances.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:17,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from barcode_set_distances.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/detail/shared_count.hpp:361:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  361 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from barcode_set_distances.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from barcode_set_distances.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:250:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  250 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from barcode_set_distances.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from barcode_set_distances.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:507:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  507 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from barcode_set_distances.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from barcode_set_distances.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:520:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  520 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from barcode_set_distances.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from barcode_set_distances.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:603:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  603 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from barcode_set_distances.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from barcode_set_distances.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:612:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  612 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from barcode_set_distances.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from barcode_set_distances.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:614:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  614 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from barcode_set_distances.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c cachedistance.cpp -o cachedistance.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:17,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from cachedistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/detail/shared_count.hpp:361:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  361 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from cachedistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from cachedistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:250:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  250 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from cachedistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from cachedistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:507:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  507 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from cachedistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from cachedistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:520:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  520 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from cachedistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from cachedistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:603:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  603 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from cachedistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from cachedistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:612:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  612 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from cachedistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from cachedistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:614:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  614 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from cachedistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c chromosome.cpp -o chromosome.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:17,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from chromosome.h:6,
+                 from chromosome.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/detail/shared_count.hpp:361:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  361 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance.h:8,
+                 from chromosome.h:6,
+                 from chromosome.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from chromosome.h:6,
+                 from chromosome.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:250:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  250 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance.h:8,
+                 from chromosome.h:6,
+                 from chromosome.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from chromosome.h:6,
+                 from chromosome.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:507:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  507 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance.h:8,
+                 from chromosome.h:6,
+                 from chromosome.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from chromosome.h:6,
+                 from chromosome.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:520:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  520 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance.h:8,
+                 from chromosome.h:6,
+                 from chromosome.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from chromosome.h:6,
+                 from chromosome.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:603:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  603 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance.h:8,
+                 from chromosome.h:6,
+                 from chromosome.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from chromosome.h:6,
+                 from chromosome.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:612:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  612 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance.h:8,
+                 from chromosome.h:6,
+                 from chromosome.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from chromosome.h:6,
+                 from chromosome.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:614:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  614 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance.h:8,
+                 from chromosome.h:6,
+                 from chromosome.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c code_falsification.cpp -o code_falsification.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:17,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from chromosome.h:6,
+                 from code_falsification.cpp:11:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/detail/shared_count.hpp:361:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  361 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from code_falsification.cpp:5:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from chromosome.h:6,
+                 from code_falsification.cpp:11:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:250:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  250 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from code_falsification.cpp:5:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from chromosome.h:6,
+                 from code_falsification.cpp:11:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:507:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  507 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from code_falsification.cpp:5:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from chromosome.h:6,
+                 from code_falsification.cpp:11:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:520:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  520 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from code_falsification.cpp:5:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from chromosome.h:6,
+                 from code_falsification.cpp:11:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:603:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  603 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from code_falsification.cpp:5:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from chromosome.h:6,
+                 from code_falsification.cpp:11:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:612:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  612 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from code_falsification.cpp:5:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from chromosome.h:6,
+                 from code_falsification.cpp:11:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:614:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  614 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from code_falsification.cpp:5:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c conway.cpp -o conway.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:17,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from conway.h:8,
+                 from conway.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/detail/shared_count.hpp:361:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  361 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance.h:8,
+                 from conway.h:8,
+                 from conway.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from conway.h:8,
+                 from conway.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:250:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  250 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance.h:8,
+                 from conway.h:8,
+                 from conway.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from conway.h:8,
+                 from conway.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:507:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  507 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance.h:8,
+                 from conway.h:8,
+                 from conway.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from conway.h:8,
+                 from conway.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:520:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  520 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance.h:8,
+                 from conway.h:8,
+                 from conway.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from conway.h:8,
+                 from conway.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:603:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  603 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance.h:8,
+                 from conway.h:8,
+                 from conway.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from conway.h:8,
+                 from conway.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:612:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  612 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance.h:8,
+                 from conway.h:8,
+                 from conway.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from conway.h:8,
+                 from conway.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:614:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  614 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance.h:8,
+                 from conway.h:8,
+                 from conway.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c create_distance_func.cpp -o create_distance_func.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:17,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from create_distance_func.cpp:5:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/detail/shared_count.hpp:361:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  361 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_distance_func.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from create_distance_func.cpp:5:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:250:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  250 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_distance_func.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from create_distance_func.cpp:5:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:507:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  507 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_distance_func.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from create_distance_func.cpp:5:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:520:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  520 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_distance_func.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from create_distance_func.cpp:5:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:603:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  603 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_distance_func.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from create_distance_func.cpp:5:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:612:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  612 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_distance_func.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from create_distance_func.cpp:5:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:614:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  614 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_distance_func.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c create_dnabarcodes.cpp -o create_dnabarcodes.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:17,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from create_dnabarcodes.cpp:17:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/detail/shared_count.hpp:361:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  361 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_dnabarcodes.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from create_dnabarcodes.cpp:17:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:250:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  250 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_dnabarcodes.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from create_dnabarcodes.cpp:17:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:507:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  507 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_dnabarcodes.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from create_dnabarcodes.cpp:17:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:520:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  520 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_dnabarcodes.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from create_dnabarcodes.cpp:17:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:603:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  603 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_dnabarcodes.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from create_dnabarcodes.cpp:17:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:612:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  612 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_dnabarcodes.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from create_dnabarcodes.cpp:17:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:614:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  614 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_dnabarcodes.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/scoped_ptr.hpp:13,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/graph/adjacency_list.hpp:22,
+                 from maxclique.h:12,
+                 from maxclique_pattabiraman_heuristic.h:10,
+                 from create_dnabarcodes.cpp:26:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/scoped_ptr.hpp: At global scope:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/scoped_ptr.hpp:74:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   74 |     explicit scoped_ptr( std::auto_ptr<T> p ) BOOST_SP_NOEXCEPT : px( p.release() )
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_dnabarcodes.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c create_pool.cpp -o create_pool.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:17,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from create_pool.cpp:12:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/detail/shared_count.hpp:361:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  361 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_pool.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from create_pool.cpp:12:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:250:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  250 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_pool.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from create_pool.cpp:12:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:507:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  507 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_pool.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from create_pool.cpp:12:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:520:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  520 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_pool.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from create_pool.cpp:12:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:603:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  603 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_pool.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from create_pool.cpp:12:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:612:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  612 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_pool.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from create_pool.cpp:12:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:614:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  614 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from create_pool.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c demultiplex.cpp -o demultiplex.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:17,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from demultiplex.cpp:9:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/detail/shared_count.hpp:361:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  361 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from demultiplex.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from demultiplex.cpp:9:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:250:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  250 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from demultiplex.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from demultiplex.cpp:9:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:507:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  507 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from demultiplex.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from demultiplex.cpp:9:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:520:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  520 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from demultiplex.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from demultiplex.cpp:9:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:603:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  603 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from demultiplex.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from demultiplex.cpp:9:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:612:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  612 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from demultiplex.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from demultiplex.cpp:9:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:614:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  614 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from demultiplex.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c distance_for_R.cpp -o distance_for_R.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:17,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from distance_for_R.cpp:9:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/detail/shared_count.hpp:361:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  361 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance_for_R.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from distance_for_R.cpp:9:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:250:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  250 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance_for_R.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from distance_for_R.cpp:9:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:507:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  507 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance_for_R.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from distance_for_R.cpp:9:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:520:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  520 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance_for_R.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from distance_for_R.cpp:9:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:603:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  603 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance_for_R.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from distance_for_R.cpp:9:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:612:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  612 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance_for_R.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from distance_for_R.cpp:9:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:614:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  614 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from distance_for_R.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c genericchromosome.cpp -o genericchromosome.o
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c greedyevolution.cpp -o greedyevolution.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:17,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from greedyevolution.h:8,
+                 from greedyevolution.cpp:5:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/detail/shared_count.hpp:361:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  361 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from greedyevolution.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from greedyevolution.h:8,
+                 from greedyevolution.cpp:5:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:250:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  250 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from greedyevolution.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from greedyevolution.h:8,
+                 from greedyevolution.cpp:5:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:507:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  507 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from greedyevolution.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from greedyevolution.h:8,
+                 from greedyevolution.cpp:5:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:520:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  520 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from greedyevolution.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from greedyevolution.h:8,
+                 from greedyevolution.cpp:5:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:603:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  603 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from greedyevolution.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from greedyevolution.h:8,
+                 from greedyevolution.cpp:5:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:612:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  612 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from greedyevolution.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from greedyevolution.h:8,
+                 from greedyevolution.cpp:5:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:614:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  614 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from greedyevolution.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c hammingdistance.cpp -o hammingdistance.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:17,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from hammingdistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/detail/shared_count.hpp:361:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  361 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from hammingdistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from hammingdistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:250:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  250 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from hammingdistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from hammingdistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:507:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  507 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from hammingdistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from hammingdistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:520:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  520 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from hammingdistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from hammingdistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:603:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  603 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from hammingdistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from hammingdistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:612:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  612 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from hammingdistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from hammingdistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:614:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  614 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from hammingdistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c helpers.cpp -o helpers.o
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c levenshteindistance.cpp -o levenshteindistance.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:17,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from levenshteindistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/detail/shared_count.hpp:361:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  361 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from levenshteindistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from levenshteindistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:250:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  250 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from levenshteindistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from levenshteindistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:507:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  507 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from levenshteindistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from levenshteindistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:520:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  520 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from levenshteindistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from levenshteindistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:603:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  603 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from levenshteindistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from levenshteindistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:612:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  612 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from levenshteindistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from levenshteindistance.cpp:7:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:614:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  614 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from levenshteindistance.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c maxclique_pattabiraman_heuristic.cpp -o maxclique_pattabiraman_heuristic.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/scoped_ptr.hpp:13,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/graph/adjacency_list.hpp:22,
+                 from maxclique.h:12,
+                 from maxclique_pattabiraman_heuristic.h:10,
+                 from maxclique_pattabiraman_heuristic.cpp:6:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/scoped_ptr.hpp:74:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   74 |     explicit scoped_ptr( std::auto_ptr<T> p ) BOOST_SP_NOEXCEPT : px( p.release() )
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from maxclique_pattabiraman_heuristic.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:17,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/property_map/vector_property_map.hpp:14,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/property_map/property_map.hpp:598,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/graph/adjacency_list.hpp:27,
+                 from maxclique.h:12,
+                 from maxclique_pattabiraman_heuristic.h:10,
+                 from maxclique_pattabiraman_heuristic.cpp:6:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/detail/shared_count.hpp:361:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  361 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from maxclique_pattabiraman_heuristic.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/property_map/vector_property_map.hpp:14,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/property_map/property_map.hpp:598,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/graph/adjacency_list.hpp:27,
+                 from maxclique.h:12,
+                 from maxclique_pattabiraman_heuristic.h:10,
+                 from maxclique_pattabiraman_heuristic.cpp:6:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:250:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  250 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from maxclique_pattabiraman_heuristic.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/property_map/vector_property_map.hpp:14,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/property_map/property_map.hpp:598,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/graph/adjacency_list.hpp:27,
+                 from maxclique.h:12,
+                 from maxclique_pattabiraman_heuristic.h:10,
+                 from maxclique_pattabiraman_heuristic.cpp:6:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:507:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  507 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from maxclique_pattabiraman_heuristic.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/property_map/vector_property_map.hpp:14,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/property_map/property_map.hpp:598,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/graph/adjacency_list.hpp:27,
+                 from maxclique.h:12,
+                 from maxclique_pattabiraman_heuristic.h:10,
+                 from maxclique_pattabiraman_heuristic.cpp:6:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:520:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  520 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from maxclique_pattabiraman_heuristic.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/property_map/vector_property_map.hpp:14,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/property_map/property_map.hpp:598,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/graph/adjacency_list.hpp:27,
+                 from maxclique.h:12,
+                 from maxclique_pattabiraman_heuristic.h:10,
+                 from maxclique_pattabiraman_heuristic.cpp:6:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:603:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  603 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from maxclique_pattabiraman_heuristic.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/property_map/vector_property_map.hpp:14,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/property_map/property_map.hpp:598,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/graph/adjacency_list.hpp:27,
+                 from maxclique.h:12,
+                 from maxclique_pattabiraman_heuristic.h:10,
+                 from maxclique_pattabiraman_heuristic.cpp:6:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:612:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  612 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from maxclique_pattabiraman_heuristic.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/property_map/vector_property_map.hpp:14,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/property_map/property_map.hpp:598,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/graph/adjacency_list.hpp:27,
+                 from maxclique.h:12,
+                 from maxclique_pattabiraman_heuristic.h:10,
+                 from maxclique_pattabiraman_heuristic.cpp:6:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:614:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  614 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from maxclique_pattabiraman_heuristic.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c phaseshiftdist.cpp -o phaseshiftdist.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:17,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from phaseshiftdist.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/detail/shared_count.hpp:361:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  361 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from phaseshiftdist.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from phaseshiftdist.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:250:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  250 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from phaseshiftdist.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from phaseshiftdist.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:507:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  507 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from phaseshiftdist.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from phaseshiftdist.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:520:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  520 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from phaseshiftdist.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from phaseshiftdist.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:603:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  603 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from phaseshiftdist.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from phaseshiftdist.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:612:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  612 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from phaseshiftdist.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from phaseshiftdist.cpp:10:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:614:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  614 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from phaseshiftdist.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c sequence.cpp -o sequence.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:17,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from sequence.cpp:13:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/detail/shared_count.hpp:361:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  361 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from sequence.cpp:10:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from sequence.cpp:13:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:250:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  250 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from sequence.cpp:10:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from sequence.cpp:13:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:507:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  507 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from sequence.cpp:10:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from sequence.cpp:13:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:520:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  520 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from sequence.cpp:10:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from sequence.cpp:13:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:603:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  603 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from sequence.cpp:10:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from sequence.cpp:13:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:612:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  612 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from sequence.cpp:10:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from sequence.cpp:13:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:614:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  614 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from sequence.cpp:10:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c sequencelevenshteindistance.cpp -o sequencelevenshteindistance.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:17,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from sequencelevenshteindistance.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/detail/shared_count.hpp:361:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  361 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from sequence.h:13,
+                 from sequencelevenshteindistance.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from sequencelevenshteindistance.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:250:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  250 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from sequence.h:13,
+                 from sequencelevenshteindistance.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from sequencelevenshteindistance.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:507:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  507 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from sequence.h:13,
+                 from sequencelevenshteindistance.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from sequencelevenshteindistance.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:520:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  520 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from sequence.h:13,
+                 from sequencelevenshteindistance.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from sequencelevenshteindistance.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:603:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  603 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from sequence.h:13,
+                 from sequencelevenshteindistance.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from sequencelevenshteindistance.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:612:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  612 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from sequence.h:13,
+                 from sequencelevenshteindistance.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from sequencelevenshteindistance.cpp:3:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:614:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  614 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from sequence.h:13,
+                 from sequencelevenshteindistance.cpp:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c sequencepool.cpp -o sequencepool.o
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:17,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from sequencepool.cpp:11:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/detail/shared_count.hpp:361:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  361 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from sequencepool.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from sequencepool.cpp:11:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:250:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  250 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from sequencepool.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from sequencepool.cpp:11:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:507:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  507 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from sequencepool.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from sequencepool.cpp:11:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:520:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  520 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from sequencepool.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from sequencepool.cpp:11:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:603:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  603 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from sequencepool.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from sequencepool.cpp:11:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:612:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  612 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from sequencepool.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/shared_ptr.hpp:17,
+                 from sequence.h:19,
+                 from distance.h:14,
+                 from sequencepool.cpp:11:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/BH/include/boost/smart_ptr/shared_ptr.hpp:614:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  614 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include/Rcpp.h:27,
+                 from sequencepool.cpp:4:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -shared -L/usr/local/lib -o DNABarcodes.so DNABarcodes_init.o RcppExports.o analyse_barcodes.o barcode_set_distances.o cachedistance.o chromosome.o code_falsification.o conway.o create_distance_func.o create_dnabarcodes.o create_pool.o demultiplex.o distance_for_R.o genericchromosome.o greedyevolution.o hammingdistance.o helpers.o levenshteindistance.o maxclique_pattabiraman_heuristic.o phaseshiftdist.o sequence.o sequencelevenshteindistance.o sequencepool.o -fopenmp
+installing to /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/00LOCK-DNABarcodes/00new/DNABarcodes/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (DNABarcodes)

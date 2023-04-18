@@ -1,0 +1,133 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:proBatch.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings proBatch_1.15.1.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/proBatch.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘proBatch/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘proBatch’ version ‘1.15.1’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘proBatch’ can be installed ... WARNING
+Found the following significant warnings:
+  Warning: Package 'proBatch' is deprecated and will be removed from Bioconductor
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/proBatch.Rcheck/00install.out’ for details.
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking startup messages can be suppressed ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘proBatch-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plot_protein_corrplot
+> ### Title: Peptide correlation matrix (heatmap)
+> ### Aliases: plot_protein_corrplot
+> 
+> ### ** Examples
+> 
+> protein_corrplot_plot <- plot_protein_corrplot(example_proteome_matrix, 
++ protein_name = 'Haao', peptide_annotation = example_peptide_annotation, 
++ protein_col = 'Gene')
+Warning in plot_corr_matrix(corr_matrix, annotation = peptide_annotation,  :
+  color_list for annotation (cols & rows) not defined, inferring automatically.
+            Numeric/factor columns are guessed, for more controlled color mapping use 
+            sample_annotation_to_colors()
+Warning in sample_annotation_to_colors(sample_annotation = annotation, sample_id_col = annotation_id_col,  :
+  The following columns will not be mapped to colors: Gene if these have to be mapped, please assign 
+                    them to factor, date or numeric
+Warning in sample_annotation_to_colors(sample_annotation = annotation, sample_id_col = annotation_id_col,  :
+  numeric columns not specified, 
+            extracting numeric columns from factors
+converting columns to corresponding classes 
+          (factor, numeric)
+> 
+> protein_corrplot_plot <- plot_protein_corrplot(example_proteome_matrix, 
++  protein_name = c('Haao', 'Dhtkd1'), 
++  peptide_annotation = example_peptide_annotation,
++  protein_col = 'Gene', factors_to_plot = 'Gene')
+Warning in plot_corr_matrix(corr_matrix, annotation = peptide_annotation,  :
+  color_list for annotation (cols & rows) not defined, inferring automatically.
+            Numeric/factor columns are guessed, for more controlled color mapping use 
+            sample_annotation_to_colors()
+Warning in sample_annotation_to_colors(sample_annotation = annotation, sample_id_col = annotation_id_col,  :
+  The following columns will not be mapped to colors: ProteinName if these have to be mapped, please assign 
+                    them to factor, date or numeric
+Warning in sample_annotation_to_colors(sample_annotation = annotation, sample_id_col = annotation_id_col,  :
+  numeric columns not specified, 
+            extracting numeric columns from factors
+converting columns to corresponding classes 
+          (factor, numeric)
+Error in if (is.na(main)) { : the condition has length > 1
+Calls: plot_protein_corrplot ... plot_heatmap_generic -> pheatmap -> heatmap_motor -> lo
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘spelling.R’
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘proBatch.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 1 WARNING
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/proBatch.Rcheck/00check.log’
+for details.
+

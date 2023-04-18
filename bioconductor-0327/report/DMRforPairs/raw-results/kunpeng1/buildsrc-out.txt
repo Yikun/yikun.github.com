@@ -1,0 +1,77 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data DMRforPairs
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘DMRforPairs/DESCRIPTION’ ... OK
+* preparing ‘DMRforPairs’:
+* checking DESCRIPTION meta-information ... OK
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘DMRforPairs_vignette.Rnw’ using Sweave
+Loading required package: Gviz
+Loading required package: S4Vectors
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomicRanges
+Loading required package: GenomeInfoDb
+Loading required package: grid
+Loading required package: R2HTML
+Loading required package: parallel
+min_distance=c(200, 300, 200, 300), min_n=c(4, 4, 5, 5)
+Recoding annotation classes...
+Body --> gene
+5'UTR --> gene
+3'UTR --> gene
+1stExon --> gene
+TSS1500 --> tss
+TSS200 --> tss
+Island --> island
+N_Shelf --> island
+N_Shore --> island
+S_Shelf --> island
+S_Shore --> island
+Calculating the number of regions and associated probes for the requested set of parameters
+Regionfinder: processing chr7 (1/1)
+
+Error: processing vignette 'DMRforPairs_vignette.Rnw' failed with diagnostics:
+ chunk 3 
+Error in xtfrm.data.frame(x) : cannot xtfrm data frames
+
+--- failed re-building 'DMRforPairs_vignette.Rnw'
+
+SUMMARY: processing the following file failed:
+  'DMRforPairs_vignette.Rnw'
+
+Error: Vignette re-building failed.
+Execution halted

@@ -1,0 +1,214 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:CAMERA.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings CAMERA_1.55.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/CAMERA.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘CAMERA/DESCRIPTION’ ... OK
+* this is package ‘CAMERA’ version ‘1.55.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .travis.yml
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘CAMERA’ can be installed ... OK
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... NOTE
+  installed size is  8.9Mb
+  sub-directories of 1Mb or more:
+    mzML        2.7Mb
+    quantiles   5.0Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Description field: should contain one or more complete sentences.
+Packages listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘methods’ ‘xcms’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking startup messages can be suppressed ... OK
+* checking dependencies in R code ... NOTE
+'library' or 'require' call to ‘methods’ which was already attached by Depends.
+  Please remove these calls from your code.
+There are ::: calls to the package's namespace in its code. A package
+  almost never needs to use ::: for its own objects:
+  ‘annotateGrp’ ‘combineHypothese’ ‘fastMatch’ ‘naOmit’
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... NOTE
+Foreign function call to a different package:
+  .Call("getEIC", ..., PACKAGE = "xcms")
+See chapter ‘System and foreign language interfaces’ in the ‘Writing R
+Extensions’ manual.
+* checking R code for possible problems ... NOTE
+File ‘CAMERA/R/zzz.R’:
+  .onLoad calls:
+    require(methods)
+
+Package startup functions should not change the search path.
+See section ‘Good practice’ in '?.onAttach'.
+
+annotateGrp: no visible global function definition for ‘na.omit’
+annotateGrpMPI2: no visible binding for global variable
+  ‘papply_commondata’
+cleanParallel: no visible global function definition for
+  ‘mpi.close.Rslaves’
+cleanParallel: no visible global function definition for ‘stopCluster’
+compoundQuantiles: no visible global function definition for ‘tail’
+createHypothese: no visible global function definition for ‘cutree’
+createHypothese: no visible global function definition for ‘hclust’
+createHypothese: no visible global function definition for ‘dist’
+extractfragments: no visible global function definition for ‘median’
+fast_corr: no visible global function definition for ‘pt’
+findIsotopesForPS: no visible binding for global variable ‘tableMM48’
+findKendrickMasses: no visible global function definition for ‘rainbow’
+findKendrickMasses : <anonymous>: no visible global function definition
+  for ‘lines’
+findNeutralLoss: no visible global function definition for ‘dist’
+findNeutralLossSpecs : <anonymous>: no visible global function
+  definition for ‘dist’
+fragments2metfrag : <anonymous>: no visible global function definition
+  for ‘write.table’
+fragments2metfusion : <anonymous>: no visible binding for global
+  variable ‘object’
+fragments2metfusion : <anonymous>: no visible global function
+  definition for ‘write.table’
+getIsotopeCluster : <anonymous>: no visible global function definition
+  for ‘na.omit’
+xsAnnotate: no visible global function definition for ‘mpi.comm.size’
+xsAnnotate: no visible global function definition for
+  ‘mpi.spawn.Rslaves’
+xsAnnotate: no visible global function definition for ‘makeCluster’
+xsAnnotate: no visible binding for global variable ‘graphMethod’
+findAdducts,xsAnnotate: no visible global function definition for
+  ‘mpi.comm.size’
+findAdducts,xsAnnotate: no visible global function definition for
+  ‘xcmsPapply’
+findIsotopesWithValidation,xsAnnotate : <anonymous>: no visible global
+  function definition for ‘median’
+getReducedPeaklist,xsAnnotate : <anonymous> : <anonymous>: no visible
+  global function definition for ‘median’
+getReducedPeaklist,xsAnnotate : <anonymous>: no visible global function
+  definition for ‘prcomp’
+getReducedPeaklist,xsAnnotate : <anonymous>: no visible global function
+  definition for ‘na.omit’
+groupComplete,xsAnnotate: no visible global function definition for
+  ‘dist’
+groupComplete,xsAnnotate: no visible global function definition for
+  ‘cutree’
+groupComplete,xsAnnotate: no visible global function definition for
+  ‘hclust’
+groupDen,xsAnnotate: no visible global function definition for
+  ‘density’
+groupFWHM,xsAnnotate : <anonymous>: no visible global function
+  definition for ‘na.omit’
+plotEICs,xsAnnotate: no visible global function definition for
+  ‘rainbow’
+plotEICs,xsAnnotate: no visible global function definition for
+  ‘na.omit’
+plotPeakEICs,xsAnnotate : <anonymous>: no visible binding for global
+  variable ‘pc’
+plotPeakEICs,xsAnnotate: no visible binding for global variable ‘pspec’
+plotPeakEICs,xsAnnotate: no visible global function definition for
+  ‘rainbow’
+plotPeakEICs,xsAnnotate: no visible global function definition for
+  ‘na.omit’
+plotPsSpectrum,xsAnnotate: no visible global function definition for
+  ‘median’
+plotPsSpectrum,xsAnnotate: no visible global function definition for
+  ‘na.omit’
+Undefined global functions or variables:
+  cutree density dist graphMethod hclust lines makeCluster median
+  mpi.close.Rslaves mpi.comm.size mpi.spawn.Rslaves na.omit object
+  papply_commondata pc prcomp pspec pt rainbow stopCluster tableMM48
+  tail write.table xcmsPapply
+Consider adding
+  importFrom("grDevices", "rainbow")
+  importFrom("graphics", "lines")
+  importFrom("stats", "cutree", "density", "dist", "hclust", "median",
+             "na.omit", "prcomp", "pt")
+  importFrom("utils", "tail", "write.table")
+to your NAMESPACE file.
+* checking Rd files ... NOTE
+prepare_Rd: findKendrickMasses.Rd:21-22: Dropping empty section \details
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking include directives in Makefiles ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                             user system elapsed
+getIsotopeCluster          25.839  6.884  12.962
+groupCorr-methods          25.107  2.791  24.739
+calcCaS-methods            12.824  6.248   2.471
+annotateDiffreport         12.374  6.503  11.877
+annotate-methods            8.064  1.507   9.528
+getAllPeakEICs-methods      6.884  1.530   5.234
+findAdducts-methods         4.703  1.663   6.306
+getReducedPeaklist-methods  4.599  1.545   6.053
+pspec2metfrag               4.529  1.498   5.934
+getPeaklist-methods         4.453  1.285   5.677
+groupFWHM-methods           4.303  1.080   5.274
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘runTests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘CAMERA.Rnw’... OK
+  ‘IsotopeDetectionVignette.Rnw’ using ‘UTF-8’... OK
+  ‘compoundQuantilesVignette.Rnw’ using ‘UTF-8’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 8 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/CAMERA.Rcheck/00check.log’
+for details.
+
+

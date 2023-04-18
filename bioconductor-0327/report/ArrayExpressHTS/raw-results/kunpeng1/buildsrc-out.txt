@@ -1,0 +1,38 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data ArrayExpressHTS
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘ArrayExpressHTS/DESCRIPTION’ ... OK
+* preparing ‘ArrayExpressHTS’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* installing the package to build vignettes
+      -----------------------------------
+* installing *source* package ‘ArrayExpressHTS’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -c addXS.c -o addXS.o
+addXS.c: In function ‘addXS’:
+addXS.c:42:5: warning: implicit declaration of function ‘Rprintf’; did you mean ‘dprintf’? [-Wimplicit-function-declaration]
+   42 |     Rprintf("What?\n");
+      |     ^~~~~~~
+      |     dprintf
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -c bam_plbuf.c -o bam_plbuf.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -c fltbam.c -o fltbam.o
+fltbam.c:2:10: fatal error: sam.h: No such file or directory
+    2 | #include "sam.h"
+      |          ^~~~~~~
+compilation terminated.
+make: *** [/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/etc/Makeconf:191: fltbam.o] Error 1
+ERROR: compilation failed for package ‘ArrayExpressHTS’
+* removing ‘/tmp/RtmpHc8Hoi/Rinst147af03d6d7e41/ArrayExpressHTS’
+      -----------------------------------
+ERROR: package installation failed

@@ -1,0 +1,144 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:LineagePulse.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings LineagePulse_1.19.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/LineagePulse.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘LineagePulse/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘LineagePulse’ version ‘1.19.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘LineagePulse’ can be installed ... WARNING
+Found the following significant warnings:
+  Note: possible error in 'evalLogLikGeneMM(vecCounts = vecCounts, ': unused arguments (matDispParam = matDispParam, matDropParam = matDropParam, matWeights = matWeights) 
+  Note: possible error in 'evalLogLikGeneMM(vecCounts = vecCounts, ': unused arguments (matDispParam = do.call(cbind, lapply(seq_len(ncol(matWeights)), function(m) vecDispParam)), matDropParam = do.call(cbind, lapply(seq_len(ncol(matWeights)), function(m) vecPiParam)), matWeights = matWeights) 
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/LineagePulse.Rcheck/00install.out’ for details.
+Information on the location(s) of code generating the ‘Note’s can be
+obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
+to ‘yes’.
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+decompressDispByGeneMM: no visible binding for global variable
+  ‘lsDispModel’
+evalLogLikMatrix : <anonymous>: possible error in
+  evalLogLikGeneMM(vecCounts = vecCounts, matMuParam = matMuParam,
+  vecNormConst = lsMuModel$lsMuModelGlobal$vecNormConst, matDispParam =
+  matDispParam, matDropParam = matDropParam, matWeights = matWeights,
+  vecidxNotZero = which(!is.na(vecCounts) & vecCounts > 0), vecidxZero
+  = which(!is.na(vecCounts) & vecCounts == 0), scaNCells =
+  length(vecCounts)): unused arguments (matDispParam = matDispParam,
+  matDropParam = matDropParam, matWeights = matWeights)
+evalLogLikMatrix : <anonymous>: possible error in
+  evalLogLikGeneMM(vecCounts = vecCounts, matMuParam = do.call(cbind,
+  lapply(seq_len(ncol(matWeights)), function(m) vecMuParam)),
+  vecNormConst = lsMuModel$lsMuModelGlobal$vecNormConst, matDispParam =
+  do.call(cbind, lapply(seq_len(ncol(matWeights)), function(m)
+  vecDispParam)), matDropParam = do.call(cbind,
+  lapply(seq_len(ncol(matWeights)), function(m) vecPiParam)),
+  matWeights = matWeights, vecidxNotZero = which(!is.na(vecCounts) &
+  vecCounts > 0), vecidxZero = which(!is.na(vecCounts) & vecCounts ==
+  0), : unused arguments (matDispParam = do.call(cbind,
+  lapply(seq_len(ncol(matWeights)), function(m) vecDispParam)),
+  matDropParam = do.call(cbind, lapply(seq_len(ncol(matWeights)),
+  function(m) vecPiParam)), matWeights = matWeights)
+evalLogLikMatrix : <anonymous>: possible error in scaNCells =
+  length(vecCounts)): unused arguments (matDispParam = do.call(cbind,
+  lapply(seq_len(ncol(matWeights)), function(m) vecDispParam)),
+  matDropParam = do.call(cbind, lapply(seq_len(ncol(matWeights)),
+  function(m) vecPiParam)), matWeights = matWeights)
+plotCellDensity: no visible binding for global variable ‘continuous’
+plotGene: no visible binding for global variable ‘x’
+plotGene: no visible binding for global variable ‘dropout_posterior’
+plotGene: no visible binding for global variable ‘groups’
+plotGene: no visible binding for global variable ‘dfAnnot’
+plotGene: no visible binding for global variable ‘mean_count’
+plotGene: no visible binding for global variable ‘quantile_25’
+plotGene: no visible binding for global variable ‘quantile_75’
+plotGene: no visible binding for global variable ‘model’
+plotGene: no visible binding for global variable ‘continuous’
+plotGene: no visible binding for global variable ‘trajectory_contour’
+plotGene: no visible binding for global variable ‘ncells’
+Undefined global functions or variables:
+  continuous dfAnnot dropout_posterior groups lsDispModel mean_count
+  model ncells quantile_25 quantile_75 trajectory_contour x
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                                                      user system elapsed
+plotCellDensity                                     49.216  0.176  49.393
+accessors                                           23.242  0.968  24.210
+sub-sub-LineagePulseObject-character-missing-method 21.784  0.024  21.809
+writeReport                                         21.059  0.036  21.095
+cash-LineagePulseObject-method                      20.307  0.260  20.569
+names-LineagePulseObject-method                     20.285  0.028  20.313
+getFitsDispersion                                   19.598  0.156  19.754
+getFitsMean                                         19.617  0.104  19.721
+getFitsDropout                                      19.579  0.120  19.700
+getNormData                                         19.553  0.072  19.625
+getPostDrop                                         19.523  0.064  19.588
+testDropout                                         16.443  0.032  16.476
+sortGeneTrajectories                                16.357  0.052  16.410
+runLineagePulse                                     15.851  0.048  15.899
+plotGene                                            15.774  0.000  15.774
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘LineagePulse_Tutorial.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 WARNING, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/LineagePulse.Rcheck/00check.log’
+for details.
+
+

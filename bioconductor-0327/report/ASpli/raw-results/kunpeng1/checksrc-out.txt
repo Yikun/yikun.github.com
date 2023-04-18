@@ -1,0 +1,161 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:ASpli.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings ASpli_2.9.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/ASpli.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘ASpli/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘ASpli’ version ‘2.9.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘ASpli’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking installed files from ‘inst/doc’ ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘ASpli-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: exportIntegratedSignals
+> ### Title: Export integrated signals.
+> ### Aliases: exportIntegratedSignals
+> 
+> ### ** Examples
+> 
+>   # Create a transcript DB from gff/gtf annotation file.
+>   # Warnings in this examples can be ignored. 
+>   library(GenomicFeatures)
+Loading required package: GenomeInfoDb
+Loading required package: GenomicRanges
+>   genomeTxDb <- makeTxDbFromGFF( system.file('extdata','genes.mini.gtf', 
++                                  package="ASpli") )
+Import genomic features from the file as a GRanges object ... OK
+Prepare the 'metadata' data frame ... OK
+Make the TxDb object ... OK
+>   
+>   # Create an ASpliFeatures object from TxDb
+>   features <- binGenome( genomeTxDb )
+* Number of extracted Genes = 10
+* Number of extracted Exon Bins = 38
+* Number of extracted intron bins = 34
+* Number of extracted trascripts = 25
+* Number of extracted junctions = 23
+* Number of AS bins (not include external) = 17
+* Number of AS bins (include external) = 17
+* Classified as: 
+	ES bins = 1	(6%)
+	IR bins = 3	(18%)
+	Alt5'ss bins = 2	(12%)
+	Alt3'ss bins = 2	(12%)
+	Multiple AS bins = 9	(53%)
+	classified as:
+			ES bins = 1	(11%)
+			IR bins = 4	(44%)
+			Alt5'ss bins = 2	(22%)
+			Alt3'ss bins = 1	(11%)
+
+Correcting Io ends, this might take a while...
+Genome binning completed
+>   
+>   # Define bam files, sample names and experimental factors for targets.
+>   bamFileNames <- c( "A_C_0.bam", "A_C_1.bam", "A_C_2.bam", 
++                      "A_D_0.bam", "A_D_1.bam", "A_D_2.bam" )
+> 
+>   targets <- data.frame( 
++                row.names = paste0('Sample_',c(1:6)),
++                bam = system.file( 'extdata', bamFileNames, package="ASpli" ),
++                factor1 = c( 'C','C','C','D','D','D'))
+>   
+>   # Read counts from bam files
+>   gbcounts  <- gbCounts( features = features, 
++                            targets = targets, 
++                            minReadLength = 100, maxISize = 50000,
++                            libType="SE", 
++                            strandMode=0)
+Summarizing Sample_1
+ETA: 1 min
+Summarizing Sample_2
+ETA: 1 min
+Summarizing Sample_3
+ETA: 1 min
+Summarizing Sample_4
+ETA: 0 min
+Summarizing Sample_5
+ETA: 0 min
+Summarizing Sample_6
+Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘ASpli.Rnw’... failed to complete the test
+ ERROR
+Errors in running code in vignettes:
+when running code in ‘ASpli.Rnw’
+  ...
+
+> mBAMs <- data.frame(bam = sub("_[012]", "", targets$bam[c(1, 
++     4)]), condition = c("control", "treatment"))
+
+> gbcounts <- gbCounts(features = features, targets = targets, 
++     minReadLength = 100, maxISize = 50000)
+Summarizing Sample1
+Killed
+
+... incomplete output.  Crash?
+
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/ASpli.Rcheck/00check.log’
+for details.
+

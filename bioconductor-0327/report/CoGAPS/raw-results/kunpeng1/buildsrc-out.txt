@@ -1,0 +1,47 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data CoGAPS
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘CoGAPS/DESCRIPTION’ ... OK
+* preparing ‘CoGAPS’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* running ‘cleanup’
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘CoGAPS.Rmd’ using rmarkdown
+Error: processing vignette 'CoGAPS.Rmd' failed with diagnostics:
+Duplicate chunk label 'load precomputed from zenodo', which has been used for the chunk:
+# OPTION: download precomputed CoGAPS result object from Zenodo
+# Bioc vignette uses this
+options(timeout=1000) # adjust this if you're getting timeout downloading the file
+url = "https://zenodo.org/record/7709664/files/cogapsresult.Rds?download=1"
+download.file(url,"cogapsresult_download.Rds")
+cogapsresult <- readRDS("cogapsresult_download.Rds")
+Error: tangling vignette 'CoGAPS.Rmd' failed with diagnostics:
+Duplicate chunk label 'load precomputed from zenodo', which has been used for the chunk:
+# OPTION: download precomputed CoGAPS result object from Zenodo
+# Bioc vignette uses this
+options(timeout=1000) # adjust this if you're getting timeout downloading the file
+url = "https://zenodo.org/record/7709664/files/cogapsresult.Rds?download=1"
+download.file(url,"cogapsresult_download.Rds")
+cogapsresult <- readRDS("cogapsresult_download.Rds")
+--- failed re-building ‘CoGAPS.Rmd’
+
+SUMMARY: processing the following files failed:
+  ‘CoGAPS.Rmd’ ‘CoGAPS.Rmd’
+
+Error: Vignette re-building failed.
+In addition: Warning message:
+In tools::buildVignettes(dir = ".", tangle = TRUE) :
+  Files named as vignettes but with no recognized vignette engine:
+   ‘vignettes/modsimdebug.Rmd’
+(Is a VignetteBuilder field missing?)
+Execution halted

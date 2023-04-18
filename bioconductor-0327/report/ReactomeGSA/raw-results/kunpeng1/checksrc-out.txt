@@ -1,0 +1,135 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:ReactomeGSA.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings ReactomeGSA_1.13.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/ReactomeGSA.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘ReactomeGSA/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘ReactomeGSA’ version ‘1.13.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘ReactomeGSA’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking startup messages can be suppressed ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+plot_correlations,ReactomeAnalysisResult: no visible binding for global
+  variable ‘combined_sig’
+plot_correlations,ReactomeAnalysisResult: no visible binding for global
+  variable ‘alpha’
+plot_gsva_pathway,ReactomeAnalysisResult: no visible binding for global
+  variable ‘cluster_id’
+plot_gsva_pathway,ReactomeAnalysisResult: no visible binding for global
+  variable ‘expr’
+plot_gsva_pca,ReactomeAnalysisResult: no visible binding for global
+  variable ‘gsva_result’
+plot_gsva_pca,ReactomeAnalysisResult: no visible binding for global
+  variable ‘PC1’
+plot_gsva_pca,ReactomeAnalysisResult: no visible binding for global
+  variable ‘PC2’
+plot_heatmap,ReactomeAnalysisResult: no visible global function
+  definition for ‘desc’
+plot_heatmap,ReactomeAnalysisResult: no visible binding for global
+  variable ‘n_sig’
+plot_heatmap,ReactomeAnalysisResult: no visible binding for global
+  variable ‘dataset’
+plot_heatmap,ReactomeAnalysisResult: no visible binding for global
+  variable ‘Name’
+plot_volcano,ReactomeAnalysisResult: no visible binding for global
+  variable ‘av_foldchange’
+plot_volcano,ReactomeAnalysisResult: no visible binding for global
+  variable ‘FDR’
+Undefined global functions or variables:
+  FDR Name PC1 PC2 alpha av_foldchange cluster_id combined_sig dataset
+  desc expr gsva_result n_sig
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... WARNING
+Codoc mismatches from documentation object 'plot_heatmap,ReactomeAnalysisResult-method':
+\S4method{plot_heatmap}{ReactomeAnalysisResult}
+  Code: function(x, fdr = 0.01, max_pathways = 30, break_long_names =
+                 TRUE, return_data = FALSE)
+  Docs: function(x, fdr = 0.05, max_pathways = 30, break_long_names =
+                 TRUE, return_data = FALSE)
+  Mismatches in argument default values:
+    Name: 'fdr' Code: 0.01 Docs: 0.05
+
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                                                  user system elapsed
+plot_gsva_heatmap-ReactomeAnalysisResult-method 57.800  0.463 114.591
+analyse_sc_clusters-Seurat-method               56.493  1.603 120.482
+plot_gsva_heatmap                               56.984  0.540 114.435
+plot_gsva_pca-ReactomeAnalysisResult-method     56.719  0.606 115.930
+plot_gsva_pathway-ReactomeAnalysisResult-method 56.472  0.696 113.972
+analyse_sc_clusters                             55.290  0.740 114.165
+plot_gsva_pathway                               54.811  0.404 116.945
+plot_gsva_pca                                   54.179  0.772 112.784
+analyse_sc_clusters-SingleCellExperiment-method 53.781  1.085 109.601
+ReactomeAnalysisRequest                          5.391  0.344   5.953
+perform_reactome_analysis                        4.435  0.088  27.290
+get_reactome_methods                             1.051  0.019   7.465
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘analysing-scRNAseq.Rmd’ using ‘UTF-8’... OK
+  ‘using-reactomegsa.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 WARNING, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/ReactomeGSA.Rcheck/00check.log’
+for details.
+
+

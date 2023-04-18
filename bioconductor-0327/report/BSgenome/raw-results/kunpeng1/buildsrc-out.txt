@@ -1,0 +1,79 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD build --keep-empty-dirs --no-resave-data BSgenome
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘BSgenome/DESCRIPTION’ ... OK
+* preparing ‘BSgenome’:
+* checking DESCRIPTION meta-information ... OK
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘BSgenomeForge.Rnw’ using Sweave
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: XVector
+Loading required package: GenomeInfoDb
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: GenomicRanges
+Loading required package: rtracklayer
+--- finished re-building ‘BSgenomeForge.Rnw’
+
+--- re-building ‘GenomeSearching.Rnw’ using Sweave
+Loading required package: AnnotationDbi
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Error: processing vignette 'GenomeSearching.Rnw' failed with diagnostics:
+ chunk 24 (label = f1) 
+Error in library(BSgenome.Hsapiens.UCSC.hg38.masked) : 
+  there is no package called ‘BSgenome.Hsapiens.UCSC.hg38.masked’
+
+--- failed re-building ‘GenomeSearching.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘GenomeSearching.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted

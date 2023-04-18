@@ -1,0 +1,313 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:BadRegionFinder.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings BadRegionFinder_1.27.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/BadRegionFinder.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘BadRegionFinder/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘BadRegionFinder’ version ‘1.27.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘BadRegionFinder’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+determineCoverage: no visible global function definition for ‘path’
+Undefined global functions or variables:
+  path
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘BadRegionFinder-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plotDetailed
+> ### Title: Plots a more detailed overview of the coverage quality
+> ### Aliases: plotDetailed 'plot Detailed'
+> 
+> ### ** Examples
+> 
+> library("BSgenome.Hsapiens.UCSC.hg19")
+Loading required package: BSgenome
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomeInfoDb
+Loading required package: GenomicRanges
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+Loading required package: rtracklayer
+> threshold1 <- 20
+> threshold2 <- 100
+> percentage1 <- 0.80
+> percentage2 <- 0.90
+> sample_file <- system.file("extdata", "SampleNames.txt", 
++                            package = "BadRegionFinder")
+> samples <- read.table(sample_file)
+> bam_input <- system.file("extdata", package = "BadRegionFinder")
+> output <- system.file("extdata", package = "BadRegionFinder")
+> target_regions <- system.file("extdata", "targetRegions.bed",
++                               package = "BadRegionFinder")
+> targetRegions <- read.table(target_regions, header = FALSE,
++                             stringsAsFactors = FALSE)
+> 
+> coverage_summary <- determineCoverage(samples, bam_input, targetRegions, output,
++                                       TRonly = FALSE)
+Determine Coverage
+Sample Test_454
+Sample Test_ion
+Determine target bases
+Combine Information
+Chromosome: 1
+Chromosome: 2
+Chromosome: 3
+Chromosome: 4
+Chromosome: 5
+Chromosome: 6
+Chromosome: 7
+Chromosome: 8
+Chromosome: 9
+Chromosome: 10
+Chromosome: 11
+Chromosome: 12
+Chromosome: 13
+Chromosome: 14
+Chromosome: 15
+Chromosome: 16
+Chromosome: 17
+Chromosome: 18
+Chromosome: 19
+Chromosome: 20
+Chromosome: 21
+Chromosome: 22
+Chromosome: X
+Chromosome: Y
+Chromosome: MT
+> coverage_indicators <- determineCoverageQuality(threshold1, threshold2,
++                                                 percentage1, percentage2,
++                                                 coverage_summary)
+Analyzing Chromosome 1
+Analyzing Chromosome 2
+Analyzing Chromosome 3
+Analyzing Chromosome 4
+Analyzing Chromosome 5
+Analyzing Chromosome 6
+Analyzing Chromosome 7
+Analyzing Chromosome 8
+Analyzing Chromosome 9
+Analyzing Chromosome 10
+Analyzing Chromosome 11
+Analyzing Chromosome 12
+Analyzing Chromosome 13
+Analyzing Chromosome 14
+Analyzing Chromosome 15
+Analyzing Chromosome 16
+Analyzing Chromosome 17
+Analyzing Chromosome 18
+Analyzing Chromosome 19
+Analyzing Chromosome 20
+Analyzing Chromosome 21
+Analyzing Chromosome 22
+Analyzing Chromosome 23
+Analyzing Chromosome 24
+Analyzing Chromosome 25
+> coverage_indicators_temp <- reportBadRegionsDetailed(threshold1, threshold2,
++                                                      percentage1, percentage2,
++                                                      coverage_indicators, "",
++                                                      samples, output)
+Analyzing Chromosome 1
+Analyzing Chromosome 2
+Warning: Ensembl will soon enforce the use of https.
+Ensure the 'host' argument includes "https://"
+Killed
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘BadRegionFinder.Rnw’ using ‘UTF-8’... failed to complete the test
+ ERROR
+Errors in running code in vignettes:
+when running code in ‘BadRegionFinder.Rnw’
+  ...
+> coverage_indicators_temp <- reportBadRegionsDetailed(threshold1, 
++     threshold2, percentage1, percentage2, coverage_indicators_2, 
++     "", samp .... [TRUNCATED] 
+Analyzing Chromosome 1
+Analyzing Chromosome 2
+Warning: Ensembl will soon enforce the use of https.
+Ensure the 'host' argument includes "https://"
+Killed
+
+... incomplete output.  Crash?
+
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘BadRegionFinder.Rnw’ using Sweave
+Determine Coverage
+Sample Test2_454
+Sample Test2_ion
+Determine target bases
+Combine Information
+Chromosome: 1
+Chromosome: 2
+Chromosome: 3
+Chromosome: 4
+Chromosome: 5
+Chromosome: 6
+Chromosome: 7
+Chromosome: 8
+Chromosome: 9
+Chromosome: 10
+Chromosome: 11
+Chromosome: 12
+Chromosome: 13
+Chromosome: 14
+Chromosome: 15
+Chromosome: 16
+Chromosome: 17
+Chromosome: 18
+Chromosome: 19
+Chromosome: 20
+Chromosome: 21
+Chromosome: 22
+Chromosome: X
+Chromosome: Y
+Chromosome: MT
+Analyzing Chromosome 1
+Analyzing Chromosome 2
+Analyzing Chromosome 3
+Analyzing Chromosome 4
+Analyzing Chromosome 5
+Analyzing Chromosome 6
+Analyzing Chromosome 7
+Analyzing Chromosome 8
+Analyzing Chromosome 9
+Analyzing Chromosome 10
+Analyzing Chromosome 11
+Analyzing Chromosome 12
+Analyzing Chromosome 13
+Analyzing Chromosome 14
+Analyzing Chromosome 15
+Analyzing Chromosome 16
+Analyzing Chromosome 17
+Analyzing Chromosome 18
+Analyzing Chromosome 19
+Analyzing Chromosome 20
+Analyzing Chromosome 21
+Analyzing Chromosome 22
+Analyzing Chromosome 23
+Analyzing Chromosome 24
+Analyzing Chromosome 25
+Analyze Chromosome 1
+Analyze Chromosome 2
+Analyze Chromosome 3
+Analyze Chromosome 4
+Analyze Chromosome 5
+Analyze Chromosome 6
+Analyze Chromosome 7
+Analyze Chromosome 8
+Analyze Chromosome 9
+Analyze Chromosome 10
+Analyze Chromosome 11
+Analyze Chromosome 12
+Analyze Chromosome 13
+Analyze Chromosome 14
+Analyze Chromosome 15
+Analyze Chromosome 16
+Analyze Chromosome 17
+Analyze Chromosome 18
+Analyze Chromosome 19
+Analyze Chromosome 20
+Analyze Chromosome 21
+Analyze Chromosome 22
+Analyze Chromosome 23
+Analyze Chromosome 24
+Analyze Chromosome 25
+Warning: Ensembl will soon enforce the use of https.
+Ensure the 'host' argument includes "https://"
+Analyzing Chromosome 1
+Analyzing Chromosome 2
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/BadRegionFinder.Rcheck/00check.log’
+for details.
+

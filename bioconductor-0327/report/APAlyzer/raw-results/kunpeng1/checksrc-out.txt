@@ -1,0 +1,249 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:APAlyzer.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings APAlyzer_1.13.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/APAlyzer.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘APAlyzer/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘APAlyzer’ version ‘1.13.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .BBSoptions
+  .travis.yml
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘APAlyzer’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... NOTE
+File
+  LICENSE
+is not mentioned in the DESCRIPTION file.
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... WARNING
+'library' or 'require' call not declared from: ‘HybridMTest’
+'library' or 'require' call to ‘HybridMTest’ in package code.
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.GTF2LE: no visible binding for global variable ‘group_name’
+.GTF2refUTRraw: no visible binding for global variable ‘GENEID’
+.annotatePASRegion: no visible global function definition for
+  ‘queryHits’
+APABox: no visible binding for global variable ‘APAreg’
+APABox: no visible binding for global variable ‘RED’
+APAVolcano: no visible binding for global variable ‘APAreg’
+APAVolcano: no visible binding for global variable ‘color’
+PASEXP_IPA: no visible global function definition for ‘Print’
+ThreeMostPairBam: no visible global function definition for ‘Print’
+download_testbam: no visible global function definition for
+  ‘download.file’
+Undefined global functions or variables:
+  APAreg GENEID Print RED color download.file group_name queryHits
+Consider adding
+  importFrom("utils", "download.file")
+to your NAMESPACE file.
+* checking Rd files ... NOTE
+prepare_Rd: download_testbam.Rd:7-8: Dropping empty section \arguments
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘APAlyzer-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: PASEXP_3UTR
+> ### Title: PASEXP_3UTR, calculate relative expression of aUTR and cUTR
+> ###   regions
+> ### Aliases: PASEXP_3UTR
+> 
+> ### ** Examples
+> 
+> ## count reads mapped to 3'UTR APA regions and
+> ## calculate relative expression of aUTR and cUTR regions
+> ## using forward sequencing
+>     library("TBX20BamSubset")
+Loading required package: Rsamtools
+Loading required package: GenomeInfoDb
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomicRanges
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+>     library("Rsamtools")
+>     library("GenomicAlignments")
+Loading required package: SummarizedExperiment
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins, colOrderStats,
+    colProds, colQuantiles, colRanges, colRanks, colSdDiffs, colSds,
+    colSums2, colTabulates, colVarDiffs, colVars, colWeightedMads,
+    colWeightedMeans, colWeightedMedians, colWeightedSds,
+    colWeightedVars, rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet,
+    rowCollapse, rowCounts, rowCummaxs, rowCummins, rowCumprods,
+    rowCumsums, rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps,
+    rowMadDiffs, rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs, rowVars,
+    rowWeightedMads, rowWeightedMeans, rowWeightedMedians,
+    rowWeightedSds, rowWeightedVars
+
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+> 	library("repmis")
+>     flsall = getBamFileList()
+> 	URL="https://github.com/RJWANGbioinfo/PAS_reference_RData/blob/master/"
+> 	file="mm9_REF.RData"
+> 	source_data(paste0(URL,file,"?raw=True"))
+Downloading data from: https://github.com/RJWANGbioinfo/PAS_reference_RData/blob/master/mm9_REF.RData?raw=True 
+
+Error in curl::curl_fetch_memory(url, handle = handle) : 
+  SSL peer certificate or SSH remote key was not OK: [raw.githubusercontent.com] SSL certificate problem: certificate has expired
+Calls: source_data ... request_fetch -> request_fetch.write_memory -> <Anonymous>
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘runTests.R’
+ ERROR
+Running the tests in ‘tests/runTests.R’ failed.
+Last 13 lines of output:
+  ── Error ('test_IPA_analysis.R:4:2'): IPA_analysis works properly ──────────────
+  Error in `curl::curl_fetch_memory(url, handle = handle)`: SSL peer certificate or SSH remote key was not OK: [raw.githubusercontent.com] SSL certificate problem: certificate has expired
+  Backtrace:
+      ▆
+   1. └─repmis::source_data(paste0(URL, file, "?raw=True")) at test_IPA_analysis.R:4:8
+   2.   └─repmis:::download_data_intern(url = url, sha1 = sha1, temp_file = temp_file)
+   3.     └─httr::GET(url)
+   4.       └─httr:::request_perform(req, hu$handle$handle)
+   5.         ├─httr:::request_fetch(req$output, req$url, handle)
+   6.         └─httr:::request_fetch.write_memory(req$output, req$url, handle)
+   7.           └─curl::curl_fetch_memory(url, handle = handle)
+  
+  [ FAIL 2 | WARN 1 | SKIP 0 | PASS 4 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘APAlyzer.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘APAlyzer.Rmd’ using rmarkdown
+Quitting from lines 80-84 (APAlyzer.Rmd) 
+Error: processing vignette 'APAlyzer.Rmd' failed with diagnostics:
+SSL peer certificate or SSH remote key was not OK: [raw.githubusercontent.com] SSL certificate problem: certificate has expired
+--- failed re-building ‘APAlyzer.Rmd’
+
+SUMMARY: processing the following file failed:
+  ‘APAlyzer.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs, 1 WARNING, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/APAlyzer.Rcheck/00check.log’
+for details.
+

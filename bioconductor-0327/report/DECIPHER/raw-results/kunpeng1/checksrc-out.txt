@@ -1,0 +1,144 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:DECIPHER.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings DECIPHER_2.27.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/DECIPHER.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘DECIPHER/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘DECIPHER’ version ‘2.27.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘DECIPHER’ can be installed ... OK
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... NOTE
+  installed size is 12.7Mb
+  sub-directories of 1Mb or more:
+    R         1.4Mb
+    data      7.3Mb
+    extdata   2.3Mb
+    libs      1.3Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+DesignSignatures: no visible binding for global variable ‘deltaHrules’
+FindGenes: no visible binding for global variable ‘deltaHrulesRNA’
+FindNonCoding: no visible binding for global variable ‘deltaHrulesRNA’
+LearnNonCoding: no visible binding for global variable ‘deltaHrulesRNA’
+PredictDBN: no visible binding for global variable ‘deltaHrulesRNA’
+TreeLine: multiple local function definitions for ‘.minimize’ with
+  different formal arguments
+Undefined global functions or variables:
+  deltaHrules deltaHrulesRNA
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                      user system elapsed
+PredictDBN         141.395  0.252 141.673
+MapCharacters      106.467  0.548 107.030
+FindNonCoding       97.282  0.572  97.883
+LearnNonCoding      72.466  3.848  77.349
+BrowseSeqs          54.785  0.335  55.172
+FindGenes           50.106  1.808  53.889
+WriteGenes          51.209  0.508  51.729
+ExtractGenes        50.302  0.403  50.714
+Genes-class         46.586  3.676  57.949
+AlignSeqs           26.746  0.628  27.375
+CorrectFrameshifts  18.396  0.080  18.477
+StaggerAlignment    15.810  0.236  16.051
+LearnTaxa           15.518  0.492  16.021
+Taxa-class          13.716  0.812  15.353
+AlignTranslation    14.253  0.135  14.391
+IdTaxa              12.928  0.036  12.966
+DetectRepeats       12.405  0.076  12.507
+TreeLine            10.201  0.232  10.442
+Clusterize           7.492  0.071   7.564
+ScoreAlignment       6.531  0.056   6.587
+TileSeqs             4.935  0.636   6.649
+Array2Matrix         5.412  0.076   5.489
+DesignArray          5.291  0.020   5.311
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘ArtOfAlignmentInR.Rnw’... OK
+  ‘ClassifySequences.Rnw’... OK
+  ‘ClusteringSequences.Rnw’... OK
+  ‘DECIPHERing.Rnw’... OK
+  ‘DesignMicroarray.Rnw’... OK
+  ‘DesignPrimers.Rnw’... OK
+  ‘DesignProbes.Rnw’... OK
+  ‘DesignSignatures.Rnw’... OK
+  ‘FindChimeras.Rnw’... OK
+  ‘FindingGenes.Rnw’... OK
+  ‘FindingNonCodingRNAs.Rnw’... failed to complete the test
+  ‘GrowingTrees.Rnw’... OK
+  ‘RepeatRepeat.Rnw’... OK
+ ERROR
+Errors in running code in vignettes:
+when running code in ‘FindingNonCodingRNAs.Rnw’
+  ...
+[46] "5'_ureB-RF02514"                     
+
+> x[[length(x) + 1]] <- y
+
+> names(x)[length(x)] <- "IhtA"
+
+> rnas <- FindNonCoding(x, genome)
+========================Killed
+
+... incomplete output.  Crash?
+
+* checking re-building of vignette outputs ...

@@ -1,0 +1,211 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:breakpointR.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings breakpointR_1.17.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/breakpointR.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘breakpointR/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘breakpointR’ version ‘1.17.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘breakpointR’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                     user system elapsed
+genotyping         15.530  0.207  15.743
+hotspotter          7.515  0.187   7.712
+synchronizeReadDir  5.636  0.051   5.687
+exportRegions       2.757  1.426   5.829
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘breakpointR.Rnw’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+--- re-building ‘breakpointR.Rnw’ using knitr
+breakpointr            package:breakpointR             R Documentation
+
+_M_a_i_n _f_u_n_c_t_i_o_n _f_o_r _t_h_e '_b_r_e_a_k_p_o_i_n_t_R' _p_a_c_k_a_g_e
+
+_D_e_s_c_r_i_p_t_i_o_n:
+
+     This function is an easy-to-use wrapper to find breakpoints with
+     'runBreakpointr' in parallel, write the results to file, plot
+     results and find hotspots.
+
+_U_s_a_g_e:
+
+     breakpointr(
+       inputfolder,
+       outputfolder,
+       configfile = NULL,
+       numCPU = 1,
+       reuse.existing.files = FALSE,
+       windowsize = 1e+06,
+       binMethod = "size",
+       multi.sizes = NULL,
+       pairedEndReads = FALSE,
+       pair2frgm = FALSE,
+       chromosomes = NULL,
+       min.mapq = 10,
+       filtAlt = FALSE,
+       genoT = "fisher",
+       trim = 10,
+       peakTh = 0.33,
+       zlim = 3.291,
+       background = 0.05,
+       minReads = 10,
+       maskRegions = NULL,
+       callHotSpots = FALSE,
+       conf = 0.99
+     )
+     
+_A_r_g_u_m_e_n_t_s:
+
+inputfolder: Folder with BAM files.
+
+outputfolder: Folder to output the results. If it does not exist it
+          will be created.
+
+configfile: A file specifying the parameters of this function (without
+          'inputfolder', 'outputfolder' and 'configfile'). Having the
+          parameters in a file can be handy if many samples with the
+          same parameter settings are to be run. If a 'configfile' is
+          specified, it will take priority over the command line
+          parameters.
+
+  numCPU: The numbers of CPUs that are used. Should not be more than
+          available on your machine.
+
+reuse.existing.files: A logical indicating whether or not existing
+          files in 'outputfolder' should be reused.
+
+windowsize: The window size used to calculate deltaWs, either number of
+          reads or genomic size depending on 'binMethod'.
+
+binMethod: Method used to calculate optimal number of reads in the
+          window ("size", "reads"). By default 'binMethod='size''.
+
+multi.sizes: User defined multiplications of the original window size.
+
+pairedEndReads: Set to 'TRUE' if you have paired-end reads in your
+          file.
+
+pair2frgm: Set to 'TRUE' if every paired-end read should be merged into
+          a single fragment.
+
+chromosomes: If only a subset of the chromosomes should be binned,
+          specify them here.
+
+min.mapq: Minimum mapping quality when importing from BAM files.
+
+ filtAlt: Set to 'TRUE' if you want to filter out alternative
+          alignments defined in 'XA' tag.
+
+   genoT: A method ('fisher' or 'binom') to genotype regions defined by
+          a set of breakpoints.
+
+    trim: The amount of outliers in deltaWs removed to calculate the
+          stdev (10 will remove top 10% and bottom 10% of deltaWs).
+
+  peakTh: The treshold that the peak deltaWs must pass to be considered
+          a breakpoint (e.g. 0.33 is 1/3 of max(deltaW)).
+
+    zlim: The number of stdev that the deltaW must pass the peakTh
+          (ensures only significantly higher peaks are considered).
+
+background: The percent (e.g. 0.05 = 5%) of background reads allowed
+          for WW or CC genotype calls.
+
+minReads: The minimal number of reads between two breaks required for
+          genotyping.
+
+maskRegions: List of regions to be excluded from the analysis
+          (tab-separated file: chromosomes start end).
+
+callHotSpots: Search for regions of high abundance of breakpoints in
+          single cells.
+
+    conf: Desired confidence interval of localized breakpoints.
+
+_V_a_l_u_e:
+
+     'NULL'
+
+_A_u_t_h_o_r(_s):
+
+     David Porubsky, Aaron Taudt, Ashley Sanders
+
+_E_x_a_m_p_l_e_s:
+
+     ## Not run:
+     
+     ## The following call produces plots and genome browser files for all BAM files in "my-data-folder"
+     breakpointr(inputfolder="my-data-folder", outputfolder="my-output-folder")
+     ## End(Not run)
+     
+
+Killed
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/breakpointR.Rcheck/00check.log’
+for details.
+

@@ -1,0 +1,116 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL netboost
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library’
+* installing *source* package ‘netboost’ ...
+** using staged installation
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether gcc understands -c and -o together... yes
+checking whether make supports the include directive... yes (GNU style)
+checking dependency style of gcc... none
+checking how to run the C preprocessor... gcc -E
+checking build system type... aarch64-unknown-linux-gnu
+checking host system type... aarch64-unknown-linux-gnu
+checking for x86 cpuid  output... unknown
+checking for x86-AVX xgetbv  output... unknown
+checking whether C compiler accepts -Wno-deprecated... yes
+checking for strip... strip
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating src/Makevars
+config.status: creating src/mcupgma/clustering_util/Makefile
+config.status: creating src/config.h
+config.status: executing depfiles commands
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/RcppParallel/include' -I/usr/local/include   `/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/bin/Rscript -e "Rcpp:::CxxFlags()"`  -fPIC  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/RcppParallel/include' -I/usr/local/include   `/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/bin/Rscript -e "Rcpp:::CxxFlags()"`  -fPIC  -g -O2  -c boosting.cpp -o boosting.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/RcppParallel/include' -I/usr/local/include   `/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/bin/Rscript -e "Rcpp:::CxxFlags()"`  -fPIC  -g -O2  -c dist_tom.cpp -o dist_tom.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/RcppParallel/include' -I/usr/local/include   `/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/bin/Rscript -e "Rcpp:::CxxFlags()"`  -fPIC  -g -O2  -c tree_sort.cpp -o tree_sort.o
+g++ -std=gnu++11 -shared -L/usr/local/lib -o netboost.so RcppExports.o boosting.o dist_tom.o tree_sort.o
+strip -S netboost.so
+installing via 'install.libs.R' to /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/00LOCK-netboost/00new/netboost
+[1] "R_PACKAGE_SRC:  /home/biocbuild/bbs-3.17-bioc/meat/netboost"
+[1] "R_PACKAGE_DIR:  /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/00LOCK-netboost/00new/netboost"
+[1] "R_ARCH:         "
+[1] "SHLIB_EXT:      .so"
+[1] "INSTALL PATH:  /home/biocbuild/bbs-3.17-bioc/meat/netboost/src/mcupgma/scripts/install_path.mk"
+make: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/netboost/src/mcupgma'
+Clean build.
+make: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/netboost/src/mcupgma'
+make: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/netboost/src/mcupgma'
+==== compiling clustering_util sources using external Makefile (clustering_util/Makefile) recursively 
+make -C clustering_util  -f Makefile mcupgma_install
+make[1]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/netboost/src/mcupgma/clustering_util'
+mkdir -p bin
+mkdir -p obj.aarch64_Linux
+g++ -Wall  -Wno-deprecated -O3 -DNDEBUG -c -o obj.aarch64_Linux/HashingMergerMain.cmdline.o HashingMergerMain.cmdline.c
+g++ -Wall  -Wno-deprecated -O3 -DNDEBUG  -Wall  -Wno-deprecated -O3 -DNDEBUG -c -o obj.aarch64_Linux/ClusteringUtil.o ClusteringUtil.cpp
+g++ -Wall  -Wno-deprecated -O3 -DNDEBUG  -Wall  -Wno-deprecated -O3 -DNDEBUG -c -o obj.aarch64_Linux/Tree.o Tree.cpp
+g++ -Wall  -Wno-deprecated -O3 -DNDEBUG   -o bin/edges2valid_clusters HashingMergerMain.cpp obj.aarch64_Linux/HashingMergerMain.cmdline.o obj.aarch64_Linux/ClusteringUtil.o obj.aarch64_Linux/Tree.o 
+g++ -Wall  -Wno-deprecated -O3 -DNDEBUG -c -o obj.aarch64_Linux/EdgeCollatorMain.cmdline.o EdgeCollatorMain.cmdline.c
+g++ -Wall  -Wno-deprecated -O3 -DNDEBUG  -o bin/edge_collator EdgeCollatorMain.cpp obj.aarch64_Linux/EdgeCollatorMain.cmdline.o obj.aarch64_Linux/ClusteringUtil.o obj.aarch64_Linux/Tree.o 
+make[1]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/netboost/src/mcupgma/clustering_util'
+==== compiling  sources using external Makefile (clustering_round/Makefile) recursively 
+make -C clustering_round  -f Makefile
+make[1]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/netboost/src/mcupgma/clustering_round'
+mkdir -p dep.aarch64_Linux 
+test -d dep.aarch64_Linux && g++ -MM -MT 'dep.aarch64_Linux/test_heap.d  obj.aarch64_Linux/test_heap.o  obj.aarch64_Linux.debug/test_heap.o' -O3 -ftemplate-depth-64 -I./ test_heap.cpp > dep.aarch64_Linux/test_heap.d
+test -d dep.aarch64_Linux && g++ -MM -MT 'dep.aarch64_Linux/HierarchicalClustering_with_unknown_edges.d  obj.aarch64_Linux/HierarchicalClustering_with_unknown_edges.o  obj.aarch64_Linux.debug/HierarchicalClustering_with_unknown_edges.o' -O3 -ftemplate-depth-64 -I./ HierarchicalClustering_with_unknown_edges.cpp > dep.aarch64_Linux/HierarchicalClustering_with_unknown_edges.d
+test -d dep.aarch64_Linux && g++ -MM -MT 'dep.aarch64_Linux/HierarchicalClustering_main.d  obj.aarch64_Linux/HierarchicalClustering_main.o  obj.aarch64_Linux.debug/HierarchicalClustering_main.o' -O3 -ftemplate-depth-64 -I./ HierarchicalClustering_main.cpp > dep.aarch64_Linux/HierarchicalClustering_main.d
+test -d dep.aarch64_Linux && g++ -MM -MT 'dep.aarch64_Linux/test_heap.d  obj.aarch64_Linux/test_heap.o  obj.aarch64_Linux.debug/test_heap.o' -O3 -ftemplate-depth-64 -I./ test_heap.cpp > dep.aarch64_Linux/test_heap.d
+test -d dep.aarch64_Linux && g++ -MM -MT 'dep.aarch64_Linux/HierarchicalClustering_with_unknown_edges.d  obj.aarch64_Linux/HierarchicalClustering_with_unknown_edges.o  obj.aarch64_Linux.debug/HierarchicalClustering_with_unknown_edges.o' -O3 -ftemplate-depth-64 -I./ HierarchicalClustering_with_unknown_edges.cpp > dep.aarch64_Linux/HierarchicalClustering_with_unknown_edges.d
+mkdir -p obj.aarch64_Linux 
+mkdir -p bin
+g++ -O3 -ftemplate-depth-64 -I./ -c HierarchicalClustering_main.cpp -o obj.aarch64_Linux/HierarchicalClustering_main.o
+cc -O3 -I./ -c HierarchicalClustering_main.cmdline.c -o obj.aarch64_Linux/HierarchicalClustering_main.cmdline.o
+g++ -O3 -ftemplate-depth-64 -I./ -c HierarchicalClustering_with_unknown_edges.cpp -o obj.aarch64_Linux/HierarchicalClustering_with_unknown_edges.o
+g++ obj.aarch64_Linux/HierarchicalClustering_main.o obj.aarch64_Linux/HierarchicalClustering_main.cmdline.o obj.aarch64_Linux/HierarchicalClustering_with_unknown_edges.o  -o bin/hierarchical_clustering  -O3
+g++ -O3 -ftemplate-depth-64 -I./ -c test_heap.cpp -o obj.aarch64_Linux/test_heap.o
+cc -O3 -I./ -c test_heap.cmdline.c -o obj.aarch64_Linux/test_heap.cmdline.o
+g++ obj.aarch64_Linux/test_heap.o obj.aarch64_Linux/test_heap.cmdline.o  -o bin/test_heap  -O3
+make[1]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/netboost/src/mcupgma/clustering_round'
+make: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/netboost/src/mcupgma'
+[1] "SRC:  /home/biocbuild/bbs-3.17-bioc/meat/netboost/src/mcupgma"
+[1] "DEST: /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/00LOCK-netboost/00new/netboost/mcupgma"
+[1] "INSTALL FROM: /home/biocbuild/bbs-3.17-bioc/meat/netboost/src/mcupgma/clustering_round/bin TO: /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/00LOCK-netboost/00new/netboost/mcupgma"
+[1] "INSTALL FROM: /home/biocbuild/bbs-3.17-bioc/meat/netboost/src/mcupgma/clustering_util/bin TO: /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/00LOCK-netboost/00new/netboost/mcupgma"
+[1] "INSTALL FROM: /home/biocbuild/bbs-3.17-bioc/meat/netboost/src/mcupgma/scripts TO: /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/00LOCK-netboost/00new/netboost/mcupgma"
+[1] "netboost.so"
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (netboost)
