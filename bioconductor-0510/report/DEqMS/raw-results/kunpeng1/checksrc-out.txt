@@ -1,0 +1,103 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:DEqMS.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings DEqMS_1.19.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/DEqMS.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘DEqMS/DESCRIPTION’ ... OK
+* this is package ‘DEqMS’ version ‘1.19.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘DEqMS’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Title field: should not end in a period.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Package in Depends field not imported from: ‘matrixStats’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+Residualplot: no visible global function definition for ‘fitted’
+Residualplot: no visible global function definition for ‘residuals’
+VarianceScatterplot: no visible global function definition for ‘fitted’
+peptideProfilePlot: no visible binding for global variable ‘variable’
+peptideProfilePlot: no visible binding for global variable ‘value’
+peptideProfilePlot: no visible binding for global variable ‘PSM_id’
+peptideProfilePlot: no visible binding for global variable ‘Peptide’
+spectraCounteBayes: no visible global function definition for ‘fitted’
+Undefined global functions or variables:
+  PSM_id Peptide fitted residuals value variable
+Consider adding
+  importFrom("stats", "fitted", "residuals")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                           user system elapsed
+medpolishSummary         84.151  0.540  85.878
+farmsSummary             40.687  0.716  42.489
+Residualplot             16.816  0.797  20.508
+VarianceScatterplot       8.445  0.172   9.727
+VarianceBoxplot           8.048  0.324   9.573
+spectraCounteBayes        7.946  0.096   9.644
+outputResult              7.337  0.160   8.664
+medianSummary             6.985  0.388   8.572
+equalMedianNormalization  6.920  0.148   8.166
+medianSweeping            6.592  0.456   8.121
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘DEqMS-package-vignette.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/DEqMS.Rcheck/00check.log’
+for details.
+
+

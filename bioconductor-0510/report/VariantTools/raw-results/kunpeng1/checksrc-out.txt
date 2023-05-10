@@ -1,0 +1,157 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:VariantTools.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings VariantTools_1.43.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/VariantTools.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘VariantTools/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘VariantTools’ version ‘1.43.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .BBSoptions
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘VariantTools’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is  6.5Mb
+  sub-directories of 1Mb or more:
+    doc   5.4Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... NOTE
+Problems with news in ‘NEWS’:
+  Cannot process chunk/lines:
+    Initial release
+    (start date: 12 September, 2012)
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... WARNING
+Missing or unexported object: ‘GenomicRanges::genome’
+Unexported objects imported by ':::' calls:
+  ‘BiocGenerics:::testPackage’ ‘IRanges:::unlist_as_integer’
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+LowerFrequencyInOtherFilter : <anonymous>: no visible binding for
+  global variable ‘control.alt.depth’
+LowerFrequencyInOtherFilter : <anonymous>: no visible binding for
+  global variable ‘control.total.depth’
+ReadPositionTTestFilter : <anonymous>: no visible binding for global
+  variable ‘read.pos.mean’
+ReadPositionTTestFilter : <anonymous>: no visible binding for global
+  variable ‘read.pos.mean.ref’
+ReadPositionTTestFilter : <anonymous>: no visible binding for global
+  variable ‘read.pos.var’
+ReadPositionTTestFilter : <anonymous>: no visible binding for global
+  variable ‘read.pos.var.ref’
+ReadPositionTTestFilter : <anonymous>: no visible global function
+  definition for ‘rawDepth’
+StrandFETFilter : <anonymous>: no visible binding for global variable
+  ‘count.plus.ref’
+StrandFETFilter : <anonymous>: no visible binding for global variable
+  ‘count.minus.ref’
+StrandFETFilter : <anonymous>: no visible binding for global variable
+  ‘count.plus’
+StrandFETFilter : <anonymous>: no visible binding for global variable
+  ‘count.minus’
+calculateConcordanceMatrix: no visible binding for global variable ‘x’
+caseControlFET: no visible binding for global variable
+  ‘control.alt.depth’
+caseControlFET: no visible binding for global variable
+  ‘control.total.depth’
+variantGR2Vcf: no visible global function definition for
+  ‘variantGRangesIsDeprecated’
+variantGR2Vcf: no visible global function definition for
+  ‘makeVRangesFromVariantGRanges’
+callVariants,GenomicRanges: no visible global function definition for
+  ‘variantGRangesIsDeprecated’
+callVariants,GenomicRanges: no visible global function definition for
+  ‘variantGRangesToVRanges’
+Undefined global functions or variables:
+  control.alt.depth control.total.depth count.minus count.minus.ref
+  count.plus count.plus.ref makeVRangesFromVariantGRanges rawDepth
+  read.pos.mean read.pos.mean.ref read.pos.var read.pos.var.ref
+  variantGRangesIsDeprecated variantGRangesToVRanges x
+* checking Rd files ... WARNING
+./man/tallyVariants.Rd: non-ASCII input and no declared encoding
+problem found in ‘tallyVariants.Rd’
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking installed files from ‘inst/doc’ ... NOTE
+The following directories should probably not be installed:
+  ‘fig’
+
+Consider the use of a .Rinstignore file: see ‘Writing R Extensions’,
+or move the vignette sources from ‘inst/doc’ to ‘vignettes’.
+* checking files in ‘vignettes’ ... OK
+* checking examples ... WARNING
+Found the following significant warnings:
+
+  Warning: 'applyPileups' is deprecated.
+Deprecated functions may be defunct as soon as of the next release of
+R.
+See ?Deprecated.
+Examples with CPU (user + system) or elapsed time > 5s
+                             user system elapsed
+callGenotypes              90.267  4.847  63.497
+callSampleSpecificVariants  7.856  3.831   4.344
+callVariants                3.813  2.016   1.996
+tallyVariants               3.598  1.725   1.712
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘VariantTools_unit_tests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘VariantTools.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 WARNINGs, 5 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/VariantTools.Rcheck/00check.log’
+for details.
+
+

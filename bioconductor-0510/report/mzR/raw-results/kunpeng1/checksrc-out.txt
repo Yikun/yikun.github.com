@@ -1,0 +1,121 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:mzR.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings mzR_2.35.1.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/mzR.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘mzR/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘mzR’ version ‘2.35.1’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .BBSoptions
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘mzR’ can be installed ... WARNING
+Found the following significant warnings:
+  pwiz/data/msdata/MSData.cpp:1115:1: warning: control reaches end of non-void function [-Wreturn-type]
+  pwiz/data/proteome/Modification.cpp:89:5: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/mzR.Rcheck/00install.out’ for details.
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking C++ specification ... NOTE
+  Specified C++11: please drop specification unless essential
+* checking installed package size ... NOTE
+  installed size is 119.5Mb
+  sub-directories of 1Mb or more:
+    libs  118.9Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking startup messages can be suppressed ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in shell scripts ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... NOTE
+GNU make is a SystemRequirements.
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking include directives in Makefiles ... OK
+* checking compiled code ... WARNING
+Note: information on .o files is not available
+File ‘/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/mzR/libs/mzR.so’:
+  Found ‘_ZSt4cerr’, possibly from ‘std::cerr’ (C++)
+  Found ‘_ZSt4cout’, possibly from ‘std::cout’ (C++)
+  Found ‘__sprintf_chk’, possibly from ‘sprintf’ (C)
+  Found ‘abort’, possibly from ‘abort’ (C)
+  Found ‘exit’, possibly from ‘exit’ (C)
+  Found ‘rand_r’, possibly from ‘rand_r’ (C)
+  Found ‘stderr’, possibly from ‘stderr’ (C)
+  Found ‘stdout’, possibly from ‘stdout’ (C)
+
+Compiled code should not call entry points which might terminate R nor
+write to stdout/stderr instead of to the console, nor use Fortran I/O
+nor system RNGs nor [v]sprintf. The detected symbols are linked into
+the code but might come from libraries and not actually be called.
+
+See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘runTests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘mzR.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 WARNINGs, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/mzR.Rcheck/00check.log’
+for details.
+
+

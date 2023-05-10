@@ -1,0 +1,132 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:ChAMP.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings ChAMP_2.31.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/ChAMP.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘ChAMP/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘ChAMP’ version ‘2.31.0’
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  'minfi', 'ChAMPdata', 'DMRcate', 'Illumina450ProbeVariants.db',
+  'IlluminaHumanMethylationEPICmanifest', 'DT', 'RPMM'
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘ChAMP’ can be installed ... WARNING
+Found the following significant warnings:
+  Note: possible error in 'dmrcate(myannotation, ': unused argument (mc.cores = cores) 
+  Warning: replacing previous import 'plyr::mutate' by 'plotly::mutate' when loading 'ChAMP'
+  Warning: replacing previous import 'plyr::rename' by 'plotly::rename' when loading 'ChAMP'
+  Warning: replacing previous import 'plyr::arrange' by 'plotly::arrange' when loading 'ChAMP'
+  Warning: replacing previous import 'plyr::summarise' by 'plotly::summarise' when loading 'ChAMP'
+  Warning: replacing previous import 'plotly::subplot' by 'Hmisc::subplot' when loading 'ChAMP'
+  Warning: replacing previous import 'plyr::summarize' by 'Hmisc::summarize' when loading 'ChAMP'
+  Warning: replacing previous import 'plyr::is.discrete' by 'Hmisc::is.discrete' when loading 'ChAMP'
+  Warning: replacing previous import 'GenomicRanges::sort' by 'globaltest::sort' when loading 'ChAMP'
+  Warning: replacing previous import 'plotly::last_plot' by 'ggplot2::last_plot' when loading 'ChAMP'
+  Warning: replacing previous import 'globaltest::model.matrix' by 'stats::model.matrix' when loading 'ChAMP'
+  Warning: replacing previous import 'globaltest::p.adjust' by 'stats::p.adjust' when loading 'ChAMP'
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/ChAMP.Rcheck/00install.out’ for details.
+Information on the location(s) of code generating the ‘Note’s can be
+obtained by re-running with environment variable R_KEEP_PKG_SOURCE set
+to ‘yes’.
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Package listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘rmarkdown’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking startup messages can be suppressed ... NOTE
+No methods found in package 'RSQLite' for request: 'dbListFields' when loading 'lumi'
+
+It looks like this package (or a package it requires) has a startup
+message which cannot be suppressed: see ?packageStartupMessage.
+* checking dependencies in R code ... NOTE
+Namespace in Imports field not imported from: 'prettydoc'
+  All declared Imports should be used.
+Package in Depends field not imported from: 'DT'
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+champ.DMR: possible error in dmrcate(myannotation, min.cpgs =
+  minProbes, lambda = lambda, C = C, mc.cores = cores): unused argument
+  (mc.cores = cores)
+champ.ebGSEA : gseaWTfn: no visible global function definition for
+  'wilcox.test'
+champ.ebGSEA: no visible global function definition for 'stopCluster'
+champ.norm: no visible global function definition for 'stopCluster'
+champ.process: no visible global function definition for 'champ.EpiMod'
+Undefined global functions or variables:
+  champ.EpiMod stopCluster wilcox.test
+Consider adding
+  importFrom("stats", "wilcox.test")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Duplicated \argument entries in documentation object 'champ.SVD':
+  ‘Rplot’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘ChAMP.Rmd’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 WARNINGs, 5 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/ChAMP.Rcheck/00check.log’
+for details.
+
+

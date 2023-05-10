@@ -1,0 +1,43 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL makecdfenv
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library’
+* installing *source* package ‘makecdfenv’ ...
+** using staged installation
+creating cache ./config.cache
+checking how to run the C preprocessor... gcc -E
+checking for main in -lz... yes
+checking for zlib.h... yes
+checking if zlib version >= 1.1.3... yes
+updating cache ./config.cache
+creating ./config.status
+creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -DHAVE_ZLIB=1   -I/usr/local/include   -g -O2 -fPIC  -g -O2  -c read_cdffile.c -o read_cdffile.o
+read_cdffile.c: In function ‘openCDFfile’:
+read_cdffile.c:340:7: warning: ignoring return value of ‘fgets’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  340 |       fgets(buffy, SIZE_LINE, affyFile->stream);
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+gcc -shared -L/usr/local/lib -o makecdfenv.so read_cdffile.o -lz
+installing to /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/00LOCK-makecdfenv/00new/makecdfenv/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (makecdfenv)

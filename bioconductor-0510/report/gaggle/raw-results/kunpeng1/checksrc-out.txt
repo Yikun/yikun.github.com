@@ -1,0 +1,163 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:gaggle.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings gaggle_1.69.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/gaggle.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘gaggle/DESCRIPTION’ ... OK
+* this is package ‘gaggle’ version ‘1.69.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘gaggle’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Non-standard license specification:
+  GPL version 2 or newer
+Standardizable: TRUE
+Standardized license specification:
+  GPL (>= 2)
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking startup messages can be suppressed ... NOTE
+
+onLoad -- libname: /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library pkgname: gaggle 
+path to jar: /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/gaggle/jars/gaggleRShell.jar 
+      script:  gaggle.R $Revision: 4499 $   $Date: 2010-08-10 17:15:03 -0700 (Tue, 10 Aug 2010) $ 
+  os version:  Linux 
+ jvm version:  11.0.18 
+
+   You are using the wrong version of Java.
+   Please see http://gaggle.systemsbiology.org/docs/html/java
+
+
+It looks like this package (or a package it requires) has a startup
+message which cannot be suppressed: see ?packageStartupMessage.
+* checking dependencies in R code ... NOTE
+'library' or 'require' calls to packages already attached by Depends:
+  ‘RUnit’ ‘rJava’
+  Please remove these calls from your code.
+Packages in Depends field not imported from:
+  ‘RUnit’ ‘rJava’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+File ‘gaggle/R/gaggle.R’:
+  .onLoad calls:
+    require("rJava")
+    cat(paste("\nonLoad -- libname:", libname, "pkgname:", pkgname,     "\n"))
+    cat("path to jar:", fullPathToGaggleJar, "\n")
+    cat("      script: ", .scriptVersion(), "\n")
+    cat("  os version: ", .jcall("java/lang/System", "S", "getProperty",     "os.name"), "\n")
+    cat(" jvm version: ", jvmVersion, "\n")
+    cat("\n   You are using the wrong version of Java.\n", "  Please see http://gaggle.systemsbiology.org/docs/html/java\n\n")
+
+Package startup functions should not change the search path.
+Package startup functions should use ‘packageStartupMessage’ to
+  generate messages.
+See section ‘Good practice’ in '?.onAttach'.
+
+
+onLoad -- libname: /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library pkgname: gaggle 
+path to jar: /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/gaggle/jars/gaggleRShell.jar 
+      script:  gaggle.R $Revision: 4499 $   $Date: 2010-08-10 17:15:03 -0700 (Tue, 10 Aug 2010) $ 
+  os version:  Linux 
+ jvm version:  11.0.18 
+
+   You are using the wrong version of Java.
+   Please see http://gaggle.systemsbiology.org/docs/html/java
+
+.broadcastAssociativeArray: no visible binding for global variable
+  ‘goose’
+.broadcastEnvironment: no visible binding for global variable ‘goose’
+.broadcastGraph: no visible binding for global variable ‘goose’
+.pkgVersion: no visible global function definition for ‘sessionInfo’
+broadcast: no visible binding for global variable ‘goose’
+connectToGaggle: no visible binding for global variable ‘goose’
+disconnectFromGaggle: no visible binding for global variable ‘goose’
+gaggleInit: no visible binding for '<<-' assignment to ‘goose’
+gaggleInit: no visible binding for '<<-' assignment to ‘targetGoose’
+gaggleInit: no visible binding for global variable ‘goose’
+geese: no visible binding for global variable ‘goose’
+getCluster: no visible binding for global variable ‘goose’
+getMatrix: no visible binding for global variable ‘goose’
+getNameList: no visible binding for global variable ‘goose’
+getNetwork: no visible binding for global variable ‘goose’
+getSpecies: no visible binding for global variable ‘goose’
+getTargetGoose: no visible binding for global variable ‘goose’
+getTuple: no visible binding for global variable ‘goose’
+getTupleAsList: no visible binding for global variable ‘goose’
+hideGoose: no visible binding for global variable ‘goose’
+setSpecies: no visible binding for global variable ‘goose’
+setTargetGoose: no visible binding for '<<-' assignment to
+  ‘targetGoose’
+setTargetGoose: no visible binding for global variable ‘goose’
+showGoose: no visible binding for global variable ‘goose’
+testGagglePackage: no visible global function definition for
+  ‘test.gaggle’
+Undefined global functions or variables:
+  goose sessionInfo test.gaggle
+Consider adding
+  importFrom("utils", "sessionInfo")
+to your NAMESPACE file.
+* checking Rd files ... NOTE
+prepare_Rd: connectToGaggle.Rd:9-10: Dropping empty section \arguments
+prepare_Rd: disconnectFromGaggle.Rd:8-9: Dropping empty section \arguments
+prepare_Rd: getCluster.Rd:8-9: Dropping empty section \arguments
+prepare_Rd: getNameList.Rd:8-9: Dropping empty section \arguments
+prepare_Rd: getTuple.Rd:6-7: Dropping empty section \arguments
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘gaggle.Rnw’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 5 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/gaggle.Rcheck/00check.log’
+for details.
+
+

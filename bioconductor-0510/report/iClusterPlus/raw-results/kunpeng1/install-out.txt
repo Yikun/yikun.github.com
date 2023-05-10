@@ -1,0 +1,46 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL iClusterPlus
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library’
+* installing *source* package ‘iClusterPlus’ ...
+** using staged installation
+ This package has only been tested with gfortran.
+ So some checks are needed.
+ R_HOME is /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R
+Attempting to determine R_ARCH...
+R_ARCH is 
+Attempting to detect how R was configured for Fortran 90....
+  R configured for gfortran; Good!
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c iClusterBayes.c -o iClusterBayes.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c iClusterPlus.c -o iClusterPlus.o
+gfortran -fdefault-real-8 -ffixed-form -fPIC  -g -O2  -c  newGLMnet.f90 -o newGLMnet.o
+gcc -shared -L/usr/local/lib -o iClusterPlus.so iClusterBayes.o iClusterPlus.o newGLMnet.o -llapack -L/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/lib -lRblas -lgfortran -lm -lgfortran -lm
+installing to /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/00LOCK-iClusterPlus/00new/iClusterPlus/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (iClusterPlus)

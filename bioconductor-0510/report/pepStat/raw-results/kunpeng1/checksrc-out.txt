@@ -1,0 +1,154 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:pepStat.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings pepStat_1.35.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/pepStat.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘pepStat/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘pepStat’ version ‘1.35.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘pepStat’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Description field: should contain one or more complete sentences.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... NOTE
+Warning: no function found corresponding to methods exports from ‘pepStat’ for: ‘end’, ‘start’, ‘values’
+
+A namespace must be able to be loaded with just the base namespace
+loaded: otherwise if the namespace gets loaded by a saved object, the
+session will be unable to start.
+
+Probably some imports need to be declared in the NAMESPACE file.
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.findFDR : <anonymous>: no visible global function definition for
+  ‘median’
+.sanitize_mapping_file2: no visible global function definition for
+  ‘read.csv’
+create_db: no visible global function definition for ‘mcols<-’
+create_db: no visible global function definition for ‘mcols’
+getPlotCoords: no visible global function definition for ‘values’
+getWeightedEstimator : <anonymous>: no visible global function
+  definition for ‘lm.fit’
+getWeightedEstimator : <anonymous>: no visible global function
+  definition for ‘lm.wfit’
+getWeightedEstimator : <anonymous> : <anonymous>: no visible global
+  function definition for ‘sd’
+getZpep: no visible global function definition for ‘values’
+getZpep : <anonymous>: no visible global function definition for
+  ‘values’
+plotArrayImage: no visible global function definition for
+  ‘dev.interactive’
+plotArrayImage: no visible global function definition for
+  ‘devAskNewPage’
+plotArrayImage: no visible global function definition for ‘dev.hold’
+plotArrayImage: no visible global function definition for ‘dev.flush’
+plotArrayResiduals: no visible global function definition for
+  ‘dev.interactive’
+plotArrayResiduals: no visible global function definition for
+  ‘devAskNewPage’
+plotArrayResiduals: no visible global function definition for
+  ‘dev.hold’
+plotArrayResiduals: no visible global function definition for
+  ‘dev.flush’
+summarizePeptides: no visible global function definition for ‘values<-’
+summarizePeptides: no visible global function definition for ‘values’
+coerce,peptideSet-ExpressionSet: no visible global function definition
+  for ‘annotation’
+end,peptideSet: no visible global function definition for ‘end’
+featureID,peptideSet: no visible global function definition for
+  ‘values’
+pepZscore,GRanges: no visible global function definition for ‘values’
+peptide,peptideSet: no visible global function definition for ‘values’
+peptide<-,peptideSet-character: no visible global function definition
+  for ‘values’
+peptide<-,peptideSet-character: no visible global function definition
+  for ‘values<-’
+position,peptideSet: no visible global function definition for ‘start’
+position,peptideSet: no visible global function definition for ‘end’
+start,peptideSet: no visible global function definition for ‘start’
+values,peptideSet: no visible global function definition for ‘values’
+values<-,peptideSet: no visible global function definition for
+  ‘values<-’
+write.pSet,peptideSet: no visible global function definition for
+  ‘start’
+write.pSet,peptideSet: no visible global function definition for ‘end’
+write.pSet,peptideSet: no visible global function definition for
+  ‘write.csv’
+Undefined global functions or variables:
+  annotation dev.flush dev.hold dev.interactive devAskNewPage end
+  lm.fit lm.wfit mcols mcols<- median read.csv sd start values values<-
+  write.csv
+Consider adding
+  importFrom("grDevices", "dev.flush", "dev.hold", "dev.interactive",
+             "devAskNewPage")
+  importFrom("stats", "end", "lm.fit", "lm.wfit", "median", "sd",
+             "start")
+  importFrom("utils", "read.csv", "write.csv")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking installed files from ‘inst/doc’ ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                user system elapsed
+makeCalls      5.622  0.200   5.836
+slidingMean    5.080  0.124   5.203
+normalizeArray 4.937  0.144   5.082
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘pepStat.Rnw’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/pepStat.Rcheck/00check.log’
+for details.
+
+

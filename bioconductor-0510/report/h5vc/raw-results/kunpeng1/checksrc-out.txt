@@ -1,0 +1,166 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:h5vc.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings h5vc_2.35.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/h5vc.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘h5vc/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘h5vc’ version ‘2.35.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘h5vc’ can be installed ... WARNING
+Found the following significant warnings:
+  Warning: replacing previous import ‘Biostrings::pattern’ by ‘grid::pattern’ when loading ‘h5vc’
+See ‘/home/biocbuild/bbs-3.17-bioc/meat/h5vc.Rcheck/00install.out’ for details.
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Versioned 'LinkingTo' value for ‘Rhtslib’ is only usable in R >= 3.0.2
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+.h5dapplyIRanges: no visible binding for global variable ‘Sample’
+binnedAFs : <anonymous>: no visible global function definition for
+  ‘hist’
+callVariantsPaired : <anonymous> : <anonymous>: no visible global
+  function definition for ‘binom.test’
+callVariantsPairedFisher : <anonymous> : <anonymous> : <anonymous>: no
+  visible global function definition for ‘fisher.test’
+callVariantsPairedFisher : <anonymous> : <anonymous>: no visible
+  binding for global variable ‘pValue’
+callVariantsPairedFisher : <anonymous> : <anonymous>: no visible
+  binding for global variable ‘BlockID’
+callVariantsSingle : <anonymous> : <anonymous>: no visible binding for
+  global variable ‘Support’
+callVariantsSingle : <anonymous> : <anonymous>: no visible binding for
+  global variable ‘AF’
+callVariantsSingle : <anonymous> : <anonymous>: no visible binding for
+  global variable ‘SupFwd’
+callVariantsSingle : <anonymous> : <anonymous>: no visible binding for
+  global variable ‘SupRev’
+callVariantsSingle : <anonymous> : <anonymous> : binom.test.safe: no
+  visible global function definition for ‘binom.test’
+callVariantsSingle : <anonymous> : <anonymous> : <anonymous>: no
+  visible global function definition for ‘fisher.test’
+callVariantsSingle : <anonymous> : <anonymous>: no visible binding for
+  global variable ‘BlockID’
+mergeTallyFiles : <anonymous>: no visible binding for global variable
+  ‘group’
+mergeTallyFiles: no visible binding for global variable ‘SourceFile’
+mismatchPlot: no visible binding for global variable ‘Sample’
+plotMutationSpectrum: no visible binding for global variable
+  ‘altAllele’
+plotMutationSpectrum: no visible binding for global variable ‘tmp’
+rerunBatchTallies: no visible binding for global variable ‘regID’
+resizeCohort: no visible binding for global variable ‘newSamples’
+tallyRangesBatch : <anonymous>: no visible binding for global variable
+  ‘bamFiles’
+tallyRangesBatch: no visible binding for global variable ‘verbose’
+Undefined global functions or variables:
+  AF BlockID Sample SourceFile SupFwd SupRev Support altAllele bamFiles
+  binom.test fisher.test group hist newSamples pValue regID tmp verbose
+Consider adding
+  importFrom("graphics", "hist")
+  importFrom("stats", "binom.test", "fisher.test")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... NOTE
+GNU make is a SystemRequirements.
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... WARNING
+Note: information on .o files is not available
+File ‘/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/h5vc/libs/h5vc.so’:
+  Found ‘__sprintf_chk’, possibly from ‘sprintf’ (C)
+  Found ‘abort’, possibly from ‘abort’ (C)
+  Found ‘exit’, possibly from ‘exit’ (C)
+  Found ‘stderr’, possibly from ‘stderr’ (C)
+  Found ‘stdout’, possibly from ‘stdout’ (C)
+
+Compiled code should not call entry points which might terminate R nor
+write to stdout/stderr instead of to the console, nor use Fortran I/O
+nor system RNGs nor [v]sprintf. The detected symbols are linked into
+the code but might come from libraries and not actually be called.
+
+See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
+* checking installed files from ‘inst/doc’ ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                       user system elapsed
+applyTallies         16.044  1.684  17.091
+writeToTallyFile      9.037  2.712  10.910
+callVariantsFisher   10.557  0.039  10.596
+tallyRanges           5.992  1.631   6.862
+mismatchPlot          5.981  0.052   6.033
+mutationSpectrum      5.272  0.344   5.617
+plotMutationSpectrum  5.377  0.044   5.421
+binnedAFs             4.619  0.509   5.189
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘runTests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘h5vc.simple.genome.browser.Rmd’... OK
+  ‘h5vc.tour.Rmd’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 WARNINGs, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/h5vc.Rcheck/00check.log’
+for details.
+
+

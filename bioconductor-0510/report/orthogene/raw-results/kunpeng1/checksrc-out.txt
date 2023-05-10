@@ -1,0 +1,264 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:orthogene.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings orthogene_1.7.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/orthogene.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘orthogene/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘orthogene’ version ‘1.7.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘orthogene’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking R/sysdata.rda ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘orthogene-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plot_orthotree
+> ### Title: Create a phylogenetic tree of shared orthologs
+> ### Aliases: plot_orthotree
+> 
+> ### ** Examples
+> 
+> orthotree <- plot_orthotree(species = c("human","monkey","mouse"))
+Gathering ortholog reports.
+Retrieving all genes using: babelgene.
+Retrieving all organisms available in babelgene.
+Mapping species name: Homo sapiens
+1 organism identified from search: 9606
+Preparing babelgene::orthologs_df.
+Gene table with 20,492 rows retrieved.
+Returning all 20,492 genes from Homo sapiens.
+
+-- human
+Retrieving all genes using: babelgene.
+Retrieving all organisms available in babelgene.
+Mapping species name: Homo sapiens
+1 organism identified from search: 9606
+Preparing babelgene::orthologs_df.
+Gene table with 20,492 rows retrieved.
+Returning all 20,492 genes from Homo sapiens.
+--
+
+=========== REPORT SUMMARY ===========
+
+20,206 / 20,206 (100%) target_species genes remain after ortholog conversion.
+20,206 / 20,206 (100%) reference_species genes remain after ortholog conversion.
+
+-- monkey
+Retrieving all genes using: babelgene.
+Retrieving all organisms available in babelgene.
+Mapping species name: monkey
+Common name mapping found for monkey
+1 organism identified from search: 9544
+Preparing babelgene::orthologs_df.
+Gene table with 20,402 rows retrieved.
+Returning all 20,402 genes from monkey.
+--
+--
+Preparing gene_df.
+data.frame format detected.
+Extracting genes from Gene.Symbol.
+20,402 genes extracted.
+Converting monkey ==> Homo sapiens orthologs using: babelgene
+Retrieving all organisms available in babelgene.
+Mapping species name: monkey
+Common name mapping found for monkey
+1 organism identified from search: Macaca mulatta
+Retrieving all organisms available in babelgene.
+Mapping species name: Homo sapiens
+1 organism identified from search: Homo sapiens
+Retrieving all genes using: babelgene.
+Retrieving all organisms available in babelgene.
+Mapping species name: Macaca mulatta
+1 organism identified from search: 9544
+Preparing babelgene::orthologs_df.
+Gene table with 20,402 rows retrieved.
+Checking for genes without orthologs in Homo sapiens.
+Extracting genes from input_gene.
+20,402 genes extracted.
+Dropping 561 NAs of all kinds from input_gene.
+Extracting genes from ortholog_gene.
+19,841 genes extracted.
+Dropping 107 NAs of all kinds from ortholog_gene.
+Checking for genes without 1:1 orthologs.
+Dropping 1,371 genes that have multiple input_gene per ortholog_gene (many:1).
+Dropping 1,000 genes that have multiple ortholog_gene per input_gene (1:many).
+Filtering gene_df with gene_map
+Adding input_gene col to gene_df.
+Adding ortholog_gene col to gene_df.
+
+=========== REPORT SUMMARY ===========
+
+Total genes dropped after convert_orthologs :
+   1,452 / 18,149 (8%)
+Total genes remaining after convert_orthologs :
+   16,697 / 18,149 (92%)
+--
+
+=========== REPORT SUMMARY ===========
+
+16,459 / 18,149 (90.69%) target_species genes remain after ortholog conversion.
+16,459 / 20,206 (81.46%) reference_species genes remain after ortholog conversion.
+
+-- mouse
+Retrieving all genes using: babelgene.
+Retrieving all organisms available in babelgene.
+Mapping species name: mouse
+Common name mapping found for mouse
+1 organism identified from search: 10090
+Preparing babelgene::orthologs_df.
+Gene table with 29,651 rows retrieved.
+Returning all 29,651 genes from mouse.
+--
+--
+Preparing gene_df.
+data.frame format detected.
+Extracting genes from Gene.Symbol.
+29,651 genes extracted.
+Converting mouse ==> Homo sapiens orthologs using: babelgene
+Retrieving all organisms available in babelgene.
+Mapping species name: mouse
+Common name mapping found for mouse
+1 organism identified from search: Mus musculus
+Retrieving all organisms available in babelgene.
+Mapping species name: Homo sapiens
+1 organism identified from search: Homo sapiens
+Retrieving all genes using: babelgene.
+Retrieving all organisms available in babelgene.
+Mapping species name: Mus musculus
+1 organism identified from search: 10090
+Preparing babelgene::orthologs_df.
+Gene table with 29,651 rows retrieved.
+Checking for genes without orthologs in Homo sapiens.
+Extracting genes from input_gene.
+29,651 genes extracted.
+Dropping 37 NAs of all kinds from input_gene.
+Extracting genes from ortholog_gene.
+29,614 genes extracted.
+Dropping 146 NAs of all kinds from ortholog_gene.
+Checking for genes without 1:1 orthologs.
+Dropping 9,286 genes that have multiple input_gene per ortholog_gene (many:1).
+Dropping 10,297 genes that have multiple ortholog_gene per input_gene (1:many).
+Filtering gene_df with gene_map
+Adding input_gene col to gene_df.
+Adding ortholog_gene col to gene_df.
+
+=========== REPORT SUMMARY ===========
+
+Total genes dropped after convert_orthologs :
+   4,602 / 20,075 (23%)
+Total genes remaining after convert_orthologs :
+   15,473 / 20,075 (77%)
+--
+
+=========== REPORT SUMMARY ===========
+
+15,314 / 20,075 (76.28%) target_species genes remain after ortholog conversion.
+15,314 / 20,206 (75.79%) reference_species genes remain after ortholog conversion.
+Loading required namespace: phytools
+Loading required namespace: TreeTools
+Failed with error:  ‘there is no package called ‘PlotTools’’
+Importing tree from: TimeTree2022
+Importing cached tree.
+Standardising tip labels.
+Mapping 3 species from `species`.
+Mapping 3 species from tree.
+--
+0/3 (0%) tips dropped from tree due to inability to standardise names with `map_species`.
+--
+0/3 (0%) tips dropped from tree according to overlap with selected `species`.
+Error in loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]]) : 
+  there is no package called ‘PlotTools’
+Calls: plot_orthotree ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  Error in `loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]])`: there is no package called 'PlotTools'
+  Backtrace:
+      ▆
+   1. ├─orthogene::prepare_tree(species = species) at test-prepare_tree.R:4:4
+   2. └─base::loadNamespace(x)
+   3.   ├─base::namespaceImportFrom(...)
+   4.   │ └─base::asNamespace(ns)
+   5.   └─base::loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]])
+   6.     └─base::withRestarts(stop(cond), retry_loadNamespace = function() NULL)
+   7.       └─base (local) withOneRestart(expr, restarts[[1L]])
+   8.         └─base (local) doWithOneRestart(return(expr), restart)
+  
+  [ FAIL 2 | WARN 3 | SKIP 0 | PASS 136 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘docker.Rmd’ using ‘UTF-8’... OK
+  ‘infer_species.Rmd’ using ‘UTF-8’... OK
+  ‘orthogene.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/orthogene.Rcheck/00check.log’
+for details.
+

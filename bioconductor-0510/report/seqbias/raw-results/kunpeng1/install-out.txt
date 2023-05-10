@@ -1,0 +1,1372 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL seqbias
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library’
+* installing *source* package ‘seqbias’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+$SEQBIAS_OBJ is [common.o miscmath.o pos_table.o kmer_matrix.o logger.o motif.o seqbias.o sequencing_bias.o twobitseq.o]
+$YAML_CPP_OBJ is [aliasmanager.o conversion.o directives.o emitfromevents.o emitter.o emitterstate.o emitterutils.o exp.o iterator.o nodebuilder.o node.o nodeownership.o null.o ostream.o parser.o regex.o scanner.o scanscalar.o scantag.o scantoken.o simplekey.o singledocparser.o stream.o tag.o]
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c common.c -o common.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c miscmath.c -o miscmath.o
+gcc -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c pos_table.c -o pos_table.o
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c kmer_matrix.cpp -o kmer_matrix.o
+In file included from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from kmer_matrix.cpp:8:
+./yaml-cpp/parser.h:45:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   45 |                 std::auto_ptr<Scanner> m_pScanner;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from kmer_matrix.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from kmer_matrix.cpp:8:
+./yaml-cpp/parser.h:46:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   46 |                 std::auto_ptr<Directives> m_pDirectives;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from kmer_matrix.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/yaml.h:10,
+                 from kmer_matrix.hpp:13,
+                 from kmer_matrix.cpp:8:
+./yaml-cpp/iterator.h:20:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   20 |                 Iterator(std::auto_ptr<IterPriv> pData);
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from kmer_matrix.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/yaml.h:10,
+                 from kmer_matrix.hpp:13,
+                 from kmer_matrix.cpp:8:
+./yaml-cpp/iterator.h:36:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   36 |                 std::auto_ptr<IterPriv> m_pData;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from kmer_matrix.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/yaml.h:10,
+                 from kmer_matrix.hpp:13,
+                 from kmer_matrix.cpp:8:
+./yaml-cpp/node.h:43:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   43 |                 std::auto_ptr<Node> Clone() const;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from kmer_matrix.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/yaml.h:10,
+                 from kmer_matrix.hpp:13,
+                 from kmer_matrix.cpp:8:
+./yaml-cpp/node.h:115:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  115 |                 std::auto_ptr<NodeOwnership> m_pOwnership;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from kmer_matrix.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/yaml.h:13,
+                 from kmer_matrix.hpp:13,
+                 from kmer_matrix.cpp:8:
+./yaml-cpp/emitter.h:98:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   98 |                 std::auto_ptr <EmitterState> m_pState;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from kmer_matrix.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c logger.cpp -o logger.o
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c motif.cpp -o motif.o
+In file included from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from motif.cpp:8:
+./yaml-cpp/parser.h:45:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   45 |                 std::auto_ptr<Scanner> m_pScanner;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from motif.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from motif.cpp:8:
+./yaml-cpp/parser.h:46:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   46 |                 std::auto_ptr<Directives> m_pDirectives;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from motif.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/yaml.h:10,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from motif.cpp:8:
+./yaml-cpp/iterator.h:20:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   20 |                 Iterator(std::auto_ptr<IterPriv> pData);
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from motif.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/yaml.h:10,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from motif.cpp:8:
+./yaml-cpp/iterator.h:36:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   36 |                 std::auto_ptr<IterPriv> m_pData;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from motif.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/yaml.h:10,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from motif.cpp:8:
+./yaml-cpp/node.h:43:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   43 |                 std::auto_ptr<Node> Clone() const;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from motif.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/yaml.h:10,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from motif.cpp:8:
+./yaml-cpp/node.h:115:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  115 |                 std::auto_ptr<NodeOwnership> m_pOwnership;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from motif.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/yaml.h:13,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from motif.cpp:8:
+./yaml-cpp/emitter.h:98:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   98 |                 std::auto_ptr <EmitterState> m_pState;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from motif.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c seqbias.cpp -o seqbias.o
+In file included from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from seqbias.cpp:2:
+./yaml-cpp/parser.h:45:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   45 |                 std::auto_ptr<Scanner> m_pScanner;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from seqbias.cpp:2:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from seqbias.cpp:2:
+./yaml-cpp/parser.h:46:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   46 |                 std::auto_ptr<Directives> m_pDirectives;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from seqbias.cpp:2:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/yaml.h:10,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from seqbias.cpp:2:
+./yaml-cpp/iterator.h:20:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   20 |                 Iterator(std::auto_ptr<IterPriv> pData);
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from seqbias.cpp:2:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/yaml.h:10,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from seqbias.cpp:2:
+./yaml-cpp/iterator.h:36:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   36 |                 std::auto_ptr<IterPriv> m_pData;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from seqbias.cpp:2:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/yaml.h:10,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from seqbias.cpp:2:
+./yaml-cpp/node.h:43:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   43 |                 std::auto_ptr<Node> Clone() const;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from seqbias.cpp:2:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/yaml.h:10,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from seqbias.cpp:2:
+./yaml-cpp/node.h:115:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  115 |                 std::auto_ptr<NodeOwnership> m_pOwnership;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from seqbias.cpp:2:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/yaml.h:13,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from seqbias.cpp:2:
+./yaml-cpp/emitter.h:98:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   98 |                 std::auto_ptr <EmitterState> m_pState;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from seqbias.cpp:2:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+seqbias.cpp: In function ‘void R_init_seqbias(DllInfo*)’:
+seqbias.cpp:493:34: warning: cast between incompatible function types from ‘SEXPREC* (*)(SEXP, SEXP, SEXP, SEXP, SEXP)’ {aka ‘SEXPREC* (*)(SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*)’} to ‘DL_FUNC’ {aka ‘void* (*)()’} [-Wcast-function-type]
+  493 |         { "seqbias_fit",         (DL_FUNC) &seqbias_fit, 5 },
+      |                                  ^~~~~~~~~~~~~~~~~~~~~~
+seqbias.cpp:494:34: warning: cast between incompatible function types from ‘SEXPREC* (*)(SEXP, SEXP, SEXP, SEXP, SEXP)’ {aka ‘SEXPREC* (*)(SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*)’} to ‘DL_FUNC’ {aka ‘void* (*)()’} [-Wcast-function-type]
+  494 |         { "seqbias_predict",     (DL_FUNC) &seqbias_predict, 5 },
+      |                                  ^~~~~~~~~~~~~~~~~~~~~~~~~~
+seqbias.cpp:495:34: warning: cast between incompatible function types from ‘SEXPREC* (*)(SEXP, SEXP)’ {aka ‘SEXPREC* (*)(SEXPREC*, SEXPREC*)’} to ‘DL_FUNC’ {aka ‘void* (*)()’} [-Wcast-function-type]
+  495 |         { "seqbias_load",        (DL_FUNC) &seqbias_load, 2 },
+      |                                  ^~~~~~~~~~~~~~~~~~~~~~~
+seqbias.cpp:496:34: warning: cast between incompatible function types from ‘SEXPREC* (*)(SEXP, SEXP)’ {aka ‘SEXPREC* (*)(SEXPREC*, SEXPREC*)’} to ‘DL_FUNC’ {aka ‘void* (*)()’} [-Wcast-function-type]
+  496 |         { "seqbias_save",        (DL_FUNC) &seqbias_save, 2 },
+      |                                  ^~~~~~~~~~~~~~~~~~~~~~~
+seqbias.cpp:497:37: warning: cast between incompatible function types from ‘SEXPREC* (*)(SEXP)’ {aka ‘SEXPREC* (*)(SEXPREC*)’} to ‘DL_FUNC’ {aka ‘void* (*)()’} [-Wcast-function-type]
+  497 |         { "seqbias_open_bam",       (DL_FUNC) &seqbias_open_bam, 1 },
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+seqbias.cpp:498:37: warning: cast between incompatible function types from ‘SEXPREC* (*)(SEXP, SEXP, SEXP, SEXP, SEXP, SEXP, SEXP)’ {aka ‘SEXPREC* (*)(SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*)’} to ‘DL_FUNC’ {aka ‘void* (*)()’} [-Wcast-function-type]
+  498 |         { "seqbias_count_reads",    (DL_FUNC) &seqbias_count_reads, 7 },
+      |                                     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+seqbias.cpp:499:49: warning: cast between incompatible function types from ‘SEXPREC* (*)(SEXP, SEXP)’ {aka ‘SEXPREC* (*)(SEXPREC*, SEXPREC*)’} to ‘DL_FUNC’ {aka ‘void* (*)()’} [-Wcast-function-type]
+  499 |         { "seqbias_alloc_kmer_matrix",          (DL_FUNC) &seqbias_alloc_kmer_matrix, 2 },
+      |                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+seqbias.cpp:500:49: warning: cast between incompatible function types from ‘SEXPREC* (*)(SEXP, SEXP, SEXP, SEXP)’ {aka ‘SEXPREC* (*)(SEXPREC*, SEXPREC*, SEXPREC*, SEXPREC*)’} to ‘DL_FUNC’ {aka ‘void* (*)()’} [-Wcast-function-type]
+  500 |         { "seqbias_tally_kmers",                (DL_FUNC) &seqbias_tally_kmers, 4 },
+      |                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+seqbias.cpp:501:49: warning: cast between incompatible function types from ‘SEXPREC* (*)(SEXP, SEXP)’ {aka ‘SEXPREC* (*)(SEXPREC*, SEXPREC*)’} to ‘DL_FUNC’ {aka ‘void* (*)()’} [-Wcast-function-type]
+  501 |         { "sebqias_dataframe_from_kmer_matrix", (DL_FUNC) &seqbias_dataframe_from_kmer_matrix, 2 },
+      |                                                 ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c sequencing_bias.cpp -o sequencing_bias.o
+In file included from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from sequencing_bias.cpp:8:
+./yaml-cpp/parser.h:45:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   45 |                 std::auto_ptr<Scanner> m_pScanner;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from sequencing_bias.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from sequencing_bias.cpp:8:
+./yaml-cpp/parser.h:46:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   46 |                 std::auto_ptr<Directives> m_pDirectives;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from sequencing_bias.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/yaml.h:10,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from sequencing_bias.cpp:8:
+./yaml-cpp/iterator.h:20:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   20 |                 Iterator(std::auto_ptr<IterPriv> pData);
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from sequencing_bias.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/yaml.h:10,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from sequencing_bias.cpp:8:
+./yaml-cpp/iterator.h:36:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   36 |                 std::auto_ptr<IterPriv> m_pData;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from sequencing_bias.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/yaml.h:10,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from sequencing_bias.cpp:8:
+./yaml-cpp/node.h:43:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   43 |                 std::auto_ptr<Node> Clone() const;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from sequencing_bias.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/yaml.h:10,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from sequencing_bias.cpp:8:
+./yaml-cpp/node.h:115:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  115 |                 std::auto_ptr<NodeOwnership> m_pOwnership;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from sequencing_bias.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/yaml.h:13,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from sequencing_bias.cpp:8:
+./yaml-cpp/emitter.h:98:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   98 |                 std::auto_ptr <EmitterState> m_pState;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/yaml.h:9,
+                 from kmer_matrix.hpp:13,
+                 from motif.hpp:13,
+                 from sequencing_bias.hpp:13,
+                 from sequencing_bias.cpp:8:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+sequencing_bias.cpp: In member function ‘void sequencing_bias::build(const char*, pos_table*, size_t, pos_t, pos_t, double)’:
+sequencing_bias.cpp:398:9: warning: ‘void free(void*)’ called on pointer returned from a mismatched allocation function [-Wmismatched-new-delete]
+  398 |     free(local_seq);
+      |     ~~~~^~~~~~~~~~~
+sequencing_bias.cpp:301:37: note: returned from ‘void* operator new [](std::size_t)’
+  301 |     local_seq = new char[ L + R + 2 ];
+      |                                     ^
+sequencing_bias.cpp: In function ‘kmer_matrix tabulate_bias(double*, pos_t, pos_t, int, const char*, const char*, const char*)’:
+sequencing_bias.cpp:628:9: warning: ‘void free(void*)’ called on pointer returned from a mismatched allocation function [-Wmismatched-new-delete]
+  628 |     free(local_seq);
+      |     ~~~~^~~~~~~~~~~
+sequencing_bias.cpp:541:51: note: returned from ‘void* operator new [](std::size_t)’
+  541 |     local_seq = new char[ (k - 1) + L + 1 + R + 1 ];
+      |                                                   ^
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c twobitseq.cpp -o twobitseq.o
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/aliasmanager.cpp -o yaml-cpp/aliasmanager.o
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/aliasmanager.cpp:2:
+./yaml-cpp/iterator.h:20:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   20 |                 Iterator(std::auto_ptr<IterPriv> pData);
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/aliasmanager.cpp:2:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/aliasmanager.cpp:2:
+./yaml-cpp/iterator.h:36:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   36 |                 std::auto_ptr<IterPriv> m_pData;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/aliasmanager.cpp:2:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/aliasmanager.cpp:2:
+./yaml-cpp/node.h:43:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   43 |                 std::auto_ptr<Node> Clone() const;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/aliasmanager.cpp:2:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/aliasmanager.cpp:2:
+./yaml-cpp/node.h:115:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  115 |                 std::auto_ptr<NodeOwnership> m_pOwnership;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/aliasmanager.cpp:2:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/conversion.cpp -o yaml-cpp/conversion.o
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/directives.cpp -o yaml-cpp/directives.o
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/emitfromevents.cpp -o yaml-cpp/emitfromevents.o
+In file included from yaml-cpp/emitfromevents.cpp:2:
+./yaml-cpp/emitter.h:98:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   98 |                 std::auto_ptr <EmitterState> m_pState;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/emitter.h:14,
+                 from yaml-cpp/emitfromevents.cpp:2:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/emitter.cpp -o yaml-cpp/emitter.o
+In file included from yaml-cpp/emitter.cpp:1:
+./yaml-cpp/emitter.h:98:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   98 |                 std::auto_ptr <EmitterState> m_pState;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/emitter.h:14,
+                 from yaml-cpp/emitter.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/emitterstate.h:9,
+                 from yaml-cpp/emitter.cpp:2:
+yaml-cpp/ptr_stack.h:29:24: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   29 |         void push(std::auto_ptr<T> t) {
+      |                        ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/emitter.h:14,
+                 from yaml-cpp/emitter.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/emitterstate.h:9,
+                 from yaml-cpp/emitter.cpp:2:
+yaml-cpp/ptr_stack.h:33:14: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   33 |         std::auto_ptr<T> pop() {
+      |              ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/emitter.h:14,
+                 from yaml-cpp/emitter.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/emitterstate.h:9,
+                 from yaml-cpp/emitter.cpp:2:
+yaml-cpp/ptr_stack.h: In member function ‘std::auto_ptr<_Up> ptr_stack<T>::pop()’:
+yaml-cpp/ptr_stack.h:34:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   34 |                 std::auto_ptr<T> t(m_data.back());
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/emitter.h:14,
+                 from yaml-cpp/emitter.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/emitterstate.h:10,
+                 from yaml-cpp/emitter.cpp:2:
+yaml-cpp/setting.h: At global scope:
+yaml-cpp/setting.h:24:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   24 |                 std::auto_ptr <SettingChangeBase> set(const T& value);
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/emitter.h:14,
+                 from yaml-cpp/emitter.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/emitterstate.h:10,
+                 from yaml-cpp/emitter.cpp:2:
+yaml-cpp/setting.h:59:21: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   59 |         inline std::auto_ptr <SettingChangeBase> Setting<T>::set(const T& value) {
+      |                     ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/emitter.h:14,
+                 from yaml-cpp/emitter.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/emitterstate.h:10,
+                 from yaml-cpp/emitter.cpp:2:
+yaml-cpp/setting.h: In member function ‘std::auto_ptr<YAML::SettingChangeBase> YAML::Setting<T>::set(const T&)’:
+yaml-cpp/setting.h:60:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   60 |                 std::auto_ptr <SettingChangeBase> pChange(new SettingChange<T> (this));
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/emitter.h:14,
+                 from yaml-cpp/emitter.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/emitterstate.h:10,
+                 from yaml-cpp/emitter.cpp:2:
+yaml-cpp/setting.h: At global scope:
+yaml-cpp/setting.h:84:32: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   84 |                 void push(std::auto_ptr <SettingChangeBase> pSettingChange) {
+      |                                ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/emitter.h:14,
+                 from yaml-cpp/emitter.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/emitterstate.cpp -o yaml-cpp/emitterstate.o
+In file included from yaml-cpp/emitterstate.h:9,
+                 from yaml-cpp/emitterstate.cpp:1:
+yaml-cpp/ptr_stack.h:29:24: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   29 |         void push(std::auto_ptr<T> t) {
+      |                        ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_stack.h:9,
+                 from yaml-cpp/emitterstate.h:9,
+                 from yaml-cpp/emitterstate.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/emitterstate.h:9,
+                 from yaml-cpp/emitterstate.cpp:1:
+yaml-cpp/ptr_stack.h:33:14: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   33 |         std::auto_ptr<T> pop() {
+      |              ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_stack.h:9,
+                 from yaml-cpp/emitterstate.h:9,
+                 from yaml-cpp/emitterstate.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/emitterstate.h:9,
+                 from yaml-cpp/emitterstate.cpp:1:
+yaml-cpp/ptr_stack.h: In member function ‘std::auto_ptr<T> ptr_stack<T>::pop()’:
+yaml-cpp/ptr_stack.h:34:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   34 |                 std::auto_ptr<T> t(m_data.back());
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_stack.h:9,
+                 from yaml-cpp/emitterstate.h:9,
+                 from yaml-cpp/emitterstate.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/emitterstate.h:10,
+                 from yaml-cpp/emitterstate.cpp:1:
+yaml-cpp/setting.h: At global scope:
+yaml-cpp/setting.h:24:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   24 |                 std::auto_ptr <SettingChangeBase> set(const T& value);
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_stack.h:9,
+                 from yaml-cpp/emitterstate.h:9,
+                 from yaml-cpp/emitterstate.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/emitterstate.h:10,
+                 from yaml-cpp/emitterstate.cpp:1:
+yaml-cpp/setting.h:59:21: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   59 |         inline std::auto_ptr <SettingChangeBase> Setting<T>::set(const T& value) {
+      |                     ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_stack.h:9,
+                 from yaml-cpp/emitterstate.h:9,
+                 from yaml-cpp/emitterstate.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/emitterstate.h:10,
+                 from yaml-cpp/emitterstate.cpp:1:
+yaml-cpp/setting.h: In member function ‘std::auto_ptr<YAML::SettingChangeBase> YAML::Setting<T>::set(const T&)’:
+yaml-cpp/setting.h:60:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   60 |                 std::auto_ptr <SettingChangeBase> pChange(new SettingChange<T> (this));
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_stack.h:9,
+                 from yaml-cpp/emitterstate.h:9,
+                 from yaml-cpp/emitterstate.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/emitterstate.h:10,
+                 from yaml-cpp/emitterstate.cpp:1:
+yaml-cpp/setting.h: At global scope:
+yaml-cpp/setting.h:84:32: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   84 |                 void push(std::auto_ptr <SettingChangeBase> pSettingChange) {
+      |                                ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_stack.h:9,
+                 from yaml-cpp/emitterstate.h:9,
+                 from yaml-cpp/emitterstate.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+yaml-cpp/emitterstate.cpp: In member function ‘void YAML::EmitterState::BeginGroup(YAML::GROUP_TYPE)’:
+yaml-cpp/emitterstate.cpp:51:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   51 |                 std::auto_ptr<Group> pGroup(new Group(type));
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_stack.h:9,
+                 from yaml-cpp/emitterstate.h:9,
+                 from yaml-cpp/emitterstate.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+yaml-cpp/emitterstate.cpp: In member function ‘void YAML::EmitterState::EndGroup(YAML::GROUP_TYPE)’:
+yaml-cpp/emitterstate.cpp:71:30: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   71 |                         std::auto_ptr<Group> pFinishedGroup = m_groups.pop();
+      |                              ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_stack.h:9,
+                 from yaml-cpp/emitterstate.h:9,
+                 from yaml-cpp/emitterstate.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/emitterutils.cpp -o yaml-cpp/emitterutils.o
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/exp.cpp -o yaml-cpp/exp.o
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/iterator.cpp -o yaml-cpp/iterator.o
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/iterator.cpp:1:
+./yaml-cpp/iterator.h:20:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   20 |                 Iterator(std::auto_ptr<IterPriv> pData);
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/iterator.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/iterator.cpp:1:
+./yaml-cpp/iterator.h:36:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   36 |                 std::auto_ptr<IterPriv> m_pData;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/iterator.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/iterator.cpp:1:
+./yaml-cpp/node.h:43:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   43 |                 std::auto_ptr<Node> Clone() const;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/iterator.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/iterator.cpp:1:
+./yaml-cpp/node.h:115:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  115 |                 std::auto_ptr<NodeOwnership> m_pOwnership;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/iterator.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+yaml-cpp/iterator.cpp:11:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   11 |         Iterator::Iterator(std::auto_ptr<IterPriv> pData): m_pData(pData)
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/iterator.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/nodebuilder.cpp -o yaml-cpp/nodebuilder.o
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/nodebuilder.cpp:3:
+./yaml-cpp/iterator.h:20:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   20 |                 Iterator(std::auto_ptr<IterPriv> pData);
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/nodebuilder.h:10,
+                 from yaml-cpp/nodebuilder.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/nodebuilder.cpp:3:
+./yaml-cpp/iterator.h:36:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   36 |                 std::auto_ptr<IterPriv> m_pData;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/nodebuilder.h:10,
+                 from yaml-cpp/nodebuilder.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/nodebuilder.cpp:3:
+./yaml-cpp/node.h:43:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   43 |                 std::auto_ptr<Node> Clone() const;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/nodebuilder.h:10,
+                 from yaml-cpp/nodebuilder.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/nodebuilder.cpp:3:
+./yaml-cpp/node.h:115:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  115 |                 std::auto_ptr<NodeOwnership> m_pOwnership;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/nodebuilder.h:10,
+                 from yaml-cpp/nodebuilder.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/node.cpp -o yaml-cpp/node.o
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/node.cpp:1:
+./yaml-cpp/iterator.h:20:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   20 |                 Iterator(std::auto_ptr<IterPriv> pData);
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/node.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/node.cpp:1:
+./yaml-cpp/iterator.h:36:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   36 |                 std::auto_ptr<IterPriv> m_pData;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/node.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/node.cpp:1:
+./yaml-cpp/node.h:43:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   43 |                 std::auto_ptr<Node> Clone() const;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/node.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/node.cpp:1:
+./yaml-cpp/node.h:115:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  115 |                 std::auto_ptr<NodeOwnership> m_pOwnership;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/node.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/nodeownership.h:10,
+                 from yaml-cpp/node.cpp:4:
+yaml-cpp/ptr_vector.h:31:37: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   31 |                 void push_back(std::auto_ptr<T> t) {
+      |                                     ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/node.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/node.cpp:10:
+./yaml-cpp/emitter.h:98:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   98 |                 std::auto_ptr <EmitterState> m_pState;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/node.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+yaml-cpp/node.cpp:54:14: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   54 |         std::auto_ptr<Node> Node::Clone() const
+      |              ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/node.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+yaml-cpp/node.cpp: In member function ‘std::auto_ptr<YAML::Node> YAML::Node::Clone() const’:
+yaml-cpp/node.cpp:56:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   56 |                 std::auto_ptr<Node> pNode(new Node);
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/node.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+yaml-cpp/node.cpp: In member function ‘YAML::Iterator YAML::Node::begin() const’:
+yaml-cpp/node.cpp:148:54: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  148 |                                 return Iterator(std::auto_ptr<IterPriv>(new IterPriv(m_seqData.begin())));
+      |                                                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/node.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+yaml-cpp/node.cpp:150:54: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  150 |                                 return Iterator(std::auto_ptr<IterPriv>(new IterPriv(m_mapData.begin())));
+      |                                                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/node.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+yaml-cpp/node.cpp: In member function ‘YAML::Iterator YAML::Node::end() const’:
+yaml-cpp/node.cpp:166:54: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  166 |                                 return Iterator(std::auto_ptr<IterPriv>(new IterPriv(m_seqData.end())));
+      |                                                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/node.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+yaml-cpp/node.cpp:168:54: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  168 |                                 return Iterator(std::auto_ptr<IterPriv>(new IterPriv(m_mapData.end())));
+      |                                                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/node.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/nodeownership.cpp -o yaml-cpp/nodeownership.o
+In file included from yaml-cpp/nodeownership.h:10,
+                 from yaml-cpp/nodeownership.cpp:1:
+yaml-cpp/ptr_vector.h:31:37: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   31 |                 void push_back(std::auto_ptr<T> t) {
+      |                                     ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_vector.h:9,
+                 from yaml-cpp/nodeownership.h:10,
+                 from yaml-cpp/nodeownership.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/nodeownership.cpp:2:
+./yaml-cpp/iterator.h:20:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   20 |                 Iterator(std::auto_ptr<IterPriv> pData);
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_vector.h:9,
+                 from yaml-cpp/nodeownership.h:10,
+                 from yaml-cpp/nodeownership.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/nodeownership.cpp:2:
+./yaml-cpp/iterator.h:36:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   36 |                 std::auto_ptr<IterPriv> m_pData;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_vector.h:9,
+                 from yaml-cpp/nodeownership.h:10,
+                 from yaml-cpp/nodeownership.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/nodeownership.cpp:2:
+./yaml-cpp/node.h:43:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   43 |                 std::auto_ptr<Node> Clone() const;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_vector.h:9,
+                 from yaml-cpp/nodeownership.h:10,
+                 from yaml-cpp/nodeownership.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/nodeownership.cpp:2:
+./yaml-cpp/node.h:115:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  115 |                 std::auto_ptr<NodeOwnership> m_pOwnership;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_vector.h:9,
+                 from yaml-cpp/nodeownership.h:10,
+                 from yaml-cpp/nodeownership.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+yaml-cpp/nodeownership.cpp: In member function ‘YAML::Node& YAML::NodeOwnership::_Create()’:
+yaml-cpp/nodeownership.cpp:18:40: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   18 |                 m_nodes.push_back(std::auto_ptr<Node>(new Node));
+      |                                        ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_vector.h:9,
+                 from yaml-cpp/nodeownership.h:10,
+                 from yaml-cpp/nodeownership.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/null.cpp -o yaml-cpp/null.o
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/null.cpp:2:
+./yaml-cpp/iterator.h:20:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   20 |                 Iterator(std::auto_ptr<IterPriv> pData);
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/null.cpp:2:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/null.cpp:2:
+./yaml-cpp/iterator.h:36:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   36 |                 std::auto_ptr<IterPriv> m_pData;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/null.cpp:2:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/null.cpp:2:
+./yaml-cpp/node.h:43:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   43 |                 std::auto_ptr<Node> Clone() const;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/null.cpp:2:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/null.cpp:2:
+./yaml-cpp/node.h:115:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  115 |                 std::auto_ptr<NodeOwnership> m_pOwnership;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/iterator.h:9,
+                 from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/null.cpp:2:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/ostream.cpp -o yaml-cpp/ostream.o
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/parser.cpp -o yaml-cpp/parser.o
+In file included from yaml-cpp/parser.cpp:1:
+./yaml-cpp/parser.h:45:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   45 |                 std::auto_ptr<Scanner> m_pScanner;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/parser.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/parser.cpp:1:
+./yaml-cpp/parser.h:46:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   46 |                 std::auto_ptr<Directives> m_pDirectives;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/parser.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/parser.cpp:5:
+./yaml-cpp/iterator.h:20:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   20 |                 Iterator(std::auto_ptr<IterPriv> pData);
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/parser.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from ./yaml-cpp/node.h:12,
+                 from yaml-cpp/parser.cpp:5:
+./yaml-cpp/iterator.h:36:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   36 |                 std::auto_ptr<IterPriv> m_pData;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/parser.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/parser.cpp:5:
+./yaml-cpp/node.h:43:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   43 |                 std::auto_ptr<Node> Clone() const;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/parser.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/parser.cpp:5:
+./yaml-cpp/node.h:115:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  115 |                 std::auto_ptr<NodeOwnership> m_pOwnership;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/parser.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/scanner.h:15,
+                 from yaml-cpp/parser.cpp:7:
+yaml-cpp/ptr_vector.h:31:37: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   31 |                 void push_back(std::auto_ptr<T> t) {
+      |                                     ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/parser.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/parser.cpp:8:
+yaml-cpp/singledocparser.h:56:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   56 |                 std::auto_ptr<CollectionStack> m_pCollectionStack;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from ./yaml-cpp/parser.h:12,
+                 from yaml-cpp/parser.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/regex.cpp -o yaml-cpp/regex.o
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/scanner.cpp -o yaml-cpp/scanner.o
+In file included from yaml-cpp/scanner.h:15,
+                 from yaml-cpp/scanner.cpp:1:
+yaml-cpp/ptr_vector.h:31:37: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   31 |                 void push_back(std::auto_ptr<T> t) {
+      |                                     ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_vector.h:9,
+                 from yaml-cpp/scanner.h:15,
+                 from yaml-cpp/scanner.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+yaml-cpp/scanner.cpp: In member function ‘void YAML::Scanner::StartStream()’:
+yaml-cpp/scanner.cpp:237:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  237 |                 std::auto_ptr<IndentMarker> pIndent(new IndentMarker(-1, IndentMarker::NONE));
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_vector.h:9,
+                 from yaml-cpp/scanner.h:15,
+                 from yaml-cpp/scanner.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+yaml-cpp/scanner.cpp: In member function ‘YAML::Scanner::IndentMarker* YAML::Scanner::PushIndentTo(int, YAML::Scanner::IndentMarker::INDENT_TYPE)’:
+yaml-cpp/scanner.cpp:284:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  284 |                 std::auto_ptr<IndentMarker> pIndent(new IndentMarker(column, type));
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_vector.h:9,
+                 from yaml-cpp/scanner.h:15,
+                 from yaml-cpp/scanner.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/scanscalar.cpp -o yaml-cpp/scanscalar.o
+In file included from yaml-cpp/scanner.h:15,
+                 from yaml-cpp/scanscalar.cpp:2:
+yaml-cpp/ptr_vector.h:31:37: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   31 |                 void push_back(std::auto_ptr<T> t) {
+      |                                     ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_vector.h:9,
+                 from yaml-cpp/scanner.h:15,
+                 from yaml-cpp/scanscalar.cpp:2:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/scantag.cpp -o yaml-cpp/scantag.o
+In file included from yaml-cpp/scanner.h:15,
+                 from yaml-cpp/scantag.cpp:1:
+yaml-cpp/ptr_vector.h:31:37: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   31 |                 void push_back(std::auto_ptr<T> t) {
+      |                                     ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_vector.h:9,
+                 from yaml-cpp/scanner.h:15,
+                 from yaml-cpp/scantag.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/scantoken.cpp -o yaml-cpp/scantoken.o
+In file included from yaml-cpp/scanner.h:15,
+                 from yaml-cpp/scantoken.cpp:1:
+yaml-cpp/ptr_vector.h:31:37: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   31 |                 void push_back(std::auto_ptr<T> t) {
+      |                                     ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_vector.h:9,
+                 from yaml-cpp/scanner.h:15,
+                 from yaml-cpp/scantoken.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/simplekey.cpp -o yaml-cpp/simplekey.o
+In file included from yaml-cpp/scanner.h:15,
+                 from yaml-cpp/simplekey.cpp:1:
+yaml-cpp/ptr_vector.h:31:37: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   31 |                 void push_back(std::auto_ptr<T> t) {
+      |                                     ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/ptr_vector.h:9,
+                 from yaml-cpp/scanner.h:15,
+                 from yaml-cpp/simplekey.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/singledocparser.cpp -o yaml-cpp/singledocparser.o
+In file included from yaml-cpp/singledocparser.cpp:1:
+yaml-cpp/singledocparser.h:56:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   56 |                 std::auto_ptr<CollectionStack> m_pCollectionStack;
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/singledocparser.h:13,
+                 from yaml-cpp/singledocparser.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from yaml-cpp/singledocparser.cpp:2:
+yaml-cpp/collectionstack.h: In member function ‘void YAML::CollectionStack::PopCollectionType(YAML::CollectionType::value)’:
+yaml-cpp/collectionstack.h:28:62: warning: unused parameter ‘type’ [-Wunused-parameter]
+   28 |                 void PopCollectionType(CollectionType::value type) { assert(type == GetCurCollectionType()); collectionStack.pop(); }
+      |                                        ~~~~~~~~~~~~~~~~~~~~~~^~~~
+In file included from yaml-cpp/scanner.h:15,
+                 from yaml-cpp/singledocparser.cpp:6:
+yaml-cpp/ptr_vector.h: At global scope:
+yaml-cpp/ptr_vector.h:31:37: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   31 |                 void push_back(std::auto_ptr<T> t) {
+      |                                     ^~~~~~~~
+In file included from /usr/include/c++/11/memory:76,
+                 from yaml-cpp/singledocparser.h:13,
+                 from yaml-cpp/singledocparser.cpp:1:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/stream.cpp -o yaml-cpp/stream.o
+g++ -std=gnu++17 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/include' -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/zlibbioc/include' -I/usr/local/include   -Wall -Wextra -I. -fPIC  -g -O2  -c yaml-cpp/tag.cpp -o yaml-cpp/tag.o
+g++ -std=gnu++17 -shared -L/usr/local/lib -o seqbias.so common.o miscmath.o pos_table.o kmer_matrix.o logger.o motif.o seqbias.o sequencing_bias.o twobitseq.o yaml-cpp/aliasmanager.o yaml-cpp/conversion.o yaml-cpp/directives.o yaml-cpp/emitfromevents.o yaml-cpp/emitter.o yaml-cpp/emitterstate.o yaml-cpp/emitterutils.o yaml-cpp/exp.o yaml-cpp/iterator.o yaml-cpp/nodebuilder.o yaml-cpp/node.o yaml-cpp/nodeownership.o yaml-cpp/null.o yaml-cpp/ostream.o yaml-cpp/parser.o yaml-cpp/regex.o yaml-cpp/scanner.o yaml-cpp/scanscalar.o yaml-cpp/scantag.o yaml-cpp/scantoken.o yaml-cpp/simplekey.o yaml-cpp/singledocparser.o yaml-cpp/stream.o yaml-cpp/tag.o /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rhtslib/usrlib/libhts.a -lcurl
+installing to /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/00LOCK-seqbias/00new/seqbias/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (seqbias)

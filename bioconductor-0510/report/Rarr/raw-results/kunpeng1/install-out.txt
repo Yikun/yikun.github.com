@@ -1,0 +1,51 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL Rarr
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library’
+* installing *source* package ‘Rarr’ ...
+** using staged installation
+R was not built as a library
+configure: creating ./config.status
+config.status: creating src/Makevars
+x86_CPU=false
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to enable C11 features... none needed
+checking whether C compiler accepts -msse2... no
+checking whether C compiler accepts -mavx2... no
+configure: creating ./config.status
+config.status: creating src/Makevars
+config.status: creating src/compression_tools/blosc/lib/blosc-1.20.1/Makefile
+config.status: creating src/compression_tools/blosc/Makefile
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+make -C compression_tools/blosc
+make[1]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rarr/src/compression_tools/blosc'
+make -C lib/snappy-1.1.1
+make[2]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/Rarr/src/compression_tools/blosc/lib/snappy-1.1.1'
+g++ -std=gnu++17 -g -O2 -fPIC -I/usr/local/include  -DUSING_R -c snappy.cc
+snappy.cc:39:10: fatal error: R_ext/Error.h: No such file or directory
+   39 | #include <R_ext/Error.h>
+      |          ^~~~~~~~~~~~~~~
+compilation terminated.
+make[2]: *** [Makefile:13: snappy.o] Error 1
+make[2]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rarr/src/compression_tools/blosc/lib/snappy-1.1.1'
+make[1]: *** [Makefile:44: lib/snappy-1.1.1] Error 2
+make[1]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/Rarr/src/compression_tools/blosc'
+make: *** [Makevars:19: compression_tools/blosc/libblosc.a] Error 2
+ERROR: compilation failed for package ‘Rarr’
+* removing ‘/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/Rarr’

@@ -1,0 +1,126 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:chromstaR.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings chromstaR_1.27.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/chromstaR.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘chromstaR/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘chromstaR’ version ‘1.27.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘chromstaR’ can be installed ... OK
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... NOTE
+  installed size is  5.7Mb
+  sub-directories of 1Mb or more:
+    data   4.5Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking startup messages can be suppressed ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+Chromstar: multiple local function definitions for ‘parallel.helper’
+  with different formal arguments
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                        user system elapsed
+combineMultivariates  32.668  0.372  33.051
+enrichment_analysis   16.982  0.700  43.783
+callPeaksMultivariate 15.123  0.388  15.517
+callPeaksReplicates   12.943  0.140  13.086
+unis2pseudomulti      11.450  0.192  11.641
+plotGenomeBrowser     10.173  0.272  10.445
+changePostCutoff       9.016  0.220   9.236
+combinatorialStates    8.239  0.064   8.303
+Chromstar              6.949  0.436  51.371
+changeMaxPostCutoff    5.603  0.324   5.928
+readCustomBedFile      5.160  0.064   5.225
+plotExpression         2.769  0.252  32.801
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘chromstaR.Rnw’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘chromstaR.Rnw’ using knitr
+Warning in (if (out_format(c("latex", "sweave", "listings"))) sanitize_fn else paste0)(path,  :
+  dots in figure paths replaced with _ ("figure/univariate_braod_H4K20me1_2")
+Quitting from lines 536-555 (chromstaR.Rnw) 
+Error: processing vignette 'chromstaR.Rnw' failed with diagnostics:
+Service Unavailable (HTTP 503).
+--- failed re-building ‘chromstaR.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘chromstaR.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/chromstaR.Rcheck/00check.log’
+for details.
+

@@ -1,0 +1,143 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:BgeeDB.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings BgeeDB_2.27.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/BgeeDB.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘BgeeDB/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘BgeeDB’ version ‘2.27.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘BgeeDB’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘BgeeDB-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: geneList
+> ### Title: Example of gene list object used to run a topAnat enrichment
+> ###   test, created on June 2018. The format of the gene list is the same
+> ###   as the gene list required to build a 'topGOdata' object in the
+> ###   'topGO' package: a vector with background genes as names, and 0 or 1
+> ###   values depending if a gene is in the foreground or not. In this
+> ###   example the foreground genes are zebrafish genes with an annotated
+> ###   phenotype related to "pectoral fin", and the background is composed
+> ###   of all zebrafish Ensembl genes with an annotated phenotype from ZFIN.
+> ###   The gene list was built using the biomaRt package, and the code used
+> ###   can be found in the vignette of the package.
+> ### Aliases: geneList
+> ### Keywords: datasets
+> 
+> ### ** Examples
+> 
+> bgee <- Bgee$new(species = "Danio_rerio")
+
+NOTE: You did not specify any data type. The argument dataType will be set to c("rna_seq","affymetrix","est","in_situ","sc_full_length") for the next steps.
+
+Querying Bgee to get release information...
+
+NOTE: the file describing Bgee species information for release 15_0 was found in the download directory /home/biocbuild/bbs-3.17-bioc/meat/BgeeDB.Rcheck. Data will not be redownloaded.
+
+API key built: edaed93863a3b3373bf8fe3eff43954c3249d76c868f7e4a44016d1d84d63a6934bf970fa3354e8248f5f3ea6e4c791187e7e1cafcaf44d51468c47d71575359
+> myTopAnatData <- loadTopAnatData(bgee)
+
+Building URLs to retrieve organ relationships from Bgee.........
+   URL successfully built (https://bgee.org/bgee15_0/api/?page=r_package&action=get_anat_entity_relations&display_type=tsv&species_list=7955&attr_list=SOURCE_ID&attr_list=TARGET_ID&api_key=edaed93863a3b3373bf8fe3eff43954c3249d76c868f7e4a44016d1d84d63a6934bf970fa3354e8248f5f3ea6e4c791187e7e1cafcaf44d51468c47d71575359&source=BgeeDB_R_package&source_version=2.27.0)
+   Submitting URL to Bgee webservice (can be long)
+   Got results from Bgee webservice. Files are written in "/home/biocbuild/bbs-3.17-bioc/meat/BgeeDB.Rcheck/Danio_rerio_Bgee_15_0"
+
+Building URLs to retrieve organ names from Bgee.................
+   URL successfully built (https://bgee.org/bgee15_0/api/?page=r_package&action=get_anat_entities&display_type=tsv&species_list=7955&attr_list=ID&attr_list=NAME&api_key=edaed93863a3b3373bf8fe3eff43954c3249d76c868f7e4a44016d1d84d63a6934bf970fa3354e8248f5f3ea6e4c791187e7e1cafcaf44d51468c47d71575359&source=BgeeDB_R_package&source_version=2.27.0)
+   Submitting URL to Bgee webservice (can be long)
+   Got results from Bgee webservice. Files are written in "/home/biocbuild/bbs-3.17-bioc/meat/BgeeDB.Rcheck/Danio_rerio_Bgee_15_0"
+
+Building URLs to retrieve mapping of gene to organs from Bgee...
+   URL successfully built (https://bgee.org/bgee15_0/api/?page=r_package&action=get_expression_calls&display_type=tsv&species_list=7955&attr_list=GENE_ID&attr_list=ANAT_ENTITY_ID&api_key=edaed93863a3b3373bf8fe3eff43954c3249d76c868f7e4a44016d1d84d63a6934bf970fa3354e8248f5f3ea6e4c791187e7e1cafcaf44d51468c47d71575359&source=BgeeDB_R_package&source_version=2.27.0&data_qual=SILVER)
+   Submitting URL to Bgee webservice (can be long)
+Warning in download.file(url = url, destfile = destfile, quiet = quiet) :
+  downloaded length 5368359121760235870414891528490663964317552158853786016275609710822194178695399138893332719749836647836800813529008606250955986594182807812773770643717048831262137586111765449802483529491827008662386243580906798949335727840241334432659215154402243379200 != reported length 0
+Warning in download.file(url = url, destfile = destfile, quiet = quiet) :
+  cannot open URL 'https://bgee.org/api/?page=r_package&action=get_expression_calls&display_type=tsv&species_list=7955&attr_list=GENE_ID&attr_list=ANAT_ENTITY_ID&api_key=edaed93863a3b3373bf8fe3eff43954c3249d76c868f7e4a44016d1d84d63a6934bf970fa3354e8248f5f3ea6e4c791187e7e1cafcaf44d51468c47d71575359&source=BgeeDB_R_package&source_version=2.27.0&data_qual=SILVER': HTTP status was '502 Bad Gateway'
+Error in download.file(url = url, destfile = destfile, quiet = quiet) : 
+  cannot open URL 'https://bgee.org/bgee15_0/api/?page=r_package&action=get_expression_calls&display_type=tsv&species_list=7955&attr_list=GENE_ID&attr_list=ANAT_ENTITY_ID&api_key=edaed93863a3b3373bf8fe3eff43954c3249d76c868f7e4a44016d1d84d63a6934bf970fa3354e8248f5f3ea6e4c791187e7e1cafcaf44d51468c47d71575359&source=BgeeDB_R_package&source_version=2.27.0&data_qual=SILVER'
+Calls: loadTopAnatData -> bgee_download_file -> download.file
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+      ▆
+   1. └─BgeeDB::loadTopAnatData(bgee, stage = "UBERON:0000092") at test_loadTopAnatData.R:6:2
+   2.   └─BgeeDB:::bgee_download_file(...)
+   3.     └─utils::download.file(url = url, destfile = destfile, quiet = quiet)
+  ── Error ('test_topAnat.R:6:3'): Creating the topAnat object is working ────────
+  Error in `download.file(url = url, destfile = destfile, quiet = quiet)`: cannot open URL 'https://bgee.org/bgee15_0/api/?page=r_package&action=get_expression_calls&display_type=tsv&species_list=9913&attr_list=GENE_ID&attr_list=ANAT_ENTITY_ID&api_key=edaed93863a3b3373bf8fe3eff43954c3249d76c868f7e4a44016d1d84d63a6934bf970fa3354e8248f5f3ea6e4c791187e7e1cafcaf44d51468c47d71575359&source=BgeeDB_R_package&source_version=2.27.0&data_type=RNA_SEQ&data_qual=SILVER&stage_id=UBERON:0000092'
+  Backtrace:
+      ▆
+   1. └─BgeeDB::loadTopAnatData(bgee, stage = "UBERON:0000092") at test_topAnat.R:6:2
+   2.   └─BgeeDB:::bgee_download_file(...)
+   3.     └─utils::download.file(url = url, destfile = destfile, quiet = quiet)
+  
+  [ FAIL 2 | WARN 9 | SKIP 0 | PASS 22 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘BgeeDB_Manual.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ...

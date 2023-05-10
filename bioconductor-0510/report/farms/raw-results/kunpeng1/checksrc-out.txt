@@ -1,0 +1,114 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:farms.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings farms_1.53.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/farms.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘farms/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘farms’ version ‘1.53.0’
+* checking package namespace information ... NOTE
+  Namespace with empty importFrom: ‘methods’
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘farms’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Description field: should contain one or more complete sentences.
+Packages listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘affy’ ‘MASS’ ‘methods’ ‘Biobase’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking startup messages can be suppressed ... OK
+* checking dependencies in R code ... NOTE
+'library' or 'require' calls to packages already attached by Depends:
+  ‘affy’ ‘methods’
+  Please remove these calls from your code.
+'library' or 'require' calls in package code:
+  ‘Biobase’ ‘utils’
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+Namespaces in Imports field not imported from:
+  ‘Biobase’ ‘MASS’
+  All declared Imports should be used.
+Package in Depends field not imported from: ‘MASS’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+File ‘farms/R/zzz.R’:
+  .onLoad calls:
+    require("methods", quietly = TRUE)
+    packageStartupMessage(" _                             ", "\n",     "| |                            ", "\n", "| |  __,   ,_    _  _  _    ,  ",     "\n", "|/  /  |  /  |  / |/ |/ |  / \\_", "\n", "|__/\\_/|_/   |_/  |  |  |_/ \\/ ",     "\n", "|\\                             ", "\n", "|/   ",     "\n")
+    require(utils)
+    require(Biobase, quietly = TRUE)
+    require(affy, quietly = TRUE)
+    packageStartupMessage("Citation: S. Hochreiter et al.,", "\n",     "A new summarization method for affymetrix probe level data,",     "\n", "Bioinformatics, 22, 8, 943-949, 2006", "\n", "\n",     "Citation: W. Talloen et al.,", "\n", "I/NI-calls for the exclusion of non-informative genes: a highly effective filtering tool for microarray data,",     "\n", "Bioinformatics, 23, 21, 2897-2902, 2007", "\n", "BibTex: enter 'toBibtex(citation(\"farms\"))'",     "\n\n", "Homepage: http://www.bioinf.jku.at/software/farms/farms.html",     "\n\n", "FARMS Package Version ", version, "\n")
+    packageStartupMessage("\n", "Changes in FARMS:", "\n", "For all changes previous to 1.3.0, see the farms vignette.",     "\n", "Version 1.3.0: Added I/NI-calls for filtering", "\n",     "               Adjusted Hyperparameters for alternative CDFs,",     "\n", "               probes set standardized, weighted mean",     "\n", "               Works now with R >= 2.8 and Bioconductor 2.3,",     "\n", "               Changed termination criterion, initialization values,",     "\n", "               factors and loadings scaled, added argument robust",     "\n", "               Update for R-2.11", "\n", "               Updated I/NI-Call for Laplace-FARMS version,",     "\n", "               Maximum likelihood correlation structure given",     "\n", "               non-negative constraints", "\n", "Version 1.4.0: Default centering changed to median",     "\n", "Version 1.8.x: Suppression of spurious correlation (Laplace-FARMS)",     "\n")
+
+Package startup functions should not change the search path.
+See section ‘Good practice’ in '?.onAttach'.
+
+plot,INI_Calls-missing: no visible global function definition for
+  ‘truehist’
+Undefined global functions or variables:
+  truehist
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘farms.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/farms.Rcheck/00check.log’
+for details.
+
+

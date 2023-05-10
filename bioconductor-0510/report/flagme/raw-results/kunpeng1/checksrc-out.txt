@@ -1,0 +1,140 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:flagme.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings flagme_1.57.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/flagme.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘flagme/DESCRIPTION’ ... OK
+* this is package ‘flagme’ version ‘1.57.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘flagme’ can be installed ... OK
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking startup messages can be suppressed ... OK
+* checking dependencies in R code ... NOTE
+Unexported object imported by a ':::' call: ‘xcms:::rectUnique’
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+addXCMSPeaks: no visible global function definition for ‘bpparam’
+addXCMSPeaks: no visible global function definition for ‘sampnames’
+addXCMSPeaks : <anonymous> : <anonymous>: no visible global function
+  definition for ‘setNames’
+importSpec : <anonymous>: no visible global function definition for
+  ‘setNames’
+Undefined global functions or variables:
+  bpparam sampnames setNames
+Consider adding
+  importFrom("stats", "setNames")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... WARNING
+Missing link or links in documentation object 'addXCMSPeaks.Rd':
+  ‘[xcms]{findPeaks-matchedFilter}’ ‘[xcms]{findPeaks-centWave}’
+  ‘[xcms]{peaksDataset}’
+
+Missing link or links in documentation object 'plotAlignment-peaksAlignment-method.Rd':
+  ‘plotAlignment’
+
+Missing link or links in documentation object 'plotClustAlignment-clusterAlignment-method.Rd':
+  ‘plotAlignment’
+
+See section 'Cross-references' in the 'Writing R Extensions' manual.
+* checking for missing documentation entries ... WARNING
+Undocumented code objects:
+  ‘plotAlignment’ ‘plotChrom’ ‘plotClustAlignment’
+Undocumented S4 methods:
+  generic 'show' and siglist 'betweenAlignment'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                                              user system elapsed
+plotAlignedFrags                           110.813 23.936  76.591
+addXCMSPeaks                                63.253 11.666  54.248
+retFatMatrix                                52.934 11.852  47.098
+corPrt                                      55.671  8.522  44.671
+progressiveAlignment-class                  52.372 11.440  45.541
+dynRT                                       50.712 11.937  44.533
+plotAlignment-peaksAlignment-method         52.802  9.074  43.039
+plotFrags                                   51.543 10.008  43.371
+peaksAlignment-class                        50.774 10.514  43.464
+ndpRT                                       50.302 10.167  42.626
+imputePeaks                                 11.752  0.516  12.290
+plotChrom-peaksDataset-method               10.427  0.368  10.795
+calcTimeDiffs                                9.288  0.540   9.830
+rmaFitUnit                                   9.356  0.248   9.604
+gatherInfo                                   8.366  0.456   8.822
+multipleAlignment-class                      8.220  0.272   8.492
+normDotProduct                               7.394  0.404   7.798
+dp                                           7.337  0.195   7.535
+clusterAlignment                             7.077  0.324   7.403
+plotClustAlignment-clusterAlignment-method   7.241  0.152   7.393
+peaksDataset                                 6.825  0.448   7.274
+addAMDISPeaks                                6.810  0.256   7.094
+addChromaTOFPeaks                            5.451  0.072   5.522
+plotImage                                    4.649  0.412   5.060
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘flagme-knitr.Rnw’ using ‘UTF-8’... OK
+  ‘flagme.Rnw’ using ‘UTF-8’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 WARNINGs, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/flagme.Rcheck/00check.log’
+for details.
+
+

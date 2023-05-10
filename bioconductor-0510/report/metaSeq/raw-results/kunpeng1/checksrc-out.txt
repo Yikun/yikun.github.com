@@ -1,0 +1,151 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:metaSeq.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings metaSeq_1.41.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/metaSeq.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘metaSeq/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘metaSeq’ version ‘1.41.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘metaSeq’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is  6.2Mb
+  sub-directories of 1Mb or more:
+    data   5.8Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Description field: should contain one or more complete sentences.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... NOTE
+Unexported objects imported by ':::' calls:
+  ‘NOISeq:::busca’ ‘NOISeq:::n.menor’
+  See the note in ?`:::` about the use of this operator.
+There are ::: calls to the package's namespace in its code. A package
+  almost never needs to use ::: for its own objects:
+  ‘oneside.noiseq’
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+Found the following possibly unsafe calls:
+File ‘metaSeq/R/Accelerate.NOISeq.R’:
+  assignInNamespace("busca", busca, ns = "NOISeq", envir = env)
+  assignInNamespace("n.menor", nmenor, ns = "NOISeq", envir = env)
+  assignInNamespace("busca", busca, ns = "NOISeq", envir = env)
+  assignInNamespace("n.menor", nmenor, ns = "NOISeq", envir = env)
+File ‘metaSeq/R/Reset.Accelerate.NOISeq.R’:
+  assignInNamespace("busca", original.busca, ns = "NOISeq", envir = env)
+  assignInNamespace("n.menor", original.n.menor, ns = "NOISeq", 
+    envir = env)
+File ‘metaSeq/R/oneside.noiseq.R’:
+  assignInNamespace("probdeg", custom.probdeg, ns = "NOISeq", envir = env)
+  assignInNamespace("MD", custom.MD, ns = "NOISeq", envir = env)
+  assignInNamespace("probdeg", original.probdeg, ns = "NOISeq", 
+    envir = env)
+  assignInNamespace("MD", original.MD, ns = "NOISeq", envir = env)
+
+Accelerate.NOISeq: no visible global function definition for ‘data’
+Accelerate.NOISeq: no visible binding for global variable
+  ‘text.n.menor_unix’
+Accelerate.NOISeq: no visible binding for global variable
+  ‘text.busca_unix’
+Accelerate.NOISeq: no visible global function definition for
+  ‘assignInNamespace’
+Accelerate.NOISeq: no visible binding for global variable ‘busca’
+Accelerate.NOISeq: no visible binding for global variable ‘nmenor’
+Accelerate.NOISeq: no visible binding for global variable
+  ‘text.n.menor_win’
+Accelerate.NOISeq: no visible binding for global variable
+  ‘text.busca_win’
+Reset.Accelerate.NOISeq: no visible global function definition for
+  ‘assignInNamespace’
+custom.MD: no visible global function definition for ‘combn’
+custom.probdeg: no visible global function definition for ‘na.omit’
+each.Fisher.ignore.test: no visible global function definition for
+  ‘pchisq’
+each.Fisher.test: no visible global function definition for ‘pchisq’
+each.Stouffer.ignore.test: no visible global function definition for
+  ‘qnorm’
+each.Stouffer.ignore.test: no visible global function definition for
+  ‘pnorm’
+each.Stouffer.test: no visible global function definition for ‘qnorm’
+each.Stouffer.test: no visible global function definition for ‘pnorm’
+oneside.noiseq: no visible global function definition for
+  ‘assignInNamespace’
+original.MD: no visible global function definition for ‘combn’
+original.probdeg: no visible global function definition for ‘na.omit’
+original.probdeg: no visible binding for global variable ‘n.menor’
+original.probdeg: no visible binding for global variable ‘busca’
+Undefined global functions or variables:
+  assignInNamespace busca combn data n.menor na.omit nmenor pchisq
+  pnorm qnorm text.busca_unix text.busca_win text.n.menor_unix
+  text.n.menor_win
+Consider adding
+  importFrom("stats", "na.omit", "pchisq", "pnorm", "qnorm")
+  importFrom("utils", "assignInNamespace", "combn", "data")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking installed files from ‘inst/doc’ ... NOTE
+The following files should probably not be installed:
+  ‘Fig1.jpeg’, ‘Fig2.png’
+
+Consider the use of a .Rinstignore file: see ‘Writing R Extensions’,
+or move the vignette sources from ‘inst/doc’ to ‘vignettes’.
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘metaSeq.Rnw’ using ‘UTF-8’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 5 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/metaSeq.Rcheck/00check.log’
+for details.
+
+

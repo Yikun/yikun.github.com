@@ -1,0 +1,156 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD check --install=check:coMethDMR.install-out.txt --library=/home/biocbuild/bbs-3.17-bioc/R/site-library --timings coMethDMR_1.5.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.17-bioc/meat/coMethDMR.Rcheck’
+* using R Under development (unstable) (2023-03-12 r83975)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘coMethDMR/DESCRIPTION’ ... OK
+* this is package ‘coMethDMR’ version ‘1.5.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘coMethDMR’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking startup messages can be suppressed ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+File ‘coMethDMR/R/zzz.R’:
+  .onLoad calls:
+    packageStartupMessage("Checking for cached SeSAMe data.")
+    packageStartupMessage("Caching SeSAMe data for 450k/EPIC arrays.")
+
+See section ‘Good practice’ in '?.onAttach'.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘coMethDMR-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: AnnotateResults
+> ### Title: Annotate 'coMethDMR' Pipeline Results
+> ### Aliases: AnnotateResults
+> 
+> ### ** Examples
+> 
+>    lmmResults_df <- data.frame(
++      chrom = c("chr22", "chr22", "chr22", "chr22", "chr22"),
++      start = c("39377790", "50987294", "19746156", "42470063", "43817258"),
++      end   = c("39377930", "50987527", "19746368", "42470223", "43817384"),
++      regionType = c("TSS1500", "EXON1", "ISLAND", "TSS200", "ISLAND"),
++      stringsAsFactors = FALSE
++    )
+> 
+>    AnnotateResults(
++      lmmRes_df = lmmResults_df,
++      arrayType = "450k"
++    )
+Warning: no function found corresponding to methods exports from ‘HDF5Array’ for: ‘extract_sparse_array’, ‘is_sparse<-’
+Warning: multiple methods tables found for ‘extract_array’
+Warning: multiple methods tables found for ‘sparsity’
+Warning: multiple methods tables found for ‘is_sparse’
+Warning: multiple methods tables found for ‘write_block’
+Error: objects ‘rowSums’, ‘colSums’, ‘rowMeans’, ‘colMeans’ are not exported by 'namespace:BiocGenerics'
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+    1. ├─coMethDMR::CpGsInfoAllRegions(...) at test_CpGsInfoAllRegions.R:15:0
+    2. │ └─base::lapply(...)
+    3. │   └─coMethDMR (local) FUN(X[[i]], ...)
+    4. └─base::loadNamespace(x)
+    5.   ├─base::namespaceImport(...)
+    6.   └─base::loadNamespace(i, c(lib.loc, .libPaths()), versionCheck = vI[[i]])
+    7.     ├─base::namespaceImportFrom(...)
+    8.     │ └─base::asNamespace(ns)
+    9.     └─base::loadNamespace(j <- i[[1L]], c(lib.loc, .libPaths()), versionCheck = vI[[j]])
+   10.       └─base::namespaceImportFrom(...)
+   11.         └─base::importIntoEnv(impenv, impnames, ns, impvars)
+  
+  [ FAIL 1 | WARN 5 | SKIP 0 | PASS 8 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘vin1_Introduction_to_coMethDMR_geneBasedPipeline.Rmd’ using ‘UTF-8’... OK
+  ‘vin2_BiocParallel_for_coMethDMR_geneBasedPipeline.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘vin1_Introduction_to_coMethDMR_geneBasedPipeline.Rmd’ using rmarkdown
+Quitting from lines 181-190 (vin1_Introduction_to_coMethDMR_geneBasedPipeline.Rmd) 
+Error: processing vignette 'vin1_Introduction_to_coMethDMR_geneBasedPipeline.Rmd' failed with diagnostics:
+objects 'rowSums', 'colSums', 'rowMeans', 'colMeans' are not exported by 'namespace:BiocGenerics'
+--- failed re-building ‘vin1_Introduction_to_coMethDMR_geneBasedPipeline.Rmd’
+
+--- re-building ‘vin2_BiocParallel_for_coMethDMR_geneBasedPipeline.Rmd’ using rmarkdown
+Quitting from lines 188-189 (vin2_BiocParallel_for_coMethDMR_geneBasedPipeline.Rmd) 
+Error: processing vignette 'vin2_BiocParallel_for_coMethDMR_geneBasedPipeline.Rmd' failed with diagnostics:
+objects 'rowSums', 'colSums', 'rowMeans', 'colMeans' are not exported by 'namespace:BiocGenerics'
+--- failed re-building ‘vin2_BiocParallel_for_coMethDMR_geneBasedPipeline.Rmd’
+
+SUMMARY: processing the following files failed:
+  ‘vin1_Introduction_to_coMethDMR_geneBasedPipeline.Rmd’
+  ‘vin2_BiocParallel_for_coMethDMR_geneBasedPipeline.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.17-bioc/meat/coMethDMR.Rcheck/00check.log’
+for details.
+

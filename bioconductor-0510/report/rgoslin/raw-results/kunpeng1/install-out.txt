@@ -1,0 +1,80 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/bbs-3.17-bioc/R/bin/R CMD INSTALL rgoslin
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library’
+* installing *source* package ‘rgoslin’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+The name of the shared library to be created is: rgoslin.so
+make[1]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/rgoslin/src/cppgoslin'
+rm -f "cppgoslin/parser/KnownGrammars.h"
+rm -f "src/domain/LipidClasses.cpp"
+rm -f "cppgoslin/domain/ClassesEnum.h"
+rm -f cppgoslin/domain/*.o
+rm -f cppgoslin/parser/*.o
+rm -f cppgoslin/tests/*.o
+rm -f libcppGoslin.so
+rm -f *Test
+rm -f writeGrammarsHeader
+rm -f writeLipidEnums
+rm -f libcppGoslin.a
+make[1]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/rgoslin/src/cppgoslin'
+make[1]: Entering directory '/home/biocbuild/bbs-3.17-bioc/meat/rgoslin/src/cppgoslin'
+g++ -std=gnu++11 -g -O2  -I . -o writeGrammarsHeader writeGrammarsHeader.cpp && "./writeGrammarsHeader" "cppgoslin/parser/KnownGrammars.h"
+g++ -std=gnu++11 -g -O2  -I . -o writeLipidEnums writeLipidEnums.cpp src/domain/StringFunctions.cpp src/parser/SumFormulaParserEventHandler.cpp src/parser/ParserClasses.cpp && "./writeLipidEnums" "src/domain/LipidClasses.cpp"
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/domain/Adduct.o -c src/domain/Adduct.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/domain/LipidMolecularSpecies.o -c src/domain/LipidMolecularSpecies.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/domain/LipidSnPosition.o -c src/domain/LipidSnPosition.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/domain/LipidStructureDefined.o -c src/domain/LipidStructureDefined.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/domain/FattyAcid.o -c src/domain/FattyAcid.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/domain/LipidAdduct.o -c src/domain/LipidAdduct.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/domain/LipidSpecies.o -c src/domain/LipidSpecies.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/domain/LipidFullStructure.o -c src/domain/LipidFullStructure.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/domain/LipidCompleteStructure.o -c src/domain/LipidCompleteStructure.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/domain/LipidSpeciesInfo.o -c src/domain/LipidSpeciesInfo.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/domain/StringFunctions.o -c src/domain/StringFunctions.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/domain/LipidClasses.o -c src/domain/LipidClasses.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/domain/DoubleBonds.o -c src/domain/DoubleBonds.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/domain/FunctionalGroup.o -c src/domain/FunctionalGroup.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/domain/Headgroup.o -c src/domain/Headgroup.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/domain/Cycle.o -c src/domain/Cycle.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/domain/GenericDatastructures.o -c src/domain/GenericDatastructures.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/parser/ParserClasses.o -c src/parser/ParserClasses.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/parser/KnownParsers.o -c src/parser/KnownParsers.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/parser/GoslinParserEventHandler.o -c src/parser/GoslinParserEventHandler.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/parser/LipidMapsParserEventHandler.o -c src/parser/LipidMapsParserEventHandler.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/parser/SwissLipidsParserEventHandler.o -c src/parser/SwissLipidsParserEventHandler.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/parser/HmdbParserEventHandler.o -c src/parser/HmdbParserEventHandler.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/parser/SumFormulaParserEventHandler.o -c src/parser/SumFormulaParserEventHandler.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/parser/SumFormulaParser.o -c src/parser/SumFormulaParser.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/parser/ShorthandParserEventHandler.o -c src/parser/ShorthandParserEventHandler.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/parser/FattyAcidParserEventHandler.o -c src/parser/FattyAcidParserEventHandler.cpp
+g++ -std=gnu++11 -g -O2  -I. -fPIC -o src/parser/LipidBaseParserEventHandler.o -c src/parser/LipidBaseParserEventHandler.cpp
+ar rcs libcppGoslin.a src/domain/Adduct.o src/domain/LipidMolecularSpecies.o src/domain/LipidSnPosition.o src/domain/LipidStructureDefined.o src/domain/FattyAcid.o src/domain/LipidAdduct.o src/domain/LipidSpecies.o src/domain/LipidFullStructure.o src/domain/LipidCompleteStructure.o src/domain/LipidSpeciesInfo.o src/domain/StringFunctions.o src/domain/LipidClasses.o src/domain/DoubleBonds.o src/domain/FunctionalGroup.o src/domain/Headgroup.o src/domain/Cycle.o src/domain/GenericDatastructures.o src/parser/ParserClasses.o src/parser/KnownParsers.o src/parser/GoslinParserEventHandler.o src/parser/LipidMapsParserEventHandler.o src/parser/SwissLipidsParserEventHandler.o src/parser/HmdbParserEventHandler.o src/parser/SumFormulaParserEventHandler.o src/parser/SumFormulaParser.o src/parser/ShorthandParserEventHandler.o src/parser/FattyAcidParserEventHandler.o src/parser/LipidBaseParserEventHandler.o
+make[1]: Leaving directory '/home/biocbuild/bbs-3.17-bioc/meat/rgoslin/src/cppgoslin'
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -I"." -I"./cppgoslin" -I"./cppgoslin/cppgoslin" -I"./cppgoslin/cppgoslin/domain" -I"./cppgoslin/cppgoslin/parser" -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/include" -DNDEBUG -I"." -I"./cppgoslin" -I"./cppgoslin/cppgoslin" -I"./cppgoslin/cppgoslin/domain" -I"./cppgoslin/cppgoslin/parser" -I'/home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/lib/R/library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -c rgoslin.cpp -o rgoslin.o
+g++ -std=gnu++11 -shared -L/usr/local/lib -o rgoslin.so RcppExports.o rgoslin.o cppgoslin/libcppGoslin.a
+installing to /home/biocbuild/bbs-3.17-bioc/R-devel_2023-03-12_r83975-bin/site-library/00LOCK-rgoslin/00new/rgoslin/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (rgoslin)
