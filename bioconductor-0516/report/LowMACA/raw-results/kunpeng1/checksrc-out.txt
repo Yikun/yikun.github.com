@@ -1,0 +1,134 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD check --install=check:LowMACA.install-out.txt --library=/home/biocbuild/R/R-4.3.0-bin/site-library --timings LowMACA_1.31.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/LowMACA.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘LowMACA/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘LowMACA’ version ‘1.31.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘LowMACA’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking startup messages can be suppressed ... NOTE
+Checking if clustalo is in the PATH...
+Checking clustalo Version...
+Checking perl installation...
+Checking perl modules XML::Simple and LWP...
+
+It looks like this package (or a package it requires) has a startup
+message which cannot be suppressed: see ?packageStartupMessage.
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘LowMACA-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: alignSequences
+> ### Title: Align sequences via clustalo
+> ### Aliases: alignSequences
+> 
+> ### ** Examples
+> 
+> #Create an object of class LowMACA for RAS domain family
+> lm <- newLowMACA(pfam="PF00071" , genes=c("KRAS" , "NRAS" , "HRAS"))
+All Gene Symbols correct!
+> #Align sequences using local installation of clustalo
+> lm <- alignSequences(lm)
+Aligning sequences...
+> #Web service clustalomega aligner
+> lm <- alignSequences(lm , mail="lowmaca@gmail.com")
+Aligning sequences...
+Checking perl installation...
+Checking perl modules XML::Simple and LWP...
+JobId: clustalo-R20230515-075755-0097-22183176-p1m
+QUEUED
+http status: 400 Bad Request  Job 'clustalo-R20230515-075755-0097-22183176-p1m' is still queued at /home/biocbuild/R/R-4.3.0-bin/site-library/LowMACA/clustalo_lwp.pl line 262.
+Warning in system(exec, intern = TRUE) :
+  running command ''/usr/bin/perl' '/home/biocbuild/R/R-4.3.0-bin/site-library/LowMACA/clustalo_lwp.pl' --noguidetreeout --stype protein --dismatout --outfmt clustal --email lowmaca@gmail.com --outfile '/tmp/Rtmpe5fYja/webClustal' '/tmp/Rtmpe5fYja/file3077231f581b91'' had status 255
+Error in .clustalOAlign(genesData, clustal_cmd, clustalo_filename, mail,  : 
+  Alignment with ClustalOmega had non 0 exit status:
+Calls: alignSequences -> alignSequences -> .clustalOAlign
+Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘LowMACA.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘LowMACA.Rmd’ using rmarkdown
+JobId: clustalo-R20230515-075829-0781-98295246-p1m
+QUEUED
+http status: 400 Bad Request  Job 'clustalo-R20230515-075829-0781-98295246-p1m' is still queued at /home/biocbuild/R/R-4.3.0-bin/site-library/LowMACA/clustalo_lwp.pl line 262.
+Quitting from lines 159-160 (LowMACA.Rmd) 
+Error: processing vignette 'LowMACA.Rmd' failed with diagnostics:
+Alignment with ClustalOmega had non 0 exit status:
+
+--- failed re-building ‘LowMACA.Rmd’
+
+SUMMARY: processing the following file failed:
+  ‘LowMACA.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/LowMACA.Rcheck/00check.log’
+for details.
+

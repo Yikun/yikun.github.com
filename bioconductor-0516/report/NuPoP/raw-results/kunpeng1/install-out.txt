@@ -1,0 +1,34 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD INSTALL NuPoP
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0-bin/site-library’
+* installing *source* package ‘NuPoP’ ...
+** using staged installation
+** libs
+using Fortran compiler: ‘GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gfortran  -fPIC  -g -O2  -c  cvtbfb.f90 -o cvtbfb.o
+gfortran  -fPIC  -g -O2  -c  cvtbfbNL4.f90 -o cvtbfbNL4.o
+gfortran  -fPIC  -g -O2  -c  vtbfb.f90 -o vtbfb.o
+gfortran  -fPIC  -g -O2  -c  vtbfbNL4.f90 -o vtbfbNL4.o
+gcc -shared -L/home/biocbuild/R/R-4.3.0-bin/lib/R/lib -L/usr/local/lib -o NuPoP.so cvtbfb.o cvtbfbNL4.o vtbfb.o vtbfbNL4.o -lgfortran -lm -L/home/biocbuild/R/R-4.3.0-bin/lib/R/lib -lR
+installing to /home/biocbuild/R/R-4.3.0-bin/site-library/00LOCK-NuPoP/00new/NuPoP/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (NuPoP)

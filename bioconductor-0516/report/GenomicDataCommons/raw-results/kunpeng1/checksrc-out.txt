@@ -1,0 +1,135 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD check --install=check:GenomicDataCommons.install-out.txt --library=/home/biocbuild/R/R-4.3.0-bin/site-library --timings GenomicDataCommons_1.25.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/GenomicDataCommons.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘GenomicDataCommons/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘GenomicDataCommons’ version ‘1.25.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘GenomicDataCommons’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking R/sysdata.rda ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘GenomicDataCommons-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: gdcdata
+> ### Title: Download GDC files
+> ### Aliases: gdcdata
+> 
+> ### ** Examples
+> 
+> # get some example file uuids
+> uuids <- files() %>%
++     filter(~ access == 'open' & file_size < 100000) %>%
++     results(size = 3) %>%
++     ids()
+> 
+> # and get the data, placing it into the gdc_cache() directory
+> gdcdata(uuids, use_cached=TRUE)
+                                                                                                      0f8d8202-a1ca-4ea1-98b2-c20a6b08479a 
+                           "~/.cache/GenomicDataCommons/0f8d8202-a1ca-4ea1-98b2-c20a6b08479a/nationwidechildrens.org_ssf.TCGA-AN-A0FL.xml" 
+                                                                                                      b76f87b3-99c5-4297-b2df-8cbea8ecaf61 
+"~/.cache/GenomicDataCommons/b76f87b3-99c5-4297-b2df-8cbea8ecaf61/7c4e4c2a-a0b1-424f-97d8-359825674429.wxs.aliquot_ensemble_masked.maf.gz" 
+                                                                                                      0cc3d450-2c60-4cb0-a073-d92dc979fa5e 
+                      "~/.cache/GenomicDataCommons/0cc3d450-2c60-4cb0-a073-d92dc979fa5e/nationwidechildrens.org_clinical.TCGA-BH-A18F.xml" 
+> 
+> # legacy data
+> exon <- files(legacy = TRUE) %>%
++     filter( ~ cases.project.project_id == "TCGA-COAD" &
++         data_category == "Gene expression" &
++         data_type == "Exon quantification") %>%
++     results(size = 1) %>% ids()
+Error in .gdc_post(entity_name(x), body = body, legacy = x$legacy, token = NULL,  : 
+  Gone (HTTP 410).
+Calls: %>% ... stopifnot -> is.response -> .gdc_post -> stop_for_status
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+    3. ├─GenomicDataCommons::results(., size = 10)
+    4. └─GenomicDataCommons:::results.GDCQuery(., size = 10)
+    5.   ├─GenomicDataCommons::results(response(x, ...))
+    6.   ├─GenomicDataCommons::response(x, ...)
+    7.   └─GenomicDataCommons:::response.GDCQuery(x, ...)
+    8.     ├─jsonlite (local) response_handler(...)
+    9.     ├─httr::content(...)
+   10.     │ ├─base::stopifnot(is.response(x))
+   11.     │ └─httr:::is.response(x)
+   12.     └─GenomicDataCommons:::.gdc_post(...)
+   13.       └─httr::stop_for_status(response)
+  
+  [ FAIL 1 | WARN 0 | SKIP 0 | PASS 46 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘overview.Rmd’ using ‘UTF-8’... OK
+  ‘questions-and-answers.Rmd’ using ‘UTF-8’... OK
+  ‘somatic_mutations.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/GenomicDataCommons.Rcheck/00check.log’
+for details.
+

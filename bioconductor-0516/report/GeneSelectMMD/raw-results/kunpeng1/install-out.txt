@@ -1,0 +1,43 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD INSTALL GeneSelectMMD
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0-bin/site-library’
+* installing *source* package ‘GeneSelectMMD’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c GeneSelectMMD_init.c -o GeneSelectMMD_init.o
+gfortran  -fPIC  -g -O2  -c Qfunc.f -o Qfunc.o
+gfortran  -fPIC  -g -O2  -c blas.f -o blas.o
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c isnan.c -o isnan.o
+gfortran  -fPIC  -g -O2  -c lbfgsb.f -o lbfgsb.o
+gfortran  -fPIC  -g -O2  -c lbfgsbDriver.f -o lbfgsbDriver.o
+gfortran  -fPIC  -g -O2  -c linpack.f -o linpack.o
+gfortran  -fPIC  -g -O2  -c llkhFun.f -o llkhFun.o
+gfortran  -fPIC  -g -O2  -c myTtest.f -o myTtest.o
+gfortran  -fPIC  -g -O2  -c paraEstLoop.f -o paraEstLoop.o
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c pt.c -o pt.o
+gfortran  -fPIC  -g -O2  -c timer.f -o timer.o
+gfortran  -fPIC  -g -O2  -c wiFun.f -o wiFun.o
+gcc -shared -L/home/biocbuild/R/R-4.3.0-bin/lib/R/lib -L/usr/local/lib -o GeneSelectMMD.so GeneSelectMMD_init.o Qfunc.o blas.o isnan.o lbfgsb.o lbfgsbDriver.o linpack.o llkhFun.o myTtest.o paraEstLoop.o pt.o timer.o wiFun.o -lgfortran -lm -L/home/biocbuild/R/R-4.3.0-bin/lib/R/lib -lR
+installing to /home/biocbuild/R/R-4.3.0-bin/site-library/00LOCK-GeneSelectMMD/00new/GeneSelectMMD/libs
+** R
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (GeneSelectMMD)

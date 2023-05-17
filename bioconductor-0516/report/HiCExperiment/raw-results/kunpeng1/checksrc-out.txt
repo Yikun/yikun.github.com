@@ -1,0 +1,103 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD check --install=check:HiCExperiment.install-out.txt --library=/home/biocbuild/R/R-4.3.0-bin/site-library --timings HiCExperiment_1.1.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/HiCExperiment.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘HiCExperiment/DESCRIPTION’ ... OK
+* this is package ‘HiCExperiment’ version ‘1.1.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘HiCExperiment’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking startup messages can be suppressed ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... NOTE
+Foreign function call to a different package:
+  .Call("_H5Fis_hdf5", ..., PACKAGE = "rhdf5")
+See chapter ‘System and foreign language interfaces’ in the ‘Writing R
+Extensions’ manual.
+* checking R code for possible problems ... NOTE
+File ‘HiCExperiment/R/zzz.R’:
+  .onLoad calls:
+    packageStartupMessage("Consider using the `HiContacts` package to perform advanced genomic operations \non `HiCExperiment` objects.\n\nRead \"Orchestrating Hi-C analysis with Bioconductor\" online book to learn more:\nhttps://js2264.github.io/OHCA/")
+
+See section ‘Good practice’ in '?.onAttach'.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                    user system elapsed
+import-methods    32.932  1.955  40.449
+HiCExperiment     22.894  1.316  32.286
+AggrHiCExperiment 14.843  0.826  19.516
+HicproFile-class   6.060  0.691  13.871
+CoolFile-class     3.944  0.332   9.344
+HicFile-class      3.867  0.128   9.073
+data               3.356  0.380   6.035
+as                 3.307  0.352   5.956
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘HiCExperiment.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/HiCExperiment.Rcheck/00check.log’
+for details.
+
+

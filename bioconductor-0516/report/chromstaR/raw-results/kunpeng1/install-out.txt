@@ -1,0 +1,36 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD INSTALL chromstaR
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0-bin/site-library’
+* installing *source* package ‘chromstaR’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG   -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c R_interface.cpp -o R_interface.o
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG   -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c densities.cpp -o densities.o
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG   -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c init.cpp -o init.o
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG   -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c scalehmm.cpp -o scalehmm.o
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG   -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c utility.cpp -o utility.o
+g++ -std=gnu++17 -shared -L/home/biocbuild/R/R-4.3.0-bin/lib/R/lib -L/usr/local/lib -o chromstaR.so R_interface.o densities.o init.o scalehmm.o utility.o -fopenmp -L/home/biocbuild/R/R-4.3.0-bin/lib/R/lib -lR
+installing to /home/biocbuild/R/R-4.3.0-bin/site-library/00LOCK-chromstaR/00new/chromstaR/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (chromstaR)

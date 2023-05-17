@@ -1,0 +1,115 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD INSTALL oligo
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0-bin/site-library’
+* installing *source* package ‘oligo’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0-bin/site-library/preprocessCore/include' -I/usr/local/include    -fPIC  -g -O2  -c DABG.c -o DABG.o
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0-bin/site-library/preprocessCore/include' -I/usr/local/include    -fPIC  -g -O2  -c ParserGzXYS.c -o ParserGzXYS.o
+ParserGzXYS.c: In function ‘gzcountLines’:
+ParserGzXYS.c:18:17: warning: passing argument 1 of ‘gzeof’ from incompatible pointer type [-Wincompatible-pointer-types]
+   18 |   while (!gzeof(file)){
+      |                 ^~~~
+      |                 |
+      |                 struct gzFile_s **
+In file included from /usr/include/zlib.h:34,
+                 from ParserGzXYS.c:4:
+/usr/include/zlib.h:1595:27: note: expected ‘gzFile’ {aka ‘struct gzFile_s *’} but argument is of type ‘struct gzFile_s **’
+ 1595 | ZEXTERN int ZEXPORT gzeof OF((gzFile file));
+      |                           ^~
+ParserGzXYS.c:19:12: warning: passing argument 1 of ‘gzgets’ from incompatible pointer type [-Wincompatible-pointer-types]
+   19 |     gzgets(file, buffer, 1000);
+      |            ^~~~
+      |            |
+      |            struct gzFile_s **
+In file included from /usr/include/zlib.h:34,
+                 from ParserGzXYS.c:4:
+/usr/include/zlib.h:1492:31: note: expected ‘gzFile’ {aka ‘struct gzFile_s *’} but argument is of type ‘struct gzFile_s **’
+ 1492 | ZEXTERN char * ZEXPORT gzgets OF((gzFile file, char *buf, int len));
+      |                               ^~
+ParserGzXYS.c: In function ‘gzxys_header_field’:
+ParserGzXYS.c:46:6: warning: assignment to ‘struct gzFile_s **’ from incompatible pointer type ‘gzFile’ {aka ‘struct gzFile_s *’} [-Wincompatible-pointer-types]
+   46 |   fp = gzopen(currentFile, "rb");
+      |      ^
+ParserGzXYS.c:50:10: warning: passing argument 1 of ‘gzgets’ from incompatible pointer type [-Wincompatible-pointer-types]
+   50 |   gzgets(fp, buffer, LINEMAX);
+      |          ^~
+      |          |
+      |          struct gzFile_s **
+In file included from /usr/include/zlib.h:34,
+                 from ParserGzXYS.c:4:
+/usr/include/zlib.h:1492:31: note: expected ‘gzFile’ {aka ‘struct gzFile_s *’} but argument is of type ‘struct gzFile_s **’
+ 1492 | ZEXTERN char * ZEXPORT gzgets OF((gzFile file, char *buf, int len));
+      |                               ^~
+ParserGzXYS.c:51:11: warning: passing argument 1 of ‘gzclose’ from incompatible pointer type [-Wincompatible-pointer-types]
+   51 |   gzclose(fp);
+      |           ^~
+      |           |
+      |           struct gzFile_s **
+In file included from /usr/include/zlib.h:34,
+                 from ParserGzXYS.c:4:
+/usr/include/zlib.h:1631:32: note: expected ‘gzFile’ {aka ‘struct gzFile_s *’} but argument is of type ‘struct gzFile_s **’
+ 1631 | ZEXTERN int ZEXPORT    gzclose OF((gzFile file));
+      |                                ^~
+ParserGzXYS.c: In function ‘R_read_gzxys_files’:
+ParserGzXYS.c:134:6: warning: assignment to ‘struct gzFile_s **’ from incompatible pointer type ‘gzFile’ {aka ‘struct gzFile_s *’} [-Wincompatible-pointer-types]
+  134 |   fp = gzopen(CHAR(STRING_ELT(filenames, 0)), "rb");
+      |      ^
+ParserGzXYS.c:138:11: warning: passing argument 1 of ‘gzclose’ from incompatible pointer type [-Wincompatible-pointer-types]
+  138 |   gzclose(fp);
+      |           ^~
+      |           |
+      |           struct gzFile_s **
+In file included from /usr/include/zlib.h:34,
+                 from ParserGzXYS.c:4:
+/usr/include/zlib.h:1631:32: note: expected ‘gzFile’ {aka ‘struct gzFile_s *’} but argument is of type ‘struct gzFile_s **’
+ 1631 | ZEXTERN int ZEXPORT    gzclose OF((gzFile file));
+      |                                ^~
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0-bin/site-library/preprocessCore/include' -I/usr/local/include    -fPIC  -g -O2  -c ParserXYS.c -o ParserXYS.o
+ParserXYS.c: In function ‘xys_header_field’:
+ParserXYS.c:145:3: warning: ignoring return value of ‘fgets’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  145 |   fgets(buffer, LINEMAX, fp);
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+ParserXYS.c: In function ‘R_read_xys_header’:
+ParserXYS.c:320:3: warning: ignoring return value of ‘fgets’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  320 |   fgets(buffer, LINEMAX, fp);
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0-bin/site-library/preprocessCore/include' -I/usr/local/include    -fPIC  -g -O2  -c baseProfile.c -o baseProfile.o
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0-bin/site-library/preprocessCore/include' -I/usr/local/include    -fPIC  -g -O2  -c basecontent.c -o basecontent.o
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0-bin/site-library/preprocessCore/include' -I/usr/local/include    -fPIC  -g -O2  -c chipbackground.c -o chipbackground.o
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0-bin/site-library/preprocessCore/include' -I/usr/local/include    -fPIC  -g -O2  -c mas5calls.c -o mas5calls.o
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0-bin/site-library/preprocessCore/include' -I/usr/local/include    -fPIC  -g -O2  -c rma2.c -o rma2.o
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0-bin/site-library/preprocessCore/include' -I/usr/local/include    -fPIC  -g -O2  -c rma_common.c -o rma_common.o
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0-bin/site-library/preprocessCore/include' -I/usr/local/include    -fPIC  -g -O2  -c trimmed.c -o trimmed.o
+gcc -shared -L/home/biocbuild/R/R-4.3.0-bin/lib/R/lib -L/usr/local/lib -o oligo.so DABG.o ParserGzXYS.o ParserXYS.o baseProfile.o basecontent.o chipbackground.o mas5calls.o rma2.o rma_common.o trimmed.o -lz -lgfortran -lm -llapack -lblas -L/home/biocbuild/R/R-4.3.0-bin/lib/R/lib -lR
+installing to /home/biocbuild/R/R-4.3.0-bin/site-library/00LOCK-oligo/00new/oligo/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+Note: in method for ‘pm<-’ with signature
+‘object="TilingFeatureSet",subset="ANY",target="ANY",value="array"’:
+expanding the signature to include omitted arguments in definition:
+subset = "missing", target = "missing"
+Note: in method for ‘mm<-’ with signature
+‘object="TilingFeatureSet",subset="ANY",target="ANY",value="array"’:
+expanding the signature to include omitted arguments in definition:
+subset = "missing", target = "missing"
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (oligo)

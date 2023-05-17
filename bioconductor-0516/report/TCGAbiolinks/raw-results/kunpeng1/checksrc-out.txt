@@ -1,0 +1,175 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD check --install=check:TCGAbiolinks.install-out.txt --library=/home/biocbuild/R/R-4.3.0-bin/site-library --timings TCGAbiolinks_2.29.3.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/TCGAbiolinks.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘TCGAbiolinks/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘TCGAbiolinks’ version ‘2.29.3’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘TCGAbiolinks’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is  6.4Mb
+  sub-directories of 1Mb or more:
+    R      1.6Mb
+    data   4.5Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking startup messages can be suppressed ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+GDCprepare_clinic: no visible binding for global variable
+  ‘bcr_patient_barcode’
+GDCprepare_clinic: no visible binding for global variable
+  ‘days_to_last_followup’
+GDCprepare_clinic: no visible binding for global variable
+  ‘vital_status’
+GDCquery : <anonymous>: no visible binding for global variable
+  ‘submitter_id’
+GDCquery : <anonymous>: no visible binding for global variable
+  ‘is_ffpe’
+GDCquery_clinic : <anonymous>: no visible binding for global variable
+  ‘submitter_id’
+GDCquery_clinic : <anonymous>: no visible global function definition
+  for ‘summarise’
+GDCquery_clinic : <anonymous>: no visible global function definition
+  for ‘across’
+GDCquery_clinic : <anonymous>: no visible global function definition
+  for ‘everything’
+TCGAanalyze_DEA: no visible binding for global variable ‘barcode’
+TCGAanalyze_DEA: no visible binding for global variable ‘clinical’
+TCGAquery_recount2: no visible binding for global variable ‘rse_gene’
+TCGAtumor_purity: no visible binding for global variable ‘Tumor.purity’
+TCGAvisualize_oncoprint: no visible binding for global variable ‘value’
+TCGAvisualize_starburst: no visible binding for global variable
+  ‘gene_name’
+TCGAvisualize_starburst: no visible binding for global variable
+  ‘geFDR2’
+TCGAvisualize_starburst: no visible binding for global variable ‘logFC’
+TCGAvisualize_starburst: no visible binding for global variable
+  ‘meFDR2’
+TCGAvisualize_starburst: no visible binding for global variable
+  ‘threshold.starburst’
+TCGAvisualize_starburst: no visible binding for global variable
+  ‘starburst.status’
+colDataPrepare: no visible binding for global variable
+  ‘sample_submitter_id’
+colDataPrepare: no visible binding for global variable ‘submitter_id’
+colDataPrepare: no visible binding for global variable ‘sample_type’
+readExonQuantification: no visible binding for global variable ‘exon’
+readExonQuantification: no visible binding for global variable
+  ‘coordinates’
+readGeneExpressionQuantification : <anonymous>: no visible binding for
+  '<<-' assignment to ‘assay.list’
+readGeneExpressionQuantification: no visible binding for global
+  variable ‘assay.list’
+readSingleCellAnalysis : <anonymous>: no visible global function
+  definition for ‘Read10X’
+Undefined global functions or variables:
+  Read10X Tumor.purity across assay.list barcode bcr_patient_barcode
+  clinical coordinates days_to_last_followup everything exon geFDR2
+  gene_name is_ffpe logFC meFDR2 rse_gene sample_submitter_id
+  sample_type starburst.status submitter_id summarise
+  threshold.starburst value vital_status
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'GDCquery'
+  ‘file.type’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking R/sysdata.rda ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                         user system elapsed
+TCGAanalyze_DEA        14.361  0.583  14.946
+getManifest            13.109  0.198 101.191
+TCGAanalyze_LevelTab    7.513  0.080   7.593
+matchedMetExp           2.837  0.220  26.368
+GDCprepare_clinic       2.308  0.244  34.426
+GDCquery_clinic         1.996  0.124  17.661
+getResults              1.433  0.168  13.686
+getDataCategorySummary  1.461  0.004   6.431
+GDCquery                1.203  0.100  13.661
+GDCquery_ATAC_seq       0.863  0.048   6.475
+getSampleFilesSummary   0.808  0.081   7.320
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘analysis.Rmd’ using ‘UTF-8’... OK
+  ‘casestudy.Rmd’ using ‘UTF-8’... OK
+  ‘classifiers.Rmd’ using ‘UTF-8’... OK
+  ‘clinical.Rmd’ using ‘UTF-8’... OK
+  ‘download_prepare.Rmd’ using ‘UTF-8’... OK
+  ‘extension.Rmd’ using ‘UTF-8’... OK
+  ‘index.Rmd’ using ‘UTF-8’... OK
+  ‘mutation.Rmd’ using ‘UTF-8’... OK
+  ‘query.Rmd’ using ‘UTF-8’... OK
+  ‘stemness_score.Rmd’ using ‘UTF-8’... OK
+  ‘subtypes.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 WARNING, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/TCGAbiolinks.Rcheck/00check.log’
+for details.
+
+

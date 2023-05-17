@@ -1,0 +1,154 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD check --install=check:HTSeqGenie.install-out.txt --library=/home/biocbuild/R/R-4.3.0-bin/site-library --timings HTSeqGenie_4.31.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/HTSeqGenie.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘HTSeqGenie/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘HTSeqGenie’ version ‘4.31.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .BBSoptions
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘HTSeqGenie’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Title field: should not end in a period.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking startup messages can be suppressed ... OK
+* checking dependencies in R code ... NOTE
+Unexported objects imported by ':::' calls:
+  ‘ShortRead:::.set_omp_threads’ ‘gmapR:::..gsnap’ ‘gmapR:::GeneGenome’
+  ‘gmapR:::checkPackageInstalled’ ‘gmapR:::getDefaultGmapGenomePath’
+  ‘gmapR:::getGeneRoi’ ‘gmapR:::subsetRegion’ ‘parallel:::mckill’
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... NOTE
+Foreign function call to a different package:
+  .Call(ShortRead:::.set_omp_threads, ...)
+See chapter ‘System and foreign language interfaces’ in the ‘Writing R
+Extensions’ manual.
+* checking R code for possible problems ... NOTE
+.makePreprocessAlignPlots: no visible binding for global variable
+  ‘data’
+.plot.in.out.min.max.readlength: no visible global function definition
+  for ‘median’
+FastQStreamer.init: no visible binding for '<<-' assignment to
+  ‘FastQStreamer.lfqs’
+FastQStreamer.init: no visible binding for '<<-' assignment to
+  ‘FastQStreamer.chunkid’
+FastQStreamer.init: no visible binding for '<<-' assignment to
+  ‘FastQStreamer.subsampling_filter’
+FastQStreamer.init: no visible binding for '<<-' assignment to
+  ‘FastQStreamer.max_nbchunks’
+addHandler: no visible binding for '<<-' assignment to
+  ‘logging.handlers’
+addHandler: no visible binding for global variable ‘logging.handlers’
+addHandler: no visible binding for '<<-' assignment to ‘logging.file’
+buildAnyFastaGenome: no visible global function definition for ‘getSeq’
+buildGenomicFeaturesFromTxDb: no visible global function definition for
+  ‘gaps’
+buildGenomicFeaturesFromTxDb: no visible global function definition for
+  ‘ranges’
+buildTP53FastaGenome: no visible global function definition for
+  ‘getSeq’
+buildTallyParam: no visible global function definition for ‘seqinfo’
+computeCoverage: no visible global function definition for ‘resize’
+computeCoverage: no visible global function definition for ‘coverage’
+estimateCutoffs : <anonymous>: no visible binding for global variable
+  ‘quantile’
+getGenomeSegments: no visible global function definition for ‘seqinfo’
+hashVariants: no visible global function definition for ‘ranges’
+isAboveQualityThresh: no visible global function definition for ‘Views’
+isAboveQualityThresh: no visible global function definition for
+  ‘viewMeans’
+listIterator.init: no visible binding for '<<-' assignment to
+  ‘listIterator.n’
+listIterator.init: no visible binding for '<<-' assignment to
+  ‘listIterator.x’
+logReset: no visible binding for '<<-' assignment to ‘logging.handlers’
+logReset: no visible binding for '<<-' assignment to ‘logging.loglevel’
+logReset: no visible binding for '<<-' assignment to ‘logging.file’
+loglevel: no visible binding for global variable ‘logging.loglevel’
+loglevel: no visible binding for global variable ‘logging.handlers’
+processChunks : tracefun: no visible binding for global variable
+  ‘sjobs’
+processChunks : tracefun: no visible binding for global variable
+  ‘chunkid’
+setLevel: no visible binding for '<<-' assignment to ‘logging.loglevel’
+statCountFeatures: no visible global function definition for ‘quantile’
+truncateReads: no visible global function definition for ‘subseq’
+vcfStat: no visible global function definition for ‘quantile’
+writeToFile: no visible binding for global variable ‘logging.file’
+Undefined global functions or variables:
+  Views chunkid coverage data gaps getSeq logging.file logging.handlers
+  logging.loglevel median quantile ranges resize seqinfo sjobs subseq
+  viewMeans
+Consider adding
+  importFrom("stats", "median", "quantile")
+  importFrom("utils", "data")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘doRUnit.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘HTSeqGenie.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 5 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/HTSeqGenie.Rcheck/00check.log’
+for details.
+
+

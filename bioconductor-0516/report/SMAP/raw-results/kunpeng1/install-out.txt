@@ -1,0 +1,35 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD INSTALL SMAP
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0-bin/site-library’
+* installing *source* package ‘SMAP’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c gradient.c -o gradient.o
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c init.c -o init.o
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c overlap.c -o overlap.o
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c prob.c -o prob.o
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c viterbi.c -o viterbi.o
+gcc -shared -L/home/biocbuild/R/R-4.3.0-bin/lib/R/lib -L/usr/local/lib -o SMAP.so gradient.o init.o overlap.o prob.o viterbi.o -L/home/biocbuild/R/R-4.3.0-bin/lib/R/lib -lR
+installing to /home/biocbuild/R/R-4.3.0-bin/site-library/00LOCK-SMAP/00new/SMAP/libs
+** R
+** data
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (SMAP)

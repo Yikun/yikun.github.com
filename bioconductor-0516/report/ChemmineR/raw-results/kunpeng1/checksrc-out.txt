@@ -1,0 +1,207 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD check --install=check:ChemmineR.install-out.txt --library=/home/biocbuild/R/R-4.3.0-bin/site-library --timings ChemmineR_3.53.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/ChemmineR.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘ChemmineR/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘ChemmineR’ version ‘3.53.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘ChemmineR’ can be installed ... OK
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Package listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘png’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking startup messages can be suppressed ... OK
+* checking dependencies in R code ... NOTE
+'library' or 'require' calls in package code:
+  ‘ChemmineDrugs’ ‘ChemmineOB’ ‘RPostgreSQL’ ‘RSQLite’ ‘fmcsR’ ‘png’
+  ‘snow’
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+Namespace in Imports field not imported from: ‘BiocGenerics’
+  All declared Imports should be used.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+Found the following possibly unsafe calls:
+File ‘ChemmineR/R/sim.R’:
+  unlockBinding(".progress_bar_int_cnt", environment(.progress_bar))
+
+.data.frame.to.str: no visible global function definition for
+  ‘write.table’
+.data.frame.to.str: no visible binding for global variable ‘string’
+.parseV3000: no visible binding for global variable ‘AW’
+.rings: no visible global function definition for ‘combn’
+DUD: no visible global function definition for ‘download.file’
+DUD: no visible global function definition for ‘untar’
+applyOptions: no visible global function definition for ‘convertFormat’
+browseJob: no visible global function definition for ‘browseURL’
+canonicalNumbering: no visible global function definition for
+  ‘canonicalNumbering_OB’
+canonicalNumberingOB: no visible global function definition for
+  ‘canonicalNumbering_OB’
+cluster.visualize: no visible global function definition for ‘rainbow’
+cluster.visualize: no visible global function definition for ‘pdf’
+cluster.visualize: no visible global function definition for
+  ‘postscript’
+cluster.visualize: no visible global function definition for ‘dev.off’
+desc2fp: no visible global function definition for ‘data’
+draw_sdf: no visible global function definition for ‘rgb’
+draw_sdf: no visible global function definition for ‘fmcs’
+exactMassOB: no visible global function definition for ‘exactMass_OB’
+fingerprintOB: no visible global function definition for
+  ‘fingerprint_OB’
+getCompoundFeatures : <anonymous>: no visible global function
+  definition for ‘write.table’
+getCompounds: no visible global function definition for ‘str’
+getDbConn: no visible global function definition for ‘error’
+handle_segs: no visible binding for global variable ‘C1’
+handle_segs: no visible binding for global variable ‘C2’
+handle_segs: no visible binding for global variable ‘C1.1’
+handle_segs: no visible binding for global variable ‘C2.1’
+handle_text: no visible binding for global variable ‘C1’
+handle_text: no visible binding for global variable ‘C2’
+listCMTools: no visible global function definition for ‘read.table’
+parBatchByIndex: no visible global function definition for
+  ‘clusterExport’
+parBatchByIndex: no visible global function definition for
+  ‘clusterApplyLB’
+postgresqlWriteTable: no visible global function definition for
+  ‘postgresqlTableRef’
+postgresqlWriteTable: no visible global function definition for
+  ‘postgresqlQuoteId’
+postgresqlWriteTable: no visible global function definition for
+  ‘postgresqlpqExec’
+postgresqlWriteTable: no visible global function definition for
+  ‘postgresqlCopyInDataframe’
+postgresqlWriteTable: no visible global function definition for
+  ‘postgresqlgetResult’
+propOB: no visible global function definition for ‘prop_OB’
+read.AP: no visible global function definition for ‘read.delim’
+sdf2OBMol: no visible global function definition for ‘forEachMol’
+sdf2image: no visible global function definition for ‘convertToImage’
+sdf2smiles: no visible global function definition for ‘convertFormat’
+sdf2smilesOB: no visible global function definition for ‘convertFormat’
+sdfStream: no visible global function definition for ‘write.table’
+setPriorities: no visible global function definition for
+  ‘clusterExport’
+smartsSearchOB: no visible global function definition for
+  ‘smartsSearch_OB’
+smile2sdfFile: no visible global function definition for
+  ‘convertFormatFile’
+smiles2sdf: no visible global function definition for ‘convertFormat’
+smiles2sdfOB: no visible global function definition for ‘convertFormat’
+write.SMI: no visible global function definition for ‘write.table’
+Undefined global functions or variables:
+  AW C1 C1.1 C2 C2.1 browseURL canonicalNumbering_OB clusterApplyLB
+  clusterExport combn convertFormat convertFormatFile convertToImage
+  data dev.off download.file error exactMass_OB fingerprint_OB fmcs
+  forEachMol pdf postgresqlCopyInDataframe postgresqlQuoteId
+  postgresqlTableRef postgresqlgetResult postgresqlpqExec postscript
+  prop_OB rainbow read.delim read.table rgb smartsSearch_OB str string
+  untar write.table
+Consider adding
+  importFrom("grDevices", "dev.off", "pdf", "postscript", "rainbow",
+             "rgb")
+  importFrom("utils", "browseURL", "combn", "data", "download.file",
+             "read.delim", "read.table", "str", "untar", "write.table")
+to your NAMESPACE file.
+* checking Rd files ... NOTE
+checkRd: (-1) cmp.duplicated.Rd:29: Escaped LaTeX specials: \$
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented S4 methods:
+  generic '$' and siglist '_p_Descriptors'
+  generic '[' and siglist 'ExternalReferenceSwig'
+  generic '[<-' and siglist 'ExternalReferenceSwig'
+  generic 'coerce' and siglist 'ExternalReferenceSwig,character'
+  generic 'length' and siglist 'SWIGArray'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+File ‘/home/biocbuild/R/R-4.3.0-bin/site-library/ChemmineR/libs/ChemmineR.so’:
+  Found ‘_ZSt4cerr’, possibly from ‘std::cerr’ (C++)
+  Found ‘_ZSt4cout’, possibly from ‘std::cout’ (C++)
+
+Compiled code should not call entry points which might terminate R nor
+write to stdout/stderr instead of to the console, nor use Fortran I/O
+nor system RNGs nor [v]sprintf. The detected symbols are linked into
+the code but might come from libraries and not actually be called.
+
+See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘runTests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘ChemmineR.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 WARNING, 5 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/ChemmineR.Rcheck/00check.log’
+for details.
+
+

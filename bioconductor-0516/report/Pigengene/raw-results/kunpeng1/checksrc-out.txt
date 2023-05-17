@@ -1,0 +1,115 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD check --install=check:Pigengene.install-out.txt --library=/home/biocbuild/R/R-4.3.0-bin/site-library --timings Pigengene_1.27.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/Pigengene.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘Pigengene/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘Pigengene’ version ‘1.27.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘Pigengene’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... NOTE
+'library' or 'require' calls in package code:
+  ‘AnnotationDbi’ ‘biomaRt’ ‘energy’ ‘org.Hs.eg.db’ ‘org.Mm.eg.db’
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+Found the following possibly unsafe calls:
+File ‘Pigengene/R/bn.calculation.R’:
+  assignInNamespace("supported.clusters", fixArgs, "bnlearn")
+
+compute.pigengene: no visible global function definition for ‘prcomp’
+one.step.pigengene: no visible binding for global variable
+  ‘org.Hs.eg.db’
+Undefined global functions or variables:
+  org.Hs.eg.db prcomp
+Consider adding
+  importFrom("stats", "prcomp")
+to your NAMESPACE file.
+* checking Rd files ... NOTE
+checkRd: (-1) get.enriched.pw.Rd:71: Escaped LaTeX specials: \_
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                      user system elapsed
+one.step.pigengene 317.747  0.868 318.643
+Pigengene-package  309.782  1.045 310.749
+get.enriched.pw     92.698  3.988  96.871
+module.heatmap      51.369  0.520  51.873
+make.filter         26.700  0.163  26.864
+apply.filter        23.595  0.128  23.725
+compute.pigengene   22.990  0.200  23.191
+pigengene           22.947  0.172  23.119
+plot.pigengene      22.817  0.064  22.882
+project.eigen       21.781  0.148  21.932
+learn.bn            18.673  0.070  18.745
+make.decision.tree  16.636  0.108  16.746
+compact.tree        15.668  0.052  15.720
+combine.networks    15.328  0.033  15.339
+determine.modules   15.032  0.021  15.053
+wgcna.one.step      14.216  0.040  14.257
+gene.mapping         7.049  0.532  70.775
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘Pigengene_inference.Rnw’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/Pigengene.Rcheck/00check.log’
+for details.
+
+

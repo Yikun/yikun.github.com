@@ -1,0 +1,51 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD build --keep-empty-dirs --no-resave-data HiCDCPlus
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘HiCDCPlus/DESCRIPTION’ ... OK
+* preparing ‘HiCDCPlus’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘HiCDCPlus.Rmd’ using rmarkdown
+WARNING: sun.reflect.Reflection.getCallerClass is not supported. This will impact performance.
+WARN [2023-05-14T15:42:06,367]  [Globals.java:138] [main]  Development mode is enabled
+Using 1 CPU thread(s) for primary task
+Using 10 CPU thread(s) for secondary task
+Not including fragment map
+Start preprocess
+Writing header
+Writing body
+java.lang.NumberFormatException: For input string: "score"
+	at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2054)
+	at java.base/jdk.internal.math.FloatingDecimal.parseFloat(FloatingDecimal.java:122)
+	at java.base/java.lang.Float.parseFloat(Float.java:455)
+	at juicebox.tools.utils.original.mnditerator.MNDLineParser.updatePairScoreIfNeeded(MNDLineParser.java:88)
+	at juicebox.tools.utils.original.mnditerator.MNDFileParser.parseShortFormat(MNDFileParser.java:105)
+	at juicebox.tools.utils.original.mnditerator.MNDFileParser.parse(MNDFileParser.java:87)
+	at juicebox.tools.utils.original.mnditerator.GenericPairIterator.advance(GenericPairIterator.java:56)
+	at juicebox.tools.utils.original.mnditerator.AsciiPairIterator.<init>(AsciiPairIterator.java:55)
+	at juicebox.tools.utils.original.mnditerator.PairIterator.getIterator(PairIterator.java:54)
+	at juicebox.tools.utils.original.Preprocessor.computeWholeGenomeMatrix(Preprocessor.java:583)
+	at juicebox.tools.utils.original.Preprocessor.writeBody(Preprocessor.java:674)
+	at juicebox.tools.utils.original.Preprocessor.preprocess(Preprocessor.java:436)
+	at juicebox.tools.clt.old.PreProcessing.run(PreProcessing.java:165)
+	at juicebox.tools.HiCTools.main(HiCTools.java:94)
+Quitting from lines 165-204 (HiCDCPlus.Rmd) 
+Error: processing vignette 'HiCDCPlus.Rmd' failed with diagnostics:
+there is no package called 'BSgenome.Hsapiens.UCSC.hg38'
+--- failed re-building ‘HiCDCPlus.Rmd’
+
+SUMMARY: processing the following file failed:
+  ‘HiCDCPlus.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted

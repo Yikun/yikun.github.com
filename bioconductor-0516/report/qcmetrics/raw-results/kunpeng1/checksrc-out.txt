@@ -1,0 +1,318 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD check --install=check:qcmetrics.install-out.txt --library=/home/biocbuild/R/R-4.3.0-bin/site-library --timings qcmetrics_1.39.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/qcmetrics.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘qcmetrics/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘qcmetrics’ version ‘1.39.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘qcmetrics’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘qcmetrics-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: qcReport-methods
+> ### Title: Automatic report generation
+> ### Aliases: qcReport-methods qcReport,QcMetrics-method qcReport reporting
+> ###   reporting_pdf reporting_tex reporting_rmd reporting_html
+> ###   example_reports
+> ### Keywords: methods report
+> 
+> ### ** Examples
+> 
+> example(QcMetrics)
+
+QcMtrc> example(QcMetric)
+
+QcMtrc> (qc <- QcMetric())
+Object of class "QcMetric"
+ Name: A QcMetric prototype 
+ Status: NA 
+ Data: empty
+
+QcMtrc> qcdata(qc)
+character(0)
+
+QcMtrc> try(qcdata(qc, "x"))
+Error in qcdata(qc, "x") : No qcdata 'x' in object.
+
+QcMtrc> x <- rnorm(10)
+
+QcMtrc> qcdata(qc, "qc1") <- x
+
+QcMtrc> qcdata(qc, "qc2") <- 1:10
+
+QcMtrc> qcdata(qc)
+[1] "qc1" "qc2"
+
+QcMtrc> all.equal(qcdata(qc, "qc1"), x)
+[1] TRUE
+
+QcMtrc> all.equal(qcdata(qc, "qc2"), 1:10)
+[1] TRUE
+
+QcMtrc> name(qc) <- "My test QcMetric"
+
+QcMtrc> description(qc) <- "This qc metric describes bla bla bla, indicating possible issues in the third step of protocol bla bla bla."
+
+QcMtrc> status(qc) <- FALSE
+
+QcMtrc> qc
+Object of class "QcMetric"
+ Name: My test QcMetric 
+ Description:
+This qc metric describes bla bla bla, indicating possible issues in the
+third step of protocol bla bla bla.
+ Status: FALSE 
+ Data: qc1 qc2 
+
+QcMtrc> ## or
+QcMtrc> e <- new.env()
+
+QcMtrc> e$qc1 <- rnorm(100)
+
+QcMtrc> e$qc2 <- 1:100
+
+QcMtrc> qcdata(qc) <- e
+
+QcMtrc> length(qcdata(qc, "qc1"))
+[1] 100
+
+QcMtrc> head(qcdata(qc, "qc2"))
+[1] 1 2 3 4 5 6
+
+QcMtrc> show(qc)
+Object of class "QcMetric"
+ Name: My test QcMetric 
+ Description:
+This qc metric describes bla bla bla, indicating possible issues in the
+third step of protocol bla bla bla.
+ Status: FALSE 
+ Data: qc1 qc2 
+
+QcMtrc> show(qc) <- function(object) cat("Updated show method\n")
+
+QcMtrc> show(qc)
+Updated show method
+
+QcMtrc> show(qc) <- qcshow
+
+QcMtrc> qc
+Object of class "QcMetric"
+ Name: My test QcMetric 
+ Description:
+This qc metric describes bla bla bla, indicating possible issues in the
+third step of protocol bla bla bla.
+ Status: FALSE 
+ Data: qc1 qc2 
+
+QcMtrc> plot(qc)
+Warning in x@plot(x, ...) : No specific plot function defined
+
+QcMtrc> plot(qc) <-
+QcMtrc+     function(object, ...) 
+QcMtrc+         plot(qcdata(object, "qc2"),
+QcMtrc+              qcdata(object, "qc1"),
+QcMtrc+              xlab = "qc1",
+QcMtrc+              ylab = "qc2",
+QcMtrc+              ...)
+
+QcMtrc> plot(qc)
+
+QcMtrc> plot(qc, col = "red", pch = 19)
+
+QcMtrc> ## Not run: 
+QcMtrc> ##D     ## generate a report 
+QcMtrc> ##D     qcReport(qcm)
+QcMtrc> ## End(Not run)
+QcMtrc> 
+QcMtrc> 
+QcMtrc> 
+
+QcMtrc> show(qc)
+Object of class "QcMetric"
+ Name: My test QcMetric 
+ Description:
+This qc metric describes bla bla bla, indicating possible issues in the
+third step of protocol bla bla bla.
+ Status: FALSE 
+ Data: qc1 qc2 
+
+QcMtrc> qc2 <- QcMetric(name = "My other metric", status = TRUE)
+
+QcMtrc> qcdata(qc2, "x") <- rnorm(100)
+
+QcMtrc> qcdata(qc2, "k") <- rep(LETTERS[1:2], 50)
+
+QcMtrc> plot(qc2) <- function(object, ...) {
+QcMtrc+     require("lattice")
+QcMtrc+     d <- data.frame(x = qcdata(object, "x"),
+QcMtrc+                     k = qcdata(object, "k"))
+QcMtrc+     bwplot(x ~ k, data = d)
+QcMtrc+ }
+
+QcMtrc> qcm <- QcMetrics(qcdata = list(qc, qc2))
+
+QcMtrc> qcm
+Object of class "QcMetrics"
+ containing 2 QC metrics.
+ and no metadata variables.
+
+QcMtrc> qcm[1] ## a QcMetrics instance
+Object of class "QcMetrics"
+ containing 1 QC metrics.
+ and no metadata variables.
+
+QcMtrc> qcm[[1]] ## a single QcMetric
+Object of class "QcMetric"
+ Name: My test QcMetric 
+ Description:
+This qc metric describes bla bla bla, indicating possible issues in the
+third step of protocol bla bla bla.
+ Status: FALSE 
+ Data: qc1 qc2 
+
+QcMtrc> metadata(qcm)
+list()
+
+QcMtrc> metadata(qcm) <- QcMetadata(list(name = "Prof. Who",
+QcMtrc+                                  lab = "Cabin University"))
+
+QcMtrc> ## or, shorter but equivalent
+QcMtrc> metadata(qcm) <- list(name = "Prof. Who",
+QcMtrc+                       lab = "Cabin University")
+
+QcMtrc> metadata(qcm) ## or mdata(qcm)
+$name
+[1] "Prof. Who"
+
+$lab
+[1] "Cabin University"
+
+
+QcMtrc> ## update metadata
+QcMtrc> metadata(qcm) <- list(lab = "Big lab", ## updated
+QcMtrc+                       uni = "Cabin University") ## added
+
+QcMtrc> mdata(qcm)
+$name
+[1] "Prof. Who"
+
+$lab
+[1] "Big lab"
+
+$uni
+[1] "Cabin University"
+
+> show(qcm)
+Object of class "QcMetrics"
+ containing 2 QC metrics.
+ and 3 metadata variables.
+> 
+> destdir <- tempdir()
+> (report <- file.path(destdir, "testQCReport"))
+[1] "/tmp/Rtmp054Rim/testQCReport"
+> 
+> 
+> ## Not run: 
+> ##D   ## pdf report
+> ##D   qcReport(qcm, reportname = report)
+> ##D   ## use pdflatex to generate the pdf file
+> ##D   qcReport(qcm, reportname = report, texi2dvi = "pdflatex")
+> ## End(Not run)
+> 
+> ## default html report
+> html <- qcReport(qcm, reportname = report, type = "html")
+Report written to /tmp/Rtmp054Rim/testQCReport.html
+> html
+[1] "/tmp/Rtmp054Rim/testQCReport.html"
+> if (interactive())
++     browseURL(html)
+> 
+> ## using a custom css templates
+> writeLines("
++ body {
++     font-size: 14pt;
++     width: 650px;
++     background: #789855;
++     margin-left: auto;
++     margin-right: auto;
++     margin-top: 20px;
++     margin-bottom: 20;
++     text-align:justify;
++ }", con = "style.css")
+> 
+> html2 <- qcReport(qcm, reportname = "customreport", template = "style.css", type = "html")
+Error in mark(..., format = "html", template = template) : 
+  unused argument (stylesheet = "style.css")
+Calls: qcReport ... reporting_html -> knit2html -> mark_html -> <Anonymous>
+Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘qcmetrics.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/qcmetrics.Rcheck/00check.log’
+for details.
+

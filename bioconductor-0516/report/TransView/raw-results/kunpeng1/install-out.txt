@@ -1,0 +1,45 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD INSTALL TransView
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0-bin/site-library’
+* installing *source* package ‘TransView’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/R/R-4.3.0-bin/site-library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -c R_init_TransView.c -o R_init_TransView.o
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/R/R-4.3.0-bin/site-library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -c bam_plbuf.c -o bam_plbuf.o
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/R/R-4.3.0-bin/site-library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -c bin_density.c -o bin_density.o
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/R/R-4.3.0-bin/site-library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -c construct_dc.c -o construct_dc.o
+In file included from /home/biocbuild/R/R-4.3.0-bin/site-library/Rhtslib/include/htslib/hts.h:36,
+                 from /home/biocbuild/R/R-4.3.0-bin/site-library/Rhtslib/include/htslib/sam.h:33,
+                 from /home/biocbuild/R/R-4.3.0-bin/site-library/Rhtslib/include/samtools-1.7-compat.h:5,
+                 from parse_sam.h:4,
+                 from construct_dc.c:23:
+/home/biocbuild/R/R-4.3.0-bin/site-library/Rhtslib/include/htslib/hts_log.h:75:1: warning: ‘Rprintf’ is an unrecognized format function type [-Wformat=]
+   75 | HTS_FORMAT(HTS_PRINTF_FMT, 3, 4);
+      | ^~~~~~~~~~
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/R/R-4.3.0-bin/site-library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -c parse_sam.c -o parse_sam.o
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/R/R-4.3.0-bin/site-library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -c slice_dc.c -o slice_dc.o
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/R/R-4.3.0-bin/site-library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -c visuals.c -o visuals.o
+gcc -shared -L/home/biocbuild/R/R-4.3.0-bin/lib/R/lib -L/usr/local/lib -o TransView.so R_init_TransView.o bam_plbuf.o bin_density.o construct_dc.o parse_sam.o slice_dc.o visuals.o /home/biocbuild/R/R-4.3.0-bin/site-library/Rhtslib/usrlib/libhts.a -lcurl -L/home/biocbuild/R/R-4.3.0-bin/lib/R/lib -lR
+installing to /home/biocbuild/R/R-4.3.0-bin/site-library/00LOCK-TransView/00new/TransView/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (TransView)

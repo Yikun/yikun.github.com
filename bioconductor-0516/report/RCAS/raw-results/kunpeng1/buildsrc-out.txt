@@ -1,0 +1,34 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD build --keep-empty-dirs --no-resave-data RCAS
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘RCAS/DESCRIPTION’ ... OK
+* preparing ‘RCAS’:
+* checking DESCRIPTION meta-information ... OK
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘RCAS.metaAnalysis.vignette.Rmd’ using rmarkdown
+Warning: The vignette title specified in \VignetteIndexEntry{} is different from the title in the YAML metadata. The former is "How to do meta-analysis of multiple samples", and the latter is "How to do meta-analysis of CLIP-seq peaks from multiple samples with RCAS". If that is intentional, you may set options(rmarkdown.html_vignette.check_title = FALSE) to suppress this check.
+--- finished re-building ‘RCAS.metaAnalysis.vignette.Rmd’
+
+--- re-building ‘RCAS.vignette.Rmd’ using rmarkdown
+Error in x$.self$finalize() : attempt to apply non-function
+Warning: call dbDisconnect() when finished working with a connection
+Quitting from lines 223-229 (RCAS.vignette.Rmd) 
+Error: processing vignette 'RCAS.vignette.Rmd' failed with diagnostics:
+Can't find a genome sequence with the given genome version:hg19
+	Run BSgenome::available.genomes() to see which ones are available
+--- failed re-building ‘RCAS.vignette.Rmd’
+
+SUMMARY: processing the following file failed:
+  ‘RCAS.vignette.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted

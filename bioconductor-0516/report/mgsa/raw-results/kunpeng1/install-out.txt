@@ -1,0 +1,36 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD INSTALL mgsa
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0-bin/site-library’
+* installing *source* package ‘mgsa’ ...
+** using staged installation
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG   -I/usr/local/include   -I. -fopenmp -fPIC  -g -O2  -c mgsa-core.c -o mgsa-core.o
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG   -I/usr/local/include   -I. -fopenmp -fPIC  -g -O2  -c mgsa.c -o mgsa.o
+gcc -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG   -I/usr/local/include   -I. -fopenmp -fPIC  -g -O2  -c mt.c -o mt.o
+gcc -shared -L/home/biocbuild/R/R-4.3.0-bin/lib/R/lib -L/usr/local/lib -o mgsa.so mgsa-core.o mgsa.o mt.o -fopenmp -L/home/biocbuild/R/R-4.3.0-bin/lib/R/lib -lR
+installing to /home/biocbuild/R/R-4.3.0-bin/site-library/00LOCK-mgsa/00new/mgsa/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (mgsa)

@@ -1,0 +1,130 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD check --install=check:plethy.install-out.txt --library=/home/biocbuild/R/R-4.3.0-bin/site-library --timings plethy_1.39.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/plethy.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘plethy/DESCRIPTION’ ... OK
+* this is package ‘plethy’ version ‘1.39.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘plethy’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... NOTE
+There are ::: calls to the package's namespace in its code. A package
+  almost never needs to use ::: for its own objects:
+  ‘csv.to.table’ ‘find.break.ranges.integer’ ‘fix.time’ ‘multi.grep’
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+generate.sample.buxco : <anonymous> : <anonymous> : <anonymous> :
+  <anonymous>: no visible global function definition for ‘rnorm’
+make.db.package: no visible global function definition for
+  ‘packageDescription’
+mvtsplot.data.frame: no visible global function definition for ‘colors’
+mvtsplot.data.frame: no visible global function definition for ‘par’
+mvtsplot.data.frame: no visible global function definition for ‘layout’
+mvtsplot.data.frame: no visible global function definition for
+  ‘strwidth’
+mvtsplot.data.frame: no visible global function definition for ‘abline’
+mvtsplot.data.frame: no visible global function definition for ‘mtext’
+mvtsplot.data.frame: no visible global function definition for ‘bxp’
+mvtsplot.data.frame : <anonymous>: no visible binding for global
+  variable ‘median’
+mvtsplot.data.frame: no visible global function definition for ‘lines’
+mvtsplot.data.frame: no visible global function definition for ‘Axis’
+mvtsplot.data.frame: no visible global function definition for ‘legend’
+retrieveMatrix,BuxcoDB: no visible global function definition for
+  ‘terms’
+tsplot,BuxcoDB: no visible binding for global variable ‘Days’
+tsplot,BuxcoDB: no visible binding for global variable ‘Value’
+tsplot,BuxcoDB: no visible binding for global variable ‘Sample_Name’
+Undefined global functions or variables:
+  Axis Days Sample_Name Value abline bxp colors layout legend lines
+  median mtext packageDescription par rnorm strwidth terms
+Consider adding
+  importFrom("grDevices", "colors")
+  importFrom("graphics", "Axis", "abline", "bxp", "layout", "legend",
+             "lines", "mtext", "par", "strwidth")
+  importFrom("stats", "median", "rnorm", "terms")
+  importFrom("utils", "packageDescription")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘runTests.R’
+ ERROR
+Running the tests in ‘tests/runTests.R’ failed.
+Last 13 lines of output:
+  ERROR in test.csv.to.table: Error in is.data.frame(dta) && nrow(dta) == 1 && colnames(dta) == c("rat",  : 
+    'length = 3' in coercion to 'logical(1)'
+  ERROR in test.make.break.dta: Error in is.list(basic.result) && names(basic.result) == c("break.dta",  : 
+    'length = 2' in coercion to 'logical(1)'
+  
+  Test files with failing tests
+  
+     test_check_helpers.R 
+       test.csv.to.table 
+       test.make.break.dta 
+  
+  
+  Error in BiocGenerics:::testPackage("plethy") : 
+    unit tests failed for package plethy
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘plethy.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/plethy.Rcheck/00check.log’
+for details.
+

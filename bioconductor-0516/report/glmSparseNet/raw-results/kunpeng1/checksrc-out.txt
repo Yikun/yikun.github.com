@@ -1,0 +1,203 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD check --install=check:glmSparseNet.install-out.txt --library=/home/biocbuild/R/R-4.3.0-bin/site-library --timings glmSparseNet_1.19.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/glmSparseNet.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘glmSparseNet/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘glmSparseNet’ version ‘1.19.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘glmSparseNet’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘glmSparseNet-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: biomart.load
+> ### Title: Common call to biomaRt to avoid repetitive code
+> ### Aliases: biomart.load
+> 
+> ### ** Examples
+> 
+> glmSparseNet:::biomart.load(
++     attributes = c("external_gene_name","ensembl_gene_id"), 
++     filters = "external_gene_name", 
++     values = c('MOB1A','RFLNB', 'SPIC', 'TP53'),
++     use.cache = TRUE,
++     verbose = FALSE
++ )
+Warning in curl.workaround({ :
+  There was an problem, calling the function with ssl_verifypeer to FALSE
+
+	 error: invalid 'text' argument
+Warning in force(expr) : restarting interrupted promise evaluation
+* Found bundle for host www.ensembl.org: 0xaaaaebce7010 [serially]
+* Can not multiplex, even if we wanted to!
+* Hostname www.ensembl.org was found in DNS cache
+*   Trying 193.62.193.83:443...
+* Connected to www.ensembl.org (193.62.193.83) port 443 (#1)
+* ALPN, offering h2
+* ALPN, offering http/1.1
+* SSL connection using TLSv1.2 / ECDHE-RSA-AES128-GCM-SHA256
+* ALPN, server did not agree to a protocol
+* Server certificate:
+*  subject: CN=*.ensembl.org
+*  start date: Apr 28 07:38:48 2023 GMT
+*  expire date: May 18 08:32:01 2024 GMT
+*  issuer: C=US; ST=Arizona; L=Scottsdale; O=GoDaddy.com, Inc.; OU=http://certs.godaddy.com/repository/; CN=Go Daddy Secure Certificate Authority - G2
+*  SSL certificate verify result: unable to get local issuer certificate (20), continuing anyway.
+> GET /info/website/archives/index.html?redirect=no HTTP/1.1
+Host: www.ensembl.org
+User-Agent: libcurl/7.81.0 r-curl/5.0.0 httr/1.4.6
+Accept-Encoding: deflate, gzip, br, zstd
+Cookie: ENSEMBL_HINX_SESSION=7ba16bba1a00e60f0881eaa864b0d0520cd8fda4af626d1c044bf0b4; redirect_mirror=no
+Accept: application/json, text/xml, application/xml, */*
+
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< Date: Mon, 15 May 2023 04:34:42 GMT
+< Content-Type: text/html; charset=utf-8
+< Content-Length: 9132
+< Connection: keep-alive
+< Server: Apache
+< X-Frame-Options: SAMEORIGIN
+< Content-Security-Policy: frame-ancestors 'self'
+< Vary: Accept-Encoding
+< Content-Encoding: gzip
+< X-NGINX-MACHINE: wp-p1m2-35.ebi.ac.uk
+< 
+* Connection #1 to host www.ensembl.org left intact
+* Found bundle for host www.ensembl.org: 0xaaaaebce7010 [serially]
+* Can not multiplex, even if we wanted to!
+* Re-using existing connection! (#1) with host www.ensembl.org
+* Connected to www.ensembl.org (193.62.193.83) port 443 (#1)
+> GET /biomart/martservice?redirect=no&type=datasets&requestid=biomaRt&mart=ENSEMBL_MART_ENSEMBL HTTP/1.1
+Host: www.ensembl.org
+User-Agent: libcurl/7.81.0 r-curl/5.0.0 httr/1.4.6
+Accept-Encoding: deflate, gzip, br, zstd
+Accept: application/json, text/xml, application/xml, */*
+Content-Type: text/plain
+
+* Mark bundle as not supporting multiuse
+< HTTP/1.1 200 OK
+< X-GitHub-Request-Id: B568:0903:30672A8:31FFE66:64608027
+< Server: GitHub.com
+< X-Cache-Hits: 1
+< Vary: Accept-Encoding
+< Cache-Control: no-cache, no-store, must-revalidate
+< x-proxy-cache: MISS
+< X-Cache: HIT
+< Content-Type: text/html; charset=utf-8
+< X-Fastly-Request-ID: 02ebccc8efc8b956906d30e7e8b2e67a21b1e9e9
+< Content-Encoding: gzip
+< Date: Mon, 15 May 2023 04:34:43 GMT
+< Expires: 0
+< X-Served-By: cache-lcy-eglc8600024-LCY
+< Pragma: no-cache
+< X-Timer: S1684125284.597279,VS0,VE1
+< Access-Control-Allow-Origin: *
+< Accept-Ranges: bytes
+< ETag: W/"63e3b7cc-910"
+< Via: 1.1 varnish
+< Connection: keep-alive
+< Age: 196
+< Content-Length: 1024
+< 
+* Connection #1 to host www.ensembl.org left intact
+Error in textConnection(bmResult) : invalid 'text' argument
+Calls: <Anonymous> ... useDataset -> checkDataset -> .listDatasets -> textConnection
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  x[2]: "ENSP00000299272"
+  y[2]: "ENSG00000166211"
+  
+  x[3]: "ENSP00000331915"
+  y[3]: "ENSG00000183688"
+  
+  x[4]: "ENSP00000361021"
+  y[4]: "ENSG00000171862"
+  
+  x[5]: "ENSP00000269305"
+  y[5]: "ENSG00000141510"
+  
+  [ FAIL 2 | WARN 6 | SKIP 0 | PASS 82 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘example_brca_logistic.Rmd’ using ‘UTF-8’... OK
+  ‘example_brca_protein-protein-interactions_survival.Rmd’ using ‘UTF-8’... OK
+  ‘example_brca_survival.Rmd’ using ‘UTF-8’... OK
+  ‘example_prad_survival.Rmd’ using ‘UTF-8’... OK
+  ‘example_skcm_survival.Rmd’ using ‘UTF-8’... OK
+  ‘separate2GroupsCox.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/glmSparseNet.Rcheck/00check.log’
+for details.
+

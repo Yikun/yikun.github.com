@@ -1,0 +1,1603 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>Build/check report for BioC 3.18 - CHECK results for basilisk on kunpeng1</TITLE>
+<LINK rel="stylesheet" href="../report.css" type="text/css">
+<SCRIPT type="text/javascript" src="../report.js"></SCRIPT>
+</HEAD>
+<BODY onLoad="initialize();">
+<TABLE class="grid_layout" style="width: 100%; background: #EEE;"><TR><TD style="text-align: left; padding: 5px; vertical-align: middle;"><I>Back to <B>Build/check report for BioC 3.18</B>:&nbsp;&nbsp;&nbsp;<A href="../">simplified</A>&nbsp;&nbsp;&nbsp;<A href="../long-report.html">long</A></I></TD><TD><TABLE class="abc_dispatcher"><TR><TD><A href="..#A">A</A></TD><TD><B>[<A href="..#B">B</A>]</B></TD><TD><A href="..#C">C</A></TD><TD><A href="..#D">D</A></TD><TD><A href="..#E">E</A></TD><TD><A href="..#F">F</A></TD><TD><A href="..#G">G</A></TD><TD><A href="..#H">H</A></TD><TD><A href="..#I">I</A></TD><TD><A href="..#J">J</A></TD><TD><A href="..#K">K</A></TD><TD><A href="..#L">L</A></TD><TD><A href="..#M">M</A></TD><TD><A href="..#N">N</A></TD><TD><A href="..#O">O</A></TD><TD><A href="..#P">P</A></TD><TD><A href="..#Q">Q</A></TD><TD><A href="..#R">R</A></TD><TD><A href="..#S">S</A></TD><TD><A href="..#T">T</A></TD><TD><A href="..#U">U</A></TD><TD><A href="..#V">V</A></TD><TD><A href="..#W">W</A></TD><TD><A href="..#X">X</A></TD><TD><A href="..#Y">Y</A></TD><TD><A href="..#Z">Z</A></TD></TR></TABLE></TD></TR></TABLE>
+<P class="time_stamp">
+This page was generated on 2023-05-16 06:06:49 -0000 (Tue, 16 May 2023).
+</P>
+<TABLE class="node_specs">
+<TR><TH>Hostname</TH><TH>OS</TH><TH>Arch&nbsp;(*)</TH><TH>R&nbsp;version</TH><TH style="text-align: right;">Installed&nbsp;pkgs</TH></TR>
+<TR class="kunpeng1"><TD><B><A href="../kunpeng1-NodeInfo.html"><B>kunpeng1</B></A></B></TD><TD>Linux&nbsp;(Ubuntu&nbsp;22.04.1&nbsp;LTS)</TD><TD>aarch64</TD><TD>4.3.0&nbsp;(2023-04-21)&nbsp;--&nbsp;"Already&nbsp;Tomorrow"
+</TD><TD style="text-align: right;"><A href="../kunpeng1-R-instpkgs.html">4787</A></TD></TR>
+<TR><TD COLSPAN="5" style="font-size: smaller;"><I>Click on any hostname to see more info about the system (e.g. compilers) &nbsp;&nbsp;&nbsp;&nbsp; (*) as reported by 'uname -p', except on Windows and Mac OS X</I></TD></TR>
+</TABLE>
+<BR>
+<H2><SPAN class="kunpeng1">CHECK results for basilisk on kunpeng1</SPAN></H2>
+<BR>
+<DIV class="motd">
+<TABLE><TR><TD>
+To the developers/maintainers of the basilisk package:<BR>
+- Allow up to 24 hours (and sometimes 48 hours) for your latest push to git@git.bioconductor.org:packages/basilisk.git to reflect on this report. See <A href="%s">Troubleshooting Build Report</A> for more information.<BR><BR>
+- Use the following <A href="../Renviron.bioc">Renviron settings</A> to reproduce errors and warnings.<BR><BR>
+Note: If "R CMD check" recently failed on the Linux builder over a missing dependency, add the missing dependency to "Suggests" in your DESCRIPTION file. See the <A href="../Renviron.bioc">Renviron.bioc</A> for details.
+</TD></TR></TABLE>
+</DIV>
+<P style="text-align: center;"><A href="raw-results/">raw results</A><P>
+<TABLE class="gcard_list">
+<TBODY class="gcard ok">
+<TR class="header"><TD class="leftmost top_left_corner"></TD><TD>Package <B>130</B>/2197</TD><TD style="width: 75px;">Hostname</TD><TD style="width: 225px;">OS&nbsp;/&nbsp;Arch</TD><TD class="STAGE install">INSTALL</TD><TD class="STAGE buildsrc">BUILD</TD><TD class="STAGE checksrc selected">CHECK</TD><TD class="STAGE buildbin">BUILD BIN</TD><TD style="width: 12px;"></TD><TD class="rightmost top_right_corner"></TD></TR>
+<TR class="selected_row"><TD ROWSPAN="2" class="leftmost bottom_left_corner"></TD><TD ROWSPAN="1" style="vertical-align: top;"><B><A href="./">basilisk</A>&nbsp;1.13.0</B>&nbsp;&nbsp;<SPAN style="font-size: smaller; font-style: italic;">(<A href="/packages/3.18/basilisk">landing page</A>)</SPAN><BR>Aaron Lun<BR><TABLE class="svn_info">
+<TR><TD class="svn_info">Snapshot&nbsp;Date:&nbsp;<SPAN class="svn_info">2023-05-13&nbsp;23:12:22&nbsp;-0000&nbsp;(Sat,&nbsp;13&nbsp;May&nbsp;2023)</SPAN></TD></TR>
+<TR><TD class="svn_info">git_url:&nbsp;<SPAN class="svn_info">https://git.bioconductor.org/packages/basilisk</SPAN></TD></TR>
+<TR><TD class="svn_info">git_branch:&nbsp;<SPAN class="svn_info">devel</SPAN></TD></TR>
+<TR><TD class="svn_info">git_last_commit:&nbsp;<SPAN class="svn_info">f1e78fd</SPAN></TD></TR>
+<TR><TD class="svn_info">git_last_commit_date:&nbsp;<SPAN class="svn_info">2023-04-25&nbsp;15:15:24&nbsp;-0000&nbsp;(Tue,&nbsp;25&nbsp;Apr&nbsp;2023)</SPAN></TD></TR>
+</TABLE>
+</TD><TD class="kunpeng1 selected"><B>kunpeng1</B></TD><TD class="kunpeng1"><SPAN style="font-size: smaller;">Linux&nbsp;(Ubuntu&nbsp;22.04.1&nbsp;LTS)&nbsp;/&nbsp;aarch64</SPAN></TD><TD class="status kunpeng1 install"><A href="./kunpeng1-install.html" onmouseover="add_class_mouseover(this);" onmouseout="remove_class_mouseover(this);"><SPAN class="glyph OK">&nbsp;&nbsp;OK&nbsp;&nbsp;</SPAN></A></TD><TD class="status kunpeng1 buildsrc"><A href="./kunpeng1-buildsrc.html" onmouseover="add_class_mouseover(this);" onmouseout="remove_class_mouseover(this);"><SPAN class="glyph OK">&nbsp;&nbsp;OK&nbsp;&nbsp;</SPAN></A></TD><TD class="status kunpeng1 checksrc selected"><A href="./kunpeng1-checksrc.html" onmouseover="add_class_mouseover(this);" onmouseout="remove_class_mouseover(this);"><SPAN class="glyph OK">&nbsp;&nbsp;OK&nbsp;&nbsp;</SPAN></A></TD><TD class="status kunpeng1"></TD><TD class="status kunpeng1"></TD><TD ROWSPAN="2" class="rightmost bottom_right_corner"></TD></TR>
+<TR class="footer"><TD COLSPAN="8"></TD></TR>
+</TBODY>
+</TABLE>
+<HR>
+<H3>Summary</H3>
+<DIV class="kunpeng1 hscrollable">
+<TABLE>
+<TR><TD><B>Package</B>: basilisk</TD></TR>
+<TR><TD><B>Version</B>: 1.13.0</TD></TR>
+<TR><TD><B>Command</B>: /home/biocbuild/R/R-4.3.0-bin/bin/R CMD check --install=check:basilisk.install-out.txt --library=/home/biocbuild/R/R-4.3.0-bin/site-library --timings basilisk_1.13.0.tar.gz</TD></TR>
+<TR><TD><B>StartedAt</B>: 2023-05-14 22:02:01 -0000 (Sun, 14 May 2023)</TD></TR>
+<TR><TD><B>EndedAt</B>: 2023-05-14 22:28:57 -0000 (Sun, 14 May 2023)</TD></TR>
+<TR><TD><B>EllapsedTime</B>: 1616.1 seconds</TD></TR>
+<TR><TD><B>RetCode</B>: 0</TD></TR>
+<TR><TD><B>Status</B>: <SPAN class="glyph OK">&nbsp;&nbsp;OK&nbsp;&nbsp;</SPAN></TD></TR>
+<TR><TD><B>CheckDir</B>: basilisk.Rcheck</TD></TR>
+<TR><TD><B>Warnings</B>: 0</TD></TR>
+</TABLE>
+</DIV>
+<HR>
+<H3>Command output</H3>
+<DIV class="kunpeng1 hscrollable">
+<PRE style="padding: 3px;">
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD check --install=check:basilisk.install-out.txt --library=/home/biocbuild/R/R-4.3.0-bin/site-library --timings basilisk_1.13.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘basilisk/DESCRIPTION’ ... OK
+* this is package ‘basilisk’ version ‘1.13.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  inst/example/.BBSoptions
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘basilisk’ can be installed ... NOTE
+Found the following notes/warnings:
+  Non-staged installation was used
+See ‘/home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/00install.out’ for details.
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in shell scripts ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time &gt; 5s
+                          user system elapsed
+basiliskStart          224.217 16.632 251.793
+createLocalBasiliskEnv  81.062  5.068  91.679
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘motivation.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/00check.log’
+for details.
+
+
+</PRE>
+</DIV><HR>
+<H3>Installation output</H3>
+<P><SPAN class="filename">basilisk.Rcheck/00install.out</SPAN></P>
+<DIV class="kunpeng1 hscrollable">
+<PRE style="padding: 3px;">
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD INSTALL basilisk
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0-bin/site-library’
+* installing *source* package ‘basilisk’ ...
+** using non-staged installation via StagedInstall field
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded
+* DONE (basilisk)
+</PRE>
+</DIV><HR>
+<H3>Tests output</H3>
+<P><SPAN class="filename">basilisk.Rcheck/tests/testthat.Rout</SPAN></P>
+<DIV class="kunpeng1 hscrollable">
+<PRE style="padding: 3px;">
+
+R version 4.3.0 (2023-04-21) -- &quot;Already Tomorrow&quot;
+Copyright (C) 2023 The R Foundation for Statistical Computing
+Platform: aarch64-unknown-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type &#x27;license()&#x27; or &#x27;licence()&#x27; for distribution details.
+
+R is a collaborative project with many contributors.
+Type &#x27;contributors()&#x27; for more information and
+&#x27;citation()&#x27; on how to cite R or R packages in publications.
+
+Type &#x27;demo()&#x27; for some demos, &#x27;help()&#x27; for on-line help, or
+&#x27;help.start()&#x27; for an HTML browser interface to help.
+Type &#x27;q()&#x27; to quit R.
+
+&gt; library(testthat)
+&gt; library(basilisk)
+&gt; test_check(&quot;basilisk&quot;)
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with repodata from current_repodata.json, will retry with next repodata source.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/thingo
+
+  added / updated specs:
+    - python=3.8.13
+
+
+The following NEW packages will be INSTALLED:
+
+  _openmp_mutex      conda-forge/linux-aarch64::_openmp_mutex-4.5-2_gnu
+  bzip2              conda-forge/linux-aarch64::bzip2-1.0.8-hf897c2e_4
+  ca-certificates    conda-forge/linux-aarch64::ca-certificates-2023.5.7-hcefe29a_0
+  ld_impl_linux-aar~ conda-forge/linux-aarch64::ld_impl_linux-aarch64-2.40-h2d8c526_0
+  libffi             conda-forge/linux-aarch64::libffi-3.4.2-h3557bc0_5
+  libgcc-ng          conda-forge/linux-aarch64::libgcc-ng-12.2.0-h607ecd0_19
+  libgomp            conda-forge/linux-aarch64::libgomp-12.2.0-h607ecd0_19
+  libnsl             conda-forge/linux-aarch64::libnsl-2.0.0-hf897c2e_0
+  libsqlite          conda-forge/linux-aarch64::libsqlite-3.41.2-h194ca79_1
+  libuuid            conda-forge/linux-aarch64::libuuid-2.38.1-hb4cce97_0
+  libzlib            conda-forge/linux-aarch64::libzlib-1.2.13-h4e544f5_4
+  ncurses            conda-forge/linux-aarch64::ncurses-6.3-headf329_1
+  openssl            conda-forge/linux-aarch64::openssl-3.1.0-h31becfc_3
+  pip                conda-forge/noarch::pip-23.1.2-pyhd8ed1ab_0
+  python             conda-forge/linux-aarch64::python-3.8.13-h92ab765_0_cpython
+  readline           conda-forge/linux-aarch64::readline-8.2-h8fc344f_1
+  setuptools         conda-forge/noarch::setuptools-67.7.2-pyhd8ed1ab_0
+  sqlite             conda-forge/linux-aarch64::sqlite-3.41.2-h3b3482f_1
+  tk                 conda-forge/linux-aarch64::tk-8.6.12-hd8af866_0
+  wheel              conda-forge/noarch::wheel-0.40.0-pyhd8ed1ab_0
+  xz                 conda-forge/linux-aarch64::xz-5.2.6-h9cdd2b7_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/thingo
+
+  added / updated specs:
+    - python=3.8.13
+
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  ca-certificates    conda-forge::ca-certificates-2023.5.7~ --&gt; pkgs/main::ca-certificates-2023.01.10-hd43f75c_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with initial frozen solve. Retrying with flexible solve.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/thingo
+
+  added / updated specs:
+    - pandas=1.4.3
+    - python-dateutil=2.8.2
+    - python=3.8.13
+    - pytz=2022.2.1
+
+
+The following NEW packages will be INSTALLED:
+
+  libblas            conda-forge/linux-aarch64::libblas-3.9.0-16_linuxaarch64_openblas
+  libcblas           conda-forge/linux-aarch64::libcblas-3.9.0-16_linuxaarch64_openblas
+  libgfortran-ng     conda-forge/linux-aarch64::libgfortran-ng-12.2.0-he9431aa_19
+  libgfortran5       conda-forge/linux-aarch64::libgfortran5-12.2.0-hf695500_19
+  liblapack          conda-forge/linux-aarch64::liblapack-3.9.0-16_linuxaarch64_openblas
+  libopenblas        conda-forge/linux-aarch64::libopenblas-0.3.21-pthreads_h6cb6f83_3
+  libstdcxx-ng       conda-forge/linux-aarch64::libstdcxx-ng-12.2.0-hc13a102_19
+  numpy              conda-forge/linux-aarch64::numpy-1.24.3-py38he3f4005_0
+  pandas             conda-forge/linux-aarch64::pandas-1.4.3-py38h2fe58aa_0
+  python-dateutil    conda-forge/noarch::python-dateutil-2.8.2-pyhd8ed1ab_0
+  python_abi         conda-forge/linux-aarch64::python_abi-3.8-3_cp38
+  pytz               conda-forge/noarch::pytz-2022.2.1-pyhd8ed1ab_0
+  six                conda-forge/noarch::six-1.16.0-pyh6c4a22f_0
+
+The following packages will be UPDATED:
+
+  ca-certificates    pkgs/main::ca-certificates-2023.01.10~ --&gt; conda-forge::ca-certificates-2023.5.7-hcefe29a_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with repodata from current_repodata.json, will retry with next repodata source.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/thingo
+
+  added / updated specs:
+    - python=3.8.13
+
+
+The following NEW packages will be INSTALLED:
+
+  _openmp_mutex      conda-forge/linux-aarch64::_openmp_mutex-4.5-2_gnu
+  bzip2              conda-forge/linux-aarch64::bzip2-1.0.8-hf897c2e_4
+  ca-certificates    conda-forge/linux-aarch64::ca-certificates-2023.5.7-hcefe29a_0
+  ld_impl_linux-aar~ conda-forge/linux-aarch64::ld_impl_linux-aarch64-2.40-h2d8c526_0
+  libffi             conda-forge/linux-aarch64::libffi-3.4.2-h3557bc0_5
+  libgcc-ng          conda-forge/linux-aarch64::libgcc-ng-12.2.0-h607ecd0_19
+  libgomp            conda-forge/linux-aarch64::libgomp-12.2.0-h607ecd0_19
+  libnsl             conda-forge/linux-aarch64::libnsl-2.0.0-hf897c2e_0
+  libsqlite          conda-forge/linux-aarch64::libsqlite-3.41.2-h194ca79_1
+  libuuid            conda-forge/linux-aarch64::libuuid-2.38.1-hb4cce97_0
+  libzlib            conda-forge/linux-aarch64::libzlib-1.2.13-h4e544f5_4
+  ncurses            conda-forge/linux-aarch64::ncurses-6.3-headf329_1
+  openssl            conda-forge/linux-aarch64::openssl-3.1.0-h31becfc_3
+  pip                conda-forge/noarch::pip-23.1.2-pyhd8ed1ab_0
+  python             conda-forge/linux-aarch64::python-3.8.13-h92ab765_0_cpython
+  readline           conda-forge/linux-aarch64::readline-8.2-h8fc344f_1
+  setuptools         conda-forge/noarch::setuptools-67.7.2-pyhd8ed1ab_0
+  sqlite             conda-forge/linux-aarch64::sqlite-3.41.2-h3b3482f_1
+  tk                 conda-forge/linux-aarch64::tk-8.6.12-hd8af866_0
+  wheel              conda-forge/noarch::wheel-0.40.0-pyhd8ed1ab_0
+  xz                 conda-forge/linux-aarch64::xz-5.2.6-h9cdd2b7_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/thingo
+
+  added / updated specs:
+    - python=3.8.13
+
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  ca-certificates    conda-forge::ca-certificates-2023.5.7~ --&gt; pkgs/main::ca-certificates-2023.01.10-hd43f75c_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with initial frozen solve. Retrying with flexible solve.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/thingo
+
+  added / updated specs:
+    - pandas=1.4.2
+    - python-dateutil=2.8.1
+    - python=3.8.13
+    - pytz=2022.1
+
+
+The following NEW packages will be INSTALLED:
+
+  libblas            conda-forge/linux-aarch64::libblas-3.9.0-16_linuxaarch64_openblas
+  libcblas           conda-forge/linux-aarch64::libcblas-3.9.0-16_linuxaarch64_openblas
+  libgfortran-ng     conda-forge/linux-aarch64::libgfortran-ng-12.2.0-he9431aa_19
+  libgfortran5       conda-forge/linux-aarch64::libgfortran5-12.2.0-hf695500_19
+  liblapack          conda-forge/linux-aarch64::liblapack-3.9.0-16_linuxaarch64_openblas
+  libopenblas        conda-forge/linux-aarch64::libopenblas-0.3.21-pthreads_h6cb6f83_3
+  libstdcxx-ng       conda-forge/linux-aarch64::libstdcxx-ng-12.2.0-hc13a102_19
+  numpy              conda-forge/linux-aarch64::numpy-1.24.3-py38he3f4005_0
+  pandas             conda-forge/linux-aarch64::pandas-1.4.2-py38h2fe58aa_2
+  python-dateutil    conda-forge/noarch::python-dateutil-2.8.1-py_0
+  python_abi         conda-forge/linux-aarch64::python_abi-3.8-3_cp38
+  pytz               conda-forge/noarch::pytz-2022.1-pyhd8ed1ab_0
+  six                conda-forge/noarch::six-1.16.0-pyh6c4a22f_0
+
+The following packages will be UPDATED:
+
+  ca-certificates    pkgs/main::ca-certificates-2023.01.10~ --&gt; conda-forge::ca-certificates-2023.5.7-hcefe29a_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with repodata from current_repodata.json, will retry with next repodata source.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/thingo
+
+  added / updated specs:
+    - python=2.7
+
+
+The following NEW packages will be INSTALLED:
+
+  _openmp_mutex      conda-forge/linux-aarch64::_openmp_mutex-4.5-2_gnu
+  ca-certificates    conda-forge/linux-aarch64::ca-certificates-2023.5.7-hcefe29a_0
+  certifi            conda-forge/linux-aarch64::certifi-2019.9.11-py27_0
+  ld_impl_linux-aar~ conda-forge/linux-aarch64::ld_impl_linux-aarch64-2.40-h2d8c526_0
+  libffi             conda-forge/linux-aarch64::libffi-3.2.1-h4c5d2ac_1007
+  libgcc-ng          conda-forge/linux-aarch64::libgcc-ng-12.2.0-h607ecd0_19
+  libgomp            conda-forge/linux-aarch64::libgomp-12.2.0-h607ecd0_19
+  libsqlite          conda-forge/linux-aarch64::libsqlite-3.41.2-h194ca79_1
+  libstdcxx-ng       conda-forge/linux-aarch64::libstdcxx-ng-12.2.0-hc13a102_19
+  libzlib            conda-forge/linux-aarch64::libzlib-1.2.13-h4e544f5_4
+  ncurses            conda-forge/linux-aarch64::ncurses-6.3-headf329_1
+  openssl            conda-forge/linux-aarch64::openssl-1.1.1t-hb4cce97_0
+  pip                conda-forge/noarch::pip-20.1.1-pyh9f0ad1d_0
+  python             conda-forge/linux-aarch64::python-2.7.15-h5a48372_1011_cpython
+  python_abi         conda-forge/linux-aarch64::python_abi-2.7-1_cp27mu
+  readline           conda-forge/linux-aarch64::readline-8.2-h8fc344f_1
+  setuptools         conda-forge/linux-aarch64::setuptools-41.4.0-py27_0
+  sqlite             conda-forge/linux-aarch64::sqlite-3.41.2-h3b3482f_1
+  tk                 conda-forge/linux-aarch64::tk-8.6.12-hd8af866_0
+  wheel              conda-forge/noarch::wheel-0.37.1-pyhd8ed1ab_0
+  zlib               conda-forge/linux-aarch64::zlib-1.2.13-h4e544f5_4
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/thingo
+
+  added / updated specs:
+    - python=2.7
+
+
+The following packages will be UPDATED:
+
+  certifi            conda-forge/linux-aarch64::certifi-20~ --&gt; pkgs/main/noarch::certifi-2020.6.20-pyhd3eb1b0_3
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  ca-certificates    conda-forge::ca-certificates-2023.5.7~ --&gt; pkgs/main::ca-certificates-2023.01.10-hd43f75c_0
+  openssl            conda-forge::openssl-1.1.1t-hb4cce97_0 --&gt; pkgs/main::openssl-1.1.1t-h2f4d8fa_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/thingo
+
+  added / updated specs:
+    - python[version=&#x27;2.7.*,2.7.*&#x27;]
+
+
+The following packages will be UPDATED:
+
+  ca-certificates    pkgs/main::ca-certificates-2023.01.10~ --&gt; conda-forge::ca-certificates-2023.5.7-hcefe29a_0
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  openssl              pkgs/main::openssl-1.1.1t-h2f4d8fa_0 --&gt; conda-forge::openssl-1.1.1t-hb4cce97_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with repodata from current_repodata.json, will retry with next repodata source.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/thingo
+
+  added / updated specs:
+    - python=3.8.13
+
+
+The following NEW packages will be INSTALLED:
+
+  _openmp_mutex      conda-forge/linux-aarch64::_openmp_mutex-4.5-2_gnu
+  bzip2              conda-forge/linux-aarch64::bzip2-1.0.8-hf897c2e_4
+  ca-certificates    conda-forge/linux-aarch64::ca-certificates-2023.5.7-hcefe29a_0
+  ld_impl_linux-aar~ conda-forge/linux-aarch64::ld_impl_linux-aarch64-2.40-h2d8c526_0
+  libffi             conda-forge/linux-aarch64::libffi-3.4.2-h3557bc0_5
+  libgcc-ng          conda-forge/linux-aarch64::libgcc-ng-12.2.0-h607ecd0_19
+  libgomp            conda-forge/linux-aarch64::libgomp-12.2.0-h607ecd0_19
+  libnsl             conda-forge/linux-aarch64::libnsl-2.0.0-hf897c2e_0
+  libsqlite          conda-forge/linux-aarch64::libsqlite-3.41.2-h194ca79_1
+  libuuid            conda-forge/linux-aarch64::libuuid-2.38.1-hb4cce97_0
+  libzlib            conda-forge/linux-aarch64::libzlib-1.2.13-h4e544f5_4
+  ncurses            conda-forge/linux-aarch64::ncurses-6.3-headf329_1
+  openssl            conda-forge/linux-aarch64::openssl-3.1.0-h31becfc_3
+  pip                conda-forge/noarch::pip-23.1.2-pyhd8ed1ab_0
+  python             conda-forge/linux-aarch64::python-3.8.13-h92ab765_0_cpython
+  readline           conda-forge/linux-aarch64::readline-8.2-h8fc344f_1
+  setuptools         conda-forge/noarch::setuptools-67.7.2-pyhd8ed1ab_0
+  sqlite             conda-forge/linux-aarch64::sqlite-3.41.2-h3b3482f_1
+  tk                 conda-forge/linux-aarch64::tk-8.6.12-hd8af866_0
+  wheel              conda-forge/noarch::wheel-0.40.0-pyhd8ed1ab_0
+  xz                 conda-forge/linux-aarch64::xz-5.2.6-h9cdd2b7_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/thingo
+
+  added / updated specs:
+    - python=3.8.13
+
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  ca-certificates    conda-forge::ca-certificates-2023.5.7~ --&gt; pkgs/main::ca-certificates-2023.01.10-hd43f75c_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/thingo
+
+  added / updated specs:
+    - python-dateutil=2.8.1
+    - python=3.8.13
+    - pytz=2022.1
+
+
+The following NEW packages will be INSTALLED:
+
+  python-dateutil    conda-forge/noarch::python-dateutil-2.8.1-py_0
+  pytz               conda-forge/noarch::pytz-2022.1-pyhd8ed1ab_0
+  six                conda-forge/noarch::six-1.16.0-pyh6c4a22f_0
+
+The following packages will be UPDATED:
+
+  ca-certificates    pkgs/main::ca-certificates-2023.01.10~ --&gt; conda-forge::ca-certificates-2023.5.7-hcefe29a_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+Collecting pandas==1.4.2
+  Using cached pandas-1.4.2-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (11.0 MB)
+Requirement already satisfied: python-dateutil&gt;=2.8.1 in ./install-test-client/thingo/lib/python3.8/site-packages (from pandas==1.4.2) (2.8.1)
+Requirement already satisfied: pytz&gt;=2020.1 in ./install-test-client/thingo/lib/python3.8/site-packages (from pandas==1.4.2) (2022.1)
+Collecting numpy&gt;=1.19.2 (from pandas==1.4.2)
+  Using cached numpy-1.24.3-cp38-cp38-manylinux_2_17_aarch64.manylinux2014_aarch64.whl (14.0 MB)
+Requirement already satisfied: six&gt;=1.5 in ./install-test-client/thingo/lib/python3.8/site-packages (from python-dateutil&gt;=2.8.1-&gt;pandas==1.4.2) (1.16.0)
+Installing collected packages: numpy, pandas
+Successfully installed numpy-1.24.3 pandas-1.4.2
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with repodata from current_repodata.json, will retry with next repodata source.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/thingo
+
+  added / updated specs:
+    - python=3.8.13
+
+
+The following NEW packages will be INSTALLED:
+
+  _openmp_mutex      conda-forge/linux-aarch64::_openmp_mutex-4.5-2_gnu
+  bzip2              conda-forge/linux-aarch64::bzip2-1.0.8-hf897c2e_4
+  ca-certificates    conda-forge/linux-aarch64::ca-certificates-2023.5.7-hcefe29a_0
+  ld_impl_linux-aar~ conda-forge/linux-aarch64::ld_impl_linux-aarch64-2.40-h2d8c526_0
+  libffi             conda-forge/linux-aarch64::libffi-3.4.2-h3557bc0_5
+  libgcc-ng          conda-forge/linux-aarch64::libgcc-ng-12.2.0-h607ecd0_19
+  libgomp            conda-forge/linux-aarch64::libgomp-12.2.0-h607ecd0_19
+  libnsl             conda-forge/linux-aarch64::libnsl-2.0.0-hf897c2e_0
+  libsqlite          conda-forge/linux-aarch64::libsqlite-3.41.2-h194ca79_1
+  libuuid            conda-forge/linux-aarch64::libuuid-2.38.1-hb4cce97_0
+  libzlib            conda-forge/linux-aarch64::libzlib-1.2.13-h4e544f5_4
+  ncurses            conda-forge/linux-aarch64::ncurses-6.3-headf329_1
+  openssl            conda-forge/linux-aarch64::openssl-3.1.0-h31becfc_3
+  pip                conda-forge/noarch::pip-23.1.2-pyhd8ed1ab_0
+  python             conda-forge/linux-aarch64::python-3.8.13-h92ab765_0_cpython
+  readline           conda-forge/linux-aarch64::readline-8.2-h8fc344f_1
+  setuptools         conda-forge/noarch::setuptools-67.7.2-pyhd8ed1ab_0
+  sqlite             conda-forge/linux-aarch64::sqlite-3.41.2-h3b3482f_1
+  tk                 conda-forge/linux-aarch64::tk-8.6.12-hd8af866_0
+  wheel              conda-forge/noarch::wheel-0.40.0-pyhd8ed1ab_0
+  xz                 conda-forge/linux-aarch64::xz-5.2.6-h9cdd2b7_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/thingo
+
+  added / updated specs:
+    - python=3.8.13
+
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  ca-certificates    conda-forge::ca-certificates-2023.5.7~ --&gt; pkgs/main::ca-certificates-2023.01.10-hd43f75c_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/thingo
+
+  added / updated specs:
+    - python=3.8.13
+
+
+The following packages will be UPDATED:
+
+  ca-certificates    pkgs/main::ca-certificates-2023.01.10~ --&gt; conda-forge::ca-certificates-2023.5.7-hcefe29a_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+Processing /home/biocbuild/R/R-4.3.0-bin/site-library/basilisk/example/inst/test_dummy
+  Preparing metadata (setup.py): started
+  Preparing metadata (setup.py): finished with status &#x27;done&#x27;
+Building wheels for collected packages: test-dummy
+  Building wheel for test-dummy (setup.py): started
+  Building wheel for test-dummy (setup.py): finished with status &#x27;done&#x27;
+  Created wheel for test-dummy: filename=test_dummy-0.1-py3-none-any.whl size=1279 sha256=84b51e7098597dd8834618b97d2d090a85c25304dbed8efcc569688e5cfd3fde
+  Stored in directory: /tmp/pip-ephem-wheel-cache-fp1vty_a/wheels/4a/0c/58/6ede352b1e23d0a1e49b0ed4cd10508f544126cdb667ec34d4
+Successfully built test-dummy
+Installing collected packages: test-dummy
+Successfully installed test-dummy-0.1
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with repodata from current_repodata.json, will retry with next repodata source.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/thingo
+
+  added / updated specs:
+    - python=3.8.13
+
+
+The following NEW packages will be INSTALLED:
+
+  _openmp_mutex      conda-forge/linux-aarch64::_openmp_mutex-4.5-2_gnu
+  bzip2              conda-forge/linux-aarch64::bzip2-1.0.8-hf897c2e_4
+  ca-certificates    conda-forge/linux-aarch64::ca-certificates-2023.5.7-hcefe29a_0
+  ld_impl_linux-aar~ conda-forge/linux-aarch64::ld_impl_linux-aarch64-2.40-h2d8c526_0
+  libffi             conda-forge/linux-aarch64::libffi-3.4.2-h3557bc0_5
+  libgcc-ng          conda-forge/linux-aarch64::libgcc-ng-12.2.0-h607ecd0_19
+  libgomp            conda-forge/linux-aarch64::libgomp-12.2.0-h607ecd0_19
+  libnsl             conda-forge/linux-aarch64::libnsl-2.0.0-hf897c2e_0
+  libsqlite          conda-forge/linux-aarch64::libsqlite-3.41.2-h194ca79_1
+  libuuid            conda-forge/linux-aarch64::libuuid-2.38.1-hb4cce97_0
+  libzlib            conda-forge/linux-aarch64::libzlib-1.2.13-h4e544f5_4
+  ncurses            conda-forge/linux-aarch64::ncurses-6.3-headf329_1
+  openssl            conda-forge/linux-aarch64::openssl-3.1.0-h31becfc_3
+  pip                conda-forge/noarch::pip-23.1.2-pyhd8ed1ab_0
+  python             conda-forge/linux-aarch64::python-3.8.13-h92ab765_0_cpython
+  readline           conda-forge/linux-aarch64::readline-8.2-h8fc344f_1
+  setuptools         conda-forge/noarch::setuptools-67.7.2-pyhd8ed1ab_0
+  sqlite             conda-forge/linux-aarch64::sqlite-3.41.2-h3b3482f_1
+  tk                 conda-forge/linux-aarch64::tk-8.6.12-hd8af866_0
+  wheel              conda-forge/noarch::wheel-0.40.0-pyhd8ed1ab_0
+  xz                 conda-forge/linux-aarch64::xz-5.2.6-h9cdd2b7_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/thingo
+
+  added / updated specs:
+    - python=3.8.13
+
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  ca-certificates    conda-forge::ca-certificates-2023.5.7~ --&gt; pkgs/main::ca-certificates-2023.01.10-hd43f75c_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with initial frozen solve. Retrying with flexible solve.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... failed with initial frozen solve. Retrying with flexible solve.
+
+PackagesNotFoundError: The following packages are not available from current channels:
+
+  - whheeeeeeeeeeeeeeeeee=0.0.1
+
+Current channels:
+
+  - https://conda.anaconda.org/conda-forge/linux-aarch64
+  - https://conda.anaconda.org/conda-forge/noarch
+  - https://repo.anaconda.com/pkgs/main/linux-aarch64
+  - https://repo.anaconda.com/pkgs/main/noarch
+  - https://repo.anaconda.com/pkgs/r/linux-aarch64
+  - https://repo.anaconda.com/pkgs/r/noarch
+
+To search for alternate channels that may provide the conda package you&#x27;re
+looking for, navigate to
+
+    https://anaconda.org
+
+and use the search bar at the top of the page.
+
+
+trying URL &#x27;https://repo.anaconda.com/miniconda/Miniconda3-py38_4.12.0-Linux-aarch64.sh&#x27;
+Content type &#x27;application/x-sh&#x27; length 67565893 bytes (64.4 MB)
+==================================================
+downloaded 64.4 MB
+
+PREFIX=/tmp/RtmpSxbtrU/file3298668bfa7c6/1.13.0/0
+Unpacking payload ...
+  0%|          | 0/39 [00:00&lt;?, ?it/s]Extracting : certifi-2021.10.8-py38hd43f75c_2.conda:   0%|          | 0/39 [00:00&lt;?, ?it/s]Extracting : certifi-2021.10.8-py38hd43f75c_2.conda:   3%|▎         | 1/39 [00:00&lt;00:08,  4.52it/s]Extracting : wheel-0.37.1-pyhd3eb1b0_0.conda:   3%|▎         | 1/39 [00:00&lt;00:08,  4.52it/s]       Extracting : requests-2.27.1-pyhd3eb1b0_0.conda:   5%|▌         | 2/39 [00:00&lt;00:08,  4.52it/s]Extracting : openssl-1.1.1n-h2f4d8fa_0.conda:   8%|▊         | 3/39 [00:00&lt;00:07,  4.52it/s]   Extracting : tqdm-4.63.0-pyhd3eb1b0_0.conda:  10%|█         | 4/39 [00:00&lt;00:07,  4.52it/s] Extracting : colorama-0.4.4-pyhd3eb1b0_0.conda:  13%|█▎        | 5/39 [00:00&lt;00:07,  4.52it/s]Extracting : sqlite-3.38.2-h6632b73_0.conda:  15%|█▌        | 6/39 [00:00&lt;00:07,  4.52it/s]   Extracting : ncurses-6.3-h2f4d8fa_2.conda:  18%|█▊        | 7/39 [00:00&lt;00:07,  4.52it/s]  Extracting : ncurses-6.3-h2f4d8fa_2.conda:  21%|██        | 8/39 [00:00&lt;00:01, 30.02it/s]Extracting : pyopenssl-22.0.0-pyhd3eb1b0_0.conda:  21%|██        | 8/39 [00:00&lt;00:01, 30.02it/s]Extracting : setuptools-61.2.0-py38hd43f75c_0.conda:  23%|██▎       | 9/39 [00:00&lt;00:00, 30.02it/s]Extracting : yaml-0.2.5-hfd63f10_0.conda:  26%|██▌       | 10/39 [00:00&lt;00:00, 30.02it/s]          Extracting : ca-certificates-2022.3.29-hd43f75c_1.conda:  28%|██▊       | 11/39 [00:00&lt;00:00, 30.02it/s]Extracting : zlib-1.2.12-h2f4d8fa_1.conda:  31%|███       | 12/39 [00:00&lt;00:00, 30.02it/s]              Extracting : _openmp_mutex-5.1-51_gnu.conda:  33%|███▎      | 13/39 [00:00&lt;00:00, 30.02it/s]Extracting : conda-4.12.0-py38hd43f75c_0.conda:  36%|███▌      | 14/39 [00:00&lt;00:00, 30.02it/s]Extracting : conda-4.12.0-py38hd43f75c_0.conda:  38%|███▊      | 15/39 [00:00&lt;00:01, 22.64it/s]Extracting : conda-package-handling-1.8.1-py38h2f4d8fa_0.conda:  38%|███▊      | 15/39 [00:00&lt;00:01, 22.64it/s]Extracting : urllib3-1.26.8-pyhd3eb1b0_0.conda:  41%|████      | 16/39 [00:00&lt;00:01, 22.64it/s]                Extracting : _libgcc_mutex-0.1-main.conda:  44%|████▎     | 17/39 [00:00&lt;00:00, 22.64it/s]     Extracting : six-1.16.0-pyhd3eb1b0_1.conda:  46%|████▌     | 18/39 [00:00&lt;00:00, 22.64it/s]Extracting : ruamel_yaml-0.15.100-py38h2f4d8fa_0.conda:  49%|████▊     | 19/39 [00:00&lt;00:00, 22.64it/s]Extracting : libstdcxx-ng-10.2.0-h1234567_51.conda:  51%|█████▏    | 20/39 [00:00&lt;00:00, 22.64it/s]    Extracting : pycparser-2.21-pyhd3eb1b0_0.conda:  54%|█████▍    | 21/39 [00:00&lt;00:00, 22.64it/s]    Extracting : tk-8.6.11-h241ca14_0.conda:  56%|█████▋    | 22/39 [00:00&lt;00:00, 22.64it/s]       Extracting : cryptography-36.0.0-py38h3d58568_0.conda:  59%|█████▉    | 23/39 [00:00&lt;00:00, 22.64it/s]Extracting : idna-3.3-pyhd3eb1b0_0.conda:  62%|██████▏   | 24/39 [00:00&lt;00:00, 22.64it/s]             Extracting : ld_impl_linux-aarch64-2.36.1-h0ab8de2_3.conda:  64%|██████▍   | 25/39 [00:00&lt;00:00, 22.64it/s]Extracting : python-3.8.13-hc137634_0.conda:  67%|██████▋   | 26/39 [00:00&lt;00:00, 22.64it/s]               Extracting : conda-content-trust-0.1.1-pyhd3eb1b0_0.conda:  69%|██████▉   | 27/39 [00:00&lt;00:00, 22.64it/s]Extracting : brotlipy-0.7.0-py38hfd63f10_1002.conda:  72%|███████▏  | 28/39 [00:00&lt;00:00, 22.64it/s]      Extracting : cffi-1.15.0-py38h9a3cfec_1.conda:  74%|███████▍  | 29/39 [00:00&lt;00:00, 22.64it/s]      Extracting : charset-normalizer-2.0.4-pyhd3eb1b0_0.conda:  77%|███████▋  | 30/39 [00:00&lt;00:00, 22.64it/s]Extracting : libgomp-10.2.0-h1234567_51.conda:  79%|███████▉  | 31/39 [00:00&lt;00:00, 22.64it/s]           Extracting : pycosat-0.6.3-py38hfd63f10_2.conda:  82%|████████▏ | 32/39 [00:00&lt;00:00, 22.64it/s]Extracting : pip-21.2.4-py38hd43f75c_0.conda:  85%|████████▍ | 33/39 [00:00&lt;00:00, 22.64it/s]   Extracting : readline-8.1.2-h2f4d8fa_1.conda:  87%|████████▋ | 34/39 [00:00&lt;00:00, 22.64it/s]Extracting : pysocks-1.7.1-py38hd43f75c_0.conda:  90%|████████▉ | 35/39 [00:00&lt;00:00, 22.64it/s]Extracting : libffi-3.3-h7c1a80f_2.conda:  92%|█████████▏| 36/39 [00:00&lt;00:00, 22.64it/s]       Extracting : libgcc-ng-10.2.0-h1234567_51.conda:  95%|█████████▍| 37/39 [00:00&lt;00:00, 22.64it/s]Extracting : xz-5.2.5-hfd63f10_1.conda:  97%|█████████▋| 38/39 [00:00&lt;00:00, 22.64it/s]                                                                                                Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /tmp/RtmpSxbtrU/file3298668bfa7c6/1.13.0/0
+
+  added / updated specs:
+    - _libgcc_mutex==0.1=main
+    - _openmp_mutex==5.1=51_gnu
+    - brotlipy==0.7.0=py38hfd63f10_1002
+    - ca-certificates==2022.3.29=hd43f75c_1
+    - certifi==2021.10.8=py38hd43f75c_2
+    - cffi==1.15.0=py38h9a3cfec_1
+    - charset-normalizer==2.0.4=pyhd3eb1b0_0
+    - colorama==0.4.4=pyhd3eb1b0_0
+    - conda-content-trust==0.1.1=pyhd3eb1b0_0
+    - conda-package-handling==1.8.1=py38h2f4d8fa_0
+    - conda==4.12.0=py38hd43f75c_0
+    - cryptography==36.0.0=py38h3d58568_0
+    - idna==3.3=pyhd3eb1b0_0
+    - ld_impl_linux-aarch64==2.36.1=h0ab8de2_3
+    - libffi==3.3=h7c1a80f_2
+    - libgcc-ng==10.2.0=h1234567_51
+    - libgomp==10.2.0=h1234567_51
+    - libstdcxx-ng==10.2.0=h1234567_51
+    - ncurses==6.3=h2f4d8fa_2
+    - openssl==1.1.1n=h2f4d8fa_0
+    - pip==21.2.4=py38hd43f75c_0
+    - pycosat==0.6.3=py38hfd63f10_2
+    - pycparser==2.21=pyhd3eb1b0_0
+    - pyopenssl==22.0.0=pyhd3eb1b0_0
+    - pysocks==1.7.1=py38hd43f75c_0
+    - python==3.8.13=hc137634_0
+    - readline==8.1.2=h2f4d8fa_1
+    - requests==2.27.1=pyhd3eb1b0_0
+    - ruamel_yaml==0.15.100=py38h2f4d8fa_0
+    - setuptools==61.2.0=py38hd43f75c_0
+    - six==1.16.0=pyhd3eb1b0_1
+    - sqlite==3.38.2=h6632b73_0
+    - tk==8.6.11=h241ca14_0
+    - tqdm==4.63.0=pyhd3eb1b0_0
+    - urllib3==1.26.8=pyhd3eb1b0_0
+    - wheel==0.37.1=pyhd3eb1b0_0
+    - xz==5.2.5=hfd63f10_1
+    - yaml==0.2.5=hfd63f10_0
+    - zlib==1.2.12=h2f4d8fa_1
+
+
+The following NEW packages will be INSTALLED:
+
+  _libgcc_mutex      pkgs/main/linux-aarch64::_libgcc_mutex-0.1-main
+  _openmp_mutex      pkgs/main/linux-aarch64::_openmp_mutex-5.1-51_gnu
+  brotlipy           pkgs/main/linux-aarch64::brotlipy-0.7.0-py38hfd63f10_1002
+  ca-certificates    pkgs/main/linux-aarch64::ca-certificates-2022.3.29-hd43f75c_1
+  certifi            pkgs/main/linux-aarch64::certifi-2021.10.8-py38hd43f75c_2
+  cffi               pkgs/main/linux-aarch64::cffi-1.15.0-py38h9a3cfec_1
+  charset-normalizer pkgs/main/noarch::charset-normalizer-2.0.4-pyhd3eb1b0_0
+  colorama           pkgs/main/noarch::colorama-0.4.4-pyhd3eb1b0_0
+  conda              pkgs/main/linux-aarch64::conda-4.12.0-py38hd43f75c_0
+  conda-content-tru~ pkgs/main/noarch::conda-content-trust-0.1.1-pyhd3eb1b0_0
+  conda-package-han~ pkgs/main/linux-aarch64::conda-package-handling-1.8.1-py38h2f4d8fa_0
+  cryptography       pkgs/main/linux-aarch64::cryptography-36.0.0-py38h3d58568_0
+  idna               pkgs/main/noarch::idna-3.3-pyhd3eb1b0_0
+  ld_impl_linux-aar~ pkgs/main/linux-aarch64::ld_impl_linux-aarch64-2.36.1-h0ab8de2_3
+  libffi             pkgs/main/linux-aarch64::libffi-3.3-h7c1a80f_2
+  libgcc-ng          pkgs/main/linux-aarch64::libgcc-ng-10.2.0-h1234567_51
+  libgomp            pkgs/main/linux-aarch64::libgomp-10.2.0-h1234567_51
+  libstdcxx-ng       pkgs/main/linux-aarch64::libstdcxx-ng-10.2.0-h1234567_51
+  ncurses            pkgs/main/linux-aarch64::ncurses-6.3-h2f4d8fa_2
+  openssl            pkgs/main/linux-aarch64::openssl-1.1.1n-h2f4d8fa_0
+  pip                pkgs/main/linux-aarch64::pip-21.2.4-py38hd43f75c_0
+  pycosat            pkgs/main/linux-aarch64::pycosat-0.6.3-py38hfd63f10_2
+  pycparser          pkgs/main/noarch::pycparser-2.21-pyhd3eb1b0_0
+  pyopenssl          pkgs/main/noarch::pyopenssl-22.0.0-pyhd3eb1b0_0
+  pysocks            pkgs/main/linux-aarch64::pysocks-1.7.1-py38hd43f75c_0
+  python             pkgs/main/linux-aarch64::python-3.8.13-hc137634_0
+  readline           pkgs/main/linux-aarch64::readline-8.1.2-h2f4d8fa_1
+  requests           pkgs/main/noarch::requests-2.27.1-pyhd3eb1b0_0
+  ruamel_yaml        pkgs/main/linux-aarch64::ruamel_yaml-0.15.100-py38h2f4d8fa_0
+  setuptools         pkgs/main/linux-aarch64::setuptools-61.2.0-py38hd43f75c_0
+  six                pkgs/main/noarch::six-1.16.0-pyhd3eb1b0_1
+  sqlite             pkgs/main/linux-aarch64::sqlite-3.38.2-h6632b73_0
+  tk                 pkgs/main/linux-aarch64::tk-8.6.11-h241ca14_0
+  tqdm               pkgs/main/noarch::tqdm-4.63.0-pyhd3eb1b0_0
+  urllib3            pkgs/main/noarch::urllib3-1.26.8-pyhd3eb1b0_0
+  wheel              pkgs/main/noarch::wheel-0.37.1-pyhd3eb1b0_0
+  xz                 pkgs/main/linux-aarch64::xz-5.2.5-hfd63f10_1
+  yaml               pkgs/main/linux-aarch64::yaml-0.2.5-hfd63f10_0
+  zlib               pkgs/main/linux-aarch64::zlib-1.2.12-h2f4d8fa_1
+
+
+Preparing transaction: ...working... done
+Executing transaction: ...working... done
+installation finished.
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with repodata from current_repodata.json, will retry with next repodata source.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /tmp/RtmpSxbtrU/file3298668bfa7c6/1.13.0/basilisk.utils/1.13.0/test
+
+  added / updated specs:
+    - python=3.8.13
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    _openmp_mutex-4.5          |            2_gnu          23 KB  conda-forge
+    bzip2-1.0.8                |       hf897c2e_4         396 KB  conda-forge
+    ca-certificates-2023.5.7   |       hcefe29a_0         145 KB  conda-forge
+    ld_impl_linux-aarch64-2.40 |       h2d8c526_0         721 KB  conda-forge
+    libffi-3.4.2               |       h3557bc0_5          58 KB  conda-forge
+    libgcc-ng-12.2.0           |      h607ecd0_19         528 KB  conda-forge
+    libgomp-12.2.0             |      h607ecd0_19         455 KB  conda-forge
+    libnsl-2.0.0               |       hf897c2e_0          31 KB  conda-forge
+    libsqlite-3.41.2           |       h194ca79_1         976 KB  conda-forge
+    libuuid-2.38.1             |       hb4cce97_0          35 KB  conda-forge
+    libzlib-1.2.13             |       h4e544f5_4          72 KB  conda-forge
+    ncurses-6.3                |       headf329_1         1.1 MB  conda-forge
+    openssl-3.1.0              |       h31becfc_3         2.5 MB  conda-forge
+    pip-23.1.2                 |     pyhd8ed1ab_0         1.3 MB  conda-forge
+    python-3.8.13              |h92ab765_0_cpython        12.4 MB  conda-forge
+    readline-8.2               |       h8fc344f_1         287 KB  conda-forge
+    setuptools-67.7.2          |     pyhd8ed1ab_0         569 KB  conda-forge
+    sqlite-3.41.2              |       h3b3482f_1         981 KB  conda-forge
+    tk-8.6.12                  |       hd8af866_0         3.4 MB  conda-forge
+    wheel-0.40.0               |     pyhd8ed1ab_0          54 KB  conda-forge
+    xz-5.2.6                   |       h9cdd2b7_0         430 KB  conda-forge
+    ------------------------------------------------------------
+                                           Total:        26.3 MB
+
+The following NEW packages will be INSTALLED:
+
+  _openmp_mutex      conda-forge/linux-aarch64::_openmp_mutex-4.5-2_gnu
+  bzip2              conda-forge/linux-aarch64::bzip2-1.0.8-hf897c2e_4
+  ca-certificates    conda-forge/linux-aarch64::ca-certificates-2023.5.7-hcefe29a_0
+  ld_impl_linux-aar~ conda-forge/linux-aarch64::ld_impl_linux-aarch64-2.40-h2d8c526_0
+  libffi             conda-forge/linux-aarch64::libffi-3.4.2-h3557bc0_5
+  libgcc-ng          conda-forge/linux-aarch64::libgcc-ng-12.2.0-h607ecd0_19
+  libgomp            conda-forge/linux-aarch64::libgomp-12.2.0-h607ecd0_19
+  libnsl             conda-forge/linux-aarch64::libnsl-2.0.0-hf897c2e_0
+  libsqlite          conda-forge/linux-aarch64::libsqlite-3.41.2-h194ca79_1
+  libuuid            conda-forge/linux-aarch64::libuuid-2.38.1-hb4cce97_0
+  libzlib            conda-forge/linux-aarch64::libzlib-1.2.13-h4e544f5_4
+  ncurses            conda-forge/linux-aarch64::ncurses-6.3-headf329_1
+  openssl            conda-forge/linux-aarch64::openssl-3.1.0-h31becfc_3
+  pip                conda-forge/noarch::pip-23.1.2-pyhd8ed1ab_0
+  python             conda-forge/linux-aarch64::python-3.8.13-h92ab765_0_cpython
+  readline           conda-forge/linux-aarch64::readline-8.2-h8fc344f_1
+  setuptools         conda-forge/noarch::setuptools-67.7.2-pyhd8ed1ab_0
+  sqlite             conda-forge/linux-aarch64::sqlite-3.41.2-h3b3482f_1
+  tk                 conda-forge/linux-aarch64::tk-8.6.12-hd8af866_0
+  wheel              conda-forge/noarch::wheel-0.40.0-pyhd8ed1ab_0
+  xz                 conda-forge/linux-aarch64::xz-5.2.6-h9cdd2b7_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /tmp/RtmpSxbtrU/file3298668bfa7c6/1.13.0/basilisk.utils/1.13.0/test
+
+  added / updated specs:
+    - python=3.8.13
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    ca-certificates-2023.01.10 |       hd43f75c_0         120 KB
+    ------------------------------------------------------------
+                                           Total:         120 KB
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  ca-certificates    conda-forge::ca-certificates-2023.5.7~ --&gt; pkgs/main::ca-certificates-2023.01.10-hd43f75c_0
+
+
+
+Downloading and Extracting Packages
+ca-certificates-2023 | 120 KB    |            |   0% ca-certificates-2023 | 120 KB    | #3         |  13% ca-certificates-2023 | 120 KB    | ########## | 100% ca-certificates-2023 | 120 KB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with initial frozen solve. Retrying with flexible solve.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /tmp/RtmpSxbtrU/file3298668bfa7c6/1.13.0/basilisk.utils/1.13.0/test
+
+  added / updated specs:
+    - pandas=1.4.3
+    - python=3.8.13
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    libblas-3.9.0              |16_linuxaarch64_openblas          13 KB  conda-forge
+    libcblas-3.9.0             |16_linuxaarch64_openblas          13 KB  conda-forge
+    libgfortran-ng-12.2.0      |      he9431aa_19          22 KB  conda-forge
+    libgfortran5-12.2.0        |      hf695500_19         1.3 MB  conda-forge
+    liblapack-3.9.0            |16_linuxaarch64_openblas          13 KB  conda-forge
+    libopenblas-0.3.21         |pthreads_h6cb6f83_3         7.2 MB  conda-forge
+    libstdcxx-ng-12.2.0        |      hc13a102_19         4.2 MB  conda-forge
+    numpy-1.24.3               |   py38he3f4005_0         5.8 MB  conda-forge
+    pandas-1.4.3               |   py38h2fe58aa_0        12.2 MB  conda-forge
+    python-dateutil-2.8.2      |     pyhd8ed1ab_0         240 KB  conda-forge
+    python_abi-3.8             |           3_cp38           6 KB  conda-forge
+    pytz-2023.3                |     pyhd8ed1ab_0         182 KB  conda-forge
+    six-1.16.0                 |     pyh6c4a22f_0          14 KB  conda-forge
+    ------------------------------------------------------------
+                                           Total:        31.2 MB
+
+The following NEW packages will be INSTALLED:
+
+  libblas            conda-forge/linux-aarch64::libblas-3.9.0-16_linuxaarch64_openblas
+  libcblas           conda-forge/linux-aarch64::libcblas-3.9.0-16_linuxaarch64_openblas
+  libgfortran-ng     conda-forge/linux-aarch64::libgfortran-ng-12.2.0-he9431aa_19
+  libgfortran5       conda-forge/linux-aarch64::libgfortran5-12.2.0-hf695500_19
+  liblapack          conda-forge/linux-aarch64::liblapack-3.9.0-16_linuxaarch64_openblas
+  libopenblas        conda-forge/linux-aarch64::libopenblas-0.3.21-pthreads_h6cb6f83_3
+  libstdcxx-ng       conda-forge/linux-aarch64::libstdcxx-ng-12.2.0-hc13a102_19
+  numpy              conda-forge/linux-aarch64::numpy-1.24.3-py38he3f4005_0
+  pandas             conda-forge/linux-aarch64::pandas-1.4.3-py38h2fe58aa_0
+  python-dateutil    conda-forge/noarch::python-dateutil-2.8.2-pyhd8ed1ab_0
+  python_abi         conda-forge/linux-aarch64::python_abi-3.8-3_cp38
+  pytz               conda-forge/noarch::pytz-2023.3-pyhd8ed1ab_0
+  six                conda-forge/noarch::six-1.16.0-pyh6c4a22f_0
+
+The following packages will be UPDATED:
+
+  ca-certificates    pkgs/main::ca-certificates-2023.01.10~ --&gt; conda-forge::ca-certificates-2023.5.7-hcefe29a_0
+
+
+
+Downloading and Extracting Packages
+six-1.16.0           | 14 KB     |            |   0% six-1.16.0           | 14 KB     | ########## | 100% 
+pandas-1.4.3         | 12.2 MB   |            |   0% pandas-1.4.3         | 12.2 MB   |            |   0% pandas-1.4.3         | 12.2 MB   | 2          |   2% pandas-1.4.3         | 12.2 MB   | 4          |   5% pandas-1.4.3         | 12.2 MB   | 6          |   7% pandas-1.4.3         | 12.2 MB   | 9          |   9% pandas-1.4.3         | 12.2 MB   | #4         |  15% pandas-1.4.3         | 12.2 MB   | #9         |  20% pandas-1.4.3         | 12.2 MB   | ##5        |  26% pandas-1.4.3         | 12.2 MB   | ###3       |  34% pandas-1.4.3         | 12.2 MB   | ###7       |  38% pandas-1.4.3         | 12.2 MB   | ####2      |  42% pandas-1.4.3         | 12.2 MB   | ####8      |  49% pandas-1.4.3         | 12.2 MB   | #####1     |  52% pandas-1.4.3         | 12.2 MB   | #####4     |  55% pandas-1.4.3         | 12.2 MB   | #####7     |  57% pandas-1.4.3         | 12.2 MB   | #####8     |  59% pandas-1.4.3         | 12.2 MB   | ######     |  61% pandas-1.4.3         | 12.2 MB   | ######2    |  62% pandas-1.4.3         | 12.2 MB   | ######3    |  64% pandas-1.4.3         | 12.2 MB   | ######5    |  66% pandas-1.4.3         | 12.2 MB   | ######7    |  67% pandas-1.4.3         | 12.2 MB   | ######8    |  69% pandas-1.4.3         | 12.2 MB   | #######    |  70% pandas-1.4.3         | 12.2 MB   | #######1   |  72% pandas-1.4.3         | 12.2 MB   | #######5   |  75% pandas-1.4.3         | 12.2 MB   | #######6   |  77% pandas-1.4.3         | 12.2 MB   | #######8   |  79% pandas-1.4.3         | 12.2 MB   | ########   |  80% pandas-1.4.3         | 12.2 MB   | ########2  |  82% pandas-1.4.3         | 12.2 MB   | ########5  |  86% pandas-1.4.3         | 12.2 MB   | ########8  |  88% pandas-1.4.3         | 12.2 MB   | #########1 |  91% pandas-1.4.3         | 12.2 MB   | #########4 |  95% pandas-1.4.3         | 12.2 MB   | #########7 |  97% pandas-1.4.3         | 12.2 MB   | #########9 |  99% pandas-1.4.3         | 12.2 MB   | ########## | 100% 
+libopenblas-0.3.21   | 7.2 MB    |            |   0% libopenblas-0.3.21   | 7.2 MB    |            |   0% libopenblas-0.3.21   | 7.2 MB    | 1          |   1% libopenblas-0.3.21   | 7.2 MB    | 2          |   2% libopenblas-0.3.21   | 7.2 MB    | 3          |   3% libopenblas-0.3.21   | 7.2 MB    | 4          |   5% libopenblas-0.3.21   | 7.2 MB    | 6          |   7% libopenblas-0.3.21   | 7.2 MB    | 8          |   8% libopenblas-0.3.21   | 7.2 MB    | 9          |  10% libopenblas-0.3.21   | 7.2 MB    | #1         |  11% libopenblas-0.3.21   | 7.2 MB    | #2         |  13% libopenblas-0.3.21   | 7.2 MB    | #7         |  18% libopenblas-0.3.21   | 7.2 MB    | ####5      |  46% libopenblas-0.3.21   | 7.2 MB    | #####6     |  56% libopenblas-0.3.21   | 7.2 MB    | ######4    |  65% libopenblas-0.3.21   | 7.2 MB    | #######1   |  71% libopenblas-0.3.21   | 7.2 MB    | #######5   |  76% libopenblas-0.3.21   | 7.2 MB    | #######9   |  80% libopenblas-0.3.21   | 7.2 MB    | #########6 |  96% libopenblas-0.3.21   | 7.2 MB    | ########## | 100% 
+libstdcxx-ng-12.2.0  | 4.2 MB    |            |   0% libstdcxx-ng-12.2.0  | 4.2 MB    |            |   0% libstdcxx-ng-12.2.0  | 4.2 MB    | 6          |   7% libstdcxx-ng-12.2.0  | 4.2 MB    | #1         |  12% libstdcxx-ng-12.2.0  | 4.2 MB    | #8         |  19% libstdcxx-ng-12.2.0  | 4.2 MB    | ##6        |  26% libstdcxx-ng-12.2.0  | 4.2 MB    | ###8       |  39% libstdcxx-ng-12.2.0  | 4.2 MB    | #####3     |  54% libstdcxx-ng-12.2.0  | 4.2 MB    | ######3    |  64% libstdcxx-ng-12.2.0  | 4.2 MB    | #######3   |  74% libstdcxx-ng-12.2.0  | 4.2 MB    | ########3  |  83% libstdcxx-ng-12.2.0  | 4.2 MB    | #########1 |  91% libstdcxx-ng-12.2.0  | 4.2 MB    | #########8 |  99% libstdcxx-ng-12.2.0  | 4.2 MB    | ########## | 100% 
+python-dateutil-2.8. | 240 KB    |            |   0% python-dateutil-2.8. | 240 KB    | #########3 |  93% python-dateutil-2.8. | 240 KB    | ########## | 100% 
+libblas-3.9.0        | 13 KB     |            |   0% libblas-3.9.0        | 13 KB     | ########## | 100% 
+python_abi-3.8       | 6 KB      |            |   0% python_abi-3.8       | 6 KB      | ########## | 100% python_abi-3.8       | 6 KB      | ########## | 100% 
+libgfortran-ng-12.2. | 22 KB     |            |   0% libgfortran-ng-12.2. | 22 KB     | ########## | 100% 
+pytz-2023.3          | 182 KB    |            |   0% pytz-2023.3          | 182 KB    | ########## | 100% pytz-2023.3          | 182 KB    | ########## | 100% 
+numpy-1.24.3         | 5.8 MB    |            |   0% numpy-1.24.3         | 5.8 MB    |            |   0% numpy-1.24.3         | 5.8 MB    | 5          |   5% numpy-1.24.3         | 5.8 MB    | 9          |  10% numpy-1.24.3         | 5.8 MB    | #9         |  19% numpy-1.24.3         | 5.8 MB    | ####6      |  46% numpy-1.24.3         | 5.8 MB    | #####9     |  59% numpy-1.24.3         | 5.8 MB    | #######    |  70% numpy-1.24.3         | 5.8 MB    | #######9   |  80% numpy-1.24.3         | 5.8 MB    | ########9  |  90% numpy-1.24.3         | 5.8 MB    | #########8 |  98% numpy-1.24.3         | 5.8 MB    | ########## | 100% 
+libgfortran5-12.2.0  | 1.3 MB    |            |   0% libgfortran5-12.2.0  | 1.3 MB    | #########2 |  92% libgfortran5-12.2.0  | 1.3 MB    | ########## | 100% 
+libcblas-3.9.0       | 13 KB     |            |   0% libcblas-3.9.0       | 13 KB     | ########## | 100% libcblas-3.9.0       | 13 KB     | ########## | 100% 
+liblapack-3.9.0      | 13 KB     |            |   0% liblapack-3.9.0      | 13 KB     | ########## | 100% liblapack-3.9.0      | 13 KB     | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with repodata from current_repodata.json, will retry with next repodata source.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/locality/1.13.0
+
+  added / updated specs:
+    - python=3.8.13
+
+
+The following NEW packages will be INSTALLED:
+
+  _openmp_mutex      conda-forge/linux-aarch64::_openmp_mutex-4.5-2_gnu
+  bzip2              conda-forge/linux-aarch64::bzip2-1.0.8-hf897c2e_4
+  ca-certificates    conda-forge/linux-aarch64::ca-certificates-2023.5.7-hcefe29a_0
+  ld_impl_linux-aar~ conda-forge/linux-aarch64::ld_impl_linux-aarch64-2.40-h2d8c526_0
+  libffi             conda-forge/linux-aarch64::libffi-3.4.2-h3557bc0_5
+  libgcc-ng          conda-forge/linux-aarch64::libgcc-ng-12.2.0-h607ecd0_19
+  libgomp            conda-forge/linux-aarch64::libgomp-12.2.0-h607ecd0_19
+  libnsl             conda-forge/linux-aarch64::libnsl-2.0.0-hf897c2e_0
+  libsqlite          conda-forge/linux-aarch64::libsqlite-3.41.2-h194ca79_1
+  libuuid            conda-forge/linux-aarch64::libuuid-2.38.1-hb4cce97_0
+  libzlib            conda-forge/linux-aarch64::libzlib-1.2.13-h4e544f5_4
+  ncurses            conda-forge/linux-aarch64::ncurses-6.3-headf329_1
+  openssl            conda-forge/linux-aarch64::openssl-3.1.0-h31becfc_3
+  pip                conda-forge/noarch::pip-23.1.2-pyhd8ed1ab_0
+  python             conda-forge/linux-aarch64::python-3.8.13-h92ab765_0_cpython
+  readline           conda-forge/linux-aarch64::readline-8.2-h8fc344f_1
+  setuptools         conda-forge/noarch::setuptools-67.7.2-pyhd8ed1ab_0
+  sqlite             conda-forge/linux-aarch64::sqlite-3.41.2-h3b3482f_1
+  tk                 conda-forge/linux-aarch64::tk-8.6.12-hd8af866_0
+  wheel              conda-forge/noarch::wheel-0.40.0-pyhd8ed1ab_0
+  xz                 conda-forge/linux-aarch64::xz-5.2.6-h9cdd2b7_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/locality/1.13.0
+
+  added / updated specs:
+    - python=3.8.13
+
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  ca-certificates    conda-forge::ca-certificates-2023.5.7~ --&gt; pkgs/main::ca-certificates-2023.01.10-hd43f75c_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with initial frozen solve. Retrying with flexible solve.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/locality/1.13.0
+
+  added / updated specs:
+    - pandas=1.4.3
+    - python-dateutil=2.8.2
+    - python=3.8.13
+    - pytz=2022.2.1
+
+
+The following NEW packages will be INSTALLED:
+
+  libblas            conda-forge/linux-aarch64::libblas-3.9.0-16_linuxaarch64_openblas
+  libcblas           conda-forge/linux-aarch64::libcblas-3.9.0-16_linuxaarch64_openblas
+  libgfortran-ng     conda-forge/linux-aarch64::libgfortran-ng-12.2.0-he9431aa_19
+  libgfortran5       conda-forge/linux-aarch64::libgfortran5-12.2.0-hf695500_19
+  liblapack          conda-forge/linux-aarch64::liblapack-3.9.0-16_linuxaarch64_openblas
+  libopenblas        conda-forge/linux-aarch64::libopenblas-0.3.21-pthreads_h6cb6f83_3
+  libstdcxx-ng       conda-forge/linux-aarch64::libstdcxx-ng-12.2.0-hc13a102_19
+  numpy              conda-forge/linux-aarch64::numpy-1.24.3-py38he3f4005_0
+  pandas             conda-forge/linux-aarch64::pandas-1.4.3-py38h2fe58aa_0
+  python-dateutil    conda-forge/noarch::python-dateutil-2.8.2-pyhd8ed1ab_0
+  python_abi         conda-forge/linux-aarch64::python_abi-3.8-3_cp38
+  pytz               conda-forge/noarch::pytz-2022.2.1-pyhd8ed1ab_0
+  six                conda-forge/noarch::six-1.16.0-pyh6c4a22f_0
+
+The following packages will be UPDATED:
+
+  ca-certificates    pkgs/main::ca-certificates-2023.01.10~ --&gt; conda-forge::ca-certificates-2023.5.7-hcefe29a_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+* installing *source* package ‘son.of.basilisk’ ...
+** using non-staged installation via StagedInstall field
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded
+* DONE (son.of.basilisk)
+sys:1: FutureWarning: pandas.Float64Index is deprecated and will be removed from pandas in a future version. Use pandas.Index with the appropriate dtype instead.
+sys:1: FutureWarning: pandas.Int64Index is deprecated and will be removed from pandas in a future version. Use pandas.Index with the appropriate dtype instead.
+sys:1: FutureWarning: pandas.UInt64Index is deprecated and will be removed from pandas in a future version. Use pandas.Index with the appropriate dtype instead.
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with repodata from current_repodata.json, will retry with next repodata source.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/my_package_A
+
+  added / updated specs:
+    - python=3.8.13
+
+
+The following NEW packages will be INSTALLED:
+
+  _openmp_mutex      conda-forge/linux-aarch64::_openmp_mutex-4.5-2_gnu
+  bzip2              conda-forge/linux-aarch64::bzip2-1.0.8-hf897c2e_4
+  ca-certificates    conda-forge/linux-aarch64::ca-certificates-2023.5.7-hcefe29a_0
+  ld_impl_linux-aar~ conda-forge/linux-aarch64::ld_impl_linux-aarch64-2.40-h2d8c526_0
+  libffi             conda-forge/linux-aarch64::libffi-3.4.2-h3557bc0_5
+  libgcc-ng          conda-forge/linux-aarch64::libgcc-ng-12.2.0-h607ecd0_19
+  libgomp            conda-forge/linux-aarch64::libgomp-12.2.0-h607ecd0_19
+  libnsl             conda-forge/linux-aarch64::libnsl-2.0.0-hf897c2e_0
+  libsqlite          conda-forge/linux-aarch64::libsqlite-3.41.2-h194ca79_1
+  libuuid            conda-forge/linux-aarch64::libuuid-2.38.1-hb4cce97_0
+  libzlib            conda-forge/linux-aarch64::libzlib-1.2.13-h4e544f5_4
+  ncurses            conda-forge/linux-aarch64::ncurses-6.3-headf329_1
+  openssl            conda-forge/linux-aarch64::openssl-3.1.0-h31becfc_3
+  pip                conda-forge/noarch::pip-23.1.2-pyhd8ed1ab_0
+  python             conda-forge/linux-aarch64::python-3.8.13-h92ab765_0_cpython
+  readline           conda-forge/linux-aarch64::readline-8.2-h8fc344f_1
+  setuptools         conda-forge/noarch::setuptools-67.7.2-pyhd8ed1ab_0
+  sqlite             conda-forge/linux-aarch64::sqlite-3.41.2-h3b3482f_1
+  tk                 conda-forge/linux-aarch64::tk-8.6.12-hd8af866_0
+  wheel              conda-forge/noarch::wheel-0.40.0-pyhd8ed1ab_0
+  xz                 conda-forge/linux-aarch64::xz-5.2.6-h9cdd2b7_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/my_package_A
+
+  added / updated specs:
+    - python=3.8.13
+
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  ca-certificates    conda-forge::ca-certificates-2023.5.7~ --&gt; pkgs/main::ca-certificates-2023.01.10-hd43f75c_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with initial frozen solve. Retrying with flexible solve.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/my_package_A
+
+  added / updated specs:
+    - pandas=1.4.3
+    - python-dateutil=2.8.2
+    - python=3.8.13
+    - pytz=2022.2.1
+
+
+The following NEW packages will be INSTALLED:
+
+  libblas            conda-forge/linux-aarch64::libblas-3.9.0-16_linuxaarch64_openblas
+  libcblas           conda-forge/linux-aarch64::libcblas-3.9.0-16_linuxaarch64_openblas
+  libgfortran-ng     conda-forge/linux-aarch64::libgfortran-ng-12.2.0-he9431aa_19
+  libgfortran5       conda-forge/linux-aarch64::libgfortran5-12.2.0-hf695500_19
+  liblapack          conda-forge/linux-aarch64::liblapack-3.9.0-16_linuxaarch64_openblas
+  libopenblas        conda-forge/linux-aarch64::libopenblas-0.3.21-pthreads_h6cb6f83_3
+  libstdcxx-ng       conda-forge/linux-aarch64::libstdcxx-ng-12.2.0-hc13a102_19
+  numpy              conda-forge/linux-aarch64::numpy-1.24.3-py38he3f4005_0
+  pandas             conda-forge/linux-aarch64::pandas-1.4.3-py38h2fe58aa_0
+  python-dateutil    conda-forge/noarch::python-dateutil-2.8.2-pyhd8ed1ab_0
+  python_abi         conda-forge/linux-aarch64::python_abi-3.8-3_cp38
+  pytz               conda-forge/noarch::pytz-2022.2.1-pyhd8ed1ab_0
+  six                conda-forge/noarch::six-1.16.0-pyh6c4a22f_0
+
+The following packages will be UPDATED:
+
+  ca-certificates    pkgs/main::ca-certificates-2023.01.10~ --&gt; conda-forge::ca-certificates-2023.5.7-hcefe29a_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with repodata from current_repodata.json, will retry with next repodata source.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/my_package_B
+
+  added / updated specs:
+    - python=3.8.13
+
+
+The following NEW packages will be INSTALLED:
+
+  _openmp_mutex      conda-forge/linux-aarch64::_openmp_mutex-4.5-2_gnu
+  bzip2              conda-forge/linux-aarch64::bzip2-1.0.8-hf897c2e_4
+  ca-certificates    conda-forge/linux-aarch64::ca-certificates-2023.5.7-hcefe29a_0
+  ld_impl_linux-aar~ conda-forge/linux-aarch64::ld_impl_linux-aarch64-2.40-h2d8c526_0
+  libffi             conda-forge/linux-aarch64::libffi-3.4.2-h3557bc0_5
+  libgcc-ng          conda-forge/linux-aarch64::libgcc-ng-12.2.0-h607ecd0_19
+  libgomp            conda-forge/linux-aarch64::libgomp-12.2.0-h607ecd0_19
+  libnsl             conda-forge/linux-aarch64::libnsl-2.0.0-hf897c2e_0
+  libsqlite          conda-forge/linux-aarch64::libsqlite-3.41.2-h194ca79_1
+  libuuid            conda-forge/linux-aarch64::libuuid-2.38.1-hb4cce97_0
+  libzlib            conda-forge/linux-aarch64::libzlib-1.2.13-h4e544f5_4
+  ncurses            conda-forge/linux-aarch64::ncurses-6.3-headf329_1
+  openssl            conda-forge/linux-aarch64::openssl-3.1.0-h31becfc_3
+  pip                conda-forge/noarch::pip-23.1.2-pyhd8ed1ab_0
+  python             conda-forge/linux-aarch64::python-3.8.13-h92ab765_0_cpython
+  readline           conda-forge/linux-aarch64::readline-8.2-h8fc344f_1
+  setuptools         conda-forge/noarch::setuptools-67.7.2-pyhd8ed1ab_0
+  sqlite             conda-forge/linux-aarch64::sqlite-3.41.2-h3b3482f_1
+  tk                 conda-forge/linux-aarch64::tk-8.6.12-hd8af866_0
+  wheel              conda-forge/noarch::wheel-0.40.0-pyhd8ed1ab_0
+  xz                 conda-forge/linux-aarch64::xz-5.2.6-h9cdd2b7_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/my_package_B
+
+  added / updated specs:
+    - python=3.8.13
+
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  ca-certificates    conda-forge::ca-certificates-2023.5.7~ --&gt; pkgs/main::ca-certificates-2023.01.10-hd43f75c_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... failed with initial frozen solve. Retrying with flexible solve.
+Collecting package metadata (repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /home/biocbuild/bbs-3.18-bioc/meat/basilisk.Rcheck/tests/testthat/install-test-client/my_package_B
+
+  added / updated specs:
+    - pandas=1.4.2
+    - python-dateutil=2.8.1
+    - python=3.8.13
+    - pytz=2022.1
+
+
+The following NEW packages will be INSTALLED:
+
+  libblas            conda-forge/linux-aarch64::libblas-3.9.0-16_linuxaarch64_openblas
+  libcblas           conda-forge/linux-aarch64::libcblas-3.9.0-16_linuxaarch64_openblas
+  libgfortran-ng     conda-forge/linux-aarch64::libgfortran-ng-12.2.0-he9431aa_19
+  libgfortran5       conda-forge/linux-aarch64::libgfortran5-12.2.0-hf695500_19
+  liblapack          conda-forge/linux-aarch64::liblapack-3.9.0-16_linuxaarch64_openblas
+  libopenblas        conda-forge/linux-aarch64::libopenblas-0.3.21-pthreads_h6cb6f83_3
+  libstdcxx-ng       conda-forge/linux-aarch64::libstdcxx-ng-12.2.0-hc13a102_19
+  numpy              conda-forge/linux-aarch64::numpy-1.24.3-py38he3f4005_0
+  pandas             conda-forge/linux-aarch64::pandas-1.4.2-py38h2fe58aa_2
+  python-dateutil    conda-forge/noarch::python-dateutil-2.8.1-py_0
+  python_abi         conda-forge/linux-aarch64::python_abi-3.8-3_cp38
+  pytz               conda-forge/noarch::pytz-2022.1-pyhd8ed1ab_0
+  six                conda-forge/noarch::six-1.16.0-pyh6c4a22f_0
+
+The following packages will be UPDATED:
+
+  ca-certificates    pkgs/main::ca-certificates-2023.01.10~ --&gt; conda-forge::ca-certificates-2023.5.7-hcefe29a_0
+
+
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+
+
+==&gt; WARNING: A newer version of conda exists. &lt;==
+  current version: 4.12.0
+  latest version: 23.3.1
+
+Please update conda by running
+
+    $ conda update -n base -c defaults conda
+
+
+[ FAIL 0 | WARN 0 | SKIP 0 | PASS 67 ]
+&gt; 
+&gt; proc.time()
+    user   system  elapsed 
+ 853.979   82.068 1109.426 
+</PRE>
+</DIV><HR>
+<H3>Example timings</H3>
+<P><SPAN class="filename">basilisk.Rcheck/basilisk-Ex.timings</SPAN></P>
+<DIV class="kunpeng1 hscrollable">
+<TABLE>
+<TR><TD>name</TD><TD style="text-align: right;">user</TD><TD style="text-align: right;">system</TD><TD style="text-align: right;">elapsed
+</TD><TR>
+<TR><TD>BasiliskEnvironment-class</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.005</TD><TD style="text-align: right;">0.005</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>PyPiLink</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.001</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>basiliskOptions</TD><TD style="text-align: right;">0.001</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>basiliskStart</TD><TD style="text-align: right;">224.217</TD><TD style="text-align: right;"> 16.632</TD><TD style="text-align: right;">251.793</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>configureBasiliskEnv</TD><TD style="text-align: right;">0.002</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.003</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>createLocalBasiliskEnv</TD><TD style="text-align: right;">81.062</TD><TD style="text-align: right;"> 5.068</TD><TD style="text-align: right;">91.679</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>listPackages</TD><TD style="text-align: right;">1.334</TD><TD style="text-align: right;">0.217</TD><TD style="text-align: right;">1.830</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>obtainEnvironmentPath</TD><TD style="text-align: right;">0.017</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.017</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>setupBasiliskEnv</TD><TD style="text-align: right;">0.011</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.012</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>useBasiliskEnv</TD><TD style="text-align: right;">1.818</TD><TD style="text-align: right;">0.318</TD><TD style="text-align: right;">2.039</TD><TD style="text-align: right;">
+</TD><TR>
+</TABLE>
+</DIV></BODY>
+</HTML>

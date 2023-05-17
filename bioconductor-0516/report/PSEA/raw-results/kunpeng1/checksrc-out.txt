@@ -1,0 +1,161 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD check --install=check:PSEA.install-out.txt --library=/home/biocbuild/R/R-4.3.0-bin/site-library --timings PSEA_1.35.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/PSEA.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘PSEA/DESCRIPTION’ ... OK
+* this is package ‘PSEA’ version ‘1.35.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘PSEA’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is  5.9Mb
+  sub-directories of 1Mb or more:
+    data   5.7Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Title field: should not end in a period.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+crplot: no visible global function definition for ‘residuals’
+crplot: no visible global function definition for ‘dev.new’
+crplot: no visible global function definition for ‘abline’
+crplot: no visible global function definition for ‘points’
+lmfitst: no visible global function definition for ‘is’
+lmfitst : <anonymous>: no visible global function definition for
+  ‘lm.fit’
+marker: no visible global function definition for ‘is’
+swlm: no visible global function definition for ‘formula’
+swlm: no visible global function definition for ‘is’
+swlm: no visible global function definition for ‘lm’
+Undefined global functions or variables:
+  abline dev.new formula is lm lm.fit points residuals
+Consider adding
+  importFrom("grDevices", "dev.new")
+  importFrom("graphics", "abline", "points")
+  importFrom("methods", "is")
+  importFrom("stats", "formula", "lm", "lm.fit", "residuals")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘PSEA.Rnw’... OK
+  ‘PSEA_RNAmixtures.Rnw’... failed
+ WARNING
+Errors in running code in vignettes:
+when running code in ‘PSEA_RNAmixtures.Rnw’
+  ...
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Setting options('download.file.method.GEOquery'='auto')
+Setting options('GEOquery.inmemory.gpl'=FALSE)
+
+> library(affy)
+
+  When sourcing ‘PSEA_RNAmixtures.R’:
+Error: there is no package called ‘affy’
+Execution halted
+
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘PSEA.Rnw’ using Sweave
+--- finished re-building ‘PSEA.Rnw’
+
+--- re-building ‘PSEA_RNAmixtures.Rnw’ using Sweave
+Loading required package: Biobase
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Setting options('download.file.method.GEOquery'='auto')
+Setting options('GEOquery.inmemory.gpl'=FALSE)
+
+Error: processing vignette 'PSEA_RNAmixtures.Rnw' failed with diagnostics:
+ chunk 2 
+Error in library(affy) : there is no package called ‘affy’
+
+--- failed re-building ‘PSEA_RNAmixtures.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘PSEA_RNAmixtures.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 WARNING, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/PSEA.Rcheck/00check.log’
+for details.
+
+

@@ -1,0 +1,119 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD check --install=check:recoup.install-out.txt --library=/home/biocbuild/R/R-4.3.0-bin/site-library --timings recoup_1.29.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/recoup.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘recoup/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘recoup’ version ‘1.29.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘recoup’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... NOTE
+Unexported objects imported by ':::' calls:
+  ‘GenomicFeatures:::GFF_FEATURE_TYPES’ ‘biomaRt:::.generateFilterXML’
+  ‘biomaRt:::.setResultColNames’ ‘biomaRt:::martCheck’
+  ‘biomaRt:::martDataset’ ‘biomaRt:::martHost’ ‘biomaRt:::martVSchema’
+  See the note in ?`:::` about the use of this operator.
+There are ::: calls to the package's namespace in its code. A package
+  almost never needs to use ::: for its own objects:
+  ‘makeHorizontalAnnotation’
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+readBamIntervals: no visible binding for global variable ‘bam.file’
+recoupCorrelation: no visible binding for global variable ‘Index’
+recoupCorrelation: no visible binding for global variable ‘Coverage’
+recoupCorrelation: no visible binding for global variable ‘Condition’
+recoupCorrelation: no visible binding for global variable ‘Design’
+recoupHeatmap : <anonymous>: no visible global function definition for
+  ‘grid.text’
+recoupProfile: no visible binding for global variable ‘Signal’
+recoupProfile: no visible binding for global variable ‘Condition’
+recoupProfile: no visible binding for global variable ‘Design’
+Undefined global functions or variables:
+  Condition Coverage Design Index Signal bam.file grid.text
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                    user system elapsed
+mergeRuns         26.731  9.597  27.320
+profileMatrix     13.893  6.324  10.887
+recoup            11.080  5.113  11.034
+recoupPlot        10.801  4.720  10.869
+sliceObj          10.280  4.808  10.180
+simpleGetSet      10.042  4.403   9.750
+kmeansDesign      10.249  3.438   9.599
+recoupProfile      8.319  2.019   9.542
+recoupHeatmap      7.357  2.356   8.834
+recoupCorrelation  7.307  2.220   8.721
+coverageRef        6.361  0.187   6.545
+getAnnotation      1.191  0.053  19.873
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘runTests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘recoup_intro.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/recoup.Rcheck/00check.log’
+for details.
+
+

@@ -1,0 +1,288 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD check --install=check:pathview.install-out.txt --library=/home/biocbuild/R/R-4.3.0-bin/site-library --timings pathview_1.41.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/pathview.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘pathview/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘pathview’ version ‘1.41.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘pathview’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking startup messages can be suppressed ... OK
+* checking dependencies in R code ... WARNING
+'::' or ':::' import not declared from: ‘BiocManager’
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+File ‘pathview/R/zzz.R’:
+  .onLoad calls:
+    installed.packages()
+    packageStartupMessage(wordwrap(disclaimer, 80))
+
+Package startup functions should not call ‘installed.packages’.
+See section ‘Good practice’ in '?.onAttach'.
+
+Warning in formals(fun) : argument is not a function
+Warning in body(fun) : argument is not a function
+col.key: no visible binding for global variable ‘node.sizes’
+cpd2kegg: no visible binding for global variable ‘rn.list’
+cpdidmap: no visible binding for global variable ‘cpd.accs’
+cpdkegg2name: no visible binding for global variable ‘kegg.met’
+cpdname2kegg: no visible binding for global variable ‘cpd.names’
+download.kegg: no visible global function definition for
+  ‘download.file’
+eg2id: no visible binding for global variable ‘gene.idtype.list’
+geneannot.map: no visible binding for global variable ‘bods’
+id2eg: no visible binding for global variable ‘gene.idtype.list’
+kegg.species.code: no visible binding for global variable ‘korg.1’
+pathview: no visible binding for global variable ‘bods’
+pathview: no visible binding for global variable ‘gene.idtype.bods’
+pathview: no visible binding for global variable ‘rn.list’
+sim.mol.data: no visible binding for global variable ‘bods’
+sim.mol.data: no visible binding for global variable ‘gene.idtype.bods’
+sim.mol.data: no visible binding for global variable ‘cpd.accs’
+sim.mol.data: no visible binding for global variable ‘cpd.simtypes’
+sim.mol.data: no visible binding for global variable ‘rn.list’
+sim.mol.data: no visible binding for global variable ‘ko.ids’
+Undefined global functions or variables:
+  bods cpd.accs cpd.names cpd.simtypes download.file gene.idtype.bods
+  gene.idtype.list kegg.met ko.ids korg.1 node.sizes rn.list
+Consider adding
+  importFrom("utils", "download.file")
+to your NAMESPACE file.
+* checking Rd files ... NOTE
+checkRd: (-1) node.color.Rd:71: Escaped LaTeX specials: \#
+checkRd: (-1) pathview.Rd:204: Escaped LaTeX specials: \#
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+           user system elapsed
+pathview 15.832  0.568  17.211
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘runTests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘pathview.Rnw’... failed
+ WARNING
+Errors in running code in vignettes:
+when running code in ‘pathview.Rnw’
+  ...
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+Loading required namespace: org.EcK12.eg.db
+Failed with error:  ‘there is no package called ‘org.EcK12.eg.db’’
+
+  When sourcing ‘pathview.R’:
+Error: Fail to install/load gene annotation package org.EcK12.eg.db!
+Execution halted
+
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘pathview.Rnw’ using Sweave
+
+##############################################################################
+Pathview is an open source software package distributed under GNU General
+Public License version 3 (GPLv3). Details of GPLv3 is available at
+http://www.gnu.org/licenses/gpl-3.0.html. Particullary, users are required to
+formally cite the original Pathview paper (not just mention it) in publications
+or products. For details, do citation("pathview") within R.
+
+The pathview downloads and uses KEGG data. Non-academic uses may require a KEGG
+license agreement (details at http://www.kegg.jp/kegg/legal.html).
+##############################################################################
+Info: Downloading xml files for hsa04110, 1/1 pathways..
+Info: Downloading png files for hsa04110, 1/1 pathways..
+'select()' returned 1:1 mapping between keys and columns
+Info: Working in directory /home/biocbuild/bbs-3.18-bioc/meat/pathview.Rcheck/vign_test/pathview/vignettes
+Info: Writing image file hsa04110.gse16873.png
+'select()' returned 1:1 mapping between keys and columns
+Info: Working in directory /home/biocbuild/bbs-3.18-bioc/meat/pathview.Rcheck/vign_test/pathview/vignettes
+Info: Writing image file hsa04110.gse16873.2layer.png
+'select()' returned 1:1 mapping between keys and columns
+Warning: reconcile groups sharing member nodes!
+Info: Working in directory /home/biocbuild/bbs-3.18-bioc/meat/pathview.Rcheck/vign_test/pathview/vignettes
+Info: Writing image file hsa04110.gse16873.pdf
+'select()' returned 1:1 mapping between keys and columns
+Warning: reconcile groups sharing member nodes!
+Info: Working in directory /home/biocbuild/bbs-3.18-bioc/meat/pathview.Rcheck/vign_test/pathview/vignettes
+Info: Writing image file hsa04110.gse16873.2layer.pdf
+'select()' returned 1:1 mapping between keys and columns
+Info: Working in directory /home/biocbuild/bbs-3.18-bioc/meat/pathview.Rcheck/vign_test/pathview/vignettes
+Info: Writing image file hsa04110.gse16873.split.pdf
+'select()' returned 1:1 mapping between keys and columns
+Info: Working in directory /home/biocbuild/bbs-3.18-bioc/meat/pathview.Rcheck/vign_test/pathview/vignettes
+Info: Writing image file hsa04110.gse16873.split.expanded.pdf
+Info: Downloading xml files for hsa00640, 1/1 pathways..
+Info: Downloading png files for hsa00640, 1/1 pathways..
+'select()' returned 1:1 mapping between keys and columns
+Info: Working in directory /home/biocbuild/bbs-3.18-bioc/meat/pathview.Rcheck/vign_test/pathview/vignettes
+Info: Writing image file hsa00640.gse16873.cpd.png
+Warning in .local(from, to, graph) :
+  edges replaced: ‘180|60’, ‘122|119’, ‘122|120’, ‘84|77’, ‘84|199’
+'select()' returned 1:1 mapping between keys and columns
+Info: Working in directory /home/biocbuild/bbs-3.18-bioc/meat/pathview.Rcheck/vign_test/pathview/vignettes
+Info: Writing image file hsa00640.gse16873.cpd.pdf
+'select()' returned 1:1 mapping between keys and columns
+Info: Working in directory /home/biocbuild/bbs-3.18-bioc/meat/pathview.Rcheck/vign_test/pathview/vignettes
+Info: Writing image file hsa00640.gse16873.cpd.3-2s.multi.png
+'select()' returned 1:1 mapping between keys and columns
+Info: Working in directory /home/biocbuild/bbs-3.18-bioc/meat/pathview.Rcheck/vign_test/pathview/vignettes
+Info: Writing image file hsa00640.gse16873.cpd.3-2s.match.multi.png
+Warning in .local(from, to, graph) :
+  edges replaced: ‘180|60’, ‘122|119’, ‘122|120’, ‘84|77’, ‘84|199’
+'select()' returned 1:1 mapping between keys and columns
+Info: Working in directory /home/biocbuild/bbs-3.18-bioc/meat/pathview.Rcheck/vign_test/pathview/vignettes
+Info: Writing image file hsa00640.gse16873.cpd.3-2s.multi.pdf
+Loading required package: org.Hs.eg.db
+Loading required package: AnnotationDbi
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: IRanges
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+'select()' returned 1:1 mapping between keys and columns
+Info: Working in directory /home/biocbuild/bbs-3.18-bioc/meat/pathview.Rcheck/vign_test/pathview/vignettes
+Info: Writing image file hsa00640.sel.genes.sel.cpd.png
+'select()' returned 1:1 mapping between keys and columns
+Info: Working in directory /home/biocbuild/bbs-3.18-bioc/meat/pathview.Rcheck/vign_test/pathview/vignettes
+Info: Writing image file hsa00640.sel.genes.cpd.png
+Note: "CAS Registry Number" has only 4643 unique IDs!
+Note: "ENSEMBLPROT" has only 21439 unique IDs!
+'select()' returned 1:many mapping between keys and columns
+Note: multiple compounds may map to a input ID, only the first one kept!
+'select()' returned 1:1 mapping between keys and columns
+Info: Working in directory /home/biocbuild/bbs-3.18-bioc/meat/pathview.Rcheck/vign_test/pathview/vignettes
+Info: Writing image file hsa00640.gene.ensprot.cpd.cas.png
+Note: multiple compounds may map to a input ID, only the first one kept!
+'select()' returned 1:many mapping between keys and columns
+'select()' returned 1:1 mapping between keys and columns
+Info: Working in directory /home/biocbuild/bbs-3.18-bioc/meat/pathview.Rcheck/vign_test/pathview/vignettes
+Info: Writing image file hsa00640.gene.entrez.cpd.kc.png
+Info: Downloading xml files for eco00640, 1/1 pathways..
+Info: Downloading png files for eco00640, 1/1 pathways..
+Info: Working in directory /home/biocbuild/bbs-3.18-bioc/meat/pathview.Rcheck/vign_test/pathview/vignettes
+Info: Writing image file eco00640.eco.kegg.png
+Loading required namespace: org.EcK12.eg.db
+Failed with error:  ‘there is no package called ‘org.EcK12.eg.db’’
+Warning: unable to access index for repository https://bioconductor.org/packages/3.18/data/annotation/src/contrib:
+  cannot open URL 'https://bioconductor.org/packages/3.18/data/annotation/src/contrib/PACKAGES'
+Bioconductor version 3.18 (BiocManager 1.30.20), R 4.3.0 (2023-04-21)
+Installing package(s) 'org.EcK12.eg.db'
+Warning: unable to access index for repository https://bioconductor.org/packages/3.18/data/annotation/src/contrib:
+  cannot open URL 'https://bioconductor.org/packages/3.18/data/annotation/src/contrib/PACKAGES'
+Warning: package ‘org.EcK12.eg.db’ is not available for Bioconductor version '3.18'
+
+A version of this package for your version of R might be available elsewhere,
+see the ideas at
+https://cran.r-project.org/doc/manuals/r-patched/R-admin.html#Installing-packages
+Loading required namespace: org.EcK12.eg.db
+Failed with error:  ‘there is no package called ‘org.EcK12.eg.db’’
+
+Error: processing vignette 'pathview.Rnw' failed with diagnostics:
+ chunk 34 (label = eco.dat.kegg) 
+Error in sim.mol.data(mol.type = "gene", id.type = "entrez", species = "eco",  : 
+  Fail to install/load gene annotation package org.EcK12.eg.db!
+
+--- failed re-building ‘pathview.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘pathview.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 WARNINGs, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/pathview.Rcheck/00check.log’
+for details.
+
+

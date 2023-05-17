@@ -1,0 +1,153 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD check --install=check:annaffy.install-out.txt --library=/home/biocbuild/R/R-4.3.0-bin/site-library --timings annaffy_1.73.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/annaffy.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘annaffy/DESCRIPTION’ ... OK
+* this is package ‘annaffy’ version ‘1.73.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘annaffy’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking startup messages can be suppressed ... OK
+* checking dependencies in R code ... NOTE
+'library' or 'require' call to ‘methods’ which was already attached by Depends.
+  Please remove these calls from your code.
+'library' or 'require' call to ‘tcltk’ in package code.
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+Packages in Depends field not imported from:
+  ‘Biobase’ ‘BiocManager’ ‘GO.db’ ‘methods’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+':::' call which should be '::': ‘BiocManager:::available’
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+File ‘annaffy/R/zzz.R’:
+  .onLoad calls:
+    require(methods)
+
+Package startup functions should not change the search path.
+See section ‘Good practice’ in '?.onAttach'.
+
+.aaf.goterm: no visible binding for global variable ‘GOTERM’
+aafGO: no visible global function definition for ‘GO_dbfile’
+aafTableInt: no visible global function definition for ‘sampleNames’
+aafTableInt: no visible global function definition for ‘featureNames’
+aafTableInt: no visible global function definition for ‘exprs’
+chkPkgs: no visible global function definition for ‘userQuery’
+selectorWidget : move: no visible global function definition for
+  ‘tkcurselection’
+selectorWidget : move: no visible global function definition for
+  ‘tclvalue’
+selectorWidget : move: no visible global function definition for
+  ‘tkget’
+selectorWidget : move: no visible global function definition for
+  ‘tkinsert’
+selectorWidget : move: no visible global function definition for
+  ‘tkdelete’
+selectorWidget : move: no visible global function definition for
+  ‘tkselection.clear’
+selectorWidget : ok: no visible global function definition for ‘tkget’
+selectorWidget : ok: no visible global function definition for
+  ‘tkdestroy’
+selectorWidget: no visible global function definition for ‘tktoplevel’
+selectorWidget: no visible global function definition for ‘tkwm.title’
+selectorWidget: no visible global function definition for
+  ‘tkwm.resizable’
+selectorWidget: no visible global function definition for ‘tkframe’
+selectorWidget: no visible global function definition for ‘tklistbox’
+selectorWidget : <anonymous>: no visible global function definition for
+  ‘tkset’
+selectorWidget: no visible global function definition for ‘tkscrollbar’
+selectorWidget : <anonymous>: no visible global function definition for
+  ‘tkyview’
+selectorWidget: no visible global function definition for ‘tkgrid’
+selectorWidget: no visible global function definition for ‘tklabel’
+selectorWidget: no visible global function definition for ‘tkbutton’
+selectorWidget: no visible global function definition for ‘tkinsert’
+selectorWidget : <anonymous>: no visible global function definition for
+  ‘tkdestroy’
+selectorWidget: no visible global function definition for ‘tkbind’
+selectorWidget: no visible global function definition for
+  ‘tkwait.window’
+saveHTML,aafTable: no visible global function definition for
+  ‘browseURL’
+Undefined global functions or variables:
+  GOTERM GO_dbfile browseURL exprs featureNames sampleNames tclvalue
+  tkbind tkbutton tkcurselection tkdelete tkdestroy tkframe tkget
+  tkgrid tkinsert tklabel tklistbox tkscrollbar tkselection.clear tkset
+  tktoplevel tkwait.window tkwm.resizable tkwm.title tkyview userQuery
+Consider adding
+  importFrom("utils", "browseURL")
+to your NAMESPACE file.
+* checking Rd files ... NOTE
+checkRd: (-1) aafTable-class.Rd:89: Escaped LaTeX specials: \$
+* checking Rd metadata ... OK
+* checking Rd cross-references ... WARNING
+Missing link or links in documentation object 'getURL-methods.Rd':
+  ‘aafUniGene-class’
+
+See section 'Cross-references' in the 'Writing R Extensions' manual.
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘annaffy.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 WARNING, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/annaffy.Rcheck/00check.log’
+for details.
+
+

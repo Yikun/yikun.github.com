@@ -1,0 +1,128 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD build --keep-empty-dirs --no-resave-data netboost
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘netboost/DESCRIPTION’ ... OK
+* preparing ‘netboost’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* running ‘cleanup’
+* installing the package to build vignettes
+      -----------------------------------
+* installing *source* package ‘netboost’ ...
+** using staged installation
+checking for a BSD-compatible install... /usr/bin/install -c
+checking whether build environment is sane... yes
+checking for a thread-safe mkdir -p... /usr/bin/mkdir -p
+checking for gawk... gawk
+checking whether make sets $(MAKE)... yes
+checking whether make supports nested variables... yes
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking whether gcc understands -c and -o together... yes
+checking whether make supports the include directive... yes (GNU style)
+checking dependency style of gcc... none
+checking how to run the C preprocessor... gcc -E
+checking build system type... aarch64-unknown-linux-gnu
+checking host system type... aarch64-unknown-linux-gnu
+checking for x86 cpuid  output... unknown
+checking for x86-AVX xgetbv  output... unknown
+checking whether C compiler accepts -Wno-deprecated... yes
+checking for strip... strip
+checking that generated files are newer than configure... done
+configure: creating ./config.status
+config.status: creating src/Makevars
+config.status: creating src/mcupgma/clustering_util/Makefile
+config.status: creating src/config.h
+config.status: executing depfiles commands
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+using C++11
+g++ -std=gnu++11 -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0-bin/site-library/Rcpp/include' -I'/home/biocbuild/R/R-4.3.0-bin/site-library/RcppParallel/include' -I/usr/local/include   `/home/biocbuild/R/R-4.3.0-bin/lib/R/bin/Rscript -e "Rcpp:::CxxFlags()"`  -fPIC  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++11 -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0-bin/site-library/Rcpp/include' -I'/home/biocbuild/R/R-4.3.0-bin/site-library/RcppParallel/include' -I/usr/local/include   `/home/biocbuild/R/R-4.3.0-bin/lib/R/bin/Rscript -e "Rcpp:::CxxFlags()"`  -fPIC  -g -O2  -c boosting.cpp -o boosting.o
+g++ -std=gnu++11 -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0-bin/site-library/Rcpp/include' -I'/home/biocbuild/R/R-4.3.0-bin/site-library/RcppParallel/include' -I/usr/local/include   `/home/biocbuild/R/R-4.3.0-bin/lib/R/bin/Rscript -e "Rcpp:::CxxFlags()"`  -fPIC  -g -O2  -c dist_tom.cpp -o dist_tom.o
+g++ -std=gnu++11 -I"/home/biocbuild/R/R-4.3.0-bin/lib/R/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0-bin/site-library/Rcpp/include' -I'/home/biocbuild/R/R-4.3.0-bin/site-library/RcppParallel/include' -I/usr/local/include   `/home/biocbuild/R/R-4.3.0-bin/lib/R/bin/Rscript -e "Rcpp:::CxxFlags()"`  -fPIC  -g -O2  -c tree_sort.cpp -o tree_sort.o
+g++ -std=gnu++11 -shared -L/home/biocbuild/R/R-4.3.0-bin/lib/R/lib -L/usr/local/lib -o netboost.so RcppExports.o boosting.o dist_tom.o tree_sort.o -L/home/biocbuild/R/R-4.3.0-bin/lib/R/lib -lR
+strip -S netboost.so
+installing via 'install.libs.R' to /tmp/RtmpoTYJkR/Rinst38da225178d398/00LOCK-netboost/00new/netboost
+[1] "R_PACKAGE_SRC:  /tmp/RtmpoTYJkR/Rbuild38da2211e1d8ba/netboost"
+[1] "R_PACKAGE_DIR:  /tmp/RtmpoTYJkR/Rinst38da225178d398/00LOCK-netboost/00new/netboost"
+[1] "R_ARCH:         "
+[1] "SHLIB_EXT:      .so"
+[1] "INSTALL PATH:  /tmp/RtmpoTYJkR/Rbuild38da2211e1d8ba/netboost/src/mcupgma/scripts/install_path.mk"
+make: Entering directory '/tmp/RtmpoTYJkR/Rbuild38da2211e1d8ba/netboost/src/mcupgma'
+Clean build.
+make: Leaving directory '/tmp/RtmpoTYJkR/Rbuild38da2211e1d8ba/netboost/src/mcupgma'
+make: Entering directory '/tmp/RtmpoTYJkR/Rbuild38da2211e1d8ba/netboost/src/mcupgma'
+==== compiling clustering_util sources using external Makefile (clustering_util/Makefile) recursively 
+make -C clustering_util  -f Makefile mcupgma_install
+make[1]: Entering directory '/tmp/RtmpoTYJkR/Rbuild38da2211e1d8ba/netboost/src/mcupgma/clustering_util'
+mkdir -p obj.aarch64_Linux
+g++ -Wall  -Wno-deprecated -O3 -DNDEBUG -c -o obj.aarch64_Linux/HashingMergerMain.cmdline.o HashingMergerMain.cmdline.c
+g++ -Wall  -Wno-deprecated -O3 -DNDEBUG  -Wall  -Wno-deprecated -O3 -DNDEBUG -c -o obj.aarch64_Linux/ClusteringUtil.o ClusteringUtil.cpp
+g++ -Wall  -Wno-deprecated -O3 -DNDEBUG  -Wall  -Wno-deprecated -O3 -DNDEBUG -c -o obj.aarch64_Linux/Tree.o Tree.cpp
+g++ -Wall  -Wno-deprecated -O3 -DNDEBUG   -o bin/edges2valid_clusters HashingMergerMain.cpp obj.aarch64_Linux/HashingMergerMain.cmdline.o obj.aarch64_Linux/ClusteringUtil.o obj.aarch64_Linux/Tree.o 
+g++ -Wall  -Wno-deprecated -O3 -DNDEBUG -c -o obj.aarch64_Linux/EdgeCollatorMain.cmdline.o EdgeCollatorMain.cmdline.c
+g++ -Wall  -Wno-deprecated -O3 -DNDEBUG  -o bin/edge_collator EdgeCollatorMain.cpp obj.aarch64_Linux/EdgeCollatorMain.cmdline.o obj.aarch64_Linux/ClusteringUtil.o obj.aarch64_Linux/Tree.o 
+make[1]: Leaving directory '/tmp/RtmpoTYJkR/Rbuild38da2211e1d8ba/netboost/src/mcupgma/clustering_util'
+==== compiling  sources using external Makefile (clustering_round/Makefile) recursively 
+make -C clustering_round  -f Makefile
+make[1]: Entering directory '/tmp/RtmpoTYJkR/Rbuild38da2211e1d8ba/netboost/src/mcupgma/clustering_round'
+mkdir -p dep.aarch64_Linux 
+test -d dep.aarch64_Linux && g++ -MM -MT 'dep.aarch64_Linux/test_heap.d  obj.aarch64_Linux/test_heap.o  obj.aarch64_Linux.debug/test_heap.o' -O3 -ftemplate-depth-64 -I./ test_heap.cpp > dep.aarch64_Linux/test_heap.d
+test -d dep.aarch64_Linux && g++ -MM -MT 'dep.aarch64_Linux/HierarchicalClustering_with_unknown_edges.d  obj.aarch64_Linux/HierarchicalClustering_with_unknown_edges.o  obj.aarch64_Linux.debug/HierarchicalClustering_with_unknown_edges.o' -O3 -ftemplate-depth-64 -I./ HierarchicalClustering_with_unknown_edges.cpp > dep.aarch64_Linux/HierarchicalClustering_with_unknown_edges.d
+test -d dep.aarch64_Linux && g++ -MM -MT 'dep.aarch64_Linux/HierarchicalClustering_main.d  obj.aarch64_Linux/HierarchicalClustering_main.o  obj.aarch64_Linux.debug/HierarchicalClustering_main.o' -O3 -ftemplate-depth-64 -I./ HierarchicalClustering_main.cpp > dep.aarch64_Linux/HierarchicalClustering_main.d
+test -d dep.aarch64_Linux && g++ -MM -MT 'dep.aarch64_Linux/test_heap.d  obj.aarch64_Linux/test_heap.o  obj.aarch64_Linux.debug/test_heap.o' -O3 -ftemplate-depth-64 -I./ test_heap.cpp > dep.aarch64_Linux/test_heap.d
+test -d dep.aarch64_Linux && g++ -MM -MT 'dep.aarch64_Linux/HierarchicalClustering_with_unknown_edges.d  obj.aarch64_Linux/HierarchicalClustering_with_unknown_edges.o  obj.aarch64_Linux.debug/HierarchicalClustering_with_unknown_edges.o' -O3 -ftemplate-depth-64 -I./ HierarchicalClustering_with_unknown_edges.cpp > dep.aarch64_Linux/HierarchicalClustering_with_unknown_edges.d
+mkdir -p obj.aarch64_Linux 
+g++ -O3 -ftemplate-depth-64 -I./ -c HierarchicalClustering_main.cpp -o obj.aarch64_Linux/HierarchicalClustering_main.o
+cc -O3 -I./ -c HierarchicalClustering_main.cmdline.c -o obj.aarch64_Linux/HierarchicalClustering_main.cmdline.o
+g++ -O3 -ftemplate-depth-64 -I./ -c HierarchicalClustering_with_unknown_edges.cpp -o obj.aarch64_Linux/HierarchicalClustering_with_unknown_edges.o
+HierarchicalClustering_with_unknown_edges.cpp:73:1: error: no declaration matches ‘tHierarchicalClustering::tHierarchicalClustering(tHierarchicalClustering::tEdges&, tHierarchicalClustering::tClusterId, tHierarchicalClustering::tDistance, tHierarchicalClustering::tDistance, RCPtrNamespace::RCPtr<tHierarchicalClustering::fAverager>, bool, bool)’
+   73 | tHierarchicalClustering::tHierarchicalClustering(tHierarchicalClustering::tEdges& edges, tClusterId singletonIdUB, tDistance lb_unknown, tDistance ub_unknown, RCPtr<tHierarchicalClustering::fAverager> averager, bool is_allow_inexact_merges, bool isLeftGreater ) :
+      | ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from HierarchicalClustering_with_unknown_edges.cpp:28:
+HierarchicalClustering_with_unknown_edges.hpp:47:7: note: candidates are: ‘tHierarchicalClustering::tHierarchicalClustering(tHierarchicalClustering&&)’
+   47 | class tHierarchicalClustering {
+      |       ^~~~~~~~~~~~~~~~~~~~~~~
+HierarchicalClustering_with_unknown_edges.hpp:47:7: note:                 ‘tHierarchicalClustering::tHierarchicalClustering(const tHierarchicalClustering&)’
+In file included from HierarchicalClustering_with_unknown_edges.cpp:28:
+HierarchicalClustering_with_unknown_edges.hpp:322:4: note:                 ‘tHierarchicalClustering::tHierarchicalClustering(tHierarchicalClustering::tEdges&, tHierarchicalClustering::tClusterId, tHierarchicalClustering::tDistance, tHierarchicalClustering::tDistance, RCPtrNamespace::RCPtr<tHierarchicalClustering::fAverager>, bool)’
+  322 |    tHierarchicalClustering(tEdges& edges, tClusterId singletonIdUB, tDistance lb_unknown, tDistance ub_unknown, RCPtr<fAverager> averager, bool is_allow_inexact_merges = false);
+      |    ^~~~~~~~~~~~~~~~~~~~~~~
+In file included from HierarchicalClustering_with_unknown_edges.cpp:28:
+HierarchicalClustering_with_unknown_edges.hpp:47:7: note: ‘class tHierarchicalClustering’ defined here
+   47 | class tHierarchicalClustering {
+      |       ^~~~~~~~~~~~~~~~~~~~~~~
+HierarchicalClustering_with_unknown_edges.cpp:73:75: error: ‘typedef class std::vector<tHierarchicalClustering::tEdge> tHierarchicalClustering::tEdges’ is private within this context
+   73 | tHierarchicalClustering::tHierarchicalClustering(tHierarchicalClustering::tEdges& edges, tClusterId singletonIdUB, tDistance lb_unknown, tDistance ub_unknown, RCPtr<tHierarchicalClustering::fAverager> averager, bool is_allow_inexact_merges, bool isLeftGreater ) :
+      |                                                                           ^~~~~~
+In file included from HierarchicalClustering_with_unknown_edges.cpp:28:
+HierarchicalClustering_with_unknown_edges.hpp:274:25: note: declared private here
+  274 |   typedef vector<tEdge> tEdges;
+      |                         ^~~~~~
+make[1]: *** [Makefile:127: obj.aarch64_Linux/HierarchicalClustering_with_unknown_edges.o] Error 1
+make[1]: Leaving directory '/tmp/RtmpoTYJkR/Rbuild38da2211e1d8ba/netboost/src/mcupgma/clustering_round'
+make: *** [Makefile:100: install_clustering] Error 2
+make: Leaving directory '/tmp/RtmpoTYJkR/Rbuild38da2211e1d8ba/netboost/src/mcupgma'
+Error in eval(ei, envir) : 
+**********************************************************************
+Build mcupgma: make all failed
+**********************************************************************
+* removing ‘/tmp/RtmpoTYJkR/Rinst38da225178d398/netboost’
+      -----------------------------------
+ERROR: package installation failed

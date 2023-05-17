@@ -1,0 +1,963 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML>
+<HEAD>
+<META http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<TITLE>Build/check report for BioC 3.18 - CHECK results for preprocessCore on kunpeng1</TITLE>
+<LINK rel="stylesheet" href="../report.css" type="text/css">
+<SCRIPT type="text/javascript" src="../report.js"></SCRIPT>
+</HEAD>
+<BODY onLoad="initialize();">
+<TABLE class="grid_layout" style="width: 100%; background: #EEE;"><TR><TD style="text-align: left; padding: 5px; vertical-align: middle;"><I>Back to <B>Build/check report for BioC 3.18</B>:&nbsp;&nbsp;&nbsp;<A href="../">simplified</A>&nbsp;&nbsp;&nbsp;<A href="../long-report.html">long</A></I></TD><TD><TABLE class="abc_dispatcher"><TR><TD><A href="..#A">A</A></TD><TD><A href="..#B">B</A></TD><TD><A href="..#C">C</A></TD><TD><A href="..#D">D</A></TD><TD><A href="..#E">E</A></TD><TD><A href="..#F">F</A></TD><TD><A href="..#G">G</A></TD><TD><A href="..#H">H</A></TD><TD><A href="..#I">I</A></TD><TD><A href="..#J">J</A></TD><TD><A href="..#K">K</A></TD><TD><A href="..#L">L</A></TD><TD><A href="..#M">M</A></TD><TD><A href="..#N">N</A></TD><TD><A href="..#O">O</A></TD><TD><B>[<A href="..#P">P</A>]</B></TD><TD><A href="..#Q">Q</A></TD><TD><A href="..#R">R</A></TD><TD><A href="..#S">S</A></TD><TD><A href="..#T">T</A></TD><TD><A href="..#U">U</A></TD><TD><A href="..#V">V</A></TD><TD><A href="..#W">W</A></TD><TD><A href="..#X">X</A></TD><TD><A href="..#Y">Y</A></TD><TD><A href="..#Z">Z</A></TD></TR></TABLE></TD></TR></TABLE>
+<P class="time_stamp">
+This page was generated on 2023-05-16 06:07:00 -0000 (Tue, 16 May 2023).
+</P>
+<TABLE class="node_specs">
+<TR><TH>Hostname</TH><TH>OS</TH><TH>Arch&nbsp;(*)</TH><TH>R&nbsp;version</TH><TH style="text-align: right;">Installed&nbsp;pkgs</TH></TR>
+<TR class="kunpeng1"><TD><B><A href="../kunpeng1-NodeInfo.html"><B>kunpeng1</B></A></B></TD><TD>Linux&nbsp;(Ubuntu&nbsp;22.04.1&nbsp;LTS)</TD><TD>aarch64</TD><TD>4.3.0&nbsp;(2023-04-21)&nbsp;--&nbsp;"Already&nbsp;Tomorrow"
+</TD><TD style="text-align: right;"><A href="../kunpeng1-R-instpkgs.html">4787</A></TD></TR>
+<TR><TD COLSPAN="5" style="font-size: smaller;"><I>Click on any hostname to see more info about the system (e.g. compilers) &nbsp;&nbsp;&nbsp;&nbsp; (*) as reported by 'uname -p', except on Windows and Mac OS X</I></TD></TR>
+</TABLE>
+<BR>
+<H2><SPAN class="kunpeng1">CHECK results for preprocessCore on kunpeng1</SPAN></H2>
+<BR>
+<DIV class="motd">
+<TABLE><TR><TD>
+To the developers/maintainers of the preprocessCore package:<BR>
+- Allow up to 24 hours (and sometimes 48 hours) for your latest push to git@git.bioconductor.org:packages/preprocessCore.git to reflect on this report. See <A href="%s">Troubleshooting Build Report</A> for more information.<BR><BR>
+- Use the following <A href="../Renviron.bioc">Renviron settings</A> to reproduce errors and warnings.<BR><BR>
+Note: If "R CMD check" recently failed on the Linux builder over a missing dependency, add the missing dependency to "Suggests" in your DESCRIPTION file. See the <A href="../Renviron.bioc">Renviron.bioc</A> for details.
+</TD></TR></TABLE>
+</DIV>
+<P style="text-align: center;"><A href="raw-results/">raw results</A><P>
+<TABLE class="gcard_list">
+<TBODY class="gcard warnings">
+<TR class="header"><TD class="leftmost top_left_corner"></TD><TD>Package <B>1528</B>/2197</TD><TD style="width: 75px;">Hostname</TD><TD style="width: 225px;">OS&nbsp;/&nbsp;Arch</TD><TD class="STAGE install">INSTALL</TD><TD class="STAGE buildsrc">BUILD</TD><TD class="STAGE checksrc selected">CHECK</TD><TD class="STAGE buildbin">BUILD BIN</TD><TD style="width: 12px;"></TD><TD class="rightmost top_right_corner"></TD></TR>
+<TR class="selected_row"><TD ROWSPAN="2" class="leftmost bottom_left_corner"></TD><TD ROWSPAN="1" style="vertical-align: top;"><B><A href="./">preprocessCore</A>&nbsp;1.63.1</B>&nbsp;&nbsp;<SPAN style="font-size: smaller; font-style: italic;">(<A href="/packages/3.18/preprocessCore">landing page</A>)</SPAN><BR>Ben Bolstad<BR><TABLE class="svn_info">
+<TR><TD class="svn_info">Snapshot&nbsp;Date:&nbsp;<SPAN class="svn_info">2023-05-13&nbsp;23:12:22&nbsp;-0000&nbsp;(Sat,&nbsp;13&nbsp;May&nbsp;2023)</SPAN></TD></TR>
+<TR><TD class="svn_info">git_url:&nbsp;<SPAN class="svn_info">https://git.bioconductor.org/packages/preprocessCore</SPAN></TD></TR>
+<TR><TD class="svn_info">git_branch:&nbsp;<SPAN class="svn_info">devel</SPAN></TD></TR>
+<TR><TD class="svn_info">git_last_commit:&nbsp;<SPAN class="svn_info">5b4cf4d</SPAN></TD></TR>
+<TR><TD class="svn_info">git_last_commit_date:&nbsp;<SPAN class="svn_info">2023-05-02&nbsp;13:47:52&nbsp;-0000&nbsp;(Tue,&nbsp;02&nbsp;May&nbsp;2023)</SPAN></TD></TR>
+</TABLE>
+</TD><TD class="kunpeng1 selected"><B>kunpeng1</B></TD><TD class="kunpeng1"><SPAN style="font-size: smaller;">Linux&nbsp;(Ubuntu&nbsp;22.04.1&nbsp;LTS)&nbsp;/&nbsp;aarch64</SPAN></TD><TD class="status kunpeng1 install"><A href="./kunpeng1-install.html" onmouseover="add_class_mouseover(this);" onmouseout="remove_class_mouseover(this);"><SPAN class="glyph OK">&nbsp;&nbsp;OK&nbsp;&nbsp;</SPAN></A></TD><TD class="status kunpeng1 buildsrc"><A href="./kunpeng1-buildsrc.html" onmouseover="add_class_mouseover(this);" onmouseout="remove_class_mouseover(this);"><SPAN class="glyph OK">&nbsp;&nbsp;OK&nbsp;&nbsp;</SPAN></A></TD><TD class="status kunpeng1 checksrc selected"><A href="./kunpeng1-checksrc.html" onmouseover="add_class_mouseover(this);" onmouseout="remove_class_mouseover(this);"><SPAN class="glyph WARNINGS">&nbsp;&nbsp;WARNINGS&nbsp;&nbsp;</SPAN></A></TD><TD class="status kunpeng1"></TD><TD class="status kunpeng1"></TD><TD ROWSPAN="2" class="rightmost bottom_right_corner"></TD></TR>
+<TR class="footer"><TD COLSPAN="8"></TD></TR>
+</TBODY>
+</TABLE>
+<HR>
+<H3>Summary</H3>
+<DIV class="kunpeng1 hscrollable">
+<TABLE>
+<TR><TD><B>Package</B>: preprocessCore</TD></TR>
+<TR><TD><B>Version</B>: 1.63.1</TD></TR>
+<TR><TD><B>Command</B>: /home/biocbuild/R/R-4.3.0-bin/bin/R CMD check --install=check:preprocessCore.install-out.txt --library=/home/biocbuild/R/R-4.3.0-bin/site-library --timings preprocessCore_1.63.1.tar.gz</TD></TR>
+<TR><TD><B>StartedAt</B>: 2023-05-15 10:51:10 -0000 (Mon, 15 May 2023)</TD></TR>
+<TR><TD><B>EndedAt</B>: 2023-05-15 10:51:26 -0000 (Mon, 15 May 2023)</TD></TR>
+<TR><TD><B>EllapsedTime</B>: 16.0 seconds</TD></TR>
+<TR><TD><B>RetCode</B>: 0</TD></TR>
+<TR><TD><B>Status</B>: <SPAN class="glyph WARNINGS">&nbsp;&nbsp;WARNINGS&nbsp;&nbsp;</SPAN></TD></TR>
+<TR><TD><B>CheckDir</B>: preprocessCore.Rcheck</TD></TR>
+<TR><TD><B>Warnings</B>: 1</TD></TR>
+</TABLE>
+</DIV>
+<HR>
+<H3>Command output</H3>
+<DIV class="kunpeng1 hscrollable">
+<PRE style="padding: 3px;">
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD check --install=check:preprocessCore.install-out.txt --library=/home/biocbuild/R/R-4.3.0-bin/site-library --timings preprocessCore_1.63.1.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/preprocessCore.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘preprocessCore/DESCRIPTION’ ... OK
+* this is package ‘preprocessCore’ version ‘1.63.1’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘preprocessCore’ can be installed ... OK
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... NOTE
+Found a ‘configure.in’ file: ‘configure.ac’ has long been preferred.
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... WARNING
+checkRd: (7) normalize.quantiles.Rd:47: Invalid email address: bmbolstad.com
+checkRd: (7) rma.background.correct.Rd:35: Invalid email address: bmbolstad.com
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in shell scripts ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking examples ... OK
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘PLMdtest.R’
+  Running ‘qnormtest.R’
+ OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 WARNING, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/preprocessCore.Rcheck/00check.log’
+for details.
+
+
+</PRE>
+</DIV><HR>
+<H3>Installation output</H3>
+<P><SPAN class="filename">preprocessCore.Rcheck/00install.out</SPAN></P>
+<DIV class="kunpeng1 hscrollable">
+<PRE style="padding: 3px;">
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0-bin/bin/R CMD INSTALL preprocessCore
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0-bin/site-library’
+* installing *source* package ‘preprocessCore’ ...
+** using staged installation
+&#x27;config&#x27; variable &#x27;CPP&#x27; is defunct
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking how to run the C preprocessor... gcc -E
+checking for library containing pthread_create... none required
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for stdlib.h... (cached) yes
+checking if PTHREAD_STACK_MIN is defined... yes
+checking if R is using flexiblas... flexiblas not found. preprocessCore threading will not be disabled
+configure: Enabling threading for preprocessCore
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0’
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c R_colSummarize.c -o R_colSummarize.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c R_plmd_interfaces.c -o R_plmd_interfaces.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c R_plmr_interfaces.c -o R_plmr_interfaces.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c R_rlm_interfaces.c -o R_rlm_interfaces.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c R_subColSummarize.c -o R_subColSummarize.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c R_subrcModel_interfaces.c -o R_subrcModel_interfaces.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c avg.c -o avg.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c avg_log.c -o avg_log.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c biweight.c -o biweight.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c init_package.c -o init_package.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c lm.c -o lm.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c log_avg.c -o log_avg.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c log_median.c -o log_median.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c matrix_functions.c -o matrix_functions.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c median.c -o median.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c median_log.c -o median_log.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c medianpolish.c -o medianpolish.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c plmd.c -o plmd.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c plmr.c -o plmr.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c psi_fns.c -o psi_fns.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c qnorm.c -o qnorm.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c rlm.c -o rlm.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c rlm_anova.c -o rlm_anova.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c rlm_se.c -o rlm_se.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c rma_background4.c -o rma_background4.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c rma_common.c -o rma_common.o
+gcc -I&quot;/home/biocbuild/R/R-4.3.0-bin/lib/R/include&quot; -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2  -DPACKAGE_NAME=\&quot;\&quot; -DPACKAGE_TARNAME=\&quot;\&quot; -DPACKAGE_VERSION=\&quot;\&quot; -DPACKAGE_STRING=\&quot;\&quot; -DPACKAGE_BUGREPORT=\&quot;\&quot; -DPACKAGE_URL=\&quot;\&quot; -DSTDC_HEADERS=1 -DHAVE_SYS_TYPES_H=1 -DHAVE_SYS_STAT_H=1 -DHAVE_STDLIB_H=1 -DHAVE_STRING_H=1 -DHAVE_MEMORY_H=1 -DHAVE_STRINGS_H=1 -DHAVE_INTTYPES_H=1 -DHAVE_STDINT_H=1 -DHAVE_UNISTD_H=1 -DHAVE_STDLIB_H=1 -DUSE_PTHREADS=1 -fPIC  -g -O2  -c weightedkerneldensity.c -o weightedkerneldensity.o
+gcc -shared -L/home/biocbuild/R/R-4.3.0-bin/lib/R/lib -L/usr/local/lib -o preprocessCore.so R_colSummarize.o R_plmd_interfaces.o R_plmr_interfaces.o R_rlm_interfaces.o R_subColSummarize.o R_subrcModel_interfaces.o avg.o avg_log.o biweight.o init_package.o lm.o log_avg.o log_median.o matrix_functions.o median.o median_log.o medianpolish.o plmd.o plmr.o psi_fns.o qnorm.o rlm.o rlm_anova.o rlm_se.o rma_background4.o rma_common.o weightedkerneldensity.o -llapack -lblas -lgfortran -lm -L/home/biocbuild/R/R-4.3.0-bin/lib/R/lib -lR
+installing to /home/biocbuild/R/R-4.3.0-bin/site-library/00LOCK-preprocessCore/00new/preprocessCore/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (preprocessCore)
+</PRE>
+</DIV><HR>
+<H3>Tests output</H3>
+<P><SPAN class="filename">preprocessCore.Rcheck/tests/PLMdtest.Rout</SPAN></P>
+<DIV class="kunpeng1 hscrollable">
+<PRE style="padding: 3px;">
+
+R version 4.3.0 (2023-04-21) -- &quot;Already Tomorrow&quot;
+Copyright (C) 2023 The R Foundation for Statistical Computing
+Platform: aarch64-unknown-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type &#x27;license()&#x27; or &#x27;licence()&#x27; for distribution details.
+
+R is a collaborative project with many contributors.
+Type &#x27;contributors()&#x27; for more information and
+&#x27;citation()&#x27; on how to cite R or R packages in publications.
+
+Type &#x27;demo()&#x27; for some demos, &#x27;help()&#x27; for on-line help, or
+&#x27;help.start()&#x27; for an HTML browser interface to help.
+Type &#x27;q()&#x27; to quit R.
+
+&gt; 
+&gt; 
+&gt; library(preprocessCore)
+&gt; 
+&gt; 
+&gt; values &lt;- rnorm(100)
+&gt; group.labels &lt;- sample(0:4,replace=TRUE, 100)
+&gt; 
+&gt; results &lt;- double(10000)
+&gt; ngroups &lt;- 2
+&gt; 
+&gt; 
+&gt; for (i in 1:10000){
++        values &lt;- rnorm(100,sd=1)
++        values &lt;- values/sd(values)
++        group.labels &lt;- sample(0:(ngroups-1),replace=TRUE, 100)
++        blah &lt;- .C(&quot;R_split_test&quot;,as.double(values), as.integer(100), as.integer(ngroups), as.integer(group.labels),double(1))
++        results[i] &lt;- blah[[5]]
++ }
+&gt; 
+&gt; plot(sort(results),qchisq(0:9999/10000,ngroups-1))
+&gt; lm(qchisq(0:9999/10000,ngroups-1) ~ sort(results))
+
+Call:
+lm(formula = qchisq(0:9999/10000, ngroups - 1) ~ sort(results))
+
+Coefficients:
+  (Intercept)  sort(results)  
+     -0.00387        0.96793  
+
+&gt; 
+&gt; 
+&gt; 
+&gt; boxplot(values ~ group.labels,ylim=c(-2,2))
+&gt; 
+&gt; 
+&gt; 
+&gt; sc &lt;- median(abs(resid(lm(values ~ 1))))/0.6745
+&gt; sum((resid(lm(values ~ 1))/sc)^2)/2
+[1] 47.67241
+&gt; sum((resid(lm(values ~ as.factor(group.labels)))/sc)^2)/2
+[1] 46.80894
+&gt; 
+&gt; 
+&gt; values &lt;- rnorm(100)
+&gt; group.labels &lt;- sample(0:4,replace=TRUE, 100)
+&gt; values[group.labels == 1] &lt;- values[group.labels == 1] + 0.4
+&gt; 
+&gt; 
+&gt; blah &lt;- .C(&quot;R_split_test&quot;,as.double(values), as.integer(100), as.integer(5), as.integer(group.labels),double(1))
+&gt; 
+&gt; boxplot(values ~ group.labels,ylim=c(-2,2))
+&gt; 
+&gt; 
+&gt; 
+&gt; library(preprocessCore)
+&gt; 
+&gt; .C(&quot;R_test_get_design_matrix&quot;,as.integer(4),as.integer(5))
+1.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 
+1.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 
+1.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00 
+1.00 0.00 0.00 0.00 0.00 -1.00 -1.00 -1.00 
+0.00 1.00 0.00 0.00 0.00 1.00 0.00 0.00 
+0.00 1.00 0.00 0.00 0.00 0.00 1.00 0.00 
+0.00 1.00 0.00 0.00 0.00 0.00 0.00 1.00 
+0.00 1.00 0.00 0.00 0.00 -1.00 -1.00 -1.00 
+0.00 0.00 1.00 0.00 0.00 1.00 0.00 0.00 
+0.00 0.00 1.00 0.00 0.00 0.00 1.00 0.00 
+0.00 0.00 1.00 0.00 0.00 0.00 0.00 1.00 
+0.00 0.00 1.00 0.00 0.00 -1.00 -1.00 -1.00 
+0.00 0.00 0.00 1.00 0.00 1.00 0.00 0.00 
+0.00 0.00 0.00 1.00 0.00 0.00 1.00 0.00 
+0.00 0.00 0.00 1.00 0.00 0.00 0.00 1.00 
+0.00 0.00 0.00 1.00 0.00 -1.00 -1.00 -1.00 
+0.00 0.00 0.00 0.00 1.00 1.00 0.00 0.00 
+0.00 0.00 0.00 0.00 1.00 0.00 1.00 0.00 
+0.00 0.00 0.00 0.00 1.00 0.00 0.00 1.00 
+0.00 0.00 0.00 0.00 1.00 -1.00 -1.00 -1.00 
+
+1.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 
+1.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 
+1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00 
+1.00 0.00 0.00 0.00 0.00 -1.00 -1.00 -1.00 -1.00 
+0.00 1.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 
+0.00 1.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 
+0.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00 
+0.00 1.00 0.00 0.00 0.00 -1.00 -1.00 -1.00 -1.00 
+0.00 0.00 1.00 0.00 0.00 1.00 0.00 0.00 0.00 
+0.00 0.00 1.00 0.00 0.00 0.00 0.00 1.00 0.00 
+0.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00 1.00 
+0.00 0.00 1.00 0.00 0.00 -1.00 -1.00 -1.00 -1.00 
+0.00 0.00 0.00 1.00 0.00 1.00 0.00 0.00 0.00 
+0.00 0.00 0.00 1.00 0.00 0.00 0.00 1.00 0.00 
+0.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00 1.00 
+0.00 0.00 0.00 1.00 0.00 -1.00 -1.00 -1.00 -1.00 
+0.00 0.00 0.00 0.00 1.00 1.00 0.00 0.00 0.00 
+0.00 0.00 0.00 0.00 1.00 0.00 0.00 1.00 0.00 
+0.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00 1.00 
+0.00 0.00 0.00 0.00 1.00 -1.00 -1.00 -1.00 -1.00 
+
+1.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00 
+1.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 
+1.00 0.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 
+1.00 0.00 0.00 0.00 0.00 -1.00 -1.00 -1.00 -1.00 -1.00 
+0.00 1.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00 
+0.00 1.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 
+0.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 
+0.00 1.00 0.00 0.00 0.00 -1.00 -1.00 -1.00 -1.00 -1.00 
+0.00 0.00 1.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00 
+0.00 0.00 1.00 0.00 0.00 0.00 0.00 1.00 0.00 0.00 
+0.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00 1.00 0.00 
+0.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00 0.00 1.00 
+0.00 0.00 0.00 1.00 0.00 1.00 0.00 0.00 0.00 0.00 
+0.00 0.00 0.00 1.00 0.00 0.00 0.00 1.00 0.00 0.00 
+0.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00 1.00 0.00 
+0.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00 0.00 1.00 
+0.00 0.00 0.00 0.00 1.00 1.00 0.00 0.00 0.00 0.00 
+0.00 0.00 0.00 0.00 1.00 0.00 0.00 1.00 0.00 0.00 
+0.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00 1.00 0.00 
+0.00 0.00 0.00 0.00 1.00 0.00 0.00 0.00 0.00 1.00 
+[[1]]
+[1] 4
+
+[[2]]
+[1] 5
+
+&gt; 
+&gt; 
+&gt; 
+&gt; chips &lt;- as.factor(rep(c(1,2,3,4,5,6),c(5,5,5,5,5,5)))
+&gt; probes &lt;- rep(c(1,3,4,5,6),6)
+&gt;        
+&gt; probes[c(1,6,11)] &lt;- 2
+&gt; ##probes[24 + c(8,16,24)] &lt;- 10
+&gt; probes &lt;- as.factor(probes)
+&gt; 
+&gt; 
+&gt; model.matrix(~ -1 + probes)%*%contr.sum(6)
+   [,1] [,2] [,3] [,4] [,5]
+1     0    1    0    0    0
+2     0    0    1    0    0
+3     0    0    0    1    0
+4     0    0    0    0    1
+5    -1   -1   -1   -1   -1
+6     0    1    0    0    0
+7     0    0    1    0    0
+8     0    0    0    1    0
+9     0    0    0    0    1
+10   -1   -1   -1   -1   -1
+11    0    1    0    0    0
+12    0    0    1    0    0
+13    0    0    0    1    0
+14    0    0    0    0    1
+15   -1   -1   -1   -1   -1
+16    1    0    0    0    0
+17    0    0    1    0    0
+18    0    0    0    1    0
+19    0    0    0    0    1
+20   -1   -1   -1   -1   -1
+21    1    0    0    0    0
+22    0    0    1    0    0
+23    0    0    0    1    0
+24    0    0    0    0    1
+25   -1   -1   -1   -1   -1
+26    1    0    0    0    0
+27    0    0    1    0    0
+28    0    0    0    1    0
+29    0    0    0    0    1
+30   -1   -1   -1   -1   -1
+&gt; 
+&gt; 
+&gt; probes &lt;- rep(c(1,3,4,5,6),6)
+&gt;        
+&gt; probes[c(1,6,11)] &lt;- 2
+&gt; probes[c(20,25,30)] &lt;- 7
+&gt; probes &lt;- as.factor(probes)
+&gt; model.matrix(~ -1 + probes)%*%contr.sum(7)
+   [,1] [,2] [,3] [,4] [,5] [,6]
+1     0    1    0    0    0    0
+2     0    0    1    0    0    0
+3     0    0    0    1    0    0
+4     0    0    0    0    1    0
+5     0    0    0    0    0    1
+6     0    1    0    0    0    0
+7     0    0    1    0    0    0
+8     0    0    0    1    0    0
+9     0    0    0    0    1    0
+10    0    0    0    0    0    1
+11    0    1    0    0    0    0
+12    0    0    1    0    0    0
+13    0    0    0    1    0    0
+14    0    0    0    0    1    0
+15    0    0    0    0    0    1
+16    1    0    0    0    0    0
+17    0    0    1    0    0    0
+18    0    0    0    1    0    0
+19    0    0    0    0    1    0
+20   -1   -1   -1   -1   -1   -1
+21    1    0    0    0    0    0
+22    0    0    1    0    0    0
+23    0    0    0    1    0    0
+24    0    0    0    0    1    0
+25   -1   -1   -1   -1   -1   -1
+26    1    0    0    0    0    0
+27    0    0    1    0    0    0
+28    0    0    0    1    0    0
+29    0    0    0    0    1    0
+30   -1   -1   -1   -1   -1   -1
+&gt; 
+&gt; 
+&gt; 
+&gt; 
+&gt; probes &lt;- rep(c(1,3,4,5,6),6)
+&gt;        
+&gt; probes[c(1,6,11)] &lt;- 2
+&gt; probes[c(5,10,15)] &lt;- 7
+&gt; probes &lt;- as.factor(probes)
+&gt; model.matrix(~ -1 + probes)%*%contr.sum(7)
+   [,1] [,2] [,3] [,4] [,5] [,6]
+1     0    1    0    0    0    0
+2     0    0    1    0    0    0
+3     0    0    0    1    0    0
+4     0    0    0    0    1    0
+5    -1   -1   -1   -1   -1   -1
+6     0    1    0    0    0    0
+7     0    0    1    0    0    0
+8     0    0    0    1    0    0
+9     0    0    0    0    1    0
+10   -1   -1   -1   -1   -1   -1
+11    0    1    0    0    0    0
+12    0    0    1    0    0    0
+13    0    0    0    1    0    0
+14    0    0    0    0    1    0
+15   -1   -1   -1   -1   -1   -1
+16    1    0    0    0    0    0
+17    0    0    1    0    0    0
+18    0    0    0    1    0    0
+19    0    0    0    0    1    0
+20    0    0    0    0    0    1
+21    1    0    0    0    0    0
+22    0    0    1    0    0    0
+23    0    0    0    1    0    0
+24    0    0    0    0    1    0
+25    0    0    0    0    0    1
+26    1    0    0    0    0    0
+27    0    0    1    0    0    0
+28    0    0    0    1    0    0
+29    0    0    0    0    1    0
+30    0    0    0    0    0    1
+&gt; 
+&gt; 
+&gt; 
+&gt; probes &lt;- rep(c(1,3,4,5,6),6)
+&gt;        
+&gt; probes[c(1,6,11)] &lt;- 2
+&gt; probes[1+c(1,6,11)] &lt;- 8
+&gt; probes[2+c(1,6,11)] &lt;- 9
+&gt; probes[3+c(1,6,11)] &lt;- 10
+&gt; probes[c(5,10,15)] &lt;- 7
+&gt; probes &lt;- as.factor(probes)
+&gt; model.matrix(~ -1 + probes)%*%contr.sum(10)
+   [,1] [,2] [,3] [,4] [,5] [,6] [,7] [,8] [,9]
+1     0    1    0    0    0    0    0    0    0
+2     0    0    0    0    0    0    0    1    0
+3     0    0    0    0    0    0    0    0    1
+4    -1   -1   -1   -1   -1   -1   -1   -1   -1
+5     0    0    0    0    0    0    1    0    0
+6     0    1    0    0    0    0    0    0    0
+7     0    0    0    0    0    0    0    1    0
+8     0    0    0    0    0    0    0    0    1
+9    -1   -1   -1   -1   -1   -1   -1   -1   -1
+10    0    0    0    0    0    0    1    0    0
+11    0    1    0    0    0    0    0    0    0
+12    0    0    0    0    0    0    0    1    0
+13    0    0    0    0    0    0    0    0    1
+14   -1   -1   -1   -1   -1   -1   -1   -1   -1
+15    0    0    0    0    0    0    1    0    0
+16    1    0    0    0    0    0    0    0    0
+17    0    0    1    0    0    0    0    0    0
+18    0    0    0    1    0    0    0    0    0
+19    0    0    0    0    1    0    0    0    0
+20    0    0    0    0    0    1    0    0    0
+21    1    0    0    0    0    0    0    0    0
+22    0    0    1    0    0    0    0    0    0
+23    0    0    0    1    0    0    0    0    0
+24    0    0    0    0    1    0    0    0    0
+25    0    0    0    0    0    1    0    0    0
+26    1    0    0    0    0    0    0    0    0
+27    0    0    1    0    0    0    0    0    0
+28    0    0    0    1    0    0    0    0    0
+29    0    0    0    0    1    0    0    0    0
+30    0    0    0    0    0    1    0    0    0
+&gt; 
+&gt; 
+&gt; 
+&gt; 
+&gt; 
+&gt; 
+&gt; 
+&gt; 
+&gt; 
+&gt; true.probes &lt;- c(4,3,2,1,-1,-2,-3,-4)
+&gt; 
+&gt; true.chips  &lt;- c(8,9,10,11,12,13)
+&gt; 
+&gt; 
+&gt; y &lt;- outer(true.probes,true.chips,&quot;+&quot;)
+&gt; 
+&gt; 
+&gt; 
+&gt; estimate.coefficients &lt;- function(y){
++ 
++ 
++ colmean &lt;- apply(y,2,mean)
++ 
++ y &lt;- sweep(y,2,FUN=&quot;-&quot;,colmean)
++ 
++ rowmean &lt;- apply(y,1,mean)
++ y &lt;- sweep(y,1,FUN=&quot;-&quot;,rowmean)
++ 
++ 
++ list(y,colmean,rowmean)
++ }
+&gt; estimate.coefficients(y)
+[[1]]
+     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]    0    0    0    0    0    0
+[2,]    0    0    0    0    0    0
+[3,]    0    0    0    0    0    0
+[4,]    0    0    0    0    0    0
+[5,]    0    0    0    0    0    0
+[6,]    0    0    0    0    0    0
+[7,]    0    0    0    0    0    0
+[8,]    0    0    0    0    0    0
+
+[[2]]
+[1]  8  9 10 11 12 13
+
+[[3]]
+[1]  4  3  2  1 -1 -2 -3 -4
+
+&gt; 
+&gt; 
+&gt; 
+&gt; y &lt;- outer(true.probes,true.chips,&quot;+&quot;)
+&gt; 
+&gt; 
+&gt; estimate.coefficients(y)
+[[1]]
+     [,1] [,2] [,3] [,4] [,5] [,6]
+[1,]    0    0    0    0    0    0
+[2,]    0    0    0    0    0    0
+[3,]    0    0    0    0    0    0
+[4,]    0    0    0    0    0    0
+[5,]    0    0    0    0    0    0
+[6,]    0    0    0    0    0    0
+[7,]    0    0    0    0    0    0
+[8,]    0    0    0    0    0    0
+
+[[2]]
+[1]  8  9 10 11 12 13
+
+[[3]]
+[1]  4  3  2  1 -1 -2 -3 -4
+
+&gt; 
+&gt; 
+&gt; 
+&gt; 
+&gt; y2 &lt;- sweep(y,2,FUN=&quot;-&quot;,apply(y,2,mean))
+&gt; 
+&gt; 
+&gt; 
+&gt; c(3.875, 2.875,  1.875,  0.875,
++  -1.125, -2.125, -3.125, -4, -2.25)
+[1]  3.875  2.875  1.875  0.875 -1.125 -2.125 -3.125 -4.000 -2.250
+&gt; 
+&gt; 
+&gt; 
+&gt; 
+&gt; cp &lt;- rep(c(1,2,3,4,5,6),rep(8,6))
+&gt; pr &lt;- rep(c(1,2,3,4,5,6,7,8),6)
+&gt; 
+&gt; 
+&gt; pr[c(32,40,48)] &lt;- 9
+&gt; 
+&gt; 
+&gt; 
+&gt; 
+&gt; true.probes &lt;- c(4,3,2,1,-1,-2,-3,-4)
+&gt; 
+&gt; true.chips  &lt;- c(8,9,10,11,12,10)
+&gt; 
+&gt; 
+&gt; y &lt;- outer(true.probes,true.chips,&quot;+&quot;) + rnorm(48,0,0.1)
+&gt; 
+&gt; y[8,4:6] &lt;- c(11,12,10)+2 + rnorm(3,0,0.1)
+&gt; 
+&gt; 
+&gt; lm(as.vector(y) ~  -1 + as.factor(cp) + C(as.factor(pr),&quot;contr.sum&quot;))
+
+Call:
+lm(formula = as.vector(y) ~ -1 + as.factor(cp) + C(as.factor(pr), 
+    &quot;contr.sum&quot;))
+
+Coefficients:
+                as.factor(cp)1                  as.factor(cp)2  
+                        8.1943                          9.2050  
+                as.factor(cp)3                  as.factor(cp)4  
+                       10.1674                         11.2003  
+                as.factor(cp)5                  as.factor(cp)6  
+                       12.2694                         10.2344  
+C(as.factor(pr), &quot;contr.sum&quot;)1  C(as.factor(pr), &quot;contr.sum&quot;)2  
+                        3.7608                          2.7902  
+C(as.factor(pr), &quot;contr.sum&quot;)3  C(as.factor(pr), &quot;contr.sum&quot;)4  
+                        1.7627                          0.7239  
+C(as.factor(pr), &quot;contr.sum&quot;)5  C(as.factor(pr), &quot;contr.sum&quot;)6  
+                       -1.1299                         -2.2268  
+C(as.factor(pr), &quot;contr.sum&quot;)7  C(as.factor(pr), &quot;contr.sum&quot;)8  
+                       -3.2152                         -4.2338  
+
+&gt; 
+&gt; 
+&gt; matplot(y,type=&quot;l&quot;)
+&gt; matplot(matrix(fitted( lm(as.vector(y) ~  -1 + as.factor(cp) +
++ C(as.factor(pr),&quot;contr.sum&quot;))),ncol=6),type=&quot;l&quot;)
+&gt; 
+&gt; 
+&gt; library(preprocessCore)
+&gt; true.probes &lt;- c(4,3,2,1,-1,-2,-3,-4)
+&gt; 
+&gt; true.chips  &lt;- c(8,9,10,11,12,10)
+&gt; 
+&gt; y &lt;- outer(true.probes,true.chips,&quot;+&quot;) + rnorm(48,0,0.25)
+&gt; 
+&gt; y[8,4:6] &lt;- c(11,12,10)+ 2.5 + rnorm(3,0,0.25)
+&gt; y[5,4:6] &lt;- c(11,12,10)+-2.5 + rnorm(3,0,0.25)
+&gt; 
+&gt; 
+&gt; 
+&gt; ###.C(&quot;plmd_fit_R&quot;, as.double(y), as.integer(8), as.integer(6),
+&gt; ###		as.integer(2), as.integer(c(1,1,1,2,2,2) - 1),
+&gt; ###		double(6 +2*8),
+&gt; ###		double(48),
+&gt; ###		double(48))
+&gt; 
+&gt; ###matplot(matrix(.C(&quot;plmd_fit_R&quot;, as.double(y), as.integer(8), as.integer(6),
+&gt; ###		as.integer(2), as.integer(c(1,1,1,2,2,2) - 1),
+&gt; ###		double(6 +2*8),
+&gt; ###		double(48),
+&gt; ###		double(48))[[7]],ncol=6))
+&gt; ###		
+&gt; 
+&gt; 
+&gt; ##.Call(&quot;R_plmd_model&quot;,y,0,1.3345,as.integer(c(1,1,1,2,2,2) - 1),as.integer(2))
+&gt; rcModelPLM(y)
+$Estimates
+ [1]  8.3525031  9.2868291 10.4390025 11.3885558 12.3214733 10.4254831
+ [7]  3.7391520  2.4932613  1.7755903  0.7573379 -2.2187235 -2.2468691
+[13] -3.3035249 -0.9962240
+
+$Weights
+          [,1]      [,2]      [,3]      [,4]      [,5]      [,6]
+[1,] 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000
+[2,] 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000
+[3,] 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000
+[4,] 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000
+[5,] 0.5160497 0.4601211 0.6741334 0.5486369 0.6539369 0.4454604
+[6,] 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 0.7077497
+[7,] 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000 1.0000000
+[8,] 0.1332211 0.1425264 0.1191166 0.1300961 0.1169726 0.1493652
+
+$Residuals
+            [,1]         [,2]        [,3]        [,4]         [,5]        [,6]
+[1,] -0.04650166  0.009587401  0.04830597  0.23617158 -0.028070035 -0.21949326
+[2,] -0.14928074  0.206779542 -0.12086632  0.08415666 -0.006417301 -0.01437184
+[3,]  0.03520008  0.048991491  0.05319550 -0.24606051  0.030824599  0.07784883
+[4,] -0.02226968 -0.088773025 -0.23568314  0.10238419 -0.100913236  0.34525489
+[5,]  0.86046751  0.965115725  0.65871812 -0.80938950 -0.679051278 -0.99685719
+[6,]  0.41807691 -0.225883484  0.32247839  0.05177770 -0.122386017 -0.62743012
+[7,] -0.23519531  0.049294678 -0.06742615 -0.22843776  0.226949217  0.25481533
+[8,] -3.33335669 -3.115681149 -3.72801184  3.41339367  3.796354562  2.97304816
+
+$StdErrors
+ [1] 0.2439965 0.2446993 0.2416669 0.2435003 0.2421287 0.2497135 0.2437046
+ [8] 0.2437046 0.2437046 0.2437046 0.3104390 0.2485521 0.2437046 0.5959972
+
+$Scale
+[1] 0.3301533
+
+&gt; rcModelPLMd(y,c(1,1,1,2,2,2))
+$Estimates
+ [1]  8.007603  9.017334 10.031142 11.088592 12.062230 10.011336  4.071754
+ [8]  2.825863  2.118230  1.050262 -1.049871 -2.722705 -1.993287 -2.989776
+[15] -4.027780  2.717311
+
+$Weights
+         [,1] [,2]      [,3]      [,4]      [,5]      [,6]
+[1,] 1.000000    1 1.0000000 1.0000000 1.0000000 1.0000000
+[2,] 1.000000    1 1.0000000 1.0000000 1.0000000 1.0000000
+[3,] 1.000000    1 1.0000000 0.7914083 1.0000000 1.0000000
+[4,] 1.000000    1 1.0000000 1.0000000 1.0000000 0.4896486
+[5,] 1.000000    1 1.0000000 1.0000000 1.0000000 1.0000000
+[6,] 0.448466    1 0.4791379 1.0000000 1.0000000 0.4891000
+[7,] 1.000000    1 1.0000000 0.9433650 1.0000000 0.6429361
+[8,] 1.000000    1 0.7916573 1.0000000 0.6679356 0.6995757
+
+$Residuals
+            [,1]         [,2]        [,3]         [,4]        [,5]        [,6]
+[1,] -0.03420296 -0.053518846  0.12356451  0.203533472 -0.10142827 -0.13794791
+[2,] -0.13698204  0.143673295 -0.04560778  0.051518552 -0.07977553  0.06717351
+[3,]  0.03746077 -0.024152769  0.11841603 -0.288736629 -0.05257165  0.14935617
+[4,]  0.02970699 -0.112201306 -0.12074664  0.109424052 -0.13459350  0.46647821
+[5,]  0.03651543  0.065758693 -0.10227412 -0.005444621  0.08417348 -0.07872886
+[6,]  0.50939539 -0.209969960  0.47675670  0.098159367 -0.11672448 -0.46686500
+[7,] -0.20404402  0.005041018  0.02668497 -0.242223281  0.17244357  0.35521326
+[8,]  0.04309929  0.185369874 -0.28859604 -0.000177293  0.34206347 -0.32633935
+
+$StdErrors
+ [1] 0.08276870 0.07609000 0.08970100 0.08924753 0.08175153 0.11037231
+ [7] 0.08294949 0.08294949 0.09192852 0.08926660 0.11652599 0.11830638
+[13] 0.11377082 0.10101545 0.14015068 0.00000000
+
+$WasSplit
+[1] 0 0 0 0 1 0 0 1
+
+&gt; 
+&gt; ###R_plmd_model(SEXP Y, SEXP PsiCode, SEXP PsiK, SEXP Groups, SEXP Ngroups)
+&gt; 
+&gt; 
+&gt; 
+&gt; 
+&gt; 
+&gt; pr[seq(3,48,8)][1:3] &lt;- 10
+&gt; 
+&gt; y[seq(3,48,8)][1:3] &lt;- c(8,9,10) -3 + rnorm(3,0,0.1)
+&gt; lm(as.vector(y) ~  -1 + as.factor(cp) + C(as.factor(pr),&quot;contr.sum&quot;))
+
+Call:
+lm(formula = as.vector(y) ~ -1 + as.factor(cp) + C(as.factor(pr), 
+    &quot;contr.sum&quot;))
+
+Coefficients:
+                as.factor(cp)1                  as.factor(cp)2  
+                         8.075                           9.016  
+                as.factor(cp)3                  as.factor(cp)4  
+                        10.063                          10.822  
+                as.factor(cp)5                  as.factor(cp)6  
+                        11.819                           9.757  
+C(as.factor(pr), &quot;contr.sum&quot;)1  C(as.factor(pr), &quot;contr.sum&quot;)2  
+                         4.183                           2.937  
+C(as.factor(pr), &quot;contr.sum&quot;)3  C(as.factor(pr), &quot;contr.sum&quot;)4  
+                         2.309                           1.201  
+C(as.factor(pr), &quot;contr.sum&quot;)5  C(as.factor(pr), &quot;contr.sum&quot;)6  
+                        -1.775                          -1.834  
+C(as.factor(pr), &quot;contr.sum&quot;)7  C(as.factor(pr), &quot;contr.sum&quot;)8  
+                        -2.860                          -4.080  
+C(as.factor(pr), &quot;contr.sum&quot;)9  
+                         2.977  
+
+&gt; 
+&gt; 
+&gt; proc.time()
+   user  system elapsed 
+  2.312   0.038   2.329 
+</PRE>
+</DIV><P><SPAN class="filename">preprocessCore.Rcheck/tests/qnormtest.Rout</SPAN></P>
+<DIV class="kunpeng1 hscrollable">
+<PRE style="padding: 3px;">
+
+R version 4.3.0 (2023-04-21) -- &quot;Already Tomorrow&quot;
+Copyright (C) 2023 The R Foundation for Statistical Computing
+Platform: aarch64-unknown-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type &#x27;license()&#x27; or &#x27;licence()&#x27; for distribution details.
+
+R is a collaborative project with many contributors.
+Type &#x27;contributors()&#x27; for more information and
+&#x27;citation()&#x27; on how to cite R or R packages in publications.
+
+Type &#x27;demo()&#x27; for some demos, &#x27;help()&#x27; for on-line help, or
+&#x27;help.start()&#x27; for an HTML browser interface to help.
+Type &#x27;q()&#x27; to quit R.
+
+&gt; library(preprocessCore)
+&gt; 
+&gt; err.tol &lt;- 10^-8
+&gt; 
+&gt; x &lt;- matrix(c(100,15,200,250,110,16.5,220,275,120,18,240,300),ncol=3)
+&gt; x
+     [,1]  [,2] [,3]
+[1,]  100 110.0  120
+[2,]   15  16.5   18
+[3,]  200 220.0  240
+[4,]  250 275.0  300
+&gt; normalize.quantiles(x)
+      [,1]  [,2]  [,3]
+[1,] 110.0 110.0 110.0
+[2,]  16.5  16.5  16.5
+[3,] 220.0 220.0 220.0
+[4,] 275.0 275.0 275.0
+&gt; 
+&gt; x.norm.truth &lt;- matrix(rep(c(110.0,16.5,220,275.0),3),ncol=3)
+&gt; 
+&gt; if (all(abs(x.norm.truth - normalize.quantiles(x)) &lt; err.tol) != TRUE){
++ 	stop(&quot;Disagreement in normalize.quantiles(x)&quot;)
++ }
+&gt; 
+&gt; normalize.quantiles.determine.target(x)
+[1]  16.5 110.0 220.0 275.0
+&gt; 
+&gt; x.norm.target.truth &lt;- c(16.5,110.0,220.0,275.0)
+&gt; 
+&gt; if (all(abs(x.norm.target.truth - normalize.quantiles.determine.target(x)) &lt; err.tol) != TRUE){
++ 	stop(&quot;Disagreement in normalize.quantiles.determine.target(x)&quot;)
++ }
+&gt; 
+&gt; 
+&gt; y &lt;- x
+&gt; y[2,2] &lt;- NA
+&gt; y
+     [,1] [,2] [,3]
+[1,]  100  110  120
+[2,]   15   NA   18
+[3,]  200  220  240
+[4,]  250  275  300
+&gt; normalize.quantiles(y)
+          [,1]      [,2]      [,3]
+[1,] 134.44444  47.66667 134.44444
+[2,]  47.66667        NA  47.66667
+[3,] 226.11111 180.27778 226.11111
+[4,] 275.00000 275.00000 275.00000
+&gt; 
+&gt; y.norm.target.truth &lt;- c(47.6666666666667,134.4444444444444,226.1111111111111,275.0000000000000)
+&gt; 
+&gt; y.norm.truth &lt;- matrix(c(134.4444444444444,  47.6666666666667, 134.4444444444444,
++                          47.6666666666667,                NA,  47.6666666666667,
++                         226.1111111111111, 180.2777777777778, 226.1111111111111,
++                         275.0000000000000, 275.0000000000000, 275.0000000000000),byrow=TRUE,ncol=3)
+&gt; 
+&gt; 
+&gt; if (all(abs(y.norm.truth - normalize.quantiles(y)) &lt; err.tol,na.rm=TRUE) != TRUE){
++ 	stop(&quot;Disagreement in normalize.quantiles(y)&quot;)
++ }
+&gt; 
+&gt; 
+&gt; 
+&gt; if (all(abs(y.norm.target.truth - normalize.quantiles.determine.target(y)) &lt; err.tol) != TRUE){
++ 	stop(&quot;Disagreement in normalize.quantiles.determine.target(y)&quot;)
++ }
+&gt; 
+&gt; 
+&gt; 
+&gt; if (all(abs(normalize.quantiles.use.target(y,y.norm.target.truth) - y.norm.truth) &lt; err.tol,na.rm=TRUE) != TRUE){
++ 		stop(&quot;Disagreement in normalize.quantiles.use.target(y)&quot;)
++ }
+&gt; 
+&gt; 
+&gt; x &lt;- matrix(c(100,15,200,250,110,16.5,220,275,120,18,240,300),ncol=3)
+&gt; rownames(x) &lt;- letters[1:4]
+&gt; colnames(x) &lt;- LETTERS[1:3]
+&gt; y &lt;- normalize.quantiles(x, keep.names = TRUE)
+&gt; if(!all(colnames(x)==colnames(y))){
++     stop(&quot;Disagreement between initial and final column names despite keep.names=TRUE&quot;)
++ }
+&gt; if(!all(rownames(x)==rownames(y))){
++     stop(&quot;Disagreement between initial and final row names despite keep.names=TRUE&quot;)
++ }
+&gt; 
+&gt; proc.time()
+   user  system elapsed 
+  0.218   0.024   0.223 
+</PRE>
+</DIV><HR>
+<H3>Example timings</H3>
+<P><SPAN class="filename">preprocessCore.Rcheck/preprocessCore-Ex.timings</SPAN></P>
+<DIV class="kunpeng1 hscrollable">
+<TABLE>
+<TR><TD>name</TD><TD style="text-align: right;">user</TD><TD style="text-align: right;">system</TD><TD style="text-align: right;">elapsed
+</TD><TR>
+<TR><TD>colSummarize</TD><TD style="text-align: right;">0.002</TD><TD style="text-align: right;">0.000</TD><TD style="text-align: right;">0.003</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>normalize.quantiles.in.blocks</TD><TD style="text-align: right;">0.037</TD><TD style="text-align: right;">0.008</TD><TD style="text-align: right;">0.044</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>rcModelPLMd</TD><TD style="text-align: right;">0.015</TD><TD style="text-align: right;">0.004</TD><TD style="text-align: right;">0.019</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>rcModelPLMr</TD><TD style="text-align: right;">0.039</TD><TD style="text-align: right;">0.004</TD><TD style="text-align: right;">0.043</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>rcModels</TD><TD style="text-align: right;">0.004</TD><TD style="text-align: right;">0.005</TD><TD style="text-align: right;">0.008</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>subColSummarize</TD><TD style="text-align: right;">0.003</TD><TD style="text-align: right;">0.002</TD><TD style="text-align: right;">0.006</TD><TD style="text-align: right;">
+</TD><TR>
+<TR><TD>subrcModels</TD><TD style="text-align: right;">0.008</TD><TD style="text-align: right;">0.003</TD><TD style="text-align: right;">0.011</TD><TD style="text-align: right;">
+</TD><TR>
+</TABLE>
+</DIV></BODY>
+</HTML>
