@@ -1,0 +1,81 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD build --keep-empty-dirs --no-resave-data S4Vectors
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘S4Vectors/DESCRIPTION’ ... OK
+* preparing ‘S4Vectors’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘RleTricks.Rmd’ using rmarkdown
+Error: processing vignette 'RleTricks.Rmd' failed with diagnostics:
+there is no package called ‘rmarkdown’
+--- failed re-building ‘RleTricks.Rmd’
+
+--- re-building ‘S4QuickOverview.Rnw’ using Sweave
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce,
+    anyDuplicated, aperm, append, as.data.frame,
+    basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl,
+    intersect, is.unsorted, lapply, mapply, match,
+    mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff,
+    sort, table, tapply, union, unique, unsplit,
+    which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following objects are masked from ‘package:Matrix’:
+
+    expand, unname
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+
+Error: processing vignette 'S4QuickOverview.Rnw' failed with diagnostics:
+ chunk 1 (label = setup) 
+Error in library(ShortRead) : there is no package called ‘ShortRead’
+
+--- failed re-building ‘S4QuickOverview.Rnw’
+
+--- re-building ‘S4VectorsOverview.Rnw’ using Sweave
+
+Error: processing vignette 'S4VectorsOverview.Rnw' failed with diagnostics:
+ chunk 1 (label = style) 
+Error in loadNamespace(x) : there is no package called ‘BiocStyle’
+
+--- failed re-building ‘S4VectorsOverview.Rnw’
+
+SUMMARY: processing the following files failed:
+  ‘RleTricks.Rmd’ ‘S4QuickOverview.Rnw’
+  ‘S4VectorsOverview.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted

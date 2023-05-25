@@ -1,0 +1,56 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD build --keep-empty-dirs --no-resave-data flowPeaks
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘flowPeaks/DESCRIPTION’ ... OK
+* preparing ‘flowPeaks’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘flowPeaks-guide.Rnw’ using Sweave
+
+Starting the flow Peaks analysis...
+
+    Task A: compute kmeans...
+
+        ...finished summarization at 1.015 sec
+
+    Task B: find peaks...
+finished at 1.123 sec
+
+
+
+Starting the flow Peaks analysis...
+
+    Task A: compute kmeans...
+
+        ...finished summarization at 0.681 sec
+
+    Task B: find peaks...
+finished at 0.75 sec
+
+
+Loading required package: flowCore
+Warning in library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called ‘flowCore’
+
+Error: processing vignette 'flowPeaks-guide.Rnw' failed with diagnostics:
+ chunk 17 (label = stage7) 
+Error in read.FCS(system.file("extdata", "0877408774.B08", package = "flowCore")) : 
+  could not find function "read.FCS"
+
+--- failed re-building ‘flowPeaks-guide.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘flowPeaks-guide.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted

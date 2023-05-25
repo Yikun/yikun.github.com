@@ -1,0 +1,132 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD check --install=check:multtest.install-out.txt --library=/home/biocbuild/R/R-4.3.0/site-library --timings multtest_2.57.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/multtest.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘multtest/DESCRIPTION’ ... OK
+* this is package ‘multtest’ version ‘2.57.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘multtest’ can be installed ... WARNING
+Found the following significant warnings:
+  stat_func.c:703:3: warning: ignoring return value of ‘fscanf’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  stat_func.c:705:5: warning: ignoring return value of ‘fscanf’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  stat_func.c:710:5: warning: ignoring return value of ‘fscanf’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  stat_func.c:714:7: warning: ignoring return value of ‘fscanf’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+See ‘/home/biocbuild/bbs-3.18-bioc/meat/multtest.Rcheck/00install.out’ for details.
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking startup messages can be suppressed ... OK
+* checking dependencies in R code ... NOTE
+'library' or 'require' call to ‘methods’ which was already attached by Depends.
+  Please remove these calls from your code.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+File ‘multtest/R/zzz.R’:
+  .onLoad calls:
+    require(methods)
+
+Package startup functions should not change the search path.
+See section ‘Good practice’ in '?.onAttach'.
+
+EBMTP: no visible global function definition for ‘makeCluster’
+EBMTP: no visible global function definition for ‘clusterEvalQ’
+EBMTP: no visible global function definition for ‘stopCluster’
+MTP: no visible global function definition for ‘makeCluster’
+MTP: no visible global function definition for ‘clusterEvalQ’
+MTP: no visible global function definition for ‘stopCluster’
+boot.null: no visible global function definition for ‘clusterApply’
+boot.null: no visible global function definition for ‘clusterApplyLB’
+EBupdate,EBMTP: no visible binding for global variable ‘y’
+update,MTP: no visible binding for global variable ‘y’
+Undefined global functions or variables:
+  clusterApply clusterApplyLB clusterEvalQ makeCluster stopCluster y
+* checking Rd files ... NOTE
+checkRd: (-1) mt.maxT.Rd:88: Escaped LaTeX specials: \#
+checkRd: (-1) mt.maxT.Rd:91: Escaped LaTeX specials: \&
+checkRd: (-1) mt.plot.Rd:37: Escaped LaTeX specials: \#
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented S4 methods:
+  generic '[' and siglist 'EBMTP,ANY,ANY,ANY'
+  generic '[' and siglist 'MTP,ANY,ANY,ANY'
+All user-level objects in a package (including S4 classes and methods)
+should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... WARNING
+Note: information on .o files is not available
+File ‘/home/biocbuild/R/R-4.3.0/site-library/multtest/libs/multtest.so’:
+  Found ‘__sprintf_chk’, possibly from ‘sprintf’ (C)
+  Found ‘stderr’, possibly from ‘stderr’ (C)
+
+Compiled code should not call entry points which might terminate R nor
+write to stdout/stderr instead of to the console, nor use Fortran I/O
+nor system RNGs nor [v]sprintf. The detected symbols are linked into
+the code but might come from libraries and not actually be called.
+
+See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
+* checking files in ‘vignettes’ ... WARNING
+Files in the 'vignettes' directory but no files in 'inst/doc':
+  ‘MTP.pdf’ ‘MTP.tex’ ‘MTPALL.pdf’ ‘golub.R’ ‘multtest.bib’
+  ‘multtest.pdf’
+Package has no Sweave vignette sources and no VignetteBuilder field.
+* checking examples ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 4 WARNINGs, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/multtest.Rcheck/00check.log’
+for details.
+
+

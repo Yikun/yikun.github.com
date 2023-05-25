@@ -1,0 +1,45 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD build --keep-empty-dirs --no-resave-data mgsa
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘mgsa/DESCRIPTION’ ... OK
+* preparing ‘mgsa’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* running ‘cleanup’
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘mgsa.Rnw’ using Sweave
+Loading required package: gplots
+
+Attaching package: ‘gplots’
+
+The following object is masked from ‘package:stats’:
+
+    lowess
+
+Loading required package: GO.db
+Warning in library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called ‘GO.db’
+Loading required package: RSQLite
+Loading required package: DBI
+Warning: RSQLite: Passing numeric values to row.names is deprecated. Pass a logical or a column name.
+
+Error: processing vignette 'mgsa.Rnw' failed with diagnostics:
+ chunk 6 (label = readGAF) 
+Error in loadNamespace(x) : there is no package called ‘GO.db’
+
+--- failed re-building ‘mgsa.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘mgsa.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
