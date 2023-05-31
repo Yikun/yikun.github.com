@@ -1,0 +1,56 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD INSTALL multtest
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0/site-library’
+* installing *source* package ‘multtest’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include   -DUSEDOUBLE -fPIC  -g -O2  -c Rpack.c -o Rpack.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include   -DUSEDOUBLE -fPIC  -g -O2  -c VScount.c -o VScount.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include   -DUSEDOUBLE -fPIC  -g -O2  -c block_sampling_fixed.c -o block_sampling_fixed.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include   -DUSEDOUBLE -fPIC  -g -O2  -c bootloop.c -o bootloop.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include   -DUSEDOUBLE -fPIC  -g -O2  -c mt.c -o mt.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include   -DUSEDOUBLE -fPIC  -g -O2  -c pairt_sampling.c -o pairt_sampling.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include   -DUSEDOUBLE -fPIC  -g -O2  -c pairt_sampling_fixed.c -o pairt_sampling_fixed.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include   -DUSEDOUBLE -fPIC  -g -O2  -c random.c -o random.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include   -DUSEDOUBLE -fPIC  -g -O2  -c sampling.c -o sampling.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include   -DUSEDOUBLE -fPIC  -g -O2  -c sampling_fixed.c -o sampling_fixed.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include   -DUSEDOUBLE -fPIC  -g -O2  -c stat_func.c -o stat_func.o
+stat_func.c: In function ‘read_infile’:
+stat_func.c:703:3: warning: ignoring return value of ‘fscanf’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  703 |   fscanf(fh, "%s", pdata->name);
+      |   ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+stat_func.c:705:5: warning: ignoring return value of ‘fscanf’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  705 |     fscanf(fh, "%d", pdata->L+j);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+stat_func.c:710:5: warning: ignoring return value of ‘fscanf’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  710 |     fscanf(fh, "%s", pdata->id[i]);
+      |     ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+stat_func.c:714:7: warning: ignoring return value of ‘fscanf’ declared with attribute ‘warn_unused_result’ [-Wunused-result]
+  714 |       fscanf(fh, "%lg",&ftemp);
+      |       ^~~~~~~~~~~~~~~~~~~~~~~~
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include   -DUSEDOUBLE -fPIC  -g -O2  -c stat_order.c -o stat_order.o
+gcc -shared -L/home/biocbuild/R/R-4.3.0/lib -L/usr/local/lib -o multtest.so Rpack.o VScount.o block_sampling_fixed.o bootloop.o mt.o pairt_sampling.o pairt_sampling_fixed.o random.o sampling.o sampling_fixed.o stat_func.o stat_order.o -lm -L/home/biocbuild/R/R-4.3.0/lib -lR
+installing to /home/biocbuild/R/R-4.3.0/site-library/00LOCK-multtest/00new/multtest/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (multtest)

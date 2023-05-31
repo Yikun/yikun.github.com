@@ -1,0 +1,44 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD INSTALL mitoClone2
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0/site-library’
+* installing *source* package ‘mitoClone2’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+g++ -std=gnu++17 -D_FILE_OFFSET_BITS=64 ../inst/SCITEpkg/*.cpp -o scite
+../inst/SCITEpkg/findBestTrees.cpp:56:8: warning: built-in function ‘gamma’ declared as non-function [-Wbuiltin-declaration-mismatch]
+   56 | double gamma = 1;
+      |        ^~~~~
+../inst/SCITEpkg/mcmcBinTreeMove.cpp: In function ‘int pickNodeToMove(int*, int)’:
+../inst/SCITEpkg/mcmcBinTreeMove.cpp:75:1: warning: control reaches end of non-void function [-Wreturn-type]
+   75 | }
+      | ^
+mkdir -p "/home/biocbuild/R/R-4.3.0/site-library/00LOCK-mitoClone2/00new/mitoClone2/SCITE/"
+cp scite "/home/biocbuild/R/R-4.3.0/site-library/00LOCK-mitoClone2/00new/mitoClone2/SCITE/"
+rm scite
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG -D_FILE_OFFSET_BITS=64 -I'/home/biocbuild/R/R-4.3.0/site-library/Rhtslib/include' -I/usr/local/include    -fPIC  -g -O2  -c bam2R_10x.cpp -o bam2R_10x.o
+g++ -std=gnu++17 -shared -L/home/biocbuild/R/R-4.3.0/lib -L/usr/local/lib -o mitoClone2.so bam2R_10x.o /home/biocbuild/R/R-4.3.0/site-library/Rhtslib/usrlib/libhts.a -lcurl -L/home/biocbuild/R/R-4.3.0/lib -lR
+installing to /home/biocbuild/R/R-4.3.0/site-library/00LOCK-mitoClone2/00new/mitoClone2/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (mitoClone2)

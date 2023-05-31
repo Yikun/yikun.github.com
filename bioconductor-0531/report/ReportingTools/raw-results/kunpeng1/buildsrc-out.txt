@@ -1,0 +1,61 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD build --keep-empty-dirs --no-resave-data ReportingTools
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘ReportingTools/DESCRIPTION’ ... OK
+* preparing ‘ReportingTools’:
+* checking DESCRIPTION meta-information ... OK
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘basicReportingTools.Rnw’ using Sweave
+--- finished re-building ‘basicReportingTools.Rnw’
+
+--- re-building ‘microarrayAnalysis.Rnw’ using Sweave
+--- finished re-building ‘microarrayAnalysis.Rnw’
+
+--- re-building ‘rnaseqAnalysis.Rnw’ using Sweave
+--- finished re-building ‘rnaseqAnalysis.Rnw’
+
+--- re-building ‘shiny.Rnw’ using Sweave
+--- finished re-building ‘shiny.Rnw’
+
+--- re-building ‘knitr.Rmd’ using knitr
+Warning in file.info(x, extra_cols = FALSE) :
+  expanded path length 6481 would be too long for
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{Knitr and ReportingTools}
+-->
+<h1 id="knitr-and-reportingtools">Knitr and ReportingTools</h1>
+<p>Jessica L. Larson and Gabriel Becker</p>
+<p>We can use knitr and ReportingTools together, as shown in this very simple example from our basic vignette.</p>
+<p>Here we will create a simple report that integrates <code>ReportingTools</code> report capabilities with knitr.</p>
+<p>To build this report, simply call the <code>knit2html</code> function from the
+knitr package.</p>
+<ul>
+<li>By default, knitr will write the destination file within the current working directory.</li>
+<li>We thus call <code>knit2html</code> from within the
+<code>reportDirectory</code>.</li>
+<li>Alternatively, we can call <code>knit2html</code> with an
+<code>output</code> argument that matches the <code>reportDirectory</code>
+argument passed to <code>HTMLReport</code>.</li>
+</ul>
+<p><strong>Note: the output html file must b [... truncated]
+Warning in file(con, "r") :
+  cannot open file 'jslib/jquery-1.8.0.min.js': No such file or directory
+Error: processing vignette 'knitr.Rmd' failed with diagnostics:
+cannot open the connection
+--- failed re-building ‘knitr.Rmd’
+
+SUMMARY: processing the following file failed:
+  ‘knitr.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted

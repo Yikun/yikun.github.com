@@ -1,0 +1,203 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD check --install=check:ILoReg.install-out.txt --library=/home/biocbuild/R/R-4.3.0/site-library --timings ILoReg_1.11.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/ILoReg.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘ILoReg/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘ILoReg’ version ‘1.11.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘ILoReg’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... WARNING
+Codoc mismatches from documentation object 'FindAllGeneMarkers':
+FindAllGeneMarkers.SingleCellExperiment
+  Code: function(object, clustering.type, test, log2fc.threshold,
+                 min.pct, min.diff.pct, min.cells.group,
+                 max.cells.per.cluster, return.thresh, only.pos)
+  Docs: function(object, clustering.type, test, log2fc.threshold,
+                 min.pct, min.diff.pct, min.cells.group,
+                 max.cells.per.cluster, pseudocount.use, return.thresh,
+                 only.pos)
+  Argument names in docs not in code:
+    pseudocount.use
+  Mismatches in argument names:
+    Position: 9 Code: return.thresh Docs: pseudocount.use
+    Position: 10 Code: only.pos Docs: return.thresh
+\S4method{FindAllGeneMarkers}{SingleCellExperiment}
+  Code: function(object, clustering.type = "manual", test = "wilcox",
+                 log2fc.threshold = 0.25, min.pct = 0.1, min.diff.pct =
+                 NULL, min.cells.group = 3, max.cells.per.cluster =
+                 NULL, return.thresh = 0.01, only.pos = FALSE)
+  Docs: function(object, clustering.type = "manual", test = "wilcox",
+                 log2fc.threshold = 0.25, min.pct = 0.1, min.diff.pct =
+                 NULL, min.cells.group = 3, max.cells.per.cluster =
+                 NULL, pseudocount.use = 1, return.thresh = 0.01,
+                 only.pos = FALSE)
+  Argument names in docs not in code:
+    pseudocount.use
+  Mismatches in argument names:
+    Position: 9 Code: return.thresh Docs: pseudocount.use
+    Position: 10 Code: only.pos Docs: return.thresh
+
+Codoc mismatches from documentation object 'FindGeneMarkers':
+FindGeneMarkers.SingleCellExperiment
+  Code: function(object, clusters.1, clusters.2, clustering.type, test,
+                 logfc.threshold, min.pct, min.diff.pct,
+                 min.cells.group, max.cells.per.cluster, return.thresh,
+                 only.pos)
+  Docs: function(object, clusters.1, clusters.2, clustering.type, test,
+                 logfc.threshold, min.pct, min.diff.pct,
+                 min.cells.group, max.cells.per.cluster,
+                 pseudocount.use, return.thresh, only.pos)
+  Argument names in docs not in code:
+    pseudocount.use
+  Mismatches in argument names:
+    Position: 11 Code: return.thresh Docs: pseudocount.use
+    Position: 12 Code: only.pos Docs: return.thresh
+\S4method{FindGeneMarkers}{SingleCellExperiment}
+  Code: function(object, clusters.1 = NULL, clusters.2 = NULL,
+                 clustering.type = "", test = "wilcox", logfc.threshold
+                 = 0.25, min.pct = 0.1, min.diff.pct = NULL,
+                 min.cells.group = 3, max.cells.per.cluster = NULL,
+                 return.thresh = 0.01, only.pos = FALSE)
+  Docs: function(object, clusters.1 = NULL, clusters.2 = NULL,
+                 clustering.type = "", test = "wilcox", logfc.threshold
+                 = 0.25, min.pct = 0.1, min.diff.pct = NULL,
+                 min.cells.group = 3, max.cells.per.cluster = NULL,
+                 pseudocount.use = 1, return.thresh = 0.01, only.pos =
+                 FALSE)
+  Argument names in docs not in code:
+    pseudocount.use
+  Mismatches in argument names:
+    Position: 11 Code: return.thresh Docs: pseudocount.use
+    Position: 12 Code: only.pos Docs: return.thresh
+
+Codoc mismatches from documentation object 'RunICP':
+RunICP
+  Code: function(normalized.data = NULL, k = 15, d = 0.3, r = 5, C = 5,
+                 reg.type = "L1", max.iter = 200, icp.batch.size = Inf)
+  Docs: function(normalized.data = NULL, k = 15, d = 0.3, r = 5, C = 5,
+                 reg.type = "L1", max.iter = 200)
+  Argument names in code not in docs:
+    icp.batch.size
+
+Codoc mismatches from documentation object 'RunParallelICP':
+RunParallelICP.SingleCellExperiment
+  Code: function(object, k, d, L, r, C, reg.type, max.iter, threads,
+                 icp.batch.size)
+  Docs: function(object, k, d, L, r, C, reg.type, max.iter, threads)
+  Argument names in code not in docs:
+    icp.batch.size
+\S4method{RunParallelICP}{SingleCellExperiment}
+  Code: function(object, k = 15, d = 0.3, L = 200, r = 5, C = 0.3,
+                 reg.type = "L1", max.iter = 200, threads = 0,
+                 icp.batch.size = Inf)
+  Docs: function(object, k = 15, d = 0.3, L = 200, r = 5, C = 0.3,
+                 reg.type = "L1", max.iter = 200, threads = 0)
+  Argument names in code not in docs:
+    icp.batch.size
+
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                         user system elapsed
+FindAllGeneMarkers     25.516  0.436  25.953
+SelectTopGenes         21.895  0.292  22.187
+AnnotationScatterPlot  18.817  0.271  19.089
+ClusteringScatterPlot  17.859  0.176  18.036
+GeneScatterPlot        17.107  0.120  17.229
+GeneHeatmap            15.759  0.300  16.060
+CalcSilhInfo           15.125  0.277  15.402
+FindGeneMarkers        14.490  0.164  14.654
+RunTSNE                12.928  0.076  13.004
+RunUMAP                12.181  0.032  12.214
+VlnPlot                11.228  0.064  11.292
+HierarchicalClustering 10.470  0.052  10.523
+MergeClusters          10.325  0.112  10.437
+SilhouetteCurve        10.309  0.080  10.390
+RenameAllClusters      10.299  0.024  10.324
+SelectKClusters        10.198  0.024  10.223
+RenameCluster          10.138  0.024  10.163
+RunPCA                  9.951  0.076  10.027
+RunParallelICP          9.921  0.044   9.966
+PCAElbowPlot            9.461  0.036   9.498
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘ILoReg.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘ILoReg.Rmd’ using rmarkdown
+Error: processing vignette 'ILoReg.Rmd' failed with diagnostics:
+there is no package called ‘BiocStyle’
+--- failed re-building ‘ILoReg.Rmd’
+
+SUMMARY: processing the following file failed:
+  ‘ILoReg.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 1 WARNING
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/ILoReg.Rcheck/00check.log’
+for details.
+

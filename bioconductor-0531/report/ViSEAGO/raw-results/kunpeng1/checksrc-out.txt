@@ -1,0 +1,178 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD check --install=check:ViSEAGO.install-out.txt --library=/home/biocbuild/R/R-4.3.0/site-library --timings ViSEAGO_1.15.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/ViSEAGO.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘ViSEAGO/DESCRIPTION’ ... OK
+* this is package ‘ViSEAGO’ version ‘1.15.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘ViSEAGO’ can be installed ... WARNING
+Found the following significant warnings:
+  Warning: replacing previous import ‘data.table::set’ by ‘dendextend::set’ when loading ‘ViSEAGO’
+See ‘/home/biocbuild/bbs-3.18-bioc/meat/ViSEAGO.Rcheck/00install.out’ for details.
+* checking installed package size ... NOTE
+  installed size is 12.3Mb
+  sub-directories of 1Mb or more:
+    extdata  10.6Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... WARNING
+'library' or 'require' call not declared from: ‘topGO’
+'library' or 'require' call to ‘topGO’ in package code.
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+Namespace in Imports field not imported from: ‘processx’
+  All declared Imports should be used.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+annotate,character-genomic_ressource: warning in getBM(attributes =
+  c("ensembl_gene_id", "go_id", "go_linkage_type", "namespace_1003"),
+  filters = unlist(go_filter[grep("with GO ID", ignore.case = TRUE,
+  go_filter$description), "name", with = FALSE]), value = TRUE, mart =
+  myspecies): partial argument match of 'value' to 'values'
+compute_SS_distances,ANY-character: warning in select(GO.db, keys =
+  onto$values, column = "TERM"): partial argument match of 'column' to
+  'columns'
+merge_enrich_terms,list : genes_symbols_add: warning in
+  getBM(attributes = c("ensembl_gene_id", "external_gene_name"), value
+  = TRUE, mart = myspecies): partial argument match of 'value' to
+  'values'
+GOterms_heatmap,GO_SS: no visible binding for global variable ‘GO.ID’
+MDSplot,ANY: no visible binding for global variable ‘text’
+MDSplot,ANY: no visible binding for global variable ‘GO.cluster’
+Upset,ANY: no visible global function definition for ‘png’
+Upset,ANY: no visible global function definition for ‘dev.off’
+annotate,character-genomic_ressource: no visible global function
+  definition for ‘.’
+annotate,character-genomic_ressource: no visible binding for global
+  variable ‘ENTREZID’
+annotate,character-genomic_ressource: no visible binding for global
+  variable ‘GO’
+annotate,character-genomic_ressource: no visible binding for global
+  variable ‘EVIDENCE’
+annotate,character-genomic_ressource: no visible binding for global
+  variable ‘ONTOLOGY’
+compute_SS_distances,ANY-character: no visible binding for global
+  variable ‘N’
+compute_SS_distances,ANY-character: no visible binding for global
+  variable ‘IC’
+merge_enrich_terms,list : genes_symbols_add : esummary : <anonymous>:
+  no visible binding for global variable ‘start’
+merge_enrich_terms,list : genes_symbols_add : esummary : <anonymous>:
+  no visible binding for global variable ‘end’
+merge_enrich_terms,list : <anonymous>: no visible binding for global
+  variable ‘pval’
+merge_enrich_terms,list : <anonymous>: no visible binding for global
+  variable ‘pathway’
+merge_enrich_terms,list : <anonymous>: no visible binding for global
+  variable ‘Id’
+merge_enrich_terms,list : <anonymous>: no visible global function
+  definition for ‘.’
+merge_enrich_terms,list : <anonymous>: no visible binding for global
+  variable ‘padj’
+merge_enrich_terms,list : <anonymous>: no visible binding for global
+  variable ‘nMoreExtreme’
+merge_enrich_terms,list : <anonymous>: no visible binding for global
+  variable ‘ES’
+merge_enrich_terms,list : <anonymous>: no visible binding for global
+  variable ‘NES’
+merge_enrich_terms,list : <anonymous>: no visible binding for global
+  variable ‘size’
+merge_enrich_terms,list : <anonymous>: no visible binding for global
+  variable ‘genes_frequency’
+merge_enrich_terms,list : <anonymous>: no visible binding for global
+  variable ‘log2err’
+merge_enrich_terms,list : <anonymous>: no visible binding for global
+  variable ‘leadingEdge’
+merge_enrich_terms,list : <anonymous>: no visible binding for global
+  variable ‘Significant_genes’
+merge_enrich_terms,list : <anonymous>: no visible binding for global
+  variable ‘GO.ID’
+runfgsea,ANY-gene2GO-character: no visible binding for global variable
+  ‘genes_frequency’
+runfgsea,ANY-gene2GO-character: no visible binding for global variable
+  ‘leadingEdge’
+runfgsea,ANY-gene2GO-character: no visible binding for global variable
+  ‘size’
+runfgsea,ANY-gene2GO-character: no visible binding for global variable
+  ‘pathway’
+Undefined global functions or variables:
+  . ENTREZID ES EVIDENCE GO GO.ID GO.cluster IC Id N NES ONTOLOGY
+  Significant_genes dev.off end genes_frequency leadingEdge log2err
+  nMoreExtreme padj pathway png pval size start text
+Consider adding
+  importFrom("grDevices", "dev.off", "png")
+  importFrom("graphics", "text")
+  importFrom("stats", "end", "start")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... WARNING
+  
+  Note: significantly better compression could be obtained
+        by using R CMD build --resave-data
+              old_size new_size compress
+  myGOs.RData    876Kb    517Kb       xz
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘SS_choice.Rmd’ using ‘UTF-8’... OK
+  ‘ViSEAGO.Rmd’ using ‘UTF-8’... OK
+  ‘fgsea_alternative.Rmd’ using ‘UTF-8’... OK
+  ‘mouse_bioconductor.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 WARNINGs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/ViSEAGO.Rcheck/00check.log’
+for details.
+
+

@@ -1,0 +1,168 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD check --install=check:FLAMES.install-out.txt --library=/home/biocbuild/R/R-4.3.0/site-library --timings FLAMES_1.7.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/FLAMES.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘FLAMES/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘FLAMES’ version ‘1.7.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘FLAMES’ can be installed ... OK
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+* checking C++ specification ... OK
+  Not all R platforms support C++17
+* checking installed package size ... NOTE
+  installed size is  6.9Mb
+  sub-directories of 1Mb or more:
+    libs   5.3Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+barcode_info_plots: no visible global function definition for
+  'everything'
+barcode_info_plots: no visible binding for global variable 'name'
+barcode_info_plots: no visible binding for global variable 'value'
+barcode_info_plots: no visible binding for global variable
+  'reads_demultiplexed'
+combine_sce: no visible global function definition for 'is'
+generate_sc_sce: no visible binding for global variable 'FSM_match'
+plot_flagstat: no visible global function definition for 'everything'
+plot_flagstat: no visible binding for global variable 'name'
+plot_flagstat: no visible binding for global variable 'value'
+sc_DTU_analysis: no visible global function definition for 'is'
+sc_DTU_analysis: no visible binding for global variable 'FSM_match'
+sc_DTU_analysis: no visible binding for global variable 'gene_name'
+sc_DTU_analysis: no visible binding for global variable 'cell_id'
+sc_DTU_analysis: no visible binding for global variable 'cnt'
+sc_DTU_analysis: no visible binding for global variable 'tr_id'
+sc_DTU_analysis : get_rm: no visible binding for global variable
+  'gene_name'
+sc_DTU_analysis : get_rm: no visible binding for global variable 'l'
+sc_annotate_plots: no visible binding for global variable 'gene_id'
+sc_annotate_plots: no visible binding for global variable 'x'
+sc_annotate_plots: no visible binding for global variable 'y'
+sc_annotate_plots : plot_idx: no visible binding for global variable
+  'x'
+sc_annotate_plots : plot_idx: no visible binding for global variable
+  'y'
+sc_annotate_plots : plot_idx_impute: no visible binding for global
+  variable 'x'
+sc_annotate_plots : plot_idx_impute: no visible binding for global
+  variable 'y'
+sc_heatmap_expression: no visible binding for global variable
+  'transcript_id'
+sc_heatmap_expression: no visible binding for global variable 'gene_id'
+sc_heatmap_expression : group_annotation: no visible binding for global
+  variable 'heatmap_annotation_colors'
+sc_umap_expression: no visible binding for global variable
+  'transcript_id'
+sc_umap_expression: no visible binding for global variable 'gene_id'
+sc_umap_expression: no visible binding for global variable 'x'
+sc_umap_expression: no visible binding for global variable 'y'
+sc_umap_expression : plot_idx: no visible binding for global variable
+  'x'
+sc_umap_expression : plot_idx: no visible binding for global variable
+  'y'
+Undefined global functions or variables:
+  FSM_match cell_id cnt everything gene_id gene_name
+  heatmap_annotation_colors is l name reads_demultiplexed tr_id
+  transcript_id value x y
+Consider adding
+  importFrom("methods", "is")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in shell scripts ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... NOTE
+GNU make is a SystemRequirements.
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... WARNING
+Note: information on .o files is not available
+File ‘/home/biocbuild/R/R-4.3.0/site-library/FLAMES/libs/FLAMES.so’:
+  Found ‘__sprintf_chk’, possibly from ‘sprintf’ (C)
+  Found ‘abort’, possibly from ‘abort’ (C)
+  Found ‘exit’, possibly from ‘exit’ (C)
+  Found ‘stderr’, possibly from ‘stderr’ (C)
+  Found ‘stdout’, possibly from ‘stdout’ (C)
+
+Compiled code should not call entry points which might terminate R nor
+write to stdout/stderr instead of to the console, nor use Fortran I/O
+nor system RNGs nor [v]sprintf. The detected symbols are linked into
+the code but might come from libraries and not actually be called.
+
+See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                         user system elapsed
+sc_heatmap_expression 302.102   8.11 348.573
+sc_umap_expression    271.904   7.99 330.454
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘FLAMES_vignette.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 WARNING, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/FLAMES.Rcheck/00check.log’
+for details.
+
+

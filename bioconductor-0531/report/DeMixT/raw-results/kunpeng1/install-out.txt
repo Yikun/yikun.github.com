@@ -1,0 +1,55 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD INSTALL DeMixT
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0/site-library’
+* installing *source* package ‘DeMixT’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0/site-library/Rcpp/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c DeMixT.c -o DeMixT.o
+DeMixT.c: In function ‘Tdemix’:
+DeMixT.c:94:8: warning: argument 1 range [18446744071562067968, 18446744073709551615] exceeds maximum object size 9223372036854775807 [-Walloc-size-larger-than=]
+   94 |   FD = calloc(nS ,sizeof(double *));
+      |        ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+In file included from DeMixT.c:8:
+/usr/include/stdlib.h:543:14: note: in a call to allocation function ‘calloc’ declared here
+  543 | extern void *calloc (size_t __nmemb, size_t __size)
+      |              ^~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -c Profile_2D.cpp -o Profile_2D.o
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -c RcppExports.cpp -o RcppExports.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0/site-library/Rcpp/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c init.c -o init.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0/site-library/Rcpp/include' -I/usr/local/include   -fopenmp -fPIC  -g -O2  -c registerDynamicSymbol.c -o registerDynamicSymbol.o
+g++ -std=gnu++17 -shared -L/home/biocbuild/R/R-4.3.0/lib -L/usr/local/lib -o DeMixT.so DeMixT.o Profile_2D.o RcppExports.o init.o registerDynamicSymbol.o -fopenmp -L/home/biocbuild/R/R-4.3.0/lib -lR
+installing to /home/biocbuild/R/R-4.3.0/site-library/00LOCK-DeMixT/00new/DeMixT/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+Warning: replacing previous import ‘ggplot2::%+%’ by ‘psych::%+%’ when loading ‘DeMixT’
+Warning: replacing previous import ‘SummarizedExperiment::distance’ by ‘psych::distance’ when loading ‘DeMixT’
+Warning: replacing previous import ‘ggplot2::alpha’ by ‘psych::alpha’ when loading ‘DeMixT’
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+Warning: replacing previous import ‘ggplot2::%+%’ by ‘psych::%+%’ when loading ‘DeMixT’
+Warning: replacing previous import ‘SummarizedExperiment::distance’ by ‘psych::distance’ when loading ‘DeMixT’
+Warning: replacing previous import ‘ggplot2::alpha’ by ‘psych::alpha’ when loading ‘DeMixT’
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+Warning: replacing previous import ‘ggplot2::%+%’ by ‘psych::%+%’ when loading ‘DeMixT’
+Warning: replacing previous import ‘SummarizedExperiment::distance’ by ‘psych::distance’ when loading ‘DeMixT’
+Warning: replacing previous import ‘ggplot2::alpha’ by ‘psych::alpha’ when loading ‘DeMixT’
+** testing if installed package keeps a record of temporary installation path
+* DONE (DeMixT)

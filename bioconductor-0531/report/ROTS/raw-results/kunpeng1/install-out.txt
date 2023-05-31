@@ -1,0 +1,50 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD INSTALL ROTS
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0/site-library’
+* installing *source* package ‘ROTS’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -c NeedForSpeed1.cpp -o NeedForSpeed1.o
+In file included from /usr/include/c++/11/bits/stl_algo.h:61,
+                 from /usr/include/c++/11/algorithm:62,
+                 from NeedForSpeed1.cpp:4:
+/usr/include/c++/11/bits/stl_heap.h: In function ‘void std::__adjust_heap(_RandomAccessIterator, _Distance, _Distance, _Tp, _Compare) [with _RandomAccessIterator = __gnu_cxx::__normal_iterator<std::pair<double, double>*, std::vector<std::pair<double, double> > >; _Distance = long int; _Tp = std::pair<double, double>; _Compare = __gnu_cxx::__ops::_Iter_less_iter]’:
+/usr/include/c++/11/bits/stl_heap.h:223:5: note: parameter passing for argument of type ‘std::pair<double, double>’ when C++17 is enabled changed to match C++14 in GCC 10.1
+  223 |     __adjust_heap(_RandomAccessIterator __first, _Distance __holeIndex,
+      |     ^~~~~~~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -c NeedForSpeed2.cpp -o NeedForSpeed2.o
+In file included from /usr/include/c++/11/bits/stl_algo.h:61,
+                 from /usr/include/c++/11/algorithm:62,
+                 from NeedForSpeed2.cpp:4:
+/usr/include/c++/11/bits/stl_heap.h: In function ‘void std::__adjust_heap(_RandomAccessIterator, _Distance, _Distance, _Tp, _Compare) [with _RandomAccessIterator = __gnu_cxx::__normal_iterator<std::pair<double, double>*, std::vector<std::pair<double, double> > >; _Distance = long int; _Tp = std::pair<double, double>; _Compare = __gnu_cxx::__ops::_Iter_less_iter]’:
+/usr/include/c++/11/bits/stl_heap.h:223:5: note: parameter passing for argument of type ‘std::pair<double, double>’ when C++17 is enabled changed to match C++14 in GCC 10.1
+  223 |     __adjust_heap(_RandomAccessIterator __first, _Distance __holeIndex,
+      |     ^~~~~~~~~~~~~
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -c pvalue.cpp -o pvalue.o
+g++ -std=gnu++17 -shared -L/home/biocbuild/R/R-4.3.0/lib -L/usr/local/lib -o ROTS.so NeedForSpeed1.o NeedForSpeed2.o RcppExports.o pvalue.o -L/home/biocbuild/R/R-4.3.0/lib -lR
+installing to /home/biocbuild/R/R-4.3.0/site-library/00LOCK-ROTS/00new/ROTS/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (ROTS)

@@ -1,0 +1,47 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD INSTALL CellaRepertorium
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0/site-library’
+* installing *source* package ‘CellaRepertorium’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -c cdhit-bombs.cpp -o cdhit-bombs.o
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -c cdhit-common.cpp -o cdhit-common.o
+In file included from cdhit-common.cpp:37:
+In member function ‘void NVector<TYPE>::Resize(int, const TYPE&) [with TYPE = long int]’,
+    inlined from ‘NVector<TYPE>::NVector(int, const TYPE&) [with TYPE = long int]’ at cdhit-common.h:124:10,
+    inlined from ‘int local_band_align(char*, char*, int, int, ScoreMatrix&, int&, int&, int&, float&, int*, int, int, int, WorkingBuffer&)’ at cdhit-common.cpp:802:36:
+cdhit-common.h:149:55: warning: argument 1 range [18446744056529682448, 18446744073709551608] exceeds maximum object size 9223372036854775807 [-Walloc-size-larger-than=]
+  149 |                                 items = (TYPE*)realloc( items, capacity*sizeof(TYPE) );
+      |                                                ~~~~~~~^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+cdhit-common.h: In function ‘int local_band_align(char*, char*, int, int, ScoreMatrix&, int&, int&, int&, float&, int*, int, int, int, WorkingBuffer&)’:
+cdhit-common.h:149:55: note: in a call to built-in allocation function ‘void* __builtin_malloc(long unsigned int)’
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -c cdhit-est.cpp -o cdhit-est.o
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -c cdhit.cpp -o cdhit.o
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0/site-library/Rcpp/include' -I/usr/local/include    -fPIC  -g -O2  -c progress.cpp -o progress.o
+g++ -std=gnu++17 -shared -L/home/biocbuild/R/R-4.3.0/lib -L/usr/local/lib -o CellaRepertorium.so RcppExports.o cdhit-bombs.o cdhit-common.o cdhit-est.o cdhit.o progress.o -L/home/biocbuild/R/R-4.3.0/lib -lR
+installing to /home/biocbuild/R/R-4.3.0/site-library/00LOCK-CellaRepertorium/00new/CellaRepertorium/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+*** copying figures
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (CellaRepertorium)

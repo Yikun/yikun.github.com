@@ -1,0 +1,142 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD check --install=check:flowMap.install-out.txt --library=/home/biocbuild/R/R-4.3.0/site-library --timings flowMap_1.39.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/flowMap.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘flowMap/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘flowMap’ version ‘1.39.0’
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  'ade4', 'doParallel', 'abind', 'reshape2', 'scales', 'Matrix'
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘flowMap’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... WARNING
+'library' or 'require' call not declared from: ‘igraph’
+'library' or 'require' call to ‘Matrix’ which was already attached by Depends.
+  Please remove these calls from your code.
+'library' or 'require' call to ‘igraph’ in package code.
+  Please use :: or requireNamespace() instead.
+  See section 'Suggested packages' in the 'Writing R Extensions' manual.
+Packages in Depends field not imported from:
+  ‘Matrix’ ‘abind’ ‘ade4’ ‘doParallel’ ‘methods’ ‘reshape2’ ‘scales’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+getFR: no visible global function definition for ‘dist’
+getFR: no visible global function definition for ‘pnorm’
+getFRest: no visible global function definition for ‘detectCores’
+getFRest: no visible global function definition for
+  ‘registerDoParallel’
+getFRest: no visible global function definition for ‘%dopar%’
+getFRest: no visible global function definition for ‘foreach’
+getFRest: no visible binding for global variable ‘i’
+getFRest: no visible global function definition for ‘new’
+makeDistmat: no visible global function definition for ‘forceSymmetric’
+makeFRMST: no visible global function definition for ‘dist’
+makeFRMST: no visible global function definition for ‘as.dist’
+makeFRMST: no visible global function definition for ‘graph.adjacency’
+makeFRMST: no visible global function definition for
+  ‘set.edge.attribute’
+makeFRMST: no visible global function definition for ‘E’
+makeFRMST: no visible global function definition for ‘E<-’
+makeFRMST: no visible global function definition for ‘V’
+makeFRMST: no visible global function definition for ‘V<-’
+makeFRMST: no visible global function definition for ‘pnorm’
+statCrossLists: no visible global function definition for ‘abind’
+Undefined global functions or variables:
+  %dopar% E E<- V V<- abind as.dist detectCores dist forceSymmetric
+  foreach graph.adjacency i new pnorm registerDoParallel
+  set.edge.attribute
+Consider adding
+  importFrom("methods", "new")
+  importFrom("stats", "as.dist", "dist", "pnorm")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'getFRest'
+  ‘ncores’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘flowMap.Rnw’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘flowMap.Rnw’ using knitr
+
+Quitting from lines 97-120 [makeplotSelfruns1] (flowMap.Rnw)
+Error: processing vignette 'flowMap.Rnw' failed with diagnostics:
+there is no package called 'igraph'
+--- failed re-building ‘flowMap.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘flowMap.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 2 WARNINGs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/flowMap.Rcheck/00check.log’
+for details.
+

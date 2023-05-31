@@ -1,0 +1,109 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD INSTALL Rarr
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0/site-library’
+* installing *source* package ‘Rarr’ ...
+** using staged installation
+configure: creating ./config.status
+config.status: creating src/Makevars
+x86_CPU=false
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether the compiler supports GNU C... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to enable C11 features... none needed
+checking whether C compiler accepts -msse2... no
+checking whether C compiler accepts -mavx2... no
+configure: creating ./config.status
+config.status: creating src/Makevars
+config.status: creating src/compression_tools/blosc/lib/blosc-1.20.1/Makefile
+config.status: creating src/compression_tools/blosc/Makefile
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+make -C compression_tools/blosc
+make[1]: Entering directory '/home/biocbuild/bbs-3.18-bioc/meat/Rarr/src/compression_tools/blosc'
+make -C lib/snappy-1.1.1
+make[2]: Entering directory '/home/biocbuild/bbs-3.18-bioc/meat/Rarr/src/compression_tools/blosc/lib/snappy-1.1.1'
+g++ -std=gnu++17 -g -O2 -fPIC -I/usr/local/include -I/home/biocbuild/R/R-4.3.0/include -DUSING_R -c snappy.cc
+g++ -std=gnu++17 -g -O2 -fPIC -I/usr/local/include -I/home/biocbuild/R/R-4.3.0/include -DUSING_R -c snappy-c.cc
+g++ -std=gnu++17 -g -O2 -fPIC -I/usr/local/include -I/home/biocbuild/R/R-4.3.0/include -DUSING_R -c snappy-sinksource.cc
+g++ -std=gnu++17 -g -O2 -fPIC -I/usr/local/include -I/home/biocbuild/R/R-4.3.0/include -DUSING_R -c snappy-stubs-internal.cc
+make[2]: Leaving directory '/home/biocbuild/bbs-3.18-bioc/meat/Rarr/src/compression_tools/blosc/lib/snappy-1.1.1'
+make -C lib/lz4-1.9.2
+make[2]: Entering directory '/home/biocbuild/bbs-3.18-bioc/meat/Rarr/src/compression_tools/blosc/lib/lz4-1.9.2'
+gcc -g -O2 -fPIC -DNLZ4_DEBUG -c lz4.c
+gcc -g -O2 -fPIC -DNLZ4_DEBUG -c lz4hc.c
+make[2]: Leaving directory '/home/biocbuild/bbs-3.18-bioc/meat/Rarr/src/compression_tools/blosc/lib/lz4-1.9.2'
+make -C lib/zstd-1.4.5
+make[2]: Entering directory '/home/biocbuild/bbs-3.18-bioc/meat/Rarr/src/compression_tools/blosc/lib/zstd-1.4.5'
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c common/debug.c -o common/debug.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c common/entropy_common.c -o common/entropy_common.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c common/error_private.c -o common/error_private.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c common/fse_decompress.c -o common/fse_decompress.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -I. -c common/pool.c -o common/pool.o -o common/pool.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c common/threading.c -o common/threading.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c common/xxhash.c -o common/xxhash.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c common/zstd_common.c -o common/zstd_common.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c compress/fse_compress.c -o compress/fse_compress.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c compress/hist.c -o compress/hist.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c compress/huf_compress.c -o compress/huf_compress.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c compress/zstd_compress.c -o compress/zstd_compress.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c compress/zstd_compress_literals.c -o compress/zstd_compress_literals.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c compress/zstd_compress_sequences.c -o compress/zstd_compress_sequences.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c compress/zstd_compress_superblock.c -o compress/zstd_compress_superblock.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c compress/zstd_double_fast.c -o compress/zstd_double_fast.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c compress/zstd_fast.c -o compress/zstd_fast.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c compress/zstd_lazy.c -o compress/zstd_lazy.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c compress/zstd_ldm.c -o compress/zstd_ldm.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c compress/zstd_opt.c -o compress/zstd_opt.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c compress/zstdmt_compress.c -o compress/zstdmt_compress.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c decompress/huf_decompress.c -o decompress/huf_decompress.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c decompress/zstd_ddict.c -o decompress/zstd_ddict.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c decompress/zstd_decompress.c -o decompress/zstd_decompress.o
+gcc -g -O2 -fPIC -I. -I./common -DXXH_NAMESPACE=ZSTD_ -DNDEBUG -c decompress/zstd_decompress_block.c -o decompress/zstd_decompress_block.o
+make[2]: Leaving directory '/home/biocbuild/bbs-3.18-bioc/meat/Rarr/src/compression_tools/blosc/lib/zstd-1.4.5'
+make -C lib/blosc-1.20.1 all
+make[2]: Entering directory '/home/biocbuild/bbs-3.18-bioc/meat/Rarr/src/compression_tools/blosc/lib/blosc-1.20.1'
+gcc -g -O2 -fPIC -I/usr/local/include -I/home/biocbuild/R/R-4.3.0/include -I../lz4-1.9.2 -I../snappy-1.1.1 -I../zstd-1.4.5   -DUSING_R -c bitshuffle-generic.c
+gcc -g -O2 -fPIC -I/usr/local/include -I/home/biocbuild/R/R-4.3.0/include -I../lz4-1.9.2 -I../snappy-1.1.1 -I../zstd-1.4.5   -DUSING_R -c shuffle-generic.c
+gcc -g -O2 -fPIC -I/usr/local/include -I/home/biocbuild/R/R-4.3.0/include -I../lz4-1.9.2 -I../snappy-1.1.1 -I../zstd-1.4.5   -DUSING_R   -c shuffle.c
+gcc -g -O2 -fPIC -I/usr/local/include -I/home/biocbuild/R/R-4.3.0/include -I../lz4-1.9.2 -I../snappy-1.1.1 -I../zstd-1.4.5   -DUSING_R -c blosclz.c
+gcc -g -O2 -fPIC -I/usr/local/include -I/home/biocbuild/R/R-4.3.0/include -I../lz4-1.9.2 -I../snappy-1.1.1 -I../zstd-1.4.5   -DUSING_R -c blosc.c
+gcc -g -O2 -fPIC -I/usr/local/include -I/home/biocbuild/R/R-4.3.0/include -I../lz4-1.9.2 -I../snappy-1.1.1 -I../zstd-1.4.5   -DUSING_R -c fastcopy.c
+make[2]: Leaving directory '/home/biocbuild/bbs-3.18-bioc/meat/Rarr/src/compression_tools/blosc/lib/blosc-1.20.1'
+rm -f libblosc.a
+ar cq libblosc.a lib/blosc-1.20.1/blosc.o lib/blosc-1.20.1/bitshuffle-generic.o lib/blosc-1.20.1/blosclz.o lib/blosc-1.20.1/shuffle.o lib/blosc-1.20.1/fastcopy.o lib/blosc-1.20.1/shuffle-generic.o lib/snappy-1.1.1/snappy.o lib/snappy-1.1.1/snappy-c.o lib/snappy-1.1.1/snappy-sinksource.o lib/snappy-1.1.1/snappy-stubs-internal.o lib/lz4-1.9.2/lz4.o lib/lz4-1.9.2/lz4hc.o lib/zstd-1.4.5/common/debug.o lib/zstd-1.4.5/common/entropy_common.o lib/zstd-1.4.5/common/error_private.o lib/zstd-1.4.5/common/fse_decompress.o lib/zstd-1.4.5/common/pool.o lib/zstd-1.4.5/common/threading.o lib/zstd-1.4.5/common/xxhash.o lib/zstd-1.4.5/common/zstd_common.o lib/zstd-1.4.5/compress/fse_compress.o lib/zstd-1.4.5/compress/hist.o lib/zstd-1.4.5/compress/huf_compress.o lib/zstd-1.4.5/compress/zstd_compress.o lib/zstd-1.4.5/compress/zstd_compress_literals.o lib/zstd-1.4.5/compress/zstd_compress_sequences.o lib/zstd-1.4.5/compress/zstd_compress_superblock.o lib/zstd-1.4.5/compress/zstd_double_fast.o lib/zstd-1.4.5/compress/zstd_fast.o lib/zstd-1.4.5/compress/zstd_lazy.o lib/zstd-1.4.5/compress/zstd_ldm.o lib/zstd-1.4.5/compress/zstd_opt.o lib/zstd-1.4.5/compress/zstdmt_compress.o lib/zstd-1.4.5/decompress/huf_decompress.o lib/zstd-1.4.5/decompress/zstd_ddict.o lib/zstd-1.4.5/decompress/zstd_decompress.o lib/zstd-1.4.5/decompress/zstd_decompress_block.o
+ranlib libblosc.a
+make[1]: Leaving directory '/home/biocbuild/bbs-3.18-bioc/meat/Rarr/src/compression_tools/blosc'
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2 -fPIC  -g -O2  -c Rarr.c -o Rarr.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2 -fPIC  -g -O2  -c bit64_conversion.c -o bit64_conversion.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2 -fPIC  -g -O2  -c compress.c -o compress.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2 -fPIC  -g -O2  -c decompress.c -o decompress.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2 -fPIC  -g -O2  -c float16_conversion.c -o float16_conversion.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG -I/usr/local/include  -I/usr/local/include   -g -O2 -fPIC  -g -O2  -c type_conversion.c -o type_conversion.o
+gcc -shared -L/home/biocbuild/R/R-4.3.0/lib -L/usr/local/lib -o Rarr.so Rarr.o bit64_conversion.o compress.o decompress.o float16_conversion.o type_conversion.o compression_tools/blosc/libblosc.a -L/home/biocbuild/R/R-4.3.0/lib -lR
+installing to /home/biocbuild/R/R-4.3.0/site-library/00LOCK-Rarr/00new/Rarr/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (Rarr)

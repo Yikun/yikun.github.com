@@ -1,0 +1,293 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD check --install=check:msmsTests.install-out.txt --library=/home/biocbuild/R/R-4.3.0/site-library --timings msmsTests_1.39.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/msmsTests.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘msmsTests/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘msmsTests’ version ‘1.39.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘msmsTests’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... NOTE
+Packages in Depends field not imported from:
+  ‘MSnbase’ ‘msmsEDA’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+glm.pois: no visible global function definition for ‘glm’
+glm.pois: no visible global function definition for ‘as.formula’
+glm.pois: no visible global function definition for ‘poisson’
+glm.pois: no visible global function definition for ‘coef’
+glm.pois: no visible global function definition for ‘anova’
+msms.edgeR: no visible global function definition for ‘exprs’
+msms.edgeR: no visible global function definition for ‘pData’
+msms.edgeR: no visible global function definition for ‘model.matrix’
+msms.edgeR: no visible global function definition for ‘as.formula’
+msms.glm.pois: no visible global function definition for ‘exprs’
+msms.glm.pois: no visible global function definition for ‘pData’
+msms.glm.qlll: no visible global function definition for ‘exprs’
+msms.glm.qlll: no visible global function definition for ‘pData’
+qp.test: no visible global function definition for ‘glm’
+qp.test: no visible global function definition for ‘as.formula’
+qp.test: no visible global function definition for ‘quasi’
+qp.test: no visible binding for global variable ‘mu’
+qp.test: no visible global function definition for ‘coef’
+qp.test: no visible global function definition for ‘anova’
+res.volcanoplot: no visible global function definition for ‘grid’
+res.volcanoplot: no visible global function definition for ‘abline’
+res.volcanoplot: no visible global function definition for ‘points’
+res.volcanoplot: no visible global function definition for ‘text’
+test.results: no visible global function definition for ‘exprs’
+test.results: no visible global function definition for ‘p.adjust’
+Undefined global functions or variables:
+  abline anova as.formula coef exprs glm grid model.matrix mu p.adjust
+  pData points poisson quasi text
+Consider adding
+  importFrom("graphics", "abline", "grid", "points", "text")
+  importFrom("stats", "anova", "as.formula", "coef", "glm",
+             "model.matrix", "p.adjust", "poisson", "quasi")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                 user system elapsed
+res.volcanoplot 8.684  0.072   8.756
+msms.glm.pois   8.169  0.221   8.390
+msms.glm.qlll   8.216  0.148   8.364
+test.results    8.247  0.040   8.287
+pval.by.fc      6.566  0.036   6.602
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘msmsTests-Vignette.Rnw’... failed
+  ‘msmsTests-Vignette2.Rnw’... failed
+ WARNING
+Errors in running code in vignettes:
+when running code in ‘msmsTests-Vignette.Rnw’
+  ...
+> fp <- sig - tp
+
+> tt.nb0 <- data.frame(TP = tp, FP = fp, TN = ny - fp, 
++     FN = nh - tp)
+
+> library(xtable)
+
+  When sourcing ‘msmsTests-Vignette.R’:
+Error: there is no package called ‘xtable’
+Execution halted
+when running code in ‘msmsTests-Vignette2.Rnw’
+  ...
++     tt.ql3, tt.ql33)
+
+> rownames(gbl.tt) <- c("subset", "subset filtered", 
++     "global", "global filtered", "blocking", "blocking filtered")
+
+> library(xtable)
+
+  When sourcing ‘msmsTests-Vignette2.R’:
+Error: there is no package called ‘xtable’
+Execution halted
+
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘msmsTests-Vignette.Rnw’ using Sweave
+Loading required package: MSnbase
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: mzR
+Loading required package: Rcpp
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: ProtGenerics
+
+Attaching package: ‘ProtGenerics’
+
+The following object is masked from ‘package:stats’:
+
+    smooth
+
+
+This is MSnbase version 2.27.0 
+  Visit https://lgatto.github.io/MSnbase/ to get started.
+
+
+Attaching package: ‘MSnbase’
+
+The following object is masked from ‘package:base’:
+
+    trimws
+
+Loading required package: msmsEDA
+
+Error: processing vignette 'msmsTests-Vignette.Rnw' failed with diagnostics:
+ chunk 8 (label = Chunk5.summary) 
+Error in library(xtable) : there is no package called ‘xtable’
+
+--- failed re-building ‘msmsTests-Vignette.Rnw’
+
+--- re-building ‘msmsTests-Vignette2.Rnw’ using Sweave
+Loading required package: MSnbase
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: mzR
+Loading required package: Rcpp
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: ProtGenerics
+
+Attaching package: ‘ProtGenerics’
+
+The following object is masked from ‘package:stats’:
+
+    smooth
+
+
+This is MSnbase version 2.27.0 
+  Visit https://lgatto.github.io/MSnbase/ to get started.
+
+
+Attaching package: ‘MSnbase’
+
+The following object is masked from ‘package:base’:
+
+    trimws
+
+Loading required package: msmsEDA
+
+Error: processing vignette 'msmsTests-Vignette2.Rnw' failed with diagnostics:
+ chunk 12 (label = CompChunk) 
+Error in library(xtable) : there is no package called ‘xtable’
+
+--- failed re-building ‘msmsTests-Vignette2.Rnw’
+
+SUMMARY: processing the following files failed:
+  ‘msmsTests-Vignette.Rnw’ ‘msmsTests-Vignette2.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 WARNING, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/msmsTests.Rcheck/00check.log’
+for details.
+
+

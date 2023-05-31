@@ -1,0 +1,143 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD check --install=check:enrichTF.install-out.txt --library=/home/biocbuild/R/R-4.3.0/site-library --timings enrichTF_1.17.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/enrichTF.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘enrichTF/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘enrichTF’ version ‘1.17.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘enrichTF’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking startup messages can be suppressed ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+processing,TissueOpennessConserve: no visible global function
+  definition for ‘as’
+processing,TissueOpennessConserve: no visible binding for global
+  variable ‘X2’
+processing,TissueOpennessSpecificity: no visible global function
+  definition for ‘as’
+Undefined global functions or variables:
+  X2 as
+Consider adding
+  importFrom("methods", "as")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘enrichTF-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: GenBackground
+> ### Title: Generate background regions and reset the size of foreground
+> ###   regions
+> ### Aliases: GenBackground enrichGenBackground,Step-method
+> ###   enrichGenBackground genBackground
+> 
+> ### ** Examples
+> 
+> setGenome("testgenome") #Use "hg19","hg38",etc. for your application
+Configure bsgenome ...
+Error in get_data_annotation_contrib_url(type) : 
+  Install 'BiocManager' from CRAN to get 'BioCann' contrib.url
+Calls: setGenome ... checkAndInstallBSgenome -> <Anonymous> -> get_data_annotation_contrib_url
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  Backtrace:
+      ▆
+   1. └─pipeFrame::setGenome("testgenome") at test-pipe.R:8:4
+   2.   └─base::lapply(checkAndInstall, function(cai) cai())
+   3.     └─pipeFrame (local) FUN(X[[i]], ...)
+   4.       └─enrichTF (local) cai()
+   5.         └─pipeFrame::runWithFinishCheck(...)
+   6.           └─enrichTF (local) func(NULL)
+   7.             └─pipeFrame::checkAndInstallBSgenome(refFilePath, genome)
+   8.               └─BSgenome::available.genomes()
+   9.                 └─BSgenome:::get_data_annotation_contrib_url(type)
+  
+  [ FAIL 1 | WARN 0 | SKIP 0 | PASS 0 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘enrichTF.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘enrichTF.Rmd’ using rmarkdown
+
+Quitting from lines 58-62 [unnamed-chunk-1] (enrichTF.Rmd)
+Error: processing vignette 'enrichTF.Rmd' failed with diagnostics:
+Install 'BiocManager' from CRAN to get 'BioCann' contrib.url
+--- failed re-building ‘enrichTF.Rmd’
+
+SUMMARY: processing the following file failed:
+  ‘enrichTF.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/enrichTF.Rcheck/00check.log’
+for details.
+

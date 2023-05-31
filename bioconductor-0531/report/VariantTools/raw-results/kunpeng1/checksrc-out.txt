@@ -1,0 +1,303 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD check --install=check:VariantTools.install-out.txt --library=/home/biocbuild/R/R-4.3.0/site-library --timings VariantTools_1.43.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/VariantTools.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘VariantTools/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘VariantTools’ version ‘1.43.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... NOTE
+Found the following hidden files and directories:
+  .BBSoptions
+These were most likely included in error. See section ‘Package
+structure’ in the ‘Writing R Extensions’ manual.
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘VariantTools’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is  6.5Mb
+  sub-directories of 1Mb or more:
+    doc   5.4Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... NOTE
+Problems with news in ‘NEWS’:
+  Cannot process chunk/lines:
+    Initial release
+    (start date: 12 September, 2012)
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... WARNING
+Missing or unexported object: ‘GenomicRanges::genome’
+Unexported objects imported by ':::' calls:
+  ‘BiocGenerics:::testPackage’ ‘IRanges:::unlist_as_integer’
+  See the note in ?`:::` about the use of this operator.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+LowerFrequencyInOtherFilter : <anonymous>: no visible binding for
+  global variable ‘control.alt.depth’
+LowerFrequencyInOtherFilter : <anonymous>: no visible binding for
+  global variable ‘control.total.depth’
+ReadPositionTTestFilter : <anonymous>: no visible binding for global
+  variable ‘read.pos.mean’
+ReadPositionTTestFilter : <anonymous>: no visible binding for global
+  variable ‘read.pos.mean.ref’
+ReadPositionTTestFilter : <anonymous>: no visible binding for global
+  variable ‘read.pos.var’
+ReadPositionTTestFilter : <anonymous>: no visible binding for global
+  variable ‘read.pos.var.ref’
+ReadPositionTTestFilter : <anonymous>: no visible global function
+  definition for ‘rawDepth’
+StrandFETFilter : <anonymous>: no visible binding for global variable
+  ‘count.plus.ref’
+StrandFETFilter : <anonymous>: no visible binding for global variable
+  ‘count.minus.ref’
+StrandFETFilter : <anonymous>: no visible binding for global variable
+  ‘count.plus’
+StrandFETFilter : <anonymous>: no visible binding for global variable
+  ‘count.minus’
+calculateConcordanceMatrix: no visible binding for global variable ‘x’
+caseControlFET: no visible binding for global variable
+  ‘control.alt.depth’
+caseControlFET: no visible binding for global variable
+  ‘control.total.depth’
+variantGR2Vcf: no visible global function definition for
+  ‘variantGRangesIsDeprecated’
+variantGR2Vcf: no visible global function definition for
+  ‘makeVRangesFromVariantGRanges’
+callVariants,GenomicRanges: no visible global function definition for
+  ‘variantGRangesIsDeprecated’
+callVariants,GenomicRanges: no visible global function definition for
+  ‘variantGRangesToVRanges’
+Undefined global functions or variables:
+  control.alt.depth control.total.depth count.minus count.minus.ref
+  count.plus count.plus.ref makeVRangesFromVariantGRanges rawDepth
+  read.pos.mean read.pos.mean.ref read.pos.var read.pos.var.ref
+  variantGRangesIsDeprecated variantGRangesToVRanges x
+* checking Rd files ... WARNING
+./man/tallyVariants.Rd: non-ASCII input and no declared encoding
+problem found in ‘tallyVariants.Rd’
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking installed files from ‘inst/doc’ ... NOTE
+The following directories should probably not be installed:
+  ‘fig’
+
+Consider the use of a .Rinstignore file: see ‘Writing R Extensions’,
+or move the vignette sources from ‘inst/doc’ to ‘vignettes’.
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘VariantTools-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: callSampleSpecificVariants
+> ### Title: Call Sample-Specific Variants
+> ### Aliases: callSampleSpecificVariants
+> ###   callSampleSpecificVariants,BamFile,BamFile-method
+> ###   callSampleSpecificVariants,character,character-method
+> ###   callSampleSpecificVariants,GenomicRanges,GenomicRanges-method
+> ###   callSampleSpecificVariants,VRanges,VRanges-method
+> ###   SampleSpecificVariantFilters
+> 
+> ### ** Examples
+> 
+> bams <- LungCancerLines::LungCancerBamFiles()
+> if (requireNamespace("gmapR", quietly=TRUE)) {
++     tally.param <- TallyVariantsParam(gmapR::TP53Genome(), 
++                                       high_base_quality = 23L,
++                                       which = gmapR::TP53Which())
++     callSampleSpecificVariants(bams$H1993, bams$H2073, tally.param)
++ } else {
++     data(vignette)
++     calling.filters <- VariantCallingFilters(read.count = 3L)
++     called.variants <- callVariants(tallies_H1993, calling.filters)
++     callSampleSpecificVariants(called.variants, tallies_H2073,
++                                coverage_H2073)
++ }
+Error in packageVersion("TxDb.Hsapiens.UCSC.hg19.knownGene") : 
+  there is no package called ‘TxDb.Hsapiens.UCSC.hg19.knownGene’
+Calls: TallyVariantsParam ... GeneGenome -> geneGenomeName -> paste0 -> packageVersion
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘VariantTools_unit_tests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘VariantTools.Rnw’... failed
+ WARNING
+Errors in running code in vignettes:
+when running code in ‘VariantTools.Rnw’
+  ...
+
+> bam <- bams$H1993
+
+> if (requireNamespace("gmapR", quietly = TRUE)) {
++     p53 <- gmapR:::exonsOnTP53Genome("TP53")
++     tally.param <- TallyVariantsParam(gmapR::TP53G .... [TRUNCATED] 
+
+  When sourcing ‘VariantTools.R’:
+Error: there is no package called ‘TxDb.Hsapiens.UCSC.hg19.knownGene’
+Execution halted
+
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘VariantTools.Rnw’ using Sweave
+Loading required package: S4Vectors
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm,
+    append, as.data.frame, basename, cbind, colnames, dirname,
+    do.call, duplicated, eval, evalq, get, grep, grepl,
+    intersect, is.unsorted, lapply, mapply, match, mget, order,
+    paste, pmax, pmax.int, pmin, pmin.int, rank, rbind,
+    rownames, sapply, setdiff, sort, table, tapply, union,
+    unique, unsplit, which.max, which.min
+
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: IRanges
+Loading required package: GenomicRanges
+Loading required package: GenomeInfoDb
+Loading required package: VariantAnnotation
+Loading required package: MatrixGenerics
+Loading required package: matrixStats
+
+Attaching package: ‘MatrixGenerics’
+
+The following objects are masked from ‘package:matrixStats’:
+
+    colAlls, colAnyNAs, colAnys, colAvgsPerRowSet, colCollapse,
+    colCounts, colCummaxs, colCummins, colCumprods, colCumsums,
+    colDiffs, colIQRDiffs, colIQRs, colLogSumExps, colMadDiffs,
+    colMads, colMaxs, colMeans2, colMedians, colMins,
+    colOrderStats, colProds, colQuantiles, colRanges, colRanks,
+    colSdDiffs, colSds, colSums2, colTabulates, colVarDiffs,
+    colVars, colWeightedMads, colWeightedMeans,
+    colWeightedMedians, colWeightedSds, colWeightedVars,
+    rowAlls, rowAnyNAs, rowAnys, rowAvgsPerColSet, rowCollapse,
+    rowCounts, rowCummaxs, rowCummins, rowCumprods, rowCumsums,
+    rowDiffs, rowIQRDiffs, rowIQRs, rowLogSumExps, rowMadDiffs,
+    rowMads, rowMaxs, rowMeans2, rowMedians, rowMins,
+    rowOrderStats, rowProds, rowQuantiles, rowRanges, rowRanks,
+    rowSdDiffs, rowSds, rowSums2, rowTabulates, rowVarDiffs,
+    rowVars, rowWeightedMads, rowWeightedMeans,
+    rowWeightedMedians, rowWeightedSds, rowWeightedVars
+
+Loading required package: SummarizedExperiment
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages
+    'citation("pkgname")'.
+
+
+Attaching package: ‘Biobase’
+
+The following object is masked from ‘package:MatrixGenerics’:
+
+    rowMedians
+
+The following objects are masked from ‘package:matrixStats’:
+
+    anyMissing, rowMedians
+
+Loading required package: Rsamtools
+Loading required package: Biostrings
+Loading required package: XVector
+
+Attaching package: ‘Biostrings’
+
+The following object is masked from ‘package:base’:
+
+    strsplit
+
+
+Attaching package: ‘VariantAnnotation’
+
+The following object is masked from ‘package:base’:
+
+    tabulate
+
+
+Error: processing vignette 'VariantTools.Rnw' failed with diagnostics:
+ chunk 2 (label = callVariants) 
+Error in loadNamespace(x) : 
+  there is no package called ‘TxDb.Hsapiens.UCSC.hg19.knownGene’
+
+--- failed re-building ‘VariantTools.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘VariantTools.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 3 WARNINGs, 6 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/VariantTools.Rcheck/00check.log’
+for details.
+

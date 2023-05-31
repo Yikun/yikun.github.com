@@ -1,0 +1,41 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD INSTALL genefilter
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0/site-library’
+* installing *source* package ‘genefilter’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c half_range_mode.cpp -o half_range_mode.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c init.c -o init.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c nd.c -o nd.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c pAUC.c -o pAUC.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c rowPAUCs.c -o rowPAUCs.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c rowttests.c -o rowttests.o
+gfortran  -fPIC  -g -O2  -c ttest.f -o ttest.o
+g++ -std=gnu++17 -shared -L/home/biocbuild/R/R-4.3.0/lib -L/usr/local/lib -o genefilter.so half_range_mode.o init.o nd.o pAUC.o rowPAUCs.o rowttests.o ttest.o -lgfortran -lm -L/home/biocbuild/R/R-4.3.0/lib -lR
+installing to /home/biocbuild/R/R-4.3.0/site-library/00LOCK-genefilter/00new/genefilter/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (genefilter)

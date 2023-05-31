@@ -1,0 +1,69 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD build --keep-empty-dirs --no-resave-data affy
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘affy/DESCRIPTION’ ... OK
+* preparing ‘affy’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* running ‘cleanup’
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘affy.Rnw’ using Sweave
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+
+Error: processing vignette 'affy.Rnw' failed with diagnostics:
+ chunk 3 
+Error in library(affydata) : there is no package called ‘affydata’
+
+--- failed re-building ‘affy.Rnw’
+
+--- re-building ‘builtinMethods.Rnw’ using Sweave
+--- finished re-building ‘builtinMethods.Rnw’
+
+--- re-building ‘customMethods.Rnw’ using Sweave
+
+Error: processing vignette 'customMethods.Rnw' failed with diagnostics:
+ chunk 3 
+Error in library(affydata) : there is no package called ‘affydata’
+
+--- failed re-building ‘customMethods.Rnw’
+
+--- re-building ‘vim.Rnw’ using Sweave
+--- finished re-building ‘vim.Rnw’
+
+SUMMARY: processing the following files failed:
+  ‘affy.Rnw’ ‘customMethods.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted

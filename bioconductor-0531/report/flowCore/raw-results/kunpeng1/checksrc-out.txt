@@ -1,0 +1,135 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD check --install=check:flowCore.install-out.txt --library=/home/biocbuild/R/R-4.3.0/site-library --timings flowCore_2.13.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/flowCore.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘flowCore/DESCRIPTION’ ... OK
+* this is package ‘flowCore’ version ‘2.13.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘flowCore’ can be installed ... WARNING
+Found the following significant warnings:
+  Hyperlog.cpp:47:47: warning: ‘Illegal argument value ’ directive output truncated writing 23 bytes into a region of size 8 [-Wformat-truncation=]
+  Hyperlog.cpp:53:47: warning: ‘Illegal argument value ’ directive output truncated writing 23 bytes into a region of size 8 [-Wformat-truncation=]
+See ‘/home/biocbuild/bbs-3.18-bioc/meat/flowCore.Rcheck/00install.out’ for details.
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+* checking C++ specification ... NOTE
+  Specified C++11: please drop specification unless essential
+* checking installed package size ... NOTE
+  installed size is 16.2Mb
+  sub-directories of 1Mb or more:
+    R         1.1Mb
+    data      5.4Mb
+    extdata   1.1Mb
+    libs      7.8Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+eval,compensatedParameter-missing : <anonymous>: no visible binding for
+  global variable ‘mat’
+eval,compensatedParameter-missing : <anonymous>: no visible binding for
+  global variable ‘msv’
+show,flowFrame: no visible global function definition for
+  ‘capture.output’
+Undefined global functions or variables:
+  capture.output mat msv
+Consider adding
+  importFrom("utils", "capture.output")
+to your NAMESPACE file.
+* checking Rd files ... NOTE
+checkRd: (-1) identifier-methods.Rd:36: Escaped LaTeX specials: \^
+checkRd: (-1) quadraticTransform.Rd:26: Escaped LaTeX specials: \^
+checkRd: (-1) read.FCS.Rd:26: Escaped LaTeX specials: \$
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... WARNING
+Note: information on .o files is not available
+File ‘/home/biocbuild/R/R-4.3.0/site-library/flowCore/libs/flowCore.so’:
+  Found ‘_ZSt4cerr’, possibly from ‘std::cerr’ (C++)
+  Found ‘__sprintf_chk’, possibly from ‘sprintf’ (C)
+  Found ‘rand’, possibly from ‘rand’ (C)
+  Found ‘srand’, possibly from ‘srand’ (C)
+
+Compiled code should not call entry points which might terminate R nor
+write to stdout/stderr instead of to the console, nor use Fortran I/O
+nor system RNGs nor [v]sprintf. The detected symbols are linked into
+the code but might come from libraries and not actually be called.
+
+See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
+* checking installed files from ‘inst/doc’ ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                        user system elapsed
+filterResultList-class 6.567  0.128   6.696
+flowFrame-class        5.201  0.056   5.258
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘HowTo-flowCore.Rnw’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 WARNINGs, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/flowCore.Rcheck/00check.log’
+for details.
+
+
