@@ -1,0 +1,40 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD INSTALL martini
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0/site-library’
+* installing *source* package ‘martini’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0/site-library/Rcpp/include' -I'/home/biocbuild/R/R-4.3.0/site-library/RcppEigen/include' -I/usr/local/include   -std=c++11 -fopenmp -D_USE_KNETFILE -D_FILE_OFFSET_BITS=64 -U_FORTIFY_SOURCE -DBGZF_CACHE -I./lib `/home/biocbuild/R/R-4.3.0/bin/Rscript -e "Rcpp:::CxxFlags()"` -DEIGEN_PERMANENTLY_DISABLE_STUPID_WARNINGS -fopenmp -fPIC  -g -O2  -c RcppExports.cpp -o RcppExports.o
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0/site-library/Rcpp/include' -I'/home/biocbuild/R/R-4.3.0/site-library/RcppEigen/include' -I/usr/local/include   -std=c++11 -fopenmp -D_USE_KNETFILE -D_FILE_OFFSET_BITS=64 -U_FORTIFY_SOURCE -DBGZF_CACHE -I./lib `/home/biocbuild/R/R-4.3.0/bin/Rscript -e "Rcpp:::CxxFlags()"` -DEIGEN_PERMANENTLY_DISABLE_STUPID_WARNINGS -fopenmp -fPIC  -g -O2  -c mincut.cpp -o mincut.o
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG  -I'/home/biocbuild/R/R-4.3.0/site-library/Rcpp/include' -I'/home/biocbuild/R/R-4.3.0/site-library/RcppEigen/include' -I/usr/local/include   -std=c++11 -fopenmp -D_USE_KNETFILE -D_FILE_OFFSET_BITS=64 -U_FORTIFY_SOURCE -DBGZF_CACHE -I./lib `/home/biocbuild/R/R-4.3.0/bin/Rscript -e "Rcpp:::CxxFlags()"` -DEIGEN_PERMANENTLY_DISABLE_STUPID_WARNINGS -fopenmp -fPIC  -g -O2  -c lib/maxflow/maxflow.cpp -o lib/maxflow/maxflow.o
+ar -crus libmaxflow.a lib/maxflow/maxflow.o
+ar: `u' modifier ignored since `D' is the default (see `U')
+cp -r lib/maxflow "/home/biocbuild/R/R-4.3.0/site-library/00LOCK-martini/00new/martini/include"
+mkdir -p "/home/biocbuild/R/R-4.3.0/site-library/00LOCK-martini/00new/martini/usrlib"
+cp libmaxflow.a "/home/biocbuild/R/R-4.3.0/site-library/00LOCK-martini/00new/martini/usrlib"
+g++ -std=gnu++17 -shared -L/home/biocbuild/R/R-4.3.0/lib -L/usr/local/lib -o martini.so RcppExports.o mincut.o -pthread -fopenmp /home/biocbuild/R/R-4.3.0/site-library/00LOCK-martini/00new/martini/usrlib/libmaxflow.a -fopenmp -pthread -L/home/biocbuild/R/R-4.3.0/lib -lR
+installing to /home/biocbuild/R/R-4.3.0/site-library/00LOCK-martini/00new/martini/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (martini)

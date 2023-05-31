@@ -1,0 +1,977 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD INSTALL scMET
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0/site-library’
+* installing *source* package ‘scMET’ ...
+** using staged installation
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+using C++17
+
+
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG -I"../inst/include" -I"/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src" -DBOOST_DISABLE_ASSERTS -DEIGEN_NO_DEBUG -DBOOST_MATH_OVERFLOW_ERROR_POLICY=errno_on_error  -D_HAS_AUTO_PTR_ETC=0 -I'/home/biocbuild/R/R-4.3.0/site-library/BH/include' -I'/home/biocbuild/R/R-4.3.0/site-library/Rcpp/include' -I'/home/biocbuild/R/R-4.3.0/site-library/RcppEigen/include' -I'/home/biocbuild/R/R-4.3.0/site-library/RcppParallel/include' -I'/home/biocbuild/R/R-4.3.0/site-library/rstan/include' -I'/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include' -I/usr/local/include    -I'/home/biocbuild/R/R-4.3.0/site-library/RcppParallel/include' -D_REENTRANT -DSTAN_THREADS   -fPIC  -g -O2  -c RcppExports.cpp -o RcppExports.o
+
+
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG -I"../inst/include" -I"/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src" -DBOOST_DISABLE_ASSERTS -DEIGEN_NO_DEBUG -DBOOST_MATH_OVERFLOW_ERROR_POLICY=errno_on_error  -D_HAS_AUTO_PTR_ETC=0 -I'/home/biocbuild/R/R-4.3.0/site-library/BH/include' -I'/home/biocbuild/R/R-4.3.0/site-library/Rcpp/include' -I'/home/biocbuild/R/R-4.3.0/site-library/RcppEigen/include' -I'/home/biocbuild/R/R-4.3.0/site-library/RcppParallel/include' -I'/home/biocbuild/R/R-4.3.0/site-library/rstan/include' -I'/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include' -I/usr/local/include    -I'/home/biocbuild/R/R-4.3.0/site-library/RcppParallel/include' -D_REENTRANT -DSTAN_THREADS   -fPIC  -g -O2  -c stanExports_scmet.cc -o stanExports_scmet.o
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/smart_ptr/shared_ptr.hpp:17,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/shared_ptr.hpp:17,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/date_time/time_clock.hpp:17,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/date_time/posix_time/posix_time_types.hpp:10,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:13,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/smart_ptr/detail/shared_count.hpp:361:33: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  361 |     explicit shared_count( std::auto_ptr<Y> & r ): pi_( new sp_counted_impl_p<Y>( r.get() ) )
+      |                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/R/R-4.3.0/site-library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/R/R-4.3.0/site-library/Rcpp/include/Rcpp.h:27,
+                 from stanExports_scmet.cc:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/shared_ptr.hpp:17,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/date_time/time_clock.hpp:17,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/date_time/posix_time/posix_time_types.hpp:10,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:13,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/smart_ptr/shared_ptr.hpp:250:65: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  250 | template< class T, class R > struct sp_enable_if_auto_ptr< std::auto_ptr< T >, R >
+      |                                                                 ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/R/R-4.3.0/site-library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/R/R-4.3.0/site-library/Rcpp/include/Rcpp.h:27,
+                 from stanExports_scmet.cc:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/shared_ptr.hpp:17,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/date_time/time_clock.hpp:17,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/date_time/posix_time/posix_time_types.hpp:10,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:13,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/smart_ptr/shared_ptr.hpp:507:31: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  507 |     explicit shared_ptr( std::auto_ptr<Y> & r ): px(r.get()), pn()
+      |                               ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/R/R-4.3.0/site-library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/R/R-4.3.0/site-library/Rcpp/include/Rcpp.h:27,
+                 from stanExports_scmet.cc:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/shared_ptr.hpp:17,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/date_time/time_clock.hpp:17,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/date_time/posix_time/posix_time_types.hpp:10,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:13,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/smart_ptr/shared_ptr.hpp:520:22: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  520 |     shared_ptr( std::auto_ptr<Y> && r ): px(r.get()), pn()
+      |                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/R/R-4.3.0/site-library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/R/R-4.3.0/site-library/Rcpp/include/Rcpp.h:27,
+                 from stanExports_scmet.cc:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/shared_ptr.hpp:17,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/date_time/time_clock.hpp:17,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/date_time/posix_time/posix_time_types.hpp:10,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:13,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/smart_ptr/shared_ptr.hpp:603:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  603 |     shared_ptr & operator=( std::auto_ptr<Y> & r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/R/R-4.3.0/site-library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/R/R-4.3.0/site-library/Rcpp/include/Rcpp.h:27,
+                 from stanExports_scmet.cc:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/shared_ptr.hpp:17,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/date_time/time_clock.hpp:17,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/date_time/posix_time/posix_time_types.hpp:10,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:13,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/smart_ptr/shared_ptr.hpp:612:34: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  612 |     shared_ptr & operator=( std::auto_ptr<Y> && r )
+      |                                  ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/R/R-4.3.0/site-library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/R/R-4.3.0/site-library/Rcpp/include/Rcpp.h:27,
+                 from stanExports_scmet.cc:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/shared_ptr.hpp:17,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/date_time/time_clock.hpp:17,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/date_time/posix_time/posix_time_types.hpp:10,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:13,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/smart_ptr/shared_ptr.hpp: In member function ‘boost::shared_ptr<T>& boost::shared_ptr<T>::operator=(std::auto_ptr<_Up>&&)’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/smart_ptr/shared_ptr.hpp:614:38: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+  614 |         this_type( static_cast< std::auto_ptr<Y> && >( r ) ).swap( *this );
+      |                                      ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/R/R-4.3.0/site-library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/R/R-4.3.0/site-library/Rcpp/include/Rcpp.h:27,
+                 from stanExports_scmet.cc:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/fusion/functional/invocation/detail/that_ptr.hpp:13,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/fusion/functional/invocation/invoke.hpp:52,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/fusion/functional/adapter/fused.hpp:17,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/fusion/functional/generation/make_fused.hpp:13,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/fusion/include/make_fused.hpp:11,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/numeric/odeint/util/resize.hpp:28,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/numeric/odeint/util/state_wrapper.hpp:26,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/numeric/odeint/util/ublas_wrapper.hpp:33,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/numeric/odeint.hpp:25,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/prim/functor/ode_rk45.hpp:9,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/prim/functor/integrate_ode_rk45.hpp:6,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/prim/functor.hpp:16,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/rev/fun.hpp:8,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/rev.hpp:10,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/model/log_prob_grad.hpp:4,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/model/test_gradients.hpp:7,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/diagnose/diagnose.hpp:8,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:35,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/get_pointer.hpp: At global scope:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/get_pointer.hpp:48:40: warning: ‘template<class> class std::auto_ptr’ is deprecated: use 'std::unique_ptr' instead [-Wdeprecated-declarations]
+   48 | template<class T> T * get_pointer(std::auto_ptr<T> const& p)
+      |                                        ^~~~~~~~
+In file included from /usr/include/c++/11/bits/locale_conv.h:41,
+                 from /usr/include/c++/11/locale:43,
+                 from /usr/include/c++/11/iomanip:43,
+                 from /home/biocbuild/R/R-4.3.0/site-library/Rcpp/include/RcppCommon.h:53,
+                 from /home/biocbuild/R/R-4.3.0/site-library/Rcpp/include/Rcpp.h:27,
+                 from stanExports_scmet.cc:3:
+/usr/include/c++/11/bits/unique_ptr.h:57:28: note: declared here
+   57 |   template<typename> class auto_ptr;
+      |                            ^~~~~~~~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/detail/bessel_jy.hpp:14,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/bessel.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/prim/fun/bessel_first_kind.hpp:6,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/prim/fun.hpp:28,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/rev/fun.hpp:7,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/rev.hpp:10,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/model/log_prob_grad.hpp:4,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/model/test_gradients.hpp:7,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/diagnose/diagnose.hpp:8,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:35,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/gamma.hpp: In instantiation of ‘boost::math::detail::upper_incomplete_gamma_fract<T>::result_type boost::math::detail::upper_incomplete_gamma_fract<T>::operator()() [with T = double; boost::math::detail::upper_incomplete_gamma_fract<T>::result_type = std::pair<double, double>]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/tools/fraction.hpp:217:20:   required from ‘typename boost::math::tools::detail::fraction_traits<Gen>::result_type boost::math::tools::continued_fraction_a(Gen&, const U&, uintmax_t&) [with Gen = boost::math::detail::upper_incomplete_gamma_fract<double>; U = double; typename boost::math::tools::detail::fraction_traits<Gen>::result_type = double; uintmax_t = long unsigned int]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/tools/fraction.hpp:252:31:   required from ‘typename boost::math::tools::detail::fraction_traits<Gen>::result_type boost::math::tools::continued_fraction_a(Gen&, const U&) [with Gen = boost::math::detail::upper_incomplete_gamma_fract<double>; U = double; typename boost::math::tools::detail::fraction_traits<Gen>::result_type = double]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/gamma.hpp:314:68:   required from ‘T boost::math::detail::upper_gamma_fraction(T, T, T) [with T = double]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/gamma.hpp:1176:44:   required from ‘T boost::math::detail::gamma_incomplete_imp(T, T, bool, bool, const Policy&, T*) [with T = double; Policy = boost::math::policies::policy<boost::math::policies::pole_error<boost::math::policies::errno_on_error>, boost::math::policies::promote_float<false>, boost::math::policies::promote_double<false>, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy>]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/gamma.hpp:2128:35:   required from ‘typename boost::math::tools::promote_args<RT1, RT2>::type boost::math::gamma_p(RT1, RT2, const Policy&) [with RT1 = double; RT2 = double; Policy = boost::math::policies::policy<boost::math::policies::overflow_error<boost::math::policies::errno_on_error>, boost::math::policies::pole_error<boost::math::policies::errno_on_error>, boost::math::policies::promote_double<false>, boost::math::policies::digits2<0>, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy>; typename boost::math::tools::promote_args<RT1, RT2>::type = double]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/prim/fun/gamma_p.hpp:76:30:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/gamma.hpp:299:16: note: parameter passing for argument of type ‘std::pair<double, double>’ when C++17 is enabled changed to match C++14 in GCC 10.1
+  299 |    result_type operator()()
+      |                ^~~~~~~~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/prim/fun/owens_t.hpp:6,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/prim/fun.hpp:240,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/rev/fun.hpp:7,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/rev.hpp:10,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/model/log_prob_grad.hpp:4,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/model/test_gradients.hpp:7,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/diagnose/diagnose.hpp:8,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:35,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/owens_t.hpp: In instantiation of ‘std::pair<_FIter, _FIter> boost::math::detail::owens_t_T1_accelerated(T, T, const Policy&) [with T = long double; Policy = boost::math::policies::policy<boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy>]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/owens_t.hpp:874:46:   required from ‘RealType boost::math::detail::owens_t_dispatch(RealType, RealType, RealType, const Policy&, const std::integral_constant<int, 65>&) [with RealType = long double; Policy = boost::math::policies::policy<boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy>]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/owens_t.hpp:979:36:   required from ‘RealType boost::math::detail::owens_t_dispatch(RealType, RealType, RealType, const Policy&) [with RealType = long double; Policy = boost::math::policies::policy<boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy>]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/owens_t.hpp:1000:38:   required from ‘RealType boost::math::detail::owens_t(RealType, RealType, const Policy&) [with RealType = long double; Policy = boost::math::policies::policy<boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy>]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/owens_t.hpp:1072:86:   required from ‘typename boost::math::tools::promote_args<RT1, RT2>::type boost::math::owens_t(T1, T2, const Policy&) [with T1 = double; T2 = double; Policy = boost::math::policies::policy<boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy>; typename boost::math::tools::promote_args<RT1, RT2>::type = double]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/owens_t.hpp:1078:24:   required from ‘typename boost::math::tools::promote_args<RT1, RT2>::type boost::math::owens_t(T1, T2) [with T1 = double; T2 = double; typename boost::math::tools::promote_args<RT1, RT2>::type = double]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/prim/fun/owens_t.hpp:58:72:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/owens_t.hpp:543:26: note: parameter passing for argument of type ‘std::pair<long double, long double>’ when C++17 is enabled changed to match C++14 in GCC 10.1
+  543 |          std::pair<T, T> owens_t_T1_accelerated(T h, T a, const Policy& pol)
+      |                          ^~~~~~~~~~~~~~~~~~~~~~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/assert.hpp:35,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp: In instantiation of ‘static void boost::concepts::constraint<Model>::failed() [with Model = boost::algorithm::FinderConcept<boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >, __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/iter_find.hpp:81:13:   required from ‘SequenceSequenceT& boost::algorithm::iter_split(SequenceSequenceT&, RangeT&&, FinderT) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; FinderT = boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/split.hpp:158:50:   required from ‘SequenceSequenceT& boost::algorithm::split(SequenceSequenceT&, RangeT&&, PredicateT, boost::algorithm::token_compress_mode_type) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; PredicateT = boost::algorithm::detail::is_any_ofF<char>]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:39:28:   required from ‘void stan::services::get_model_parameters(const Model&, std::vector<std::__cxx11::basic_string<char> >&, std::vector<std::vector<long unsigned int> >&) [with Model = model_scmet_namespace::model_scmet]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:103:23:   required from ‘int stan::services::standalone_generate(const Model&, const MatrixXd&, unsigned int, stan::callbacks::interrupt&, stan::callbacks::logger&, stan::callbacks::writer&) [with Model = model_scmet_namespace::model_scmet; Eigen::MatrixXd = Eigen::Matrix<double, -1, -1>]’
+/home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:1239:46:   required from ‘SEXPREC* rstan::stan_fit<Model, RNG_t>::standalone_gqs(SEXP, SEXP) [with Model = model_scmet_namespace::model_scmet; RNG_t = boost::random::additive_combine_engine<boost::random::linear_congruential_engine<unsigned int, 40014, 0, 2147483563>, boost::random::linear_congruential_engine<unsigned int, 40692, 0, 2147483399> >; SEXP = SEXPREC*]’
+stanExports_scmet.cc:30:89:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:65:52: warning: ‘this’ pointer is null [-Wnonnull]
+   65 |     static void failed() { ((Model*)0)->constraints(); }
+      |                            ~~~~~~~~~~~~~~~~~~~~~~~~^~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/iter_find.hpp:26,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/split.hpp:16,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string.hpp:23,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:52,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/concept.hpp:40:18: note: in a call to non-static member function ‘void boost::algorithm::FinderConcept<FinderT, IteratorT>::constraints() [with FinderT = boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >; IteratorT = __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> >]’
+   40 |             void constraints()
+      |                  ^~~~~~~~~~~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/binomial.hpp:15,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/prim/fun/choose.hpp:7,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/prim/fun.hpp:43,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/rev/fun.hpp:7,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/rev.hpp:10,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/model/log_prob_grad.hpp:4,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/model/test_gradients.hpp:7,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/diagnose/diagnose.hpp:8,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:35,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/beta.hpp: In instantiation of ‘boost::math::detail::ibeta_fraction2_t<T>::result_type boost::math::detail::ibeta_fraction2_t<T>::operator()() [with T = double; boost::math::detail::ibeta_fraction2_t<T>::result_type = std::pair<double, double>]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/tools/fraction.hpp:123:20:   required from ‘typename boost::math::tools::detail::fraction_traits<Gen>::result_type boost::math::tools::continued_fraction_b(Gen&, const U&, uintmax_t&) [with Gen = boost::math::detail::ibeta_fraction2_t<double>; U = double; typename boost::math::tools::detail::fraction_traits<Gen>::result_type = double; uintmax_t = long unsigned int]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/tools/fraction.hpp:156:31:   required from ‘typename boost::math::tools::detail::fraction_traits<Gen>::result_type boost::math::tools::continued_fraction_b(Gen&, const U&) [with Gen = boost::math::detail::ibeta_fraction2_t<double>; U = double; typename boost::math::tools::detail::fraction_traits<Gen>::result_type = double]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/beta.hpp:729:54:   required from ‘T boost::math::detail::ibeta_fraction2(T, T, T, T, const Policy&, bool, T*) [with T = double; Policy = boost::math::policies::policy<boost::math::policies::pole_error<boost::math::policies::errno_on_error>, boost::math::policies::promote_float<false>, boost::math::policies::promote_double<false>, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy>]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/beta.hpp:1367:36:   required from ‘T boost::math::detail::ibeta_imp(T, T, T, const Policy&, bool, bool, T*) [with T = double; Policy = boost::math::policies::policy<boost::math::policies::pole_error<boost::math::policies::errno_on_error>, boost::math::policies::promote_float<false>, boost::math::policies::promote_double<false>, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy>]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/beta.hpp:1404:20:   required from ‘T boost::math::detail::ibeta_imp(T, T, T, const Policy&, bool, bool) [with T = double; Policy = boost::math::policies::policy<boost::math::policies::pole_error<boost::math::policies::errno_on_error>, boost::math::policies::promote_float<false>, boost::math::policies::promote_double<false>, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy>]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/beta.hpp:1543:93:   required from ‘typename boost::math::tools::promote_args<RT1, RT2, A>::type boost::math::ibeta(RT1, RT2, RT3, const Policy&) [with RT1 = double; RT2 = double; RT3 = double; Policy = boost::math::policies::policy<boost::math::policies::overflow_error<boost::math::policies::errno_on_error>, boost::math::policies::pole_error<boost::math::policies::errno_on_error>, boost::math::policies::promote_double<false>, boost::math::policies::digits2<0>, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy, boost::math::policies::default_policy>; typename boost::math::tools::promote_args<RT1, RT2, A>::type = double]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/prim/fun/inc_beta.hpp:28:28:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/beta.hpp:692:16: note: parameter passing for argument of type ‘std::pair<double, double>’ when C++17 is enabled changed to match C++14 in GCC 10.1
+  692 |    result_type operator()()
+      |                ^~~~~~~~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/assert.hpp:35,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp: In instantiation of ‘static void boost::concepts::requirement<boost::concepts::failed************ Model::************>::failed() [with Model = boost::concepts::usage_requirements<boost::CopyConstructible<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:167:5:   required from ‘struct boost::CopyConstructible<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:125:16:   required from ‘struct boost::range_detail::IncrementableIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:147:16:   required from ‘struct boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:32:62:   required by substitution of ‘template<class Model> boost::concepts::detail::yes boost::concepts::detail::has_constraints_(Model*, boost::concepts::detail::wrap_constraints<Model, (& Model::constraints)>*) [with Model = boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:42:5:   required from ‘const bool boost::concepts::not_satisfied<boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >::value’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:45:51:   [ skipping 17 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/iter_find.hpp:186:31:   required from ‘SequenceSequenceT& boost::algorithm::iter_split(SequenceSequenceT&, RangeT&&, FinderT) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; FinderT = boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/split.hpp:158:50:   required from ‘SequenceSequenceT& boost::algorithm::split(SequenceSequenceT&, RangeT&&, PredicateT, boost::algorithm::token_compress_mode_type) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; PredicateT = boost::algorithm::detail::is_any_ofF<char>]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:39:28:   required from ‘void stan::services::get_model_parameters(const Model&, std::vector<std::__cxx11::basic_string<char> >&, std::vector<std::vector<long unsigned int> >&) [with Model = model_scmet_namespace::model_scmet]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:103:23:   required from ‘int stan::services::standalone_generate(const Model&, const MatrixXd&, unsigned int, stan::callbacks::interrupt&, stan::callbacks::logger&, stan::callbacks::writer&) [with Model = model_scmet_namespace::model_scmet; Eigen::MatrixXd = Eigen::Matrix<double, -1, -1>]’
+/home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:1239:46:   required from ‘SEXPREC* rstan::stan_fit<Model, RNG_t>::standalone_gqs(SEXP, SEXP) [with Model = model_scmet_namespace::model_scmet; RNG_t = boost::random::additive_combine_engine<boost::random::linear_congruential_engine<unsigned int, 40014, 0, 2147483563>, boost::random::linear_congruential_engine<unsigned int, 40692, 0, 2147483399> >; SEXP = SEXPREC*]’
+stanExports_scmet.cc:30:89:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:50:47: warning: ‘this’ pointer is null [-Wnonnull]
+   50 |     static void failed() { ((Model*)0)->~Model(); }
+      |                            ~~~~~~~~~~~~~~~~~~~^~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:31,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:20:5: note: in a call to non-static member function ‘boost::concepts::usage_requirements<Model>::~usage_requirements() [with Model = boost::CopyConstructible<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’
+   20 |     ~usage_requirements() { ((Model*)0)->~Model(); }
+      |     ^
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/assert.hpp:35,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp: In instantiation of ‘static void boost::concepts::requirement<boost::concepts::failed************ Model::************>::failed() [with Model = boost::concepts::usage_requirements<boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::incrementable_traversal_tag> >]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:208:5:   required from ‘struct boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::incrementable_traversal_tag>’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:32:62:   required by substitution of ‘template<class Model> boost::concepts::detail::yes boost::concepts::detail::has_constraints_(Model*, boost::concepts::detail::wrap_constraints<Model, (& Model::constraints)>*) [with Model = boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::incrementable_traversal_tag>]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:42:5:   required from ‘const bool boost::concepts::not_satisfied<boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::incrementable_traversal_tag> >::value’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:45:51:   required from ‘struct boost::concepts::not_satisfied<boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::incrementable_traversal_tag> >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:72:8:   required from ‘struct boost::concepts::requirement_<void (*)(boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::incrementable_traversal_tag>)>’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/iterator/iterator_concepts.hpp:114:7:   [ skipping 21 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/iter_find.hpp:186:31:   required from ‘SequenceSequenceT& boost::algorithm::iter_split(SequenceSequenceT&, RangeT&&, FinderT) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; FinderT = boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/split.hpp:158:50:   required from ‘SequenceSequenceT& boost::algorithm::split(SequenceSequenceT&, RangeT&&, PredicateT, boost::algorithm::token_compress_mode_type) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; PredicateT = boost::algorithm::detail::is_any_ofF<char>]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:39:28:   required from ‘void stan::services::get_model_parameters(const Model&, std::vector<std::__cxx11::basic_string<char> >&, std::vector<std::vector<long unsigned int> >&) [with Model = model_scmet_namespace::model_scmet]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:103:23:   required from ‘int stan::services::standalone_generate(const Model&, const MatrixXd&, unsigned int, stan::callbacks::interrupt&, stan::callbacks::logger&, stan::callbacks::writer&) [with Model = model_scmet_namespace::model_scmet; Eigen::MatrixXd = Eigen::Matrix<double, -1, -1>]’
+/home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:1239:46:   required from ‘SEXPREC* rstan::stan_fit<Model, RNG_t>::standalone_gqs(SEXP, SEXP) [with Model = model_scmet_namespace::model_scmet; RNG_t = boost::random::additive_combine_engine<boost::random::linear_congruential_engine<unsigned int, 40014, 0, 2147483563>, boost::random::linear_congruential_engine<unsigned int, 40692, 0, 2147483399> >; SEXP = SEXPREC*]’
+stanExports_scmet.cc:30:89:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:50:47: warning: ‘this’ pointer is null [-Wnonnull]
+   50 |     static void failed() { ((Model*)0)->~Model(); }
+      |                            ~~~~~~~~~~~~~~~~~~~^~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:31,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:20:5: note: in a call to non-static member function ‘boost::concepts::usage_requirements<Model>::~usage_requirements() [with Model = boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::incrementable_traversal_tag>]’
+   20 |     ~usage_requirements() { ((Model*)0)->~Model(); }
+      |     ^
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/assert.hpp:35,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp: In instantiation of ‘static void boost::concepts::requirement<boost::concepts::failed************ Model::************>::failed() [with Model = boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::incrementable_traversal_tag>]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/iterator/iterator_concepts.hpp:114:7:   required from ‘struct boost::range_detail::IncrementableIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:147:16:   required from ‘struct boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:32:62:   required by substitution of ‘template<class Model> boost::concepts::detail::yes boost::concepts::detail::has_constraints_(Model*, boost::concepts::detail::wrap_constraints<Model, (& Model::constraints)>*) [with Model = boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:42:5:   required from ‘const bool boost::concepts::not_satisfied<boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >::value’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:45:51:   required from ‘struct boost::concepts::not_satisfied<boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:72:8:   [ skipping 16 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/iter_find.hpp:186:31:   required from ‘SequenceSequenceT& boost::algorithm::iter_split(SequenceSequenceT&, RangeT&&, FinderT) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; FinderT = boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/split.hpp:158:50:   required from ‘SequenceSequenceT& boost::algorithm::split(SequenceSequenceT&, RangeT&&, PredicateT, boost::algorithm::token_compress_mode_type) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; PredicateT = boost::algorithm::detail::is_any_ofF<char>]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:39:28:   required from ‘void stan::services::get_model_parameters(const Model&, std::vector<std::__cxx11::basic_string<char> >&, std::vector<std::vector<long unsigned int> >&) [with Model = model_scmet_namespace::model_scmet]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:103:23:   required from ‘int stan::services::standalone_generate(const Model&, const MatrixXd&, unsigned int, stan::callbacks::interrupt&, stan::callbacks::logger&, stan::callbacks::writer&) [with Model = model_scmet_namespace::model_scmet; Eigen::MatrixXd = Eigen::Matrix<double, -1, -1>]’
+/home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:1239:46:   required from ‘SEXPREC* rstan::stan_fit<Model, RNG_t>::standalone_gqs(SEXP, SEXP) [with Model = model_scmet_namespace::model_scmet; RNG_t = boost::random::additive_combine_engine<boost::random::linear_congruential_engine<unsigned int, 40014, 0, 2147483563>, boost::random::linear_congruential_engine<unsigned int, 40692, 0, 2147483399> >; SEXP = SEXPREC*]’
+stanExports_scmet.cc:30:89:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:50:47: warning: ‘this’ pointer is null [-Wnonnull]
+   50 |     static void failed() { ((Model*)0)->~Model(); }
+      |                            ~~~~~~~~~~~~~~~~~~~^~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:31,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:37:7: note: in a call to non-static member function ‘boost::Convertible<X, Y>::~Convertible() [with X = boost::iterators::random_access_traversal_tag; Y = boost::iterators::incrementable_traversal_tag]’
+   37 |       ~model()
+      |       ^
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:208:5: note: in expansion of macro ‘BOOST_CONCEPT_USAGE’
+  208 |     BOOST_CONCEPT_USAGE(Convertible) {
+      |     ^~~~~~~~~~~~~~~~~~~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/assert.hpp:35,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp: In instantiation of ‘static void boost::concepts::requirement<boost::concepts::failed************ Model::************>::failed() [with Model = boost::concepts::usage_requirements<boost::range_detail::IncrementableIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:136:13:   required from ‘struct boost::range_detail::IncrementableIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:147:16:   required from ‘struct boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:32:62:   required by substitution of ‘template<class Model> boost::concepts::detail::yes boost::concepts::detail::has_constraints_(Model*, boost::concepts::detail::wrap_constraints<Model, (& Model::constraints)>*) [with Model = boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:42:5:   required from ‘const bool boost::concepts::not_satisfied<boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >::value’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:45:51:   required from ‘struct boost::concepts::not_satisfied<boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:72:8:   [ skipping 16 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/iter_find.hpp:186:31:   required from ‘SequenceSequenceT& boost::algorithm::iter_split(SequenceSequenceT&, RangeT&&, FinderT) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; FinderT = boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/split.hpp:158:50:   required from ‘SequenceSequenceT& boost::algorithm::split(SequenceSequenceT&, RangeT&&, PredicateT, boost::algorithm::token_compress_mode_type) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; PredicateT = boost::algorithm::detail::is_any_ofF<char>]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:39:28:   required from ‘void stan::services::get_model_parameters(const Model&, std::vector<std::__cxx11::basic_string<char> >&, std::vector<std::vector<long unsigned int> >&) [with Model = model_scmet_namespace::model_scmet]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:103:23:   required from ‘int stan::services::standalone_generate(const Model&, const MatrixXd&, unsigned int, stan::callbacks::interrupt&, stan::callbacks::logger&, stan::callbacks::writer&) [with Model = model_scmet_namespace::model_scmet; Eigen::MatrixXd = Eigen::Matrix<double, -1, -1>]’
+/home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:1239:46:   required from ‘SEXPREC* rstan::stan_fit<Model, RNG_t>::standalone_gqs(SEXP, SEXP) [with Model = model_scmet_namespace::model_scmet; RNG_t = boost::random::additive_combine_engine<boost::random::linear_congruential_engine<unsigned int, 40014, 0, 2147483563>, boost::random::linear_congruential_engine<unsigned int, 40692, 0, 2147483399> >; SEXP = SEXPREC*]’
+stanExports_scmet.cc:30:89:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:50:47: warning: ‘this’ pointer is null [-Wnonnull]
+   50 |     static void failed() { ((Model*)0)->~Model(); }
+      |                            ~~~~~~~~~~~~~~~~~~~^~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:31,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:20:5: note: in a call to non-static member function ‘boost::concepts::usage_requirements<Model>::~usage_requirements() [with Model = boost::range_detail::IncrementableIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’
+   20 |     ~usage_requirements() { ((Model*)0)->~Model(); }
+      |     ^
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/assert.hpp:35,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp: In instantiation of ‘static void boost::concepts::requirement<boost::concepts::failed************ Model::************>::failed() [with Model = boost::concepts::usage_requirements<boost::EqualityComparable<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:233:5:   required from ‘struct boost::EqualityComparable<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:147:16:   required from ‘struct boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:32:62:   required by substitution of ‘template<class Model> boost::concepts::detail::yes boost::concepts::detail::has_constraints_(Model*, boost::concepts::detail::wrap_constraints<Model, (& Model::constraints)>*) [with Model = boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:42:5:   required from ‘const bool boost::concepts::not_satisfied<boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >::value’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:45:51:   required from ‘struct boost::concepts::not_satisfied<boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:72:8:   [ skipping 16 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/iter_find.hpp:186:31:   required from ‘SequenceSequenceT& boost::algorithm::iter_split(SequenceSequenceT&, RangeT&&, FinderT) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; FinderT = boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/split.hpp:158:50:   required from ‘SequenceSequenceT& boost::algorithm::split(SequenceSequenceT&, RangeT&&, PredicateT, boost::algorithm::token_compress_mode_type) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; PredicateT = boost::algorithm::detail::is_any_ofF<char>]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:39:28:   required from ‘void stan::services::get_model_parameters(const Model&, std::vector<std::__cxx11::basic_string<char> >&, std::vector<std::vector<long unsigned int> >&) [with Model = model_scmet_namespace::model_scmet]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:103:23:   required from ‘int stan::services::standalone_generate(const Model&, const MatrixXd&, unsigned int, stan::callbacks::interrupt&, stan::callbacks::logger&, stan::callbacks::writer&) [with Model = model_scmet_namespace::model_scmet; Eigen::MatrixXd = Eigen::Matrix<double, -1, -1>]’
+/home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:1239:46:   required from ‘SEXPREC* rstan::stan_fit<Model, RNG_t>::standalone_gqs(SEXP, SEXP) [with Model = model_scmet_namespace::model_scmet; RNG_t = boost::random::additive_combine_engine<boost::random::linear_congruential_engine<unsigned int, 40014, 0, 2147483563>, boost::random::linear_congruential_engine<unsigned int, 40692, 0, 2147483399> >; SEXP = SEXPREC*]’
+stanExports_scmet.cc:30:89:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:50:47: warning: ‘this’ pointer is null [-Wnonnull]
+   50 |     static void failed() { ((Model*)0)->~Model(); }
+      |                            ~~~~~~~~~~~~~~~~~~~^~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:31,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:20:5: note: in a call to non-static member function ‘boost::concepts::usage_requirements<Model>::~usage_requirements() [with Model = boost::EqualityComparable<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’
+   20 |     ~usage_requirements() { ((Model*)0)->~Model(); }
+      |     ^
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/assert.hpp:35,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp: In instantiation of ‘static void boost::concepts::requirement<boost::concepts::failed************ Model::************>::failed() [with Model = boost::concepts::usage_requirements<boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::single_pass_traversal_tag> >]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:208:5:   required from ‘struct boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::single_pass_traversal_tag>’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:32:62:   required by substitution of ‘template<class Model> boost::concepts::detail::yes boost::concepts::detail::has_constraints_(Model*, boost::concepts::detail::wrap_constraints<Model, (& Model::constraints)>*) [with Model = boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::single_pass_traversal_tag>]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:42:5:   required from ‘const bool boost::concepts::not_satisfied<boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::single_pass_traversal_tag> >::value’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:45:51:   required from ‘struct boost::concepts::not_satisfied<boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::single_pass_traversal_tag> >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:72:8:   required from ‘struct boost::concepts::requirement_<void (*)(boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::single_pass_traversal_tag>)>’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:152:13:   [ skipping 20 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/iter_find.hpp:186:31:   required from ‘SequenceSequenceT& boost::algorithm::iter_split(SequenceSequenceT&, RangeT&&, FinderT) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; FinderT = boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/split.hpp:158:50:   required from ‘SequenceSequenceT& boost::algorithm::split(SequenceSequenceT&, RangeT&&, PredicateT, boost::algorithm::token_compress_mode_type) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; PredicateT = boost::algorithm::detail::is_any_ofF<char>]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:39:28:   required from ‘void stan::services::get_model_parameters(const Model&, std::vector<std::__cxx11::basic_string<char> >&, std::vector<std::vector<long unsigned int> >&) [with Model = model_scmet_namespace::model_scmet]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:103:23:   required from ‘int stan::services::standalone_generate(const Model&, const MatrixXd&, unsigned int, stan::callbacks::interrupt&, stan::callbacks::logger&, stan::callbacks::writer&) [with Model = model_scmet_namespace::model_scmet; Eigen::MatrixXd = Eigen::Matrix<double, -1, -1>]’
+/home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:1239:46:   required from ‘SEXPREC* rstan::stan_fit<Model, RNG_t>::standalone_gqs(SEXP, SEXP) [with Model = model_scmet_namespace::model_scmet; RNG_t = boost::random::additive_combine_engine<boost::random::linear_congruential_engine<unsigned int, 40014, 0, 2147483563>, boost::random::linear_congruential_engine<unsigned int, 40692, 0, 2147483399> >; SEXP = SEXPREC*]’
+stanExports_scmet.cc:30:89:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:50:47: warning: ‘this’ pointer is null [-Wnonnull]
+   50 |     static void failed() { ((Model*)0)->~Model(); }
+      |                            ~~~~~~~~~~~~~~~~~~~^~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:31,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:20:5: note: in a call to non-static member function ‘boost::concepts::usage_requirements<Model>::~usage_requirements() [with Model = boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::single_pass_traversal_tag>]’
+   20 |     ~usage_requirements() { ((Model*)0)->~Model(); }
+      |     ^
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/assert.hpp:35,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp: In instantiation of ‘static void boost::concepts::requirement<boost::concepts::failed************ Model::************>::failed() [with Model = boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::single_pass_traversal_tag>]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:152:13:   required from ‘struct boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:32:62:   required by substitution of ‘template<class Model> boost::concepts::detail::yes boost::concepts::detail::has_constraints_(Model*, boost::concepts::detail::wrap_constraints<Model, (& Model::constraints)>*) [with Model = boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:42:5:   required from ‘const bool boost::concepts::not_satisfied<boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >::value’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:45:51:   required from ‘struct boost::concepts::not_satisfied<boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:72:8:   required from ‘struct boost::concepts::requirement_<void (*)(boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >)>’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:278:9:   [ skipping 15 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/iter_find.hpp:186:31:   required from ‘SequenceSequenceT& boost::algorithm::iter_split(SequenceSequenceT&, RangeT&&, FinderT) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; FinderT = boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/split.hpp:158:50:   required from ‘SequenceSequenceT& boost::algorithm::split(SequenceSequenceT&, RangeT&&, PredicateT, boost::algorithm::token_compress_mode_type) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; PredicateT = boost::algorithm::detail::is_any_ofF<char>]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:39:28:   required from ‘void stan::services::get_model_parameters(const Model&, std::vector<std::__cxx11::basic_string<char> >&, std::vector<std::vector<long unsigned int> >&) [with Model = model_scmet_namespace::model_scmet]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:103:23:   required from ‘int stan::services::standalone_generate(const Model&, const MatrixXd&, unsigned int, stan::callbacks::interrupt&, stan::callbacks::logger&, stan::callbacks::writer&) [with Model = model_scmet_namespace::model_scmet; Eigen::MatrixXd = Eigen::Matrix<double, -1, -1>]’
+/home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:1239:46:   required from ‘SEXPREC* rstan::stan_fit<Model, RNG_t>::standalone_gqs(SEXP, SEXP) [with Model = model_scmet_namespace::model_scmet; RNG_t = boost::random::additive_combine_engine<boost::random::linear_congruential_engine<unsigned int, 40014, 0, 2147483563>, boost::random::linear_congruential_engine<unsigned int, 40692, 0, 2147483399> >; SEXP = SEXPREC*]’
+stanExports_scmet.cc:30:89:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:50:47: warning: ‘this’ pointer is null [-Wnonnull]
+   50 |     static void failed() { ((Model*)0)->~Model(); }
+      |                            ~~~~~~~~~~~~~~~~~~~^~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:31,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:37:7: note: in a call to non-static member function ‘boost::Convertible<X, Y>::~Convertible() [with X = boost::iterators::random_access_traversal_tag; Y = boost::iterators::single_pass_traversal_tag]’
+   37 |       ~model()
+      |       ^
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:208:5: note: in expansion of macro ‘BOOST_CONCEPT_USAGE’
+  208 |     BOOST_CONCEPT_USAGE(Convertible) {
+      |     ^~~~~~~~~~~~~~~~~~~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/assert.hpp:35,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp: In instantiation of ‘static void boost::concepts::requirement<boost::concepts::failed************ Model::************>::failed() [with Model = boost::concepts::usage_requirements<boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:158:13:   required from ‘struct boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:32:62:   required by substitution of ‘template<class Model> boost::concepts::detail::yes boost::concepts::detail::has_constraints_(Model*, boost::concepts::detail::wrap_constraints<Model, (& Model::constraints)>*) [with Model = boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:42:5:   required from ‘const bool boost::concepts::not_satisfied<boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >::value’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:45:51:   required from ‘struct boost::concepts::not_satisfied<boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:72:8:   required from ‘struct boost::concepts::requirement_<void (*)(boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >)>’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:278:9:   [ skipping 15 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/iter_find.hpp:186:31:   required from ‘SequenceSequenceT& boost::algorithm::iter_split(SequenceSequenceT&, RangeT&&, FinderT) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; FinderT = boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/split.hpp:158:50:   required from ‘SequenceSequenceT& boost::algorithm::split(SequenceSequenceT&, RangeT&&, PredicateT, boost::algorithm::token_compress_mode_type) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; PredicateT = boost::algorithm::detail::is_any_ofF<char>]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:39:28:   required from ‘void stan::services::get_model_parameters(const Model&, std::vector<std::__cxx11::basic_string<char> >&, std::vector<std::vector<long unsigned int> >&) [with Model = model_scmet_namespace::model_scmet]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:103:23:   required from ‘int stan::services::standalone_generate(const Model&, const MatrixXd&, unsigned int, stan::callbacks::interrupt&, stan::callbacks::logger&, stan::callbacks::writer&) [with Model = model_scmet_namespace::model_scmet; Eigen::MatrixXd = Eigen::Matrix<double, -1, -1>]’
+/home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:1239:46:   required from ‘SEXPREC* rstan::stan_fit<Model, RNG_t>::standalone_gqs(SEXP, SEXP) [with Model = model_scmet_namespace::model_scmet; RNG_t = boost::random::additive_combine_engine<boost::random::linear_congruential_engine<unsigned int, 40014, 0, 2147483563>, boost::random::linear_congruential_engine<unsigned int, 40692, 0, 2147483399> >; SEXP = SEXPREC*]’
+stanExports_scmet.cc:30:89:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:50:47: warning: ‘this’ pointer is null [-Wnonnull]
+   50 |     static void failed() { ((Model*)0)->~Model(); }
+      |                            ~~~~~~~~~~~~~~~~~~~^~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:31,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:20:5: note: in a call to non-static member function ‘boost::concepts::usage_requirements<Model>::~usage_requirements() [with Model = boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’
+   20 |     ~usage_requirements() { ((Model*)0)->~Model(); }
+      |     ^
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/assert.hpp:35,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp: In instantiation of ‘static void boost::concepts::requirement<boost::concepts::failed************ Model::************>::failed() [with Model = boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:278:9:   required from ‘struct boost::SinglePassRangeConcept<const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:32:62:   required by substitution of ‘template<class Model> boost::concepts::detail::yes boost::concepts::detail::has_constraints_(Model*, boost::concepts::detail::wrap_constraints<Model, (& Model::constraints)>*) [with Model = boost::SinglePassRangeConcept<const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:42:5:   required from ‘const bool boost::concepts::not_satisfied<boost::SinglePassRangeConcept<const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > > >::value’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:45:51:   required from ‘struct boost::concepts::not_satisfied<boost::SinglePassRangeConcept<const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:72:8:   required from ‘struct boost::concepts::requirement_<void (*)(boost::SinglePassRangeConcept<const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >)>’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/algorithm/equal.hpp:174:13:   [ skipping 10 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/iter_find.hpp:186:31:   required from ‘SequenceSequenceT& boost::algorithm::iter_split(SequenceSequenceT&, RangeT&&, FinderT) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; FinderT = boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/split.hpp:158:50:   required from ‘SequenceSequenceT& boost::algorithm::split(SequenceSequenceT&, RangeT&&, PredicateT, boost::algorithm::token_compress_mode_type) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; PredicateT = boost::algorithm::detail::is_any_ofF<char>]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:39:28:   required from ‘void stan::services::get_model_parameters(const Model&, std::vector<std::__cxx11::basic_string<char> >&, std::vector<std::vector<long unsigned int> >&) [with Model = model_scmet_namespace::model_scmet]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:103:23:   required from ‘int stan::services::standalone_generate(const Model&, const MatrixXd&, unsigned int, stan::callbacks::interrupt&, stan::callbacks::logger&, stan::callbacks::writer&) [with Model = model_scmet_namespace::model_scmet; Eigen::MatrixXd = Eigen::Matrix<double, -1, -1>]’
+/home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:1239:46:   required from ‘SEXPREC* rstan::stan_fit<Model, RNG_t>::standalone_gqs(SEXP, SEXP) [with Model = model_scmet_namespace::model_scmet; RNG_t = boost::random::additive_combine_engine<boost::random::linear_congruential_engine<unsigned int, 40014, 0, 2147483563>, boost::random::linear_congruential_engine<unsigned int, 40692, 0, 2147483399> >; SEXP = SEXPREC*]’
+stanExports_scmet.cc:30:89:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:50:47: warning: ‘this’ pointer is null [-Wnonnull]
+   50 |     static void failed() { ((Model*)0)->~Model(); }
+      |                            ~~~~~~~~~~~~~~~~~~~^~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:31,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:37:7: note: in a call to non-static member function ‘boost::range_detail::SinglePassIteratorConcept<Iterator>::~SinglePassIteratorConcept() [with Iterator = __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> >]’
+   37 |       ~model()
+      |       ^
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:158:13: note: in expansion of macro ‘BOOST_CONCEPT_USAGE’
+  158 |             BOOST_CONCEPT_USAGE(SinglePassIteratorConcept)
+      |             ^~~~~~~~~~~~~~~~~~~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/assert.hpp:35,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp: In instantiation of ‘static void boost::concepts::requirement<boost::concepts::failed************ Model::************>::failed() [with Model = boost::concepts::usage_requirements<boost::SinglePassRangeConcept<const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > > >]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:284:9:   required from ‘struct boost::SinglePassRangeConcept<const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:32:62:   required by substitution of ‘template<class Model> boost::concepts::detail::yes boost::concepts::detail::has_constraints_(Model*, boost::concepts::detail::wrap_constraints<Model, (& Model::constraints)>*) [with Model = boost::SinglePassRangeConcept<const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:42:5:   required from ‘const bool boost::concepts::not_satisfied<boost::SinglePassRangeConcept<const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > > >::value’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:45:51:   required from ‘struct boost::concepts::not_satisfied<boost::SinglePassRangeConcept<const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:72:8:   required from ‘struct boost::concepts::requirement_<void (*)(boost::SinglePassRangeConcept<const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >)>’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/algorithm/equal.hpp:174:13:   [ skipping 10 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/iter_find.hpp:186:31:   required from ‘SequenceSequenceT& boost::algorithm::iter_split(SequenceSequenceT&, RangeT&&, FinderT) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; FinderT = boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/split.hpp:158:50:   required from ‘SequenceSequenceT& boost::algorithm::split(SequenceSequenceT&, RangeT&&, PredicateT, boost::algorithm::token_compress_mode_type) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; PredicateT = boost::algorithm::detail::is_any_ofF<char>]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:39:28:   required from ‘void stan::services::get_model_parameters(const Model&, std::vector<std::__cxx11::basic_string<char> >&, std::vector<std::vector<long unsigned int> >&) [with Model = model_scmet_namespace::model_scmet]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:103:23:   required from ‘int stan::services::standalone_generate(const Model&, const MatrixXd&, unsigned int, stan::callbacks::interrupt&, stan::callbacks::logger&, stan::callbacks::writer&) [with Model = model_scmet_namespace::model_scmet; Eigen::MatrixXd = Eigen::Matrix<double, -1, -1>]’
+/home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:1239:46:   required from ‘SEXPREC* rstan::stan_fit<Model, RNG_t>::standalone_gqs(SEXP, SEXP) [with Model = model_scmet_namespace::model_scmet; RNG_t = boost::random::additive_combine_engine<boost::random::linear_congruential_engine<unsigned int, 40014, 0, 2147483563>, boost::random::linear_congruential_engine<unsigned int, 40692, 0, 2147483399> >; SEXP = SEXPREC*]’
+stanExports_scmet.cc:30:89:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:50:47: warning: ‘this’ pointer is null [-Wnonnull]
+   50 |     static void failed() { ((Model*)0)->~Model(); }
+      |                            ~~~~~~~~~~~~~~~~~~~^~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:31,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:20:5: note: in a call to non-static member function ‘boost::concepts::usage_requirements<Model>::~usage_requirements() [with Model = boost::SinglePassRangeConcept<const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >]’
+   20 |     ~usage_requirements() { ((Model*)0)->~Model(); }
+      |     ^
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/assert.hpp:35,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp: In instantiation of ‘static void boost::concepts::requirement<boost::concepts::failed************ Model::************>::failed() [with Model = boost::SinglePassRangeConcept<const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/algorithm/equal.hpp:174:13:   required from ‘bool boost::range::equal(const SinglePassRange1&, const SinglePassRange2&) [with SinglePassRange1 = boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >; SinglePassRange2 = boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:644:32:   required from ‘bool boost::operator==(const boost::iterator_range<IteratorT>&, const boost::iterator_range<Iterator2T>&) [with Iterator1T = __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> >; Iterator2T = __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/find_iterator.hpp:359:32:   required from ‘bool boost::algorithm::split_iterator<IteratorT>::equal(const boost::algorithm::split_iterator<IteratorT>&) const [with IteratorT = __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/iterator/iterator_facade.hpp:649:26:   required from ‘static bool boost::iterators::iterator_core_access::equal(const Facade1&, const Facade2&, mpl_::true_) [with Facade1 = boost::algorithm::split_iterator<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >; Facade2 = boost::algorithm::split_iterator<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >; mpl_::true_ = mpl_::bool_<true>]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/iterator/iterator_facade.hpp:981:3:   required from ‘typename boost::iterators::detail::enable_if_interoperable<Derived1, Derived2, typename boost::mpl::apply2<boost::iterators::detail::always_bool2, Derived1, Derived2>::type>::type boost::iterators::operator==(const boost::iterators::iterator_facade<Derived1, V1, TC1, Reference1, Difference1>&, const boost::iterators::iterator_facade<Derived2, V2, TC2, Reference2, Difference2>&) [with Derived1 = boost::algorithm::split_iterator<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >; V1 = const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >; TC1 = boost::iterators::forward_traversal_tag; Reference1 = const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >&; Difference1 = long int; Derived2 = boost::algorithm::split_iterator<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >; V2 = const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >; TC2 = boost::iterators::forward_traversal_tag; Reference2 = const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >&; Difference2 = long int; typename boost::iterators::detail::enable_if_interoperable<Derived1, Derived2, typename boost::mpl::apply2<boost::iterators::detail::always_bool2, Derived1, Derived2>::type>::type = bool; typename boost::mpl::apply2<boost::iterators::detail::always_bool2, Derived1, Derived2>::type = bool]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/iterator/iterator_adaptor.hpp:305:29:   [ skipping 5 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/iter_find.hpp:186:31:   required from ‘SequenceSequenceT& boost::algorithm::iter_split(SequenceSequenceT&, RangeT&&, FinderT) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; FinderT = boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/split.hpp:158:50:   required from ‘SequenceSequenceT& boost::algorithm::split(SequenceSequenceT&, RangeT&&, PredicateT, boost::algorithm::token_compress_mode_type) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; PredicateT = boost::algorithm::detail::is_any_ofF<char>]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:39:28:   required from ‘void stan::services::get_model_parameters(const Model&, std::vector<std::__cxx11::basic_string<char> >&, std::vector<std::vector<long unsigned int> >&) [with Model = model_scmet_namespace::model_scmet]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:103:23:   required from ‘int stan::services::standalone_generate(const Model&, const MatrixXd&, unsigned int, stan::callbacks::interrupt&, stan::callbacks::logger&, stan::callbacks::writer&) [with Model = model_scmet_namespace::model_scmet; Eigen::MatrixXd = Eigen::Matrix<double, -1, -1>]’
+/home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:1239:46:   required from ‘SEXPREC* rstan::stan_fit<Model, RNG_t>::standalone_gqs(SEXP, SEXP) [with Model = model_scmet_namespace::model_scmet; RNG_t = boost::random::additive_combine_engine<boost::random::linear_congruential_engine<unsigned int, 40014, 0, 2147483563>, boost::random::linear_congruential_engine<unsigned int, 40692, 0, 2147483399> >; SEXP = SEXPREC*]’
+stanExports_scmet.cc:30:89:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:50:47: warning: ‘this’ pointer is null [-Wnonnull]
+   50 |     static void failed() { ((Model*)0)->~Model(); }
+      |                            ~~~~~~~~~~~~~~~~~~~^~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:31,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:19,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size_type.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/size.hpp:21,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/functions.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/iterator_range_core.hpp:38,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/lexical_cast.hpp:30,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_args.hpp:12,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:37:7: note: in a call to non-static member function ‘boost::SinglePassRangeConcept<T>::~SinglePassRangeConcept() [with T = const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’
+   37 |       ~model()
+      |       ^
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:284:9: note: in expansion of macro ‘BOOST_CONCEPT_USAGE’
+  284 |         BOOST_CONCEPT_USAGE(SinglePassRangeConcept)
+      |         ^~~~~~~~~~~~~~~~~~~
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp: In instantiation of ‘boost::concepts::usage_requirements<Model>::~usage_requirements() [with Model = boost::CopyConstructible<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:50:47:   required from ‘static void boost::concepts::requirement<boost::concepts::failed************ Model::************>::failed() [with Model = boost::concepts::usage_requirements<boost::CopyConstructible<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:167:5:   required from ‘struct boost::CopyConstructible<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:125:16:   required from ‘struct boost::range_detail::IncrementableIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:147:16:   required from ‘struct boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:32:62:   required by substitution of ‘template<class Model> boost::concepts::detail::yes boost::concepts::detail::has_constraints_(Model*, boost::concepts::detail::wrap_constraints<Model, (& Model::constraints)>*) [with Model = boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:42:5:   [ skipping 18 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/iter_find.hpp:186:31:   required from ‘SequenceSequenceT& boost::algorithm::iter_split(SequenceSequenceT&, RangeT&&, FinderT) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; FinderT = boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/split.hpp:158:50:   required from ‘SequenceSequenceT& boost::algorithm::split(SequenceSequenceT&, RangeT&&, PredicateT, boost::algorithm::token_compress_mode_type) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; PredicateT = boost::algorithm::detail::is_any_ofF<char>]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:39:28:   required from ‘void stan::services::get_model_parameters(const Model&, std::vector<std::__cxx11::basic_string<char> >&, std::vector<std::vector<long unsigned int> >&) [with Model = model_scmet_namespace::model_scmet]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:103:23:   required from ‘int stan::services::standalone_generate(const Model&, const MatrixXd&, unsigned int, stan::callbacks::interrupt&, stan::callbacks::logger&, stan::callbacks::writer&) [with Model = model_scmet_namespace::model_scmet; Eigen::MatrixXd = Eigen::Matrix<double, -1, -1>]’
+/home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:1239:46:   required from ‘SEXPREC* rstan::stan_fit<Model, RNG_t>::standalone_gqs(SEXP, SEXP) [with Model = model_scmet_namespace::model_scmet; RNG_t = boost::random::additive_combine_engine<boost::random::linear_congruential_engine<unsigned int, 40014, 0, 2147483563>, boost::random::linear_congruential_engine<unsigned int, 40692, 0, 2147483399> >; SEXP = SEXPREC*]’
+stanExports_scmet.cc:30:89:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:20:48: warning: ‘this’ pointer is null [-Wnonnull]
+   20 |     ~usage_requirements() { ((Model*)0)->~Model(); }
+      |                             ~~~~~~~~~~~~~~~~~~~^~
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:37:7: note: in a call to non-static member function ‘boost::CopyConstructible<TT>::~CopyConstructible() [with TT = __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> >]’
+   37 |       ~model()
+      |       ^
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:167:5: note: in expansion of macro ‘BOOST_CONCEPT_USAGE’
+  167 |     BOOST_CONCEPT_USAGE(CopyConstructible) {
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp: In instantiation of ‘boost::concepts::usage_requirements<Model>::~usage_requirements() [with Model = boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::incrementable_traversal_tag>]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:50:47:   required from ‘static void boost::concepts::requirement<boost::concepts::failed************ Model::************>::failed() [with Model = boost::concepts::usage_requirements<boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::incrementable_traversal_tag> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:208:5:   required from ‘struct boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::incrementable_traversal_tag>’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:32:62:   required by substitution of ‘template<class Model> boost::concepts::detail::yes boost::concepts::detail::has_constraints_(Model*, boost::concepts::detail::wrap_constraints<Model, (& Model::constraints)>*) [with Model = boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::incrementable_traversal_tag>]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:42:5:   required from ‘const bool boost::concepts::not_satisfied<boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::incrementable_traversal_tag> >::value’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:45:51:   required from ‘struct boost::concepts::not_satisfied<boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::incrementable_traversal_tag> >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:72:8:   [ skipping 22 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/iter_find.hpp:186:31:   required from ‘SequenceSequenceT& boost::algorithm::iter_split(SequenceSequenceT&, RangeT&&, FinderT) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; FinderT = boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/split.hpp:158:50:   required from ‘SequenceSequenceT& boost::algorithm::split(SequenceSequenceT&, RangeT&&, PredicateT, boost::algorithm::token_compress_mode_type) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; PredicateT = boost::algorithm::detail::is_any_ofF<char>]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:39:28:   required from ‘void stan::services::get_model_parameters(const Model&, std::vector<std::__cxx11::basic_string<char> >&, std::vector<std::vector<long unsigned int> >&) [with Model = model_scmet_namespace::model_scmet]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:103:23:   required from ‘int stan::services::standalone_generate(const Model&, const MatrixXd&, unsigned int, stan::callbacks::interrupt&, stan::callbacks::logger&, stan::callbacks::writer&) [with Model = model_scmet_namespace::model_scmet; Eigen::MatrixXd = Eigen::Matrix<double, -1, -1>]’
+/home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:1239:46:   required from ‘SEXPREC* rstan::stan_fit<Model, RNG_t>::standalone_gqs(SEXP, SEXP) [with Model = model_scmet_namespace::model_scmet; RNG_t = boost::random::additive_combine_engine<boost::random::linear_congruential_engine<unsigned int, 40014, 0, 2147483563>, boost::random::linear_congruential_engine<unsigned int, 40692, 0, 2147483399> >; SEXP = SEXPREC*]’
+stanExports_scmet.cc:30:89:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:20:48: warning: ‘this’ pointer is null [-Wnonnull]
+   20 |     ~usage_requirements() { ((Model*)0)->~Model(); }
+      |                             ~~~~~~~~~~~~~~~~~~~^~
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:37:7: note: in a call to non-static member function ‘boost::Convertible<X, Y>::~Convertible() [with X = boost::iterators::random_access_traversal_tag; Y = boost::iterators::incrementable_traversal_tag]’
+   37 |       ~model()
+      |       ^
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:208:5: note: in expansion of macro ‘BOOST_CONCEPT_USAGE’
+  208 |     BOOST_CONCEPT_USAGE(Convertible) {
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp: In instantiation of ‘boost::concepts::usage_requirements<Model>::~usage_requirements() [with Model = boost::range_detail::IncrementableIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:50:47:   required from ‘static void boost::concepts::requirement<boost::concepts::failed************ Model::************>::failed() [with Model = boost::concepts::usage_requirements<boost::range_detail::IncrementableIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:136:13:   required from ‘struct boost::range_detail::IncrementableIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:147:16:   required from ‘struct boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:32:62:   required by substitution of ‘template<class Model> boost::concepts::detail::yes boost::concepts::detail::has_constraints_(Model*, boost::concepts::detail::wrap_constraints<Model, (& Model::constraints)>*) [with Model = boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:42:5:   required from ‘const bool boost::concepts::not_satisfied<boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >::value’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:45:51:   [ skipping 17 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/iter_find.hpp:186:31:   required from ‘SequenceSequenceT& boost::algorithm::iter_split(SequenceSequenceT&, RangeT&&, FinderT) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; FinderT = boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/split.hpp:158:50:   required from ‘SequenceSequenceT& boost::algorithm::split(SequenceSequenceT&, RangeT&&, PredicateT, boost::algorithm::token_compress_mode_type) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; PredicateT = boost::algorithm::detail::is_any_ofF<char>]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:39:28:   required from ‘void stan::services::get_model_parameters(const Model&, std::vector<std::__cxx11::basic_string<char> >&, std::vector<std::vector<long unsigned int> >&) [with Model = model_scmet_namespace::model_scmet]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:103:23:   required from ‘int stan::services::standalone_generate(const Model&, const MatrixXd&, unsigned int, stan::callbacks::interrupt&, stan::callbacks::logger&, stan::callbacks::writer&) [with Model = model_scmet_namespace::model_scmet; Eigen::MatrixXd = Eigen::Matrix<double, -1, -1>]’
+/home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:1239:46:   required from ‘SEXPREC* rstan::stan_fit<Model, RNG_t>::standalone_gqs(SEXP, SEXP) [with Model = model_scmet_namespace::model_scmet; RNG_t = boost::random::additive_combine_engine<boost::random::linear_congruential_engine<unsigned int, 40014, 0, 2147483563>, boost::random::linear_congruential_engine<unsigned int, 40692, 0, 2147483399> >; SEXP = SEXPREC*]’
+stanExports_scmet.cc:30:89:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:20:48: warning: ‘this’ pointer is null [-Wnonnull]
+   20 |     ~usage_requirements() { ((Model*)0)->~Model(); }
+      |                             ~~~~~~~~~~~~~~~~~~~^~
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:37:7: note: in a call to non-static member function ‘boost::range_detail::IncrementableIteratorConcept<Iterator>::~IncrementableIteratorConcept() [with Iterator = __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> >]’
+   37 |       ~model()
+      |       ^
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:136:13: note: in expansion of macro ‘BOOST_CONCEPT_USAGE’
+  136 |             BOOST_CONCEPT_USAGE(IncrementableIteratorConcept)
+      |             ^~~~~~~~~~~~~~~~~~~
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp: In instantiation of ‘boost::concepts::usage_requirements<Model>::~usage_requirements() [with Model = boost::EqualityComparable<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:50:47:   required from ‘static void boost::concepts::requirement<boost::concepts::failed************ Model::************>::failed() [with Model = boost::concepts::usage_requirements<boost::EqualityComparable<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:233:5:   required from ‘struct boost::EqualityComparable<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:147:16:   required from ‘struct boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:32:62:   required by substitution of ‘template<class Model> boost::concepts::detail::yes boost::concepts::detail::has_constraints_(Model*, boost::concepts::detail::wrap_constraints<Model, (& Model::constraints)>*) [with Model = boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:42:5:   required from ‘const bool boost::concepts::not_satisfied<boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >::value’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:45:51:   [ skipping 17 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/iter_find.hpp:186:31:   required from ‘SequenceSequenceT& boost::algorithm::iter_split(SequenceSequenceT&, RangeT&&, FinderT) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; FinderT = boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/split.hpp:158:50:   required from ‘SequenceSequenceT& boost::algorithm::split(SequenceSequenceT&, RangeT&&, PredicateT, boost::algorithm::token_compress_mode_type) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; PredicateT = boost::algorithm::detail::is_any_ofF<char>]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:39:28:   required from ‘void stan::services::get_model_parameters(const Model&, std::vector<std::__cxx11::basic_string<char> >&, std::vector<std::vector<long unsigned int> >&) [with Model = model_scmet_namespace::model_scmet]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:103:23:   required from ‘int stan::services::standalone_generate(const Model&, const MatrixXd&, unsigned int, stan::callbacks::interrupt&, stan::callbacks::logger&, stan::callbacks::writer&) [with Model = model_scmet_namespace::model_scmet; Eigen::MatrixXd = Eigen::Matrix<double, -1, -1>]’
+/home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:1239:46:   required from ‘SEXPREC* rstan::stan_fit<Model, RNG_t>::standalone_gqs(SEXP, SEXP) [with Model = model_scmet_namespace::model_scmet; RNG_t = boost::random::additive_combine_engine<boost::random::linear_congruential_engine<unsigned int, 40014, 0, 2147483563>, boost::random::linear_congruential_engine<unsigned int, 40692, 0, 2147483399> >; SEXP = SEXPREC*]’
+stanExports_scmet.cc:30:89:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:20:48: warning: ‘this’ pointer is null [-Wnonnull]
+   20 |     ~usage_requirements() { ((Model*)0)->~Model(); }
+      |                             ~~~~~~~~~~~~~~~~~~~^~
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:37:7: note: in a call to non-static member function ‘boost::EqualityComparable<TT>::~EqualityComparable() [with TT = __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> >]’
+   37 |       ~model()
+      |       ^
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:233:5: note: in expansion of macro ‘BOOST_CONCEPT_USAGE’
+  233 |     BOOST_CONCEPT_USAGE(EqualityComparable) {
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp: In instantiation of ‘boost::concepts::usage_requirements<Model>::~usage_requirements() [with Model = boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::single_pass_traversal_tag>]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:50:47:   required from ‘static void boost::concepts::requirement<boost::concepts::failed************ Model::************>::failed() [with Model = boost::concepts::usage_requirements<boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::single_pass_traversal_tag> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:208:5:   required from ‘struct boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::single_pass_traversal_tag>’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:32:62:   required by substitution of ‘template<class Model> boost::concepts::detail::yes boost::concepts::detail::has_constraints_(Model*, boost::concepts::detail::wrap_constraints<Model, (& Model::constraints)>*) [with Model = boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::single_pass_traversal_tag>]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:42:5:   required from ‘const bool boost::concepts::not_satisfied<boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::single_pass_traversal_tag> >::value’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:45:51:   required from ‘struct boost::concepts::not_satisfied<boost::Convertible<boost::iterators::random_access_traversal_tag, boost::iterators::single_pass_traversal_tag> >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:72:8:   [ skipping 21 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/iter_find.hpp:186:31:   required from ‘SequenceSequenceT& boost::algorithm::iter_split(SequenceSequenceT&, RangeT&&, FinderT) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; FinderT = boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/split.hpp:158:50:   required from ‘SequenceSequenceT& boost::algorithm::split(SequenceSequenceT&, RangeT&&, PredicateT, boost::algorithm::token_compress_mode_type) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; PredicateT = boost::algorithm::detail::is_any_ofF<char>]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:39:28:   required from ‘void stan::services::get_model_parameters(const Model&, std::vector<std::__cxx11::basic_string<char> >&, std::vector<std::vector<long unsigned int> >&) [with Model = model_scmet_namespace::model_scmet]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:103:23:   required from ‘int stan::services::standalone_generate(const Model&, const MatrixXd&, unsigned int, stan::callbacks::interrupt&, stan::callbacks::logger&, stan::callbacks::writer&) [with Model = model_scmet_namespace::model_scmet; Eigen::MatrixXd = Eigen::Matrix<double, -1, -1>]’
+/home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:1239:46:   required from ‘SEXPREC* rstan::stan_fit<Model, RNG_t>::standalone_gqs(SEXP, SEXP) [with Model = model_scmet_namespace::model_scmet; RNG_t = boost::random::additive_combine_engine<boost::random::linear_congruential_engine<unsigned int, 40014, 0, 2147483563>, boost::random::linear_congruential_engine<unsigned int, 40692, 0, 2147483399> >; SEXP = SEXPREC*]’
+stanExports_scmet.cc:30:89:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:20:48: warning: ‘this’ pointer is null [-Wnonnull]
+   20 |     ~usage_requirements() { ((Model*)0)->~Model(); }
+      |                             ~~~~~~~~~~~~~~~~~~~^~
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:37:7: note: in a call to non-static member function ‘boost::Convertible<X, Y>::~Convertible() [with X = boost::iterators::random_access_traversal_tag; Y = boost::iterators::single_pass_traversal_tag]’
+   37 |       ~model()
+      |       ^
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept_check.hpp:208:5: note: in expansion of macro ‘BOOST_CONCEPT_USAGE’
+  208 |     BOOST_CONCEPT_USAGE(Convertible) {
+      |     ^~~~~~~~~~~~~~~~~~~
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp: In instantiation of ‘boost::concepts::usage_requirements<Model>::~usage_requirements() [with Model = boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:50:47:   required from ‘static void boost::concepts::requirement<boost::concepts::failed************ Model::************>::failed() [with Model = boost::concepts::usage_requirements<boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:158:13:   required from ‘struct boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:32:62:   required by substitution of ‘template<class Model> boost::concepts::detail::yes boost::concepts::detail::has_constraints_(Model*, boost::concepts::detail::wrap_constraints<Model, (& Model::constraints)>*) [with Model = boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:42:5:   required from ‘const bool boost::concepts::not_satisfied<boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >::value’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:45:51:   required from ‘struct boost::concepts::not_satisfied<boost::range_detail::SinglePassIteratorConcept<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:72:8:   [ skipping 16 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/iter_find.hpp:186:31:   required from ‘SequenceSequenceT& boost::algorithm::iter_split(SequenceSequenceT&, RangeT&&, FinderT) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; FinderT = boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/split.hpp:158:50:   required from ‘SequenceSequenceT& boost::algorithm::split(SequenceSequenceT&, RangeT&&, PredicateT, boost::algorithm::token_compress_mode_type) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; PredicateT = boost::algorithm::detail::is_any_ofF<char>]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:39:28:   required from ‘void stan::services::get_model_parameters(const Model&, std::vector<std::__cxx11::basic_string<char> >&, std::vector<std::vector<long unsigned int> >&) [with Model = model_scmet_namespace::model_scmet]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:103:23:   required from ‘int stan::services::standalone_generate(const Model&, const MatrixXd&, unsigned int, stan::callbacks::interrupt&, stan::callbacks::logger&, stan::callbacks::writer&) [with Model = model_scmet_namespace::model_scmet; Eigen::MatrixXd = Eigen::Matrix<double, -1, -1>]’
+/home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:1239:46:   required from ‘SEXPREC* rstan::stan_fit<Model, RNG_t>::standalone_gqs(SEXP, SEXP) [with Model = model_scmet_namespace::model_scmet; RNG_t = boost::random::additive_combine_engine<boost::random::linear_congruential_engine<unsigned int, 40014, 0, 2147483563>, boost::random::linear_congruential_engine<unsigned int, 40692, 0, 2147483399> >; SEXP = SEXPREC*]’
+stanExports_scmet.cc:30:89:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:20:48: warning: ‘this’ pointer is null [-Wnonnull]
+   20 |     ~usage_requirements() { ((Model*)0)->~Model(); }
+      |                             ~~~~~~~~~~~~~~~~~~~^~
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:37:7: note: in a call to non-static member function ‘boost::range_detail::SinglePassIteratorConcept<Iterator>::~SinglePassIteratorConcept() [with Iterator = __gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> >]’
+   37 |       ~model()
+      |       ^
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:158:13: note: in expansion of macro ‘BOOST_CONCEPT_USAGE’
+  158 |             BOOST_CONCEPT_USAGE(SinglePassIteratorConcept)
+      |             ^~~~~~~~~~~~~~~~~~~
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp: In instantiation of ‘boost::concepts::usage_requirements<Model>::~usage_requirements() [with Model = boost::SinglePassRangeConcept<const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:50:47:   required from ‘static void boost::concepts::requirement<boost::concepts::failed************ Model::************>::failed() [with Model = boost::concepts::usage_requirements<boost::SinglePassRangeConcept<const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > > >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:284:9:   required from ‘struct boost::SinglePassRangeConcept<const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:32:62:   required by substitution of ‘template<class Model> boost::concepts::detail::yes boost::concepts::detail::has_constraints_(Model*, boost::concepts::detail::wrap_constraints<Model, (& Model::constraints)>*) [with Model = boost::SinglePassRangeConcept<const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:42:5:   required from ‘const bool boost::concepts::not_satisfied<boost::SinglePassRangeConcept<const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > > >::value’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/has_constraints.hpp:45:51:   required from ‘struct boost::concepts::not_satisfied<boost::SinglePassRangeConcept<const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > > > >’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/detail/general.hpp:72:8:   [ skipping 11 instantiation contexts, use -ftemplate-backtrace-limit=0 to disable ]
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/iter_find.hpp:186:31:   required from ‘SequenceSequenceT& boost::algorithm::iter_split(SequenceSequenceT&, RangeT&&, FinderT) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; FinderT = boost::algorithm::detail::token_finderF<boost::algorithm::detail::is_any_ofF<char> >]’
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/algorithm/string/split.hpp:158:50:   required from ‘SequenceSequenceT& boost::algorithm::split(SequenceSequenceT&, RangeT&&, PredicateT, boost::algorithm::token_compress_mode_type) [with SequenceSequenceT = std::vector<std::__cxx11::basic_string<char> >; RangeT = std::__cxx11::basic_string<char>&; PredicateT = boost::algorithm::detail::is_any_ofF<char>]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:39:28:   required from ‘void stan::services::get_model_parameters(const Model&, std::vector<std::__cxx11::basic_string<char> >&, std::vector<std::vector<long unsigned int> >&) [with Model = model_scmet_namespace::model_scmet]’
+/home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/sample/standalone_gqs.hpp:103:23:   required from ‘int stan::services::standalone_generate(const Model&, const MatrixXd&, unsigned int, stan::callbacks::interrupt&, stan::callbacks::logger&, stan::callbacks::writer&) [with Model = model_scmet_namespace::model_scmet; Eigen::MatrixXd = Eigen::Matrix<double, -1, -1>]’
+/home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:1239:46:   required from ‘SEXPREC* rstan::stan_fit<Model, RNG_t>::standalone_gqs(SEXP, SEXP) [with Model = model_scmet_namespace::model_scmet; RNG_t = boost::random::additive_combine_engine<boost::random::linear_congruential_engine<unsigned int, 40014, 0, 2147483563>, boost::random::linear_congruential_engine<unsigned int, 40692, 0, 2147483399> >; SEXP = SEXPREC*]’
+stanExports_scmet.cc:30:89:   required from here
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:20:48: warning: ‘this’ pointer is null [-Wnonnull]
+   20 |     ~usage_requirements() { ((Model*)0)->~Model(); }
+      |                             ~~~~~~~~~~~~~~~~~~~^~
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/concept/usage.hpp:37:7: note: in a call to non-static member function ‘boost::SinglePassRangeConcept<T>::~SinglePassRangeConcept() [with T = const boost::iterator_range<__gnu_cxx::__normal_iterator<char*, std::__cxx11::basic_string<char> > >]’
+   37 |       ~model()
+      |       ^
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/range/concepts.hpp:284:9: note: in expansion of macro ‘BOOST_CONCEPT_USAGE’
+  284 |         BOOST_CONCEPT_USAGE(SinglePassRangeConcept)
+      |         ^~~~~~~~~~~~~~~~~~~
+In file included from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/gamma.hpp:18,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/detail/bessel_jy.hpp:14,
+                 from /home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/special_functions/bessel.hpp:20,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/prim/fun/bessel_first_kind.hpp:6,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/prim/fun.hpp:28,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/rev/fun.hpp:7,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/stan/math/rev.hpp:10,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/model/log_prob_grad.hpp:4,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/model/test_gradients.hpp:7,
+                 from /home/biocbuild/R/R-4.3.0/site-library/StanHeaders/include/src/stan/services/diagnose/diagnose.hpp:8,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/stan_fit.hpp:35,
+                 from /home/biocbuild/R/R-4.3.0/site-library/rstan/include/rstan/rstaninc.hpp:4,
+                 from stanExports_scmet.h:6,
+                 from stanExports_scmet.cc:5:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/tools/fraction.hpp: In function ‘typename boost::math::tools::detail::fraction_traits<Gen>::result_type boost::math::tools::continued_fraction_a(Gen&, const U&, uintmax_t&) [with Gen = boost::math::detail::upper_incomplete_gamma_fract<long double>; U = long double]’:
+/home/biocbuild/R/R-4.3.0/site-library/BH/include/boost/math/tools/fraction.hpp:217:15: note: parameter passing for argument of type ‘std::pair<long double, long double>’ when C++17 is enabled changed to match C++14 in GCC 10.1
+  217 |    value_type v = g();
+      |               ^
+g++ -std=gnu++17 -shared -L/home/biocbuild/R/R-4.3.0/lib -L/usr/local/lib -o scMET.so RcppExports.o stanExports_scmet.o -L/home/biocbuild/R/R-4.3.0/site-library/RcppParallel/lib/ -Wl,-rpath,/home/biocbuild/R/R-4.3.0/site-library/RcppParallel/lib/ -ltbb -ltbbmalloc -L/home/biocbuild/R/R-4.3.0/lib -lR
+installing to /home/biocbuild/R/R-4.3.0/site-library/00LOCK-scMET/00new/scMET/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (scMET)

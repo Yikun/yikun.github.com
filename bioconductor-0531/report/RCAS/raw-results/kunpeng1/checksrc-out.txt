@@ -1,0 +1,136 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD check --install=check:RCAS.install-out.txt --library=/home/biocbuild/R/R-4.3.0/site-library --timings RCAS_1.27.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/RCAS.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘RCAS/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘RCAS’ version ‘1.27.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘RCAS’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘RCAS-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: checkSeqDb
+> ### Title: checkSeqDb
+> ### Aliases: checkSeqDb
+> 
+> ### ** Examples
+> 
+> checkSeqDb('hg19')
+Error in get_data_annotation_contrib_url(type) : 
+  Install 'BiocManager' from CRAN to get 'BioCann' contrib.url
+Calls: checkSeqDb -> <Anonymous> -> get_data_annotation_contrib_url
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+  Backtrace:
+      ▆
+   1. ├─testthat::expect_error(runReport(genomeVersion = "9"), regexp = "match the genome version to an unambigous genome sequence") at test_report.R:7:2
+   2. │ └─testthat:::quasi_capture(...)
+   3. │   ├─testthat (local) .capture(...)
+   4. │   │ └─base::withCallingHandlers(...)
+   5. │   └─rlang::eval_bare(quo_get_expr(.quo), quo_get_env(.quo))
+   6. └─RCAS::runReport(genomeVersion = "9")
+   7.   └─RCAS::checkSeqDb(genomeVersion)
+   8.     └─BSgenome::available.genomes()
+   9.       └─BSgenome:::get_data_annotation_contrib_url(type)
+  
+  [ FAIL 5 | WARN 9 | SKIP 0 | PASS 39 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘RCAS.metaAnalysis.vignette.Rmd’ using ‘UTF-8’... OK
+  ‘RCAS.vignette.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘RCAS.metaAnalysis.vignette.Rmd’ using rmarkdown
+--- finished re-building ‘RCAS.metaAnalysis.vignette.Rmd’
+
+--- re-building ‘RCAS.vignette.Rmd’ using rmarkdown
+Error in x$.self$finalize() : attempt to apply non-function
+Warning: call dbDisconnect() when finished working with a connection
+
+Quitting from lines 223-229 [motif_analysis] (RCAS.vignette.Rmd)
+Error: processing vignette 'RCAS.vignette.Rmd' failed with diagnostics:
+Install 'BiocManager' from CRAN to get 'BioCann' contrib.url
+--- failed re-building ‘RCAS.vignette.Rmd’
+
+SUMMARY: processing the following file failed:
+  ‘RCAS.vignette.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 3 ERRORs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/RCAS.Rcheck/00check.log’
+for details.
+

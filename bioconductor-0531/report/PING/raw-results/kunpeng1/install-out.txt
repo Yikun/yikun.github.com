@@ -1,0 +1,37 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD INSTALL PING
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0/site-library’
+* installing *source* package ‘PING’ ...
+** using staged installation
+checking for pkg-config... /usr/bin/pkg-config
+checking pkg-config is at least version 0.9.0... yes
+checking for GSL... yes
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c init.c -o init.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c ping.c -o ping.o
+gcc -shared -L/home/biocbuild/R/R-4.3.0/lib -L/usr/local/lib -o PING.so init.o ping.o -lgsl -lgslcblas -lm -L/home/biocbuild/R/R-4.3.0/lib -lR
+installing to /home/biocbuild/R/R-4.3.0/site-library/00LOCK-PING/00new/PING/libs
+** R
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (PING)

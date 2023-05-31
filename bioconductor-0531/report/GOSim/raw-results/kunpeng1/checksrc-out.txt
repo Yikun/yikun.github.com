@@ -1,0 +1,216 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD check --install=check:GOSim.install-out.txt --library=/home/biocbuild/R/R-4.3.0/site-library --timings GOSim_1.39.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/GOSim.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘GOSim/DESCRIPTION’ ... OK
+* this is package ‘GOSim’ version ‘1.39.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘GOSim’ can be installed ... OK
+* used C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Malformed Description field: should contain one or more complete sentences.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+GOGraph: no visible global function definition for ‘new’
+GOenrichment: no visible global function definition for ‘new’
+calc.diffusion.kernel: no visible global function definition for ‘as’
+evaluateClustering: no visible global function definition for ‘median’
+evaluateClustering: no visible global function definition for ‘mad’
+evaluateClustering: no visible global function definition for ‘as.dist’
+norm: no visible global function definition for ‘dist’
+pca: no visible global function definition for ‘prcomp’
+selectPrototypes : <anonymous>: no visible global function definition
+  for ‘cutree’
+selectPrototypes : <anonymous>: no visible global function definition
+  for ‘hclust’
+selectPrototypes : <anonymous>: no visible global function definition
+  for ‘dist’
+selectPrototypes: no visible binding for global variable ‘BIC’
+setEvidenceLevel: no visible global function definition for ‘is’
+Undefined global functions or variables:
+  BIC as as.dist cutree dist hclust is mad median new prcomp
+Consider adding
+  importFrom("methods", "as", "is", "new")
+  importFrom("stats", "BIC", "as.dist", "cutree", "dist", "hclust",
+             "mad", "median", "prcomp")
+to your NAMESPACE file (and ensure that your DESCRIPTION Imports field
+contains 'methods').
+* checking Rd files ... NOTE
+checkRd: (-1) setEvidenceLevel.Rd:39: Escaped LaTeX specials: \$
+checkRd: (-1) setEvidenceLevel.Rd:41: Escaped LaTeX specials: \$ \$
+checkRd: (-1) setEvidenceLevel.Rd:43: Escaped LaTeX specials: \$ \$ \$
+checkRd: (-1) setEvidenceLevel.Rd:46: Escaped LaTeX specials: \$ \$ \$
+checkRd: (-1) setEvidenceLevel.Rd:49: Escaped LaTeX specials: \$ \$ \$
+checkRd: (-1) setEvidenceLevel.Rd:52: Escaped LaTeX specials: \$ \$
+checkRd: (-1) setEvidenceLevel.Rd:54: Escaped LaTeX specials: \$ \$ \$
+checkRd: (-1) setEvidenceLevel.Rd:58: Escaped LaTeX specials: \$ \$ \$
+checkRd: (-1) setEvidenceLevel.Rd:61: Escaped LaTeX specials: \$ \$ \$
+checkRd: (-1) setEvidenceLevel.Rd:64: Escaped LaTeX specials: \$
+checkRd: (-1) setEvidenceLevel.Rd:66: Escaped LaTeX specials: \$ \$
+checkRd: (-1) setEvidenceLevel.Rd:68: Escaped LaTeX specials: \$ \$ \$
+checkRd: (-1) setEvidenceLevel.Rd:71: Escaped LaTeX specials: \$ \$ \$
+checkRd: (-1) setEvidenceLevel.Rd:74: Escaped LaTeX specials: \$ \$ \$
+checkRd: (-1) setEvidenceLevel.Rd:78: Escaped LaTeX specials: \$ \$
+checkRd: (-1) setEvidenceLevel.Rd:80: Escaped LaTeX specials: \$ \$ \$
+checkRd: (-1) setEvidenceLevel.Rd:84: Escaped LaTeX specials: \$ \$ \$
+checkRd: (-1) setEvidenceLevel.Rd:87: Escaped LaTeX specials: \$ \$ \$
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking line endings in Makefiles ... OK
+* checking compilation flags in Makevars ... OK
+* checking for GNU extensions in Makefiles ... OK
+* checking for portable use of $(BLAS_LIBS) and $(LAPACK_LIBS) ... OK
+* checking use of PKG_*FLAGS in Makefiles ... OK
+* checking compiled code ... NOTE
+Note: information on .o files is not available
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                        user system elapsed
+getGeneSimPrototypes 310.555  3.147 313.716
+getTermSim            12.356  0.064  12.420
+getMinimumSubsumer    12.222  0.020  12.242
+getDisjCommAnc        11.407  0.564  11.971
+setEnrichmentFactors   9.671  0.040   9.712
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘GOSim.Rnw’ using ‘latin1’... failed
+ WARNING
+Errors in running code in vignettes:
+when running code in ‘GOSim.Rnw’
+  ...
+GO:0007267  0.5846115  1.0000000  0.0000000  0.6572401  0.4773693
+GO:0007584  0.3265762  0.0000000  1.0000000  0.3581018  0.2770009
+GO:0007165  0.8506792  0.6572401  0.3581018  1.0000000  0.6525805
+GO:0007186  0.5855112  0.4773693  0.2770009  0.6525805  1.0000000
+
+> library(igraph)
+
+  When sourcing ‘GOSim.R’:
+Error: there is no package called ‘igraph’
+Execution halted
+
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘GOSim.Rnw’ using Sweave
+Loading required package: GO.db
+Loading required package: AnnotationDbi
+Loading required package: stats4
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: IRanges
+Loading required package: S4Vectors
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+
+Loading required package: annotate
+Loading required package: XML
+
+initializing GOSim package ...
+-> retrieving GO information for all available genes for organism 'human' in GO database
+-> filtering GO terms according to evidence levels 'all'
+-> loading files with information content for corresponding GO category (human)
+finished.
+
+Error: processing vignette 'GOSim.Rnw' failed with diagnostics:
+ chunk 7 (label = GOExample) 
+Error in library(igraph) : there is no package called ‘igraph’
+
+--- failed re-building ‘GOSim.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘GOSim.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 WARNING, 5 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/GOSim.Rcheck/00check.log’
+for details.
+
+

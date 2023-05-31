@@ -1,0 +1,109 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD check --install=check:DEGseq.install-out.txt --library=/home/biocbuild/R/R-4.3.0/site-library --timings DEGseq_1.55.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/DEGseq.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘DEGseq/DESCRIPTION’ ... OK
+* this is package ‘DEGseq’ version ‘1.55.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘DEGseq’ can be installed ... OK
+* used C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+* checking installed package size ... NOTE
+  installed size is  7.4Mb
+  sub-directories of 1Mb or more:
+    extdata   5.3Mb
+    libs      1.7Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... NOTE
+Package listed in more than one of Depends, Imports, Suggests, Enhances:
+  ‘methods’
+A package should be listed in only one of these fields.
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... NOTE
+'library' or 'require' calls to packages already attached by Depends:
+  ‘methods’ ‘qvalue’
+  Please remove these calls from your code.
+Package in Depends field not imported from: ‘qvalue’
+  These packages need to be imported from (in the NAMESPACE file)
+  for when this namespace is loaded but not attached.
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+DEGexp: no visible global function definition for ‘dev.cur’
+DEGexp2: no visible global function definition for ‘dev.cur’
+getQvalue2: no visible global function definition for ‘qvalue’
+Undefined global functions or variables:
+  dev.cur qvalue
+Consider adding
+  importFrom("grDevices", "dev.cur")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking line endings in C/C++/Fortran sources/headers ... OK
+* checking compiled code ... WARNING
+Note: information on .o files is not available
+File ‘/home/biocbuild/R/R-4.3.0/site-library/DEGseq/libs/DEGseq.so’:
+  Found ‘__sprintf_chk’, possibly from ‘sprintf’ (C)
+
+Compiled code should not call entry points which might terminate R nor
+write to stdout/stderr instead of to the console, nor use Fortran I/O
+nor system RNGs nor [v]sprintf. The detected symbols are linked into
+the code but might come from libraries and not actually be called.
+
+See ‘Writing portable packages’ in the ‘Writing R Extensions’ manual.
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘DEGseq.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 WARNING, 4 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/DEGseq.Rcheck/00check.log’
+for details.
+
+

@@ -1,0 +1,127 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD check --install=check:BLMA.install-out.txt --library=/home/biocbuild/R/R-4.3.0/site-library --timings BLMA_1.25.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/BLMA.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘BLMA/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘BLMA’ version ‘1.25.0’
+* checking package namespace information ... OK
+* checking package dependencies ... NOTE
+Depends: includes the non-default packages:
+  'ROntoTools', 'GSA', 'PADOG', 'limma', 'graph', 'parallel',
+  'Biobase', 'metafor'
+Adding so many packages to the search path is excessive and importing
+selectively is preferable.
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘BLMA’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+addCLT: warning in pnorm(mean(x), 1/2, sqrt(1/(12 * n)), lower = TRUE):
+  partial argument match of 'lower' to 'lower.tail'
+additiveMethod: warning in pnorm(sum(x), n/2, sqrt(n/12), lower =
+  TRUE): partial argument match of 'lower' to 'lower.tail'
+bilevelAnalysisGeneset : <anonymous>: warning in topTable(fit2, adjust
+  = "none", sort.by = "logFC", number = nrow(d) * percent, p.value =
+  pCutoff): partial argument match of 'adjust' to 'adjust.method'
+bilevelAnalysisPathway : <anonymous>: warning in topTable(fit2, adjust
+  = "none", sort.by = "logFC", number = nrow(d) * percent, p.value =
+  pCutoff): partial argument match of 'adjust' to 'adjust.method'
+fisherMethod: warning in pchisq(-2 * sum(log(x)), df = 2 * length(x),
+  lower = FALSE): partial argument match of 'lower' to 'lower.tail'
+getStatistics: warning in topTable(fit2, adjust = "fdr", sort.by = "B",
+  number = Inf): partial argument match of 'adjust' to 'adjust.method'
+intraAnalysisGene : <anonymous>: warning in topTable(fit2, adjust =
+  "none", sort.by = "none", number = Inf): partial argument match of
+  'adjust' to 'adjust.method'
+intraAnalysisGene: warning in topTable(fit2, adjust = "none", sort.by =
+  "none", number = Inf): partial argument match of 'adjust' to
+  'adjust.method'
+calculateFC: no visible binding for global variable ‘m1i’
+calculateFC: no visible binding for global variable ‘sd1i’
+calculateFC: no visible binding for global variable ‘n1i’
+calculateFC: no visible binding for global variable ‘m2i’
+calculateFC: no visible binding for global variable ‘sd2i’
+calculateFC: no visible binding for global variable ‘n2i’
+calculateFC: no visible binding for global variable ‘yi’
+getStatistics: no visible binding for global variable ‘d’
+hierClustering: no visible binding for global variable ‘km’
+hierClustering: no visible global function definition for ‘clusGap’
+hierClustering: no visible global function definition for ‘maxSE’
+intraAnalysisGene: no visible binding for global variable ‘d’
+Undefined global functions or variables:
+  clusGap d km m1i m2i maxSE n1i n2i sd1i sd2i yi
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                          user system elapsed
+bilevelAnalysisGeneset 169.608  1.148 170.766
+getStatistics          131.043  0.632 131.679
+bilevelAnalysisPathway  96.900  0.276  97.180
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘runTests.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘BLMA.Rnw’... OK
+ OK
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/BLMA.Rcheck/00check.log’
+for details.
+
+

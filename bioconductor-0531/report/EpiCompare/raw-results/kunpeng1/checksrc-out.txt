@@ -1,0 +1,115 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD check --install=check:EpiCompare.install-out.txt --library=/home/biocbuild/R/R-4.3.0/site-library --timings EpiCompare_1.5.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/EpiCompare.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘EpiCompare/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘EpiCompare’ version ‘1.5.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘EpiCompare’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... OK
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                             user system elapsed
+plot_enrichment            52.527  1.852  56.558
+plot_ChIPseeker_annotation 27.035  0.763  27.803
+plot_corr                  12.489  4.632  10.928
+rebin_peaks                 9.613  2.584   4.871
+plot_precision_recall       9.584  1.966   6.444
+EpiCompare                  9.921  0.497  10.597
+predict_precision_recall    8.425  1.802   5.143
+tss_plot                    5.799  0.596   6.395
+liftover_grlist             4.720  0.940   9.621
+plot_chromHMM               5.059  0.440   9.243
+precision_recall            4.274  0.842   5.124
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ ERROR
+Running the tests in ‘tests/testthat.R’ failed.
+Last 13 lines of output:
+   20.   │                   ├─base::withVisible(...)
+   21.   │                   └─evaluate:::eval_with_user_handlers(expr, envir, enclos, user_handlers)
+   22.   │                     └─base::eval(expr, envir, enclos)
+   23.   │                       └─base::eval(expr, envir, enclos)
+   24.   └─EpiCompare:::save_output(...)
+   25.     └─ggplot2::ggsave(...)
+   26.       ├─grid::grid.draw(plot)
+   27.       └─ggplot2:::grid.draw.ggplot(plot)
+   28.         ├─base::print(x)
+   29.         └─ggplot2:::print.ggplot(x)
+   30.           └─grid::grid.newpage()
+  
+  [ FAIL 1 | WARN 7 | SKIP 0 | PASS 92 ]
+  Error: Test failures
+  Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘EpiCompare.Rmd’ using ‘UTF-8’... OK
+  ‘docker.Rmd’ using ‘UTF-8’... OK
+  ‘example_report.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/EpiCompare.Rcheck/00check.log’
+for details.
+

@@ -1,0 +1,92 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD build --keep-empty-dirs --no-resave-data affyPLM
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘affyPLM/DESCRIPTION’ ... OK
+* preparing ‘affyPLM’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘AffyExtensions.Rnw’ using Sweave
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: affy
+Loading required package: Biobase
+Welcome to Bioconductor
+
+    Vignettes contain introductory material; view with
+    'browseVignettes()'. To cite Bioconductor, see
+    'citation("Biobase")', and for packages 'citation("pkgname")'.
+
+Loading required package: gcrma
+Loading required package: preprocessCore
+Loading required package: affydata
+Warning in library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called ‘affydata’
+Warning in data(Dilution) : data set ‘Dilution’ not found
+
+Error: processing vignette 'AffyExtensions.Rnw' failed with diagnostics:
+ chunk 1 (label = loadData) 
+Error in h(simpleError(msg, call)) : 
+  error in evaluating the argument 'object' in selecting a method for function 'updateObject': object 'Dilution' not found
+
+--- failed re-building ‘AffyExtensions.Rnw’
+
+--- re-building ‘MAplots.Rnw’ using Sweave
+Loading required package: affydata
+Warning in library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called ‘affydata’
+Warning in data(Dilution) : data set ‘Dilution’ not found
+
+Error: processing vignette 'MAplots.Rnw' failed with diagnostics:
+ chunk 2 (label = makeExpressionSet) 
+Error in h(simpleError(msg, call)) : 
+  error in evaluating the argument 'object' in selecting a method for function 'probeNames': object 'Dilution' not found
+
+--- failed re-building ‘MAplots.Rnw’
+
+--- re-building ‘QualityAssess.Rnw’ using Sweave
+Loading required package: affydata
+Warning in library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called ‘affydata’
+Warning in data(Dilution) : data set ‘Dilution’ not found
+
+Error: processing vignette 'QualityAssess.Rnw' failed with diagnostics:
+ chunk 2 (label = loadData) 
+Error in h(simpleError(msg, call)) : 
+  error in evaluating the argument 'object' in selecting a method for function 'updateObject': object 'Dilution' not found
+
+--- failed re-building ‘QualityAssess.Rnw’
+
+--- re-building ‘ThreeStep.Rnw’ using Sweave
+--- finished re-building ‘ThreeStep.Rnw’
+
+SUMMARY: processing the following files failed:
+  ‘AffyExtensions.Rnw’
+  ‘MAplots.Rnw’ ‘QualityAssess.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted

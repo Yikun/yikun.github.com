@@ -1,0 +1,46 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD INSTALL iClusterPlus
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0/site-library’
+* installing *source* package ‘iClusterPlus’ ...
+** using staged installation
+ This package has only been tested with gfortran.
+ So some checks are needed.
+ R_HOME is /home/biocbuild/R/R-4.3.0
+Attempting to determine R_ARCH...
+R_ARCH is 
+Attempting to detect how R was configured for Fortran 90....
+  R configured for gfortran; Good!
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+using Fortran compiler: ‘GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c iClusterBayes.c -o iClusterBayes.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c iClusterPlus.c -o iClusterPlus.o
+gfortran -fdefault-real-8 -ffixed-form -fPIC  -g -O2  -c  newGLMnet.f90 -o newGLMnet.o
+gcc -shared -L/home/biocbuild/R/R-4.3.0/lib -L/usr/local/lib -o iClusterPlus.so iClusterBayes.o iClusterPlus.o newGLMnet.o -llapack -lblas -lgfortran -lm -lgfortran -lm -L/home/biocbuild/R/R-4.3.0/lib -lR
+installing to /home/biocbuild/R/R-4.3.0/site-library/00LOCK-iClusterPlus/00new/iClusterPlus/libs
+** R
+** data
+*** moving datasets to lazyload DB
+** demo
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (iClusterPlus)

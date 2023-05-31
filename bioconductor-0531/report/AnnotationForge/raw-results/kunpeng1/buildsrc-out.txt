@@ -1,0 +1,68 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD build --keep-empty-dirs --no-resave-data AnnotationForge
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘AnnotationForge/DESCRIPTION’ ... OK
+* preparing ‘AnnotationForge’:
+* checking DESCRIPTION meta-information ... OK
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘MakingNewAnnotationPackages.Rnw’ using knitr
+trying URL 'http://rest.uniprot.org/uniprotkb/search?query=P13368%20OR%20Q6GZX4&format=xml'
+downloaded 45 KB
+
+--- finished re-building ‘MakingNewAnnotationPackages.Rnw’
+
+--- re-building ‘MakingNewOrganismPackages.Rmd’ using knitr
+Warning in file.info(x, extra_cols = FALSE) :
+  expanded path length 5574 would be too long for
+<!--
+%\VignetteEngine{knitr::knitr}
+%\VignetteIndexEntry{Making New Organism Packages}
+-->
+<h1 id="making-organism-packages">Making Organism packages</h1>
+<h3 id="by-marc-carlson">by Marc Carlson</h3>
+<h2 id="overview">Overview</h2>
+<p>Making Organism Packages is a straightforward process using the helper
+functions makeOrgPackageFromNCBI() and makeOrgPackage().  If your
+package is available at NCBI with an identifiable NCBI Taxonomy ID you
+can try makeOrgPackageFromNCBI().  However, even if this fails, the
+second and more general makeOrgPackage() function will allow you to
+make a database package using only data.frames of data.</p>
+<h2 id="making-use-of-makeorgpackagefromncbi">Making use of makeOrgPackageFromNCBI()</h2>
+<p>The makeOrgPackageFromNCBI() function, will take several different
+arguments to help declare who made the package and what species it is
+for.  But the most important arguement is the tax_id arguement.  That
+arguement is [... truncated]
+--- finished re-building ‘MakingNewOrganismPackages.Rmd’
+
+--- re-building ‘SQLForge.Rnw’ using knitr
+
+Quitting from lines 177-193 [SQLForge] (SQLForge.Rnw)
+Error: processing vignette 'SQLForge.Rnw' failed with diagnostics:
+You must first install the human.db0 package!
+
+
+--- failed re-building ‘SQLForge.Rnw’
+
+--- re-building ‘makeProbePackage.Rnw’ using knitr
+
+See
+  ‘/tmp/Rtmpk8Wea1/hgu95av2probe.Rcheck/00check.log’
+for details.
+
+
+--- finished re-building ‘makeProbePackage.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘SQLForge.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted

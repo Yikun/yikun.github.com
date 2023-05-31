@@ -1,0 +1,42 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD build --keep-empty-dirs --no-resave-data debrowser
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘debrowser/DESCRIPTION’ ... OK
+* preparing ‘debrowser’:
+* checking DESCRIPTION meta-information ... OK
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘DEBrowser.Rmd’ using rmarkdown
+Could not fetch http://bioinfo.umassmed.edu/pub/debrowser/debrowser_pics2/data_load.png
+HttpExceptionRequest Request {
+  host                 = "bioinfo.umassmed.edu"
+  port                 = 80
+  secure               = False
+  requestHeaders       = []
+  path                 = "/pub/debrowser/debrowser_pics2/data_load.png"
+  queryString          = ""
+  method               = "GET"
+  proxy                = Nothing
+  rawBody              = False
+  redirectCount        = 10
+  responseTimeout      = ResponseTimeoutDefault
+  requestVersion       = HTTP/1.1
+}
+ (InternalException (HandshakeFailed (Error_Protocol ("certificate has expired",True,CertificateExpired))))
+Error: processing vignette 'DEBrowser.Rmd' failed with diagnostics:
+pandoc document conversion failed with error 61
+--- failed re-building ‘DEBrowser.Rmd’
+
+SUMMARY: processing the following file failed:
+  ‘DEBrowser.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted

@@ -1,0 +1,340 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD check --install=check:HiTC.install-out.txt --library=/home/biocbuild/R/R-4.3.0/site-library --timings HiTC_1.45.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/HiTC.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘HiTC/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘HiTC’ version ‘1.45.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘HiTC’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... NOTE
+Problems with news in ‘NEWS’:
+  Cannot process chunk/lines:
+    SIGNIFICANT USER-VISIBLE CHANGES
+  Cannot process chunk/lines:
+    BUG FIXES
+  Cannot process chunk/lines:
+    NEW FEATURES
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+directionalityIndex: no visible global function definition for
+  ‘subjectHits’
+directionalityIndex: no visible global function definition for
+  ‘queryHits’
+getBlocsIndex: no visible global function definition for ‘Rle’
+getExpectedCountsMean: no visible global function definition for ‘Rle’
+normLGF: no visible global function definition for ‘glm.nb’
+slidingWindow: no visible binding for global variable ‘consV’
+splitCombinedContacts : <anonymous>: no visible global function
+  definition for ‘seqlevels<-’
+divide,HTCexp-HTCexp: no visible global function definition for
+  ‘queryHits’
+divide,HTCexp-HTCexp: no visible global function definition for
+  ‘subjectHits’
+isBinned,HTCexp: no visible global function definition for
+  ‘countMatches’
+substract,HTCexp-HTCexp: no visible global function definition for
+  ‘queryHits’
+substract,HTCexp-HTCexp: no visible global function definition for
+  ‘subjectHits’
+Undefined global functions or variables:
+  Rle consV countMatches glm.nb queryHits seqlevels<- subjectHits
+* checking Rd files ... WARNING
+checkRd: (5) HTClist-class.Rd:52-54: \item in \describe must have non-empty label
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                      user system elapsed
+directionalityIndex 17.958  1.048  19.009
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘HiC_analysis.Rnw’... failed
+  ‘HiTC.Rnw’... OK
+ WARNING
+Errors in running code in vignettes:
+when running code in ‘HiC_analysis.Rnw’
+  ...
+
+> resFrag <- getRestrictionFragmentsPerChromosome(resSite = "AAGCTT", 
++     overhangs5 = 1, chromosomes = "chr6", genomePack = "BSgenome.Hsapiens.UCS ..." ... [TRUNCATED] 
+Loading required package: BSgenome.Hsapiens.UCSC.hg18
+Warning in library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called ‘BSgenome.Hsapiens.UCSC.hg18’
+
+  When sourcing ‘HiC_analysis.R’:
+Error: require(genomePack, character.only = TRUE) is not TRUE
+Execution halted
+
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+--- re-building ‘HiC_analysis.Rnw’ using Sweave
+Loading required package: HiTC
+Loading required package: IRanges
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: GenomicRanges
+Loading required package: GenomeInfoDb
+Loading required package: HiCDataHumanIMR90
+'as(<dsCMatrix>, "dgTMatrix")' is deprecated.
+Use 'as(as(., "generalMatrix"), "TsparseMatrix")' instead.
+See help("Deprecated") and help("Matrix-deprecated").
+Warning: file stem ‘./HiTC-plot1’ is not portable
+Bin size 'xgi' =5e+05 [1x5e+05]
+Bin size 'ygi' =5e+05 [1x5e+05]
+Bin size 'xgi' =5e+05 [1x5e+05]
+Bin size 'ygi' =5e+05 [1x5e+05]
+Bin size 'xgi' =5e+05 [1x5e+05]
+Bin size 'ygi' =5e+05 [1x5e+05]
+Bin size 'xgi' =5e+05 [1x5e+05]
+Bin size 'ygi' =5e+05 [1x5e+05]
+Bin size 'xgi' =5e+05 [1x5e+05]
+Bin size 'ygi' =5e+05 [1x5e+05]
+Bin size 'xgi' =5e+05 [1x5e+05]
+Bin size 'ygi' =5e+05 [1x5e+05]
+Plotting chr5chr5...
+minrange= 2  - maxrange= 569
+Plotting chr5chr6...
+minrange= 1  - maxrange= 8
+Plotting chr5chr7...
+minrange= 1  - maxrange= 8
+Plotting chr6chr6...
+minrange= 3  - maxrange= 593.02
+Plotting chr6chr7...
+minrange= 1  - maxrange= 8
+Plotting chr7chr7...
+minrange= 2  - maxrange= 571
+Warning: file stem ‘./HiTC-plot2’ is not portable
+Plotting chr5chr5...
+minrange= 1  - maxrange= 200
+Plotting chr5chr6...
+minrange= 1  - maxrange= 200
+Plotting chr5chr7...
+minrange= 1  - maxrange= 119
+Plotting chr6chr5...
+minrange= 1  - maxrange= 200
+Plotting chr6chr6...
+minrange= 1  - maxrange= 200
+Plotting chr6chr7...
+minrange= 1  - maxrange= 81
+Plotting chr7chr5...
+minrange= 1  - maxrange= 119
+Plotting chr7chr6...
+minrange= 1  - maxrange= 81
+Plotting chr7chr7...
+minrange= 1  - maxrange= 200
+Loading required package: BSgenome.Hsapiens.UCSC.hg18
+Warning in library(package, lib.loc = lib.loc, character.only = TRUE, logical.return = TRUE,  :
+  there is no package called ‘BSgenome.Hsapiens.UCSC.hg18’
+
+Error: processing vignette 'HiC_analysis.Rnw' failed with diagnostics:
+ chunk 6 (label = resFrag) 
+Error in getRestrictionFragmentsPerChromosome(resSite = "AAGCTT", overhangs5 = 1,  : 
+  require(genomePack, character.only = TRUE) is not TRUE
+
+--- failed re-building ‘HiC_analysis.Rnw’
+
+--- re-building ‘HiTC.Rnw’ using Sweave
+Loading required package: IRanges
+Loading required package: BiocGenerics
+
+Attaching package: ‘BiocGenerics’
+
+The following objects are masked from ‘package:stats’:
+
+    IQR, mad, sd, var, xtabs
+
+The following objects are masked from ‘package:base’:
+
+    Filter, Find, Map, Position, Reduce, anyDuplicated, aperm, append,
+    as.data.frame, basename, cbind, colnames, dirname, do.call,
+    duplicated, eval, evalq, get, grep, grepl, intersect, is.unsorted,
+    lapply, mapply, match, mget, order, paste, pmax, pmax.int, pmin,
+    pmin.int, rank, rbind, rownames, sapply, setdiff, sort, table,
+    tapply, union, unique, unsplit, which.max, which.min
+
+Loading required package: S4Vectors
+Loading required package: stats4
+
+Attaching package: ‘S4Vectors’
+
+The following object is masked from ‘package:utils’:
+
+    findMatches
+
+The following objects are masked from ‘package:base’:
+
+    I, expand.grid, unname
+
+Loading required package: GenomicRanges
+Loading required package: GenomeInfoDb
+Loading required package: Matrix
+
+Attaching package: ‘Matrix’
+
+The following object is masked from ‘package:S4Vectors’:
+
+    expand
+
+Reading file ...
+Convert my5C matrix file in HTCexp object(s)
+Reading file ...
+Convert my5C matrix file in HTCexp object(s)
+Reading file ...
+Convert my5C matrix file in HTCexp object(s)
+Reading file ...
+Convert my5C matrix file in HTCexp object(s)
+Reading file ...
+Convert my5C matrix file in HTCexp object(s)
+Reading file ...
+Convert my5C matrix file in HTCexp object(s)
+'as(<dsCMatrix>, "dgTMatrix")' is deprecated.
+Use 'as(as(., "generalMatrix"), "TsparseMatrix")' instead.
+See help("Deprecated") and help("Matrix-deprecated").
+Warning: file stem ‘./HiTC-qcc’ is not portable
+Get data ...
+Generate quality control plots ...
+minrange= 1  - maxrange= 741
+Warning: file stem ‘./HiTC-bin5C’ is not portable
+Bin size 'xgi' =102420 [3x34140]
+Bin size 'ygi' =102420 [3x34140]
+minrange= 3  - maxrange= 477.2
+Lowess fit ...
+Standard deviation calculation ...
+Delta=8876.395
+Calculating stdev ... 
+Warning: file stem ‘./HiTC-norm5Cznorm’ is not portable
+Lowess fit ...
+Standard deviation calculation ...
+Delta=8876.395
+Calculating stdev ... 
+minrange= 0.027  - maxrange= 2.139
+Warning: file stem ‘./HiTC-annot5C’ is not portable
+Bin size 'xgi' =102087 [3x34029]
+Bin size 'ygi' =102087 [3x34029]
+Loading required package: rtracklayer
+minrange= 0.5  - maxrange= 10
+Warning: file stem ‘./HiTC-comp5C’ is not portable
+Bin size 'xgi' =102087 [3x34029]
+Bin size 'ygi' =102087 [3x34029]
+minrange= 0.5  - maxrange= 10
+minrange= 0.5  - maxrange= 10
+Warning: file stem ‘./HiTC-mapClist’ is not portable
+Plotting chr12chr12...
+minrange= 1  - maxrange= 100
+Plotting chr12chr13...
+minrange= 1  - maxrange= 20
+Plotting chr12chr14...
+minrange= 1  - maxrange= 39
+Plotting chr13chr13...
+minrange= 1  - maxrange= 100
+Plotting chr13chr14...
+minrange= 1  - maxrange= 18
+Plotting chr14chr14...
+minrange= 1  - maxrange= 100
+Warning: file stem ‘./HiTC-mapChic’ is not portable
+Plotting chr14chr14...
+minrange= 1  - maxrange= 100
+Warning: file stem ‘./HiTC-mapNormhic’ is not portable
+Lowess fit ...
+Plotting chr14chr14...
+minrange= 0.015  - maxrange= 2.519
+Warning: file stem ‘./HiTC-mapCorhic’ is not portable
+Plotting chr14chr14...
+minrange= 0  - maxrange= 1
+Warning: file stem ‘./HiTC-mapPCAhic’ is not portable
+Lowess fit ...
+--- finished re-building ‘HiTC.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘HiC_analysis.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 WARNINGs, 3 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/HiTC.Rcheck/00check.log’
+for details.
+
+

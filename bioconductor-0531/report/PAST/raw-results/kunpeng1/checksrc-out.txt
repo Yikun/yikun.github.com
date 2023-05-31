@@ -1,0 +1,126 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD check --install=check:PAST.install-out.txt --library=/home/biocbuild/R/R-4.3.0/site-library --timings PAST_1.17.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/PAST.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘PAST/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘PAST’ version ‘1.17.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘PAST’ can be installed ... WARNING
+Found the following significant warnings:
+  Warning: replacing previous import ‘S4Vectors::first’ by ‘dplyr::first’ when loading ‘PAST’
+  Warning: replacing previous import ‘S4Vectors::setequal’ by ‘dplyr::setequal’ when loading ‘PAST’
+  Warning: replacing previous import ‘S4Vectors::rename’ by ‘dplyr::rename’ when loading ‘PAST’
+  Warning: replacing previous import ‘S4Vectors::intersect’ by ‘dplyr::intersect’ when loading ‘PAST’
+  Warning: replacing previous import ‘S4Vectors::union’ by ‘dplyr::union’ when loading ‘PAST’
+  Warning: replacing previous import ‘S4Vectors::setdiff’ by ‘dplyr::setdiff’ when loading ‘PAST’
+  Warning: replacing previous import ‘S4Vectors::findMatches’ by ‘utils::findMatches’ when loading ‘PAST’
+  Warning: replacing previous import ‘S4Vectors::tail’ by ‘utils::tail’ when loading ‘PAST’
+  Warning: replacing previous import ‘S4Vectors::stack’ by ‘utils::stack’ when loading ‘PAST’
+  Warning: replacing previous import ‘S4Vectors::head’ by ‘utils::head’ when loading ‘PAST’
+  Warning: replacing previous import ‘S4Vectors::complete.cases’ by ‘stats::complete.cases’ when loading ‘PAST’
+  Warning: replacing previous import ‘S4Vectors::sd’ by ‘stats::sd’ when loading ‘PAST’
+See ‘/home/biocbuild/bbs-3.18-bioc/meat/PAST.Rcheck/00install.out’ for details.
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+assign_SNPs_to_genes: no visible binding for global variable ‘position’
+assign_SNPs_to_genes: no visible binding for global variable
+  ‘Marker_original’
+assign_SNPs_to_genes: no visible binding for global variable ‘effect’
+assign_SNPs_to_genes: no visible binding for global variable ‘p.value’
+assign_SNPs_to_genes: no visible binding for global variable
+  ‘linked_snp_count’
+assign_SNPs_to_genes: no visible binding for global variable ‘name’
+assign_SNPs_to_genes: no visible binding for global variable ‘marker’
+assign_chunk: no visible binding for global variable ‘chromosome’
+assign_chunk: no visible global function definition for ‘IRanges’
+assign_chunk: no visible binding for global variable ‘position’
+assign_chunk: no visible binding for global variable ‘seqid’
+assign_chunk: no visible binding for global variable ‘Name’
+find_pathway_significance: no visible binding for global variable
+  ‘gene_id’
+plot_pathways: no visible binding for global variable
+  ‘running_enrichment_score’
+Undefined global functions or variables:
+  IRanges Marker_original Name chromosome effect gene_id
+  linked_snp_count marker name p.value position
+  running_enrichment_score seqid
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'assign_SNPs_to_genes'
+  ‘filter_type’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                           user system elapsed
+plot_pathways             8.562  0.897 131.953
+find_pathway_significance 6.560  0.306 126.789
+assign_SNPs_to_genes      6.051  0.299  86.961
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘past.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 WARNINGs, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/PAST.Rcheck/00check.log’
+for details.
+
+

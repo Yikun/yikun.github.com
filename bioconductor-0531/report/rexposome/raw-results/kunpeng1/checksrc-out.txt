@@ -1,0 +1,273 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD check --install=check:rexposome.install-out.txt --library=/home/biocbuild/R/R-4.3.0/site-library --timings rexposome_1.23.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/rexposome.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘rexposome/DESCRIPTION’ ... OK
+* this is package ‘rexposome’ version ‘1.23.0’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... WARNING
+Found the following file with a non-portable file name:
+  vignettes/rsconnect/documents/exposome_data_analysis.Rmd/rpubs.com/rpubs/Publish Document.dcf
+These are not fully portable file names.
+See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
+Found the following non-portable file path:
+  rexposome/vignettes/rsconnect/documents/exposome_data_analysis.Rmd/rpubs.com/rpubs/Publish Document.dcf
+
+Tarballs are only required to store paths of up to 100 bytes and cannot
+store those of more than 256 bytes, with restrictions including to 100
+bytes for the final component.
+See section ‘Package structure’ in the ‘Writing R Extensions’ manual.
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘rexposome’ can be installed ... OK
+* checking installed package size ... NOTE
+  installed size is  6.0Mb
+  sub-directories of 1Mb or more:
+    data      2.8Mb
+    extdata   2.2Mb
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... WARNING
+'::' or ':::' imports not declared from:
+  ‘ggridges’ ‘missMDA’ ‘nnet’ ‘sandwich’
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+imputeLOD: multiple local function definitions for ‘faux’ with
+  different formal arguments
+invExWAS,ExposomeSet : <anonymous>: no visible global function
+  definition for ‘reformulate’
+invExWAS,ExposomeSet : <anonymous>: no visible global function
+  definition for ‘terms’
+invExWAS,ExposomeSet : <anonymous>: no visible global function
+  definition for ‘confint’
+invExWAS,ExposomeSet: no visible global function definition for
+  ‘reformulate’
+invExWAS,ExposomeSet: no visible global function definition for ‘terms’
+plotHistogram,ExposomeSet: no visible binding for global variable
+  ‘..density..’
+Undefined global functions or variables:
+  ..density.. confint reformulate terms
+Consider adding
+  importFrom("stats", "confint", "reformulate", "terms")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... WARNING
+Rd files with duplicated alias 'extract':
+  ‘extract-methods.Rd’ ‘get_robust_sd-methods.Rd’
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... WARNING
+S4 class codoc mismatches from documentation object 'ExWAS':
+Slots for class 'ExWAS'
+  Code: comparison description effective formula robust.std.err
+  Docs: comparison description effective formula
+
+* checking Rd \usage sections ... WARNING
+Undocumented arguments in documentation object 'ExposomeSet'
+  ‘robust’
+
+Undocumented arguments in documentation object 'exwas'
+  ‘robust’
+
+Undocumented arguments in documentation object 'imExposomeSet'
+  ‘robust’
+
+Functions with \usage entries need to have the appropriate \alias
+entries, and all their arguments documented.
+The \usage entries must correspond to syntactically valid R code.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘rexposome-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plotHistogram
+> ### Title: It draws a histogram for each exposure in an ExposomeSet
+> ### Aliases: plotHistogram
+> 
+> ### ** Examples
+> 
+> data("exposome")
+> plotHistogram(expo[1:3, ], select = "ldde_lip")
+Error in loadNamespace(x) : there is no package called ‘ggridges’
+Calls: plotHistogram ... loadNamespace -> withRestarts -> withOneRestart -> doWithOneRestart
+Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘exposome_data_analysis.Rmd’ using ‘UTF-8’... OK
+  ‘mutiple_imputation_data_analysis.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ... ERROR
+Error(s) in re-building vignettes:
+--- re-building ‘exposome_data_analysis.Rmd’ using rmarkdown
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'github'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'library'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'files_path'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'ags_read_exposome'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'read_exposome'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'show_es_1'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'ags_load_exposome'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'read_csv_files'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'set_dd_rownames'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'set_ee_rownames'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'set_pp, rownames'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'load_exposome'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'individuals_names'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'exposures_names'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'families_names'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'phenotype_names'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'feature'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'phenotype'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'exposures'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'misssing_data_table'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'missing_exposures_plot'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+The magick package is required to crop "/home/biocbuild/bbs-3.18-bioc/meat/rexposome.Rcheck/vign_test/rexposome/vignettes/exposome_data_analysis_files/figure-html/missing_exposures_plot-1.png" but not available.
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'normality'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'no_normality'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'histogram_cleaning'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+The magick package is required to crop "/home/biocbuild/bbs-3.18-bioc/meat/rexposome.Rcheck/vign_test/rexposome/vignettes/exposome_data_analysis_files/figure-html/histogram_cleaning-1.png" but not available.
+Warning in eng_r(options) :
+  Failed to tidy R code in chunk 'histogram_no_normal'. Reason:
+Error : The formatR package is required by the chunk option tidy = TRUE but not installed; tidy = TRUE will be ignored.
+
+
+Quitting from lines 334-336 [histogram_no_normal] (exposome_data_analysis.Rmd)
+Error: processing vignette 'exposome_data_analysis.Rmd' failed with diagnostics:
+there is no package called 'ggridges'
+--- failed re-building ‘exposome_data_analysis.Rmd’
+
+--- re-building ‘mutiple_imputation_data_analysis.Rmd’ using rmarkdown
+The magick package is required to crop "/home/biocbuild/bbs-3.18-bioc/meat/rexposome.Rcheck/vign_test/rexposome/vignettes/mutiple_imputation_data_analysis_files/figure-html/plot_family_continuous-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.18-bioc/meat/rexposome.Rcheck/vign_test/rexposome/vignettes/mutiple_imputation_data_analysis_files/figure-html/plot_family_categorical-1.png" but not available.
+The magick package is required to crop "/home/biocbuild/bbs-3.18-bioc/meat/rexposome.Rcheck/vign_test/rexposome/vignettes/mutiple_imputation_data_analysis_files/figure-html/plot_exwas-1.png" but not available.
+--- finished re-building ‘mutiple_imputation_data_analysis.Rmd’
+
+SUMMARY: processing the following file failed:
+  ‘exposome_data_analysis.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 5 WARNINGs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/rexposome.Rcheck/00check.log’
+for details.
+

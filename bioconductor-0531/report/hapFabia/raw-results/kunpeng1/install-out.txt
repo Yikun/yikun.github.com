@@ -1,0 +1,42 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD INSTALL hapFabia
+###
+##############################################################################
+##############################################################################
+
+
+* installing to library ‘/home/biocbuild/R/R-4.3.0/site-library’
+* installing *source* package ‘hapFabia’ ...
+** using staged installation
+** libs
+using C compiler: ‘gcc (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c interfaceR.c -o interfaceR.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c split_sparse_matrixB.c -o split_sparse_matrixB.o
+gcc -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG   -I/usr/local/include    -fPIC  -g -O2  -c vcftoFABIAB.c -o vcftoFABIAB.o
+gcc -shared -L/home/biocbuild/R/R-4.3.0/lib -L/usr/local/lib -o hapFabia.so interfaceR.o split_sparse_matrixB.o vcftoFABIAB.o -L/home/biocbuild/R/R-4.3.0/lib -lR
+gcc -c ./commandLine/split_sparse_matrix.c -o ./commandLine/split_sparse_matrix.o -g -O2 
+gcc -c split_sparse_matrixB.c -o ./commandLine/split_sparse_matrixB.o -g -O2 
+gcc ./commandLine/split_sparse_matrix.o ./commandLine/split_sparse_matrixB.o -o ./commandLine/split_sparse_matrix
+mv ./commandLine/split_sparse_matrix ../inst/commandLine/
+gcc -c ./commandLine/vcftoFABIA.c -o ./commandLine/vcftoFABIA.o -g -O2 
+gcc -c vcftoFABIAB.c -o ./commandLine/vcftoFABIAB.o -g -O2 
+gcc ./commandLine/vcftoFABIA.o ./commandLine/vcftoFABIAB.o -o ./commandLine/vcftoFABIA
+mv ./commandLine/vcftoFABIA ../inst/commandLine/
+installing to /home/biocbuild/R/R-4.3.0/site-library/00LOCK-hapFabia/00new/hapFabia/libs
+** R
+** data
+** inst
+** byte-compile and prepare package for lazy loading
+** help
+*** installing help indices
+** building package indices
+** installing vignettes
+** testing if installed package can be loaded from temporary location
+** checking absolute paths in shared objects and dynamic libraries
+** testing if installed package can be loaded from final location
+** testing if installed package keeps a record of temporary installation path
+* DONE (hapFabia)

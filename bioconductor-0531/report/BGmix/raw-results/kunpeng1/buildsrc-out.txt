@@ -1,0 +1,590 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD build --keep-empty-dirs --no-resave-data BGmix
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘BGmix/DESCRIPTION’ ... OK
+* preparing ‘BGmix’:
+* checking DESCRIPTION meta-information ... OK
+* cleaning src
+* installing the package to build vignettes
+      -----------------------------------
+* installing *source* package ‘BGmix’ ...
+** using staged installation
+checking for gcc... gcc
+checking for C compiler default output file name... a.out
+checking whether the C compiler works... yes
+checking whether we are cross compiling... no
+checking for suffix of executables... 
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for gcc option to accept ISO C99... none needed
+checking for cos in -lm... yes
+checking for an ANSI C-conforming const... yes
+checking for inline... inline
+configure: creating ./config.status
+config.status: creating src/Makevars
+** libs
+using C++ compiler: ‘g++ (Ubuntu 11.3.0-1ubuntu1~22.04.1) 11.3.0’
+g++ -std=gnu++17 -I"/home/biocbuild/R/R-4.3.0/include" -DNDEBUG -I ../boostIncl  -I/usr/local/include    -fPIC  -g -O2  -g -O2 -DUSING_R -c BGmix_main.cpp -o BGmix_main.o
+BGmix_main.cpp: In function ‘void BGmix(int&, int&, int&, int&, int&, int&, int&, int&, int&, int&, int&, int&, int&, int&, int&, int&, int&, int&, int&, int&, int&, double&, double&, double&, double&, double&, double&, double&, double&, double&, double&, double&, double&, double&, double&, double&, double&, double&, double&, double&, double&, double&, double*, double*, double*, int*, int&, double*, int*, char**, char**, char**, char**, char**)’:
+BGmix_main.cpp:145:1: error: reference to ‘beta’ is ambiguous
+  145 | beta = new double*[ngenes];
+      | ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:146:29: error: reference to ‘beta’ is ambiguous
+  146 | for(int i=0; i<ngenes; ++i) beta[i] = new double[neffects];
+      |                             ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:166:8: error: reference to ‘beta’ is ambiguous
+  166 |        beta[i][0] = xx[1][1]*ybar[i][0] - xx[1][0]*ybar[i][1];
+      |        ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:167:8: error: reference to ‘beta’ is ambiguous
+  167 |        beta[i][1] = xx[0][0]*ybar[i][1] - xx[0][1]*ybar[i][0];
+      |        ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:169:11: error: reference to ‘beta’ is ambiguous
+  169 |      else beta[i][j] = beta_init;
+      |           ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:179:9: error: reference to ‘beta’ is ambiguous
+  179 |      if(beta[i][jstar]<0.01 & beta[i][jstar]>-0.01) zg[i]=1;
+      |         ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:179:31: error: reference to ‘beta’ is ambiguous
+  179 |      if(beta[i][jstar]<0.01 & beta[i][jstar]>-0.01) zg[i]=1;
+      |                               ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:180:14: error: reference to ‘beta’ is ambiguous
+  180 |      else if(beta[i][jstar]>0) zg[i]=2;
+      |              ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:507:22: error: reference to ‘beta’ is ambiguous
+  507 |         update_beta0(beta, tau, gamma1, xx, indtau, ybar, ydata, like_choice,
+      |                      ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:512:45: error: reference to ‘beta’ is ambiguous
+  512 |           if(move_choice_cut==1) update_tau(beta, tau, gamma1, xx, indtau, ybar, ss, ydata,
+      |                                             ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:522:30: error: reference to ‘beta’ is ambiguous
+  522 |           update_tau_logNorm(beta, tau, gamma1, xx, indtau, ybar, ss, ydata,
+      |                              ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:529:41: error: reference to ‘beta’ is ambiguous
+  529 |         if(like_choice==2) update_gamma(beta, tau, gamma1, xx, indtau, ydata, df,
+      |                                         ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:536:53: error: reference to ‘beta’ is ambiguous
+  536 |                                   eta_up, eta_down, beta, tau, gamma1, xx, indtau, ybar, ydata, like_choice,
+      |                                                     ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:541:39: error: reference to ‘beta’ is ambiguous
+  541 |             update_z_beta1_joint2(zg, beta, nalloc, n_acc, n_try,
+      |                                       ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:547:39: error: reference to ‘beta’ is ambiguous
+  547 |             update_z_beta1_joint3(zg, beta, nalloc, n_acc, n_try, wtc, eta_up, eta_down,
+      |                                       ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:551:51: error: reference to ‘beta’ is ambiguous
+  551 |                                               zg, beta, nalloc, ngenes, nconds, jstar, rand);
+      |                                                   ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:553:72: error: reference to ‘beta’ is ambiguous
+  553 |                                                  lam1, lam2, nlam, zg, beta, nalloc, ngenes, jstar, rand);
+      |                                                                        ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:556:39: error: reference to ‘beta’ is ambiguous
+  556 |             update_z_beta1_joint4(zg, beta, nalloc, n_acc, n_try, wtc, tau_eps, eta_up, eta_down,
+      |                                       ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:560:51: error: reference to ‘beta’ is ambiguous
+  560 |                                               zg, beta, nalloc, ngenes, nconds, jstar, rand);
+      |                                                   ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:562:72: error: reference to ‘beta’ is ambiguous
+  562 |                                                  lam1, lam2, nlam, zg, beta, nalloc, ngenes, jstar, rand);
+      |                                                                        ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:583:22: error: reference to ‘beta’ is ambiguous
+  583 |         update_beta0(beta, tau, gamma1, xx, indtau, ybar, ydata, like_choice,
+      |                      ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:588:45: error: reference to ‘beta’ is ambiguous
+  588 |           if(move_choice_cut==1) update_tau(beta, tau, gamma1, xx, indtau, ybar, ss, ydata,
+      |                                             ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:597:30: error: reference to ‘beta’ is ambiguous
+  597 |           update_tau_logNorm(beta, tau, gamma1, xx, indtau, ybar, ss, ydata,
+      |                              ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:605:41: error: reference to ‘beta’ is ambiguous
+  605 |         if(like_choice==2) update_gamma(beta, tau, gamma1, xx, indtau, ydata, df,
+      |                                         ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:611:53: error: reference to ‘beta’ is ambiguous
+  611 |                                   eta_up, eta_down, beta, tau, gamma1, xx, indtau, ybar, ydata, like_choice,
+      |                                                     ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:616:39: error: reference to ‘beta’ is ambiguous
+  616 |             update_z_beta1_joint2(zg, beta, nalloc, n_acc, n_try,
+      |                                       ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:622:39: error: reference to ‘beta’ is ambiguous
+  622 |             update_z_beta1_joint3(zg, beta, nalloc, n_acc, n_try, wtc, eta_up, eta_down,
+      |                                       ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:626:51: error: reference to ‘beta’ is ambiguous
+  626 |                                               zg, beta, nalloc, ngenes, nconds, jstar, rand);
+      |                                                   ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:628:72: error: reference to ‘beta’ is ambiguous
+  628 |                                                  lam1, lam2, nlam, zg, beta, nalloc, ngenes, jstar, rand);
+      |                                                                        ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:631:39: error: reference to ‘beta’ is ambiguous
+  631 |             update_z_beta1_joint4(zg, beta, nalloc, n_acc, n_try, wtc, tau_eps, eta_up, eta_down,
+      |                                       ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:635:51: error: reference to ‘beta’ is ambiguous
+  635 |                                               zg, beta, nalloc, ngenes, nconds, jstar, rand);
+      |                                                   ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:637:72: error: reference to ‘beta’ is ambiguous
+  637 |                                                  lam1, lam2, nlam, zg, beta, nalloc, ngenes, jstar, rand);
+      |                                                                        ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:647:50: error: reference to ‘beta’ is ambiguous
+  647 |               ybar, ss, tau, gamma1, aa, bb, zg, beta, xx, indtau, wtc, tau_eps, eta_up, eta_down,
+      |                                                  ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:653:54: error: reference to ‘beta’ is ambiguous
+  653 |               ybar, ss, tau, gamma1, df, aa, bb, zg, beta, xx, indtau, wtc, tau_eps, eta_up, eta_down,
+      |                                                      ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:656:47: error: reference to ‘beta’ is ambiguous
+  656 |           deviance_calc(deviance1, deviance2, beta, tau, gamma1, xx, indtau, ybar, ss, ydata,
+      |                                               ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:670:44: error: reference to ‘beta’ is ambiguous
+  670 |                         mean_beta[i][j] += beta[i][j];
+      |                                            ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:705:36: error: reference to ‘beta’ is ambiguous
+  705 |                       beta_file << beta[i][j] << " ";
+      |                                    ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp: In function ‘void freeBGmixMemory(int&, int&)’:
+BGmix_main.cpp:967:41: error: reference to ‘beta’ is ambiguous
+  967 |   for(int i=0; i<ngenes; ++i) delete [] beta[i];
+      |                                         ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+BGmix_main.cpp:968:13: error: reference to ‘beta’ is ambiguous
+  968 |   delete [] beta;
+      |             ^~~~
+In file included from /usr/include/c++/11/cmath:1935,
+                 from /usr/include/c++/11/valarray:37,
+                 from rand.hh:24,
+                 from updates_BGmix.h:1,
+                 from BGmix_main.cpp:25:
+/usr/include/c++/11/bits/specfun.h:343:5: note: candidates are: ‘template<class _Tpa, class _Tpb> typename __gnu_cxx::__promote_2<_Tp, _Up>::__type std::beta(_Tpa, _Tpb)’
+  343 |     beta(_Tpa __a, _Tpb __b)
+      |     ^~~~
+BGmix_main.cpp:76:40: note:                 ‘double** beta’
+   76 | static double **ybar, **ss, **ydata, **beta, **tau, **gamma1,
+      |                                        ^~~~
+make: *** [Makevars:9: BGmix_main.o] Error 1
+ERROR: compilation failed for package ‘BGmix’
+* removing ‘/tmp/RtmpLS9qmd/Rinst2bd26a2f10928a/BGmix’
+      -----------------------------------
+ERROR: package installation failed

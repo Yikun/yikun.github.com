@@ -1,0 +1,118 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD check --install=check:ELMER.install-out.txt --library=/home/biocbuild/R/R-4.3.0/site-library --timings ELMER_2.25.1.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/ELMER.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘ELMER/DESCRIPTION’ ... OK
+* this is package ‘ELMER’ version ‘2.25.1’
+* package encoding: UTF-8
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘ELMER’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... WARNING
+Missing or unexported object: 'TCGAbiolinks::GDCquery_Maf'
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+Stat.nonpara: no visible global function definition for 'head'
+Stat.nonpara: no visible global function definition for 'tail'
+Stat.nonpara.permu: no visible global function definition for 'head'
+Stat.nonpara.permu: no visible global function definition for 'tail'
+TFsurvival.plot: no visible global function definition for 'head'
+TFsurvival.plot: no visible global function definition for 'tail'
+addMutCol: no visible binding for global variable 'Hugo_Symbol'
+calcDistNearestTSS: no visible binding for global variable
+  'DistanceTSS'
+get.top.tf.by.pval: no visible global function definition for 'head'
+getRegionNearGenes : f: no visible binding for global variable 'Side'
+getRegionNearGenes: no visible binding for global variable 'ID'
+getTFtargets: no visible binding for global variable 'TF'
+Undefined global functions or variables:
+  DistanceTSS Hugo_Symbol ID Side TF head tail
+Consider adding
+  importFrom("utils", "head", "tail")
+to your NAMESPACE file.
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... OK
+Examples with CPU (user + system) or elapsed time > 5s
+                               user system  elapsed
+TCGA.pipe                    94.105  3.008   98.638
+getRandomPairs               31.449  1.292   38.896
+createMAE                    29.910  2.556   43.615
+schematic.plot               26.742  2.073   34.854
+get.enriched.motif           24.237  1.304   28.434
+scatter.plot                 19.738  1.588   21.327
+get.feature.probe            14.332  0.693 1053.521
+get.pair                     11.257  0.208   11.462
+GetNearGenes                 10.846  0.064   10.913
+preAssociationProbeFiltering  9.256  0.520   13.339
+getRegionNearGenes            8.765  0.580    9.345
+getTCGA                       3.461  0.436   18.708
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘analysis_data_input.Rmd’ using ‘UTF-8’... OK
+  ‘analysis_diff_meth.Rmd’ using ‘UTF-8’... OK
+  ‘analysis_get_pair.Rmd’ using ‘UTF-8’... OK
+  ‘analysis_gui.Rmd’ using ‘UTF-8’... OK
+  ‘analysis_motif_enrichment.Rmd’ using ‘UTF-8’... OK
+  ‘analysis_regulatory_tf.Rmd’ using ‘UTF-8’... OK
+  ‘index.Rmd’ using ‘UTF-8’... OK
+  ‘input.Rmd’ using ‘UTF-8’... OK
+  ‘pipe.Rmd’ using ‘UTF-8’... OK
+  ‘plots_TF.Rmd’ using ‘UTF-8’... OK
+  ‘plots_heatmap.Rmd’ using ‘UTF-8’... OK
+  ‘plots_motif_enrichment.Rmd’ using ‘UTF-8’... OK
+  ‘plots_scatter.Rmd’ using ‘UTF-8’... OK
+  ‘plots_schematic.Rmd’ using ‘UTF-8’... OK
+  ‘usecase.Rmd’ using ‘UTF-8’... OK
+ NONE
+* checking re-building of vignette outputs ...

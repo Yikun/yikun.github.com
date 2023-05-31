@@ -1,0 +1,186 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD check --install=check:pathVar.install-out.txt --library=/home/biocbuild/R/R-4.3.0/site-library --timings pathVar_1.31.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/pathVar.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘pathVar/DESCRIPTION’ ... OK
+* checking extension type ... Package
+* this is package ‘pathVar’ version ‘1.31.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘pathVar’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+diagnosticsVarPlots: no visible binding for global variable ‘avg’
+diagnosticsVarPlots: no visible binding for global variable ‘standDev’
+diagnosticsVarPlots: no visible binding for global variable ‘medAbsDev’
+diagnosticsVarPlots: no visible binding for global variable ‘cv’
+diagnosticsVarPlotsTwoSample: no visible binding for global variable
+  ‘avg’
+diagnosticsVarPlotsTwoSample: no visible binding for global variable
+  ‘standDev’
+diagnosticsVarPlotsTwoSample: no visible binding for global variable
+  ‘medAbsDev’
+diagnosticsVarPlotsTwoSample: no visible binding for global variable
+  ‘cv’
+pathVarOneSample: no visible binding for global variable ‘APval’
+pathVarOneSample: no visible binding for global variable
+  ‘PercOfGenesInPway’
+pathVarTwoSamplesCont: no visible binding for global variable ‘APval’
+pathVarTwoSamplesCont: no visible binding for global variable
+  ‘PercOfGenesInPway’
+pathVarTwoSamplesDisc: no visible binding for global variable ‘APval’
+pathVarTwoSamplesDisc: no visible binding for global variable
+  ‘PercOfGenesInPway’
+plotAllTwoSampleDistributionCounts: no visible binding for global
+  variable ‘Cluster’
+plotAllTwoSampleDistributionCounts: no visible binding for global
+  variable ‘Number_of_genes’
+plotOneSample: no visible binding for global variable ‘Cluster’
+plotOneSample: no visible binding for global variable ‘Number_of_genes’
+plotTwoSamplesCont: no visible binding for global variable ‘PwayName’
+plotTwoSamplesCont: no visible binding for global variable
+  ‘NumOfGenesFromDataSetInPathway’
+plotTwoSamplesCont: no visible binding for global variable ‘value’
+plotTwoSamplesCont: no visible binding for global variable
+  ‘..density..’
+plotTwoSamplesCont: no visible binding for global variable ‘group’
+plotTwoSamplesDisc: no visible binding for global variable ‘Cluster’
+plotTwoSamplesDisc: no visible binding for global variable
+  ‘Number_of_genes’
+sigOneSample: no visible binding for global variable ‘APval’
+sigOneSample: no visible binding for global variable ‘PwayName’
+sigTwoSamplesCont: no visible binding for global variable ‘APval’
+sigTwoSamplesCont: no visible binding for global variable ‘PwayName’
+sigTwoSamplesDisc: no visible binding for global variable ‘APval’
+sigTwoSamplesDisc: no visible binding for global variable ‘PwayName’
+Undefined global functions or variables:
+  ..density.. APval Cluster NumOfGenesFromDataSetInPathway
+  Number_of_genes PercOfGenesInPway PwayName avg cv group medAbsDev
+  standDev value
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... OK
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... OK
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking LazyData ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘pathVar-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: plotPway
+> ### Title: Checks if an object is from the one sample or two samples cases
+> ###   and then plots reference distribution and the chosen pathway.
+> ### Aliases: plotPway
+> ### Keywords: methods
+> 
+> ### ** Examples
+> 
+> # we run the 2 samples analysis on the first 10 pathways from kegg
+> pways.kegg.10pways <- lapply(pways.kegg, function(x) x[1:10])
+> results_2samples=pathVarTwoSamplesCont(bock,pways.kegg.10pways,groups=as.factor(c(rep(1,10),rep(2,10))))
+> sigPways <- sigPway(results_2samples,0.05)
+> plotPway(results_2samples,"Glycolysis / Gluconeogenesis",sigPways)
+Error in value[[3L]](cond) : 
+  The melt generic in data.table has been passed a data.frame, but data.table::melt currently only has a method for data.tables. Please confirm your input is a data.table, with setDT(df) or as.data.table(df). If you intend to use a method from reshape2, try installing that package first, but do note that reshape2 is deprecated and you should be migrating your code away from using it.
+Calls: plotPway ... tryCatch -> tryCatchList -> tryCatchOne -> <Anonymous>
+Execution halted
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘pathVar.Rnw’ using ‘UTF-8’... failed
+ ERROR
+Errors in running code in vignettes:
+when running code in ‘pathVar.Rnw’
+  ...
++     resTwoSam@var2[sigTwoSam@genesInSigPways1[["Oxidative phosph ..." ... [TRUNCATED] 
+        ATP5G1  ATP6V0E2      SDHC    NDUFV1    TCIRG1
+[1,] 0.4207747 0.4706756 0.4206837 0.3501293 0.3676078
+[2,] 0.4125640 0.4523365 0.2550743 0.3524234 0.4470001
+
+> plotPway(resTwoSam, "Oxidative phosphorylation", sigTwoSam)
+
+  When sourcing ‘pathVar.R’:
+Error: The melt generic in data.table has been passed a data.frame, but data.table::melt currently only has a method for data.tables. Please confirm your input is a data.table, with setDT(df) or as.data.table(df). If you intend to use a method from reshape2, try installing that package first, but do note that reshape2 is deprecated and you should be migrating your code away from using it.
+Execution halted
+
+* checking re-building of vignette outputs ... NOTE
+Error(s) in re-building vignettes:
+  ...
+--- re-building ‘pathVar.Rnw’ using Sweave
+Loading required package: ggplot2
+Loading required package: gridExtra
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+`geom_smooth()` using formula = 'y ~ x'
+
+Error: processing vignette 'pathVar.Rnw' failed with diagnostics:
+ chunk 19 (label = dens_1) 
+Error in value[[3L]](cond) : 
+  The melt generic in data.table has been passed a data.frame, but data.table::melt currently only has a method for data.tables. Please confirm your input is a data.table, with setDT(df) or as.data.table(df). If you intend to use a method from reshape2, try installing that package first, but do note that reshape2 is deprecated and you should be migrating your code away from using it.
+
+--- failed re-building ‘pathVar.Rnw’
+
+SUMMARY: processing the following file failed:
+  ‘pathVar.Rnw’
+
+Error: Vignette re-building failed.
+Execution halted
+
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 2 ERRORs, 2 NOTEs
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/pathVar.Rcheck/00check.log’
+for details.
+

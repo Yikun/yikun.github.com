@@ -1,0 +1,251 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD check --install=check:EGSEA.install-out.txt --library=/home/biocbuild/R/R-4.3.0/site-library --timings EGSEA_1.29.0.tar.gz
+###
+##############################################################################
+##############################################################################
+
+
+* using log directory ‘/home/biocbuild/bbs-3.18-bioc/meat/EGSEA.Rcheck’
+* using R version 4.3.0 (2023-04-21)
+* using platform: aarch64-unknown-linux-gnu (64-bit)
+* R was compiled by
+    gcc (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+    GNU Fortran (Ubuntu 11.3.0-1ubuntu1~22.04) 11.3.0
+* running under: Ubuntu 22.04.2 LTS
+* using session charset: UTF-8
+* checking for file ‘EGSEA/DESCRIPTION’ ... OK
+* this is package ‘EGSEA’ version ‘1.29.0’
+* checking package namespace information ... OK
+* checking package dependencies ... OK
+* checking if this is a source package ... OK
+* checking if there is a namespace ... OK
+* checking for hidden files and directories ... OK
+* checking for portable file names ... OK
+* checking for sufficient/correct file permissions ... OK
+* checking whether package ‘EGSEA’ can be installed ... OK
+* checking installed package size ... OK
+* checking package directory ... OK
+* checking ‘build’ directory ... OK
+* checking DESCRIPTION meta-information ... OK
+* checking top-level files ... OK
+* checking for left-over files ... OK
+* checking index information ... OK
+* checking package subdirectories ... OK
+* checking R files for non-ASCII characters ... OK
+* checking R files for syntax errors ... OK
+* checking whether the package can be loaded ... OK
+* checking whether the package can be loaded with stated dependencies ... OK
+* checking whether the package can be unloaded cleanly ... OK
+* checking whether the namespace can be loaded with stated dependencies ... OK
+* checking whether the namespace can be unloaded cleanly ... OK
+* checking loading without being on the library search path ... OK
+* checking dependencies in R code ... OK
+* checking S3 generic/method consistency ... OK
+* checking replacement functions ... OK
+* checking foreign function calls ... OK
+* checking R code for possible problems ... NOTE
+buildGeneSetDBIdx: no visible binding for global variable ‘GOTERM’
+buildMSigDBIdx: no visible binding for global variable ‘msigdb’
+generateSummaryPlots: no visible binding for global variable ‘x.data’
+generateSummaryPlots: no visible binding for global variable ‘y.data’
+generateSummaryPlots: no visible binding for global variable ‘gsSize’
+generateSummaryPlots: no visible binding for global variable ‘id’
+generateSummaryPlots: no visible binding for global variable ‘sig’
+loadKeggData: no visible binding for global variable ‘kegg.pathways’
+Undefined global functions or variables:
+  GOTERM gsSize id kegg.pathways msigdb sig x.data y.data
+* checking Rd files ... OK
+* checking Rd metadata ... OK
+* checking Rd cross-references ... OK
+* checking for missing documentation entries ... WARNING
+Undocumented data sets:
+  ‘arraydata’
+All user-level objects in a package should have documentation entries.
+See chapter ‘Writing R documentation files’ in the ‘Writing R
+Extensions’ manual.
+* checking for code/documentation mismatches ... OK
+* checking Rd \usage sections ... OK
+* checking Rd contents ... OK
+* checking for unstated dependencies in examples ... WARNING
+'library' or 'require' call not declared from: ‘Glimma’
+* checking contents of ‘data’ directory ... OK
+* checking data for non-ASCII characters ... OK
+* checking data for ASCII and uncompressed saves ... OK
+* checking files in ‘vignettes’ ... OK
+* checking examples ... ERROR
+Running examples in ‘EGSEA-Ex.R’ failed
+The error most likely occurred in:
+
+> base::assign(".ptime", proc.time(), pos = "CheckExEnv")
+> ### Name: egsea
+> ### Title: Core functions to perform ensemble of gene set enrichment
+> ###   analysis (EGSEA)
+> ### Aliases: egsea egsea,egsea-main egsea.cnt egsea.cnt,egsea-main
+> ###   egsea.ora egsea.ora,egsea-main egsea.cnt egsea.ma
+> ###   egsea.cnt,egsea-main
+> 
+> ### ** Examples
+> 
+> # Example of egsea
+> library(EGSEAdata)
+> data(il13.data)
+> v = il13.data$voom
+> contrasts = il13.data$contra
+> gs.annots = buildIdx(entrezIDs=rownames(v$E), species="human", 
++ msigdb.gsets="none", 
++          kegg.updated=FALSE, kegg.exclude = c("Metabolism"))
+[1] "Building KEGG pathways annotation object ... "
+> # set report = TRUE to generate the EGSEA interactive report
+> gsa = egsea(voom.results=v, contrasts=contrasts,  gs.annots=gs.annots, 
++          symbolsMap=v$genes, baseGSEAs=egsea.base()[-c(2,5,6,9,12)], 
++ 			display.top = 5, sort.by="avg.rank", 
++ 			report.dir="./il13-egsea-report", 
++          num.threads = 2, report = FALSE)
+EGSEA analysis has started
+##------ Tue May 30 06:33:16 2023 ------##
+Log fold changes are estimated using limma package ... 
+limma DE analysis is carried out ... 
+EGSEA is running on the provided data and kegg collection
+...safe*....zscore*..globaltest*camera*..gage*...gsva*..ora*
+##------ Tue May 30 06:33:29 2023 ------##
+EGSEA analysis took 13.518 seconds.
+EGSEA analysis has completed
+> topSets(gsa) 
+Extracting the top gene sets of the collection 
+KEGG Pathways for the contrast X24IL13-X24
+ Sorted by avg.rank
+ [1] "Intestinal immune network for IgA production"             
+ [2] "Asthma"                                                   
+ [3] "Amoebiasis"                                               
+ [4] "Hematopoietic cell lineage"                               
+ [5] "HTLV-I infection"                                         
+ [6] "Viral myocarditis"                                        
+ [7] "Malaria"                                                  
+ [8] "Endocrine and other factor-regulated calcium reabsorption"
+ [9] "Legionellosis"                                            
+[10] "Proteoglycans in cancer"                                  
+> 
+> # Example of egsea.cnt
+> library(EGSEAdata)
+> data(il13.data.cnt)
+> cnt = il13.data.cnt$counts
+> group = il13.data.cnt$group
+> design = il13.data.cnt$design
+> contrasts = il13.data.cnt$contra
+> genes = il13.data.cnt$genes
+> gs.annots = buildIdx(entrezIDs=rownames(cnt), species="human", 
++ msigdb.gsets="none",
++          kegg.updated=FALSE, kegg.exclude = c("Metabolism"))
+[1] "Building KEGG pathways annotation object ... "
+> # set report = TRUE to generate the EGSEA interactive report
+> gsa = egsea.cnt(counts=cnt, group=group, design=design, contrasts=contrasts, 
++          gs.annots=gs.annots, 
++          symbolsMap=genes, baseGSEAs=egsea.base()[-c(2,5,6,9,12)], 
++ display.top = 5,
++           sort.by="avg.rank", 
++ report.dir="./il13-egsea-cnt-report", 
++          num.threads = 2, report = FALSE)
+EGSEA analysis has started
+##------ Tue May 30 06:33:30 2023 ------##
+Log fold changes are estimated using limma package ... 
+limma DE analysis is carried out ... 
+EGSEA is running on the provided data and kegg collection
+...safe*....zscore*..globaltest*camera*..gage*...gsva*..ora*
+##------ Tue May 30 06:33:45 2023 ------##
+EGSEA analysis took 14.291 seconds.
+EGSEA analysis has completed
+> topSets(gsa) 
+Extracting the top gene sets of the collection 
+KEGG Pathways for the contrast X24IL13-X24
+ Sorted by avg.rank
+ [1] "Intestinal immune network for IgA production"             
+ [2] "Asthma"                                                   
+ [3] "Amoebiasis"                                               
+ [4] "Malaria"                                                  
+ [5] "Hematopoietic cell lineage"                               
+ [6] "HTLV-I infection"                                         
+ [7] "Viral myocarditis"                                        
+ [8] "Endocrine and other factor-regulated calcium reabsorption"
+ [9] "Legionellosis"                                            
+[10] "Prion diseases"                                           
+> 
+> # Example of egsea.ora
+> library(EGSEAdata)
+> data(il13.data)
+> voom.results = il13.data$voom
+> contrast = il13.data$contra
+> library(limma)
+
+Attaching package: ‘limma’
+
+The following object is masked from ‘package:BiocGenerics’:
+
+    plotMA
+
+> vfit = lmFit(voom.results, voom.results$design)
+> vfit = contrasts.fit(vfit, contrast)
+> vfit = eBayes(vfit)
+> top.Table = topTable(vfit, coef=1, number=Inf, p.value=0.05, lfc=1)
+> deGenes = as.character(top.Table$FeatureID)
+> logFC =  top.Table$logFC
+> names(logFC) = deGenes
+> gs.annots = buildIdx(entrezIDs=deGenes, species="human", 
++ msigdb.gsets="none",
++          kegg.updated=FALSE, kegg.exclude = c("Metabolism"))
+[1] "Building KEGG pathways annotation object ... "
+> # set report = TRUE to generate the EGSEA interactive report
+> gsa = egsea.ora(geneIDs=deGenes, universe= 
++ as.character(voom.results$genes[,1]),
++              logFC =logFC, title="X24IL13-X24",  
++ gs.annots=gs.annots, 
++              symbolsMap=top.Table[, c(1,2)], display.top = 5,
++               report.dir="./il13-egsea-ora-report", num.threads = 2, 
++ 				report = FALSE)
+EGSEA analysis has started
+##------ Tue May 30 06:33:48 2023 ------##
+EGSEA is running on the provided data and kegg collection
+.ora*
+##------ Tue May 30 06:33:48 2023 ------##
+EGSEA analysis took 0.192999999999984 seconds.
+EGSEA analysis has completed
+> topSets(gsa) 
+Extracting the top gene sets of the collection 
+KEGG Pathways for the contrast X24IL13X24
+ Sorted by p.adj
+ [1] "Hematopoietic cell lineage"            
+ [2] "Staphylococcus aureus infection"       
+ [3] "Cytokine-cytokine receptor interaction"
+ [4] "Phagosome"                             
+ [5] "Tuberculosis"                          
+ [6] "Leishmaniasis"                         
+ [7] "Cell adhesion molecules (CAMs)"        
+ [8] "Rheumatoid arthritis"                  
+ [9] "Asthma"                                
+[10] "Type I diabetes mellitus"              
+> 
+> # Example of egsea.ma
+> library(Glimma)
+Error in library(Glimma) : there is no package called ‘Glimma’
+Execution halted
+* checking for unstated dependencies in ‘tests’ ... OK
+* checking tests ...
+  Running ‘testthat.R’
+ OK
+* checking for unstated dependencies in vignettes ... OK
+* checking package vignettes in ‘inst/doc’ ... OK
+* checking running R code from vignettes ...
+  ‘EGSEA.Rnw’... OK
+ NONE
+* checking re-building of vignette outputs ... OK
+* checking PDF version of manual ... OK
+* DONE
+
+Status: 1 ERROR, 2 WARNINGs, 1 NOTE
+See
+  ‘/home/biocbuild/bbs-3.18-bioc/meat/EGSEA.Rcheck/00check.log’
+for details.
+

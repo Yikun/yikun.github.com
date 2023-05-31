@@ -1,0 +1,394 @@
+##############################################################################
+##############################################################################
+###
+### Running command:
+###
+###   /home/biocbuild/R/R-4.3.0/bin/R CMD build --keep-empty-dirs --no-resave-data BiocHail
+###
+##############################################################################
+##############################################################################
+
+
+* checking for file ‘BiocHail/DESCRIPTION’ ... OK
+* preparing ‘BiocHail’:
+* checking DESCRIPTION meta-information ... OK
+* installing the package to build vignettes
+* creating vignettes ... ERROR
+--- re-building ‘gwas_tut.Rmd’ using rmarkdown
+WARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.apache.spark.unsafe.Platform (file:/home/biocbuild/.cache/R/basilisk/1.13.0/BiocHail/1.1.1/bsklenv/lib/python3.8/site-packages/pyspark/jars/spark-unsafe_2.12-3.1.3.jar) to constructor java.nio.DirectByteBuffer(long,int)
+WARNING: Please consider reporting this to the maintainers of org.apache.spark.unsafe.Platform
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+2023-05-29 15:11:32.924 WARN  NativeCodeLoader:60 - Unable to load native-hadoop library for your platform... using builtin-java classes where applicable
+Setting default log level to "WARN".
+To adjust logging level use sc.setLogLevel(newLevel). For SparkR, use setLogLevel(newLevel).
+2023-05-29 15:11:34.267 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:34.278 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:34.284 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:34.288 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:34.292 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:34.297 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:34.302 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:34.365 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:34.370 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:34.374 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:34.379 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:34.383 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:34.387 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:34.392 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:34.396 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:34.403 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:34.414 ERROR SparkContext:94 - Error initializing SparkContext.
+java.net.BindException: Cannot assign requested address: Service 'sparkDriver' failed after 16 retries (on a random free port)! Consider explicitly setting the appropriate binding address for the service 'sparkDriver' (for example spark.driver.bindAddress for SparkDriver) to the correct binding address.
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:459)
+	at java.base/sun.nio.ch.Net.bind(Net.java:448)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:227)
+	at io.netty.channel.socket.nio.NioServerSocketChannel.doBind(NioServerSocketChannel.java:134)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.bind(AbstractChannel.java:562)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.bind(DefaultChannelPipeline.java:1334)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeBind(AbstractChannelHandlerContext.java:506)
+	at io.netty.channel.AbstractChannelHandlerContext.bind(AbstractChannelHandlerContext.java:491)
+	at io.netty.channel.DefaultChannelPipeline.bind(DefaultChannelPipeline.java:973)
+	at io.netty.channel.AbstractChannel.bind(AbstractChannel.java:260)
+	at io.netty.bootstrap.AbstractBootstrap$2.run(AbstractBootstrap.java:356)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:164)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:472)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:500)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Initializing Hail with default parameters...
+2023-05-29 15:11:35.003 WARN  SparkContext:69 - Another SparkContext is being constructed (or threw an exception in its constructor). This may indicate an error, since only one SparkContext should be running in this JVM (see SPARK-2243). The other SparkContext was created at:
+org.apache.spark.SparkContext.<init>(SparkContext.scala:85)
+is.hail.backend.spark.SparkBackend$.configureAndCreateSparkContext(SparkBackend.scala:148)
+is.hail.backend.spark.SparkBackend$.apply(SparkBackend.scala:230)
+is.hail.backend.spark.SparkBackend.apply(SparkBackend.scala)
+java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+java.base/java.lang.reflect.Method.invoke(Method.java:566)
+py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+py4j.Gateway.invoke(Gateway.java:282)
+py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+py4j.commands.CallCommand.execute(CallCommand.java:79)
+py4j.GatewayConnection.run(GatewayConnection.java:238)
+java.base/java.lang.Thread.run(Thread.java:829)
+2023-05-29 15:11:35.036 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.040 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.046 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.050 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.054 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.057 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.061 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.065 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.096 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.106 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.111 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.115 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.118 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.122 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.125 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.128 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.134 ERROR SparkContext:94 - Error initializing SparkContext.
+java.net.BindException: Cannot assign requested address: Service 'sparkDriver' failed after 16 retries (on a random free port)! Consider explicitly setting the appropriate binding address for the service 'sparkDriver' (for example spark.driver.bindAddress for SparkDriver) to the correct binding address.
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:459)
+	at java.base/sun.nio.ch.Net.bind(Net.java:448)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:227)
+	at io.netty.channel.socket.nio.NioServerSocketChannel.doBind(NioServerSocketChannel.java:134)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.bind(AbstractChannel.java:562)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.bind(DefaultChannelPipeline.java:1334)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeBind(AbstractChannelHandlerContext.java:506)
+	at io.netty.channel.AbstractChannelHandlerContext.bind(AbstractChannelHandlerContext.java:491)
+	at io.netty.channel.DefaultChannelPipeline.bind(DefaultChannelPipeline.java:973)
+	at io.netty.channel.AbstractChannel.bind(AbstractChannel.java:260)
+	at io.netty.bootstrap.AbstractBootstrap$2.run(AbstractBootstrap.java:356)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:164)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:472)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:500)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+Quitting from lines 75-79 [get1] (gwas_tut.Rmd)
+Error: processing vignette 'gwas_tut.Rmd' failed with diagnostics:
+py4j.protocol.Py4JJavaError: An error occurred while calling z:is.hail.backend.spark.SparkBackend.apply.
+<... omitted ...>a:491)
+	at io.netty.channel.DefaultChannelPipeline.bind(DefaultChannelPipeline.java:973)
+	at io.netty.channel.AbstractChannel.bind(AbstractChannel.java:260)
+	at io.netty.bootstrap.AbstractBootstrap$2.run(AbstractBootstrap.java:356)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:164)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:472)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:500)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+See `reticulate::py_last_error()` for details
+--- failed re-building ‘gwas_tut.Rmd’
+
+--- re-building ‘large_t2t.Rmd’ using rmarkdown
+2023-05-29 15:11:35.238 WARN  SparkContext:69 - Another SparkContext is being constructed (or threw an exception in its constructor). This may indicate an error, since only one SparkContext should be running in this JVM (see SPARK-2243). The other SparkContext was created at:
+org.apache.spark.SparkContext.<init>(SparkContext.scala:85)
+is.hail.backend.spark.SparkBackend$.configureAndCreateSparkContext(SparkBackend.scala:148)
+is.hail.backend.spark.SparkBackend$.apply(SparkBackend.scala:230)
+is.hail.backend.spark.SparkBackend.apply(SparkBackend.scala)
+java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+java.base/java.lang.reflect.Method.invoke(Method.java:566)
+py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+py4j.Gateway.invoke(Gateway.java:282)
+py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+py4j.commands.CallCommand.execute(CallCommand.java:79)
+py4j.GatewayConnection.run(GatewayConnection.java:238)
+java.base/java.lang.Thread.run(Thread.java:829)
+2023-05-29 15:11:35.271 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.275 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.286 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.289 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.293 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.302 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.305 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.308 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.310 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.313 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.316 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.319 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.321 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.324 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.327 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.330 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.339 ERROR SparkContext:94 - Error initializing SparkContext.
+java.net.BindException: Cannot assign requested address: Service 'sparkDriver' failed after 16 retries (on a random free port)! Consider explicitly setting the appropriate binding address for the service 'sparkDriver' (for example spark.driver.bindAddress for SparkDriver) to the correct binding address.
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:459)
+	at java.base/sun.nio.ch.Net.bind(Net.java:448)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:227)
+	at io.netty.channel.socket.nio.NioServerSocketChannel.doBind(NioServerSocketChannel.java:134)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.bind(AbstractChannel.java:562)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.bind(DefaultChannelPipeline.java:1334)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeBind(AbstractChannelHandlerContext.java:506)
+	at io.netty.channel.AbstractChannelHandlerContext.bind(AbstractChannelHandlerContext.java:491)
+	at io.netty.channel.DefaultChannelPipeline.bind(DefaultChannelPipeline.java:973)
+	at io.netty.channel.AbstractChannel.bind(AbstractChannel.java:260)
+	at io.netty.bootstrap.AbstractBootstrap$2.run(AbstractBootstrap.java:356)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:164)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:472)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:500)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Initializing Hail with default parameters...
+2023-05-29 15:11:35.354 WARN  SparkContext:69 - Another SparkContext is being constructed (or threw an exception in its constructor). This may indicate an error, since only one SparkContext should be running in this JVM (see SPARK-2243). The other SparkContext was created at:
+org.apache.spark.SparkContext.<init>(SparkContext.scala:85)
+is.hail.backend.spark.SparkBackend$.configureAndCreateSparkContext(SparkBackend.scala:148)
+is.hail.backend.spark.SparkBackend$.apply(SparkBackend.scala:230)
+is.hail.backend.spark.SparkBackend.apply(SparkBackend.scala)
+java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+java.base/java.lang.reflect.Method.invoke(Method.java:566)
+py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+py4j.Gateway.invoke(Gateway.java:282)
+py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+py4j.commands.CallCommand.execute(CallCommand.java:79)
+py4j.GatewayConnection.run(GatewayConnection.java:238)
+java.base/java.lang.Thread.run(Thread.java:829)
+2023-05-29 15:11:35.382 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.385 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.388 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.391 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.393 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.396 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.399 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.401 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.404 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.407 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.435 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.437 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.440 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.443 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.446 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.449 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.453 ERROR SparkContext:94 - Error initializing SparkContext.
+java.net.BindException: Cannot assign requested address: Service 'sparkDriver' failed after 16 retries (on a random free port)! Consider explicitly setting the appropriate binding address for the service 'sparkDriver' (for example spark.driver.bindAddress for SparkDriver) to the correct binding address.
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:459)
+	at java.base/sun.nio.ch.Net.bind(Net.java:448)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:227)
+	at io.netty.channel.socket.nio.NioServerSocketChannel.doBind(NioServerSocketChannel.java:134)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.bind(AbstractChannel.java:562)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.bind(DefaultChannelPipeline.java:1334)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeBind(AbstractChannelHandlerContext.java:506)
+	at io.netty.channel.AbstractChannelHandlerContext.bind(AbstractChannelHandlerContext.java:491)
+	at io.netty.channel.DefaultChannelPipeline.bind(DefaultChannelPipeline.java:973)
+	at io.netty.channel.AbstractChannel.bind(AbstractChannel.java:260)
+	at io.netty.bootstrap.AbstractBootstrap$2.run(AbstractBootstrap.java:356)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:164)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:472)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:500)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+Quitting from lines 69-79 [do17] (large_t2t.Rmd)
+Error: processing vignette 'large_t2t.Rmd' failed with diagnostics:
+py4j.protocol.Py4JJavaError: An error occurred while calling z:is.hail.backend.spark.SparkBackend.apply.
+<... omitted ...>a:491)
+	at io.netty.channel.DefaultChannelPipeline.bind(DefaultChannelPipeline.java:973)
+	at io.netty.channel.AbstractChannel.bind(AbstractChannel.java:260)
+	at io.netty.bootstrap.AbstractBootstrap$2.run(AbstractBootstrap.java:356)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:164)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:472)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:500)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+See `reticulate::py_last_error()` for details
+--- failed re-building ‘large_t2t.Rmd’
+
+--- re-building ‘ukbb.Rmd’ using rmarkdown
+2023-05-29 15:11:35.545 WARN  SparkContext:69 - Another SparkContext is being constructed (or threw an exception in its constructor). This may indicate an error, since only one SparkContext should be running in this JVM (see SPARK-2243). The other SparkContext was created at:
+org.apache.spark.SparkContext.<init>(SparkContext.scala:85)
+is.hail.backend.spark.SparkBackend$.configureAndCreateSparkContext(SparkBackend.scala:148)
+is.hail.backend.spark.SparkBackend$.apply(SparkBackend.scala:230)
+is.hail.backend.spark.SparkBackend.apply(SparkBackend.scala)
+java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+java.base/java.lang.reflect.Method.invoke(Method.java:566)
+py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+py4j.Gateway.invoke(Gateway.java:282)
+py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+py4j.commands.CallCommand.execute(CallCommand.java:79)
+py4j.GatewayConnection.run(GatewayConnection.java:238)
+java.base/java.lang.Thread.run(Thread.java:829)
+2023-05-29 15:11:35.574 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.577 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.580 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.583 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.586 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.589 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.592 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.595 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.599 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.602 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.605 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.609 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.612 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.615 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.618 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.622 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:11:35.628 ERROR SparkContext:94 - Error initializing SparkContext.
+java.net.BindException: Cannot assign requested address: Service 'sparkDriver' failed after 16 retries (on a random free port)! Consider explicitly setting the appropriate binding address for the service 'sparkDriver' (for example spark.driver.bindAddress for SparkDriver) to the correct binding address.
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:459)
+	at java.base/sun.nio.ch.Net.bind(Net.java:448)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:227)
+	at io.netty.channel.socket.nio.NioServerSocketChannel.doBind(NioServerSocketChannel.java:134)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.bind(AbstractChannel.java:562)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.bind(DefaultChannelPipeline.java:1334)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeBind(AbstractChannelHandlerContext.java:506)
+	at io.netty.channel.AbstractChannelHandlerContext.bind(AbstractChannelHandlerContext.java:491)
+	at io.netty.channel.DefaultChannelPipeline.bind(DefaultChannelPipeline.java:973)
+	at io.netty.channel.AbstractChannel.bind(AbstractChannel.java:260)
+	at io.netty.bootstrap.AbstractBootstrap$2.run(AbstractBootstrap.java:356)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:164)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:472)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:500)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+Initializing Hail with default parameters...
+2023-05-29 15:12:37.261 WARN  SparkContext:69 - Another SparkContext is being constructed (or threw an exception in its constructor). This may indicate an error, since only one SparkContext should be running in this JVM (see SPARK-2243). The other SparkContext was created at:
+org.apache.spark.SparkContext.<init>(SparkContext.scala:85)
+is.hail.backend.spark.SparkBackend$.configureAndCreateSparkContext(SparkBackend.scala:148)
+is.hail.backend.spark.SparkBackend$.apply(SparkBackend.scala:230)
+is.hail.backend.spark.SparkBackend.apply(SparkBackend.scala)
+java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+java.base/java.lang.reflect.Method.invoke(Method.java:566)
+py4j.reflection.MethodInvoker.invoke(MethodInvoker.java:244)
+py4j.reflection.ReflectionEngine.invoke(ReflectionEngine.java:357)
+py4j.Gateway.invoke(Gateway.java:282)
+py4j.commands.AbstractCommand.invokeMethod(AbstractCommand.java:132)
+py4j.commands.CallCommand.execute(CallCommand.java:79)
+py4j.GatewayConnection.run(GatewayConnection.java:238)
+java.base/java.lang.Thread.run(Thread.java:829)
+2023-05-29 15:12:37.287 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:12:37.289 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:12:37.292 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:12:37.295 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:12:37.297 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:12:37.300 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:12:37.302 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:12:37.304 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:12:37.307 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:12:37.309 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:12:37.311 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:12:37.314 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:12:37.316 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:12:37.319 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:12:37.321 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:12:37.324 WARN  Utils:69 - Service 'sparkDriver' could not bind on a random free port. You may check whether configuring an appropriate binding address.
+2023-05-29 15:12:37.328 ERROR SparkContext:94 - Error initializing SparkContext.
+java.net.BindException: Cannot assign requested address: Service 'sparkDriver' failed after 16 retries (on a random free port)! Consider explicitly setting the appropriate binding address for the service 'sparkDriver' (for example spark.driver.bindAddress for SparkDriver) to the correct binding address.
+	at java.base/sun.nio.ch.Net.bind0(Native Method)
+	at java.base/sun.nio.ch.Net.bind(Net.java:459)
+	at java.base/sun.nio.ch.Net.bind(Net.java:448)
+	at java.base/sun.nio.ch.ServerSocketChannelImpl.bind(ServerSocketChannelImpl.java:227)
+	at io.netty.channel.socket.nio.NioServerSocketChannel.doBind(NioServerSocketChannel.java:134)
+	at io.netty.channel.AbstractChannel$AbstractUnsafe.bind(AbstractChannel.java:562)
+	at io.netty.channel.DefaultChannelPipeline$HeadContext.bind(DefaultChannelPipeline.java:1334)
+	at io.netty.channel.AbstractChannelHandlerContext.invokeBind(AbstractChannelHandlerContext.java:506)
+	at io.netty.channel.AbstractChannelHandlerContext.bind(AbstractChannelHandlerContext.java:491)
+	at io.netty.channel.DefaultChannelPipeline.bind(DefaultChannelPipeline.java:973)
+	at io.netty.channel.AbstractChannel.bind(AbstractChannel.java:260)
+	at io.netty.bootstrap.AbstractBootstrap$2.run(AbstractBootstrap.java:356)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:164)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:472)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:500)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+Quitting from lines 41-45 [getukbb] (ukbb.Rmd)
+Error: processing vignette 'ukbb.Rmd' failed with diagnostics:
+py4j.protocol.Py4JJavaError: An error occurred while calling z:is.hail.backend.spark.SparkBackend.apply.
+<... omitted ...>a:491)
+	at io.netty.channel.DefaultChannelPipeline.bind(DefaultChannelPipeline.java:973)
+	at io.netty.channel.AbstractChannel.bind(AbstractChannel.java:260)
+	at io.netty.bootstrap.AbstractBootstrap$2.run(AbstractBootstrap.java:356)
+	at io.netty.util.concurrent.AbstractEventExecutor.safeExecute(AbstractEventExecutor.java:164)
+	at io.netty.util.concurrent.SingleThreadEventExecutor.runAllTasks(SingleThreadEventExecutor.java:472)
+	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:500)
+	at io.netty.util.concurrent.SingleThreadEventExecutor$4.run(SingleThreadEventExecutor.java:989)
+	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)
+	at io.netty.util.concurrent.FastThreadLocalRunnable.run(FastThreadLocalRunnable.java:30)
+	at java.base/java.lang.Thread.run(Thread.java:829)
+
+See `reticulate::py_last_error()` for details
+--- failed re-building ‘ukbb.Rmd’
+
+SUMMARY: processing the following files failed:
+  ‘gwas_tut.Rmd’ ‘large_t2t.Rmd’ ‘ukbb.Rmd’
+
+Error: Vignette re-building failed.
+Execution halted
