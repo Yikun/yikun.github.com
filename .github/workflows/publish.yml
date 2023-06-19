@@ -33,9 +33,10 @@ jobs:
           sudo rm -rf themes/yilia/.git
       - name: Update config
         run: |
-          pushd yikun.github.com
-          sudo sed -i'' "/^ *repo/s~github\.com~${{ secrets.hexo_token }}@github.com~" _config.yml
-          popd
+          mkdir -p ~/.ssh/
+          echo "${HEXO_TOKEN}" > ~/.ssh/id_rsa
+          chmod 600 ~/.ssh/id_rsa
+          ssh-keyscan github.com >> ~/.ssh/known_hosts
       - name: Generate page
         run: |
           pushd yikun.github.com
